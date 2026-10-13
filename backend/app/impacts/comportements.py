@@ -11,7 +11,7 @@ from __future__ import annotations
 from ..confidence import Confiance, Facteur, moyenne_ponderee
 from ..engine.household import Adulte, Menage
 from ..evidence import valeur_ou_defaut
-from .base import Indicateur, Section
+from .base import Indicateur, Section, fr
 from .contexte import RU_MONTANT, Contexte
 
 # Règles pour lesquelles un modèle d'impact quantitatif existe (affiché comme « impact chiffré »).
@@ -496,24 +496,50 @@ MODELES = [mod_smic, mod_eti, mod_tva, mod_allegements, mod_participation, mod_r
            mod_is, mod_ifi, mod_retraite_age, mod_chomage_duree, mod_duree_legale, mod_carburants]
 
 
-def mod_multiplicateur(ctx: Contexte, soldes: dict) -> list[Indicateur]:
+# Effets sur l'offre de travail : des personnes choisissent de travailler (ou non) selon ce que le travail leur rapporte.
+# Contrairement aux pertes d'emploi subies (licenciements), ce sont des choix : ils réduisent la production, pas le bien-être.
+OFFRE_TRAVAIL = ("emploi_incitations", "emploi_revenu_universel")
+
+
+def mod_multiplicateur(ctx: Contexte, soldes: dict, inds: list[Indicateur] | None = None) -> list[Indicateur]:
     s = sum(v for v, _ in soldes.values())
-    if abs(s) < 0.05:
+    offre = [i for i in (inds or []) if i.id in OFFRE_TRAVAIL and i.valeur]
+    d_offre = sum(i.valeur for i in offre)
+    if abs(s) < 0.05 and abs(d_offre) < 500:
         return []
     m, conf_m, syn = valeur_ou_defaut(ctx.store, "multiplicateur_budgetaire", 1.0)
     pib, src_p, conf_p = metrique(ctx.store, "finances_publiques.pib_valeur")
     po, src_o, conf_o = metrique(ctx.store, "finances_publiques.prelevements_obligatoires_pct_pib")
     if not pib:
         return []
-    dpib = -m * s
-    conf_s = moyenne_ponderee(list(soldes.values()), "Effet budgétaire de la réforme")
-    out = [Indicateur("pib", "Effet sur l'activité (PIB, à 1-2 ans)", dpib / pib * 100, "pourcent", confiance=chaine(conf_m, conf_s),
-                      explication=("La réforme injecte de l'argent dans l'économie (dépenses en plus ou impôts en moins) : l'activité augmente temporairement."
-                                   if dpib > 0 else "La réforme retire de l'argent de l'économie (impôts en plus ou dépenses en moins) : l'activité ralentit temporairement."),
-                      calcul=[f"Impulsion budgétaire : {-s:+.2f} Md€", f"Multiplicateur retenu : {m:.2f}",
-                              f"Effet : {dpib:+.1f} Md€, soit {dpib / pib * 100:+.2f} % du PIB ({pib:.0f} Md€)"],
-                      sources=[src_p] if src_p else [], preuves=["multiplicateur_budgetaire"],
-                      sens="favorable" if dpib > 0 else "defavorable", fourchette=fourchette(syn, lambda x: -x * s / pib * 100))]
+    d_demande = -m * s if abs(s) >= 0.05 else 0.0
+    # Production d'un emploi peu qualifié ≈ son coût du travail : SMIC brut chargé (≈ +7 % après allègements),
+    # 0,85 équivalent temps plein (même pondération mi-temps / temps plein que le calcul des incitations).
+    d_prod = 0.0
+    calcul = []
+    if d_demande:
+        calcul += [f"Impulsion budgétaire : {-s:+.2f} Md€", f"Multiplicateur retenu : {m:.2f}", f"Effet par la demande : {d_demande:+.1f} Md€"]
+    if offre:
+        from ..engine.openfisca_engine import ENGINE
+        prod_emploi = ENGINE._smic_mensuel() * 12 * 1.07 * 0.85 / 1e9
+        d_prod = d_offre * prod_emploi
+        calcul += [f"Personnes en emploi en plus ou en moins (choix de travailler) : {fr(d_offre, 0)}",
+                   f"Production d'un emploi au SMIC (0,85 temps plein, coût du travail) : {fr(prod_emploi * 1e9, 0)} € par an",
+                   f"Effet par le travail : {d_prod:+.1f} Md€"]
+    dpib = d_demande + d_prod
+    calcul.append(f"Effet total : {dpib:+.1f} Md€, soit {dpib / pib * 100:+.2f} % du PIB ({pib:.0f} Md€)")
+    conf_s = moyenne_ponderee(list(soldes.values()), "Effet budgétaire de la réforme") if soldes else None
+    morceaux = []
+    if d_demande:
+        morceaux.append("La réforme injecte de l'argent dans l'économie (dépenses en plus ou impôts en moins), ce qui soutient l'activité."
+                        if d_demande > 0 else "La réforme retire de l'argent de l'économie (impôts en plus ou dépenses en moins), ce qui freine l'activité.")
+    if d_prod:
+        morceaux.append("Moins de personnes au travail, c'est moins de production." if d_prod < 0 else "Plus de personnes au travail, c'est plus de production.")
+    out = [Indicateur("pib", "Effet sur l'activité (PIB, à 1-2 ans)", dpib / pib * 100, "pourcent",
+                      confiance=chaine(conf_m, *[c for c in (conf_s,) if c], *[i.confiance for i in offre if i.confiance]),
+                      explication=" ".join(morceaux), calcul=calcul,
+                      sources=[src_p] if src_p else [], preuves=["multiplicateur_budgetaire"] + [p for i in offre for p in i.preuves],
+                      sens="favorable" if dpib > 0 else "defavorable", fourchette=fourchette(syn, lambda x: (-x * s if d_demande else 0) / pib * 100 + d_prod / pib * 100))]
     if po:
         retour = dpib * po / 100
         out.append(Indicateur("solde_public_retour_croissance", "Effet en retour de l'activité sur les recettes publiques", retour, "milliards_euros",
@@ -532,7 +558,7 @@ def section_comportements(ctx: Contexte) -> Section | None:
     for i in inds:
         if i.id.startswith("solde_public") and i.valeur is not None and i.confiance is not None:
             soldes[i.id] = (i.valeur, i.confiance)
-    inds += mod_multiplicateur(ctx, soldes)
+    inds += mod_multiplicateur(ctx, soldes, inds)
     ctx.cache["comportements"] = inds
     if not inds:
         return None

@@ -40,7 +40,7 @@ function Stepper({ step }: { step: number }) {
     <ol className="etapes" aria-label="Les étapes">
       {etapes.map((e, i) => (
         <li key={e} className={i < step ? 'fait' : i === step ? 'actif' : ''} aria-current={i === step ? 'step' : undefined}>
-          <span className="n">{i < step ? '✓' : i + 1}</span>{e}
+          <span className="n">{i < step ? '✓' : i + 1}</span><span className="lib">{e}</span>
         </li>
       ))}
     </ol>

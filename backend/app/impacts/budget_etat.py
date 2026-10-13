@@ -77,7 +77,7 @@ def section_budget_etat(ctx: Contexte) -> Section | None:
     dette_ind, dette_data = indicateurs_dette(ctx.store, -total)
     ind += dette_ind
     return Section("budget_etat", "Budget de l'État et de la Sécurité sociale",
-                   f"{'Hausse' if total > 0 else 'Baisse'} des dépenses de {fr(abs(total))} Md€ par an",
+                   f"Dépenses de l'État : {'hausse' if total > 0 else 'baisse'} de {fr(abs(total))} milliard{'s' if round(abs(total), 1) >= 2 else ''} € par an",
                    ind, conf,
                    "Différence entre les crédits de votre société et ceux votés dans la loi de finances et la loi de "
                    "financement de la Sécurité sociale en vigueur.",

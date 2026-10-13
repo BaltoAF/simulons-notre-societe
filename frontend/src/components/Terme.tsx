@@ -12,8 +12,10 @@ export function Terme({ id, children, icone = false }: { id: keyof typeof GLOSSA
   if (!e) return <>{children}</>
   return (
     <span className="terme-wrap" ref={ref}>
-      <button type="button" className={icone ? 'terme-icone' : 'terme'} onClick={() => setOpen((o) => !o)}
-        onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)} aria-expanded={open} aria-label={icone ? `Qu'est-ce que « ${e.terme} » ?` : undefined}>
+      {/* un clic (ou un toucher) ouvre toujours : sur écran tactile, le survol simulé précède le clic et le refermerait */}
+      <button type="button" className={icone ? 'terme-icone' : 'terme'} onClick={() => setOpen(true)}
+        onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)} onBlur={() => setOpen(false)}
+        onKeyDown={(ev) => { if (ev.key === 'Escape') setOpen(false) }} aria-expanded={open} aria-label={icone ? `Qu'est-ce que « ${e.terme} » ?` : undefined}>
         {icone ? <HelpCircle size={15} /> : (children ?? e.terme)}
       </button>
       {open && (

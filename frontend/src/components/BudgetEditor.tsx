@@ -35,8 +35,9 @@ export function BudgetEditor({ regles, overrides, onClose, onApply }: {
     if (mode === 'repartir') {
       // ce qui est ajouté ici est retiré des domaines non touchés (et non verrouillés), à proportion de leur taille
       const libres = missions.filter((m) => !t.includes(m.id) && !verrou(m.id)).map((m) => m.id)
-      const ecart = Object.values(next).reduce((a, b) => a + b, 0) - totalVote
       const base = libres.reduce((a, k) => a + vote[k], 0)
+      // écart calculé avec les domaines libres à leur valeur votée (sinon les baisses précédentes seraient comptées deux fois)
+      const ecart = missions.filter((m) => !libres.includes(m.id)).reduce((a, m) => a + next[m.id], 0) + base - totalVote
       if (base > 0) for (const k of libres) next[k] = Math.max(0, vote[k] - ecart * vote[k] / base)
     }
     setVals(next)
@@ -57,13 +58,14 @@ export function BudgetEditor({ regles, overrides, onClose, onApply }: {
   const libres = missions.filter((m) => !verrou(m.id) && filtre(m))
   const bloquees = missions.filter((m) => verrou(m.id) && filtre(m))
 
-  const Ligne = ({ m }: { m: Regle }) => {
+  // fonction (et non composant) : un composant déclaré ici serait recréé à chaque rendu, ce qui ferait perdre le focus
+  const ligne = (m: Regle) => {
     const i = infoMission(m.id, m.titre)
     const v = vals[m.id]
     const d = v - vote[m.id]
     const lock = verrou(m.id)
     return (
-      <div className="row between" style={{ padding: '10px 0', borderBottom: '1px solid var(--line)', flexWrap: 'nowrap', alignItems: 'center' }}>
+      <div key={m.id} className="row between" style={{ padding: '10px 0', borderBottom: '1px solid var(--line)', flexWrap: 'nowrap', alignItems: 'center' }}>
         <div className="grow">
           <div style={{ fontWeight: 650 }}>{lock && <Lock size={14} color="var(--ink-3)" />} {i.nom}</div>
           <div className="small muted">{i.description}</div>
@@ -100,12 +102,12 @@ export function BudgetEditor({ regles, overrides, onClose, onApply }: {
         <span className="suffix"><Search size={16} /></span>
       </div>
       <div style={{ maxHeight: '46vh', overflowY: 'auto', paddingRight: 6 }}>
-        {libres.map((m) => <Ligne key={m.id} m={m} />)}
+        {libres.map(ligne)}
         {bloquees.length > 0 && (
           <div style={{ marginTop: 14 }}>
             <div className="kpi-label" style={{ marginBottom: 2 }}><Lock size={13} /> Dépenses obligatoires (non modifiables ici)</div>
             <div className="small muted">Elles découlent d'engagements déjà pris ou des règles d'impôt : on ne les change pas d'un simple coup de crayon.</div>
-            {bloquees.map((m) => <Ligne key={m.id} m={m} />)}
+            {bloquees.map(ligne)}
           </div>
         )}
       </div>

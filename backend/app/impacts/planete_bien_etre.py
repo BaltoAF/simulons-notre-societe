@@ -135,7 +135,11 @@ def be_revenu(ctx: Contexte) -> list[Indicateur]:
 
 
 def be_emploi(ctx: Contexte) -> list[Indicateur]:
-    emplois = sum(i.valeur for i in ctx.cache.get("comportements", []) if i.id.startswith("emploi_") and i.valeur is not None)
+    # Seules les pertes (ou créations) d'emploi subies comptent ici : choisir de moins travailler parce qu'une aide
+    # augmente n'est pas un passage par le chômage, et l'effet du revenu est déjà pris en compte par ailleurs.
+    from .comportements import OFFRE_TRAVAIL
+    emplois = sum(i.valeur for i in ctx.cache.get("comportements", [])
+                  if i.id.startswith("emploi_") and i.id not in OFFRE_TRAVAIL and i.valeur is not None)
     if abs(emplois) < 500:
         return []
     eff, conf_e, syn = valeur_ou_defaut(ctx.store, "chomage_satisfaction_vie", -0.7)
@@ -288,8 +292,10 @@ def section_planete(ctx: Contexte) -> Section | None:
     directes = [i for i in inds if i.id.startswith("emissions_") and i.valeur is not None]
     total = sum(i.valeur for i in directes)
     conf = moyenne_ponderee([(i.valeur, i.confiance) for i in directes], "Effet direct sur les émissions") if directes else None
-    sous = (f"{'Hausse' if total > 0 else 'Baisse'} de {fr(abs(total), 2)} MtCO2e par an (effet direct)" if directes else
-            "Effets indirects uniquement")
+    quantite = (f"{fr(abs(total), 1)} million{'s' if abs(total) >= 2 else ''} de tonnes" if abs(total) >= 1
+                else f"{fr(round(abs(total) * 1000) * 1000, 0)} tonnes")
+    sous = (f"Les émissions {'augmentent' if total > 0 else 'baissent'} de {quantite} de CO₂ par an (effet direct)" if directes else
+            "Seulement des effets indirects, via l'activité économique")
     return Section("planete", "Pour la planète", sous, inds, conf,
                    "Émissions de gaz à effet de serre induites par la réforme : effet direct (carburants, consommation des ménages) "
                    "et effet indirect de l'activité. Seul l'effet direct est comparé au budget carbone.",
@@ -303,9 +309,11 @@ def section_bien_etre(ctx: Contexte) -> Section | None:
         return None
     scores = [i.confiance.score for i in inds if i.confiance]
     conf = Confiance(sum(scores) / len(scores), [], "Bien-être (variable selon l'indicateur)") if scores else None
-    principal = inds[0]
-    sous = principal.libelle + (f" : {principal.valeur:+.3f}" if isinstance(principal.valeur, float) else "")
-    return Section("bien_etre", "Pour le bien-être", sous.replace(".", ","), inds, conf,
+    fav = sum(1 for i in inds if i.sens == "favorable")
+    dfv = sum(1 for i in inds if i.sens == "defavorable")
+    pl = lambda n, mot: f"{n} {mot}{'s' if n > 1 else ''}"
+    sous = f"{pl(len(inds), 'effet')} mesuré{'s' if len(inds) > 1 else ''} : {pl(fav, 'plutôt favorable')}, {pl(dfv, 'plutôt défavorable')}"
+    return Section("bien_etre", "Pour le bien-être", sous, inds, conf,
                    "Le bien-être est mesuré par la satisfaction dans la vie (enquêtes de l'INSEE et de la statistique européenne) "
                    "et par la santé. Les effets passent par le revenu, l'emploi, le temps libre et l'âge de la retraite.",
                    ["Les effets sur les liens sociaux, le sentiment de sécurité ou la qualité de l'environnement ne sont pas encore chiffrés."],

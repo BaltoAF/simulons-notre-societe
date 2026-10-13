@@ -4,6 +4,7 @@ import { ArrowRight, Calculator, CheckCircle2, GitBranch, GitFork, Landmark, Lig
 import { api, type Rapport, type Regle, type SocieteDetail, type Valeur } from '../lib/api'
 import { nombre, valeur } from '../lib/format'
 import { milliards, tonnes } from '../lib/humain'
+import { infoMission } from '../lib/missions'
 import { PRESETS, resoudrePreset } from '../lib/presets'
 import { BROUILLON_VIDE, situationVersMenage, useApp, useFetch } from '../lib/state'
 import { RulePicker, ValueEditor } from '../components/editors'
@@ -61,8 +62,14 @@ export default function Atelier() {
 
   const [rapportPour, setRapportPour] = useState<string | null>(null)
   const [phase, setPhase] = useState(0) // 0 : rien en cours ; 1 : foyer et ménages types ; 2 : effets nationaux
+  const resultats = useRef<HTMLDivElement>(null)
   const simuler = async (ov: Record<string, Valeur> = draft.overrides) => {
     setLoading(true); setErr(null); setPhase(1)
+    // amener le lecteur au début des résultats s'il ne les voit pas (sur téléphone, ils sont sous la réforme)
+    setTimeout(() => {
+      const top = resultats.current?.getBoundingClientRect().top ?? 0
+      if (top < 0 || top > window.innerHeight * 0.5) resultats.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }, 50)
     const body = { overrides: ov, menage: avecFoyer && situation ? situationVersMenage(situation) : null, montants: 'net' }
     try {
       // 1er temps, rapide : votre foyer et les ménages types
@@ -78,7 +85,6 @@ export default function Atelier() {
     const ov = { ...draft.overrides, ...o }
     setDraft((d) => ({ ...d, overrides: ov }))
     simuler(ov)
-    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
   const aJour = rapport !== null && !rapport.partiel && rapportPour === JSON.stringify(draft.overrides)
   const desequilibres = aJour ? (rapport?.equilibres ?? []).filter((e) => e.statut === 'a_compenser') : []
@@ -127,6 +133,11 @@ export default function Atelier() {
   const missionsModifiees = changes.filter(estMission)
   const deltaMissions = missionsModifiees.reduce((a, id) => a + (Number(draft.overrides[id]) - Number(regles[id].valeur)), 0)
   const nbChangements = changes.length - missionsModifiees.length + (missionsModifiees.length ? 1 : 0)
+  // les 3 plus grands mouvements (≥ 0,5 Md€), le reste résumé en « petits ajustements » (compensation automatique)
+  const mouvements = missionsModifiees.map((id) => ({ nom: infoMission(id, regles[id].titre).nom, d: Number(draft.overrides[id]) - Number(regles[id].valeur) }))
+    .sort((a, b) => Math.abs(b.d) - Math.abs(a.d))
+  const principaux = mouvements.filter((m) => Math.abs(m.d) >= 0.5).slice(0, 3)
+  const autres = mouvements.length - principaux.length
 
   return (
     <div className="container page">
@@ -154,7 +165,8 @@ export default function Atelier() {
               <div className="change-chip">
                 <div className="row between top" style={{ flexWrap: 'nowrap' }}>
                   <div className="grow"><strong><Landmark size={15} /> Budget de l'État</strong>
-                    <div className="small muted">{missionsModifiees.length} domaine{missionsModifiees.length > 1 ? 's' : ''} modifié{missionsModifiees.length > 1 ? 's' : ''} · {Math.abs(deltaMissions) < 0.05 ? 'même total, répartition différente' : deltaMissions > 0 ? `${milliards(deltaMissions)} de dépenses en plus par an` : `${milliards(deltaMissions)} d'économies par an`}</div></div>
+                    <div className="small">{principaux.map((p) => `${p.nom} ${milliards(p.d, true)}`).join(' · ')}{autres > 0 ? ` · petits ajustements sur ${autres} autre${autres > 1 ? 's' : ''} domaine${autres > 1 ? 's' : ''}` : ''}</div>
+                    <div className="small muted">{Math.abs(deltaMissions) < 0.05 ? 'Même total : répartition différente' : deltaMissions > 0 ? `Au total : ${milliards(deltaMissions)} de dépenses en plus par an` : `Au total : ${milliards(Math.abs(deltaMissions))} d'économies par an`}</div></div>
                   <button className="btn small" onClick={() => setBudgetEd(true)}>Modifier</button>
                 </div>
                 <button className="btn ghost small" style={{ marginTop: 6, paddingLeft: 0 }} onClick={retirerMissions}><Trash2 size={14} /> Revenir au budget voté</button>
@@ -174,7 +186,9 @@ export default function Atelier() {
                     {modifie && <>
                       <ArrowRight size={13} />
                       <strong>Votre choix : {valeur(v, r.unite, r.type)}</strong>
-                      {pct !== null && Math.abs(pct) >= 0.05 && <span className={`badge ${pct > 0 ? 'accent' : 'primary'}`}>{pct > 0 ? '+' : '−'}{nombre(Math.abs(pct), 1)} %</span>}
+                      {r.unite === 'pourcent' && typeof v === 'number' && typeof r.valeur === 'number'
+                        ? <span className={`badge ${v > r.valeur ? 'accent' : 'primary'}`}>{v > r.valeur ? '+' : '−'}{nombre(Math.abs(v - r.valeur), 2)} point{Math.abs(v - r.valeur) >= 2 ? 's' : ''}</span>
+                        : pct !== null && Math.abs(pct) >= 0.05 && <span className={`badge ${pct > 0 ? 'accent' : 'primary'}`}>{pct > 0 ? '+' : '−'}{nombre(Math.abs(pct), 1)} %</span>}
                     </>}
                   </div>
                   <div style={{ marginTop: 10 }}><ValueEditor rule={r} value={v} onChange={(x) => setVal(id, x)} /></div>
@@ -216,8 +230,8 @@ export default function Atelier() {
               {!aJour ? (
                 <p className="small">D'abord, cliquez sur « Voir les effets » : on n'enregistre une réforme qu'après avoir vérifié ce qu'elle coûte.</p>
               ) : desequilibres.length > 0 ? (
-                <div className="notice warn small"><div><strong>Encore une étape :</strong> votre réforme n'est pas financée
-                  ({desequilibres.map((e) => e.id === 'budget' ? `il manque ${milliards(e.manque)} par an` : `${tonnes(e.manque)} en trop par an`).join(', ')}).
+                <div className="notice warn small"><div><strong>Encore une étape :</strong>{' '}
+                  {desequilibres.map((e) => e.id === 'budget' ? `il manque ${milliards(e.manque)} par an pour financer votre réforme` : `votre réforme émet ${tonnes(e.manque)} de trop par an`).join(', et ')}.
                   Choisissez une solution dans « Les équilibres à respecter », à droite.</div></div>
               ) : !user ? (
                 <p className="small"><CheckCircle2 size={15} color="var(--gain)" /> Votre réforme est équilibrée. Pour l'enregistrer et la partager, <Link to="/connexion?retour=/atelier">créez un compte ou connectez-vous</Link> (votre travail est conservé).</p>
@@ -232,7 +246,7 @@ export default function Atelier() {
           )}
         </div>
 
-        <div>
+        <div ref={resultats} style={{ scrollMarginTop: 80 }}>
           {err && <ErrorBox message={err} />}
           {loading && <Progression phase={phase} />}
           {rapport && !loading && !aJour && rapportPour !== null && (
@@ -281,7 +295,7 @@ function Etapes({ etape }: { etape: number }) {
     <ol className="etapes" aria-label="Les étapes">
       {noms.map((n, i) => (
         <li key={n} className={i + 1 < etape ? 'fait' : i + 1 === etape ? 'actif' : ''} aria-current={i + 1 === etape ? 'step' : undefined}>
-          <span className="n">{i + 1 < etape ? '✓' : i + 1}</span>{n}
+          <span className="n">{i + 1 < etape ? '✓' : i + 1}</span><span className="lib">{n}</span>
         </li>
       ))}
     </ol>
@@ -352,7 +366,7 @@ function SaveModal({ proprietaire, base, changements, nomDefaut, onClose, onDone
       )}
       <label className="field"><span>En une phrase, ce que vous avez changé</span><input type="text" value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Ex. : RSA à 800 €, financé par une tranche d'impôt à 50 %" />
         <span className="hint">Cette phrase apparaîtra dans l'historique de votre société.</span></label>
-      <div className="small muted" style={{ marginBottom: 12 }}>{changements.length} changement{changements.length > 1 ? 's' : ''} {changements.length > 1 ? 'seront enregistrés' : 'sera enregistré'}. Votre société sera visible par tous : chacun pourra s'en inspirer, créer sa propre version et vous suggérer des améliorations.</div>
+      <div className="small muted" style={{ marginBottom: 12 }}>{(() => { const m = changements.filter((c) => String(c.regle).startsWith('budget.etat.mission.')).length; const n = changements.length - m + (m ? 1 : 0); return <>{n} changement{n > 1 ? 's' : ''} {n > 1 ? 'seront enregistrés' : 'sera enregistré'}{m ? ` (dont le budget de l'État : ${m} domaine${m > 1 ? 's' : ''} ajusté${m > 1 ? 's' : ''})` : ''}.</> })()} Votre société sera visible par tous : chacun pourra s'en inspirer, créer sa propre version et vous suggérer des améliorations.</div>
       {changements.length === 0 && <Notice kind="warn">Rien n'a changé par rapport à votre point de départ.</Notice>}
       {err && <ErrorBox message={err} />}
       <div className="row" style={{ justifyContent: 'flex-end', marginTop: 12 }}>

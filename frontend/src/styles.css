@@ -121,12 +121,12 @@ code, .mono { font-family: var(--mono); font-size: .85em; }
 .nav a:hover { background: var(--surface-2); text-decoration: none; color: var(--ink); }
 .nav a.active { background: var(--primary-soft); color: var(--primary); }
 .header .user { display: flex; gap: 8px; align-items: center; }
-.menu-mobile { display: none; margin-left: auto; }
+.header .menu-mobile { display: none; margin-left: auto; }
 .nav { overflow: visible; }
 @media (max-width: 860px) {
   .header { position: static; }
   .header .container { height: auto; flex-wrap: wrap; padding-top: 10px; padding-bottom: 10px; gap: 8px; }
-  .menu-mobile { display: inline-flex; }
+  .header .menu-mobile { display: inline-flex; }
   .nav { display: none; order: 3; flex-basis: 100%; flex-direction: column; align-items: stretch; gap: 2px; }
   .nav.ouvert { display: flex; }
   .nav a { padding: 12px 14px; font-size: 1rem; }
@@ -357,3 +357,10 @@ details.pourquoi > div { margin-top: 6px; padding: 10px 12px; background: var(--
 .accordeon > details > summary:hover { color: var(--primary); }
 details.curieux > summary { cursor: pointer; font-weight: 650; color: var(--ink-2); }
 details.curieux[open] > summary { margin-bottom: 4px; }
+@media (max-width: 640px) {
+  /* étapes compactes : seule l'étape en cours garde son libellé */
+  .etapes li:not(.actif) .lib { display: none; }
+  .etapes li:not(.actif) { padding: 6px; }
+}
+/* une colonne de grille ne doit jamais s'élargir au-delà de l'écran à cause d'un contenu large */
+.split > *, .grid > * { min-width: 0; }

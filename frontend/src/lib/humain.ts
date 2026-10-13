@@ -8,7 +8,8 @@ const EMPREINTE_HAB_T = 8.2 // empreinte carbone moyenne d'un Français, en tonn
 export function milliards(md: number, signe = false): string {
   const a = Math.abs(md)
   const s = signe ? (md > 0 ? '+' : md < 0 ? '−' : '') : (md < 0 ? '−' : '')
-  if (a >= 1) return `${s}${nombre(a, a >= 10 ? 0 : 1)} milliard${a >= 2 ? 's' : ''} €`
+  const arrondi = Number(a.toFixed(a >= 10 ? 0 : 1))
+  if (arrondi >= 1) return `${s}${nombre(a, a >= 10 ? 0 : 1)} milliard${arrondi >= 2 ? 's' : ''} €`
   return `${s}${nombre(a * 1000, 0)} millions €`
 }
 
@@ -20,7 +21,7 @@ export function tonnes(mt: number, signe = false): string {
   const a = Math.abs(mt)
   const s = signe ? (mt > 0 ? '+' : mt < 0 ? '−' : '') : ''
   if (a >= 1) return `${s}${nombre(a, 1)} million${a >= 2 ? 's' : ''} de tonnes de CO₂`
-  return `${s}${nombre(a * 1000, 0)} milliers de tonnes de CO₂`
+  return `${s}${nombre(Math.round(a * 1000) * 1000, 0)} tonnes de CO₂`
 }
 
 /** « ≈ l'empreinte carbone annuelle de 127 000 Français » */
@@ -52,6 +53,11 @@ export function phrase(id: string, v: number, unite: string): string {
   }
   if (id === 'impact_emissions_activite') return `Effet indirect via l'activité : ${tonnes(v, true)} par an (incertain).`
   if (id === 'pib') return Math.abs(v) < 0.01 ? 'Activité économique quasiment inchangée.' : `L'activité économique ${v > 0 ? 'progresse' : 'recule'} ${qualif(v, 0.05, 0.3)} (${v > 0 ? '+' : '−'}${nombre(Math.abs(v), 2)} % de PIB).`
+  if (id === 'emploi_incitations' || id === 'emploi_revenu_universel') {
+    const n = nombre(Math.abs(Math.round(v / 1000) * 1000), 0)
+    return v < 0 ? `≈ ${n} personnes de moins au travail : reprendre un emploi rapporterait moins qu'aujourd'hui (estimation incertaine).`
+      : `≈ ${n} personnes de plus au travail : travailler rapporterait davantage (estimation incertaine).`
+  }
   if (id.startsWith('emploi_')) return `≈ ${nombre(Math.abs(Math.round(v / 1000) * 1000), 0)} emplois ${v > 0 ? 'en plus' : 'en moins'}.`
   if (id === 'gini') return Math.abs(v) < 0.02 ? 'Inégalités inchangées.' : `Les inégalités ${v < 0 ? 'baissent' : 'augmentent'} ${qualif(v, 0.1, 0.5)}.`
   if (id === 'pauvrete') return Math.abs(v) < 0.02 ? 'Pauvreté inchangée.' : `La pauvreté ${v < 0 ? 'recule' : 'progresse'} ${qualif(v, 0.1, 0.5)} (${v > 0 ? '+' : '−'}${nombre(Math.abs(v), 1)} point).`
