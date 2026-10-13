@@ -68,7 +68,7 @@ export default function Budget() {
           <div className="small muted">soit {euros(n.par_habitant.dette ?? 0)} par habitant</div></div>
       </div>
 
-      <div className="split" style={{ gridTemplateColumns: 'minmax(0, 1.2fr) minmax(0, 1fr)' }}>
+      <div className="split even">
         <div className="card">
           <h3><Landmark size={18} /> Où va l'argent public</h3>
           <p className="small muted">Dépenses par grande fonction (classification internationale COFOG, {n.fonctions[0]?.annee}). Cliquez pour le détail.</p>

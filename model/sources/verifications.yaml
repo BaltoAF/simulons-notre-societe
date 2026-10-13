@@ -1,0 +1,259 @@
+# Registre des sources — vérification des règles marquées « a_verifier » (campagne du 2026-10-13).
+# Ids préfixés « verif- ». Consultées le 2026-10-13.
+# NB : Légifrance reste inaccessible aux outils automatisés (vérification anti-robot) ; les URL Légifrance
+# éventuellement listées ont été relevées dans des pages ou résultats de recherche officiels (cf. champ note).
+sources:
+  # ------------------------------------------------------------------ Électricité (TRVE)
+  - id: verif-cre-opendata-trve-residentiels
+    type: statistique_publique
+    editeur: "Commission de régulation de l'énergie (CRE)"
+    titre: "Historique des tarifs réglementés de vente d'électricité pour les consommateurs résidentiels (open data, fichier Option_Base.csv)"
+    url: "https://www.cre.fr/documents/open-data/historique-des-tarifs-reglementes-de-vente-delectricite-pour-les-consommateurs-residentiels.html"
+    auteurs: []
+    date_publication: "2026-08-26"
+    consulte_le: "2026-10-13"
+    note: "Page mise à jour le 26/08/2026. Fichier https://www.cre.fr/fileadmin/Documents/Open_data/Marches_de_detail/Option_Base.csv : ligne « 01/08/2026 ; ; 6 » = part fixe 143,28 € HT / 190,81 € TTC par an, part variable 0,1361 € HT / 0,2001 € TTC par kWh. Ligne 01/02/2026-31/07/2026 : 188,2 € TTC et 0,1940 € TTC. Copie locale : system/cache/verifications/cre-opendata/."
+  - id: verif-cre-delib-2026-147
+    type: texte_officiel
+    editeur: "Commission de régulation de l'énergie (CRE)"
+    titre: "Délibération n° 2026-147 du 15 juillet 2026 portant proposition des tarifs réglementés de vente d'électricité (mouvement du 1er août 2026)"
+    url: "https://www.cre.fr/fileadmin/Documents/Deliberations/2026/260715_2026-147_TRVE.pdf"
+    auteurs: []
+    date_publication: "2026-07-15"
+    consulte_le: "2026-10-13"
+    note: "Hausse proposée des tarifs bleus résidentiels : +2,51 % TTC (+5,98 €/MWh TTC) au 1er août 2026. Les barèmes ont été fixés par décisions ministérielles du 29 juillet 2026."
+  - id: verif-legi-decision-trve-residentiels-2026-07-29
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Décision du 29 juillet 2026 relative aux tarifs réglementés de vente de l'électricité applicables aux consommateurs résidentiels en France métropolitaine continentale"
+    url: "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000054569470"
+    auteurs: []
+    date_publication: "2026-07-29"
+    consulte_le: "2026-10-13"
+    note: "URL relevée dans les résultats de recherche ; la page Légifrance n'a pas pu être ouverte (vérification anti-robot). Texte non lu : les montants sont pris dans le fichier open data de la CRE."
+  # ------------------------------------------------------------------ Climat
+  - id: verif-senat-rap-801-2025
+    type: rapport_institutionnel
+    editeur: "Sénat (commission des affaires économiques)"
+    titre: "Rapport n° 801 (2024-2025) sur la proposition de loi portant programmation nationale et simplification normative dans le secteur économique de l'énergie (2e lecture)"
+    url: "https://www.senat.fr/rap/l24-801/l24-801_mono.html"
+    auteurs: []
+    date_publication: "2025-07-01"
+    consulte_le: "2026-10-13"
+    note: "Droit en vigueur (code de l'énergie, art. L100-4, I, 1°) : réduire les émissions de GES de 40 % entre 1990 et 2030 ; l'article 11 de la proposition de loi propose de relever l'objectif à 50 % (hors terres et forêts)."
+  - id: verif-an-dossier-ppl-programmation-energie
+    type: texte_officiel
+    editeur: "Assemblée nationale"
+    titre: "Dossier législatif — Programmation nationale et simplification normative dans le secteur économique de l'énergie"
+    url: "https://www.assemblee-nationale.fr/dyn/17/dossiers/DLR5L16N49849"
+    auteurs: []
+    date_publication: ""
+    consulte_le: "2026-10-13"
+    note: "Dernière étape au 13/10/2026 : 2e lecture à l'Assemblée nationale (texte n° 1685, renvoyé en commission le 9 juillet 2025) ; aucune adoption définitive ni promulgation. Le compte rendu du Sénat du 23 février 2026 confirme que le texte « reste en instance de deuxième lecture à l'Assemblée nationale »."
+  # ------------------------------------------------------------------ Malus masse
+  - id: verif-an-amdt-3611-plf2026
+    type: texte_officiel
+    editeur: "Assemblée nationale (amendement du Gouvernement)"
+    titre: "Projet de loi de finances pour 2026 (n° 2247, nouvelle lecture) — amendement n° 3611 à l'article 48 (article d'équilibre)"
+    url: "https://www.assemblee-nationale.fr/dyn/17/amendements/2247/AN/3611"
+    auteurs: []
+    date_publication: "2026-01-20"
+    consulte_le: "2026-10-13"
+    note: "L'exposé sommaire recense parmi les amendements retenus « l'amendement n° 1161 qui maintient l'exonération de malus masse pour les véhicules électriques et les véhicules à hydrogène » (minoration de recettes de 13 M€, ligne 1799). La loi de finances pour 2025 prévoyait d'assujettir les véhicules électriques au malus masse au 1er juillet 2026."
+  - id: verif-tresor-flash-conjoncture-2026-02
+    type: rapport_institutionnel
+    editeur: "Direction générale du Trésor"
+    titre: "Flash conjoncture France - Quelle orientation des ventes de voitures, thermiques et électriques, au 1er trimestre 2026 ?"
+    url: "https://www.tresor.economie.gouv.fr/Articles/2026/02/20/flash-conjoncture-france-quelle-orientation-des-ventes-de-voitures-thermiques-et-electriques-au-1er-trimestre-2026"
+    auteurs: []
+    date_publication: "2026-02-20"
+    consulte_le: "2026-10-13"
+    note: "« Les véhicules électriques restent exonérés de ce malus masse. » (après l'adoption de la LFI 2026)."
+  # ------------------------------------------------------------------ Fiscalité des entreprises
+  - id: verif-bofip-boi-img-def
+    type: texte_officiel
+    editeur: "Direction générale des finances publiques (BOFiP-Impôts)"
+    titre: "BOI-IMG-DEF - IMG - Définitions"
+    url: "https://bofip.impots.gouv.fr/bofip/14738-PGP.html/identifiant=BOI-IMG-DEF-20251008"
+    auteurs: []
+    date_publication: "2025-10-08"
+    consulte_le: "2026-10-13"
+    note: "§ 670 (II-AV) : « Un taux minimum d'imposition est un taux d'imposition correspondant à 15 %. » (CGI, art. 223 VK, 45°)."
+  - id: verif-bofip-boi-img
+    type: texte_officiel
+    editeur: "Direction générale des finances publiques (BOFiP-Impôts)"
+    titre: "BOI-IMG - IMG - Imposition mondiale des groupes"
+    url: "https://bofip.impots.gouv.fr/bofip/14736-PGP.html/identifiant=BOI-IMG-20251008"
+    auteurs: []
+    date_publication: "2025-10-08"
+    consulte_le: "2026-10-13"
+    note: "§ 1 : les I et II de l'article 33 de la loi n° 2023-1322 du 29 décembre 2023 de finances pour 2024 s'appliquent aux exercices ouverts à compter du 31 décembre 2023."
+  # ------------------------------------------------------------------ Institutions
+  - id: verif-an-qe-15-31242
+    type: texte_officiel
+    editeur: "Assemblée nationale (réponse du ministère de l'intérieur, JO)"
+    titre: "Question écrite n° 31242 (15e législature) : Instauration du vote obligatoire — réponse publiée au JO le 29 décembre 2020, p. 9735"
+    url: "https://questions.assemblee-nationale.fr/q15/15-31242QE.htm"
+    auteurs: []
+    date_publication: "2020-12-29"
+    consulte_le: "2026-10-13"
+    note: "« le vote n'est pas une obligation pour les élections au suffrage universel » ; il « n'est obligatoire que pour l'élection des sénateurs » (amende de 100 euros, art. L. 318 du code électoral)."
+  # ------------------------------------------------------------------ Droit pénal
+  - id: verif-senat-qe-16-00258
+    type: texte_officiel
+    editeur: "Sénat (réponse du ministère de la justice, JO Sénat)"
+    titre: "Question écrite n° 00258 (16e législature) : Sanctions applicables aux vols de ruches — réponse publiée au JO Sénat le 26 janvier 2023, p. 583"
+    url: "https://www.senat.fr/questions/base/2022/qSEQ220700258.html"
+    auteurs: []
+    date_publication: "2023-01-26"
+    consulte_le: "2026-10-13"
+    note: "Le vol aggravé fait encourir « 5, 7 ou 10 ans d'emprisonnement et 75 000, 100 000 ou 150 000 euros d'amende » selon le nombre de circonstances ; le vol en bande organisée « 15 ans de réclusion criminelle et 150 000 euros d'amende »."
+  - id: verif-cc-2010-25-qpc-dossier
+    type: texte_officiel
+    editeur: "Conseil constitutionnel"
+    titre: "Décision n° 2010-25 QPC du 16 septembre 2010 — dossier documentaire (textes du code pénal reproduits)"
+    url: "https://www.conseil-constitutionnel.fr/sites/default/files/as/root/bank_mm/decisions/201025qpc/doc.pdf"
+    auteurs: []
+    date_publication: "2010-09-16"
+    consulte_le: "2026-10-13"
+    note: "Reproduit notamment : art. 221-1 (meurtre : trente ans de réclusion criminelle), 221-2 et 221-4 (réclusion criminelle à perpétuité), 311-4 (cinq ans et 75 000 €), 311-8 (vingt ans et 150 000 €, rédaction issue de l'ordonnance n° 2000-916, en vigueur le 1er janvier 2002) et 311-9 (bande organisée : quinze ans et 150 000 €), dans leur rédaction de 2010. Copie locale : system/cache/verifications/cc-2010-25-qpc/."
+  - id: verif-an-rapport-473-2024
+    type: rapport_institutionnel
+    editeur: "Assemblée nationale (commission des lois)"
+    titre: "Rapport n° 473 (17e législature) sur la proposition de loi tendant à l'instauration de peines planchers pour certains crimes et délits"
+    url: "https://www.assemblee-nationale.fr/dyn/docs/RAPPANR5L17B0473.raw"
+    auteurs: []
+    date_publication: "2024-10-23"
+    consulte_le: "2026-10-13"
+    note: "L'article 221-4 du code pénal punit le meurtre aggravé de la réclusion criminelle à perpétuité « plutôt que de trente ans de réclusion criminelle » (peine du meurtre simple)."
+  - id: verif-senat-rap-757-2025
+    type: rapport_institutionnel
+    editeur: "Sénat (commission d'enquête sur la délinquance financière)"
+    titre: "Rapport n° 757 (2024-2025) « Ces dizaines de milliards qui gangrènent la société », tome I"
+    url: "https://www.senat.fr/rap/r24-757-1/r24-757-114.html"
+    auteurs: []
+    date_publication: "2025-06-18"
+    consulte_le: "2026-10-13"
+    note: "Tableau des peines : blanchiment (art. 324-1 du code pénal et suivants) : 5 ans d'emprisonnement « (10 ans si aggravé, notamment en bande organisée) », 375 000 € d'amende."
+  - id: verif-senat-rap-722-2013
+    type: rapport_institutionnel
+    editeur: "Sénat (commission des lois)"
+    titre: "Rapport n° 722 (2012-2013) sur le projet de loi organique et le projet de loi relatifs à la transparence de la vie publique"
+    url: "https://www.senat.fr/rap/l12-722/l12-72216.html"
+    auteurs: []
+    date_publication: "2013-07-03"
+    consulte_le: "2026-10-13"
+    note: "« le délit d'abus de biens sociaux fait déjà encourir à son auteur une peine de cinq ans de prison et 375 000 euros d'amende »."
+  - id: verif-an-rapport-3190-2026
+    type: rapport_institutionnel
+    editeur: "Assemblée nationale (commission spéciale)"
+    titre: "Rapport n° 3190-3191 (17e législature) sur la proposition de loi apportant une réponse intégrale au phénomène des violences sexuelles et sexistes contre les femmes et les enfants"
+    url: "https://www.assemblee-nationale.fr/dyn/17/rapports/csinteg/l17b3190-tii_rapport-fond.pdf"
+    auteurs: []
+    date_publication: "2026-09-23"
+    consulte_le: "2026-10-13"
+    note: "Tome II : l'article 17 de la proposition de loi (non adoptée au 13/10/2026) vise à supprimer la clause des articles 222-23-1 et 222-29-2 du code pénal qui impose « une condition d'écart d'âge d'au moins cinq ans » ; le rapporteur rappelle que les faits incestueux n'y sont pas soumis. Copie locale : system/cache/verifications/an-rapport-3190/."
+  - id: verif-cc-2023-1058-qpc
+    type: texte_officiel
+    editeur: "Conseil constitutionnel"
+    titre: "Décision n° 2023-1058 QPC du 21 juillet 2023 — M. Roméo N."
+    url: "https://www.conseil-constitutionnel.fr/decision/2023/20231058QPC.htm"
+    auteurs: []
+    date_publication: "2023-07-21"
+    consulte_le: "2026-10-13"
+    note: "Déclare conforme le premier alinéa de l'article 222-23-1 du code pénal (viol sur mineur de quinze ans « lorsque la différence d'âge entre le majeur et le mineur est d'au moins cinq ans »)."
+  - id: verif-senat-tas24-160
+    type: texte_officiel
+    editeur: "Sénat"
+    titre: "Texte adopté n° 160 (2024-2025) — Proposition de loi créant l'homicide routier et visant à lutter contre la violence routière (adoption définitive le 1er juillet 2025, devenue la loi n° 2025-622 du 9 juillet 2025)"
+    url: "https://www.senat.fr/leg/tas24-160.html"
+    auteurs: []
+    date_publication: "2025-07-01"
+    consulte_le: "2026-10-13"
+    note: "Art. 6 (code de la route, art. L413-1) : délit puni de trois mois d'emprisonnement et 3 750 € ; action publique éteinte par le versement d'une amende forfaitaire de 300 € (minorée 250 €, majorée 600 €) ; entrée en vigueur à une date fixée par décret, au plus tard le 31 décembre 2025."
+  # ------------------------------------------------------------------ Droit civil
+  - id: verif-senat-qe-15-22513
+    type: texte_officiel
+    editeur: "Sénat (réponse du ministère de la justice, JO Sénat)"
+    titre: "Question écrite n° 22513 (15e législature) : Délai de prescription pour l'action en garantie de vice caché — réponse publiée au JO Sénat le 17 mars 2022, p. 1453"
+    url: "https://www.senat.fr/questions/base/2021/qSEQ210422513.html"
+    auteurs: []
+    date_publication: "2022-03-17"
+    consulte_le: "2026-10-13"
+    note: "Citant Cass. 3e civ., 8 décembre 2021, n° 20-21.439 : l'article 2232 du code civil « édicte un délai butoir de vingt ans à compter de la naissance du droit »."
+  # ------------------------------------------------------------------ Logement
+  - id: verif-anil-experimentation-encadrement-loyers
+    type: rapport_institutionnel
+    editeur: "Agence nationale pour l'information sur le logement (ANIL)"
+    titre: "Expérimentation de l'encadrement du niveau des loyers dans les zones tendues (fiche n° 2019-03)"
+    url: "https://www.anil.org/aj-experimentation-encadrement-niveau-loyers-zones-tendues/"
+    auteurs: []
+    date_publication: "2026-07-23"
+    consulte_le: "2026-10-13"
+    note: "« À jour au 23 juillet 2026 ». Expérimentation (loi ELAN, art. 140) prolongée de trois ans par la loi 3DS (art. 85) « soit jusqu'au 25 novembre 2026 » ; aucune pérennisation mentionnée ; extension outre-mer par la loi n° 2025-534 du 13 juin 2025 jusqu'en juin 2030."
+  # ------------------------------------------------------------------ Nationalité, immigration
+  - id: verif-an-ta315-retention-2026
+    type: texte_officiel
+    editeur: "Assemblée nationale"
+    titre: "Texte adopté n° 315 (17e législature) — Proposition de loi visant à renforcer la sécurité, la rétention administrative et la prévention des risques d'attentat (lecture définitive, 16 juin 2026)"
+    url: "https://www.assemblee-nationale.fr/dyn/opendata/PIONANR5L17BTA0315.html"
+    auteurs: []
+    date_publication: "2026-06-16"
+    consulte_le: "2026-10-13"
+    note: "Art. 10, 1° (CESEDA, art. L741-7, II) : durée cumulée des périodes de rétention pour une même mesure d'éloignement limitée à trois cent soixante jours (cinq cent quarante jours en cas de prolongation au titre de l'art. L742-6) ; cinq placements au plus ; délai de quarante-huit heures entre deux placements. Aucune disposition d'entrée en vigueur différée dans le texte."
+  - id: verif-an-dossier-retention-2026
+    type: texte_officiel
+    editeur: "Assemblée nationale"
+    titre: "Dossier législatif — Renforcer la sécurité, la rétention administrative et la prévention des risques d'attentat"
+    url: "https://www.assemblee-nationale.fr/dyn/17/dossiers/retention_admin_prevention_attentats_17e"
+    auteurs: []
+    date_publication: ""
+    consulte_le: "2026-10-13"
+    note: "Promulgation le 27 juillet 2026 (loi n° 2026-667) ; publication au Journal officiel le 28 juillet 2026."
+  - id: verif-senat-rapport-144-2024-immigration
+    type: rapport_institutionnel
+    editeur: "Sénat (commission des finances)"
+    titre: "Rapport général n° 144 (2024-2025), tome III, annexe 16 — Projet de loi de finances pour 2025 : Immigration, asile et intégration"
+    url: "https://www.senat.fr/rap/l24-144-316/l24-144-31611.html"
+    auteurs: []
+    date_publication: "2024-11-21"
+    consulte_le: "2026-10-13"
+    note: "La loi du 26 janvier 2024 fait passer le niveau de langue exigé « de B1 à B2 pour la naturalisation », au plus tard au 1er janvier 2026."
+  - id: verif-sp-a16221
+    type: texte_officiel
+    editeur: "Service-Public.fr (DILA)"
+    titre: "Vos questions / nos réponses — Les conditions pour demander la nationalité française par mariage"
+    url: "https://www.service-public.gouv.fr/particuliers/actualites/A16221"
+    auteurs: []
+    date_publication: "2022-12-15"
+    consulte_le: "2026-10-13"
+    note: "Niveau exigé « au moins équivalent au niveau b1 oral et écrit » du CECRL. Page marquée « Cet article est ancien »."
+  # ------------------------------------------------------------------ Retraites
+  - id: verif-lar-brochure-ma-retraite-quel-age
+    type: texte_officiel
+    editeur: "L'Assurance retraite (Cnav)"
+    titre: "Ma retraite : à quel âge ? L'âge légal de départ à la retraite (brochure)"
+    url: "https://www.lassuranceretraite.fr/portail-info/files/live/sites/pub/files/PDF/452005-Maretraitequelage.pdf"
+    auteurs: []
+    date_publication: ""
+    consulte_le: "2026-10-13"
+    note: "Brochure non datée, antérieure à la réforme de 2023 (mentionne des textes de juillet 2017). Tableau : nés de 1955 à 1957, âge légal 62 ans, 166 trimestres, taux plein automatique à 67 ans ; « une personne née en 1957 doit réunir 166 trimestres ». Copie locale : system/cache/verifications/lar-maretraitequelage/."
+  - id: verif-cnav-circ-2026-29
+    type: texte_officiel
+    editeur: "Caisse nationale d'assurance vieillesse (Cnav)"
+    titre: "Circulaire Cnav n° 2026-29 du 4 septembre 2026 — Retraite anticipée pour carrière longue à compter du 1er septembre 2026"
+    url: "https://legislation.lassuranceretraite.fr/Pdf/circulaire_cnav_2026_29_04092026.pdf"
+    auteurs: []
+    date_publication: "2026-09-04"
+    consulte_le: "2026-10-13"
+    note: "Remplace la circulaire n° 2026-17 du 12 juin 2026. Début d'activité avant 20 ans : nés en 1964 60 ans 6 mois (170 trim.) ; 1er janv.-31 mars 1965 60 ans 9 mois (170) ; 1er avril-30 nov. 1965 60 ans 9 mois (171) ; déc. 1965 60 ans 8 mois (171) ; 1966-1969 : 2 ans 6 mois avant l'âge légal (1966 : 60 ans 9 mois ; 1967 : 61 ans ; 1968 : 61 ans 3 mois ; 1969 : 61 ans 6 mois ; 172 trim.) ; 1970 61 ans 9 mois (172). Copie locale : system/cache/verifications/cnav-2026-29/."
+  # ------------------------------------------------------------------ Santé
+  - id: verif-ccss-octobre-2026
+    type: rapport_institutionnel
+    editeur: "Commission des comptes de la sécurité sociale (Direction de la sécurité sociale)"
+    titre: "Les comptes de la sécurité sociale — Rapport à la Commission des comptes de la sécurité sociale, octobre 2026"
+    url: "https://www.securite-sociale.fr/files/live/sites/SSFR/files/medias/CCSS/2026/CCSS-octobre-2026_assemble_VDEF.pdf"
+    auteurs: []
+    date_publication: "2026-10-01"
+    consulte_le: "2026-10-13"
+    note: "En 2026, l'ONDAM atteindrait 273,3 Md€, « inférieur de 1,1 Md€ à la prévision de la LFSS pour 2026, soit 274,4 Md€ » (+3,1 % à champ constant). Date de publication approximative (rapport d'octobre 2026). Copie locale : system/cache/verifications/ccss-2026-10/."

@@ -91,6 +91,8 @@ def _modeles_couverts(store) -> set[str]:
     s |= {"prestations.revenu_universel.montant", "prestations.revenu_universel.age_minimum",
           "prestations.revenu_universel.remplace_rsa_prime_activite"}
     s |= set(getattr(comportements, "REGLES_COUVERTES", set()))
+    s |= {rid for rid in store.regles if rid.startswith(("budget.regles.article_40", "budget.regles.deficit_public_max",
+                                                          "environnement_energie.budget_carbone.periode_"))}
     return s
 
 
@@ -104,7 +106,8 @@ def est_levier(rule: dict) -> bool:
     if ".controle." in rid:
         return False
     if rule["domaine"] == "budget":
-        return est_depense(rid, rule)
+        return est_depense(rid, rule) or rid in ("budget.regles.article_40_irrecevabilite_financiere",
+                                                 "budget.regles.deficit_public_max_pct_pib")
     return True
 
 

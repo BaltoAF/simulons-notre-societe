@@ -103,7 +103,7 @@ export default function MesDroits() {
         {loading && <Loading label="Le moteur calcule vos droits…" />}
         {err && <ErrorBox message={err} />}
         {res && (
-          <div className="split" style={{ gridTemplateColumns: 'minmax(0, 1fr) 380px' }}>
+          <div className="split aside-380">
             <div className="stack">
               <div className="card">
                 <div className="card-head">

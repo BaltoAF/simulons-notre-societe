@@ -23,7 +23,7 @@ export default function Domaine() {
         <DomainIcon name={data.icone} size={26} />
         <div><h1 style={{ margin: 0 }}>{data.titre}</h1><div className="muted">{data.question}</div></div>
       </div>
-      <div className="split" style={{ gridTemplateColumns: 'minmax(0, 1fr) 340px' }}>
+      <div className="split aside-340">
         <div className="stack">
           {data.themes.length === 0 && <div className="card muted">Ce domaine est en cours de numérisation par le Système.</div>}
           {data.themes.map((t) => (

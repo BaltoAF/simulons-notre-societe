@@ -12,9 +12,13 @@ regles:
         valeur: 19.40
         sources: [cre-trve-comprendre]
         article: "Délibération de la CRE n° 2026-06 du 14 janvier 2026 ; code de l'énergie, art. L337-6"
+      - depuis: "2026-08-01"
+        valeur: 20.01
+        sources: [verif-cre-opendata-trve-residentiels, verif-cre-delib-2026-147, verif-legi-decision-trve-residentiels-2026-07-29]
+        article: "Décision du 29 juillet 2026 relative aux TRVE des consommateurs résidentiels (sur proposition de la CRE, délibération n° 2026-147 du 15 juillet 2026) ; code de l'énergie, art. L337-6"
     tags: [electricite, tarif_reglemente, prix_energie, menages]
-    a_verifier: true
-    note: "Valeur du mouvement tarifaire du 1er février 2026 (grille TTC publiée par la CRE, page mise à jour le 20/01/2026). Les TRVE évoluent en février et en août ; le médiateur national de l'énergie mentionne une « hausse des tarifs réglementés de vente de l'électricité au 1er août » 2026 (source mne-energie-info-hausse-prix-2026, 24/09/2026) dont le montant n'a pas pu être lu. La valeur en vigueur au 13/10/2026 est donc probablement différente. Options 9 à 15 kVA au 1er février 2026 : 19,27 c€/kWh."
+    a_verifier: false
+    note: "Vérifié le 2026-10-13 : depuis le 1er août 2026, 0,2001 €/kWh TTC (0,1361 € HT) selon le fichier open data de la CRE (page mise à jour le 26/08/2026), soit +3,1 % par rapport au 1er février 2026 (19,40 c€). Hausse moyenne des tarifs bleus résidentiels proposée par la CRE : +2,51 % TTC. Options 9 à 15 kVA au 1er août 2026 : 19,85 c€/kWh TTC (19,27 c€ au 1er février 2026)."
 
   - id: environnement_energie.trve.base_6kva_abonnement_annuel_ttc
     titre: "Tarif réglementé d'électricité, option Base 6 kVA : abonnement annuel TTC"
@@ -27,9 +31,13 @@ regles:
         valeur: 188.24
         sources: [cre-trve-comprendre]
         article: "Délibération de la CRE n° 2026-06 du 14 janvier 2026"
+      - depuis: "2026-08-01"
+        valeur: 190.81
+        sources: [verif-cre-opendata-trve-residentiels, verif-cre-delib-2026-147, verif-legi-decision-trve-residentiels-2026-07-29]
+        article: "Décision du 29 juillet 2026 relative aux TRVE des consommateurs résidentiels (sur proposition de la CRE, délibération n° 2026-147 du 15 juillet 2026)"
     tags: [electricite, tarif_reglemente, prix_energie, menages]
-    a_verifier: true
-    note: "Grille du 1er février 2026 ; un mouvement tarifaire est intervenu au 1er août 2026 (voir règle du prix du kWh), montant non vérifié."
+    a_verifier: false
+    note: "Vérifié le 2026-10-13 : depuis le 1er août 2026, 190,81 € TTC par an (143,28 € HT) selon le fichier open data de la CRE (page mise à jour le 26/08/2026). Le même fichier arrondit la grille du 1er février 2026 à 188,2 € TTC (188,24 € sur la page CRE « Comprendre les TRVE »)."
 
   - id: environnement_energie.trve.periodicite_evolution
     titre: "Tarif réglementé d'électricité : calendrier d'évolution"

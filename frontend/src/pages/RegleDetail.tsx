@@ -33,7 +33,7 @@ export default function RegleDetail() {
   return (
     <div className="container page">
       <div className="breadcrumb"><Link to="/regles">Les règles</Link> › <Link to={`/regles/d/${r.domaine}`}>{DOMAINE_TITRE[r.domaine] ?? r.domaine}</Link> › {r.theme}</div>
-      <div className="split" style={{ gridTemplateColumns: 'minmax(0, 1fr) 360px' }}>
+      <div className="split aside-360">
         <div className="stack">
           <div className="card">
             <h1 style={{ fontSize: '1.8rem' }}>{r.titre}</h1>
