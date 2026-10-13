@@ -45,7 +45,7 @@ function MenuComprendre() {
           <Link to="/methode">Comment ça marche<small>La méthode et l'indice de confiance</small></Link>
           <Link to="/glossaire">Le petit lexique<small>Tous les mots expliqués simplement</small></Link>
           <Link to="/sources">Les sources<small>Textes officiels, statistiques, études</small></Link>
-          <Link to="/systeme">Le Système<small>Comment la Société 1.0 est tenue à jour</small></Link>
+          <Link to="/systeme">Les mises à jour automatiques<small>Comment la loi actuelle est tenue à jour (le « Système »)</small></Link>
         </div>
       )}
     </div>
@@ -100,7 +100,7 @@ function Footer() {
         <div className="small" style={{ display: 'grid', gap: 4 }}>
           <Link to="/methode">Méthode et indice de confiance</Link>
           <Link to="/sources">Registre des sources</Link>
-          <Link to="/systeme">Journal du Système</Link>
+          <Link to="/systeme">Journal des mises à jour</Link>
           {meta && <span>Législation au {new Date(meta.date_reference).toLocaleDateString('fr-FR')} · moteur {meta.moteur.nom} {meta.moteur.version ?? ''}</span>}
         </div>
       </div>

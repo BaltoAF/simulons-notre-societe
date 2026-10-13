@@ -43,7 +43,7 @@ export default function Regles() {
   const s = meta?.stats
   return (
     <div className="container page">
-      <h1>Les règles de la Société 1.0</h1>
+      <h1>Les règles en vigueur aujourd'hui</h1>
       <p className="lead ink2" style={{ maxWidth: 780 }}>La France d'aujourd'hui, traduite en paramètres. Chaque règle indique sa valeur en vigueur, son historique et le texte qui la prouve.</p>
       {s && <div className="row small" style={{ marginBottom: 18 }}>
         <span className="badge gain"><BadgeCheck size={13} /> {nombre(s.regles_texte_officiel, 0)} règles prouvées par un texte officiel</span>

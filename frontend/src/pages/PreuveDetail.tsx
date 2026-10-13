@@ -36,7 +36,7 @@ export default function PreuveDetail() {
       <h1 style={{ fontSize: '1.9rem' }}>{q.titre}</h1>
       <p className="ink2">{q.definition}</p>
       <div className="grid cols-3">
-        <div className="card"><div className="kpi-label">Valeur retenue par le Système</div><div className="kpi">{fmtEffet(s.valeur_retenue, q.unite)}</div>
+        <div className="card"><div className="kpi-label">Valeur retenue par le site</div><div className="kpi">{fmtEffet(s.valeur_retenue, q.unite)}</div>
           {s.fourchette && <div className="small muted">Fourchette plausible : {fmtEffet(s.fourchette[0], q.unite)} à {fmtEffet(s.fourchette[1], q.unite)}</div>}</div>
         <div className="card"><div className="kpi-label">Indice de confiance</div><div style={{ margin: '8px 0' }}><ConfidenceBadge c={s.confiance} /></div><div className="small muted">{s.confiance.description}</div></div>
         <div className="card"><div className="kpi-label">Études prises en compte</div><div className="kpi">{s.n_estimations}</div><div className="small muted">dont {est.filter((e) => e.valeur !== null).length} chiffrées</div></div>

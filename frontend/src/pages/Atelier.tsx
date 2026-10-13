@@ -364,7 +364,7 @@ function Progression({ phase, demarrage }: { phase: number; demarrage: boolean }
         })}
       </div>
       {demarrage
-        ? <div className="notice warn small" style={{ marginTop: 10, marginBottom: 0 }}><div>Le Système vient de redémarrer et prépare ses calculs : ce premier calcul peut prendre jusqu'à une minute. Les suivants seront bien plus rapides.</div></div>
+        ? <div className="notice warn small" style={{ marginTop: 10, marginBottom: 0 }}><div>Le site vient de redémarrer et prépare ses calculs : ce premier calcul peut prendre jusqu'à une minute. Les suivants seront bien plus rapides.</div></div>
         : <p className="small muted" style={{ marginBottom: 0, marginTop: 10 }}>Comptez de 10 secondes à une minute : toutes les règles d'impôts et d'aides sont appliquées, une à une, à des milliers de foyers.</p>}
     </div>
   )

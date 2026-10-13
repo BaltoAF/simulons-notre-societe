@@ -121,14 +121,15 @@ def ensure_reference(store) -> dict:
     h = save_snapshot(snap)
     soc = conn.execute("SELECT * FROM societies WHERE id = ?", (REFERENCE_SOCIETY_ID,)).fetchone()
     description = ("Les règles en vigueur aujourd'hui, chacune prouvée par un texte officiel ou une statistique publique. "
-                   "Seul le Système la met à jour, quand la loi change : pour essayer d'autres règles, créez votre version.")
-    if soc and soc["description"] != description:
+                   "Elle se met à jour automatiquement quand la loi change. Pour essayer d'autres règles, partez-en pour créer votre proposition.")
+    nom = "La loi actuelle (Société 1.0)"
+    if soc and (soc["description"] != description or soc["nom"] != nom):
         with db.transaction() as c:
-            c.execute("UPDATE societies SET description = ? WHERE id = ?", (description, REFERENCE_SOCIETY_ID))
+            c.execute("UPDATE societies SET description = ?, nom = ? WHERE id = ?", (description, nom, REFERENCE_SOCIETY_ID))
     if not soc:
         with db.transaction() as c:
             c.execute("INSERT INTO societies (id, nom, description, reference) VALUES (?, ?, ?, 1)",
-                      (REFERENCE_SOCIETY_ID, "Société 1.0 — la France d'aujourd'hui", description))
+                      (REFERENCE_SOCIETY_ID, nom, description))
         cid = _insert_commit(REFERENCE_SOCIETY_ID, None, None,
                              f"Création de la Société 1.0 ({len(snap)} règles)", h, {}, [], systeme=True)
         with db.transaction() as c:

@@ -56,7 +56,7 @@ export default function RegleDetail() {
             </> : <div className="value-big">{valeur(r.valeur, r.unite, r.type)}</div>}
             {r.article && <div className="small muted" style={{ marginTop: 4 }}>{r.article}</div>}
             {r.prochaine_valeur && <div className="notice" style={{ marginTop: 12 }}>Évolution déjà prévue : {valeur(r.prochaine_valeur.valeur, r.unite, r.type)} à partir du {date(r.prochaine_valeur.depuis)}.</div>}
-            {r.a_verifier && <div className="notice warn" style={{ marginTop: 12 }}><AlertTriangle size={18} /> Le Système n'a pas encore pu confirmer cette valeur sur une source officielle.</div>}
+            {r.a_verifier && <div className="notice warn" style={{ marginTop: 12 }}><AlertTriangle size={18} /> Cette valeur n'a pas encore pu être confirmée sur une source officielle.</div>}
             {(r.controles ?? []).map((c, i) => (
               <div key={i} className={`notice ${c.concordant ? 'ok' : 'warn'}`} style={{ marginTop: 12 }}>
                 {c.concordant ? <BadgeCheck size={18} /> : <AlertTriangle size={18} />}
@@ -93,7 +93,7 @@ export default function RegleDetail() {
           {r.levier && (
             <div className="card">
               <h3><GitFork size={17} /> Et si on la changeait ?</h3>
-              <p className="small ink2">{r.simulable ? 'Essayez une autre valeur : le Système calculera ce que cela change pour vous, pour les finances publiques et pour le pays.' : 'Vous pouvez essayer une autre valeur. Son effet n\'est pas encore calculé précisément, mais les études disponibles seront affichées.'}</p>
+              <p className="small ink2">{r.simulable ? 'Essayez une autre valeur : le site calculera ce que cela change pour vous, pour les finances publiques et pour le pays.' : 'Vous pouvez essayer une autre valeur. Son effet n\'est pas encore calculé précisément, mais les études disponibles seront affichées.'}</p>
               <button className="btn primary" style={{ width: '100%' }} onClick={tester}><Calculator size={16} /> Essayer une autre valeur</button>
             </div>
           )}

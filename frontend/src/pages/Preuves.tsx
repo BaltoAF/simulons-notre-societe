@@ -18,7 +18,7 @@ export default function Preuves() {
     <div className="container page">
       <h1><Scale size={28} /> Ce que disent les études</h1>
       <p className="lead ink2" style={{ maxWidth: 800 }}>Pour chiffrer les effets d'une réforme sur l'emploi, les prix ou la récidive, il faut des études. Ici, chaque question
-        rassemble toutes les études crédibles, y compris celles qui se contredisent. Le Système en tire une <strong>valeur retenue</strong> et un <strong>indice de confiance</strong>, selon une <Link to="/methode#preuves">méthode publique</Link>.</p>
+        rassemble toutes les études crédibles, y compris celles qui se contredisent. Le site en tire une <strong>valeur retenue</strong> et un <strong>indice de confiance</strong>, selon une <Link to="/methode#preuves">méthode publique</Link>.</p>
       {loading ? <Loading /> : data?.preuves.length ? (
         <div className="grid cols-2">
           {data.preuves.map((p) => (
@@ -32,7 +32,7 @@ export default function Preuves() {
             </Link>
           ))}
         </div>
-      ) : <Empty>Les fiches d'études sont en cours de constitution par le Système.</Empty>}
+      ) : <Empty>Les fiches d'études sont en cours de constitution.</Empty>}
     </div>
   )
 }

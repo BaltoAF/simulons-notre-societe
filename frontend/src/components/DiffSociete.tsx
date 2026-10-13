@@ -100,7 +100,7 @@ export function DiffSociete({ items: tous, vide }: { items: Diff[]; vide: string
                   {c.provenance && (
                     <div className="small muted" style={{ marginTop: 4 }}>
                       {c.provenance.justification && <div><Quote size={12} /> « {c.provenance.justification} »</div>}
-                      <div><GitCommit size={12} /> Changé par {c.provenance.auteur_systeme ? 'le Système' : c.provenance.auteur}, {relatif(c.provenance.date)}</div>
+                      <div><GitCommit size={12} /> {c.provenance.auteur_systeme ? 'Changé automatiquement (la loi a changé)' : `Changé par ${c.provenance.auteur}`}, {relatif(c.provenance.date)}</div>
                     </div>
                   )}
                 </li>
@@ -118,7 +118,7 @@ export function MisesAJourAuto({ commits }: { commits: { id: string; message: st
   return (
     <details className="card soft small curieux">
       <summary><Bot size={15} /> Tenue à jour automatiquement avec la loi ({commits.length} mise{commits.length > 1 ? 's' : ''} à jour)</summary>
-      <p className="small muted">Quand la loi change (nouvelle loi, revalorisation, entrée en vigueur), le Système met à jour cette proposition pour toutes les règles qu'elle n'a pas modifiées.</p>
+      <p className="small muted">Quand la loi change (nouvelle loi, revalorisation, entrée en vigueur), le site met à jour automatiquement cette proposition pour toutes les règles qu'elle n'a pas modifiées.</p>
       <ul className="list small">
         {commits.map((c) => (
           <li key={c.id}>{c.message} <span className="muted">· {relatif(c.created_at)}</span>

@@ -37,7 +37,7 @@ function Historique({ sid, branche }: { sid: string; branche: string }) {
       {(data?.commits ?? []).map((c, i) => (
         <li key={c.id} className={`${c.auteur_systeme ? 'system' : ''} ${i === 0 ? 'current' : ''}`}>
           <div className="row between"><strong>{c.message}</strong>{i === 0 && <span className="badge primary">version actuelle</span>}</div>
-          <div className="small muted">{c.auteur_systeme ? 'Le Système (mise à jour de la loi)' : c.auteur} · {relatif(c.created_at)}{c.second_parent_id ? ' · suggestion intégrée' : ''}</div>
+          <div className="small muted">{c.auteur_systeme ? 'Mise à jour automatique (la loi a changé)' : c.auteur} · {relatif(c.created_at)}{c.second_parent_id ? ' · suggestion intégrée' : ''}</div>
           {c.changes.length > 0 && c.changes.length <= 12 && (
             <details className="explain" style={{ marginTop: 6, paddingTop: 6 }}>
               <summary>Voir {c.changes.length > 1 ? `les ${c.changes.length} changements` : 'le changement'}</summary>
@@ -104,7 +104,7 @@ export default function SocieteDetail() {
         <div className="grow">
           <h1 style={{ marginBottom: 4 }}>{s.reference && <ShieldCheck size={26} color="var(--primary)" />} {s.nom}</h1>
           <div className="small muted">
-            {s.reference ? 'Maintenue uniquement par le Système, à partir des textes officiels et des statistiques publiques.'
+            {s.reference ? 'La loi actuelle, tenue à jour automatiquement à partir des textes officiels et des statistiques publiques.'
               : <>Créée par <strong>{s.owner_pseudo}</strong>{s.parent_id && <> · inspirée de <Link to={`/societes/${s.parent_id}`}>{s.parent_nom}</Link></>} · mise à jour {relatif(s.updated_at)}</>}
           </div>
         </div>
@@ -119,13 +119,13 @@ export default function SocieteDetail() {
       {s.conflits_loi.length > 0 && (
         <div className="notice warn" style={{ margin: '12px 0' }}>
           <RefreshCw size={18} /> <div className="grow">La loi a changé sur {s.conflits_loi[0].conflits.length} règle(s) que cette proposition modifie aussi
-            ({s.conflits_loi[0].conflits.map((c) => c.titre ?? c.regle).slice(0, 3).join(', ')}). Le Système n'impose rien : {s.proprietaire ? 'à vous de choisir, règle par règle.' : 'son auteur doit choisir.'}</div>
+            ({s.conflits_loi[0].conflits.map((c) => c.titre ?? c.regle).slice(0, 3).join(', ')}). Rien n'est imposé : {s.proprietaire ? 'à vous de choisir, règle par règle.' : 'son auteur doit choisir.'}</div>
           {s.proprietaire && <button className="btn small" onClick={() => setModal('sync')}>Choisir</button>}
         </div>
       )}
       {!s.reference && !s.a_jour_reference && s.conflits_loi.length === 0 && (
         <div className="notice warn" style={{ margin: '12px 0' }}>
-          <RefreshCw size={18} /> <div className="grow">La loi a évolué depuis la création de cette société (nouvelle version de la Société 1.0).
+          <RefreshCw size={18} /> <div className="grow">La loi a évolué depuis la création de cette société (nouvelle version de la loi actuelle).
             {s.proprietaire ? ' Intégrez ces évolutions pour rester à jour.' : ''}</div>
           {s.proprietaire && <button className="btn small" onClick={() => setModal('sync')}>Mettre à jour</button>}
         </div>
@@ -155,7 +155,7 @@ export default function SocieteDetail() {
             <div className="row between"><h3 style={{ margin: 0 }}>Ce qui change par rapport à la loi actuelle</h3>
               {!s.reference && <span className="badge primary">{nbChangements(s.differences_reference)} changement{nbChangements(s.differences_reference) > 1 ? "s" : ""}</span>}</div>
             <p className="small muted">Chaque différence avec la loi actuelle (la <Terme id="societe_1_0">Société 1.0</Terme>) : de combien, qui l'a décidée et pourquoi.</p>
-            <DiffSociete items={s.differences_reference as Diff[]} vide={s.reference ? 'C\'est la référence : la loi en vigueur.' : 'Aucune différence avec la Société 1.0 pour l\'instant.'} />
+            <DiffSociete items={s.differences_reference as Diff[]} vide={s.reference ? 'C\'est la référence : la loi en vigueur.' : 'Aucune différence avec la loi actuelle pour l\'instant.'} />
             {s.differences_reference.length > 0 && <button className="btn primary" style={{ marginTop: 12 }} onClick={calculer}><Calculator size={16} /> Voir les effets de ces changements</button>}
           </div>
           <div className="stack">
@@ -170,11 +170,11 @@ export default function SocieteDetail() {
           </div>
         </div>
       )}
-      {tab === 'impacts' && (calc ? <div className="card"><Loading label="Le Système calcule les effets de cette proposition (10 à 30 secondes)…" /></div> : rapport ? <ReportView r={rapport} contexte="societe" /> : <Empty>Aucun impact à calculer.</Empty>)}
+      {tab === 'impacts' && (calc ? <div className="card"><Loading label="Calcul des effets de cette proposition (10 à 30 secondes)…" /></div> : rapport ? <ReportView r={rapport} contexte="societe" /> : <Empty>Aucun impact à calculer.</Empty>)}
       {tab === 'historique' && <div className="card"><Historique sid={s.id} branche={branche} /></div>}
       {tab === 'propositions' && (
         <div className="card">
-          {s.propositions.length === 0 ? <div className="small muted">{s.reference ? 'La Société 1.0 ne reçoit pas de suggestions : elle reflète la loi en vigueur, et seul le Système la met à jour.' : "Personne n'a encore suggéré de changement à cette société. Chacun peut créer sa version, puis la lui suggérer."}</div> : (
+          {s.propositions.length === 0 ? <div className="small muted">{s.reference ? 'La loi actuelle ne reçoit pas de suggestions : elle reflète la loi en vigueur et se met à jour automatiquement.' : "Personne n'a encore suggéré de changement à cette société. Chacun peut créer sa version, puis la lui suggérer."}</div> : (
             <ul className="list">{s.propositions.map((p) => (
               <li key={p.id} className="list-row">
                 <div><Link to={`/propositions/${p.id}`}><strong>{p.titre}</strong></Link>
@@ -234,7 +234,7 @@ function ProposerModal({ s, branche, onClose }: { s: SD; branche: string; onClos
           <option value="">Choisir…</option>
           {(data?.societes ?? []).filter((x) => !x.reference && x.id !== s.id).map((x) => <option key={x.id} value={x.id}>{x.nom} (par {x.owner_pseudo})</option>)}
         </select>
-        <span className="hint">La Société 1.0 ne reçoit pas de suggestions : elle reflète la loi en vigueur.</span></label>
+        <span className="hint">La loi actuelle ne reçoit pas de suggestions : elle reflète la loi en vigueur.</span></label>
       <label className="field"><span>En une phrase, que suggérez-vous ?</span><input type="text" value={titre} onChange={(e) => setTitre(e.target.value)} /></label>
       <label className="field"><span>Pourquoi ? (idéalement, avec des sources)</span><textarea value={description} onChange={(e) => setDescription(e.target.value)} /></label>
       {err && <ErrorBox message={err} />}

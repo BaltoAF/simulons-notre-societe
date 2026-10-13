@@ -15,7 +15,7 @@ export default function Sources() {
   return (
     <div className="container page">
       <h1>Le registre des sources</h1>
-      <p className="lead ink2" style={{ maxWidth: 800 }}>Tout ce sur quoi repose la Société 1.0 : textes de loi, statistiques publiques, rapports, études. Chaque source indique qui la cite, pour remonter de n'importe quel chiffre jusqu'à son origine.</p>
+      <p className="lead ink2" style={{ maxWidth: 800 }}>Tout ce sur quoi repose la description de la loi actuelle : textes de loi, statistiques publiques, rapports, études. Chaque source indique qui la cite, pour remonter de n'importe quel chiffre jusqu'à son origine.</p>
       <div className="row" style={{ margin: '10px 0 16px' }}>
         <form className="input-suffix grow" style={{ maxWidth: 420 }} onSubmit={(e) => { e.preventDefault(); if (q) p.set('q', q); else p.delete('q'); setP(p) }}>
           <input type="search" placeholder="Titre, éditeur, auteur…" value={q} onChange={(e) => setQ(e.target.value)} />

@@ -119,7 +119,7 @@ function Compensations({ e, overrides, onAppliquer }: { e: Equilibre; overrides:
   return (
     <div style={{ marginTop: 14 }}>
       <p className="small ink2" style={{ marginTop: 0 }}>Choisissez une solution : elle sera ajoutée à votre réforme et les effets seront recalculés. Vous pourrez toujours en changer.</p>
-      {opts.length === 0 && <div className="small muted">Le Système ne dispose pas encore de solution chiffrée pour cet équilibre.</div>}
+      {opts.length === 0 && <div className="small muted">Pas encore de solution chiffrée pour cet équilibre.</div>}
       {familles.map((f) => (
         <div key={f} style={{ marginBottom: 12 }}>
           <div className="kpi-label" style={{ marginBottom: 6 }}>{FAMILLES[f]}</div>

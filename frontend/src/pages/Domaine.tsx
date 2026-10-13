@@ -25,7 +25,7 @@ export default function Domaine() {
       </div>
       <div className="split aside-340">
         <div className="stack">
-          {data.themes.length === 0 && <div className="card muted">Ce domaine est en cours de numérisation par le Système.</div>}
+          {data.themes.length === 0 && <div className="card muted">Ce domaine est en cours de numérisation.</div>}
           {data.themes.map((t) => (
             <div key={t.titre} className="card">
               <h3>{t.titre}</h3>

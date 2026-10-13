@@ -115,7 +115,7 @@ export function RulePicker({ onPick, onClose, exclude, domaine = '' }: { onPick:
       </div>
       <label className="row small" style={{ marginBottom: 10, cursor: 'pointer' }}>
         <input type="checkbox" checked={seulementSimulables} onChange={(e) => setSeulementSimulables(e.target.checked)} />
-        Seulement les règles dont le Système sait calculer les effets
+        Seulement les règles dont le site sait calculer les effets
       </label>
       {loading ? <Loading /> : (
         <ul className="list" style={{ maxHeight: '58vh', overflowY: 'auto' }}>
