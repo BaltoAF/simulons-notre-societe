@@ -72,10 +72,10 @@ export function BaremeEditor({ value, onChange }: { value: Tranche[]; onChange: 
 }
 
 /** Fenêtre de recherche d'une règle à modifier. */
-export function RulePicker({ onPick, onClose, exclude }: { onPick: (r: Regle) => void; onClose: () => void; exclude: string[] }) {
+export function RulePicker({ onPick, onClose, exclude, domaine = '' }: { onPick: (r: Regle) => void; onClose: () => void; exclude: string[]; domaine?: string }) {
   const { data, loading } = useFetch<{ regles: Regle[] }>('/api/regles?limit=2000')
   const [q, setQ] = useState('')
-  const [dom, setDom] = useState('')
+  const [dom, setDom] = useState(domaine)
   const [seulementSimulables, setSeulementSimulables] = useState(true)
   const list = useMemo(() => {
     const ql = q.toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '')

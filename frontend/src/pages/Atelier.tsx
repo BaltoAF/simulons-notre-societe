@@ -7,18 +7,19 @@ import { PRESETS, resoudrePreset } from '../lib/presets'
 import { BROUILLON_VIDE, situationVersMenage, useApp, useFetch } from '../lib/state'
 import { RulePicker, ValueEditor } from '../components/editors'
 import { BudgetEditor } from '../components/BudgetEditor'
+import { PROFILS } from '../lib/profils'
 import { ReportView } from '../components/report'
 import { ErrorBox, Loading, Modal, Notice } from '../components/ui'
 
 const same = (a: unknown, b: unknown) => JSON.stringify(a) === JSON.stringify(b)
 
 export default function Atelier() {
-  const { draft, setDraft, situation, user } = useApp()
+  const { draft, setDraft, situation, setSituation, user } = useApp()
   const [params, setParams] = useSearchParams()
   const nav = useNavigate()
   const { data: rdata } = useFetch<{ regles: Regle[] }>('/api/regles?limit=5000')
   const regles = useMemo(() => Object.fromEntries((rdata?.regles ?? []).map((r) => [r.id, r])), [rdata])
-  const [picker, setPicker] = useState(false)
+  const [picker, setPicker] = useState<false | string>(false)
   const [budgetEd, setBudgetEd] = useState(false)
   const [presets, setPresets] = useState(false)
   const [avecFoyer, setAvecFoyer] = useState(!!situation)
@@ -156,7 +157,7 @@ export default function Atelier() {
               )
             })}
             <div className="row" style={{ marginTop: 12 }}>
-              <button className="btn" onClick={() => setPicker(true)}><Plus size={16} /> Ajouter une règle</button>
+              <button className="btn" onClick={() => setPicker('')}><Plus size={16} /> Ajouter une règle</button>
               <button className="btn ghost" onClick={() => setPresets(true)}><Lightbulb size={16} /> Idées</button>
               <button className="btn ghost" onClick={() => setBudgetEd(true)}><Landmark size={16} /> Répartir le budget</button>
             </div>
@@ -167,7 +168,11 @@ export default function Atelier() {
               <input type="checkbox" checked={avecFoyer && !!situation} disabled={!situation} onChange={(e) => setAvecFoyer(e.target.checked)} />
               <span><User size={15} /> Inclure mon foyer</span>
             </label>
-            {!situation && <div className="small muted" style={{ marginTop: 6 }}>Renseignez d'abord votre situation dans <Link to="/mes-droits">Mes droits</Link> pour voir l'effet sur votre budget.</div>}
+            {!situation && (
+              <div className="small muted" style={{ marginTop: 6 }}>Renseignez votre situation dans <Link to="/mes-droits">Mes droits</Link>, ou choisissez un profil type :
+                <div className="pill-list" style={{ marginTop: 6 }}>{PROFILS.map((p) => <button key={p.titre} className="badge" style={{ cursor: 'pointer' }} onClick={() => { setSituation(p.s); setAvecFoyer(true) }}>{p.titre}</button>)}</div>
+              </div>
+            )}
             <button className="btn primary large" style={{ width: '100%', marginTop: 14 }} disabled={!changes.length || loading} onClick={() => simuler()}>
               <Calculator size={18} /> {loading ? 'Calcul en cours…' : 'Mesurer les impacts'}
             </button>
@@ -198,10 +203,17 @@ export default function Atelier() {
           {loading && <div className="card"><Loading label="Le Système calcule les impacts : moteur socio-fiscal, ménages types, études…" /></div>}
           {!loading && rapport && <ReportView r={rapport} overrides={draft.overrides} onAppliquer={appliquerCompensation} />}
           {!loading && !rapport && (
-            <div className="card soft" style={{ textAlign: 'center', padding: 40 }}>
+            <div className="card soft" style={{ textAlign: 'center', padding: 32 }}>
               <Calculator size={36} color="var(--primary)" />
-              <h3 style={{ marginTop: 10 }}>Les impacts s'afficheront ici</h3>
-              <p className="muted small" style={{ maxWidth: 460, margin: '0 auto 14px' }}>Pour votre foyer, des ménages types, le budget public, les inégalités et l'économie — chaque chiffre avec ses sources et son indice de confiance.</p>
+              <h3 style={{ marginTop: 10 }}>Par où commencer ?</h3>
+              <p className="muted small" style={{ maxWidth: 520, margin: '0 auto 14px' }}>Choisissez un thème, puis la règle à changer. Le Système mesurera les effets pour vous et pour le pays : économie, social, écologie et bien-être.</p>
+              <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', textAlign: 'left', marginBottom: 18 }}>
+                {[['fiscalite', 'Les impôts'], ['prestations', 'Les aides'], ['travail', 'Le travail'], ['retraites', 'Les retraites'],
+                  ['budget', "Le budget de l'État"], ['environnement_energie', 'Climat et énergie'], ['transports', 'La route'], ['sante', 'La santé']].map(([d, t]) => (
+                  <button key={d} className="preset" onClick={() => (d === 'budget' ? setBudgetEd(true) : setPicker(d))}><strong>{t}</strong></button>
+                ))}
+              </div>
+              <div className="kpi-label" style={{ marginBottom: 8 }}>… ou partez d'une idée</div>
               <div className="grid cols-2" style={{ textAlign: 'left', maxWidth: 620, margin: '0 auto' }}>
                 {PRESETS.slice(0, 4).map((p) => <button key={p.id} className="preset" onClick={() => appliquerPreset(p.id)}><strong>{p.titre}</strong><span className="small muted">{p.description}</span></button>)}
               </div>
@@ -210,7 +222,7 @@ export default function Atelier() {
         </div>
       </div>
 
-      {picker && <RulePicker onPick={ajouter} onClose={() => setPicker(false)} exclude={ids} />}
+      {picker !== false && <RulePicker onPick={ajouter} onClose={() => setPicker(false)} exclude={ids} domaine={picker} />}
       {budgetEd && rdata && <BudgetEditor regles={rdata.regles} overrides={draft.overrides} onClose={() => setBudgetEd(false)}
         onApply={(o) => { setDraft((d) => { const ov = { ...d.overrides }; for (const k of Object.keys(ov)) if (k.startsWith('budget.etat.mission.')) delete ov[k]; return { ...d, overrides: { ...ov, ...o } } }); setBudgetEd(false) }} />}
       {presets && (

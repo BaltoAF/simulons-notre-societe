@@ -5,6 +5,7 @@ import { ChevronDown, Landmark, Lock, PiggyBank, Wallet } from 'lucide-react'
 import { api } from '../lib/api'
 import { euros, nombre } from '../lib/format'
 import { situationVersMenage, useApp, useFetch, type SituationSaisie } from '../lib/state'
+import { PROFILS } from '../lib/profils'
 import { ErrorBox, Loading } from '../components/ui'
 
 type Fonction = { id: string; titre: string; description: string; md: number; part: number; par_habitant_an: number; annee: string; source: string
@@ -28,12 +29,6 @@ type VueMenage = {
   revenu_disponible: number; depense_publique_moyenne_foyer: number; personnes: number; note: string
 }
 
-const PROFILS: { titre: string; s: SituationSaisie }[] = [
-  { titre: 'Personne seule au SMIC', s: { couple: 'seul', adultes: [{ age: 30, activite: 'salarie', montant_net: 1478, cadre: false, handicap: false }], enfants: [], logement: 'locataire_prive', loyer_mensuel: 550, zone: 2, revenus_capital_annuels: 0 } },
-  { titre: 'Couple, 2 enfants, revenus médians', s: { couple: 'marie', adultes: [{ age: 42, activite: 'salarie', montant_net: 2100, cadre: false, handicap: false }, { age: 40, activite: 'salarie', montant_net: 1850, cadre: false, handicap: false }], enfants: [8, 12], logement: 'proprietaire', loyer_mensuel: 0, zone: 2, revenus_capital_annuels: 300 } },
-  { titre: 'Retraité seul', s: { couple: 'seul', adultes: [{ age: 72, activite: 'retraite', montant_net: 1500, cadre: false, handicap: false }], enfants: [], logement: 'proprietaire', loyer_mensuel: 0, zone: 3, revenus_capital_annuels: 500 } },
-  { titre: 'Cadre, hauts revenus', s: { couple: 'seul', adultes: [{ age: 48, activite: 'salarie', montant_net: 6500, cadre: true, handicap: false }], enfants: [], logement: 'proprietaire', loyer_mensuel: 0, zone: 1, revenus_capital_annuels: 8000 } },
-]
 
 function Barre({ part, couleur = 'var(--primary)' }: { part: number; couleur?: string }) {
   return <div className="bar-track" style={{ height: 10 }}><div className="bar-fill" style={{ width: `${Math.max(0.5, part * 100)}%`, background: couleur }} /></div>
