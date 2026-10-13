@@ -15,7 +15,7 @@ model/
 ## Domaines (liste fermée)
 
 `fiscalite`, `prestations`, `retraites`, `travail`, `justice_penale`, `droit_civil`, `institutions`,
-`education`, `sante`, `logement`, `environnement_energie`, `nationalite_immigration`, `budget`.
+`education`, `sante`, `logement`, `environnement_energie`, `nationalite_immigration`, `budget`, `transports`.
 
 ## 1. Règles — `model/regles/<domaine>/<theme>.yaml`
 

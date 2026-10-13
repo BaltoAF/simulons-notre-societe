@@ -12,8 +12,9 @@ from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
-from . import auth, db, vcs
-from .config import ANNEE_REFERENCE, FRONTEND_DIST, MOIS_REFERENCE, REFERENCE_SOCIETY_ID, TODAY
+from . import auth, db, planificateur, vcs
+from . import config
+from .config import FRONTEND_DIST, REFERENCE_SOCIETY_ID
 from .engine.household import Menage
 from .engine.openfisca_engine import ENGINE
 from .evidence import synthese
@@ -31,6 +32,7 @@ async def lifespan(_app: FastAPI):
     vcs.ensure_reference(store)
     from .impacts.microsim import prechauffer
     threading.Thread(target=prechauffer, args=(store,), daemon=True).start()
+    planificateur.demarrer()
     yield
 
 
@@ -54,21 +56,31 @@ def meta():
     for d in store.domaines:
         domaines.append({**d, "nb_regles": stats["par_domaine"].get(d["id"], 0)})
     return {
-        "date_reference": TODAY.isoformat(), "mois_reference": MOIS_REFERENCE, "annee_reference": ANNEE_REFERENCE,
+        "date_reference": config.TODAY.isoformat(), "mois_reference": config.MOIS_REFERENCE, "annee_reference": config.ANNEE_REFERENCE,
         "stats": stats, "domaines": domaines, "version_societe": head["base_snapshot"], "dernier_commit_systeme": head,
         "moteur": {"nom": "OpenFisca-France", "version": ENGINE.version, "pret": ENGINE.ready},
         "types_sources": TYPES_SOURCE,
     }
 
 
+def _local_seulement(request: Request):
+    if request.client and request.client.host not in ("127.0.0.1", "::1", "localhost", "testclient"):
+        raise HTTPException(403, "Réservé au Système")
+
+
 @app.post("/api/admin/recharger")
 def recharger(request: Request):
-    # réservé à l'usage local (le Système) : recharge le modèle et enregistre un commit si besoin
-    if request.client and request.client.host not in ("127.0.0.1", "::1", "localhost"):
-        raise HTTPException(403, "Réservé au Système")
-    store = get_store(reload=True)
-    simulation._CACHE.clear()
-    return vcs.ensure_reference(store)
+    """Réservé au Système (appel local) : recharge le modèle, publie un commit si besoin, met à jour les forks."""
+    _local_seulement(request)
+    return planificateur.recharger("demande du Système")
+
+
+@app.post("/api/admin/maj")
+def maj_manuelle(request: Request):
+    """Réservé au Système (appel local) : lance immédiatement la mise à jour quotidienne en arrière-plan."""
+    _local_seulement(request)
+    threading.Thread(target=planificateur.lancer_maj_quotidienne, args=("manuel",), daemon=True).start()
+    return {"statut": "lancee"}
 
 
 # ───────────────────────── règles ─────────────────────────
@@ -584,6 +596,12 @@ def commenter(body: CommentaireIn, user: dict = Depends(auth.require_user)):
 @app.get("/api/systeme/journal")
 def journal(limit: int = 50):
     return {"commits": vcs.log(REFERENCE_SOCIETY_ID, vcs.BRANCHE_PRINCIPALE, limit)}
+
+
+@app.get("/api/systeme/executions")
+def executions(limit: int = 30):
+    """Journal des mises à jour automatiques du Système et état du planificateur."""
+    return {"executions": vcs.log_executions(limit), "planificateur": planificateur.etat()}
 
 
 @app.exception_handler(HTTPException)

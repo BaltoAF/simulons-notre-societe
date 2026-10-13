@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import {
-  AlertTriangle, Briefcase, Coins, ExternalLink, FileText, Globe, GraduationCap, HandHeart, Home, Hourglass, Info,
+  AlertTriangle, Briefcase, Car, Coins, ExternalLink, FileText, Globe, GraduationCap, HandHeart, Home, Hourglass, Info,
   Landmark, Leaf, Scale, Stethoscope, Users, Vote, X,
 } from 'lucide-react'
 import type { Confiance, Source } from '../lib/api'
@@ -10,7 +10,7 @@ import { date } from '../lib/format'
 const ICONES: Record<string, typeof Coins> = {
   coins: Coins, 'hand-heart': HandHeart, briefcase: Briefcase, hourglass: Hourglass, landmark: Landmark,
   stethoscope: Stethoscope, 'graduation-cap': GraduationCap, home: Home, leaf: Leaf, scale: Scale, users: Users,
-  vote: Vote, globe: Globe,
+  vote: Vote, globe: Globe, car: Car,
 }
 export function DomainIcon({ name, size = 22 }: { name: string; size?: number }) {
   const I = ICONES[name] ?? FileText

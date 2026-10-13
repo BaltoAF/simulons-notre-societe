@@ -16,11 +16,12 @@ from typing import Any
 
 import yaml
 
-from .config import MODEL_DIR, TODAY
+from . import config
+from .config import MODEL_DIR
 
 DOMAINES_VALIDES = {
     "fiscalite", "prestations", "retraites", "travail", "justice_penale", "droit_civil", "institutions",
-    "education", "sante", "logement", "environnement_energie", "nationalite_immigration", "budget",
+    "education", "sante", "logement", "environnement_energie", "nationalite_immigration", "budget", "transports",
 }
 TYPES_SOURCE = {
     "texte_officiel": "Texte officiel",
@@ -193,7 +194,7 @@ class ModelStore:
             valeurs.append(entry)
         valeurs.sort(key=lambda e: e["depuis"])
         rule["valeurs"] = valeurs
-        today = TODAY.isoformat()
+        today = config.TODAY.isoformat()
         en_vigueur = [v for v in valeurs if not v["depuis"] or v["depuis"] <= today]
         a_venir = [v for v in valeurs if v["depuis"] and v["depuis"] > today]
         courante = en_vigueur[-1] if en_vigueur else None

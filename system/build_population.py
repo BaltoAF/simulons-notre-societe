@@ -193,6 +193,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--n", type=int, default=5000)
     ap.add_argument("--seed", type=int, default=2026)
+    ap.add_argument("--hash-calage", default=None, help="empreinte des statistiques de calage (renseignée par le Système)")
     args = ap.parse_args()
     rng = np.random.default_rng(args.seed)
     store = ModelStore.load()
@@ -270,6 +271,7 @@ def main():
         "genere_par": "system/build_population.py",
         "genere_le": dt.date.today().isoformat(),
         "graine": args.seed,
+        "hash_calage": args.hash_calage,
         "n_menages": len(menages),
         "menages_representes": round(float(w.sum())),
         "personnes_representees": round(float((w * taille).sum())),

@@ -21,7 +21,7 @@ from dataclasses import dataclass, field
 
 import numpy as np
 
-from ..config import ANNEE_REFERENCE, MOIS_REFERENCE, TODAY
+from .. import config
 from .household import Menage
 
 DEPCOM_PAR_ZONE = {1: "75056", 2: "69123", 3: "23096"}  # Paris, Lyon, Guéret
@@ -210,7 +210,7 @@ class Engine:
             from openfisca_core.reforms import Reform
             from openfisca_core.parameters import ParameterScaleBracket
 
-            start = f"{int(ANNEE_REFERENCE) - 2}-01-01"
+            start = f"{int(config.ANNEE_REFERENCE) - 2}-01-01"
             params = spec.params
 
             def modifier(parameters):
@@ -251,7 +251,7 @@ class Engine:
 
     # ───────────── situation ─────────────
     def _situation(self, menages: list[Menage]) -> dict:
-        year = int(ANNEE_REFERENCE)
+        year = int(config.ANNEE_REFERENCE)
         years = [str(year - 2), str(year - 1), str(year)]
         mois = [f"{y}-{m:02d}" for y in (year - 1, year) for m in range(1, 13)]
         individus, familles, foyers, menages_of = {}, {}, {}, {}
@@ -262,35 +262,35 @@ class Engine:
                 pid = f"m{i}a{j}"
                 ids.append(pid)
                 ind = {
-                    "date_naissance": {"ETERNITY": f"{TODAY.year - a.age}-{TODAY.month:02d}-01"},
-                    "statut_marital": {MOIS_REFERENCE: statut} if len(m.adultes) == 2 else {MOIS_REFERENCE: "celibataire"},
+                    "date_naissance": {"ETERNITY": f"{config.TODAY.year - a.age}-{config.TODAY.month:02d}-01"},
+                    "statut_marital": {config.MOIS_REFERENCE: statut} if len(m.adultes) == 2 else {config.MOIS_REFERENCE: "celibataire"},
                 }
                 act = {"salarie": "actif", "independant": "actif", "chomeur": "chomeur", "retraite": "retraite",
                        "etudiant": "etudiant", "inactif": "inactif"}[a.activite]
-                ind["activite"] = {MOIS_REFERENCE: act}
+                ind["activite"] = {config.MOIS_REFERENCE: act}
                 if a.salaire_brut_mensuel > 0:
                     ind["salaire_de_base"] = {y: round(a.salaire_brut_mensuel * 12, 2) for y in years}
-                    ind["categorie_salarie"] = {MOIS_REFERENCE: "prive_cadre" if a.cadre else "prive_non_cadre"}
+                    ind["categorie_salarie"] = {config.MOIS_REFERENCE: "prive_cadre" if a.cadre else "prive_non_cadre"}
                     # entreprise de 50 salariés ou plus ; réduction générale calculée mois par mois (mode anticipé)
                     ind["effectif_entreprise"] = {y: 60 for y in years}
                     ind["allegement_general_mode_recouvrement"] = {y: "anticipe" for y in years}
                     smic = self._smic_mensuel()
                     if a.salaire_brut_mensuel < smic * 0.98:
-                        ind["contrat_de_travail"] = {MOIS_REFERENCE: "temps_partiel"}
-                        ind["heures_remunerees_volume"] = {MOIS_REFERENCE: round(151.67 * a.salaire_brut_mensuel / smic, 2)}
+                        ind["contrat_de_travail"] = {config.MOIS_REFERENCE: "temps_partiel"}
+                        ind["heures_remunerees_volume"] = {config.MOIS_REFERENCE: round(151.67 * a.salaire_brut_mensuel / smic, 2)}
                 if a.chomage_brut_mensuel > 0:
                     ind["chomage_brut"] = {y: round(a.chomage_brut_mensuel * 12, 2) for y in years}
                 if a.retraite_brute_mensuelle > 0:
                     ind["retraite_brute"] = {y: round(a.retraite_brute_mensuelle * 12, 2) for y in years}
                 if a.handicap:
-                    ind["handicap"] = {MOIS_REFERENCE: True}
-                    ind["taux_incapacite"] = {MOIS_REFERENCE: 0.8}
+                    ind["handicap"] = {config.MOIS_REFERENCE: True}
+                    ind["taux_incapacite"] = {config.MOIS_REFERENCE: 0.8}
                 individus[pid] = ind
             kids = []
             for k, age in enumerate(m.enfants):
                 kid = f"m{i}e{k}"
                 kids.append(kid)
-                individus[kid] = {"date_naissance": {"ETERNITY": f"{TODAY.year - age}-{TODAY.month:02d}-01"}}
+                individus[kid] = {"date_naissance": {"ETERNITY": f"{config.TODAY.year - age}-{config.TODAY.month:02d}-01"}}
             familles[f"f{i}"] = {"parents": ids, "enfants": kids}
             # Rompt le cycle CSG des revenus de remplacement <-> revenu fiscal de référence (RFR N-2) :
             # on fournit un RFR approché pour N-4 et N-3, ce qui laisse le moteur calculer exactement N-2 et N-1.
@@ -320,10 +320,18 @@ class Engine:
         return {"individus": individus, "familles": familles, "foyers_fiscaux": foyers, "menages": menages_of}
 
     def _smic_mensuel(self) -> float:
-        if not hasattr(self, "_smic_cache"):
-            p = self.tbs.parameters(f"{MOIS_REFERENCE}-01")
-            self._smic_cache = float(p.marche_travail.salaire_minimum.smic.smic_b_mensuel)
-        return self._smic_cache
+        cache = getattr(self, "_smic_cache", None)
+        if not cache or cache[0] != config.MOIS_REFERENCE:
+            p = self.tbs.parameters(f"{config.MOIS_REFERENCE}-01")
+            self._smic_cache = (config.MOIS_REFERENCE, float(p.marche_travail.salaire_minimum.smic.smic_b_mensuel))
+        return self._smic_cache[1]
+
+    def vider_caches(self):
+        """À appeler quand la date de référence ou le modèle change."""
+        with self._lock:
+            self._reforms.clear()
+            self._net_grid = None
+            self._smic_cache = None
 
     # ───────────── calcul ─────────────
     def compute(self, menages: list[Menage], spec: ReformSpec | None = None) -> dict:
@@ -356,7 +364,7 @@ class Engine:
             ff_men = np.array([int(fid[2:].rstrip("b")) for fid in pop_ff.ids])
 
             def calc(var, period):
-                p = MOIS_REFERENCE if period == "M" else ANNEE_REFERENCE
+                p = config.MOIS_REFERENCE if period == "M" else config.ANNEE_REFERENCE
                 if isinstance(var, tuple):
                     return sum(sim.calculate(v, p) for v in var)
                 return sim.calculate(var, p)
@@ -449,6 +457,15 @@ def get_pool() -> ProcessPoolExecutor:
         if _POOL is None:
             _POOL = ProcessPoolExecutor(max_workers=WORKERS, initializer=_init_worker)
         return _POOL
+
+
+def reset_pool():
+    """Arrête les processus de calcul (ils seront relancés à la demande avec la date et le modèle à jour)."""
+    global _POOL
+    with _POOL_LOCK:
+        if _POOL is not None:
+            _POOL.shutdown(wait=False, cancel_futures=True)
+            _POOL = None
 
 
 def warm_pool():

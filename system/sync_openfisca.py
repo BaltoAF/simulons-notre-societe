@@ -244,7 +244,9 @@ def main():
     for (domaine, fichier), data in files.items():
         dump_yaml(data, MODEL / "regles" / domaine / f"{fichier}.yaml", header)
 
-    dump_yaml({"genere_par": GENERATED_MARK, "version_openfisca": version, "valeurs": valeurs_moteur},
+    import hashlib as _h
+    hash_leviers = _h.sha256((MODEL / "moteur" / "openfisca_leviers.yaml").read_bytes()).hexdigest()[:16]
+    dump_yaml({"genere_par": GENERATED_MARK, "version_openfisca": version, "hash_leviers": hash_leviers, "valeurs": valeurs_moteur},
               MODEL / "moteur" / "valeurs_moteur.yaml", header)
     sources = [openfisca_source(version)] + sorted(registry.sources.values(), key=lambda s: s["id"])
     dump_yaml({"sources": sources}, MODEL / "sources" / "openfisca.yaml", header)

@@ -72,3 +72,38 @@ def test_fork_commit_proposition_fusion():
         assert log[0]["message"].startswith("Fusionne")
         rap = c.post("/api/simulation/reforme", json={"societe": sid}).json()
         assert {r["regle"] for r in rap["regles_modifiees"]} == {"prestations.rsa.montant_forfaitaire", "fiscalite.tva.taux_normal"}
+
+
+def test_mise_a_jour_automatique_des_forks():
+    """Quand la loi change, un fork est mis à jour sans conflit ; sinon le conflit est enregistré pour son propriétaire."""
+    from app import vcs, db
+    from app.model_store import get_store
+    store = get_store()
+    with client() as c:
+        c.post("/api/auth/inscription", json={"pseudo": "chloe", "email": "c@ex.fr", "mot_de_passe": "motdepasse3"})
+        s = c.post("/api/societes", json={"nom": "Fork de test", "changements": [
+            {"regle": "prestations.rsa.montant_forfaitaire", "valeur": 900}]}).json()
+    # la loi change : une règle non modifiée par le fork, et une règle modifiée par le fork
+    head = vcs.reference_head()
+    snap = dict(vcs.get_snapshot(vcs.get_commit(head)["base_snapshot"]))
+    snap["fiscalite.tva.taux_normal"] = 20.5
+    h = vcs.save_snapshot(snap)
+    cid = vcs._insert_commit("france", head, None, "Test : la loi change", h, {}, [], systeme=True)
+    vcs._set_head("france", "principale", cid)
+    bilan = vcs.auto_sync_forks(store)
+    assert bilan["mises_a_jour"] >= 1
+    st = vcs.state_of(vcs.branch_head(s["id"], "principale"))
+    assert st["fiscalite.tva.taux_normal"] == 20.5 and st["prestations.rsa.montant_forfaitaire"] == 900
+    # conflit : la loi change le RSA que le fork a modifié
+    snap2 = dict(snap)
+    snap2["prestations.rsa.montant_forfaitaire"] = 700
+    cid2 = vcs._insert_commit("france", cid, None, "Test : le RSA change", vcs.save_snapshot(snap2), {}, [], systeme=True)
+    vcs._set_head("france", "principale", cid2)
+    vcs.auto_sync_forks(store)
+    assert vcs.conflits_en_attente(s["id"])
+    st = vcs.state_of(vcs.branch_head(s["id"], "principale"))
+    assert st["prestations.rsa.montant_forfaitaire"] == 900  # rien n'est imposé au propriétaire
+    # remise en état de la référence pour les autres tests
+    vcs._set_head("france", "principale", head)
+    with db.transaction() as conn:
+        conn.execute("DELETE FROM synchronisations")

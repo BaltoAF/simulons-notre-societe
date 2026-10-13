@@ -105,5 +105,5 @@ export const DOMAINE_TITRE: Record<string, string> = {
   fiscalite: 'Impôts et taxes', prestations: 'Aides et prestations', travail: 'Travail et emploi', retraites: 'Retraites',
   budget: 'Budget public', sante: 'Santé', education: 'Éducation', logement: 'Logement',
   environnement_energie: 'Environnement et énergie', justice_penale: 'Justice pénale', droit_civil: 'Famille et droit civil',
-  institutions: 'Institutions', nationalite_immigration: 'Nationalité et immigration',
+  institutions: 'Institutions', nationalite_immigration: 'Nationalité et immigration', transports: 'Transports et route',
 }

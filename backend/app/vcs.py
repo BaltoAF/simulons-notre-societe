@@ -569,3 +569,82 @@ def list_comments(cible_type: str, cible_id: str) -> list[dict]:
     return db.rows(db.connect().execute(
         "SELECT c.*, u.pseudo AS auteur FROM comments c JOIN users u ON u.id = c.author_id"
         " WHERE c.cible_type = ? AND c.cible_id = ? ORDER BY c.created_at", (cible_type, str(cible_id))))
+
+
+# ───────────────────────── mise à jour automatique des forks ─────────────────────────
+def auto_sync_forks(store) -> dict:
+    """Après une nouvelle version de la Société 1.0, met à jour en silence toutes les branches des forks.
+
+    Sans conflit, le Système intègre les évolutions de la loi par un commit automatique. En cas de conflit
+    (le fork a modifié une règle que la loi vient aussi de changer), rien n'est imposé : le conflit est
+    enregistré et le propriétaire choisit, règle par règle.
+    """
+    conn = db.connect()
+    ref = reference_head()
+    ref_commit = get_commit(ref)
+    bilan = {"mises_a_jour": 0, "conflits": 0, "deja_a_jour": 0}
+    rows_ = conn.execute("SELECT b.society_id, b.nom, b.head FROM branches b JOIN societies s ON s.id = b.society_id "
+                         "WHERE s.reference = 0").fetchall()
+    for r in rows_:
+        sid, branch, head = r["society_id"], r["nom"], r["head"]
+        if ref in set(_ancestors(head)):
+            bilan["deja_a_jour"] += 1
+            with db.transaction() as c:
+                c.execute("DELETE FROM synchronisations WHERE society_id = ? AND branche = ?", (sid, branch))
+            continue
+        base_cid = merge_base(head, ref)
+        base = state_of(base_cid) if base_cid else {}
+        merged, conflicts = three_way(base, state_of(head), state_of(ref))
+        if conflicts:
+            for c_ in conflicts:
+                rule = store.regles.get(c_["regle"])
+                c_["titre"] = rule["titre"] if rule else c_["regle"]
+            with db.transaction() as c:
+                c.execute("INSERT OR REPLACE INTO synchronisations (society_id, branche, ref_commit, conflits, created_at)"
+                          " VALUES (?, ?, ?, ?, datetime('now'))", (sid, branch, ref, db.dumps(conflicts)))
+            bilan["conflits"] += 1
+            continue
+        n = len(diff_states(state_of(head), merged))
+        _commit_merged_state(sid, branch, merged, ref_commit["base_snapshot"],
+                             f"Mise à jour automatique : la loi a évolué ({n} règle(s) actualisée(s))" if n else
+                             "Mise à jour automatique : nouvelle version de la Société 1.0",
+                             None, ref, store, systeme=True)
+        with db.transaction() as c:
+            c.execute("DELETE FROM synchronisations WHERE society_id = ? AND branche = ?", (sid, branch))
+        bilan["mises_a_jour"] += 1
+    return bilan
+
+
+def conflits_en_attente(sid: str) -> list[dict]:
+    out = []
+    for r in db.rows(db.connect().execute("SELECT * FROM synchronisations WHERE society_id = ?", (sid,))):
+        r["conflits"] = db.loads(r["conflits"]) or []
+        out.append(r)
+    return out
+
+
+# ───────────────────────── provenance des changements ─────────────────────────
+def provenance(sid: str, branch: str, regles: set[str], limit: int = 500) -> dict[str, dict]:
+    """Pour chaque règle modifiée, le commit le plus récent qui l'a changée (auteur, date, message, justification)."""
+    out: dict[str, dict] = {}
+    cid = branch_head(sid, branch)
+    n = 0
+    while cid and n < limit and len(out) < len(regles):
+        c = commit_view(cid)
+        for ch in c["changes"]:
+            rid = ch.get("regle")
+            if rid in regles and rid not in out:
+                out[rid] = {"commit": c["id"], "auteur": c["auteur"], "auteur_systeme": c["auteur_systeme"],
+                            "date": c["created_at"], "message": c["message"], "justification": ch.get("justification") or "",
+                            "society_id": c["society_id"]}
+        cid = c["parent_id"]
+        n += 1
+    return out
+
+
+def log_executions(limit: int = 30) -> list[dict]:
+    out = []
+    for r in db.rows(db.connect().execute("SELECT * FROM systeme_executions ORDER BY debut DESC LIMIT ?", (limit,))):
+        r["resume"] = db.loads(r["resume"]) or {}
+        out.append(r)
+    return out

@@ -101,6 +101,26 @@ CREATE TABLE IF NOT EXISTS stars (
     PRIMARY KEY (user_id, society_id)
 );
 
+-- Conflits rencontrés lors de la mise à jour automatique d'un fork (la loi a changé une règle que le fork modifie aussi).
+CREATE TABLE IF NOT EXISTS synchronisations (
+    society_id TEXT NOT NULL REFERENCES societies(id) ON DELETE CASCADE,
+    branche TEXT NOT NULL,
+    ref_commit TEXT NOT NULL,
+    conflits TEXT NOT NULL,
+    created_at TEXT NOT NULL DEFAULT (datetime('now')),
+    PRIMARY KEY (society_id, branche)
+);
+
+-- Journal des exécutions du Système (mise à jour quotidienne).
+CREATE TABLE IF NOT EXISTS systeme_executions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    debut TEXT NOT NULL,
+    fin TEXT,
+    statut TEXT NOT NULL,          -- en_cours | succes | echec
+    declencheur TEXT NOT NULL,     -- planifie | rattrapage | manuel | modele_modifie
+    resume TEXT NOT NULL DEFAULT '{}'
+);
+
 CREATE INDEX IF NOT EXISTS idx_commits_society ON commits(society_id);
 CREATE INDEX IF NOT EXISTS idx_comments_cible ON comments(cible_type, cible_id);
 CREATE INDEX IF NOT EXISTS idx_proposals_target ON proposals(target_society, statut);
