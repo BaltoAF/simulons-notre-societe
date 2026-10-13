@@ -1,0 +1,787 @@
+sources:
+  # ---------------------------------------------------------------------------
+  # 1. Non-recours aux prestations
+  # ---------------------------------------------------------------------------
+  - id: drees-er1370-non-recours-rsa-2021
+    type: statistique_publique
+    editeur: "DREES"
+    titre: "Non-recours au RSA : plus d'un tiers des foyers éligibles ne le percevaient pas fin 2021 (Études et Résultats n° 1370)"
+    url: "https://drees.solidarites-sante.gouv.fr/publications-communique-de-presse/etudes-et-resultats/260506-non-recours-au-rsa-fin-2021"
+    auteurs: ["Cécile Gayet"]
+    date_publication: "2026-05-06"
+    consulte_le: "2026-10-13"
+    note: "Appariement ERFS 2021 – Dispositif ressources mensuelles ; fourchette de 33 % à 37 %."
+  - id: drees-dd92-non-recours-rsa-2018
+    type: statistique_publique
+    editeur: "DREES"
+    titre: "Mesurer régulièrement le non-recours au RSA et à la prime d'activité : méthode et résultats (Les Dossiers de la DREES n° 92)"
+    url: "https://drees.solidarites-sante.gouv.fr/publications-communique-de-presse/les-dossiers-de-la-drees/mesurer-regulierement-le-non-recours-au"
+    auteurs: ["Cyrine Hannafi", "Rémi Le Gall", "Laure Omalek", "Céline Marc"]
+    date_publication: "2022-02"
+    consulte_le: "2026-10-13"
+    note: "PDF : https://drees.solidarites-sante.gouv.fr/sites/default/files/2022-02/DD92.pdf"
+  - id: cne-rsa-2011-non-recours
+    type: rapport_institutionnel
+    editeur: "Comité national d'évaluation du RSA (annexe réalisée par la Cnaf)"
+    titre: "Rapport final du Comité national d'évaluation du RSA, annexe 1 : « Le non-recours au RSA et ses motifs »"
+    url: "https://solidarites-sante.gouv.fr/IMG/pdf/1_Le_non-recours_au_rSa_et_ses_motifs.pdf"
+    auteurs: ["Pauline Domingo", "Muriel Pucci"]
+    date_publication: "2011-12"
+    consulte_le: "2026-10-13"
+    note: "Chiffres lus dans la synthèse DREES (Dossier n° 57, 2020), qui cite aussi Domingo et Pucci, L'E-ssentiel n° 124 (Cnaf, 2012). Enquête Dares 2010-2011."
+  - id: dgcs-2017-evaluation-prime-activite
+    type: rapport_institutionnel
+    editeur: "Direction générale de la cohésion sociale (avec la DREES et la Cnaf)"
+    titre: "Rapport d'évaluation de la prime d'activité"
+    url: "https://solidarites-sante.gouv.fr/IMG/pdf/rapport_d_evaluation_prime_d_activite.pdf"
+    auteurs: []
+    date_publication: "2017"
+    consulte_le: "2026-10-13"
+    note: "Taux de recours 2016 (73 % en effectifs) lu dans la synthèse DREES (Dossier n° 57, 2020)."
+  - id: drees-er1379-non-recours-prime-activite-2021
+    type: statistique_publique
+    editeur: "DREES"
+    titre: "Non-recours à la prime d'activité : la moitié des foyers éligibles ne la perçoivent pas fin 2021 (Études et Résultats n° 1379)"
+    url: "https://drees.solidarites-sante.gouv.fr/publications-communique-de-presse/etudes-et-resultats/260708-non-recours-prime-dactivite-2021"
+    auteurs: ["Cécile Gayet"]
+    date_publication: "2026-07-08"
+    consulte_le: "2026-10-13"
+    note: "Fourchette de 48 % à 52 % au 4e trimestre 2021."
+  - id: drees-cp-css-non-recours-2022
+    type: statistique_publique
+    editeur: "DREES"
+    titre: "Communiqué de presse du 13 décembre 2022 sur le taux de non-recours à la complémentaire santé solidaire (avec et sans participation financière)"
+    url: "https://drees.solidarites-sante.gouv.fr/communique-de-presse/complementaire-sante-solidaire-avec-participation-financiere-un-taux-de-non"
+    auteurs: []
+    date_publication: "2022-12-13"
+    consulte_le: "2026-10-13"
+    note: "Taux 2019-2021 ; méthodologie détaillée dans les rapports annuels de la CSS 2021 (p. 89-91) et 2022 (p. 38). Intitulé descriptif (titre exact de la page non relevé)."
+  - id: drees-dd97-non-recours-minimum-vieillesse
+    type: statistique_publique
+    editeur: "DREES"
+    titre: "Le non-recours au minimum vieillesse des personnes seules (Les Dossiers de la DREES n° 97)"
+    url: "https://drees.solidarites-sante.gouv.fr/sites/default/files/2022-05/Dossier%20de%20la%20DREES%20-%20Non%20recours%20au%20MV.pdf"
+    auteurs: ["Pauline Meinzel"]
+    date_publication: "2022-05"
+    consulte_le: "2026-10-13"
+    note: "PDF archivé dans system/cache/preuves-social/drees-dd97-non-recours-mv.pdf"
+  - id: cnav-broutin-niyomwungere-2021
+    type: etude_academique
+    editeur: "Cnav – revue Retraite et société n° 87 (2021/3), p. 169-190"
+    titre: "Actions de lutte contre le non-recours à l'Aspa : ciblage par datamining"
+    url: "https://www.cairn.info/revue-retraite-et-societe-2021-3-page-169.htm"
+    auteurs: ["Frédéric Broutin", "Macline Niyomwungere"]
+    date_publication: "2021-12"
+    consulte_le: "2026-10-13"
+    note: "DOI 10.3917/rs1.087.0169. Fourchette 34-49 % lue dans le Dossier DREES n° 97 (2022)."
+  - id: cnaf-de12-2000-non-recours-aides-logement
+    type: rapport_institutionnel
+    editeur: "Cnaf – Dossier d'étude n° 12 (réalisé par le CRÉDOC)"
+    titre: "Non-recours aux aides personnelles au logement. Enquête exploratoire sur la CAF du Havre"
+    url: "https://caf.fr/sites/default/files/medias/cnaf/Nous_connaitre/Recherche_et_statistiques/Dossiers_d_etudes/2000_DE_12_Nonrecours_aux_aides_logement_CNAF.pdf"
+    auteurs: ["Marie-Odile Simon", "Jérémy Courel"]
+    date_publication: "2000-09"
+    consulte_le: "2026-10-13"
+    note: "PDF archivé dans system/cache/preuves-social/cnaf-2000-de12-non-recours-logement.pdf"
+  - id: drees-dd57-non-recours-2020
+    type: statistique_publique
+    editeur: "DREES"
+    titre: "Le non-recours aux prestations sociales – Mise en perspective et données disponibles (Les Dossiers de la DREES n° 57)"
+    url: "https://drees.solidarites-sante.gouv.fr/publications/les-dossiers-de-la-drees/le-non-recours-aux-prestations-sociales-mise-en-perspective"
+    auteurs: ["Lucie Gonzalez (coord.)", "Emmanuelle Nauze-Fichet (coord.)"]
+    date_publication: "2020-06"
+    consulte_le: "2026-10-13"
+    note: "Synthèse utilisée pour les chiffres RSA 2010, prime d'activité 2016 et CMU-C/ACS 2018. PDF archivé : system/cache/preuves-social/drees-dd57-non-recours.pdf"
+
+  # ---------------------------------------------------------------------------
+  # 2. Aides au logement et loyers
+  # ---------------------------------------------------------------------------
+  - id: fack-2006-labour-economics
+    type: etude_academique
+    editeur: "Labour Economics, vol. 13(6), p. 747-771"
+    titre: "Are housing benefit an effective way to redistribute income? Evidence from a natural experiment in France"
+    url: "https://doi.org/10.1016/j.labeco.2006.01.001"
+    auteurs: ["Gabrielle Fack"]
+    date_publication: "2006-12"
+    consulte_le: "2026-10-13"
+    note: "Version en libre accès : HAL hal-00813573."
+  - id: fack-2005-economie-statistique
+    type: etude_academique
+    editeur: "Insee – Économie et Statistique n° 381-382, p. 17-40"
+    titre: "Pourquoi les ménages à bas revenus paient-ils des loyers de plus en plus élevés ? L'incidence des aides au logement en France (1973-2002)"
+    url: "https://doi.org/10.3406/estat.2005.7207"
+    auteurs: ["Gabrielle Fack"]
+    date_publication: "2005"
+    consulte_le: "2026-10-13"
+    note: "Version française de Fack (2006) ; fourchette de 50 % à 80 % citée dans la fiche aides_logement_effet_loyers."
+  - id: laferrere-leblanc-2002-economie-statistique
+    type: etude_academique
+    editeur: "Insee – Économie et Statistique n° 351, p. 3-30"
+    titre: "Comment les aides au logement affectent-elles les loyers ?"
+    url: "https://www.insee.fr/fr/statistiques/fichier/1376290/es351a.pdf"
+    auteurs: ["Anne Laferrère", "David le Blanc"]
+    date_publication: "2002"
+    consulte_le: "2026-10-13"
+    note: "Version anglaise : « How do housing allowances affect rents? An empirical analysis of the French case », Journal of Housing Economics 13(1), 2004, p. 36-67. PDF archivé : system/cache/preuves-social/insee-es351a-laferrere-leblanc.pdf"
+  - id: grislain-letremy-trevien-2014-insee
+    type: document_de_travail
+    editeur: "Insee – Document de travail G2014/08"
+    titre: "The Impact of Housing Subsidies on the Rental Sector: the French Example"
+    url: "https://www.insee.fr/en/statistiques/1381153"
+    auteurs: ["Céline Grislain-Letrémy", "Corentin Trevien"]
+    date_publication: "2014"
+    consulte_le: "2026-10-13"
+    note: "PDF archivé : system/cache/preuves-social/insee-g2014-08-grislain-trevien.pdf"
+  - id: grislain-letremy-trevien-2022-bdf
+    type: document_de_travail
+    editeur: "Banque de France – Working Paper n° 886"
+    titre: "The Long-Term Impact of Housing Subsidies on the Rental Sector: the French Example"
+    url: "https://www.banque-france.fr/en/publications-and-statistics/publications/long-term-impact-housing-subsidies-rental-sector-french-example"
+    auteurs: ["Céline Grislain-Letrémy", "Corentin Trevien"]
+    date_publication: "2022-09-23"
+    consulte_le: "2026-10-13"
+    note: "Résumé et billet Eco Notepad n° 302 (2023) consultés ; tableau des résultats non lu (image)."
+  - id: gibbons-manning-2003-cep
+    type: document_de_travail
+    editeur: "Centre for Economic Performance (LSE) – Discussion Paper n° 597"
+    titre: "The Incidence of UK Housing Benefit: Evidence from the 1990s Reforms"
+    url: "https://cep.lse.ac.uk/pubs/download/dp0597.pdf"
+    auteurs: ["Stephen Gibbons", "Alan Manning"]
+    date_publication: "2003-12"
+    consulte_le: "2026-10-13"
+    note: "Publié dans le Journal of Public Economics 90(4-5), 2006, p. 799-822. PDF archivé : system/cache/preuves-social/cep-dp0597-gibbons-manning.pdf"
+  - id: susin-2002-jpube
+    type: etude_academique
+    editeur: "Journal of Public Economics, vol. 83(1), p. 109-152"
+    titre: "Rent vouchers and the price of low-income housing"
+    url: "https://ideas.repec.org/a/eee/pubeco/v83y2002i1p109-152.html"
+    auteurs: ["Scott Susin"]
+    date_publication: "2002"
+    consulte_le: "2026-10-13"
+    note: "Résumé consulté via des copies du résumé et la version document de travail (eScholarship)."
+  - id: kangasharju-2010-sje
+    type: etude_academique
+    editeur: "Scandinavian Journal of Economics, vol. 112(3), p. 595-617"
+    titre: "Housing Allowance and the Rent of Low-income Households"
+    url: "https://doi.org/10.1111/j.1467-9442.2010.01615.x"
+    auteurs: ["Aki Kangasharju"]
+    date_publication: "2010-09"
+    consulte_le: "2026-10-13"
+    note: ""
+  - id: viren-2011-bof
+    type: document_de_travail
+    editeur: "Bank of Finland – Research Discussion Paper 11/2011"
+    titre: "Does housing allowance feed through into rental prices?"
+    url: "https://swopec.hhs.se/bofrdp/abs/bofrdp2011_011.htm"
+    auteurs: ["Matti Viren"]
+    date_publication: "2011-05-05"
+    consulte_le: "2026-10-13"
+    note: "Version publiée : « Is the housing allowance shifted to rental prices? », Empirical Economics 44(3), 2013, p. 1497-1518 (non consultée)."
+  - id: eerola-lyytikainen-2021-sje
+    type: etude_academique
+    editeur: "Scandinavian Journal of Economics, vol. 123(1), p. 84-109"
+    titre: "Housing Allowance and Rents: Evidence from a Stepwise Subsidy Scheme"
+    url: "https://doi.org/10.1111/sjoe.12396"
+    auteurs: ["Essi Eerola", "Teemu Lyytikäinen"]
+    date_publication: "2021-01"
+    consulte_le: "2026-10-13"
+    note: "Version document de travail : VATT Working Paper 88 (2017)."
+  - id: hyslop-rea-2019-jhe
+    type: etude_academique
+    editeur: "Journal of Housing Economics, vol. 46"
+    titre: "Do housing allowances increase rents? Evidence from a discrete policy change"
+    url: "https://doi.org/10.1016/j.jhe.2019.101657"
+    auteurs: ["Dean R. Hyslop", "David Rea"]
+    date_publication: "2019"
+    consulte_le: "2026-10-13"
+    note: ""
+  - id: brewer-et-al-2019-jue
+    type: etude_academique
+    editeur: "Journal of Urban Economics, vol. 114, article 103198"
+    titre: "The curious incidence of rent subsidies: evidence of heterogeneity from administrative data"
+    url: "https://doi.org/10.1016/j.jue.2019.103198"
+    auteurs: ["Mike Brewer", "James Browne", "Carl Emmerson", "Andrew Hood", "Robert Joyce"]
+    date_publication: "2019"
+    consulte_le: "2026-10-13"
+    note: ""
+
+  # ---------------------------------------------------------------------------
+  # 3. Âge de la retraite et emploi des seniors
+  # ---------------------------------------------------------------------------
+  - id: rabate-rochut-2020-jpef
+    type: etude_academique
+    editeur: "Journal of Pension Economics and Finance, vol. 19(3), p. 293-308"
+    titre: "Employment and substitution effects of raising the statutory retirement age in France"
+    url: "https://doi.org/10.1017/S1474747218000392"
+    auteurs: ["Simon Rabaté", "Julie Rochut"]
+    date_publication: "2020-07"
+    consulte_le: "2026-10-13"
+    note: "Version document de travail : HAL halshs-01622346 (2017). Effet chiffré (+21 points) lu dans le tableau C.2 d'Atav, Jongen et Rabaté (CPB, 2019)."
+  - id: staubli-zweimuller-2013-jpube
+    type: etude_academique
+    editeur: "Journal of Public Economics, vol. 108, p. 17-32"
+    titre: "Does raising the early retirement age increase employment of older workers?"
+    url: "https://doi.org/10.1016/j.jpubeco.2013.09.003"
+    auteurs: ["Stefan Staubli", "Josef Zweimüller"]
+    date_publication: "2013"
+    consulte_le: "2026-10-13"
+    note: ""
+  - id: atav-jongen-rabate-2019-cpb
+    type: document_de_travail
+    editeur: "CPB Netherlands Bureau for Economic Policy Analysis – Discussion Paper n° 408"
+    titre: "The effects of the increase in the retirement age in the Netherlands"
+    url: "https://www.cpb.nl/system/files/cpbmedia/omnidownload/CPB-Discussion-Paper-408-The-effects-of-the-increase-in-the-retirement-age-in-the-Netherlands.pdf"
+    auteurs: ["Tilbe Atav", "Egbert Jongen", "Simon Rabaté"]
+    date_publication: "2019-12"
+    consulte_le: "2026-10-13"
+    note: "Contient un tableau de synthèse (C.2) des effets estimés dans la littérature. PDF archivé : system/cache/preuves-social/cpb-dp408-jongen-rabate-atav.pdf"
+  - id: rabate-jongen-atav-2024-aej
+    type: etude_academique
+    editeur: "American Economic Journal: Economic Policy, vol. 16(1), p. 259-291"
+    titre: "Increasing the Retirement Age: Policy Effects and Underlying Mechanisms"
+    url: "https://doi.org/10.1257/pol.20210101"
+    auteurs: ["Simon Rabaté", "Egbert Jongen", "Tilbe Atav"]
+    date_publication: "2024-02"
+    consulte_le: "2026-10-13"
+    note: "Version publiée (régression sur discontinuité) de l'étude néerlandaise ; résumé sans chiffre."
+  - id: cribb-emmerson-tetlow-2016-labeco
+    type: etude_academique
+    editeur: "Labour Economics, vol. 42, p. 203-212"
+    titre: "Signals matter? Large retirement responses to limited financial incentives"
+    url: "https://doi.org/10.1016/j.labeco.2016.09.005"
+    auteurs: ["Jonathan Cribb", "Carl Emmerson", "Gemma Tetlow"]
+    date_publication: "2016"
+    consulte_le: "2026-10-13"
+    note: ""
+  - id: atalay-barrett-2015-restat
+    type: etude_academique
+    editeur: "Review of Economics and Statistics, vol. 97(1), p. 71-87"
+    titre: "The Impact of Age Pension Eligibility Age on Retirement and Program Dependence: Evidence from an Australian Experiment"
+    url: "https://doi.org/10.1162/REST_a_00443"
+    auteurs: ["Kadir Atalay", "Garry F. Barrett"]
+    date_publication: "2015"
+    consulte_le: "2026-10-13"
+    note: ""
+  - id: geyer-welteke-2021-jhr
+    type: etude_academique
+    editeur: "Journal of Human Resources, vol. 56(1), p. 311-341"
+    titre: "Closing Routes to Retirement for Women: How Do They Respond?"
+    url: "https://doi.org/10.3368/jhr.56.1.0717-8947R2"
+    auteurs: ["Johannes Geyer", "Clara Welteke"]
+    date_publication: "2021"
+    consulte_le: "2026-10-13"
+    note: "Effet chiffré (+14 points) lu dans le tableau C.2 d'Atav, Jongen et Rabaté (CPB, 2019)."
+  - id: mastrobuoni-2009-jpube
+    type: etude_academique
+    editeur: "Journal of Public Economics, vol. 93(11-12), p. 1224-1233"
+    titre: "Labor supply effects of the recent social security benefit cuts: Empirical estimates using cohort discontinuities"
+    url: "https://ideas.repec.org/a/eee/pubeco/v93y2009i11-12p1224-1233.html"
+    auteurs: ["Giovanni Mastrobuoni"]
+    date_publication: "2009-12"
+    consulte_le: "2026-10-13"
+    note: ""
+
+  # ---------------------------------------------------------------------------
+  # 4. Taille des classes
+  # ---------------------------------------------------------------------------
+  - id: krueger-1999-qje
+    type: etude_academique
+    editeur: "Quarterly Journal of Economics, vol. 114(2), p. 497-532"
+    titre: "Experimental Estimates of Education Production Functions"
+    url: "https://doi.org/10.1162/003355399556052"
+    auteurs: ["Alan B. Krueger"]
+    date_publication: "1999"
+    consulte_le: "2026-10-13"
+    note: "Effets par élève convertis par l'IPP (note n° 28, 2017)."
+  - id: angrist-lavy-1999-qje
+    type: etude_academique
+    editeur: "Quarterly Journal of Economics, vol. 114(2), p. 533-575"
+    titre: "Using Maimonides' Rule to Estimate the Effect of Class Size on Scholastic Achievement"
+    url: "https://doi.org/10.1162/003355399556061"
+    auteurs: ["Joshua D. Angrist", "Victor Lavy"]
+    date_publication: "1999"
+    consulte_le: "2026-10-13"
+    note: "Version NBER w5888 (1997). Effets par élève convertis par l'IPP (2017)."
+  - id: angrist-lavy-lederluis-shany-2019-aer-insights
+    type: etude_academique
+    editeur: "American Economic Review: Insights, vol. 1(3), p. 309-324"
+    titre: "Maimonides' Rule Redux"
+    url: "https://doi.org/10.1257/aeri.20180120"
+    auteurs: ["Joshua D. Angrist", "Victor Lavy", "Jetson Leder-Luis", "Adi Shany"]
+    date_publication: "2019-12"
+    consulte_le: "2026-10-13"
+    note: "Version NBER w23486 (2017), utilisée par l'IPP pour la conversion."
+  - id: hoxby-2000-qje
+    type: etude_academique
+    editeur: "Quarterly Journal of Economics, vol. 115(4), p. 1239-1285"
+    titre: "The Effects of Class Size on Student Achievement: New Evidence from Population Variation"
+    url: "https://doi.org/10.1162/003355300555060"
+    auteurs: ["Caroline M. Hoxby"]
+    date_publication: "2000"
+    consulte_le: "2026-10-13"
+    note: ""
+  - id: piketty-valdenaire-2006-dep
+    type: rapport_institutionnel
+    editeur: "Ministère de l'Éducation nationale – DEP, Les Dossiers n° 173"
+    titre: "L'impact de la taille des classes sur la réussite scolaire dans les écoles, collèges et lycées français. Estimations à partir du panel primaire 1997 et du panel secondaire 1995"
+    url: null
+    auteurs: ["Thomas Piketty", "M. Valdenaire"]
+    date_publication: "2006"
+    consulte_le: "2026-10-13"
+    note: "URL du document original non vérifiée ; résultats lus dans la note IPP n° 28 (2017, tableau 1, conversion par l'IPP)."
+  - id: bressoux-kramarz-prost-2009-ej
+    type: etude_academique
+    editeur: "Economic Journal, vol. 119(536), p. 540-561"
+    titre: "Teachers' Training, Class Size and Students' Outcomes: Learning from Administrative Forecasting Mistakes"
+    url: "https://ideas.repec.org/a/ecj/econjl/v119y2009i536p540-561.html"
+    auteurs: ["Pascal Bressoux", "Francis Kramarz", "Corinne Prost"]
+    date_publication: "2009-03"
+    consulte_le: "2026-10-13"
+    note: "Effets par élève lus dans la note IPP n° 28 (2017)."
+  - id: depp-2021-dt-dedoublement-cp
+    type: statistique_publique
+    editeur: "MENJ-DEPP – Document de travail n° 2021-E04"
+    titre: "Évaluation de l'impact de la réduction de la taille des classes de CP et CE1 en REP+ sur les résultats des élèves et les pratiques des enseignants"
+    url: null
+    auteurs: []
+    date_publication: "2021"
+    consulte_le: "2026-10-13"
+    note: "URL non vérifiée ; résultats (9 % à 14 % d'écart-type, réduction de 6,8 élèves) lus dans IPP, Perspectives budgétaires 2025, chapitre 4, annexe C.5."
+  - id: leuven-oosterbeek-ronning-2008-sje
+    type: etude_academique
+    editeur: "Scandinavian Journal of Economics, vol. 110(4), p. 663-693"
+    titre: "Quasi-experimental Estimates of the Effect of Class Size on Achievement in Norway"
+    url: "https://doi.org/10.1111/j.1467-9442.2008.00556.x"
+    auteurs: ["Edwin Leuven", "Hessel Oosterbeek", "Marte Rønning"]
+    date_publication: "2008-12"
+    consulte_le: "2026-10-13"
+    note: ""
+  - id: fredriksson-ockert-oosterbeek-2013-qje
+    type: etude_academique
+    editeur: "Quarterly Journal of Economics, vol. 128(1), p. 249-285"
+    titre: "Long-Term Effects of Class Size"
+    url: "https://doi.org/10.1093/qje/qjs048"
+    auteurs: ["Peter Fredriksson", "Björn Öckert", "Hessel Oosterbeek"]
+    date_publication: "2013"
+    consulte_le: "2026-10-13"
+    note: "Effet par élève lu dans la note IPP n° 28 (2017)."
+  - id: iversen-bonesronning-2013-educecon
+    type: etude_academique
+    editeur: "Education Economics, vol. 21(4)"
+    titre: "Disadvantaged Students in the Early Grades: Will Smaller Classes Help Them?"
+    url: null
+    auteurs: ["J. Iversen", "H. Bonesrønning"]
+    date_publication: "2013"
+    consulte_le: "2026-10-13"
+    note: "URL non vérifiée ; référence et résultat lus dans la note IPP n° 28 (2017), qui cite les auteurs sous la forme « Iversen, J., et Bonesrønning, H. »."
+  - id: ipp-note28-taille-classes-2017
+    type: document_de_travail
+    editeur: "Institut des politiques publiques (IPP) – Note n° 28"
+    titre: "La taille des classes influence-t-elle la réussite scolaire ?"
+    url: "https://www.ipp.eu/publication/la-taille-des-classes-influence-t-elle-la-reussite-scolaire/"
+    auteurs: ["Adrien Bouguen", "Julien Grenet", "Marc Gurgand"]
+    date_publication: "2017-09"
+    consulte_le: "2026-10-13"
+    note: "Synthèse utilisée pour convertir les études en écart-type par élève (tableau 1). PDF archivé : system/cache/preuves-social/ipp-note28-taille-classes-2017.pdf"
+  - id: ipp-2025-taille-classes-demographie
+    type: document_de_travail
+    editeur: "Institut des politiques publiques (IPP) – Perspectives budgétaires 2025, chapitre 4"
+    titre: "Taille des classes et inégalités territoriales : quelle stratégie face à la baisse démographique ?"
+    url: "https://www.ipp.eu/publication/taille-des-classes-et-inegalites-territoriales-quelle-strategie-face-a-la-baisse-demographique/"
+    auteurs: ["Pauline Charousset", "Julien Grenet", "Nina Guyon", "Youssef Souidi"]
+    date_publication: "2025-06"
+    consulte_le: "2026-10-13"
+    note: "Reprend l'évaluation DEPP (2021) du dédoublement. PDF archivé : system/cache/preuves-social/ipp-2025-chapitre-demographie-scolaire.pdf"
+
+  # ---------------------------------------------------------------------------
+  # 5. Prison et récidive
+  # ---------------------------------------------------------------------------
+  - id: henneguelle-monnery-kensey-2016-jle
+    type: etude_academique
+    editeur: "Journal of Law and Economics, vol. 59(3), p. 629-667"
+    titre: "Better at Home than in Prison? The Effects of Electronic Monitoring on Recidivism in France"
+    url: "https://doi.org/10.1086/690005"
+    auteurs: ["Anaïs Henneguelle", "Benjamin Monnery", "Annie Kensey"]
+    date_publication: "2016"
+    consulte_le: "2026-10-13"
+    note: "Version document de travail : GATE WP 1603 (2016)."
+  - id: monnery-wolff-henneguelle-2020-irle
+    type: etude_academique
+    editeur: "International Review of Law and Economics, vol. 61"
+    titre: "Prison, semi-liberty and recidivism: Bounding causal effects in a survival model"
+    url: "https://doi.org/10.1016/j.irle.2019.105884"
+    auteurs: ["Benjamin Monnery", "François-Charles Wolff", "Anaïs Henneguelle"]
+    date_publication: "2020"
+    consulte_le: "2026-10-13"
+    note: ""
+  - id: bhuller-dahl-loken-mogstad-2020-jpe
+    type: etude_academique
+    editeur: "Journal of Political Economy, vol. 128(4), p. 1269-1324"
+    titre: "Incarceration, Recidivism, and Employment"
+    url: "https://www.nber.org/papers/w22648"
+    auteurs: ["Manudeep Bhuller", "Gordon B. Dahl", "Katrine V. Løken", "Magne Mogstad"]
+    date_publication: "2020"
+    consulte_le: "2026-10-13"
+    note: "Résumé lu sur la page NBER (w22648, DOI 10.3386/w22648)."
+  - id: di-tella-schargrodsky-2013-jpe
+    type: etude_academique
+    editeur: "Journal of Political Economy, vol. 121(1)"
+    titre: "Criminal Recidivism after Prison and Electronic Monitoring"
+    url: "https://www.nber.org/papers/w15602"
+    auteurs: ["Rafael Di Tella", "Ernesto Schargrodsky"]
+    date_publication: "2013-02"
+    consulte_le: "2026-10-13"
+    note: "Résumé lu sur la page NBER (w15602, DOI 10.3386/w15602)."
+  - id: rose-shem-tov-2021-jpe
+    type: etude_academique
+    editeur: "Journal of Political Economy, vol. 129(12), p. 3302-3356"
+    titre: "How Does Incarceration Affect Reoffending? Estimating the Dose-Response Function"
+    url: "https://doi.org/10.1086/716561"
+    auteurs: ["Evan K. Rose", "Yotam Shem-Tov"]
+    date_publication: "2021"
+    consulte_le: "2026-10-13"
+    note: ""
+  - id: mueller-smith-2015-wp
+    type: document_de_travail
+    editeur: "University of Michigan (document de travail)"
+    titre: "The Criminal and Labor Market Impacts of Incarceration"
+    url: "https://sites.lsa.umich.edu/mgms/wp-content/uploads/sites/283/2015/09/incar.pdf"
+    auteurs: ["Michael Mueller-Smith"]
+    date_publication: "2015-08-18"
+    consulte_le: "2026-10-13"
+    note: "PDF archivé : system/cache/preuves-social/mueller-smith-2015-incar.pdf"
+  - id: aizer-doyle-2015-qje
+    type: etude_academique
+    editeur: "Quarterly Journal of Economics, vol. 130(2), p. 759-803"
+    titre: "Juvenile Incarceration, Human Capital, and Future Crime: Evidence from Randomly Assigned Judges"
+    url: "https://doi.org/10.1093/qje/qjv003"
+    auteurs: ["Anna Aizer", "Joseph J. Doyle"]
+    date_publication: "2015"
+    consulte_le: "2026-10-13"
+    note: ""
+
+  # ---------------------------------------------------------------------------
+  # 6. Vitesse et mortalité routière
+  # ---------------------------------------------------------------------------
+  - id: cerema-onisr-2020-evaluation-80kmh
+    type: rapport_institutionnel
+    editeur: "Cerema, ONISR et Université Gustave Eiffel"
+    titre: "Limitation de vitesse à 80 km/h sur les routes hors agglomération sans séparation centrale – évaluation"
+    url: "https://www.onisr.securite-routiere.gouv.fr/etudes-et-recherches/evaluation/evaluation-des-mesures/limitation-de-vitesse-a-80-kmh-sur-les-routes-hors-agglomeration-sans-separation-centrale"
+    auteurs: []
+    date_publication: "2020-07-20"
+    consulte_le: "2026-10-13"
+    note: "Page mise à jour le 14/08/2020 ; graphiques non lisibles (images)."
+  - id: oms-2026-fiche-traumatismes-routiers
+    type: rapport_institutionnel
+    editeur: "Organisation mondiale de la santé (OMS)"
+    titre: "Road traffic injuries – Fact sheet"
+    url: "https://www.who.int/news-room/fact-sheets/detail/road-traffic-injuries"
+    auteurs: []
+    date_publication: "2026-07-20"
+    consulte_le: "2026-10-13"
+    note: "Relation utilisée : 1 % de vitesse moyenne en plus = 4 % de risque d'accident mortel en plus."
+  - id: ashenfelter-greenstone-2004-jpe
+    type: etude_academique
+    editeur: "Journal of Political Economy, vol. 112(S1), p. S226-S267"
+    titre: "Using Mandated Speed Limits to Measure the Value of a Statistical Life"
+    url: "https://www.nber.org/papers/w9094"
+    auteurs: ["Orley Ashenfelter", "Michael Greenstone"]
+    date_publication: "2004"
+    consulte_le: "2026-10-13"
+    note: "Résumé lu sur la page NBER (w9094, 2002)."
+  - id: van-benthem-2015-jpube
+    type: etude_academique
+    editeur: "Journal of Public Economics, vol. 124, p. 44-62"
+    titre: "What is the optimal speed limit on freeways?"
+    url: "https://doi.org/10.1016/j.jpubeco.2015.02.001"
+    auteurs: ["Arthur van Benthem"]
+    date_publication: "2015"
+    consulte_le: "2026-10-13"
+    note: ""
+  - id: farmer-2019-iihs
+    type: document_de_travail
+    editeur: "Insurance Institute for Highway Safety (IIHS)"
+    titre: "The effects of higher speed limits on traffic fatalities in the United States, 1993-2017"
+    url: "https://www.iihs.org/topics/bibliography/ref/2188"
+    auteurs: ["Charles M. Farmer"]
+    date_publication: "2019-04"
+    consulte_le: "2026-10-13"
+    note: "Rapport de l'IIHS, organisme de recherche financé par les assureurs ; publication éventuelle en revue non vérifiée."
+
+  # ---------------------------------------------------------------------------
+  # 7. Élasticité-prix des carburants
+  # ---------------------------------------------------------------------------
+  - id: clerc-marcus-2009-insee
+    type: document_de_travail
+    editeur: "Insee – Document de travail G2009/08"
+    titre: "Price elasticity of household fuel comsumption [sic]"
+    url: "https://ideas.repec.org/p/nse/doctra/g2009-08.html"
+    auteurs: ["M. Clerc", "V. Marcus"]
+    date_publication: "2009"
+    consulte_le: "2026-10-13"
+    note: "Titre tel que publié sur la notice RePEc (faute de frappe incluse) ; titre français et prénoms non vérifiés. PDF : https://www.bnsp.insee.fr/ark:/12148/bc6p06zqw83/f1.pdf"
+  - id: brons-et-al-2008-eneco
+    type: etude_academique
+    editeur: "Energy Economics, vol. 30(5), p. 2105-2122"
+    titre: "A meta-analysis of the price elasticity of gasoline demand. A SUR approach"
+    url: "https://ideas.repec.org/a/eee/eneeco/v30y2008i5p2105-2122.html"
+    auteurs: ["Martijn Brons", "Peter Nijkamp", "Eric Pels", "Piet Rietveld"]
+    date_publication: "2008-09"
+    consulte_le: "2026-10-13"
+    note: ""
+  - id: havranek-irsova-janda-2012-eneco
+    type: etude_academique
+    editeur: "Energy Economics, vol. 34(1), p. 201-207"
+    titre: "Demand for gasoline is more price-inelastic than commonly thought"
+    url: "https://doi.org/10.1016/j.eneco.2011.09.003"
+    auteurs: ["Tomas Havranek", "Zuzana Irsova", "Karel Janda"]
+    date_publication: "2012"
+    consulte_le: "2026-10-13"
+    note: ""
+  - id: hughes-knittel-sperling-2008-ej
+    type: etude_academique
+    editeur: "The Energy Journal, vol. 29(1), p. 113-134"
+    titre: "Evidence of a Shift in the Short-Run Price Elasticity of Gasoline Demand"
+    url: "https://www.nber.org/papers/w12530"
+    auteurs: ["Jonathan E. Hughes", "Christopher R. Knittel", "Daniel Sperling"]
+    date_publication: "2008"
+    consulte_le: "2026-10-13"
+    note: "Résumé lu sur la page NBER (w12530, 2006)."
+  - id: levin-lewis-wolak-2017-aej
+    type: etude_academique
+    editeur: "American Economic Journal: Economic Policy, vol. 9(3), p. 314-347"
+    titre: "High Frequency Evidence on the Demand for Gasoline"
+    url: "https://doi.org/10.1257/pol.20140093"
+    auteurs: ["Laurence Levin", "Matthew S. Lewis", "Frank A. Wolak"]
+    date_publication: "2017-08"
+    consulte_le: "2026-10-13"
+    note: ""
+
+  # ---------------------------------------------------------------------------
+  # 8. Élasticité-prix du tabac
+  # ---------------------------------------------------------------------------
+  - id: gallet-list-2003-hec
+    type: etude_academique
+    editeur: "Health Economics, vol. 12(10), p. 821-835"
+    titre: "Cigarette demand: a meta-analysis of elasticities"
+    url: "https://doi.org/10.1002/hec.765"
+    auteurs: ["Craig A. Gallet", "John A. List"]
+    date_publication: "2003-10"
+    consulte_le: "2026-10-13"
+    note: "Moyenne de -0,48 lue dans DeCicca, Kenkel et Lovenheim (2022)."
+  - id: chaloupka-warner-2000-handbook
+    type: etude_academique
+    editeur: "Handbook of Health Economics, vol. 1, chapitre 29, p. 1539-1627 (Elsevier)"
+    titre: "The economics of smoking"
+    url: "https://ideas.repec.org/h/eee/heachp/1-29.html"
+    auteurs: ["Frank J. Chaloupka", "Kenneth E. Warner"]
+    date_publication: "2000"
+    consulte_le: "2026-10-13"
+    note: "Consensus de -0,4 à -0,7 lu dans DeCicca, Kenkel et Lovenheim (2022)."
+  - id: circ-2011-handbook-14
+    type: rapport_institutionnel
+    editeur: "Centre international de recherche sur le cancer (CIRC/IARC, OMS)"
+    titre: "IARC Handbooks of Cancer Prevention, vol. 14 : Effectiveness of Tax and Price Policies for Tobacco Control"
+    url: "https://publications.iarc.who.int/Book-And-Report-Series/Iarc-Handbooks-Of-Cancer-Prevention/Effectiveness-Of-Tax-And-Price-Policies-For-Tobacco-Control-2011"
+    auteurs: []
+    date_publication: "2011"
+    consulte_le: "2026-10-13"
+    note: "Chapitre 4 (demande agrégée), tableau 4.2. PDF archivé : system/cache/preuves-social/iarc-handbook14-tax-price-2011.pdf"
+  - id: decicca-kenkel-lovenheim-2022-jel
+    type: etude_academique
+    editeur: "Journal of Economic Literature, vol. 60(3), p. 883-970"
+    titre: "The Economics of Tobacco Regulation: A Comprehensive Review"
+    url: "https://doi.org/10.1257/jel.20201482"
+    auteurs: ["Philip DeCicca", "Donald S. Kenkel", "Michael F. Lovenheim"]
+    date_publication: "2022"
+    consulte_le: "2026-10-13"
+    note: "Texte lu dans la version NBER w26923 (2020). PDF archivé : system/cache/preuves-social/nber-w26923-decicca-kenkel-lovenheim.pdf"
+  - id: callison-kaestner-2014-ei
+    type: etude_academique
+    editeur: "Economic Inquiry, vol. 52(1), p. 155-172"
+    titre: "Do Higher Tobacco Taxes Reduce Adult Smoking? New Evidence of the Effect of Recent Cigarette Tax Increases on Adult Smoking"
+    url: "https://doi.org/10.1111/ecin.12027"
+    auteurs: ["Kevin Callison", "Robert Kaestner"]
+    date_publication: "2014-01"
+    consulte_le: "2026-10-13"
+    note: ""
+  - id: lovenheim-2008-ntj
+    type: etude_academique
+    editeur: "National Tax Journal, vol. 61(1), p. 7-33"
+    titre: "How Far to the Border?: The Extent and Impact of Cross-Border Casual Cigarette Smuggling"
+    url: "https://doi.org/10.17310/ntj.2008.1.01"
+    auteurs: ["Michael F. Lovenheim"]
+    date_publication: "2008-03"
+    consulte_le: "2026-10-13"
+    note: ""
+  - id: stewart-1993-ija
+    type: etude_academique
+    editeur: "International Journal of Advertising, vol. 12, p. 155-180"
+    titre: "The effect on tobacco consumption of advertising bans in OECD countries"
+    url: null
+    auteurs: ["M. J. Stewart"]
+    date_publication: "1993"
+    consulte_le: "2026-10-13"
+    note: "URL non vérifiée ; estimation pour la France lue dans le tableau 4.2 du Handbook CIRC n° 14 (2011)."
+  - id: koutsoyiannis-1963-manchester-school
+    type: etude_academique
+    editeur: "The Manchester School of Economic and Social Studies, vol. 31, p. 1-19"
+    titre: "Demand functions for tobacco"
+    url: "https://doi.org/10.1111/j.1467-9957.1963.tb01009.x"
+    auteurs: ["A. P. Koutsoyiannis"]
+    date_publication: "1963"
+    consulte_le: "2026-10-13"
+    note: "Estimation pour la France lue dans le tableau 4.2 du Handbook CIRC n° 14 (2011) ; DOI repris de sa bibliographie."
+
+  # ---------------------------------------------------------------------------
+  # 9. Immigration, salaires et emploi des natifs
+  # ---------------------------------------------------------------------------
+  - id: ortega-verdugo-2014-labeco
+    type: etude_academique
+    editeur: "Labour Economics, vol. 29, p. 14-27"
+    titre: "The impact of immigration on the French labor market: Why so different?"
+    url: "https://doi.org/10.1016/j.labeco.2014.05.002"
+    auteurs: ["Javier Ortega", "Gregory Verdugo"]
+    date_publication: "2014"
+    consulte_le: "2026-10-13"
+    note: ""
+  - id: edo-2015-bejeap
+    type: etude_academique
+    editeur: "The B.E. Journal of Economic Analysis & Policy, vol. 15(3), p. 1151-1196"
+    titre: "The Impact of Immigration on Native Wages and Employment"
+    url: "https://doi.org/10.1515/bejeap-2014-0075"
+    auteurs: ["Anthony Edo"]
+    date_publication: "2015-07"
+    consulte_le: "2026-10-13"
+    note: ""
+  - id: edo-toubal-2015-roie
+    type: etude_academique
+    editeur: "Review of International Economics, vol. 23(1), p. 160-187"
+    titre: "Selective Immigration Policies and Wages Inequality"
+    url: "https://doi.org/10.1111/roie.12163"
+    auteurs: ["Anthony Edo", "Farid Toubal"]
+    date_publication: "2015-02"
+    consulte_le: "2026-10-13"
+    note: ""
+  - id: cepii-edo-toubal-2014-lettre-347
+    type: rapport_institutionnel
+    editeur: "CEPII – La Lettre du CEPII n° 347"
+    titre: "L'immigration en France, quelles réactions des salaires et de l'emploi ?"
+    url: "http://www.cepii.fr/PDF_PUB/lettre/2014/let347.pdf"
+    auteurs: ["Anthony Edo", "Farid Toubal"]
+    date_publication: "2014"
+    consulte_le: "2026-10-13"
+    note: "Synthèse grand public des travaux d'Edo et Toubal (part des immigrés dans la population active : 7 % en 1990, 10 % en 2010). PDF archivé : system/cache/preuves-social/cepii-lettre347-edo-toubal-2014.pdf"
+  - id: longhi-nijkamp-poot-2005-jes
+    type: etude_academique
+    editeur: "Journal of Economic Surveys, vol. 19(3), p. 451-477"
+    titre: "A Meta-Analytic Assessment of the Effect of Immigration on Wages"
+    url: "https://doi.org/10.1111/j.0950-0804.2005.00255.x"
+    auteurs: ["Simonetta Longhi", "Peter Nijkamp", "Jacques Poot"]
+    date_publication: "2005-07"
+    consulte_le: "2026-10-13"
+    note: "Moyenne (-0,119) lue dans la version Tinbergen Institute Discussion Paper 04-134/3 (2004) : https://papers.tinbergen.nl/04134.pdf"
+  - id: borjas-2003-qje
+    type: etude_academique
+    editeur: "Quarterly Journal of Economics, vol. 118(4), p. 1335-1374"
+    titre: "The Labor Demand Curve is Downward Sloping: Reexamining the Impact of Immigration on the Labor Market"
+    url: "https://doi.org/10.1162/003355303322552810"
+    auteurs: ["George J. Borjas"]
+    date_publication: "2003"
+    consulte_le: "2026-10-13"
+    note: ""
+  - id: borjas-2017-ilrr
+    type: etude_academique
+    editeur: "ILR Review, vol. 70(5), p. 1077-1110"
+    titre: "The Wage Impact of the Marielitos: A Reappraisal"
+    url: "https://ideas.repec.org/a/sae/ilrrev/v70y2017i5p1077-1110.html"
+    auteurs: ["George J. Borjas"]
+    date_publication: "2017-10"
+    consulte_le: "2026-10-13"
+    note: ""
+  - id: card-1990-ilrr
+    type: etude_academique
+    editeur: "Industrial and Labor Relations Review, vol. 43(2), p. 245-257"
+    titre: "The Impact of the Mariel Boatlift on the Miami Labor Market"
+    url: "https://www.nber.org/papers/w3069"
+    auteurs: ["David Card"]
+    date_publication: "1990-01"
+    consulte_le: "2026-10-13"
+    note: "Résumé lu sur la page NBER (w3069, 1989)."
+  - id: peri-yasenov-2019-jhr
+    type: etude_academique
+    editeur: "Journal of Human Resources, vol. 54(2), p. 267-309"
+    titre: "The Labor Market Effects of a Refugee Wave: Synthetic Control Method Meets the Mariel Boatlift"
+    url: "https://www.nber.org/papers/w21801"
+    auteurs: ["Giovanni Peri", "Vasil Yasenov"]
+    date_publication: "2019"
+    consulte_le: "2026-10-13"
+    note: "Résumé lu sur la page NBER (w21801)."
+  - id: edo-2020-jeea
+    type: etude_academique
+    editeur: "Journal of the European Economic Association, vol. 18(6), p. 3210-3260"
+    titre: "The Impact of Immigration on Wage Dynamics: Evidence from the Algerian Independence War"
+    url: "https://doi.org/10.1093/jeea/jvz064"
+    auteurs: ["Anthony Edo"]
+    date_publication: "2020"
+    consulte_le: "2026-10-13"
+    note: ""
+  - id: dustmann-schonberg-stuhler-2017-qje
+    type: etude_academique
+    editeur: "Quarterly Journal of Economics, vol. 132(1), p. 435-483"
+    titre: "Labor Supply Shocks, Native Wages, and the Adjustment of Local Employment"
+    url: "https://doi.org/10.1093/qje/qjw032"
+    auteurs: ["Christian Dustmann", "Uta Schönberg", "Jan Stuhler"]
+    date_publication: "2017"
+    consulte_le: "2026-10-13"
+    note: ""
+  - id: edo-2019-jes
+    type: etude_academique
+    editeur: "Journal of Economic Surveys, vol. 33(3), p. 922-948"
+    titre: "The Impact Of Immigration On The Labor Market"
+    url: "https://doi.org/10.1111/joes.12300"
+    auteurs: ["Anthony Edo"]
+    date_publication: "2019-07"
+    consulte_le: "2026-10-13"
+    note: "Revue de littérature citée dans la note de synthèse (effet moyen « nul ou légèrement positif »)."
+
+  # ---------------------------------------------------------------------------
+  # 10. Loi SRU, construction et mixité
+  # ---------------------------------------------------------------------------
+  - id: gobillon-vignolles-2016-revue-economique
+    type: etude_academique
+    editeur: "Revue économique, vol. 67(3), p. 615-637"
+    titre: "Évaluation de l'effet d'une politique spatialisée d'accès au logement. La loi SRU"
+    url: "https://ideas.repec.org/a/cai/recosp/reco_673_0615.html"
+    auteurs: ["Laurent Gobillon", "Benjamin Vignolles"]
+    date_publication: "2016"
+    consulte_le: "2026-10-13"
+    note: "Version document de travail : PSE halshs-01013384 (2014)."
+  - id: chapelle-gobillon-vignolles-2025-iza
+    type: document_de_travail
+    editeur: "IZA – Discussion Paper n° 17854"
+    titre: "Building Without Income Mixing: Public Housing Quotas in France"
+    url: "https://docs.iza.org/dp17854.pdf"
+    auteurs: ["Guillaume Chapelle", "Laurent Gobillon", "Benjamin Vignolles"]
+    date_publication: "2025-04"
+    consulte_le: "2026-10-13"
+    note: "Version antérieure : « Public housing development and segregation: SRU law in France », CEPR DP 17535 (2022). PDF archivé : system/cache/preuves-social/iza-dp17854-chapelle-gobillon-vignolles.pdf"
+  - id: bono-davidson-trannoy-2013-amse
+    type: document_de_travail
+    editeur: "Aix-Marseille School of Economics – Working Paper 2013-05"
+    titre: "Analyse contrefactuelle de l'article 55 de la loi SRU sur la production de logements sociaux"
+    url: "https://ideas.repec.org/p/aim/wpaimx/1305.html"
+    auteurs: ["Pierre-Henri Bono", "Russell Davidson", "Alain Trannoy"]
+    date_publication: "2013-02"
+    consulte_le: "2026-10-13"
+    note: ""
+  - id: beaubrun-diant-maury-2022-demography
+    type: etude_academique
+    editeur: "Demography, vol. 59(2), p. 685-706"
+    titre: "On the Impact of Public Housing on Income Segregation in France"
+    url: null
+    auteurs: ["Kevin Beaubrun-Diant", "Tristan-Pierre Maury"]
+    date_publication: "2022"
+    consulte_le: "2026-10-13"
+    note: "URL et résumé non consultés ; référence et résultat lus dans la bibliographie de Chapelle, Gobillon et Vignolles (2025)."

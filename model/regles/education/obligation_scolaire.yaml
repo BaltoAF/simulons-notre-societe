@@ -1,0 +1,119 @@
+domaine: education
+theme: "Obligation d'instruction, obligation de formation et instruction en famille"
+regles:
+  - id: education.instruction_obligatoire.age_debut
+    titre: "Instruction obligatoire : âge de début"
+    explication: "Âge à partir duquel tout enfant doit recevoir une instruction (à l'école ou, sur autorisation, en famille). Depuis la rentrée 2019, c'est 3 ans."
+    type: nombre
+    unite: ans
+    bornes: [2, 7]
+    valeurs:
+      - depuis: "2019-09-01"
+        valeur: 3
+        sources: [men-loi-ecole-confiance-2019, sp-f1898-instruction-obligatoire, jorf-loi-2019-791-ecole-confiance]
+        article: "Code de l'éducation, art. L131-1 (rédaction issue de l'art. 11 de la loi n° 2019-791 du 26 juillet 2019)"
+    tags: [scolarite, obligation, maternelle]
+    a_verifier: false
+    note: "La date retenue correspond à la rentrée scolaire 2019 (« À partir de la rentrée 2019, tous les enfants âgés de 3, 4 et 5 ans sont concernés », education.gouv.fr). L'âge de début antérieur (6 ans) n'a pas été vérifié sur une source et n'est donc pas historisé."
+
+  - id: education.instruction_obligatoire.age_fin
+    titre: "Instruction obligatoire : âge de fin (fin de la scolarité obligatoire)"
+    explication: "Âge jusqu'auquel l'instruction est obligatoire. Au-delà, l'obligation d'instruction laisse place à une obligation de formation jusqu'à 18 ans."
+    type: nombre
+    unite: ans
+    bornes: [14, 18]
+    valeurs:
+      - depuis: "2019-09-01"
+        valeur: 16
+        sources: [sp-f1898-instruction-obligatoire, men-loi-ecole-confiance-2019]
+        article: "Code de l'éducation, art. L131-1"
+    tags: [scolarite, obligation]
+    a_verifier: false
+    note: "La fin de l'instruction obligatoire à 16 ans est bien antérieure à 2019 ; la date indiquée est celle de la rédaction actuelle de l'article L131-1 (loi du 26 juillet 2019). Date d'origine de la règle des 16 ans non vérifiée."
+
+  - id: education.obligation_formation.age_fin
+    titre: "Obligation de formation des 16-18 ans : âge de fin"
+    explication: "Après 16 ans, chaque jeune doit être en formation, en apprentissage, en emploi, en service civique ou en parcours d'insertion jusqu'à 18 ans. Le contrôle est assuré par les missions locales."
+    type: nombre
+    unite: ans
+    bornes: [16, 21]
+    valeurs:
+      - depuis: "2020-09-01"
+        valeur: 18
+        sources: [men-loi-ecole-confiance-2019, sp-f1898-instruction-obligatoire]
+        article: "Code de l'éducation, art. L114-1 (art. 15 de la loi n° 2019-791, entré en vigueur à la rentrée 2020)"
+    tags: [scolarite, obligation, jeunes, formation]
+    a_verifier: false
+    note: "Entrée en vigueur à la rentrée 2020 selon education.gouv.fr ; le 1er septembre 2020 est retenu par convention."
+
+  - id: education.instruction_famille.regime
+    titre: "Instruction en famille : régime juridique"
+    explication: "L'instruction à la maison n'est plus une simple déclaration : depuis la rentrée 2022, elle nécessite une autorisation préalable du directeur académique (Dasen), pour des motifs limitativement fixés par la loi."
+    type: choix
+    unite: ""
+    choix: [declaration, autorisation_prealable]
+    valeurs:
+      - depuis: "2022-09-01"
+        valeur: autorisation_prealable
+        sources: [men-instruction-famille, sp-f23429-instruction-famille]
+        article: "Code de l'éducation, art. L131-1 à L131-13 ; art. R131-11 à D131-11-13"
+    tags: [scolarite, instruction_en_famille, liberte_enseignement]
+    a_verifier: false
+    note: "« Depuis la rentrée 2022, le régime de déclaration d'instruction dans la famille est remplacé par un régime d'autorisation préalable » (education.gouv.fr). Le régime antérieur (déclaration) n'est pas historisé faute de date de début vérifiée."
+
+  - id: education.instruction_famille.motifs_autorises
+    titre: "Instruction en famille : motifs pouvant justifier l'autorisation"
+    explication: "Liste fermée des situations dans lesquelles l'autorisation d'instruire un enfant en famille peut être accordée."
+    type: texte
+    unite: ""
+    valeurs:
+      - depuis: "2022-09-01"
+        valeur: "État de santé de l'enfant ; handicap ; pratique intensive d'activités sportives ou artistiques ; itinérance de la famille en France ; éloignement géographique de tout établissement scolaire public ; situation propre à l'enfant motivant le projet éducatif (procédure distincte en cas de menace sur l'intégrité de l'enfant)."
+        sources: [sp-f23429-instruction-famille, men-instruction-famille]
+        article: "Code de l'éducation, art. L131-5"
+    tags: [scolarite, instruction_en_famille]
+    a_verifier: false
+    note: "Service-public regroupe ces motifs en 6 items ; la loi les classe en quatre catégories (décompte non relu sur le texte de loi)."
+
+  - id: education.instruction_famille.periode_depot_demande
+    titre: "Instruction en famille : période de dépôt des demandes"
+    explication: "Période annuelle pendant laquelle les familles doivent déposer leur demande d'autorisation pour la rentrée suivante (sauf motifs apparus après cette période)."
+    type: texte
+    unite: ""
+    valeurs:
+      - depuis: "2026-01-30"
+        valeur: "Du 1er mars au 31 mai inclus précédant la rentrée scolaire"
+        sources: [sp-f23429-instruction-famille]
+        article: "Code de l'éducation, art. R131-11 et suivants"
+    tags: [scolarite, instruction_en_famille, procedure]
+    a_verifier: false
+    note: "Date « depuis » = date de vérification de la fiche service-public (30/01/2026) ; date d'entrée en vigueur du calendrier non vérifiée."
+
+  - id: education.instruction_famille.duree_max_autorisation_sante_handicap
+    titre: "Instruction en famille : durée maximale d'une autorisation pour motif de santé ou de handicap"
+    explication: "L'autorisation vaut en principe pour une année scolaire ; elle peut couvrir jusqu'à 3 années scolaires quand elle est motivée par la santé ou le handicap de l'enfant."
+    type: nombre
+    unite: annees_scolaires
+    bornes: [1, 5]
+    valeurs:
+      - depuis: "2026-01-30"
+        valeur: 3
+        sources: [sp-f23429-instruction-famille]
+    tags: [scolarite, instruction_en_famille]
+    a_verifier: false
+    note: "Date « depuis » = date de vérification de la fiche service-public ; pour les autres motifs, l'autorisation est annuelle."
+
+  - id: education.instruction_famille.amende_sans_autorisation
+    titre: "Instruction en famille sans autorisation : amende encourue"
+    explication: "Montant de l'amende encourue par les parents qui instruisent leur enfant en famille sans autorisation."
+    type: nombre
+    unite: euros
+    bornes: [0, 15000]
+    valeurs:
+      - depuis: "2026-01-30"
+        valeur: 1500
+        sources: [sp-f23429-instruction-famille]
+        article: "Code de l'éducation, art. R131-18 à R131-19"
+    tags: [scolarite, instruction_en_famille, sanction]
+    a_verifier: false
+    note: "Date « depuis » = date de vérification de la fiche. Le refus d'obtempérer à une mise en demeure de scolariser est puni de 6 mois d'emprisonnement et 7 500 € d'amende (Code pénal, art. 227-17-1, selon la même fiche)."

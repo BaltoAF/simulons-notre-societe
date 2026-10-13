@@ -1,0 +1,952 @@
+# Fiscalité des entreprises, du capital et du patrimoine — valeurs en vigueur au 13 octobre 2026.
+# Sources : loi n° 2026-103 du 19 février 2026 de finances pour 2026 (texte définitif AN TA n° 227),
+# loi n° 2025-1403 du 30 décembre 2025 de financement de la sécurité sociale pour 2026, BOFiP, impots.gouv.fr,
+# service-public.gouv.fr. Les règles d'identifiant « fiscalite.controle.* » sont des contrôles croisés de règles déjà
+# présentes dans les fichiers générés depuis OpenFisca (tva.yaml, impot_revenu.yaml) : elles ne doivent pas créer de
+# second curseur dans un fork.
+domaine: fiscalite
+theme: "Entreprises, capital et patrimoine"
+regles:
+  # ================================================================ Impôt sur les sociétés
+  - id: fiscalite.is.taux_normal
+    titre: "Impôt sur les sociétés : taux normal"
+    explication: "Part des bénéfices d'une société versée à l'État au titre de l'impôt sur les sociétés."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 50]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 25
+        sources: [sp-ent-f23575-is]
+        article: "Code général des impôts, art. 219"
+    tags: [impot_societes, entreprises]
+    a_verifier: false
+    note: "Valeur vérifiée en vigueur en 2026 (fiche vérifiée le 17 février 2026) ; la date d'entrée en vigueur initiale de ce taux n'a pas été revérifiée ici."
+  - id: fiscalite.is.taux_reduit_pme
+    titre: "Impôt sur les sociétés : taux réduit des PME"
+    explication: "Taux réduit appliqué à la première tranche de bénéfice des petites et moyennes entreprises."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 50]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 15
+        sources: [sp-ent-f23575-is]
+        article: "Code général des impôts, art. 219, I, b"
+    tags: [impot_societes, entreprises, pme]
+    a_verifier: false
+    note: "Conditions : chiffre d'affaires annuel inférieur ou égal à 10 millions d'euros et capital entièrement libéré, détenu à 75 % au moins par des personnes physiques (ou par une société elle-même détenue à 75 % par des personnes physiques)."
+  - id: fiscalite.is.plafond_benefice_taux_reduit
+    titre: "Impôt sur les sociétés : plafond de bénéfice taxé au taux réduit PME"
+    explication: "Montant de bénéfice jusqu'auquel une PME éligible paie le taux réduit ; au-delà, le taux normal s'applique."
+    type: nombre
+    unite: euros
+    bornes: [0, 200000]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 42500
+        sources: [sp-ent-f23575-is]
+        article: "Code général des impôts, art. 219, I, b"
+    tags: [impot_societes, entreprises, pme]
+    a_verifier: false
+  - id: fiscalite.is.plafond_ca_taux_reduit
+    titre: "Impôt sur les sociétés : chiffre d'affaires maximal pour bénéficier du taux réduit PME"
+    explication: "Une société dont le chiffre d'affaires dépasse ce montant ne peut pas bénéficier du taux réduit de 15 %."
+    type: nombre
+    unite: euros
+    bornes: [0, 50000000]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 10000000
+        sources: [sp-ent-f23575-is]
+        article: "Code général des impôts, art. 219, I, b"
+    tags: [impot_societes, entreprises, pme]
+    a_verifier: false
+  # ---------------------------------------------------------------- Contribution exceptionnelle sur les bénéfices des grandes entreprises
+  - id: fiscalite.is.contribution_exceptionnelle.en_vigueur
+    titre: "Contribution exceptionnelle sur les bénéfices des grandes entreprises : en vigueur"
+    explication: "Surtaxe temporaire de l'impôt sur les sociétés pour les très grandes entreprises, due au titre des deux premiers exercices clos à compter du 31 décembre 2025."
+    type: booleen
+    valeurs:
+      - depuis: "2026-02-21"
+        valeur: true
+        sources: [an-ta227-lfi-2026, bofip-boi-is-aut-60, bofip-actu-2026-00097]
+        article: "Loi n° 2025-127 du 14 février 2025, art. 48, prorogé par la loi n° 2026-103 du 19 février 2026, art. 12"
+    tags: [impot_societes, grandes_entreprises, surtaxe]
+    a_verifier: false
+    note: "Le PLF 2027 (projet n° 3210, art. 15) propose une troisième année au taux de 15,7 % (CA de 1,5 à 3 Md€) et 31,4 % (CA d'au moins 3 Md€), soit une baisse d'environ un tiers ; non adopté au 13 octobre 2026."
+  - id: fiscalite.is.contribution_exceptionnelle.taux_ca_moins_3_mds
+    titre: "Contribution exceptionnelle des grandes entreprises : taux pour un chiffre d'affaires inférieur à 3 Md€"
+    explication: "Pourcentage ajouté à l'impôt sur les sociétés (moyenne de l'IS de l'exercice et de l'exercice précédent) pour les entreprises assujetties dont le chiffre d'affaires est inférieur à 3 milliards d'euros."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2026-02-21"
+        valeur: 20.6
+        sources: [bofip-boi-is-aut-60]
+        article: "Loi n° 2025-127, art. 48, IV, A ; BOI-IS-AUT-60 (version du 12 août 2026)"
+    tags: [impot_societes, grandes_entreprises, surtaxe]
+    a_verifier: false
+    note: "Lissage pour le second exercice entre 1,5 et 1,6 Md€ de chiffre d'affaires : taux = 20,6 % × (CA − 1,5 Md€) / 100 M€."
+  - id: fiscalite.is.contribution_exceptionnelle.taux_ca_3_mds_et_plus
+    titre: "Contribution exceptionnelle des grandes entreprises : taux pour un chiffre d'affaires d'au moins 3 Md€"
+    explication: "Pourcentage ajouté à l'impôt sur les sociétés pour les entreprises réalisant au moins 3 milliards d'euros de chiffre d'affaires."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2026-02-21"
+        valeur: 41.2
+        sources: [bofip-boi-is-aut-60]
+        article: "Loi n° 2025-127, art. 48, IV, B ; BOI-IS-AUT-60 (version du 12 août 2026)"
+    tags: [impot_societes, grandes_entreprises, surtaxe]
+    a_verifier: false
+    note: "Taux progressif entre 3 et 3,1 Md€ de chiffre d'affaires ; taux plein de 41,2 % à partir de 3,1 Md€."
+  - id: fiscalite.is.contribution_exceptionnelle.seuil_ca_second_exercice
+    titre: "Contribution exceptionnelle des grandes entreprises : seuil de chiffre d'affaires (second exercice)"
+    explication: "Chiffre d'affaires à partir duquel une entreprise paie la contribution au titre du second exercice (exercices clos fin 2026 en général)."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2026-02-21"
+        valeur: 1.5
+        sources: [an-ta227-lfi-2026, bofip-boi-is-aut-60]
+        article: "Loi n° 2026-103, art. 12 (modifiant l'art. 48 de la loi n° 2025-127)"
+    tags: [impot_societes, grandes_entreprises, surtaxe]
+    a_verifier: false
+    note: "Pour le premier exercice, le seuil est de 1 Md€ (apprécié sur l'exercice ou l'exercice précédent) ; pour le second, 1,5 Md€ apprécié sur le seul exercice concerné."
+  - id: fiscalite.is.impot_minimum_mondial.taux
+    titre: "Impôt minimum mondial des grands groupes (pilier 2) : taux minimal effectif"
+    explication: "Les grands groupes multinationaux doivent payer au moins ce taux d'impôt sur leurs bénéfices dans chaque pays ; sinon un impôt complémentaire est dû."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 50]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 15
+        sources: [an-ta227-lfi-2026]
+        article: "Loi n° 2026-103, état A, ligne 1304 « Impôt minimum mondial à 15 % - pilier 2 »"
+    tags: [impot_societes, international]
+    a_verifier: true
+    note: "Taux lu dans l'intitulé de la ligne de recette de la LFI 2026 ; les articles du CGI instituant cet impôt complémentaire n'ont pas été consultés directement."
+  # ---------------------------------------------------------------- Holdings patrimoniales
+  - id: fiscalite.holdings.taxe_actifs_non_affectes.taux
+    titre: "Taxe sur les actifs non professionnels des sociétés holdings patrimoniales : taux"
+    explication: "Nouvelle taxe annuelle sur les biens non affectés à une activité opérationnelle (placements, biens de luxe…) détenus par des holdings patrimoniales contrôlées par une personne physique."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 50]
+    valeurs:
+      - depuis: "2026-02-21"
+        valeur: 20
+        sources: [an-ta227-lfi-2026, cc-2026-901-dc]
+        article: "Code général des impôts, art. 235 ter C, IV (créé par la loi n° 2026-103, art. 7)"
+    tags: [patrimoine, holdings, entreprises]
+    a_verifier: false
+    note: "Due au titre des exercices clos à compter du 31 décembre 2026 (première application fin 2026). Conditions : actifs d'au moins 5 M€ ; une personne physique détient au moins 50 % des droits ou contrôle la société ; revenus passifs supérieurs à 50 % des produits. Déclarée conforme (décision n° 2026-901 DC)."
+  - id: fiscalite.holdings.taxe_actifs_non_affectes.seuil_actifs
+    titre: "Taxe sur les holdings patrimoniales : valeur minimale des actifs détenus"
+    explication: "Les holdings dont la valeur totale des actifs est inférieure à ce montant ne sont pas concernées."
+    type: nombre
+    unite: euros
+    bornes: [0, 50000000]
+    valeurs:
+      - depuis: "2026-02-21"
+        valeur: 5000000
+        sources: [an-ta227-lfi-2026]
+        article: "Code général des impôts, art. 235 ter C, I, A, 1° (loi n° 2026-103, art. 7)"
+    tags: [patrimoine, holdings, entreprises]
+    a_verifier: false
+  # ================================================================ TVA
+  - id: fiscalite.tva.taux_particulier
+    titre: "TVA : taux particulier (« super-réduit »)"
+    explication: "Taux le plus bas de TVA en métropole, réservé notamment aux médicaments remboursables et à certains produits de presse."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 2.1
+        sources: [sp-ent-f23567-tva-sante]
+        article: "Code général des impôts, art. 281 octies et suivants"
+    tags: [tva, consommation]
+    a_verifier: false
+    note: "Exemples relevés : médicaments remboursés par la Sécurité sociale, certains produits sanguins. Taux confirmé sur une fiche vérifiée le 18 juin 2025 ; aucune modification de taux dans la LFI 2026."
+  - id: fiscalite.tva.taux_normal_drom
+    titre: "TVA : taux normal en Guadeloupe, Martinique et à La Réunion"
+    explication: "Taux normal de TVA applicable dans ces trois départements d'outre-mer, plus bas qu'en métropole."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 30]
+    valeurs:
+      - depuis: "2019-06-05"
+        valeur: 8.5
+        sources: [bofip-boi-tva-geo-20-10]
+        article: "Code général des impôts, art. 296"
+    tags: [tva, outre_mer]
+    a_verifier: false
+    note: "Date = version du BOFiP en vigueur depuis le 5 juin 2019 (date réelle d'entrée en vigueur du taux non revérifiée). Taux réduit : 2,1 % ; taux particuliers : 1,75 % et 1,05 %. Les autres collectivités d'outre-mer (Guyane, Mayotte…) relèvent de régimes distincts non couverts ici."
+  - id: fiscalite.tva.taux_reduit_drom
+    titre: "TVA : taux réduit en Guadeloupe, Martinique et à La Réunion"
+    explication: "Taux réduit de TVA dans ces trois départements d'outre-mer."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2019-06-05"
+        valeur: 2.1
+        sources: [bofip-boi-tva-geo-20-10]
+        article: "Code général des impôts, art. 296"
+    tags: [tva, outre_mer]
+    a_verifier: false
+  - id: fiscalite.controle.tva_taux_normal
+    titre: "Contrôle croisé — TVA : taux normal (métropole et Corse)"
+    explication: "Taux de TVA applicable à la plupart des biens et services."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 35]
+    valeurs:
+      - depuis: "2014-09-19"
+        valeur: 20
+        sources: [bofip-boi-tva-liq-20, sp-ent-f23567-tva-sante]
+        article: "Code général des impôts, art. 278"
+    tags: [tva, controle_croise]
+    a_verifier: false
+    note: "Doublon de contrôle de fiscalite.tva.taux_normal (fichier tva.yaml généré depuis OpenFisca). Date = version du BOFiP BOI-TVA-LIQ-20 en vigueur depuis le 19 septembre 2014."
+  - id: fiscalite.controle.tva_taux_intermediaire
+    titre: "Contrôle croisé — TVA : taux intermédiaire"
+    explication: "Taux de 10 % : restauration sur place, transports, travaux d'amélioration des logements, médicaments non remboursables…"
+    type: nombre
+    unite: pourcent
+    bornes: [0, 35]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 10
+        sources: [sp-ent-f23567-tva-sante]
+        article: "Code général des impôts, art. 279 et 279-0 bis"
+    tags: [tva, controle_croise]
+    a_verifier: false
+    note: "Doublon de contrôle de fiscalite.tva.taux_intermediaire (tva.yaml)."
+  - id: fiscalite.controle.tva_taux_reduit
+    titre: "Contrôle croisé — TVA : taux réduit"
+    explication: "Taux de 5,5 % : produits alimentaires, protections hygiéniques, travaux de rénovation énergétique…"
+    type: nombre
+    unite: pourcent
+    bornes: [0, 35]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 5.5
+        sources: [sp-ent-f23567-tva-sante]
+        article: "Code général des impôts, art. 278-0 bis"
+    tags: [tva, controle_croise]
+    a_verifier: false
+    note: "Doublon de contrôle de fiscalite.tva.taux_reduit (tva.yaml)."
+  # ================================================================ Revenus du capital : PFU et prélèvements sociaux
+  - id: fiscalite.controle.pfu_taux_ir
+    titre: "Contrôle croisé — Prélèvement forfaitaire unique : part impôt sur le revenu"
+    explication: "Taux d'impôt sur le revenu appliqué par défaut aux intérêts, dividendes et plus-values mobilières (« flat tax »)."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 50]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 12.8
+        sources: [sp-f2613-revenus-epargne]
+        article: "Code général des impôts, art. 200 A"
+    tags: [capital, pfu, controle_croise]
+    a_verifier: false
+    note: "Doublon de contrôle de fiscalite.capital.pfu_taux_ir (impot_revenu.yaml). Fiche vérifiée le 15 avril 2026."
+  - id: fiscalite.capital.prelevements_sociaux_taux_global
+    titre: "Prélèvements sociaux sur les revenus du capital : taux global (cas général)"
+    explication: "Total de la CSG, de la CRDS et du prélèvement de solidarité payé sur les revenus de placements (dividendes, intérêts, plus-values mobilières…)."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 40]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 18.6
+        sources: [sp-f2329-prelevements-sociaux, sp-f2613-revenus-epargne, jo-loi-2025-1403-lfss-2026]
+        article: "Loi n° 2025-1403, art. 12 (hausse de la CSG de 9,2 % à 10,6 %)"
+    tags: [capital, prelevements_sociaux, pfu]
+    a_verifier: false
+    note: "Hausse de 1,4 point au 1er janvier 2026 (17,2 % auparavant). Restent à 17,2 % (CSG à 9,2 %) : assurance-vie, plan et compte d'épargne logement, plan d'épargne populaire, revenus fonciers et plus-values immobilières. Pour les revenus du patrimoine imposés au barème, la hausse s'applique dès les revenus de 2025."
+  - id: fiscalite.capital.pfu_taux_global
+    titre: "Prélèvement forfaitaire unique (« flat tax ») : taux global"
+    explication: "Taux total payé par défaut sur les dividendes, intérêts et plus-values mobilières : impôt sur le revenu + prélèvements sociaux."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 60]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 31.4
+        sources: [sp-f2613-revenus-epargne, sp-f2329-prelevements-sociaux]
+        article: "CGI, art. 200 A (12,8 %) + prélèvements sociaux (18,6 %)"
+    tags: [capital, pfu]
+    a_verifier: false
+    note: "Somme des deux composantes vérifiées (12,8 % + 18,6 %) ; le total n'est pas écrit tel quel sur la fiche F2613. Pour les produits restés à 17,2 % de prélèvements sociaux (assurance-vie, épargne logement…), le total est de 30 %."
+  - id: fiscalite.csg.revenus_capital_taux
+    titre: "CSG sur les revenus du capital : taux de droit commun"
+    explication: "Contribution sociale généralisée prélevée sur les revenus du patrimoine et des placements."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 20]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 10.6
+        sources: [jo-loi-2025-1403-lfss-2026, sp-f2329-prelevements-sociaux]
+        article: "Code de la sécurité sociale, art. L. 136-8, I, 2° (modifié par la loi n° 2025-1403, art. 12)"
+    tags: [capital, csg, prelevements_sociaux]
+    a_verifier: false
+    note: "Taux antérieur : 9,2 %. La hausse finance la branche autonomie, la CNSA et la CADES. S'applique aux revenus du patrimoine à compter de l'imposition des revenus 2025 et aux produits de placement à compter du 1er janvier 2026."
+  - id: fiscalite.csg.revenus_capital_taux_derogatoire
+    titre: "CSG sur certains revenus du capital : taux maintenu (épargne logement, assurance-vie, foncier)"
+    explication: "Taux de CSG resté inchangé pour certains revenus : revenus fonciers, plus-values immobilières, épargne logement, assurance-vie, rentes viagères."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 20]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 9.2
+        sources: [jo-loi-2025-1403-lfss-2026, sp-f2329-prelevements-sociaux]
+        article: "Code de la sécurité sociale, art. L. 136-8, IV (rétabli par la loi n° 2025-1403, art. 12)"
+    tags: [capital, csg, prelevements_sociaux]
+    a_verifier: false
+  - id: fiscalite.capital.prelevement_solidarite_taux
+    titre: "Prélèvement de solidarité sur les revenus du capital : taux"
+    explication: "Composante des prélèvements sociaux sur les revenus du patrimoine et des placements, au profit de l'État."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 20]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 7.5
+        sources: [sp-f2329-prelevements-sociaux]
+        article: "Code général des impôts, art. 235 ter"
+    tags: [capital, prelevements_sociaux]
+    a_verifier: false
+    note: "CRDS sur ces revenus : 0,5 % (même fiche)."
+  # ================================================================ Successions et donations
+  - id: fiscalite.successions.ligne_directe.abattement_enfant
+    titre: "Droits de succession : abattement par enfant"
+    explication: "Part de l'héritage reçue par chaque enfant, de chacun de ses parents, sans payer de droits de succession."
+    type: nombre
+    unite: euros
+    bornes: [0, 1000000]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 100000
+        sources: [sp-f14198-successions]
+        article: "Code général des impôts, art. 779, I"
+    tags: [patrimoine, successions, heritage]
+    a_verifier: false
+    note: "S'applique au décès de chacun des deux parents, pour chaque enfant. Abattement supplémentaire de 159 325 € pour un héritier handicapé. Le même abattement de 100 000 € vaut pour les donations parent-enfant, renouvelable tous les 15 ans."
+  - id: fiscalite.successions.ligne_directe.tranche_1.plafond
+    titre: "Droits de succession en ligne directe : limite haute de la tranche à 5 %"
+    explication: "Après abattement, la part taxable jusqu'à ce montant est taxée à 5 %."
+    type: nombre
+    unite: euros
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 8072
+        sources: [sp-f14198-successions]
+        article: "Code général des impôts, art. 777, tableau I"
+    tags: [patrimoine, successions, bareme]
+    a_verifier: false
+  - id: fiscalite.successions.ligne_directe.tranche_1.taux
+    titre: "Droits de succession en ligne directe : taux de la 1re tranche (jusqu'à 8 072 €)"
+    explication: "Taux appliqué à la première fraction de la part taxable de chaque enfant ou parent."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 60]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 5
+        sources: [sp-f14198-successions]
+        article: "Code général des impôts, art. 777, tableau I"
+    tags: [patrimoine, successions, bareme]
+    a_verifier: false
+  - id: fiscalite.successions.ligne_directe.tranche_2.plafond
+    titre: "Droits de succession en ligne directe : limite haute de la tranche à 10 %"
+    explication: "Fraction de la part taxable comprise entre 8 072 € et ce montant : taxée à 10 %."
+    type: nombre
+    unite: euros
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 12109
+        sources: [sp-f14198-successions]
+        article: "Code général des impôts, art. 777, tableau I"
+    tags: [patrimoine, successions, bareme]
+    a_verifier: false
+  - id: fiscalite.successions.ligne_directe.tranche_2.taux
+    titre: "Droits de succession en ligne directe : taux de la 2e tranche (8 072 € à 12 109 €)"
+    explication: "Taux appliqué à la deuxième fraction de la part taxable."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 60]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 10
+        sources: [sp-f14198-successions]
+        article: "Code général des impôts, art. 777, tableau I"
+    tags: [patrimoine, successions, bareme]
+    a_verifier: false
+  - id: fiscalite.successions.ligne_directe.tranche_3.plafond
+    titre: "Droits de succession en ligne directe : limite haute de la tranche à 15 %"
+    explication: "Fraction de la part taxable comprise entre 12 109 € et ce montant : taxée à 15 %."
+    type: nombre
+    unite: euros
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 15932
+        sources: [sp-f14198-successions]
+        article: "Code général des impôts, art. 777, tableau I"
+    tags: [patrimoine, successions, bareme]
+    a_verifier: false
+  - id: fiscalite.successions.ligne_directe.tranche_3.taux
+    titre: "Droits de succession en ligne directe : taux de la 3e tranche (12 109 € à 15 932 €)"
+    explication: "Taux appliqué à la troisième fraction de la part taxable."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 60]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 15
+        sources: [sp-f14198-successions]
+        article: "Code général des impôts, art. 777, tableau I"
+    tags: [patrimoine, successions, bareme]
+    a_verifier: false
+  - id: fiscalite.successions.ligne_directe.tranche_4.plafond
+    titre: "Droits de succession en ligne directe : limite haute de la tranche à 20 %"
+    explication: "Fraction de la part taxable comprise entre 15 932 € et ce montant : taxée à 20 % (la tranche où se situent la plupart des héritages taxés)."
+    type: nombre
+    unite: euros
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 552324
+        sources: [sp-f14198-successions]
+        article: "Code général des impôts, art. 777, tableau I"
+    tags: [patrimoine, successions, bareme]
+    a_verifier: false
+  - id: fiscalite.successions.ligne_directe.tranche_4.taux
+    titre: "Droits de succession en ligne directe : taux de la 4e tranche (15 932 € à 552 324 €)"
+    explication: "Taux appliqué à la quatrième fraction de la part taxable."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 60]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 20
+        sources: [sp-f14198-successions]
+        article: "Code général des impôts, art. 777, tableau I"
+    tags: [patrimoine, successions, bareme]
+    a_verifier: false
+  - id: fiscalite.successions.ligne_directe.tranche_5.plafond
+    titre: "Droits de succession en ligne directe : limite haute de la tranche à 30 %"
+    explication: "Fraction de la part taxable comprise entre 552 324 € et ce montant : taxée à 30 %."
+    type: nombre
+    unite: euros
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 902838
+        sources: [sp-f14198-successions]
+        article: "Code général des impôts, art. 777, tableau I"
+    tags: [patrimoine, successions, bareme]
+    a_verifier: false
+  - id: fiscalite.successions.ligne_directe.tranche_5.taux
+    titre: "Droits de succession en ligne directe : taux de la 5e tranche (552 324 € à 902 838 €)"
+    explication: "Taux appliqué à la cinquième fraction de la part taxable."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 60]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 30
+        sources: [sp-f14198-successions]
+        article: "Code général des impôts, art. 777, tableau I"
+    tags: [patrimoine, successions, bareme]
+    a_verifier: false
+  - id: fiscalite.successions.ligne_directe.tranche_6.plafond
+    titre: "Droits de succession en ligne directe : limite haute de la tranche à 40 %"
+    explication: "Fraction de la part taxable comprise entre 902 838 € et ce montant : taxée à 40 %."
+    type: nombre
+    unite: euros
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 1805677
+        sources: [sp-f14198-successions]
+        article: "Code général des impôts, art. 777, tableau I"
+    tags: [patrimoine, successions, bareme]
+    a_verifier: false
+  - id: fiscalite.successions.ligne_directe.tranche_6.taux
+    titre: "Droits de succession en ligne directe : taux de la 6e tranche (902 838 € à 1 805 677 €)"
+    explication: "Taux appliqué à la sixième fraction de la part taxable."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 60]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 40
+        sources: [sp-f14198-successions]
+        article: "Code général des impôts, art. 777, tableau I"
+    tags: [patrimoine, successions, bareme]
+    a_verifier: false
+  - id: fiscalite.successions.ligne_directe.tranche_7.taux
+    titre: "Droits de succession en ligne directe : taux de la dernière tranche (au-delà de 1 805 677 €)"
+    explication: "Taux marginal le plus élevé, appliqué à la fraction de la part taxable dépassant 1 805 677 €."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 80]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 45
+        sources: [sp-f14198-successions]
+        article: "Code général des impôts, art. 777, tableau I"
+    tags: [patrimoine, successions, bareme]
+    a_verifier: false
+  - id: fiscalite.successions.conjoint.exoneration
+    titre: "Droits de succession : exonération du conjoint marié ou partenaire de Pacs"
+    explication: "Le conjoint survivant ou le partenaire de Pacs ne paie aucun droit de succession."
+    type: booleen
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: true
+        sources: [sp-f14198-successions]
+        article: "Code général des impôts, art. 796-0 bis"
+    tags: [patrimoine, successions, conjoint]
+    a_verifier: false
+    note: "Valeur vérifiée en vigueur en 2026 ; date d'introduction non revérifiée ici. Pour les frères et sœurs : abattement de 15 932 €, puis 35 % jusqu'à 24 430 € et 45 % au-delà (sauf cas d'exonération) ; neveux et nièces : abattement de 7 967 € puis 55 % ; autres : 1 594 € puis 55 % ou 60 %."
+  - id: fiscalite.donations.conjoint.abattement
+    titre: "Droits de donation : abattement entre époux ou partenaires de Pacs"
+    explication: "Montant qu'un époux ou partenaire de Pacs peut donner à l'autre sans droits, tous les 15 ans."
+    type: nombre
+    unite: euros
+    bornes: [0, 500000]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 80724
+        sources: [sp-f14203-donations]
+        article: "Code général des impôts, art. 790 E"
+    tags: [patrimoine, donations, conjoint]
+    a_verifier: false
+    note: "Barème des donations entre époux : 5 % jusqu'à 8 072 €, 10 % jusqu'à 15 932 €, 15 % jusqu'à 31 865 €, 20 % jusqu'à 552 324 €, 30 % jusqu'à 902 838 €, 40 % jusqu'à 1 805 677 €, 45 % au-delà. Le PLF 2027 (art. 4) propose un allègement temporaire de la fiscalité des donations (non adopté)."
+  # ================================================================ Impôt sur la fortune immobilière (IFI)
+  - id: fiscalite.ifi.seuil_assujettissement
+    titre: "IFI : seuil de patrimoine immobilier net à partir duquel l'impôt est dû"
+    explication: "Un foyer paie l'impôt sur la fortune immobilière si son patrimoine immobilier net taxable dépasse ce montant au 1er janvier."
+    type: nombre
+    unite: euros
+    bornes: [0, 10000000]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 1300000
+        sources: [sp-f563-ifi, impots-calcul-ifi]
+        article: "Code général des impôts, art. 964"
+    tags: [patrimoine, ifi]
+    a_verifier: false
+    note: "Une fois le seuil franchi, le barème s'applique à partir de 800 000 €. Abattement de 30 % sur la résidence principale."
+  - id: fiscalite.ifi.bareme.limite_tranche_0
+    titre: "IFI : limite de la tranche non taxée"
+    explication: "La fraction du patrimoine immobilier net taxable jusqu'à ce montant n'est pas imposée."
+    type: nombre
+    unite: euros
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 800000
+        sources: [sp-f138-calcul-ifi, impots-calcul-ifi]
+        article: "Code général des impôts, art. 977"
+    tags: [patrimoine, ifi, bareme]
+    a_verifier: false
+  - id: fiscalite.ifi.bareme.taux_tranche_1
+    titre: "IFI : taux de la tranche de 800 000 € à 1 300 000 €"
+    explication: "Taux appliqué à la fraction du patrimoine comprise entre 800 000 € et 1,3 million d'euros."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 5]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 0.5
+        sources: [sp-f138-calcul-ifi, impots-calcul-ifi]
+        article: "Code général des impôts, art. 977"
+    tags: [patrimoine, ifi, bareme]
+    a_verifier: false
+  - id: fiscalite.ifi.bareme.limite_tranche_1
+    titre: "IFI : limite haute de la tranche à 0,5 %"
+    explication: "Fin de la tranche taxée à 0,5 %."
+    type: nombre
+    unite: euros
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 1300000
+        sources: [sp-f138-calcul-ifi, impots-calcul-ifi]
+        article: "Code général des impôts, art. 977"
+    tags: [patrimoine, ifi, bareme]
+    a_verifier: false
+  - id: fiscalite.ifi.bareme.taux_tranche_2
+    titre: "IFI : taux de la tranche de 1 300 000 € à 2 570 000 €"
+    explication: "Taux appliqué à la fraction du patrimoine comprise entre 1,3 et 2,57 millions d'euros."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 5]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 0.7
+        sources: [sp-f138-calcul-ifi, impots-calcul-ifi]
+        article: "Code général des impôts, art. 977"
+    tags: [patrimoine, ifi, bareme]
+    a_verifier: false
+  - id: fiscalite.ifi.bareme.limite_tranche_2
+    titre: "IFI : limite haute de la tranche à 0,7 %"
+    explication: "Fin de la tranche taxée à 0,7 %."
+    type: nombre
+    unite: euros
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 2570000
+        sources: [sp-f138-calcul-ifi, impots-calcul-ifi]
+        article: "Code général des impôts, art. 977"
+    tags: [patrimoine, ifi, bareme]
+    a_verifier: false
+  - id: fiscalite.ifi.bareme.taux_tranche_3
+    titre: "IFI : taux de la tranche de 2 570 000 € à 5 000 000 €"
+    explication: "Taux appliqué à la fraction du patrimoine comprise entre 2,57 et 5 millions d'euros."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 5]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 1
+        sources: [sp-f138-calcul-ifi, impots-calcul-ifi]
+        article: "Code général des impôts, art. 977"
+    tags: [patrimoine, ifi, bareme]
+    a_verifier: false
+  - id: fiscalite.ifi.bareme.limite_tranche_3
+    titre: "IFI : limite haute de la tranche à 1 %"
+    explication: "Fin de la tranche taxée à 1 %."
+    type: nombre
+    unite: euros
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 5000000
+        sources: [sp-f138-calcul-ifi, impots-calcul-ifi]
+        article: "Code général des impôts, art. 977"
+    tags: [patrimoine, ifi, bareme]
+    a_verifier: false
+  - id: fiscalite.ifi.bareme.taux_tranche_4
+    titre: "IFI : taux de la tranche de 5 000 000 € à 10 000 000 €"
+    explication: "Taux appliqué à la fraction du patrimoine comprise entre 5 et 10 millions d'euros."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 5]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 1.25
+        sources: [sp-f138-calcul-ifi, impots-calcul-ifi]
+        article: "Code général des impôts, art. 977"
+    tags: [patrimoine, ifi, bareme]
+    a_verifier: false
+  - id: fiscalite.ifi.bareme.limite_tranche_4
+    titre: "IFI : limite haute de la tranche à 1,25 %"
+    explication: "Au-delà de ce montant, le taux le plus élevé s'applique."
+    type: nombre
+    unite: euros
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 10000000
+        sources: [sp-f138-calcul-ifi, impots-calcul-ifi]
+        article: "Code général des impôts, art. 977"
+    tags: [patrimoine, ifi, bareme]
+    a_verifier: false
+  - id: fiscalite.ifi.bareme.taux_tranche_5
+    titre: "IFI : taux de la tranche au-delà de 10 000 000 €"
+    explication: "Taux marginal le plus élevé de l'IFI."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 5]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 1.5
+        sources: [sp-f138-calcul-ifi, impots-calcul-ifi]
+        article: "Code général des impôts, art. 977"
+    tags: [patrimoine, ifi, bareme]
+    a_verifier: false
+  - id: fiscalite.ifi.decote.montant
+    titre: "IFI : montant de base de la décote"
+    explication: "Pour un patrimoine entre 1,3 et 1,4 million d'euros, l'IFI est réduit de : ce montant moins 1,25 % du patrimoine net taxable."
+    type: nombre
+    unite: euros
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 17500
+        sources: [sp-f138-calcul-ifi, impots-calcul-ifi]
+        article: "Code général des impôts, art. 977"
+    tags: [patrimoine, ifi, decote]
+    a_verifier: false
+    note: "Exemple officiel : patrimoine de 1 350 000 € → IFI brut 2 850 €, décote 625 €, IFI dû 2 225 €."
+  - id: fiscalite.ifi.decote.taux
+    titre: "IFI : taux de la décote"
+    explication: "Pourcentage du patrimoine net taxable retranché du montant de base de la décote."
+    type: nombre
+    unite: pourcent
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 1.25
+        sources: [sp-f138-calcul-ifi]
+        article: "Code général des impôts, art. 977"
+    tags: [patrimoine, ifi, decote]
+    a_verifier: false
+  - id: fiscalite.ifi.decote.plafond
+    titre: "IFI : patrimoine maximal ouvrant droit à la décote"
+    explication: "La décote ne joue que pour un patrimoine net taxable inférieur à ce montant."
+    type: nombre
+    unite: euros
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 1400000
+        sources: [sp-f138-calcul-ifi, impots-calcul-ifi]
+        article: "Code général des impôts, art. 977"
+    tags: [patrimoine, ifi, decote]
+    a_verifier: false
+  - id: fiscalite.ifi.abattement_residence_principale
+    titre: "IFI : abattement sur la valeur de la résidence principale"
+    explication: "La résidence principale n'est retenue qu'après une réduction de ce pourcentage de sa valeur."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 30
+        sources: [sp-f563-ifi]
+        article: "Code général des impôts, art. 973"
+    tags: [patrimoine, ifi]
+    a_verifier: false
+  - id: fiscalite.ifi.plafonnement
+    titre: "IFI : plafonnement en fonction des revenus"
+    explication: "L'IFI est réduit si l'IFI et les impôts sur les revenus de l'année précédente dépassent ce pourcentage de ces revenus."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 75
+        sources: [sp-f138-calcul-ifi, impots-calcul-ifi]
+        article: "Code général des impôts, art. 979"
+    tags: [patrimoine, ifi]
+    a_verifier: false
+  # ================================================================ Taxe sur les transactions financières
+  - id: fiscalite.ttf.taux
+    titre: "Taxe sur les transactions financières : taux"
+    explication: "Taxe payée sur le prix d'achat d'actions de sociétés françaises dont la capitalisation boursière dépasse 1 milliard d'euros."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 2]
+    valeurs:
+      - depuis: "2025-04-01"
+        valeur: 0.4
+        sources: [bofip-boi-tca-fin-10-30, bofip-actu-2025-00034]
+        article: "Code général des impôts, art. 235 ter ZD, V (loi n° 2025-127 du 14 février 2025, art. 98)"
+    tags: [finance, capital, ttf]
+    a_verifier: false
+    note: "Taux inchangé par la LFI 2026."
+  # ================================================================ Contribution différentielle sur les hauts revenus
+  - id: fiscalite.cdhr.taux_imposition_minimale
+    titre: "Contribution différentielle sur les hauts revenus : taux d'imposition minimal garanti"
+    explication: "Les foyers très aisés doivent payer au moins ce pourcentage de leur revenu en impôt sur le revenu (et contribution exceptionnelle) ; sinon ils versent la différence."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 50]
+    valeurs:
+      - depuis: "2025-01-01"
+        valeur: 20
+        sources: [impots-brochure-ir-2026-divers, an-ta227-lfi-2026]
+        article: "Code général des impôts, art. 224 ; loi n° 2025-127, art. 10, prorogé par la loi n° 2026-103, art. 2"
+    tags: [hauts_revenus, impot_revenu, cdhr]
+    a_verifier: false
+    note: "Créée pour les revenus 2025. La LFI 2026 la proroge « jusqu'à l'imposition des revenus de l'année au titre de laquelle » la loi d'approbation des comptes « constate un déficit du budget général inférieur à 3 % du produit intérieur brut », et instaure un acompte de 95 % versé du 1er au 15 décembre. Le calcul tient compte d'une majoration de 1 500 € par personne à charge et de 12 500 € pour les couples, et d'un mécanisme de lissage jusqu'à 330 000 € (personne seule) ou 660 000 € (couple)."
+  - id: fiscalite.cdhr.seuil_revenu_personne_seule
+    titre: "Contribution différentielle sur les hauts revenus : seuil de revenu (personne seule)"
+    explication: "Revenu fiscal de référence au-delà duquel une personne seule (célibataire, veuve, divorcée) peut être concernée."
+    type: nombre
+    unite: euros
+    bornes: [0, 2000000]
+    valeurs:
+      - depuis: "2025-01-01"
+        valeur: 250000
+        sources: [impots-brochure-ir-2026-divers]
+        article: "Code général des impôts, art. 224"
+    tags: [hauts_revenus, impot_revenu, cdhr]
+    a_verifier: false
+  - id: fiscalite.cdhr.seuil_revenu_couple
+    titre: "Contribution différentielle sur les hauts revenus : seuil de revenu (couple)"
+    explication: "Revenu fiscal de référence au-delà duquel un couple soumis à imposition commune peut être concerné."
+    type: nombre
+    unite: euros
+    bornes: [0, 4000000]
+    valeurs:
+      - depuis: "2025-01-01"
+        valeur: 500000
+        sources: [impots-brochure-ir-2026-divers]
+        article: "Code général des impôts, art. 224"
+    tags: [hauts_revenus, impot_revenu, cdhr]
+    a_verifier: false
+  # ================================================================ Impôts locaux sur les entreprises et le foncier
+  - id: fiscalite.cvae.taux_maximal
+    titre: "CVAE : taux maximal (entreprises de plus de 50 M€ de chiffre d'affaires)"
+    explication: "Taux maximal de la cotisation sur la valeur ajoutée des entreprises, appliqué à la valeur ajoutée des plus grandes entreprises ; le taux est progressif entre 500 000 € et 50 M€ de chiffre d'affaires."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 2]
+    valeurs:
+      - depuis: "2025-01-01"
+        valeur: 0.19
+        sources: [sp-ent-a18078-cvae, sp-ent-f23546-cvae]
+        article: "Code général des impôts, art. 1586 ter et 1586 quater ; loi n° 2025-127, art. 62"
+      - depuis: "2026-01-01"
+        valeur: 0.28
+        sources: [sp-ent-a18078-cvae, sp-ent-f23546-cvae]
+        article: "Code général des impôts, art. 1586 quater ; loi n° 2025-127, art. 62"
+    tags: [entreprises, cvae, impots_production]
+    a_verifier: false
+    note: "Trajectoire votée en LFI 2025 et non modifiée par la LFI 2026 : 0,19 % en 2025, 0,28 % en 2026 et 2027, 0,19 % en 2028, 0,09 % en 2029, suppression totale en 2030. La fiche F23546 contient une phrase contradictoire (« entre 0 % et 0,19 % pour 2026 ») mais son tableau et la brève A18078 (mise à jour le 30 mars 2026) indiquent 0,28 % pour 2026-2027."
+  - id: fiscalite.cvae.annee_suppression
+    titre: "CVAE : année de suppression totale prévue"
+    explication: "Année à partir de laquelle la CVAE ne sera plus due, selon la trajectoire votée."
+    type: nombre
+    unite: annee
+    bornes: [2026, 2040]
+    valeurs:
+      - depuis: "2025-02-14"
+        valeur: 2030
+        sources: [sp-ent-a18078-cvae]
+        article: "Loi n° 2025-127 du 14 février 2025 de finances pour 2025, art. 62"
+    tags: [entreprises, cvae, impots_production]
+    a_verifier: false
+  - id: fiscalite.cvae.seuil_chiffre_affaires
+    titre: "CVAE : chiffre d'affaires à partir duquel la cotisation est due"
+    explication: "Les entreprises dont le chiffre d'affaires hors taxe est inférieur à ce montant ne paient pas de CVAE."
+    type: nombre
+    unite: euros
+    bornes: [0, 10000000]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 500000
+        sources: [sp-ent-f23546-cvae]
+        article: "Code général des impôts, art. 1586 ter"
+    tags: [entreprises, cvae, impots_production]
+    a_verifier: false
+    note: "Déclaration obligatoire au-delà de 152 500 € de chiffre d'affaires ; CVAE non due si son montant annuel est inférieur ou égal à 63 €."
+  - id: fiscalite.taxe_fonciere.taux_national
+    titre: "Taxe foncière sur les propriétés bâties : existence d'un taux national"
+    explication: "Il n'existe pas de taux national de taxe foncière : chaque commune (et son intercommunalité) vote son propre taux, appliqué à la moitié de la valeur locative cadastrale du bien."
+    type: texte
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: "Pas de taux national : taux votés par les collectivités territoriales"
+        sources: [sp-f59-taxe-fonciere]
+        article: "Code général des impôts, art. 1380 et suivants"
+    tags: [patrimoine, fiscalite_locale, taxe_fonciere]
+    a_verifier: false
+    note: "La base d'imposition est égale à 50 % de la valeur locative cadastrale, revalorisée chaque année ; le coefficient de revalorisation 2026 n'a pas été vérifié ici. Produit de la taxe foncière en 2025 : 44,2 Md€ (Insee, comptes nationaux, voir les métriques finances_publiques)."
+  # ================================================================ Barème de l'impôt sur le revenu 2026 (contrôle croisé)
+  - id: fiscalite.controle.ir_2026.limite_tranche_0
+    titre: "Contrôle croisé — Barème IR 2026 (revenus 2025) : fin de la tranche à 0 %"
+    explication: "Revenu imposable par part jusqu'auquel aucun impôt n'est dû."
+    type: nombre
+    unite: euros
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 11600
+        sources: [an-ta227-lfi-2026, impots-brochure-ir-2026-calcul]
+        article: "Code général des impôts, art. 197, I, 1 (modifié par la loi n° 2026-103, art. 4)"
+    tags: [impot_revenu, bareme, controle_croise]
+    a_verifier: false
+    note: "Doublon de contrôle de fiscalite.impot_revenu.bareme. Montant précédent (revenus 2024) : 11 497 €."
+  - id: fiscalite.controle.ir_2026.taux_tranche_1
+    titre: "Contrôle croisé — Barème IR 2026 : taux de la tranche de 11 600 € à 29 579 €"
+    explication: "Taux marginal d'impôt sur le revenu dans la première tranche imposable."
+    type: nombre
+    unite: pourcent
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 11
+        sources: [impots-brochure-ir-2026-calcul]
+        article: "Code général des impôts, art. 197, I, 1"
+    tags: [impot_revenu, bareme, controle_croise]
+    a_verifier: false
+  - id: fiscalite.controle.ir_2026.limite_tranche_1
+    titre: "Contrôle croisé — Barème IR 2026 : fin de la tranche à 11 %"
+    explication: "Revenu imposable par part au-delà duquel s'applique le taux de 30 %."
+    type: nombre
+    unite: euros
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 29579
+        sources: [an-ta227-lfi-2026, impots-brochure-ir-2026-calcul]
+        article: "Code général des impôts, art. 197, I, 1 (loi n° 2026-103, art. 4)"
+    tags: [impot_revenu, bareme, controle_croise]
+    a_verifier: false
+    note: "Montant précédent : 29 315 €."
+  - id: fiscalite.controle.ir_2026.taux_tranche_2
+    titre: "Contrôle croisé — Barème IR 2026 : taux de la tranche de 29 579 € à 84 577 €"
+    explication: "Taux marginal d'impôt sur le revenu dans la deuxième tranche imposable."
+    type: nombre
+    unite: pourcent
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 30
+        sources: [impots-brochure-ir-2026-calcul]
+        article: "Code général des impôts, art. 197, I, 1"
+    tags: [impot_revenu, bareme, controle_croise]
+    a_verifier: false
+  - id: fiscalite.controle.ir_2026.limite_tranche_2
+    titre: "Contrôle croisé — Barème IR 2026 : fin de la tranche à 30 %"
+    explication: "Revenu imposable par part au-delà duquel s'applique le taux de 41 %."
+    type: nombre
+    unite: euros
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 84577
+        sources: [an-ta227-lfi-2026, impots-brochure-ir-2026-calcul]
+        article: "Code général des impôts, art. 197, I, 1 (loi n° 2026-103, art. 4)"
+    tags: [impot_revenu, bareme, controle_croise]
+    a_verifier: false
+    note: "Montant précédent : 83 823 €."
+  - id: fiscalite.controle.ir_2026.taux_tranche_3
+    titre: "Contrôle croisé — Barème IR 2026 : taux de la tranche de 84 577 € à 181 917 €"
+    explication: "Taux marginal d'impôt sur le revenu dans la troisième tranche imposable."
+    type: nombre
+    unite: pourcent
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 41
+        sources: [impots-brochure-ir-2026-calcul]
+        article: "Code général des impôts, art. 197, I, 1"
+    tags: [impot_revenu, bareme, controle_croise]
+    a_verifier: false
+  - id: fiscalite.controle.ir_2026.limite_tranche_3
+    titre: "Contrôle croisé — Barème IR 2026 : fin de la tranche à 41 %"
+    explication: "Revenu imposable par part au-delà duquel s'applique le taux de 45 %."
+    type: nombre
+    unite: euros
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 181917
+        sources: [an-ta227-lfi-2026, impots-brochure-ir-2026-calcul]
+        article: "Code général des impôts, art. 197, I, 1 (loi n° 2026-103, art. 4)"
+    tags: [impot_revenu, bareme, controle_croise]
+    a_verifier: false
+    note: "Montant précédent : 180 294 €."
+  - id: fiscalite.controle.ir_2026.taux_tranche_4
+    titre: "Contrôle croisé — Barème IR 2026 : taux de la tranche au-delà de 181 917 €"
+    explication: "Taux marginal le plus élevé de l'impôt sur le revenu."
+    type: nombre
+    unite: pourcent
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 45
+        sources: [impots-brochure-ir-2026-calcul]
+        article: "Code général des impôts, art. 197, I, 1"
+    tags: [impot_revenu, bareme, controle_croise]
+    a_verifier: false
+    note: "Le PLF 2027 (art. 2) propose une revalorisation du barème pour les revenus 2026 (non adopté au 13 octobre 2026)."

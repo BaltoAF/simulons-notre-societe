@@ -1,0 +1,69 @@
+question:
+  id: duree_legale_travail_emploi
+  titre: "Effet du passage aux 35 heures sur l'emploi"
+  definition: "Variation en % de l'emploi salarié attribuable à la réduction de la durée légale du travail de 39 à 35 heures (lois Robien et Aubry, 1996-2002), au niveau étudié (entreprise, secteur ou économie)."
+  unite: pourcent
+  regles_liees: [travail.duree_legale_hebdo]
+  sens_attendu: ambigu
+  estimations:
+    - source: gubian-et-al-2004
+      valeur: 2.7
+      intervalle_95: null
+      methode: "Rapprochement des estimations ex ante (modèles) et des évaluations ex post sur données d'entreprises (entreprises passées à 35 heures comparées aux autres), extrapolées à l'ensemble de l'économie"
+      champ: "France, 1998-2002, ensemble des entreprises concernées par les lois Aubry (effet macroéconomique en nombre d'emplois)"
+      pays: FR
+      annee_donnees: 2002
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Résumé : le processus de RTT a conduit sur 1998-2002 à « un rapide enrichissement de la croissance en emplois de près de 350 000 postes », sans déséquilibre financier notable pour les entreprises. Conversion en % : 350 000 / 13 millions = 2,7 %, le dénominateur étant la « population de 13 millions de salariés dans les entreprises de plus de 20 personnes » citée par le rapport de la commission d'enquête de l'Assemblée nationale (rapport n° 2436, 9 décembre 2014, https://www.assemblee-nationale.fr/14/rap-enq/r2436.asp). Avec les 10 millions de salariés concernés cités par Lionel Jospin devant la même commission, on obtiendrait 3,5 %. Ce chiffre de 350 000 est « le plus communément admis » selon ce rapport ; il inclut l'effet des allègements de cotisations et de la modération salariale qui accompagnaient les 35 heures, pas seulement le partage du travail."
+    - source: crepon-et-al-2004
+      valeur: 9.9
+      intervalle_95: null
+      methode: "Comparaison sur données d'entreprises des firmes passées à 35 heures avec les aides « Aubry I » et des firmes restées à 39 heures (évolution de l'emploi et de la productivité globale des facteurs)"
+      champ: "France, 1997-2000, entreprises passées à 35 heures dans le cadre d'Aubry I (niveau entreprise)"
+      pays: FR
+      annee_donnees: 2000
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Résumé : « l'emploi dans ces entreprises aurait augmenté de 9,9 % par rapport aux entreprises restées à 39 heures », pour une baisse attendue de la durée hebdomadaire de 10,2 % (4 heures) et une baisse de la productivité globale des facteurs de 3,7 %. Les auteurs attribuent cet effet à la baisse des coûts unitaires (modération salariale et allègements de charges) plutôt qu'au partage du travail. Effet au niveau de l'entreprise volontaire et aidée : il ne se transpose pas tel quel à l'économie entière (sélection des entreprises, déplacements d'emplois possibles)."
+    - source: chemin-wasmer-2009
+      valeur: 0
+      intervalle_95: null
+      methode: "Doubles et triples différences exploitant l'application moins contraignante des 35 heures en Alsace-Moselle (droit local) par rapport au reste de la France"
+      champ: "France, Alsace-Moselle comparée au reste du pays, taux d'emploi 2001-2002 comparés à 1996-1998 (Enquête Emploi)"
+      pays: FR
+      annee_donnees: 2002
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "La réforme a été appliquée de façon environ 10 % moins stricte en Alsace-Moselle (deux jours fériés locaux comptés comme réduction du temps de travail jusqu'en 2003), mais on n'observe « no significant difference in employment with the rest of France ». Texte publié lu (dépôt HAL, section VI.A) : dans toutes les spécifications du tableau 2 (taux d'emploi individuel par profession touchée ou non, par diplôme, avec contrôle de la conjoncture des pays frontaliers) et pour le nombre d'emplois par département, le coefficient d'intérêt n'est pas significativement différent de zéro, intervalles de Conley-Taber compris. Valeur 0 = codage de cette absence d'effet significatif ; les coefficients du tableau (numérisé) n'ont pas pu être extraits, d'où l'absence d'intervalle. Un erratum a été publié en 2017 (DOI 10.1086/693983) ; son contenu n'a pas pu être lu."
+    - source: estevao-sa-2008
+      valeur: 0
+      intervalle_95: null
+      methode: "Différence de différences entre salariés des grandes entreprises (35 heures dès 2000) et des petites entreprises (35 heures en 2002), avant et après la loi"
+      champ: "France, salariés des grandes entreprises (plus de 20 salariés, 35 heures en 2000) et des petites entreprises (35 heures en 2002)"
+      pays: FR
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Résumé publié : « aggregate employment was unaffected but labour turnover increased, as firms shed workers who became more expensive ». Version document de travail (IZA DP 2459, tableau 9, données de l'Enquête Emploi jusqu'en mars 2000) : après 1999, la probabilité d'être en emploi plutôt qu'au chômage augmente autant dans les grandes entreprises (coefficient logit 0,084, e.t. 0,027) que dans les petites non encore concernées (0,068, e.t. 0,023), écart non significatif ; les auteurs en concluent que la loi n'a pas accru l'emploi, tout en précisant que leurs données ne permettent pas de mesurer proprement l'effet net. L'emploi des salariés directement concernés a baissé. Valeur 0 = codage de cette absence d'effet (coefficients logit non convertibles en %), pas d'intervalle. L'étude trouve aussi des effets différents selon les groupes sur le bien-être (gain possible pour les femmes, effets négatifs pour les cadres)."
+    - source: crepon-kramarz-2002
+      valeur: -3
+      intervalle_95: null
+      methode: "Comparaison des transitions vers le non-emploi entre salariés travaillant 40 heures ou plus et salariés travaillant 36 à 39 heures avant la réforme"
+      champ: "France, réduction obligatoire de 40 à 39 heures du 1er février 1982 (avec maintien du salaire mensuel au SMIC), salariés travaillant 40 heures ou plus en mars 1981"
+      pays: FR
+      annee_donnees: 1982
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Réforme comparable mais différente (une seule heure, 1982). Résumé : « Our estimates of the impact of this one-hour reduction on employment losses vary between 2 percent and 4 percent » pour les salariés concernés, les salariés au SMIC étant les plus touchés. Valeur retenue = milieu de la fourchette publiée (-2 à -4 %), exprimée en % de l'emploi du groupe directement concerné (et non de l'emploi total) ; la fourchette n'est pas un intervalle de confiance. La réduction s'accompagnait d'une hausse du SMIC de 5 % et du maintien du salaire mensuel, donc d'une hausse du coût horaire."
+    - source: hunt-1999
+      valeur: null
+      intervalle_95: null
+      methode: "Exploitation des différences entre branches dans les réductions négociées de la durée conventionnelle du travail (données de branches et panel socio-économique allemand GSOEP)"
+      champ: "Allemagne de l'Ouest, 1984-1994, réductions de la durée conventionnelle obtenues par les syndicats à partir de 1985"
+      pays: DE
+      annee_donnees: 1994
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Contrepoint international. Résumé publié (1999) : les données de branches suggèrent que le partage du travail « may have reduced employment in the period 1984-1994 », le salaire horaire ayant augmenté assez pour compenser la baisse des heures. La version document de travail (NBER 5724, 1996) trouvait au contraire, pour 1984-1989, une hausse de l'emploi de 0,3 à 0,7 % par heure de réduction (soit au plus 1,1 % au total), avec des résultats « plus pessimistes » pour 1990-1994. Faute de chiffre publié dans la version finale lue, valeur laissée vide."
+  note_synthese: "Les études ne s'accordent pas, et la question reste débattue. Les évaluations du ministère du Travail et de l'INSEE attribuent aux lois Aubry environ 350 000 emplois entre 1998 et 2002 (de l'ordre de 2 à 3 % des salariés des entreprises concernées), et les entreprises passées aux 35 heures avec des aides ont augmenté leurs effectifs d'environ 10 % de plus que les autres. Mais ces gains semblent surtout venir des baisses de cotisations et de la modération des salaires qui accompagnaient la réforme, plus que du partage du travail lui-même. Les études qui comparent des groupes touchés différemment par la loi (Alsace-Moselle, grandes et petites entreprises) ne trouvent pas d'effet significatif sur l'emploi total. Enfin, le passage de 40 à 39 heures en 1982, fait sans baisse de salaire, a fait perdre leur emploi à 2 à 4 % des salariés concernés, et l'expérience allemande ne montre pas non plus de gain clair."

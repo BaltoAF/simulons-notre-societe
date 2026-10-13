@@ -1,0 +1,129 @@
+question:
+  id: offre_travail_marge_extensive
+  titre: "Effet des incitations financières au travail sur la participation au marché du travail"
+  definition: "Variation en % du taux de participation (ou d'emploi) pour une hausse de 1 % du gain financier net à travailler, c'est-à-dire de (1 − taux d'imposition à la participation) : écart de revenu disponible entre emploi et non-emploi, après impôts, cotisations et prestations (prime d'activité, RSA, crédits d'impôt)."
+  unite: elasticite
+  regles_liees: [prestations.prime_activite.montant_forfaitaire, prestations.rsa.montant_forfaitaire]
+  sens_attendu: positif
+  estimations:
+    - source: chetty-et-al-2013
+      valeur: 0.25
+      intervalle_95: null
+      methode: "Méta-analyse de 15 études quasi-expérimentales (réformes fiscales, chocs de salaire), élasticités recalculées de façon homogène"
+      champ: "15 études publiées de 1991 à 2011 (États-Unis, Royaume-Uni, Danemark, Islande, Autriche, Canada, comparaison OCDE)"
+      pays: INT
+      annee_donnees: null
+      type_etude: meta_analyse
+      revue_par_les_pairs: true
+      note: "L'étude rapporte une élasticité de « steady state » (hicksienne) moyenne de 0,25 sur les 9 études exploitant des changements permanents (fourchette de l'ensemble des 15 études : 0,13 à 0,43 ; moyenne non pondérée 0,28 ; 0,32 pour les 6 études fondées sur des changements temporaires). L'élasticité est définie comme la variation du log du taux d'emploi divisée par la variation du log du salaire net d'impôt moyen, ce qui correspond à la définition de la question. Les auteurs soulignent que la plupart des études portent sur des groupes peu attachés à l'emploi (mères isolées, seniors), donc que l'élasticité moyenne de la population est probablement inférieure à 0,28. Chiffres lus dans la version NBER w16729 (2012)."
+    - source: eissa-liebman-1996
+      valeur: 0.30
+      intervalle_95: [0.10, 0.50]
+      methode: "Différence de différences : mères isolées contre femmes seules sans enfant, avant/après l'extension de l'EITC par la réforme fiscale de 1986"
+      champ: "États-Unis, mères isolées, 1984-1990"
+      pays: US
+      annee_donnees: 1990
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "L'étude rapporte une hausse relative de la participation des mères isolées allant jusqu'à 2,8 points de pourcentage (e.t. 0,9) sur une base de 73 %. Conversion faite par Chetty et al. (2013) : gain financier à travailler passé de 7 469 à 8 458 dollars (Meyer et Rosenbaum 2000), d'où une élasticité de 0,30 (e.t. 0,10) ; intervalle = 0,30 ± 1,96 × 0,10. Kleven (2024) obtient avec une autre mesure du gain une élasticité bien plus forte (0,71, et 1,34 pour les moins diplômées), qu'il juge peu plausible."
+    - source: meyer-rosenbaum-2001
+      valeur: 0.43
+      intervalle_95: [0.33, 0.53]
+      methode: "Variation des impôts et prestations selon le nombre d'enfants et les États, réformes de l'EITC et de l'aide sociale 1984-1996"
+      champ: "États-Unis, femmes seules (mères isolées comparées aux femmes sans enfant), 1984-1996"
+      pays: US
+      annee_donnees: 1996
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "L'article rapporte une élasticité de 1,07 de l'emploi (avoir travaillé dans l'année), calculée par rapport aux revenus bruts. Chetty et al. (2013) la corrigent en rapportant la variation au revenu net (ratio net/brut de 7 270/18 165), d'où 1,07 × 7 270/18 165 = 0,43 (e.t. 0,05) ; intervalle = 0,43 ± 1,96 × 0,05. Nichols et Rothstein (2015) déduisent de la même étude une élasticité d'environ 0,7."
+    - source: card-hyslop-2005
+      valeur: 0.38
+      intervalle_95: [0.32, 0.44]
+      methode: "Expérience aléatoire (Self-Sufficiency Project) : complément de revenu temporaire pour les allocataires de l'aide sociale qui reprennent un emploi à temps plein"
+      champ: "Canada, mères isolées allocataires de l'aide sociale (Self-Sufficiency Project), années 1990"
+      pays: CA
+      annee_donnees: null
+      type_etude: experimental
+      revue_par_les_pairs: true
+      note: "Chetty et al. (2013) calculent une élasticité de 0,38 (e.t. 0,03) à partir d'une participation initiale de 23,6 % et d'un écart traitement/témoin de 13,5 points ; intervalle = 0,38 ± 1,96 × 0,03. La subvention étant limitée dans le temps, il s'agit plutôt d'une élasticité intertemporelle (de Frisch) que d'une élasticité de long terme. Les auteurs de l'étude notent que l'effet culmine 15 mois après l'entrée et s'estompe ensuite."
+    - source: eissa-hoynes-2004
+      valeur: 0.15
+      intervalle_95: [0.01, 0.29]
+      methode: "Différence de différences et modèle de participation, extensions de l'EITC 1984-1996"
+      champ: "États-Unis, couples mariés à bas revenus (hommes et femmes), 1984-1996"
+      pays: US
+      annee_donnees: 1996
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Valeur reprise de Chetty et al. (2013) : élasticité de la participation au salaire net, moyenne femmes et hommes mariés, 0,15 (e.t. 0,07) ; intervalle = 0,15 ± 1,96 × 0,07. Pour les couples, l'EITC désincite le second apporteur de revenu : selon Nichols et Rothstein (2015), les extensions de 1984-1996 ont réduit la participation des femmes mariées d'environ 1 point."
+    - source: kleven-2024
+      valeur: -0.04
+      intervalle_95: null
+      methode: "Études d'événements sur toutes les réformes fédérales et des États de l'EITC depuis 1975 ; analyse de l'incertitude de modèle sur 432 spécifications"
+      champ: "États-Unis, femmes seules avec et sans enfants, réformes 1975-2018"
+      pays: US
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Hors réforme de 1993, l'auteur trouve une distribution d'estimations centrée sur zéro : effet moyen de -0,32 point et élasticité moyenne de -0,04 (304 spécifications ; moins de 4 % sont positives et significatives). Pour la réforme de 1993, l'élasticité moyenne est de 0,63, mais l'auteur attribue cette hausse surtout à la réforme de l'aide sociale et à la conjoncture plutôt qu'à l'EITC. Valeur retenue : -0,04 ; pas d'intervalle unique publié."
+    - source: nichols-rothstein-2015
+      valeur: 0.7
+      intervalle_95: null
+      methode: "Revue de littérature sur l'EITC (études en différence de différences, surtout réforme de 1993)"
+      champ: "États-Unis, mères isolées, réformes 1986-1996"
+      pays: US
+      annee_donnees: null
+      type_etude: meta_analyse
+      revue_par_les_pairs: false
+      note: "Les auteurs écrivent que l'estimation de Meyer et Rosenbaum (2001), +3,1 points d'emploi pour les mères isolées, implique une élasticité à la marge extensive d'environ 0,7, et parlent d'estimations « consensus » autour de 0,7 à 1,0. Ces valeurs sont calculées par rapport au revenu brut ; Chetty et al. (2013) montrent que rapportées au gain net elles sont plus faibles (0,43 pour la même étude). Valeur retenue : 0,7 (borne basse de la fourchette citée)."
+    - source: bargain-et-al-2014
+      valeur: 0.10
+      intervalle_95: [0.08, 0.12]
+      methode: "Modèle structurel de choix discrets d'offre de travail estimé de façon harmonisée sur 17 pays européens et les États-Unis, avec microsimulation fiscale (EUROMOD)"
+      champ: "France, femmes en couple, données 2001 (estimations aussi pour 1998 et pour les hommes et les célibataires)"
+      pays: FR
+      annee_donnees: 2001
+      type_etude: structurel
+      revue_par_les_pairs: true
+      note: "Élasticité de la participation au salaire (marge extensive) pour la France : femmes en couple 0,19 (1998) et 0,10 (2001, e.t. 0,01) ; hommes en couple 0,07 et 0,04 ; femmes seules 0,15 et 0,09 ; hommes seuls 0,11 et 0,12. Valeur retenue : femmes en couple 2001 ; intervalle = 0,10 ± 1,96 × 0,01. Moyenne des pays pour les femmes en couple : 0,22. Attention : élasticité au salaire brut et non au gain net à travailler ; comme le gain est inférieur au salaire net, l'élasticité au gain est vraisemblablement plus faible (borne haute). Chiffres de la version IZA DP 6735 (2012)."
+    - source: bargain-doorley-2011
+      valeur: null
+      intervalle_95: null
+      methode: "Régression sur discontinuité : ouverture du droit au RMI à 25 ans pour les célibataires sans enfant"
+      champ: "France, hommes célibataires sans enfant et sans diplôme (sortis au niveau collège), recensement de 1999"
+      pays: FR
+      annee_donnees: 1999
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Le RMI réduit la participation des hommes célibataires peu diplômés de 7 à 10 % à 25 ans (7,2 % à 10,2 % du groupe cible selon les spécifications). L'étude indique que, pour ce groupe, le gain financier médian à reprendre un mi-temps est proche de zéro (+4 %) et d'environ +63 % pour un plein temps, mais elle ne publie pas la variation du gain à travailler entre 24 et 25 ans : pas de conversion en élasticité."
+    - source: stancanelli-2008
+      valeur: null
+      intervalle_95: null
+      methode: "Différence de différences autour de l'introduction de la prime pour l'emploi (PPE) en 2001, groupes définis par l'éligibilité, le statut matrimonial et la présence d'enfants"
+      champ: "France, femmes à bas revenus, enquêtes Emploi 1999-2002"
+      pays: FR
+      annee_donnees: 2002
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Effet sur l'emploi : environ -3 points pour les femmes mariées (effet de la condition de ressources du foyer), +6 à +7 points pour les femmes en concubinage, effet très faible et non significatif pour les femmes seules ; effet net total d'environ 2 000 emplois. La PPE était faible (290 euros par an et par foyer en moyenne en 2001). L'étude ne fournit pas la variation du gain à travailler : pas de conversion en élasticité."
+    - source: simonnet-danzin-2014
+      valeur: null
+      intervalle_95: null
+      methode: "Double différence selon le nombre et l'âge des enfants, avant/après le remplacement du RMI et de l'API par le RSA (juin 2009), cas-types de gains à la reprise d'emploi"
+      champ: "France, allocataires du RMI/API/RSA sans emploi (données Cnaf), novembre 2007 - mai 2011"
+      pays: FR
+      annee_donnees: 2011
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Le RSA a augmenté le taux trimestriel de retour à l'emploi des mères isolées, surtout celles qui ont de jeunes enfants (environ +1 à +2 points par rapport aux femmes seules sans enfant), mais l'étude ne met pas en évidence de réel effet sur l'emploi des hommes (pères isolés : +0,1 à +0,2 point). Les résultats portent sur des taux de retour à l'emploi et non sur un taux de participation : pas de conversion en élasticité."
+    - source: gurgand-margolis-2008
+      valeur: null
+      intervalle_95: null
+      methode: "Estimation structurelle des incitations monétaires sur un échantillon représentatif d'allocataires du RMI"
+      champ: "France, allocataires du RMI, fin des années 1990"
+      pays: FR
+      annee_donnees: null
+      type_etude: structurel
+      revue_par_les_pairs: true
+      note: "Le résumé indique que les gains potentiels à travailler sont presque toujours positifs mais très faibles en moyenne (surtout pour les mères isolées) et que les taux d'emploi sont sensibles aux incitations, avec des élasticités à la marge extensive « généralement inférieures à un » pour les hommes et les femmes. Valeurs précises non consultées (texte intégral inaccessible) : valeur null."
+  note_synthese: "Quand travailler rapporte davantage par rapport au fait de rester sans emploi, un peu plus de personnes travaillent, mais l'effet est modeste. La méta-analyse la plus citée (Chetty et al.) retient environ 0,25 : si le gain net à travailler augmente de 10 %, le taux d'emploi augmente d'environ 2,5 %. Les estimations varient beaucoup selon les publics : plus fortes pour les mères isolées américaines (0,3 à 0,4, voire 0,7 selon le mode de calcul), plus faibles pour les adultes en couple et en France (0,04 à 0,2). Un débat important existe : Kleven (2024), en réexaminant toutes les réformes du crédit d'impôt américain, trouve un effet proche de zéro hors réforme de 1993, et les évaluations françaises (PPE, RSA) trouvent des effets faibles ou limités à certains groupes comme les mères isolées. Il est donc raisonnable de retenir une valeur positive mais faible, entre 0 et 0,3 pour la population générale."

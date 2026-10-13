@@ -1,0 +1,105 @@
+domaine: logement
+theme: "Performance énergétique des logements loués (DPE et décence énergétique)"
+regles:
+  - id: logement.decence_energetique.seuil_consommation_energie_finale
+    titre: "Seuil de consommation au-delà duquel un logement est indécent (énergie finale)"
+    explication: "Depuis 2023, un logement qui consomme plus de ce seuil d'énergie finale par mètre carré et par an ne peut plus être proposé à la location en métropole."
+    type: nombre
+    unite: kwh_ef_par_m2_an
+    bornes: [200, 700]
+    valeurs:
+      - depuis: "2023-01-01"
+        valeur: 450
+        sources: [mte-decence-energetique-passoires, sp-f2042-logement-decent]
+        article: "Décret n° 2021-19 du 11 janvier 2021 ; loi n° 89-462 du 6 juillet 1989, art. 6"
+    tags: [dpe, decence, passoires_thermiques, location]
+    a_verifier: false
+    note: "Critère applicable aux nouveaux contrats, renouvellements et reconductions tacites (ministère, FAQ mise à jour le 19/12/2025)."
+
+  - id: logement.decence_energetique.classe_dpe_minimale_location
+    titre: "Classe DPE minimale pour pouvoir louer un logement (métropole)"
+    explication: "Étiquette énergétique minimale qu'un logement doit atteindre pour être considéré comme décent et donc pouvoir être loué. Elle se resserre par étapes : G interdit depuis 2025, puis F en 2028 et E en 2034."
+    type: choix
+    unite: ""
+    choix: [A, B, C, D, E, F, G]
+    valeurs:
+      - depuis: "2025-01-01"
+        valeur: F
+        sources: [mte-decence-energetique-passoires, sp-f2042-logement-decent, legi-loi89-art6]
+        article: "Loi n° 89-462 du 6 juillet 1989, art. 6 ; loi n° 2021-1104 du 22 août 2021 (Climat et résilience), art. 160"
+    tags: [dpe, decence, passoires_thermiques, location]
+    a_verifier: false
+    note: "Échéances prévues : classe E minimale au 1er janvier 2028, classe D au 1er janvier 2034 (voir règles d'année d'interdiction). Pas de report de calendrier relevé sur la page ministérielle mise à jour le 19/12/2025 ; un assouplissement postérieur n'a pas été recherché exhaustivement. Outre-mer : calendrier spécifique (classes A à E à partir de 2028)."
+
+  - id: logement.decence_energetique.annee_interdiction_location_classe_g
+    titre: "Année à partir de laquelle les logements classés G ne peuvent plus être loués"
+    explication: "Les logements les plus énergivores (étiquette G) sont considérés comme indécents à la location à partir du 1er janvier de cette année."
+    type: nombre
+    unite: annee
+    bornes: [2023, 2040]
+    valeurs:
+      - depuis: "2021-08-22"
+        valeur: 2025
+        sources: [mte-decence-energetique-passoires, sp-f2042-logement-decent]
+        article: "Loi n° 2021-1104 du 22 août 2021, art. 160 ; loi n° 89-462 du 6 juillet 1989, art. 6"
+    tags: [dpe, decence, passoires_thermiques, location]
+    a_verifier: false
+    note: "Date « depuis » = date de la loi Climat et résilience qui a fixé le calendrier."
+
+  - id: logement.decence_energetique.annee_interdiction_location_classe_f
+    titre: "Année à partir de laquelle les logements classés F ne pourront plus être loués"
+    explication: "À partir du 1er janvier de cette année, il faudra au moins l'étiquette E pour louer un logement en métropole."
+    type: nombre
+    unite: annee
+    bornes: [2025, 2045]
+    valeurs:
+      - depuis: "2021-08-22"
+        valeur: 2028
+        sources: [mte-decence-energetique-passoires, sp-f2042-logement-decent]
+        article: "Loi n° 2021-1104 du 22 août 2021, art. 160 ; loi n° 89-462 du 6 juillet 1989, art. 6"
+    tags: [dpe, decence, passoires_thermiques, location]
+    a_verifier: false
+    note: "Échéance future, en vigueur au 13/10/2026 selon le ministère (page du 19/12/2025)."
+
+  - id: logement.decence_energetique.annee_interdiction_location_classe_e
+    titre: "Année à partir de laquelle les logements classés E ne pourront plus être loués"
+    explication: "À partir du 1er janvier de cette année, il faudra au moins l'étiquette D pour louer un logement en métropole."
+    type: nombre
+    unite: annee
+    bornes: [2028, 2050]
+    valeurs:
+      - depuis: "2021-08-22"
+        valeur: 2034
+        sources: [mte-decence-energetique-passoires, sp-f2042-logement-decent]
+        article: "Loi n° 2021-1104 du 22 août 2021, art. 160 ; loi n° 89-462 du 6 juillet 1989, art. 6"
+    tags: [dpe, decence, passoires_thermiques, location]
+    a_verifier: false
+    note: "Échéance future, en vigueur au 13/10/2026 selon le ministère (page du 19/12/2025)."
+
+  - id: logement.dpe.coefficient_conversion_electricite
+    titre: "DPE : coefficient de conversion de l'électricité en énergie primaire"
+    explication: "Facteur appliqué à la consommation d'électricité d'un logement pour calculer son énergie primaire dans le DPE. Le baisser améliore l'étiquette des logements chauffés à l'électricité."
+    type: nombre
+    unite: coefficient
+    bornes: [1, 3]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 1.9
+        sources: [sp-f16096-dpe]
+    tags: [dpe, electricite, reforme_2026]
+    a_verifier: false
+    note: "« passe de 2,3 à 1,9 » au 1er janvier 2026 ; les DPE réalisés depuis intègrent automatiquement ce coefficient (service-public, fiche vérifiée le 01/01/2026). La même fiche évoque des arrêtés des 11 juin et 19 août 2026 prévoyant une nouvelle classe et un coefficient abaissé à 1,7 à compter du 1er janvier 2027 : information non confirmée par une seconde source."
+
+  - id: logement.dpe.duree_validite
+    titre: "Durée de validité d'un diagnostic de performance énergétique (DPE)"
+    explication: "Durée pendant laquelle un DPE réalisé depuis le 1er juillet 2021 peut être fourni lors d'une vente ou d'une location."
+    type: nombre
+    unite: ans
+    bornes: [1, 20]
+    valeurs:
+      - depuis: "2021-07-01"
+        valeur: 10
+        sources: [sp-f16096-dpe]
+    tags: [dpe, diagnostic]
+    a_verifier: false
+    note: "Les DPE réalisés entre le 1er janvier 2018 et le 30 juin 2021 ne sont plus valables depuis le 1er janvier 2025."

@@ -1,0 +1,109 @@
+question:
+  id: emploi_smic_elasticite
+  titre: "Effet d'une hausse du SMIC sur l'emploi des salariés peu qualifiés"
+  definition: "Variation en % de l'emploi des salariés concernés (au voisinage du salaire minimum) pour une hausse de 1 % de leur coût du travail ou de leur salaire induite par le salaire minimum (élasticité « own-wage »)."
+  unite: elasticite
+  regles_liees: [travail.smic.horaire_brut]
+  sens_attendu: negatif
+  estimations:
+    - source: kramarz-philippon-2001
+      valeur: -1.5
+      intervalle_95: null
+      methode: "Différence de différences sur les transitions individuelles emploi → non-emploi (panel de l'Enquête Emploi) : salariés rattrapés par la hausse du coût minimum du travail comparés aux salariés situés juste au-dessus dans la distribution des salaires"
+      champ: "France, 1990-1998, salariés dont le coût du travail est au voisinage du coût minimum (SMIC + cotisations, net des allègements)"
+      pays: FR
+      annee_donnees: 1998
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Le résumé indique qu'une hausse de 1 % du coût du travail augmente d'environ 1,5 % la probabilité de passer de l'emploi au non-emploi pour les salariés traités, « the resulting elasticity being -1.5 ». Valeur reprise telle quelle (élasticité au coût du travail, proche du concept « own-wage »). Les baisses de coût (allègements) n'ont eu qu'un effet faible et non significatif sur les entrées en emploi : l'effet est asymétrique. Période où le coût du SMIC était élevé et changeait fortement."
+    - source: abowd-et-al-1999
+      valeur: -1.3
+      intervalle_95: null
+      methode: "Logit conditionnel sur données individuelles longitudinales : probabilité d'être encore en emploi l'année suivante pour les salariés dont le salaire est rattrapé par la hausse du SMIC réel, comparés aux salariés un peu mieux payés"
+      champ: "France, Enquête Emploi 1981-1989, hommes payés au SMIC (femmes : -1,0)"
+      pays: FR
+      annee_donnees: 1989
+      type_etude: quasi_experimental
+      revue_par_les_pairs: false
+      note: "Résumé NBER : en France, une hausse de 1 % du SMIC réel réduit la probabilité d'emploi future d'un homme (d'une femme) actuellement payé au SMIC de 1,3 % (1,0 %). Pour ces salariés le salaire suit le SMIC, d'où une lecture comme élasticité « own-wage ». Aux États-Unis, l'effet trouvé est nettement plus faible (une baisse de 1 % du minimum réel augmente de 0,4 % pour les hommes la probabilité qu'un salarié au minimum vienne du non-emploi). Les élasticités sont bien plus fortes pour les jeunes hommes (-3,2 à -4,3 entre 26 et 35 ans, selon l'introduction). Document de travail non publié en revue."
+    - source: cengiz-et-al-2019
+      valeur: 0.411
+      intervalle_95: [-0.43, 1.25]
+      methode: "Méthode de « bunching » : comparaison des emplois disparus sous le nouveau minimum et des emplois apparus juste au-dessus, sur 138 hausses importantes des minima des États"
+      champ: "États-Unis, 1979-2016, emplois à bas salaire (effet sur cinq ans)"
+      pays: US
+      annee_donnees: 2016
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Version NBER (tableau 1, p. 16-17) : élasticité de l'emploi au salaire propre de 0,411 (e.t. 0,430) ; hausse du salaire des personnes concernées de 6,8 %. Intervalle calculé = 0,411 ± 1,96 × 0,430 ; les auteurs écrivent que l'intervalle exclut les élasticités plus négatives que -0,450. Le nombre total d'emplois à bas salaire est resté « essentiellement inchangé » ; un effet négatif apparaît dans les secteurs exposés au commerce international."
+    - source: dube-zipperer-2024
+      valeur: -0.13
+      intervalle_95: null
+      methode: "Recension systématique : élasticité « own-wage » (effet sur l'emploi divisé par l'effet sur le salaire moyen du groupe) reconstruite pour 88 études ; médiane des études publiées"
+      champ: "États-Unis, Royaume-Uni, Canada, Allemagne, Hongrie, Pays-Bas, Portugal, Tchéquie, Slovaquie ; études parues depuis 1992"
+      pays: INT
+      annee_donnees: null
+      type_etude: meta_analyse
+      revue_par_les_pairs: false
+      note: "Médiane des 72 études publiées en revue : -0,13 (moyenne -0,25) ; médiane des 88 études : -0,14 ; 56 études américaines publiées : médiane -0,11. Pour les 21 études publiées portant sur l'ensemble des bas salaires (et non des sous-groupes comme les adolescents), la médiane est de +0,02. Les estimations publiées depuis 2010 sont plus proches de zéro. Pas de correction du biais de publication. Aucune étude française n'y figure. Recoupe largement Dube (2019)."
+    - source: dube-2019
+      valeur: -0.16
+      intervalle_95: null
+      methode: "Revue de la littérature internationale : élasticités « own-wage » reconstruites (une estimation préférée par étude)"
+      champ: "International (surtout États-Unis et Royaume-Uni), études publiées jusqu'en 2019"
+      pays: INT
+      annee_donnees: null
+      type_etude: meta_analyse
+      revue_par_les_pairs: false
+      note: "§ 4.69 : la médiane des 48 estimations (divers pays et groupes) est d'environ -0,16 ; pour les études portant sur de larges groupes de salariés, elle est proche de zéro (-0,04). § 4.17 : médiane de -0,17 sur 36 estimations américaines. Rapport commandé par le gouvernement britannique ; base largement reprise et mise à jour dans Dube & Zipperer (2024) : les deux ne sont pas indépendants."
+    - source: neumark-shirley-2022
+      valeur: -0.27
+      intervalle_95: null
+      methode: "Recension de toutes les études publiées sur les États-Unis utilisant des variations infranationales du salaire minimum ; estimations « préférées » validées par les auteurs des études"
+      champ: "États-Unis, études publiées depuis le début des années 1990 ; sous-ensemble des études portant sur les salariés directement concernés par la hausse"
+      pays: US
+      annee_donnees: null
+      type_etude: meta_analyse
+      revue_par_les_pairs: true
+      note: "Pour les salariés directement concernés, la moyenne des estimations est de -0,270 (médiane -0,130) ; presque toutes sont négatives. Il s'agit d'élasticités de l'emploi au salaire minimum pour des salariés dont le salaire suit le minimum : elles approchent le concept « own-wage » ; si le salaire de ces personnes augmente de moins de 1 % quand le minimum augmente de 1 %, l'élasticité « own-wage » est encore plus négative, de sorte que la valeur retenue est plutôt une borne basse en valeur absolue. Sur l'ensemble des études : 79,2 % des estimations sont négatives, moyenne -0,148 et médiane -0,115, mais ce sont surtout des élasticités au salaire minimum (adolescents, jeunes), non comparables à une élasticité « own-wage ». Chiffres lus dans la version NBER WP 28388."
+    - source: doucouliagos-stanley-2009
+      valeur: null
+      intervalle_95: null
+      methode: "Méta-régression de 1 474 estimations issues de 64 études américaines, avec correction du biais de publication"
+      champ: "États-Unis, 64 études publiées (estimations de l'élasticité de l'emploi au salaire minimum)"
+      pays: US
+      annee_donnees: null
+      type_etude: meta_analyse
+      revue_par_les_pairs: true
+      note: "Résumé : la littérature est « contaminée » par un biais de sélection des publications, estimé légèrement plus grand que l'effet moyen publié ; une fois ce biais corrigé, il ne reste « peu ou pas » de relation négative entre salaire minimum et emploi. La valeur corrigée exacte n'a pas pu être lue (texte intégral inaccessible) et porte sur des élasticités au salaire minimum (surtout adolescents), non converties en « own-wage » : valeur laissée vide."
+    - source: harasztosi-lindner-2019
+      valeur: -0.18
+      intervalle_95: [-0.24, -0.12]
+      methode: "Comparaison d'entreprises inégalement exposées (selon leur structure de salaires avant la réforme) à une hausse forte et durable du salaire minimum"
+      champ: "Hongrie, hausse du salaire minimum de 35 % à 55 % du salaire médian à temps plein en deux ans ; effets suivis sur quatre ans"
+      pays: HU
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Élasticité « own-wage » de -0,18 (e.t. 0,03), « reported by authors on page 2695 » selon l'annexe de Dube & Zipperer (2024) ; Dube (2019) donne environ -0,2 avec la variation entre entreprises et environ -0,15 (non significatif) avec la variation région × groupe démographique. Intervalle = -0,18 ± 1,96 × 0,03. Résumé AER : élasticités négatives mais faibles ; environ 75 % du coût payé par les consommateurs (hausse des prix) ; pertes d'emploi plus fortes dans les secteurs exposés à la concurrence."
+    - source: dustmann-et-al-2022
+      valeur: 0.03
+      intervalle_95: [-0.21, 0.27]
+      methode: "Exposition différenciée des individus et des zones locales à l'introduction du salaire minimum national"
+      champ: "Allemagne, introduction du salaire minimum en 2015 (15 % des salariés concernés), données 2011-2016"
+      pays: DE
+      annee_donnees: 2016
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Note 27 de l'article : élasticité de l'emploi au salaire propre de 0,03 (e.t. 0,12). Intervalle = 0,03 ± 1,96 × 0,12 ; l'analyse régionale exclut une élasticité plus négative que -0,21. Résumé : le salaire minimum a relevé les salaires sans réduire l'emploi, et a réalloué les salariés vers des entreprises plus grandes et plus productives."
+    - source: jardim-et-al-2022
+      valeur: -1.75
+      intervalle_95: null
+      methode: "Contrôle synthétique (Seattle comparée au reste de l'État de Washington), données administratives sur les heures et les salaires"
+      champ: "Seattle (États-Unis), hausses du minimum à 11 $ (2015) puis 13 $ (2016) ; emplois payés moins de deux fois l'ancien minimum, emploi mesuré en heures travaillées"
+      pays: US
+      annee_donnees: 2016
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Le résumé indique des élasticités agrégées de l'emploi (en heures) comprises entre -0,2 et -2,0, et précise qu'elles peuvent surestimer l'effet car une partie des emplois est simplement passée au-dessus du seuil de salaire étudié. Valeur -1,75 = élasticité « own-wage » retenue par Dube & Zipperer (2024, annexe) à partir des tableaux 6a et 6c (spécification « SC levels », 2016:III), sans erreur-type. Au niveau individuel, pas de baisse de la probabilité de rester en emploi, mais moins d'heures et moins d'embauches de nouveaux salariés peu payés. Cas d'une seule ville avec un minimum très élevé."
+  note_synthese: "Les études ne sont pas d'accord sur l'ampleur de l'effet. Les travaux français anciens (données 1981-1998) trouvent des effets forts : quand le coût du travail au niveau du SMIC augmente de 1 %, l'emploi des salariés concernés baisserait de 1,3 à 1,5 %. Les études récentes à l'étranger trouvent en général des effets faibles : la médiane de 72 études publiées est de -0,13 (environ 13 % du gain de salaire annulé par des pertes d'emploi), et des travaux solides en Allemagne et aux États-Unis ne détectent aucune perte d'emploi. Au contraire, Neumark et Shirley rappellent que la grande majorité des estimations américaines sont négatives, surtout pour les salariés directement concernés, et le cas de Seattle montre une forte baisse des heures. Pour la France d'aujourd'hui, où le SMIC est élevé par rapport au salaire médian mais où les cotisations au niveau du SMIC ont été fortement allégées, l'effet reste donc incertain : probablement négatif, mais d'une ampleur qui va de faible à forte selon les études retenues."

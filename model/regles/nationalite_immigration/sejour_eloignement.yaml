@@ -1,0 +1,314 @@
+domaine: nationalite_immigration
+theme: "Séjour, asile et éloignement des étrangers"
+regles:
+  # ---------------------------------------------------------------------------
+  # Regroupement familial
+  # ---------------------------------------------------------------------------
+  - id: nationalite_immigration.regroupement_familial.duree_sejour_regulier
+    titre: "Regroupement familial : durée minimale de séjour régulier du demandeur"
+    explication: "Un étranger non européen qui veut faire venir son conjoint et ses enfants mineurs doit résider régulièrement en France depuis au moins 18 mois."
+    type: nombre
+    unite: mois
+    bornes: [0, 60]
+    valeurs:
+      - depuis: "2026-06-01"
+        valeur: 18
+        sources: [sp-f11166, legi-ceseda-l434-1-a-l434-12, cc-2023-863-dc]
+        article: "CESEDA, art. L434-1 à L434-12"
+    tags: [regroupement_familial, famille, sejour]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-06-01. La loi du 26 janvier 2024 avait réformé les conditions du regroupement familial (article 3), mais cette disposition a été censurée par le Conseil constitutionnel le 25 janvier 2024 (décision n° 2023-863 DC, cavalier législatif) : la durée de 18 mois est donc restée inchangée. À Mayotte, conditions particulières (3 ans de séjour avec un titre d'au moins 5 ans)."
+
+  - id: nationalite_immigration.regroupement_familial.ressources_min_2_3_personnes
+    titre: "Regroupement familial : ressources mensuelles minimales pour une famille de 2 ou 3 personnes"
+    explication: "Le demandeur doit justifier de ressources stables et suffisantes : pour une famille de 2 ou 3 personnes, au moins la moyenne du SMIC brut mensuel sur les 12 derniers mois (hors prestations familiales, RSA et minima sociaux)."
+    type: nombre
+    unite: euros
+    bornes: [0, 5000]
+    valeurs:
+      - depuis: "2026-06-01"
+        valeur: 1867.02
+        sources: [sp-f11166, legi-ceseda-l434-1-a-l434-12]
+    tags: [regroupement_familial, ressources, smic]
+    a_verifier: false
+    note: "Montant brut mensuel moyen indiqué par service-public (fiche vérifiée le 1er juin 2026) ; il suit le SMIC. Seuils plus élevés pour les familles plus nombreuses : 2 053,72 € pour 4 ou 5 personnes, 2 240,42 € pour 6 personnes ou plus. Pas de condition de ressources pour les bénéficiaires de l'AAH ou de l'ASI, ni pour faire venir son conjoint lorsqu'on a plus de 65 ans, 25 ans de résidence régulière en France et 10 ans de mariage."
+
+  # ---------------------------------------------------------------------------
+  # Titres de séjour : durées
+  # ---------------------------------------------------------------------------
+  - id: nationalite_immigration.titres_sejour.carte_sejour_temporaire_duree
+    titre: "Carte de séjour temporaire : durée de validité"
+    explication: "La carte de séjour temporaire, souvent le premier titre délivré en France (comme le visa long séjour valant titre de séjour), est valable 1 an."
+    type: nombre
+    unite: ans
+    bornes: [0, 4]
+    valeurs:
+      - depuis: "2026-05-01"
+        valeur: 1
+        sources: [sp-f2209]
+    tags: [titre_de_sejour, carte_temporaire, duree]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-05-01 (exemple de la carte « vie privée et familiale » ; le visa long séjour valant titre de séjour d'un conjoint de Français est également valable 1 an)."
+
+  - id: nationalite_immigration.titres_sejour.carte_pluriannuelle_duree_max
+    titre: "Carte de séjour pluriannuelle : durée de validité (cas général)"
+    explication: "Après une première année de séjour, l'étranger peut obtenir une carte de séjour pluriannuelle, valable en principe 4 ans (par exemple « salarié » ou regroupement familial)."
+    type: nombre
+    unite: ans
+    bornes: [1, 10]
+    valeurs:
+      - depuis: "2026-05-01"
+        valeur: 4
+        sources: [sp-f35799, legi-ceseda-l433-1-a-l433-7]
+        article: "CESEDA, art. L433-1 à L433-7"
+    tags: [titre_de_sejour, carte_pluriannuelle, duree]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-05-01. Durée maximale de 2 ans pour la carte « vie privée et familiale » (conjoint ou parent de Français, liens personnels et familiaux, étrangers malades) ; pour les étudiants, durée du cycle d'études, sans dépasser 4 ans."
+
+  - id: nationalite_immigration.titres_sejour.carte_resident_duree
+    titre: "Carte de résident : durée de validité"
+    explication: "La carte de résident est valable 10 ans et renouvelable ; elle cesse d'être valable si son titulaire quitte la France plus de 3 ans d'affilée."
+    type: nombre
+    unite: ans
+    bornes: [1, 20]
+    valeurs:
+      - depuis: "2026-07-01"
+        valeur: 10
+        sources: [sp-f2208]
+    tags: [titre_de_sejour, carte_resident, duree]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-07-01."
+
+  # ---------------------------------------------------------------------------
+  # Titres de séjour : niveau de français et examen civique
+  # ---------------------------------------------------------------------------
+  - id: nationalite_immigration.titres_sejour.niveau_langue_carte_pluriannuelle
+    titre: "Première carte de séjour pluriannuelle : niveau de français exigé"
+    explication: "Depuis le 1er janvier 2026, un étranger de moins de 65 ans qui demande sa première carte de séjour pluriannuelle doit prouver un niveau de français A2 (usage simple de la langue au quotidien). Auparavant, il devait seulement suivre avec assiduité les formations du contrat d'intégration républicaine."
+    type: choix
+    choix: ["aucun", "A1", "A2", "B1", "B2"]
+    valeurs:
+      - depuis: "2025-07-15"
+        valeur: "aucun"
+        sources: [an-qe-17-7202]
+      - depuis: "2026-01-01"
+        valeur: "A2"
+        sources: [sp-f34501, sp-f35799, legi-arrete-2025-12-22-francais-titres-sejour]
+    tags: [titre_de_sejour, carte_pluriannuelle, langue, integration, reforme_2026]
+    a_verifier: false
+    note: "Valeur « aucun » attestée au 2025-07-15 par la réponse ministérielle à la question écrite n° 7202 (passage d'une obligation de moyen, se former, à une obligation de résultat) ; date d'entrée en vigueur de ce régime non établie. Exigence A2 issue de la loi du 26 janvier 2024, applicable depuis le 1er janvier 2026. Certaines cartes ne sont pas concernées (titres hors contrat d'intégration républicaine, protection subsidiaire, apatrides)."
+
+  - id: nationalite_immigration.titres_sejour.niveau_langue_carte_resident
+    titre: "Première carte de résident : niveau de français exigé"
+    explication: "Depuis le 1er janvier 2026, un étranger de moins de 65 ans qui demande sa première carte de résident (10 ans) doit prouver un niveau de français B1 (usage autonome de la langue), contre A2 auparavant."
+    type: choix
+    choix: ["aucun", "A1", "A2", "B1", "B2"]
+    valeurs:
+      - depuis: "2025-07-15"
+        valeur: "A2"
+        sources: [an-qe-17-7202]
+      - depuis: "2026-01-01"
+        valeur: "B1"
+        sources: [sp-f34501, legi-ceseda-r413-15, legi-arrete-2025-12-22-francais-titres-sejour]
+        article: "CESEDA, art. R413-15"
+    tags: [titre_de_sejour, carte_resident, langue, integration, reforme_2026]
+    a_verifier: false
+    note: "Valeur A2 attestée au 2025-07-15 par la réponse ministérielle à la question écrite n° 7202 ; date d'entrée en vigueur de l'exigence A2 non établie. Exigence B1 issue de la loi du 26 janvier 2024, applicable depuis le 1er janvier 2026, également pour la carte de résident longue durée-UE et la carte de résident permanent (toutes les cartes de résident ne sont pas concernées)."
+
+  - id: nationalite_immigration.titres_sejour.examen_civique_obligatoire
+    titre: "Première carte pluriannuelle ou carte de résident : réussite obligatoire à l'examen civique"
+    explication: "Depuis le 1er janvier 2026, un étranger non européen doit avoir réussi l'examen civique, à l'issue d'une formation civique de 24 heures, pour obtenir sa première carte de séjour pluriannuelle ou sa première carte de résident."
+    type: booleen
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: true
+        sources: [sp-a18713, sp-f34501, sp-f35799]
+    tags: [titre_de_sejour, examen_civique, integration, reforme_2026]
+    a_verifier: false
+    note: "Exigence créée par la loi du 26 janvier 2024. Pas d'examen pour un renouvellement, pour les bénéficiaires d'une protection internationale notamment, ni pour les plus de 65 ans (carte pluriannuelle)."
+
+  # ---------------------------------------------------------------------------
+  # Rétention administrative
+  # ---------------------------------------------------------------------------
+  - id: nationalite_immigration.retention.duree_placement_initial
+    titre: "Rétention administrative : durée du placement initial décidé par le préfet"
+    explication: "Le préfet peut placer en centre de rétention un étranger en attente d'éloignement pour 4 jours ; au-delà, seul un juge peut prolonger la rétention."
+    type: nombre
+    unite: jours
+    bornes: [1, 10]
+    valeurs:
+      - depuis: "2024-07-15"
+        valeur: 4
+        sources: [interieur-circ-2024-07-14-contentieux-etrangers, sp-f2780, legi-ceseda-l741-1-a-l741-9]
+        article: "CESEDA, art. L741-1"
+    tags: [retention, eloignement, liberte_individuelle, reforme_2024]
+    a_verifier: false
+    note: "La loi du 26 janvier 2024 a porté le placement initial de 48 heures à 4 jours, et réduit la première prolongation à 26 jours, sans changer la durée totale ; entrée en vigueur le 15 juillet 2024 selon la circulaire du 14 juillet 2024."
+
+  - id: nationalite_immigration.retention.duree_max_cas_general
+    titre: "Rétention administrative : durée maximale (cas général)"
+    explication: "Un étranger en attente d'éloignement peut être retenu au maximum 90 jours au total en centre de rétention ; au-delà des 4 premiers jours, chaque prolongation est décidée par un juge."
+    type: nombre
+    unite: jours
+    bornes: [0, 210]
+    valeurs:
+      - depuis: "2024-12-03"
+        valeur: 90
+        sources: [sp-f2780, cc-2025-895-dc, legi-ceseda-l742-4-a-l742-7]
+        article: "CESEDA, art. L742-4"
+    tags: [retention, eloignement, liberte_individuelle]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2024-12-03. La loi de 2025 « visant à faciliter le maintien en rétention » prévoit, au-delà de 60 jours, une nouvelle prolongation de 30 jours à la place des deux prolongations exceptionnelles de 15 jours, sans modifier le maximum de 90 jours (disposition validée sous réserve par le Conseil constitutionnel, décision n° 2025-895 DC du 7 août 2025)."
+
+  - id: nationalite_immigration.retention.duree_max_derogatoire
+    titre: "Rétention administrative : durée maximale dérogatoire (terrorisme, crimes graves)"
+    explication: "Pour un étranger condamné pour terrorisme ou expulsé pour activités terroristes, et depuis 2026 pour certains étrangers condamnés pour des crimes ou délits graves et très dangereux, la rétention peut exceptionnellement durer jusqu'à 180 jours, voire 210 jours."
+    type: nombre
+    unite: jours
+    bornes: [90, 540]
+    valeurs:
+      - depuis: "2024-12-03"
+        valeur: 210
+        sources: [sp-f2780, cc-2025-895-dc, cc-2026-906-dc, legi-ceseda-l742-4-a-l742-7]
+        article: "CESEDA, art. L742-6 et L742-7"
+    tags: [retention, eloignement, terrorisme, reforme_2026]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2024-12-03. Maximum de 180 jours, porté exceptionnellement à 210 jours. En 2025, l'extension de ce régime à d'autres étrangers a été censurée (décision n° 2025-895 DC). La loi n° 2026-667 du 27 juillet 2026 (article 9) l'a étendu aux étrangers condamnés définitivement pour certains crimes ou délits punis d'au moins 5 ans de prison et représentant une menace d'une particulière gravité ; cette extension a été validée (décision n° 2026-906 DC du 23 juillet 2026). Le régime dérogatoire ne s'ouvre qu'après 90 jours de rétention."
+
+  - id: nationalite_immigration.retention.duree_cumulee_max
+    titre: "Rétention administrative : durée cumulée maximale en cas de placements successifs"
+    explication: "Depuis la loi de juillet 2026, un étranger peut être replacé en rétention pour la même mesure d'éloignement (5 placements au plus), mais la durée totale cumulée ne peut pas dépasser 360 jours (540 jours pour les cas les plus graves)."
+    type: nombre
+    unite: jours
+    bornes: [90, 720]
+    valeurs:
+      - depuis: "2026-07-27"
+        valeur: 360
+        sources: [cc-2026-906-dc, legi-loi-2026-667]
+        article: "CESEDA, art. L741-7 (rédaction issue de l'article 10 de la loi n° 2026-667 du 27 juillet 2026)"
+    tags: [retention, eloignement, reforme_2026]
+    a_verifier: true
+    note: "Date d'entrée en vigueur non établie (loi du 27 juillet 2026, publiée au Journal officiel du 28 juillet 2026 selon la décision du Conseil constitutionnel) ; valeur attestée au 2026-07-27. Contenu connu uniquement par la décision n° 2026-906 DC qui l'a validé ; la fiche service-public sur la rétention est en cours de mise à jour. Durée cumulée portée à 540 jours pour les étrangers liés au terrorisme ou condamnés pour certains crimes ou délits graves. Délai de 48 heures minimum entre deux placements."
+
+  # ---------------------------------------------------------------------------
+  # Obligation de quitter le territoire (OQTF) et interdiction de retour
+  # ---------------------------------------------------------------------------
+  - id: nationalite_immigration.oqtf.delai_depart_volontaire
+    titre: "OQTF : délai de départ volontaire"
+    explication: "L'étranger qui reçoit une obligation de quitter le territoire français dispose en principe de 30 jours pour partir par ses propres moyens ; dans certains cas (menace pour l'ordre public, risque de fuite, fraude), l'OQTF est sans délai."
+    type: nombre
+    unite: jours
+    bornes: [0, 90]
+    valeurs:
+      - depuis: "2024-11-13"
+        valeur: 30
+        sources: [sp-f18362, legi-ceseda-l611-1-a-l611-3]
+    tags: [oqtf, eloignement, delai]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2024-11-13. Le préfet peut exceptionnellement prolonger ce délai. Une OQTF peut être exécutée pendant 3 ans."
+
+  - id: nationalite_immigration.oqtf.delai_recours_cas_general
+    titre: "OQTF : délai pour contester la décision devant le tribunal (cas général)"
+    explication: "Un étranger visé par une OQTF qui n'est ni assigné à résidence ni placé en rétention a 1 mois pour saisir le tribunal administratif, qui a ensuite 6 mois pour juger. Le recours empêche l'éloignement tant que le tribunal n'a pas statué."
+    type: nombre
+    unite: mois
+    bornes: [0, 3]
+    valeurs:
+      - depuis: "2024-07-15"
+        valeur: 1
+        sources: [interieur-circ-2024-07-14-contentieux-etrangers, sp-f18362, legi-ceseda-l900-1-a-l931-4]
+        article: "CESEDA, art. L911-1"
+    tags: [oqtf, eloignement, recours, reforme_2024]
+    a_verifier: false
+    note: "Délai unifié par la loi du 26 janvier 2024 (réforme du contentieux entrée en vigueur le 15 juillet 2024) : auparavant 48 heures pour une OQTF sans délai de départ volontaire. Délai réduit à 7 jours en cas d'assignation à résidence ou de détention. La fiche service-public est en cours de mise à jour après les décrets de 2026 liés au pacte européen, qui modifient les délais de recours contre « certaines décisions d'éloignement » ; le délai d'un mois de la procédure ordinaire, fixé par la loi, n'est pas mentionné comme modifié."
+
+  - id: nationalite_immigration.oqtf.delai_recours_retention
+    titre: "OQTF : délai pour contester la décision en cas de rétention"
+    explication: "Si l'étranger est placé en centre de rétention, il n'a que 48 heures pour contester l'OQTF devant le tribunal administratif, qui juge ensuite en 96 heures."
+    type: nombre
+    unite: heures
+    bornes: [0, 240]
+    valeurs:
+      - depuis: "2024-07-15"
+        valeur: 48
+        sources: [interieur-circ-2024-07-14-contentieux-etrangers, sp-f18362, legi-ceseda-l900-1-a-l931-4]
+        article: "CESEDA, art. L921-2"
+    tags: [oqtf, eloignement, recours, retention]
+    a_verifier: false
+    note: "Procédure prioritaire maintenue par la réforme du contentieux entrée en vigueur le 15 juillet 2024 (date de début de la valeur dans sa forme actuelle ; la procédure de 48 heures existait déjà auparavant selon la circulaire du 14 juillet 2024)."
+
+  - id: nationalite_immigration.irtf.duree_max
+    titre: "Interdiction de retour sur le territoire (IRTF) : durée maximale"
+    explication: "Le préfet peut assortir une OQTF d'une interdiction de revenir en France et dans l'espace Schengen pendant au plus 5 ans ; elle est automatique quand aucun délai de départ n'est accordé ou que l'étranger n'est pas parti dans les 30 jours."
+    type: nombre
+    unite: ans
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2024-11-13"
+        valeur: 5
+        sources: [sp-f18362, sp-f2782, legi-ceseda-l612-6-a-l612-11]
+        article: "CESEDA, art. L612-6 à L612-11"
+    tags: [irtf, eloignement, oqtf, schengen]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2024-11-13. Jusqu'à 10 ans en cas de menace grave pour l'ordre public (voir règle dédiée). Des circonstances humanitaires peuvent justifier de ne pas la prononcer."
+
+  - id: nationalite_immigration.irtf.duree_max_menace_grave
+    titre: "Interdiction de retour sur le territoire (IRTF) : durée maximale en cas de menace grave"
+    explication: "Pour un étranger qui représente une menace grave pour l'ordre public, l'interdiction de retour accompagnant une OQTF sans délai peut aller jusqu'à 10 ans."
+    type: nombre
+    unite: ans
+    bornes: [0, 20]
+    valeurs:
+      - depuis: "2024-11-13"
+        valeur: 10
+        sources: [sp-f18362, legi-ceseda-l612-6-a-l612-11]
+        article: "CESEDA, art. L612-6 à L612-11"
+    tags: [irtf, eloignement, ordre_public]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2024-11-13."
+
+  # ---------------------------------------------------------------------------
+  # Asile
+  # ---------------------------------------------------------------------------
+  - id: nationalite_immigration.asile.delai_recours_cnda
+    titre: "Asile : délai de recours devant la CNDA (procédure normale)"
+    explication: "Si l'OFPRA rejette une demande d'asile, le demandeur a 1 mois à partir de la notification pour faire appel devant la Cour nationale du droit d'asile (CNDA)."
+    type: nombre
+    unite: mois
+    bornes: [0, 3]
+    valeurs:
+      - depuis: "2025-11-18"
+        valeur: 1
+        sources: [sp-f2675, cnda-procedure-normale, legi-ceseda-l532-1-a-l532-15]
+        article: "CESEDA, art. L532-1 à L532-15"
+    tags: [asile, cnda, recours]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-11-18 et confirmée en octobre 2026 par la CNDA après l'entrée en application du pacte européen (12 juin 2026). Le délai est suspendu si l'aide juridictionnelle est demandée dans les 15 jours."
+
+  - id: nationalite_immigration.asile.delai_recours_cnda_procedure_acceleree
+    titre: "Asile : délai de recours devant la CNDA (procédure accélérée, irrecevabilité, frontière)"
+    explication: "Pour les demandes d'asile déposées depuis le 12 juin 2026 et traitées en procédure accélérée, déclarées irrecevables ou examinées à la frontière, le délai pour saisir la CNDA est de 10 jours ; le recours vaut alors demande d'aide juridictionnelle."
+    type: nombre
+    unite: jours
+    bornes: [0, 31]
+    valeurs:
+      - depuis: "2026-06-12"
+        valeur: 10
+        sources: [cnda-pacte-2026, cnda-procedure-acceleree]
+    tags: [asile, cnda, recours, pacte_europeen, reforme_2026]
+    a_verifier: false
+    note: "Changement lié à l'application du pacte européen sur la migration et l'asile aux demandes introduites à compter du 12 juin 2026. Auparavant, le délai était d'1 mois quelle que soit la procédure (sp-f2675, fiche vérifiée le 18 novembre 2025)."
+
+  - id: nationalite_immigration.asile.ada_montant_journalier_personne_seule
+    titre: "Allocation pour demandeur d'asile (ADA) : montant journalier pour une personne seule"
+    explication: "Un demandeur d'asile majeur qui accepte les conditions d'accueil proposées et a peu de ressources touche une allocation de 6,80 € par jour s'il est seul ; un supplément s'ajoute s'il n'est pas hébergé gratuitement."
+    type: nombre
+    unite: euros
+    bornes: [0, 50]
+    valeurs:
+      - depuis: "2026-04-01"
+        valeur: 6.80
+        sources: [sp-f33314, legi-ceseda-l553-1-a-l553-3]
+    tags: [asile, ada, allocation, accueil]
+    a_verifier: true
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-04-01. Avec le montant supplémentaire (absence d'hébergement gratuit) : 14,20 € par jour pour une personne seule ; 10,20 € par jour pour 2 personnes. À vérifier : la fiche service-public est en cours de mise à jour après les décrets de juin à octobre 2026 liés au pacte européen, qui modifient les conditions matérielles d'accueil ; le site de l'OFII n'a pas pu être consulté (protection anti-robot)."

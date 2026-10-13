@@ -1,0 +1,308 @@
+domaine: justice_penale
+theme: "Délinquance économique et financière"
+regles:
+  # --- Fraude fiscale ---
+  - id: justice_penale.fraude_fiscale.prison_max
+    titre: "Fraude fiscale : peine maximale de prison"
+    explication: "Se soustraire volontairement à l'impôt (ne pas déclarer, dissimuler des sommes…) est un délit. En plus des pénalités fiscales, le fraudeur risque jusqu'à 5 ans de prison."
+    type: nombre
+    unite: ans
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2019-06-27"
+        valeur: 5
+        sources: [bofip-boi-cf-inf-40-10-10-50, sp-f31451, legi-cgi-1741]
+        article: "Code général des impôts, art. 1741"
+    tags: [peine, delit, fraude_fiscale, impots, economie]
+    a_verifier: false
+    note: "Les poursuites pénales sont engagées après avis de la Commission des infractions fiscales. Peine de prison réduite de moitié pour l'auteur qui aide à identifier les autres auteurs. Date d'entrée en vigueur non établie ; valeur attestée au 2019-06-27 (version du BOFiP)."
+
+  - id: justice_penale.fraude_fiscale.amende_max
+    titre: "Fraude fiscale : amende pénale maximale (montant fixe)"
+    explication: "Le fraudeur risque une amende pénale de 500 000 € au maximum, en plus des majorations fiscales (jusqu'à 80 % en cas de manœuvres frauduleuses). Ce plafond peut être dépassé : voir l'amende proportionnelle au produit de la fraude."
+    type: nombre
+    unite: euros
+    bornes: [0, 5000000]
+    valeurs:
+      - depuis: "2019-06-27"
+        valeur: 500000
+        sources: [bofip-boi-cf-inf-40-10-10-50, sp-f31451, legi-cgi-1741]
+        article: "Code général des impôts, art. 1741"
+    tags: [peine, amende, delit, fraude_fiscale, impots, economie]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2019-06-27 (version du BOFiP)."
+
+  - id: justice_penale.fraude_fiscale.amende_multiple_du_produit
+    titre: "Fraude fiscale : amende portée jusqu'à un multiple du produit de la fraude"
+    explication: "Le juge peut porter l'amende jusqu'au double de ce que la fraude a rapporté, si ce montant dépasse le plafond fixe."
+    type: nombre
+    unite: ratio
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2018-10-23"
+        valeur: 2
+        sources: [bofip-boi-cf-inf-40-10-10-50, legi-cgi-1741]
+        article: "Code général des impôts, art. 1741 (loi n° 2018-898 du 23 octobre 2018, art. 23)"
+    tags: [peine, amende, fraude_fiscale, impots, economie]
+    a_verifier: false
+    note: "Date retenue : celle de la loi n° 2018-898 du 23 octobre 2018 relative à la lutte contre la fraude ; date exacte d'entrée en vigueur non lue. Vaut aussi pour la fraude aggravée."
+
+  - id: justice_penale.fraude_fiscale_aggravee.prison_max
+    titre: "Fraude fiscale aggravée : peine maximale de prison"
+    explication: "La fraude est aggravée si elle est commise en bande organisée ou grâce à des comptes ou sociétés écrans à l'étranger, une fausse identité, de faux documents ou une domiciliation fictive à l'étranger. La prison encourue monte alors à 7 ans."
+    type: nombre
+    unite: ans
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2013-12-08"
+        valeur: 7
+        sources: [bofip-boi-cf-inf-40-10-10-50, sp-f31451, legi-cgi-1741]
+        article: "Code général des impôts, art. 1741 (loi n° 2013-1117 du 6 décembre 2013)"
+    tags: [peine, delit, fraude_fiscale, impots, economie]
+    a_verifier: false
+    note: "Le BOFiP indique que ces peines s'appliquent aux faits commis à compter du 8 décembre 2013, date d'entrée en vigueur de la loi n° 2013-1117. Avant, deux circonstances aggravantes distinctes existaient (fausse facturation : 5 ans et 750 000 € ; lien avec les paradis fiscaux : 7 ans et 1 000 000 €)."
+
+  - id: justice_penale.fraude_fiscale_aggravee.amende_max
+    titre: "Fraude fiscale aggravée : amende pénale maximale (montant fixe)"
+    explication: "En cas de fraude fiscale aggravée, l'amende pénale peut atteindre 3 millions d'euros (ou le double du produit de la fraude s'il est plus élevé)."
+    type: nombre
+    unite: euros
+    bornes: [0, 10000000]
+    valeurs:
+      - depuis: "2013-12-08"
+        valeur: 2000000
+        sources: [bofip-boi-cf-inf-40-10-10-50]
+        article: "Code général des impôts, art. 1741 (loi n° 2013-1117 du 6 décembre 2013)"
+      - depuis: "2018-01-01"
+        valeur: 3000000
+        sources: [bofip-boi-cf-inf-40-10-10-50, sp-f31451, legi-cgi-1741]
+        article: "Code général des impôts, art. 1741 (loi n° 2017-1837 du 30 décembre 2017 de finances pour 2018)"
+    tags: [peine, amende, delit, fraude_fiscale, impots, economie]
+    a_verifier: false
+    note: "Montant de 2013 écrit « 2 000 0000 € » (coquille) dans un paragraphe du BOFiP, mais confirmé à 2 000 000 € dans le paragraphe suivant (« de 2 000 000 € à 3 000 000 € »). Le passage à 3 000 000 € s'applique aux faits commis à compter du 1er janvier 2018."
+
+  - id: justice_penale.fraude_fiscale.prescription_ans
+    titre: "Fraude fiscale : délai de prescription des poursuites pénales"
+    explication: "Les poursuites pénales pour fraude fiscale peuvent être engagées pendant 6 ans, à compter de l'année qui suit l'infraction."
+    type: nombre
+    unite: ans
+    bornes: [0, 12]
+    valeurs:
+      - depuis: "2026-07-02"
+        valeur: 6
+        sources: [sp-f31451, legi-lpf-l227]
+        article: "Livre des procédures fiscales, art. L227 à L233"
+    tags: [prescription, fraude_fiscale, impots, economie]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-07-02. Le contrôle des documents comptables peut porter sur 10 ans."
+
+  # --- Atteintes à la probité ---
+  - id: justice_penale.corruption_agent_public.prison_max
+    titre: "Corruption d'un agent public (active ou passive) : peine maximale de prison"
+    explication: "Offrir un avantage à un agent public pour qu'il agisse ou s'abstienne (corruption active), ou l'accepter quand on est agent public (corruption passive), est puni de 10 ans de prison."
+    type: nombre
+    unite: ans
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2026-10-13"
+        valeur: 10
+        sources: [afa-lexique]
+        article: "Code pénal, art. 432-11 et s., 433-1 et s."
+    tags: [peine, delit, corruption, probite, economie]
+    a_verifier: false
+    note: "Lu sur le lexique de l'AFA (page non datée, consultée via WebFetch). Date d'entrée en vigueur non établie ; valeur attestée au 2026-10-13."
+
+  - id: justice_penale.corruption_agent_public.amende_max
+    titre: "Corruption d'un agent public : amende maximale (montant fixe)"
+    explication: "La corruption d'un agent public est punie d'une amende d'1 million d'euros au maximum, qui peut être portée au double de ce que l'infraction a rapporté."
+    type: nombre
+    unite: euros
+    bornes: [0, 5000000]
+    valeurs:
+      - depuis: "2026-10-13"
+        valeur: 1000000
+        sources: [afa-lexique]
+        article: "Code pénal, art. 432-11 et s., 433-1 et s."
+    tags: [peine, amende, delit, corruption, probite, economie]
+    a_verifier: false
+    note: "Lu sur le lexique de l'AFA (page non datée, consultée via WebFetch). Date d'entrée en vigueur non établie ; valeur attestée au 2026-10-13."
+
+  - id: justice_penale.corruption_agent_public.amende_multiple_du_produit
+    titre: "Corruption d'un agent public : amende portée jusqu'à un multiple du produit de l'infraction"
+    explication: "Le juge peut porter l'amende jusqu'au double de ce que la corruption a rapporté."
+    type: nombre
+    unite: ratio
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2026-10-13"
+        valeur: 2
+        sources: [afa-lexique]
+        article: "Code pénal, art. 432-11 et s., 433-1 et s."
+    tags: [peine, amende, corruption, probite, economie]
+    a_verifier: false
+    note: "Même règle du double du produit pour le trafic d'influence, la prise illégale d'intérêts, le détournement de fonds publics et la concussion selon l'AFA. Date d'entrée en vigueur non établie ; valeur attestée au 2026-10-13."
+
+  - id: justice_penale.corruption_privee.prison_max
+    titre: "Corruption privée : peine maximale de prison"
+    explication: "La corruption entre personnes privées (par exemple un salarié qui accepte un pot-de-vin d'un fournisseur) est punie de 5 ans de prison et 500 000 € d'amende."
+    type: nombre
+    unite: ans
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2026-10-13"
+        valeur: 5
+        sources: [afa-lexique]
+        article: "Code pénal, art. 445-1 et s."
+    tags: [peine, delit, corruption, economie]
+    a_verifier: false
+    note: "Amende associée : 500 000 €. Lu sur le lexique de l'AFA (page non datée, consultée via WebFetch). Date d'entrée en vigueur non établie ; valeur attestée au 2026-10-13."
+
+  - id: justice_penale.trafic_influence.prison_max
+    titre: "Trafic d'influence : peine maximale de prison"
+    explication: "Monnayer son influence, réelle ou supposée, sur une autorité pour obtenir une décision favorable (emploi, marché, distinction…) est puni de 10 ans de prison."
+    type: nombre
+    unite: ans
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2026-10-13"
+        valeur: 10
+        sources: [afa-lexique]
+        article: "Code pénal, art. 432-11 2° et s., 433-1 2° et s."
+    tags: [peine, delit, trafic_influence, probite, economie]
+    a_verifier: false
+    note: "Lu sur le lexique de l'AFA (page non datée, consultée via WebFetch). Date d'entrée en vigueur non établie ; valeur attestée au 2026-10-13."
+
+  - id: justice_penale.trafic_influence.amende_max
+    titre: "Trafic d'influence : amende maximale (montant fixe)"
+    explication: "Le trafic d'influence est puni d'une amende d'1 million d'euros au maximum, qui peut être portée au double du produit de l'infraction."
+    type: nombre
+    unite: euros
+    bornes: [0, 5000000]
+    valeurs:
+      - depuis: "2026-10-13"
+        valeur: 1000000
+        sources: [afa-lexique]
+        article: "Code pénal, art. 432-11 2° et s., 433-1 2° et s."
+    tags: [peine, amende, delit, trafic_influence, probite, economie]
+    a_verifier: false
+    note: "Lu sur le lexique de l'AFA (page non datée, consultée via WebFetch). Date d'entrée en vigueur non établie ; valeur attestée au 2026-10-13."
+
+  - id: justice_penale.prise_illegale_interets.prison_max
+    titre: "Prise illégale d'intérêts : peine maximale de prison"
+    explication: "Un élu ou un agent public qui garde un intérêt personnel dans une affaire qu'il surveille ou gère, au point de compromettre son impartialité, risque 5 ans de prison."
+    type: nombre
+    unite: ans
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2026-10-13"
+        valeur: 5
+        sources: [afa-lexique]
+        article: "Code pénal, art. 432-12"
+    tags: [peine, delit, prise_illegale_interets, probite, elus, economie]
+    a_verifier: false
+    note: "Selon le lexique de l'AFA, la loi n° 2025-1249 du 22 décembre 2025 a modifié la définition de l'intérêt pris en compte (exclusion notamment de l'intérêt public et de cas d'« impérieux motif d'intérêt général ») ; aucun changement de peine n'y est signalé. Lu via WebFetch. Date d'entrée en vigueur non établie ; valeur attestée au 2026-10-13."
+
+  - id: justice_penale.prise_illegale_interets.amende_max
+    titre: "Prise illégale d'intérêts : amende maximale (montant fixe)"
+    explication: "La prise illégale d'intérêts est punie d'une amende de 500 000 € au maximum, qui peut être portée au double du produit de l'infraction."
+    type: nombre
+    unite: euros
+    bornes: [0, 2000000]
+    valeurs:
+      - depuis: "2026-10-13"
+        valeur: 500000
+        sources: [afa-lexique]
+        article: "Code pénal, art. 432-12"
+    tags: [peine, amende, delit, prise_illegale_interets, probite, elus, economie]
+    a_verifier: false
+    note: "Lu sur le lexique de l'AFA (page non datée, consultée via WebFetch). Date d'entrée en vigueur non établie ; valeur attestée au 2026-10-13."
+
+  - id: justice_penale.favoritisme.prison_max
+    titre: "Favoritisme dans les marchés publics : peine maximale de prison"
+    explication: "Avantager injustement une entreprise dans l'attribution d'un marché public est puni de 2 ans de prison et 200 000 € d'amende."
+    type: nombre
+    unite: ans
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2026-10-13"
+        valeur: 2
+        sources: [afa-lexique]
+    tags: [peine, delit, favoritisme, probite, marches_publics, economie]
+    a_verifier: false
+    note: "Amende associée : 200 000 €. Lu sur le lexique de l'AFA (page non datée, consultée via WebFetch). Date d'entrée en vigueur non établie ; valeur attestée au 2026-10-13."
+
+  - id: justice_penale.detournement_fonds_publics.prison_max
+    titre: "Détournement de fonds publics : peine maximale de prison"
+    explication: "Une personne chargée d'argent ou de biens publics qui les détourne risque 10 ans de prison et 1 million d'euros d'amende (ou le double du produit de l'infraction)."
+    type: nombre
+    unite: ans
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2026-10-13"
+        valeur: 10
+        sources: [afa-lexique]
+    tags: [peine, delit, detournement, probite, economie]
+    a_verifier: false
+    note: "Amende associée : 1 000 000 €. Lu sur le lexique de l'AFA (page non datée, consultée via WebFetch). Date d'entrée en vigueur non établie ; valeur attestée au 2026-10-13."
+
+  # --- Justice négociée ---
+  - id: justice_penale.cjip.amende_max_pourcent_ca
+    titre: "Convention judiciaire d'intérêt public (CJIP) : plafond de l'amende en % du chiffre d'affaires"
+    explication: "Une entreprise poursuivie pour corruption, trafic d'influence, fraude fiscale ou blanchiment peut éviter un procès en signant une CJIP. Elle paie alors une amende d'intérêt public, proportionnée aux avantages tirés des faits, qui peut aller jusqu'à 30 % de son chiffre d'affaires annuel."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 50]
+    valeurs:
+      - depuis: "2016-12-09"
+        valeur: 30
+        sources: [justice-cjip-ressources]
+        article: "Code de procédure pénale, art. 41-1-2 (loi « Sapin II » du 9 décembre 2016)"
+    tags: [cjip, entreprises, corruption, fraude_fiscale, procedure, economie]
+    a_verifier: false
+    note: "Date retenue : celle de la loi du 9 décembre 2016 dite « Sapin II » qui a créé la CJIP (entrée en vigueur exacte non lue). La CJIP peut aussi imposer un programme de mise en conformité de 3 ans maximum sous le contrôle de l'AFA. Un mécanisme similaire existe depuis la loi du 24 décembre 2020 pour les délits environnementaux (art. 41-1-3)."
+
+  # --- Blanchiment, abus de biens sociaux (sources d'appoint) ---
+  - id: justice_penale.blanchiment_aggrave.prison_max
+    titre: "Blanchiment aggravé : peine maximale de prison"
+    explication: "Le blanchiment consiste à faire entrer de l'argent issu d'une infraction dans l'économie légale pour en cacher l'origine. Dans sa forme aggravée (article 324-2 du code pénal), il est puni de 10 ans de prison et 750 000 € d'amende."
+    type: nombre
+    unite: ans
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2026-10-03"
+        valeur: 10
+        sources: [wikipedia-blanchiment-argent]
+        article: "Code pénal, art. 324-2"
+    tags: [peine, delit, blanchiment, economie]
+    a_verifier: true
+    note: "Valeur trouvée uniquement sur Wikipédia (article 324-2 cité : 10 ans et 750 000 €). La peine du blanchiment simple (art. 324-1) n'a pas été lue sur une source. Date d'entrée en vigueur non établie ; valeur attestée au 2026-10-03."
+
+  - id: justice_penale.abus_biens_sociaux.prison_max
+    titre: "Abus de biens sociaux : peine maximale de prison"
+    explication: "Un dirigeant de société qui utilise de mauvaise foi les biens ou le crédit de la société à des fins personnelles commet un abus de biens sociaux, puni de 5 ans de prison."
+    type: nombre
+    unite: ans
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2026-06-14"
+        valeur: 5
+        sources: [wikipedia-abus-de-biens-sociaux]
+        article: "Code de commerce, art. L241-3 et L242-6"
+    tags: [peine, delit, abus_de_biens_sociaux, entreprises, economie]
+    a_verifier: true
+    note: "Valeur trouvée uniquement sur Wikipédia, aucune page officielle lue ne la cite. Date d'entrée en vigueur non établie ; valeur attestée au 2026-06-14."
+
+  - id: justice_penale.abus_biens_sociaux.amende_max
+    titre: "Abus de biens sociaux : amende maximale"
+    explication: "L'abus de biens sociaux est puni d'une amende pouvant aller jusqu'à 375 000 €."
+    type: nombre
+    unite: euros
+    bornes: [0, 1000000]
+    valeurs:
+      - depuis: "2026-06-14"
+        valeur: 375000
+        sources: [wikipedia-abus-de-biens-sociaux]
+        article: "Code de commerce, art. L241-3 et L242-6"
+    tags: [peine, amende, delit, abus_de_biens_sociaux, entreprises, economie]
+    a_verifier: true
+    note: "Valeur trouvée uniquement sur Wikipédia, aucune page officielle lue ne la cite. Date d'entrée en vigueur non établie ; valeur attestée au 2026-06-14."

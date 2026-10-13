@@ -1,0 +1,538 @@
+# Budget de l'État — dépenses votées en loi de finances initiale (LFI) pour 2026.
+# Loi n° 2026-103 du 19 février 2026 de finances pour 2026 (JO du 20 février 2026), décision n° 2026-901 DC du 19 février 2026.
+# Montants lus dans l'état B (art. 148) et l'état A (art. 147) du texte définitif (Assemblée nationale, TA n° 227 du 2 février 2026).
+# Unité : milliards d'euros (arrondis au million). CP = crédits de paiement ; AE = autorisations d'engagement.
+domaine: budget
+theme: "Dépenses de l'État (LFI 2026)"
+regles:
+  - id: budget.etat.mission.action_exterieure_etat
+    titre: "Mission « Action extérieure de l'État » : crédits de paiement votés en 2026"
+    explication: "Diplomatie, réseau des ambassades et consulats, influence culturelle de la France à l'étranger."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 7]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 3.454
+        sources: [an-ta227-lfi-2026, cc-2026-901-dc]
+        article: "Loi n° 2026-103 du 19 février 2026 de finances pour 2026, art. 148 et état B (texte définitif AN TA n° 227)"
+    tags: [budget, etat, mission, diplomatie]
+    a_verifier: false
+    note: "CP exacts : 3 454 425 325 € ; AE : 3 449 452 613 €. Détail par programme (CP) : Action de la France en Europe et dans le monde 2,690 Md€ ; diplomatie culturelle et d'influence 0,611 Md€ ; Français à l'étranger et affaires consulaires 0,153 Md€. Montants votés en LFI ; ils peuvent être modifiés en cours d'année (mises en réserve, décret d'annulation de 0,5 Md€ du 10 septembre 2026 selon l'exposé général du PLF 2027, projet de loi AN n° 3210)."
+  - id: budget.etat.mission.administration_generale_territoriale
+    titre: "Mission « Administration générale et territoriale de l'État » : crédits de paiement votés en 2026"
+    explication: "Préfectures et sous-préfectures, organisation des élections, pilotage du ministère de l'Intérieur."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 11]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 5.082
+        sources: [an-ta227-lfi-2026, cc-2026-901-dc]
+        article: "Loi n° 2026-103 du 19 février 2026 de finances pour 2026, art. 148 et état B (texte définitif AN TA n° 227)"
+    tags: [budget, etat, mission, interieur, administration]
+    a_verifier: false
+    note: "CP exacts : 5 081 543 463 € ; AE : 4 996 176 839 €. Détail par programme (CP) : Administration territoriale de l'État 2,739 Md€ ; vie politique 0,301 Md€ ; conduite et pilotage des politiques de l'intérieur 2,042 Md€. Montants votés en LFI ; ils peuvent être modifiés en cours d'année (mises en réserve, décret d'annulation de 0,5 Md€ du 10 septembre 2026 selon l'exposé général du PLF 2027, projet de loi AN n° 3210)."
+  - id: budget.etat.mission.agriculture_alimentation_foret
+    titre: "Mission « Agriculture, alimentation, forêt et affaires rurales » : crédits de paiement votés en 2026"
+    explication: "Soutien à l'agriculture et à la forêt, contrôles sanitaires de l'alimentation, allègements de charges agricoles."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 9]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 4.126
+        sources: [an-ta227-lfi-2026, cc-2026-901-dc]
+        article: "Loi n° 2026-103 du 19 février 2026 de finances pour 2026, art. 148 et état B (texte définitif AN TA n° 227)"
+    tags: [budget, etat, mission, agriculture]
+    a_verifier: false
+    note: "CP exacts : 4 125 856 189 € ; AE : 4 088 479 055 €. Détail par programme (CP) : Compétitivité et durabilité de l'agriculture 2,188 Md€ ; sécurité et qualité sanitaires de l'alimentation 0,833 Md€ ; pilotage 0,656 Md€ ; allègements du coût du travail en agriculture (TODE-AG) 0,449 Md€. Montants votés en LFI ; ils peuvent être modifiés en cours d'année (mises en réserve, décret d'annulation de 0,5 Md€ du 10 septembre 2026 selon l'exposé général du PLF 2027, projet de loi AN n° 3210)."
+  - id: budget.etat.mission.aide_publique_developpement
+    titre: "Mission « Aide publique au développement » : crédits de paiement votés en 2026"
+    explication: "Aide de la France aux pays en développement (dons, prêts, contributions aux fonds multilatéraux)."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 8]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 3.569
+        sources: [an-ta227-lfi-2026, cc-2026-901-dc]
+        article: "Loi n° 2026-103 du 19 février 2026 de finances pour 2026, art. 148 et état B (texte définitif AN TA n° 227)"
+    tags: [budget, etat, mission, international, solidarite]
+    a_verifier: false
+    note: "CP exacts : 3 569 384 015 € ; AE : 4 326 429 075 €. Détail par programme (CP) : Aide économique et financière au développement 1,238 Md€ ; solidarité à l'égard des pays en développement 1,493 Md€ ; Fonds de solidarité pour le développement 0,738 Md€ ; fonds propres de l'AFD 0,100 Md€. Montants votés en LFI ; ils peuvent être modifiés en cours d'année (mises en réserve, décret d'annulation de 0,5 Md€ du 10 septembre 2026 selon l'exposé général du PLF 2027, projet de loi AN n° 3210)."
+  - id: budget.etat.mission.cohesion_territoires
+    titre: "Mission « Cohésion des territoires » : crédits de paiement votés en 2026"
+    explication: "Aides personnelles au logement, hébergement d'urgence, amélioration de l'habitat et politique de la ville."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 46]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 22.571
+        sources: [an-ta227-lfi-2026, cc-2026-901-dc]
+        article: "Loi n° 2026-103 du 19 février 2026 de finances pour 2026, art. 148 et état B (texte définitif AN TA n° 227)"
+    tags: [budget, etat, mission, logement, territoires]
+    a_verifier: false
+    note: "CP exacts : 22 570 898 614 € ; AE : 22 453 358 470 €. Détail par programme (CP) : Aide à l'accès au logement 16,572 Md€ ; hébergement, parcours vers le logement et insertion des personnes vulnérables 3,071 Md€ ; urbanisme, territoires et amélioration de l'habitat 1,945 Md€ ; politique de la ville 0,637 Md€. Montants votés en LFI ; ils peuvent être modifiés en cours d'année (mises en réserve, décret d'annulation de 0,5 Md€ du 10 septembre 2026 selon l'exposé général du PLF 2027, projet de loi AN n° 3210)."
+  - id: budget.etat.mission.conseil_controle_etat
+    titre: "Mission « Conseil et contrôle de l'État » : crédits de paiement votés en 2026"
+    explication: "Conseil d'État et juridictions administratives, Cour des comptes et chambres régionales, Conseil économique, social et environnemental."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 2]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 0.866
+        sources: [an-ta227-lfi-2026, cc-2026-901-dc]
+        article: "Loi n° 2026-103 du 19 février 2026 de finances pour 2026, art. 148 et état B (texte définitif AN TA n° 227)"
+    tags: [budget, etat, mission, institutions, controle]
+    a_verifier: false
+    note: "CP exacts : 866 116 724 € ; AE : 833 454 344 €. Détail par programme (CP) : Conseil d'État et autres juridictions administratives 0,566 Md€ ; Cour des comptes et autres juridictions financières 0,267 Md€ ; CESE 0,034 Md€. Montants votés en LFI ; ils peuvent être modifiés en cours d'année (mises en réserve, décret d'annulation de 0,5 Md€ du 10 septembre 2026 selon l'exposé général du PLF 2027, projet de loi AN n° 3210)."
+  - id: budget.etat.mission.credits_non_repartis
+    titre: "Mission « Crédits non répartis » : crédits de paiement votés en 2026"
+    explication: "Réserves pour des dépenses imprévues et pour d'éventuelles mesures salariales dans la fonction publique."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 1]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 0.475
+        sources: [an-ta227-lfi-2026, cc-2026-901-dc]
+        article: "Loi n° 2026-103 du 19 février 2026 de finances pour 2026, art. 148 et état B (texte définitif AN TA n° 227)"
+    tags: [budget, etat, mission, provision]
+    a_verifier: false
+    note: "CP exacts : 475 000 000 € ; AE : 775 000 000 €. Détail par programme (CP) : Provision relative aux rémunérations publiques 0,350 Md€ ; dépenses accidentelles et imprévisibles 0,125 Md€ (CP). Montants votés en LFI ; ils peuvent être modifiés en cours d'année (mises en réserve, décret d'annulation de 0,5 Md€ du 10 septembre 2026 selon l'exposé général du PLF 2027, projet de loi AN n° 3210)."
+  - id: budget.etat.mission.culture
+    titre: "Mission « Culture » : crédits de paiement votés en 2026"
+    explication: "Patrimoine (monuments, musées), création artistique, enseignement artistique et accès à la culture."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 8]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 3.745
+        sources: [an-ta227-lfi-2026, cc-2026-901-dc]
+        article: "Loi n° 2026-103 du 19 février 2026 de finances pour 2026, art. 148 et état B (texte définitif AN TA n° 227)"
+    tags: [budget, etat, mission, culture]
+    a_verifier: false
+    note: "CP exacts : 3 744 547 181 € ; AE : 3 753 177 973 €. Détail par programme (CP) : Patrimoines 1,137 Md€ ; création 0,998 Md€ ; transmission des savoirs et démocratisation de la culture 0,741 Md€ ; soutien aux politiques du ministère 0,868 Md€. Montants votés en LFI ; ils peuvent être modifiés en cours d'année (mises en réserve, décret d'annulation de 0,5 Md€ du 10 septembre 2026 selon l'exposé général du PLF 2027, projet de loi AN n° 3210)."
+  - id: budget.etat.mission.defense
+    titre: "Mission « Défense » : crédits de paiement votés en 2026"
+    explication: "Budget des armées : équipements militaires, préparation des forces, personnels et soutien."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 133]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 66.475
+        sources: [an-ta227-lfi-2026, cc-2026-901-dc]
+        article: "Loi n° 2026-103 du 19 février 2026 de finances pour 2026, art. 148 et état B (texte définitif AN TA n° 227)"
+    tags: [budget, etat, mission, defense, regalien]
+    a_verifier: false
+    note: "CP exacts : 66 475 476 236 € ; AE : 92 828 480 008 €. Détail par programme (CP) : Équipement des forces 22,845 Md€ ; soutien de la politique de la défense 25,616 Md€ (dont 23,831 Md€ de dépenses de personnel) ; préparation et emploi des forces 15,745 Md€ ; environnement et prospective 2,268 Md€. Autorisations d'engagement : 92,828 Md€. Montants votés en LFI ; ils peuvent être modifiés en cours d'année (mises en réserve, décret d'annulation de 0,5 Md€ du 10 septembre 2026 selon l'exposé général du PLF 2027, projet de loi AN n° 3210)."
+  - id: budget.etat.mission.direction_action_gouvernement
+    titre: "Mission « Direction de l'action du Gouvernement » : crédits de paiement votés en 2026"
+    explication: "Services du Premier ministre et autorités chargées de protéger les droits et libertés."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 3]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 1.052
+        sources: [an-ta227-lfi-2026, cc-2026-901-dc]
+        article: "Loi n° 2026-103 du 19 février 2026 de finances pour 2026, art. 148 et état B (texte définitif AN TA n° 227)"
+    tags: [budget, etat, mission, institutions]
+    a_verifier: false
+    note: "CP exacts : 1 052 475 340 € ; AE : 1 020 763 341 €. Détail par programme (CP) : Coordination du travail gouvernemental 0,912 Md€ ; protection des droits et libertés 0,140 Md€. Montants votés en LFI ; ils peuvent être modifiés en cours d'année (mises en réserve, décret d'annulation de 0,5 Md€ du 10 septembre 2026 selon l'exposé général du PLF 2027, projet de loi AN n° 3210)."
+  - id: budget.etat.mission.ecologie_mobilite_durables
+    titre: "Mission « Écologie, développement et mobilité durables » : crédits de paiement votés en 2026"
+    explication: "Transports, soutien aux énergies renouvelables, prévention des risques, biodiversité, fonds vert pour les collectivités."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 46]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 22.763
+        sources: [an-ta227-lfi-2026, cc-2026-901-dc]
+        article: "Loi n° 2026-103 du 19 février 2026 de finances pour 2026, art. 148 et état B (texte définitif AN TA n° 227)"
+    tags: [budget, etat, mission, environnement, transports, energie]
+    a_verifier: false
+    note: "CP exacts : 22 762 823 002 € ; AE : 25 420 999 117 €. Détail par programme (CP) : Service public de l'énergie 9,584 Md€ ; infrastructures et services de transports 4,608 Md€ ; conduite et pilotage 3,199 Md€ ; prévention des risques 1,459 Md€ ; énergie, climat et après-mines 1,126 Md€ ; fonds d'accélération de la transition écologique dans les territoires 1,070 Md€. Montants votés en LFI ; ils peuvent être modifiés en cours d'année (mises en réserve, décret d'annulation de 0,5 Md€ du 10 septembre 2026 selon l'exposé général du PLF 2027, projet de loi AN n° 3210)."
+  - id: budget.etat.mission.economie
+    titre: "Mission « Économie » : crédits de paiement votés en 2026"
+    explication: "Soutien aux entreprises, régulation des marchés, statistiques publiques (Insee) et stratégie économique."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 8]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 3.513
+        sources: [an-ta227-lfi-2026, cc-2026-901-dc]
+        article: "Loi n° 2026-103 du 19 février 2026 de finances pour 2026, art. 148 et état B (texte définitif AN TA n° 227)"
+    tags: [budget, etat, mission, economie, entreprises]
+    a_verifier: false
+    note: "CP exacts : 3 512 606 546 € ; AE : 3 658 522 845 €. Détail par programme (CP) : Développement des entreprises et régulations 2,080 Md€ ; statistiques et études économiques 0,484 Md€ ; stratégies économiques 0,666 Md€ ; plan France Très haut débit 0,282 Md€. Montants votés en LFI ; ils peuvent être modifiés en cours d'année (mises en réserve, décret d'annulation de 0,5 Md€ du 10 septembre 2026 selon l'exposé général du PLF 2027, projet de loi AN n° 3210)."
+  - id: budget.etat.mission.engagements_financiers_etat
+    titre: "Mission « Engagements financiers de l'État » : crédits de paiement votés en 2026"
+    explication: "Surtout les intérêts de la dette de l'État (charge de la dette), plus les garanties appelées et l'épargne réglementée."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 121]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 60.341
+        sources: [an-ta227-lfi-2026, cc-2026-901-dc]
+        article: "Loi n° 2026-103 du 19 février 2026 de finances pour 2026, art. 148 et état B (texte définitif AN TA n° 227)"
+    tags: [budget, etat, mission, dette, charge_dette]
+    a_verifier: false
+    note: "CP exacts : 60 341 209 199 € ; AE : 60 162 529 569 €. Détail par programme (CP) : Charge de la dette et trésorerie de l'État (crédits évaluatifs) 58,615 Md€ ; charge de la dette de SNCF Réseau reprise par l'État 0,661 Md€ ; appels en garantie 0,790 Md€ ; fonds de soutien aux emprunts structurés 0,179 Md€ ; épargne 0,096 Md€. Montants votés en LFI ; ils peuvent être modifiés en cours d'année (mises en réserve, décret d'annulation de 0,5 Md€ du 10 septembre 2026 selon l'exposé général du PLF 2027, projet de loi AN n° 3210)."
+  - id: budget.etat.mission.enseignement_scolaire
+    titre: "Mission « Enseignement scolaire » : crédits de paiement votés en 2026"
+    explication: "Écoles, collèges et lycées publics et privés sous contrat : surtout la rémunération des enseignants."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 180]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 89.621
+        sources: [an-ta227-lfi-2026, cc-2026-901-dc]
+        article: "Loi n° 2026-103 du 19 février 2026 de finances pour 2026, art. 148 et état B (texte définitif AN TA n° 227)"
+    tags: [budget, etat, mission, education]
+    a_verifier: false
+    note: "CP exacts : 89 621 003 132 € ; AE : 89 600 182 989 €. Détail par programme (CP) : Premier degré public 27,912 Md€ ; second degré public 40,002 Md€ ; vie de l'élève 8,061 Md€ ; enseignement privé sous contrat 8,871 Md€ ; soutien 3,046 Md€ ; enseignement technique agricole 1,730 Md€. Montants votés en LFI ; ils peuvent être modifiés en cours d'année (mises en réserve, décret d'annulation de 0,5 Md€ du 10 septembre 2026 selon l'exposé général du PLF 2027, projet de loi AN n° 3210)."
+  - id: budget.etat.mission.gestion_finances_publiques
+    titre: "Mission « Gestion des finances publiques » : crédits de paiement votés en 2026"
+    explication: "Administration fiscale et comptable (DGFiP) et douanes."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 23]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 11.018
+        sources: [an-ta227-lfi-2026, cc-2026-901-dc]
+        article: "Loi n° 2026-103 du 19 février 2026 de finances pour 2026, art. 148 et état B (texte définitif AN TA n° 227)"
+    tags: [budget, etat, mission, administration, fiscalite]
+    a_verifier: false
+    note: "CP exacts : 11 017 882 630 € ; AE : 11 154 826 960 €. Détail par programme (CP) : Gestion fiscale et financière de l'État et du secteur public local 8,211 Md€ ; facilitation et sécurisation des échanges (douane) 1,815 Md€ ; conduite et pilotage 0,992 Md€. Montants votés en LFI ; ils peuvent être modifiés en cours d'année (mises en réserve, décret d'annulation de 0,5 Md€ du 10 septembre 2026 selon l'exposé général du PLF 2027, projet de loi AN n° 3210)."
+  - id: budget.etat.mission.immigration_asile_integration
+    titre: "Mission « Immigration, asile et intégration » : crédits de paiement votés en 2026"
+    explication: "Accueil et hébergement des demandeurs d'asile, lutte contre l'immigration irrégulière, intégration et naturalisation."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 5]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 2.131
+        sources: [an-ta227-lfi-2026, cc-2026-901-dc]
+        article: "Loi n° 2026-103 du 19 février 2026 de finances pour 2026, art. 148 et état B (texte définitif AN TA n° 227)"
+    tags: [budget, etat, mission, immigration]
+    a_verifier: false
+    note: "CP exacts : 2 130 584 454 € ; AE : 2 209 012 154 €. Détail par programme (CP) : Immigration et asile 1,767 Md€ ; intégration et accès à la nationalité française 0,364 Md€. Montants votés en LFI ; ils peuvent être modifiés en cours d'année (mises en réserve, décret d'annulation de 0,5 Md€ du 10 septembre 2026 selon l'exposé général du PLF 2027, projet de loi AN n° 3210)."
+  - id: budget.etat.mission.investir_france_2030
+    titre: "Mission « Investir pour la France de 2030 » : crédits de paiement votés en 2026"
+    explication: "Plan d'investissement France 2030 : innovation, recherche, industries d'avenir."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 9]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 4.398
+        sources: [an-ta227-lfi-2026, cc-2026-901-dc]
+        article: "Loi n° 2026-103 du 19 février 2026 de finances pour 2026, art. 148 et état B (texte définitif AN TA n° 227)"
+    tags: [budget, etat, mission, investissement, innovation]
+    a_verifier: false
+    note: "CP exacts : 4 397 829 332 € ; AE : 450 000 000 €. Détail par programme (CP) : Financement des investissements stratégiques 2,654 Md€ ; financement structurel des écosystèmes d'innovation 1,374 Md€ ; enseignement et recherche 0,201 Md€ ; modernisation des entreprises 0,137 Md€ ; valorisation de la recherche 0,032 Md€. Montants votés en LFI ; ils peuvent être modifiés en cours d'année (mises en réserve, décret d'annulation de 0,5 Md€ du 10 septembre 2026 selon l'exposé général du PLF 2027, projet de loi AN n° 3210)."
+  - id: budget.etat.mission.justice
+    titre: "Mission « Justice » : crédits de paiement votés en 2026"
+    explication: "Tribunaux, prisons, protection judiciaire de la jeunesse et aide juridictionnelle."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 26]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 12.967
+        sources: [an-ta227-lfi-2026, cc-2026-901-dc]
+        article: "Loi n° 2026-103 du 19 février 2026 de finances pour 2026, art. 148 et état B (texte définitif AN TA n° 227)"
+    tags: [budget, etat, mission, justice, regalien]
+    a_verifier: false
+    note: "CP exacts : 12 966 577 407 € ; AE : 12 589 508 226 €. Détail par programme (CP) : Administration pénitentiaire 5,505 Md€ ; justice judiciaire 4,742 Md€ ; protection judiciaire de la jeunesse 1,150 Md€ ; accès au droit et à la justice 0,807 Md€ ; conduite et pilotage 0,756 Md€. Montants votés en LFI ; ils peuvent être modifiés en cours d'année (mises en réserve, décret d'annulation de 0,5 Md€ du 10 septembre 2026 selon l'exposé général du PLF 2027, projet de loi AN n° 3210)."
+  - id: budget.etat.mission.medias_livre_industries_culturelles
+    titre: "Mission « Médias, livre et industries culturelles » : crédits de paiement votés en 2026"
+    explication: "Aides à la presse et aux médias, au livre et aux industries culturelles."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 2]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 0.703
+        sources: [an-ta227-lfi-2026, cc-2026-901-dc]
+        article: "Loi n° 2026-103 du 19 février 2026 de finances pour 2026, art. 148 et état B (texte définitif AN TA n° 227)"
+    tags: [budget, etat, mission, culture, medias]
+    a_verifier: false
+    note: "CP exacts : 702 973 552 € ; AE : 720 520 782 €. Détail par programme (CP) : Presse et médias 0,362 Md€ ; livre et industries culturelles 0,341 Md€. Montants votés en LFI ; ils peuvent être modifiés en cours d'année (mises en réserve, décret d'annulation de 0,5 Md€ du 10 septembre 2026 selon l'exposé général du PLF 2027, projet de loi AN n° 3210)."
+  - id: budget.etat.mission.monde_combattant_memoire
+    titre: "Mission « Monde combattant, mémoire et liens avec la Nation » : crédits de paiement votés en 2026"
+    explication: "Pensions et droits des anciens combattants, politique de mémoire, indemnisation des victimes de persécutions."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 4]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 1.73
+        sources: [an-ta227-lfi-2026, cc-2026-901-dc]
+        article: "Loi n° 2026-103 du 19 février 2026 de finances pour 2026, art. 148 et état B (texte définitif AN TA n° 227)"
+    tags: [budget, etat, mission, anciens_combattants]
+    a_verifier: false
+    note: "CP exacts : 1 729 987 774 € ; AE : 1 722 607 274 €. Détail par programme (CP) : Reconnaissance et réparation en faveur du monde combattant 1,654 Md€ ; indemnisation des victimes des persécutions antisémites et des actes de barbarie 0,076 Md€. Montants votés en LFI ; ils peuvent être modifiés en cours d'année (mises en réserve, décret d'annulation de 0,5 Md€ du 10 septembre 2026 selon l'exposé général du PLF 2027, projet de loi AN n° 3210)."
+  - id: budget.etat.mission.outre_mer
+    titre: "Mission « Outre-mer » : crédits de paiement votés en 2026"
+    explication: "Soutien à l'emploi et aux conditions de vie dans les territoires d'outre-mer."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 7]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 3.277
+        sources: [an-ta227-lfi-2026, cc-2026-901-dc]
+        article: "Loi n° 2026-103 du 19 février 2026 de finances pour 2026, art. 148 et état B (texte définitif AN TA n° 227)"
+    tags: [budget, etat, mission, outre_mer, territoires]
+    a_verifier: false
+    note: "CP exacts : 3 277 446 171 € ; AE : 3 552 530 220 €. Détail par programme (CP) : Emploi outre-mer 2,136 Md€ ; conditions de vie outre-mer 1,141 Md€. Montants votés en LFI ; ils peuvent être modifiés en cours d'année (mises en réserve, décret d'annulation de 0,5 Md€ du 10 septembre 2026 selon l'exposé général du PLF 2027, projet de loi AN n° 3210)."
+  - id: budget.etat.mission.pouvoirs_publics
+    titre: "Mission « Pouvoirs publics » : crédits de paiement votés en 2026"
+    explication: "Dotations de la Présidence de la République, de l'Assemblée nationale, du Sénat, du Conseil constitutionnel et de LCP."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 3]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 1.14
+        sources: [an-ta227-lfi-2026, cc-2026-901-dc]
+        article: "Loi n° 2026-103 du 19 février 2026 de finances pour 2026, art. 148 et état B (texte définitif AN TA n° 227)"
+    tags: [budget, etat, mission, institutions]
+    a_verifier: false
+    note: "CP exacts : 1 140 179 221 € ; AE : 1 140 179 221 €. Détail par programme (CP) : Assemblée nationale 0,608 Md€ ; Sénat 0,353 Md€ ; Présidence de la République 0,123 Md€ ; La Chaîne parlementaire 0,036 Md€ ; Conseil constitutionnel 0,020 Md€ ; Cour de justice de la République 0,001 Md€. Montants votés en LFI ; ils peuvent être modifiés en cours d'année (mises en réserve, décret d'annulation de 0,5 Md€ du 10 septembre 2026 selon l'exposé général du PLF 2027, projet de loi AN n° 3210)."
+  - id: budget.etat.mission.recherche_enseignement_superieur
+    titre: "Mission « Recherche et enseignement supérieur » : crédits de paiement votés en 2026"
+    explication: "Universités, organismes de recherche, recherche spatiale et aides aux étudiants."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 64]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 31.634
+        sources: [an-ta227-lfi-2026, cc-2026-901-dc]
+        article: "Loi n° 2026-103 du 19 février 2026 de finances pour 2026, art. 148 et état B (texte définitif AN TA n° 227)"
+    tags: [budget, etat, mission, education, recherche]
+    a_verifier: false
+    note: "CP exacts : 31 633 945 500 € ; AE : 32 072 643 046 €. Détail par programme (CP) : Formations supérieures et recherche universitaire 15,724 Md€ ; recherches scientifiques et technologiques pluridisciplinaires 8,176 Md€ ; vie étudiante 3,275 Md€ ; recherche spatiale 1,831 Md€ ; recherche énergie et développement durable 1,482 Md€ ; autres 1,146 Md€. Montants votés en LFI ; ils peuvent être modifiés en cours d'année (mises en réserve, décret d'annulation de 0,5 Md€ du 10 septembre 2026 selon l'exposé général du PLF 2027, projet de loi AN n° 3210)."
+  - id: budget.etat.mission.regimes_sociaux_retraite
+    titre: "Mission « Régimes sociaux et de retraite » : crédits de paiement votés en 2026"
+    explication: "Subventions de l'État pour équilibrer certains régimes spéciaux de retraite (transports terrestres, marins, mines, SEITA…)."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 13]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 6.068
+        sources: [an-ta227-lfi-2026, cc-2026-901-dc]
+        article: "Loi n° 2026-103 du 19 février 2026 de finances pour 2026, art. 148 et état B (texte définitif AN TA n° 227)"
+    tags: [budget, etat, mission, retraites]
+    a_verifier: false
+    note: "CP exacts : 6 067 878 084 € ; AE : 6 067 878 084 €. Détail par programme (CP) : Régimes sociaux et de retraite des transports terrestres 4,186 Md€ ; régimes de retraite des mines, de la SEITA et divers 1,071 Md€ ; marins 0,811 Md€. Montants votés en LFI ; ils peuvent être modifiés en cours d'année (mises en réserve, décret d'annulation de 0,5 Md€ du 10 septembre 2026 selon l'exposé général du PLF 2027, projet de loi AN n° 3210)."
+  - id: budget.etat.mission.relations_collectivites_territoriales
+    titre: "Mission « Relations avec les collectivités territoriales » : crédits de paiement votés en 2026"
+    explication: "Subventions de l'État aux collectivités locales (investissement, dotations spécifiques), hors prélèvements sur recettes."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 8]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 3.959
+        sources: [an-ta227-lfi-2026, cc-2026-901-dc]
+        article: "Loi n° 2026-103 du 19 février 2026 de finances pour 2026, art. 148 et état B (texte définitif AN TA n° 227)"
+    tags: [budget, etat, mission, collectivites]
+    a_verifier: false
+    note: "CP exacts : 3 959 044 081 € ; AE : 3 788 407 721 €. Détail par programme (CP) : Concours financiers aux collectivités territoriales et à leurs groupements 3,642 Md€ ; concours spécifiques et administration 0,317 Md€. Montants votés en LFI ; ils peuvent être modifiés en cours d'année (mises en réserve, décret d'annulation de 0,5 Md€ du 10 septembre 2026 selon l'exposé général du PLF 2027, projet de loi AN n° 3210)."
+  - id: budget.etat.mission.remboursements_degrevements
+    titre: "Mission « Remboursements et dégrèvements » : crédits de paiement votés en 2026"
+    explication: "Restitutions et dégrèvements d'impôts aux contribuables (crédits évaluatifs) : ce n'est pas une politique de dépense, ces montants viennent en déduction des recettes fiscales brutes."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 292]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 145.6
+        sources: [an-ta227-lfi-2026, cc-2026-901-dc]
+        article: "Loi n° 2026-103 du 19 février 2026 de finances pour 2026, art. 148 et état B (texte définitif AN TA n° 227)"
+    tags: [budget, etat, mission, fiscalite, remboursements]
+    a_verifier: false
+    note: "CP exacts : 145 600 362 742 € ; AE : 145 600 362 742 €. Détail par programme (CP) : Remboursements et dégrèvements d'impôts d'État 141,174 Md€ ; d'impôts locaux 4,426 Md€. Montants votés en LFI ; ils peuvent être modifiés en cours d'année (mises en réserve, décret d'annulation de 0,5 Md€ du 10 septembre 2026 selon l'exposé général du PLF 2027, projet de loi AN n° 3210)."
+  - id: budget.etat.mission.sante
+    titre: "Mission « Santé » : crédits de paiement votés en 2026"
+    explication: "Prévention et sécurité sanitaire, et prise en charge des soins de personnes sans couverture (programme « Protection maladie »)."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 4]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 1.888
+        sources: [an-ta227-lfi-2026, cc-2026-901-dc]
+        article: "Loi n° 2026-103 du 19 février 2026 de finances pour 2026, art. 148 et état B (texte définitif AN TA n° 227)"
+    tags: [budget, etat, mission, sante]
+    a_verifier: false
+    note: "CP exacts : 1 888 133 258 € ; AE : 1 884 803 278 €. Détail par programme (CP) : Protection maladie 1,216 Md€ ; prévention, sécurité sanitaire et offre de soins 0,430 Md€ ; reversement à la sécurité sociale des recettes européennes FRR (Ségur investissement) 0,242 Md€. Montants votés en LFI ; ils peuvent être modifiés en cours d'année (mises en réserve, décret d'annulation de 0,5 Md€ du 10 septembre 2026 selon l'exposé général du PLF 2027, projet de loi AN n° 3210)."
+  - id: budget.etat.mission.securites
+    titre: "Mission « Sécurités » : crédits de paiement votés en 2026"
+    explication: "Police nationale, gendarmerie nationale, sécurité civile et sécurité routière."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 52]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 25.845
+        sources: [an-ta227-lfi-2026, cc-2026-901-dc]
+        article: "Loi n° 2026-103 du 19 février 2026 de finances pour 2026, art. 148 et état B (texte définitif AN TA n° 227)"
+    tags: [budget, etat, mission, securite, regalien]
+    a_verifier: false
+    note: "CP exacts : 25 844 617 241 € ; AE : 26 477 801 043 €. Détail par programme (CP) : Police nationale 13,838 Md€ ; gendarmerie nationale 11,055 Md€ ; sécurité civile 0,875 Md€ ; sécurité et éducation routières 0,077 Md€. Montants votés en LFI ; ils peuvent être modifiés en cours d'année (mises en réserve, décret d'annulation de 0,5 Md€ du 10 septembre 2026 selon l'exposé général du PLF 2027, projet de loi AN n° 3210)."
+  - id: budget.etat.mission.solidarite_insertion_egalite_chances
+    titre: "Mission « Solidarité, insertion et égalité des chances » : crédits de paiement votés en 2026"
+    explication: "Prestations de solidarité financées par l'État (inclusion sociale, handicap et dépendance) et égalité femmes-hommes."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 63]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 31.282
+        sources: [an-ta227-lfi-2026, cc-2026-901-dc]
+        article: "Loi n° 2026-103 du 19 février 2026 de finances pour 2026, art. 148 et état B (texte définitif AN TA n° 227)"
+    tags: [budget, etat, mission, solidarite, prestations]
+    a_verifier: false
+    note: "CP exacts : 31 281 524 154 € ; AE : 31 277 760 980 €. Détail par programme (CP) : Handicap et dépendance 16,398 Md€ ; inclusion sociale et protection des personnes 14,785 Md€ ; égalité entre les femmes et les hommes 0,099 Md€. Montants votés en LFI ; ils peuvent être modifiés en cours d'année (mises en réserve, décret d'annulation de 0,5 Md€ du 10 septembre 2026 selon l'exposé général du PLF 2027, projet de loi AN n° 3210)."
+  - id: budget.etat.mission.sport_jeunesse_vie_associative
+    titre: "Mission « Sport, jeunesse et vie associative » : crédits de paiement votés en 2026"
+    explication: "Politique du sport, de la jeunesse (dont engagement civique) et de la vie associative ; préparation des Jeux d'hiver 2030."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 3]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 1.259
+        sources: [an-ta227-lfi-2026, cc-2026-901-dc]
+        article: "Loi n° 2026-103 du 19 février 2026 de finances pour 2026, art. 148 et état B (texte définitif AN TA n° 227)"
+    tags: [budget, etat, mission, sport, jeunesse]
+    a_verifier: false
+    note: "CP exacts : 1 258 895 900 € ; AE : 1 609 483 738 €. Détail par programme (CP) : Jeunesse et vie associative 0,647 Md€ ; sport 0,548 Md€ ; Jeux Olympiques et Paralympiques d'hiver 2030 0,064 Md€ (0,401 Md€ en AE). Montants votés en LFI ; ils peuvent être modifiés en cours d'année (mises en réserve, décret d'annulation de 0,5 Md€ du 10 septembre 2026 selon l'exposé général du PLF 2027, projet de loi AN n° 3210)."
+  - id: budget.etat.mission.transformation_fonction_publiques
+    titre: "Mission « Transformation et fonction publiques » : crédits de paiement votés en 2026"
+    explication: "Rénovation des bâtiments publics, transformation de l'administration, politique de la fonction publique."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 2]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 0.518
+        sources: [an-ta227-lfi-2026, cc-2026-901-dc]
+        article: "Loi n° 2026-103 du 19 février 2026 de finances pour 2026, art. 148 et état B (texte définitif AN TA n° 227)"
+    tags: [budget, etat, mission, administration, fonction_publique]
+    a_verifier: false
+    note: "CP exacts : 518 293 247 € ; AE : 537 213 328 €. Détail par programme (CP) : Fonction publique 0,226 Md€ ; performance et résilience des bâtiments de l'État 0,201 Md€ ; conduite et pilotage 0,053 Md€ ; transformation publique 0,039 Md€. Montants votés en LFI ; ils peuvent être modifiés en cours d'année (mises en réserve, décret d'annulation de 0,5 Md€ du 10 septembre 2026 selon l'exposé général du PLF 2027, projet de loi AN n° 3210)."
+  - id: budget.etat.mission.travail_emploi
+    titre: "Mission « Travail, emploi et administration des ministères sociaux » : crédits de paiement votés en 2026"
+    explication: "Politiques de l'emploi (accès et retour à l'emploi, apprentissage et formation, mutations économiques) et moyens des ministères sociaux."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 42]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 20.821
+        sources: [an-ta227-lfi-2026, cc-2026-901-dc]
+        article: "Loi n° 2026-103 du 19 février 2026 de finances pour 2026, art. 148 et état B (texte définitif AN TA n° 227)"
+    tags: [budget, etat, mission, travail, emploi]
+    a_verifier: false
+    note: "CP exacts : 20 820 551 935 € ; AE : 20 026 687 591 €. Détail par programme (CP) : Accompagnement des mutations économiques et développement de l'emploi 11,804 Md€ ; accès et retour à l'emploi 6,887 Md€ ; soutien des ministères sociaux 2,053 Md€ ; qualité de l'emploi et relations du travail 0,076 Md€. Montants votés en LFI ; ils peuvent être modifiés en cours d'année (mises en réserve, décret d'annulation de 0,5 Md€ du 10 septembre 2026 selon l'exposé général du PLF 2027, projet de loi AN n° 3210)."
+  - id: budget.etat.depenses.total_brut_cp
+    titre: "Budget général : total des crédits de paiement votés en 2026 (brut)"
+    explication: "Somme des crédits de paiement de toutes les missions du budget général, y compris les remboursements et dégrèvements d'impôts."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 1200]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 593.89
+        sources: [an-ta227-lfi-2026, cc-2026-901-dc]
+        article: "Loi n° 2026-103, art. 148 (593 890 071 649 € de CP ; 620 249 232 626 € d'AE)"
+    tags: [budget, etat, total]
+    a_verifier: false
+    note: "Total brut. Les dépenses nettes du budget général (hors remboursements et dégrèvements d'impôts d'État) sont de 452,716 Md€ (article d'équilibre)."
+  - id: budget.etat.depenses.total_net
+    titre: "Budget général : dépenses nettes prévues en 2026"
+    explication: "Dépenses du budget général après déduction des remboursements et dégrèvements d'impôts d'État : c'est le chiffre utilisé pour calculer le déficit de l'État."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 900]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 452.716
+        sources: [an-ta227-lfi-2026, cc-2026-901-dc]
+        article: "Loi n° 2026-103, art. 147, tableau d'équilibre (en millions d'euros : 452 716, dont fonctionnement 422 705 et investissement 30 010)"
+    tags: [budget, etat, total]
+    a_verifier: false
+    note: "Hors fonds de concours (6,143 Md€). Y compris fonds de concours : 458,859 Md€."
+  - id: budget.etat.charge_dette
+    titre: "Charge de la dette de l'État prévue en 2026 (intérêts)"
+    explication: "Intérêts que l'État prévoit de payer en 2026 sur sa dette (programme « Charge de la dette et trésorerie de l'État »)."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 150]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 58.615
+        sources: [an-ta227-lfi-2026, cc-2026-901-dc, an-plf-2027-n3210]
+        article: "Loi n° 2026-103, état B, mission « Engagements financiers de l'État », programme « Charge de la dette et trésorerie de l'État (crédits évaluatifs) »"
+    tags: [budget, etat, dette, charge_dette]
+    a_verifier: false
+    note: "Crédits évaluatifs (le montant réel dépend des taux et de l'inflation). Avec la dette reprise de SNCF Réseau (0,661 Md€), 59,3 Md€ ; le PLF 2027 révise cette charge (y compris SNCF) à 63,4 Md€ pour 2026 et prévoit 72,9 Md€ en 2027."
+  - id: budget.etat.prelevements_recettes.collectivites
+    titre: "Prélèvements sur recettes au profit des collectivités territoriales (2026)"
+    explication: "Part des recettes de l'État reversée directement aux collectivités locales (dotation globale de fonctionnement, FCTVA, compensations d'exonérations…)."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 44.824
+        sources: [an-ta227-lfi-2026, cc-2026-901-dc]
+        article: "Loi n° 2026-103, état A, ligne 31 (44 824 085 404 €)"
+    tags: [budget, etat, collectivites, prelevements_sur_recettes]
+    a_verifier: false
+    note: "Principales lignes : dotation globale de fonctionnement 27,406 Md€ ; FCTVA 7,867 Md€ ; compensation de la réduction de 50 % des valeurs locatives des locaux industriels 3,984 Md€ ; dotations de compensation de la réforme de la taxe professionnelle (départements 1,174 Md€, EPCI 0,611 Md€)."
+  - id: budget.etat.prelevements_recettes.union_europeenne
+    titre: "Prélèvement sur recettes au profit de l'Union européenne (2026)"
+    explication: "Contribution de la France au budget de l'Union européenne, prélevée directement sur les recettes de l'État."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 60]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 28.44
+        sources: [an-ta227-lfi-2026, cc-2026-901-dc, an-plf-2027-n3210]
+        article: "Loi n° 2026-103, état A, ligne 3201 (28 439 880 549 €)"
+    tags: [budget, etat, union_europeenne, prelevements_sur_recettes]
+    a_verifier: false
+    note: "Le PLF 2027 révise ce prélèvement à 28,118 Md€ pour 2026 et prévoit 30,906 Md€ en 2027."
+  - id: budget.etat.prelevements_recettes.total
+    titre: "Total des prélèvements sur recettes de l'État (2026)"
+    explication: "Somme des recettes de l'État reversées aux collectivités territoriales et à l'Union européenne."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 150]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 73.264
+        sources: [an-ta227-lfi-2026, cc-2026-901-dc]
+        article: "Loi n° 2026-103, état A, ligne 3 et art. 147 (73 263 965 953 €)"
+    tags: [budget, etat, prelevements_sur_recettes]
+    a_verifier: false

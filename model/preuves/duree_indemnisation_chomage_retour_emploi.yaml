@@ -1,0 +1,119 @@
+question:
+  id: duree_indemnisation_chomage_retour_emploi
+  titre: "Effet de la durée d'indemnisation chômage sur la durée du chômage"
+  definition: "Allongement (en mois) de la durée moyenne de chômage ou de non-emploi pour un mois supplémentaire de durée potentielle d'indemnisation."
+  unite: mois_par_mois
+  regles_liees: [travail.chomage.duree_max_indemnisation]
+  sens_attendu: positif
+  estimations:
+    - source: schmieder-von-wachter-2016
+      valeur: 0.13
+      intervalle_95: null
+      methode: "Revue de littérature avec tableau homogène des effets marginaux dD/dP (études par discontinuité et différence de différences)"
+      champ: "Études européennes (Autriche, Allemagne, Slovaquie, Portugal, France) et américaines, données des années 1970 aux années 2010"
+      pays: INT
+      annee_donnees: null
+      type_etude: meta_analyse
+      revue_par_les_pairs: true
+      note: "Pour les études européennes, la médiane des effets marginaux est de 0,13 : un mois d'indemnisation potentielle en plus allonge le non-emploi d'environ 4 jours. En excluant les deux valeurs extrêmes de chaque côté, la moyenne est de 0,23 (fourchette 0,05 à 0,65) ; médiane des élasticités 0,37. Aux États-Unis, les valeurs du tableau vont de 0,15 (Moffitt 1985) à 0,30 (Johnston et Mas, version 2015). Valeur retenue : la médiane européenne. Chiffres de la version NBER w22564."
+    - source: schmieder-et-al-2012
+      valeur: 0.1
+      intervalle_95: null
+      methode: "Régression sur discontinuité aux seuils d'âge (42, 44 et 49 ans) qui allongent la durée potentielle d'indemnisation"
+      champ: "Allemagne, chômeurs d'âge mûr autour des seuils de 42, 44 et 49 ans, du milieu des années 1980 à 2008"
+      pays: DE
+      annee_donnees: 2008
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Les auteurs écrivent que leurs estimations impliquent une hausse modérée du non-emploi d'environ 0,1 mois par mois supplémentaire d'indemnisation potentielle, avec au mieux une légère baisse en récession. Le tableau de Schmieder et von Wachter (2016) donne 0,13 (passage de 12 à 18 mois à 42 ans), 0,10 (18 à 22 mois à 44 ans) et 0,11 (22 à 26 mois à 49 ans)."
+    - source: card-et-al-2007
+      valeur: 0.10
+      intervalle_95: null
+      methode: "Régression sur discontinuité : seuil de 36 mois de cotisation sur les 5 dernières années qui porte l'indemnisation de 20 à 30 semaines"
+      champ: "Autriche, salariés licenciés"
+      pays: AT
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "L'article rapporte que l'allongement de 20 à 30 semaines réduit le taux de retour à l'emploi de 5 % à 9 % pendant les 20 premières semaines de recherche. Effet marginal sur la durée de non-emploi dD/dP = 0,10 (élasticité 0,11) selon le tableau de Schmieder et von Wachter (2016) ; le ratio est identique en semaines ou en mois."
+    - source: lalive-2008
+      valeur: 0.09
+      intervalle_95: null
+      methode: "Régression sur discontinuité géographique (frontière des régions éligibles) : allongement de l'indemnisation de 30 à 209 semaines"
+      champ: "Autriche, chômeurs hommes âgés éligibles au programme régional d'indemnisation prolongée"
+      pays: AT
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Hommes. Le résumé indique que la durée de recherche d'emploi augmente « d'au moins 0,09 semaine par semaine d'indemnisation supplémentaire » chez les hommes (borne basse ; le ratio vaut aussi en mois par mois). Prolongation très longue (de 30 à 209 semaines), d'où un effet par mois plus faible que pour de petites prolongations."
+    - source: lalive-2008
+      valeur: 0.32
+      intervalle_95: null
+      methode: "Régression sur discontinuité géographique (frontière des régions éligibles) : allongement de l'indemnisation de 30 à 209 semaines"
+      champ: "Autriche, chômeuses âgées éligibles au programme régional d'indemnisation prolongée"
+      pays: AT
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Femmes. Le résumé indique que la durée de chômage augmente « d'au moins 0,32 semaine par semaine d'indemnisation supplémentaire » chez les femmes ; l'auteur attribue l'écart avec les hommes à l'âge minimal de retraite anticipée plus bas pour les femmes (l'indemnisation prolongée sert de passerelle vers la retraite)."
+    - source: katz-meyer-1990
+      valeur: 0.18
+      intervalle_95: null
+      methode: "Modèles de durée exploitant les variations de la durée potentielle d'indemnisation"
+      champ: "États-Unis, chômeurs bénéficiaires de l'assurance chômage"
+      pays: US
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Le résumé indique qu'une semaine supplémentaire de durée potentielle augmente la durée moyenne des épisodes de chômage des bénéficiaires de 0,16 à 0,20 semaine. Valeur retenue : milieu de la fourchette, 0,18 (le ratio vaut aussi en mois par mois). Schmieder et von Wachter (2016) retiennent 0,20."
+    - source: le-barbanchon-2016
+      valeur: 0.31
+      intervalle_95: null
+      methode: "Régression sur discontinuité : seuil de 8 mois d'emploi dans l'année précédant la perte d'emploi, qui fait passer l'indemnisation de 7 à 15 mois"
+      champ: "France, demandeurs d'emploi à faible employabilité, règles d'assurance chômage 2000-2002"
+      pays: FR
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "L'étude rapporte que les demandeurs d'emploi ayant droit à 8 mois d'indemnisation de plus attendent environ 2,5 mois de plus avant de reprendre un emploi (durée d'inscription au chômage) : 2,5/8 = 0,31 mois par mois. L'effet sur la durée de non-emploi est environ deux fois plus faible (de l'ordre de 0,15 mois par mois) et concentré entre 7 et 15 mois d'ancienneté au chômage. Aucun effet significatif sur la qualité de l'emploi retrouvé (durée, salaire). Chiffres de la version CREST 2012-21 ; Schmieder et von Wachter (2016) reprennent l'effet de 2,5 mois."
+    - source: nekoei-weber-2017
+      valeur: 0.031
+      intervalle_95: [0.014, 0.047]
+      methode: "Régression sur discontinuité au seuil d'âge de 40 ans qui porte l'indemnisation de 30 à 39 semaines"
+      champ: "Autriche, salariés licenciés éligibles, 1980-2011"
+      pays: AT
+      annee_donnees: 2011
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "L'étude rapporte une hausse de 1,93 jour (e.t. 0,53) de la durée moyenne de non-emploi (moyenne autour du seuil : 115 jours) pour 9 semaines (63 jours) d'indemnisation en plus : 1,932/63 = 0,031 ; intervalle = (1,932 ± 1,96 × 0,526)/63. Les salaires de reprise augmentent légèrement (+0,45 point). Chiffres de la version IZA DP 9034 (2015)."
+    - source: johnston-mas-2018
+      valeur: 0.25
+      intervalle_95: null
+      methode: "Régression sur discontinuité temporelle : réduction de 16 semaines de la durée potentielle d'indemnisation dans le Missouri pour les cohortes entrées après la réforme"
+      champ: "États-Unis (Missouri), demandeurs d'assurance chômage touchés par la baisse de la durée maximale (de 73 à 57 semaines selon Schmieder et von Wachter 2016)"
+      pays: US
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Le résumé publié rapporte des effets marginaux de la durée maximale de 0,45 sur la durée d'indemnisation et de 0,25 sur la durée de non-emploi (0,5 et 0,3 dans la version de 2016). Valeur retenue : 0,25 (non-emploi). Les auteurs ne trouvent pas d'effet d'éviction sur les autres demandeurs d'emploi."
+    - source: rothstein-2011
+      valeur: null
+      intervalle_95: null
+      methode: "Variation des prolongations fédérales d'indemnisation entre États et dans le temps pendant la Grande Récession"
+      champ: "États-Unis, chômeurs éligibles, 2008-2011"
+      pays: US
+      annee_donnees: 2011
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Les prolongations ont eu des effets négatifs significatifs mais faibles sur la probabilité de sortir du chômage, concentrés sur les chômeurs de longue durée ; elles auraient augmenté le taux de chômage début 2011 de seulement 0,1 à 0,5 point, dont au moins la moitié par des chômeurs restant dans la population active au lieu d'en sortir. Résultat exprimé en points de taux de chômage, non convertible en mois par mois : valeur null."
+    - source: cohen-ganong-2026
+      valeur: null
+      intervalle_95: null
+      methode: "Méta-analyse de 57 études (91 estimations) avec correction du biais de publication (Andrews et Kasy) et modélisation de l'hétérogénéité"
+      champ: "Études microéconomiques publiées jusqu'en 2022, plusieurs pays"
+      pays: INT
+      annee_donnees: null
+      type_etude: meta_analyse
+      revue_par_les_pairs: true
+      note: "Les résultats sont exprimés en élasticités et non en mois par mois. Élasticité moyenne de la durée à la durée potentielle d'indemnisation : 0,46 brute (49 estimations), seulement 0,09 (e.t. 0,07) après correction du biais de publication ; élasticité prédite 0,23 pour le travailleur américain moyen, 0,14 dans un contexte peu généreux (Floride) et 0,80 dans un contexte généreux comme la France. La conversion en mois par mois (élasticité × durée de chômage / durée d'indemnisation) dépend du contexte et n'est pas publiée : valeur null."
+  note_synthese: "Allonger la durée pendant laquelle on peut toucher l'allocation chômage allonge un peu la durée du chômage, mais beaucoup moins que la durée ajoutée. Les meilleures études (qui comparent des chômeurs presque identiques de part et d'autre d'un seuil d'âge ou d'ancienneté) trouvent le plus souvent qu'un mois d'indemnisation en plus allonge le non-emploi de 0,03 à 0,3 mois, avec une médiane d'environ 0,13 mois (4 jours) en Europe. L'étude française de référence (Le Barbanchon) trouve un effet plus fort sur la durée d'inscription au chômage (environ 0,3 mois par mois), deux fois plus faible sur le non-emploi, et l'effet est plus élevé pour les seniors proches de la retraite. Une méta-analyse récente (Cohen et Ganong, 2026) montre que les études aux résultats spectaculaires sont plus souvent publiées, ce qui gonfle les moyennes, mais suggère aussi que l'effet est plus fort quand l'indemnisation est généreuse, comme en France."

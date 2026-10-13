@@ -1,0 +1,655 @@
+metriques:
+  # =====================================================================
+  # JUSTICE PÉNALE – PRISONS (statistiques mensuelles DGAP / SSER)
+  # Série : même mois (1er septembre) des années 2022 à 2026.
+  # =====================================================================
+  - id: justice_penale.prison.personnes_detenues
+    titre: "Personnes détenues en prison (France entière, au 1er septembre)"
+    explication: "Nombre de personnes écrouées et hébergées dans un établissement pénitentiaire (prévenus en détention provisoire et condamnés), métropole et outre-mer, au 1er septembre de chaque année. Dernier chiffre mensuel publié : 1er septembre 2026. Données révisables à la marge par la DGAP."
+    unite: personnes
+    serie:
+      - date: "2022-09-01"
+        valeur: 71669
+        source: justice-stat-mensuelle-2026-09
+        statut: definitif
+      - date: "2023-09-01"
+        valeur: 73693
+        source: justice-stat-mensuelle-2026-09
+        statut: definitif
+      - date: "2024-09-01"
+        valeur: 78969
+        source: justice-stat-mensuelle-2026-09
+        statut: definitif
+      - date: "2025-09-01"
+        valeur: 84311
+        source: justice-stat-mensuelle-2026-09
+        statut: definitif
+      - date: "2026-09-01"
+        valeur: 90020
+        source: justice-stat-mensuelle-2026-09
+        statut: provisoire
+
+  - id: justice_penale.prison.personnes_ecrouees
+    titre: "Personnes écrouées (détenues ou non, France entière, au 1er septembre)"
+    explication: "Toutes les personnes placées sous écrou par l'administration pénitentiaire : détenus en prison plus non-détenus (surtout détention à domicile sous surveillance électronique et placement extérieur non hébergé). Métropole et outre-mer, au 1er septembre."
+    unite: personnes
+    serie:
+      - date: "2022-09-01"
+        valeur: 86243
+        source: justice-stat-mensuelle-2026-09
+        statut: definitif
+      - date: "2023-09-01"
+        valeur: 89190
+        source: justice-stat-mensuelle-2026-09
+        statut: definitif
+      - date: "2024-09-01"
+        valeur: 94906
+        source: justice-stat-mensuelle-2026-09
+        statut: definitif
+      - date: "2025-09-01"
+        valeur: 101412
+        source: justice-stat-mensuelle-2026-09
+        statut: definitif
+      - date: "2026-09-01"
+        valeur: 107700
+        source: justice-stat-mensuelle-2026-09
+        statut: provisoire
+
+  - id: justice_penale.prison.places_operationnelles
+    titre: "Capacité opérationnelle des prisons (places, France entière, au 1er septembre)"
+    explication: "Nombre de places de détention calculées selon la surface des cellules et effectivement disponibles (les places en travaux ne sont pas comptées). Métropole et outre-mer, au 1er septembre."
+    unite: places
+    serie:
+      - date: "2022-09-01"
+        valeur: 60715
+        source: justice-stat-mensuelle-2026-09
+        statut: definitif
+      - date: "2023-09-01"
+        valeur: 60629
+        source: justice-stat-mensuelle-2026-09
+        statut: definitif
+      - date: "2024-09-01"
+        valeur: 62014
+        source: justice-stat-mensuelle-2026-09
+        statut: definitif
+      - date: "2025-09-01"
+        valeur: 62614
+        source: justice-stat-mensuelle-2026-09
+        statut: definitif
+      - date: "2026-09-01"
+        valeur: 63348
+        source: justice-stat-mensuelle-2026-09
+        statut: provisoire
+
+  - id: justice_penale.prison.densite_carcerale_globale
+    titre: "Densité carcérale globale (France entière, au 1er septembre)"
+    explication: "Nombre de personnes détenues pour 100 places opérationnelles, tous établissements confondus (métropole et outre-mer), au 1er septembre. Au-delà de 100 %, il y a plus de détenus que de places."
+    unite: pourcent
+    serie:
+      - date: "2022-09-01"
+        valeur: 118.0
+        source: justice-stat-mensuelle-2023-09
+        statut: definitif
+      - date: "2023-09-01"
+        valeur: 121.5
+        source: justice-stat-mensuelle-2023-09
+        statut: definitif
+      - date: "2024-09-01"
+        valeur: 127.3
+        source: justice-stat-mensuelle-2024-09
+        statut: definitif
+      - date: "2025-09-01"
+        valeur: 134.7
+        source: justice-stat-mensuelle-2026-09
+        statut: definitif
+      - date: "2026-09-01"
+        valeur: 142.1
+        source: justice-stat-mensuelle-2026-09
+        statut: provisoire
+
+  - id: justice_penale.prison.densite_carcerale_maisons_arret
+    titre: "Densité carcérale en maisons d'arrêt (France entière, au 1er septembre)"
+    explication: "Détenus pour 100 places opérationnelles dans les maisons d'arrêt et quartiers maison d'arrêt (hors places mineurs), qui accueillent les prévenus et les condamnés à de courtes peines (reliquat de deux ans au plus). Métropole et outre-mer, au 1er septembre."
+    unite: pourcent
+    serie:
+      - date: "2022-09-01"
+        valeur: 139.7
+        source: justice-stat-mensuelle-2023-09
+        statut: definitif
+      - date: "2023-09-01"
+        valeur: 144.5
+        source: justice-stat-mensuelle-2023-09
+        statut: definitif
+      - date: "2024-09-01"
+        valeur: 153.6
+        source: justice-stat-mensuelle-2024-09
+        statut: definitif
+      - date: "2025-09-01"
+        valeur: 164.1
+        source: justice-stat-mensuelle-2026-09
+        statut: definitif
+      - date: "2026-09-01"
+        valeur: 176.1
+        source: justice-stat-mensuelle-2026-09
+        statut: provisoire
+
+  - id: justice_penale.prison.matelas_au_sol
+    titre: "Détenus dormant sur un matelas posé au sol (France entière, au 1er septembre)"
+    explication: "Nombre de matelas posés au sol dans les cellules, faute de lit disponible, recensé par l'administration pénitentiaire (métropole et outre-mer) au 1er septembre."
+    unite: matelas
+    serie:
+      - date: "2022-09-01"
+        valeur: 1830
+        source: justice-stat-mensuelle-2026-09
+        statut: definitif
+      - date: "2023-09-01"
+        valeur: 2361
+        source: justice-stat-mensuelle-2026-09
+        statut: definitif
+      - date: "2024-09-01"
+        valeur: 3609
+        source: justice-stat-mensuelle-2026-09
+        statut: definitif
+      - date: "2025-09-01"
+        valeur: 5500
+        source: justice-stat-mensuelle-2026-09
+        statut: definitif
+      - date: "2026-09-01"
+        valeur: 8347
+        source: justice-stat-mensuelle-2026-09
+        statut: provisoire
+
+  - id: justice_penale.prison.taux_encellulement_individuel
+    titre: "Part des détenus seuls en cellule (encellulement individuel, au 1er septembre)"
+    explication: "Pourcentage des personnes détenues qui disposent d'une cellule individuelle, indicateur « encellulement individuel » publié par la DGAP (France entière, au 1er septembre)."
+    unite: pourcent
+    serie:
+      - date: "2022-09-01"
+        valeur: 41.7
+        source: justice-stat-mensuelle-2023-09
+        statut: definitif
+      - date: "2023-09-01"
+        valeur: 40.0
+        source: justice-stat-mensuelle-2024-09
+        statut: definitif
+      - date: "2024-09-01"
+        valeur: 38.6
+        source: justice-stat-mensuelle-2024-09
+        statut: definitif
+      - date: "2025-09-01"
+        valeur: 35.4
+        source: justice-stat-mensuelle-2026-09
+        statut: definitif
+      - date: "2026-09-01"
+        valeur: 32.0
+        source: justice-stat-mensuelle-2026-09
+        statut: provisoire
+
+  - id: justice_penale.prison.part_prevenus_detenus
+    titre: "Part des prévenus (non encore jugés définitivement) parmi les détenus, au 1er septembre"
+    explication: "Pourcentage de personnes en détention provisoire, en attente de jugement ou non condamnées définitivement, parmi l'ensemble des détenus (France entière, au 1er septembre)."
+    unite: pourcent
+    serie:
+      - date: "2022-09-01"
+        valeur: 26.5
+        source: justice-stat-mensuelle-2023-09
+        statut: definitif
+      - date: "2023-09-01"
+        valeur: 26.5
+        source: justice-stat-mensuelle-2024-09
+        statut: definitif
+      - date: "2024-09-01"
+        valeur: 26.0
+        source: justice-stat-mensuelle-2024-09
+        statut: definitif
+      - date: "2025-09-01"
+        valeur: 26.5
+        source: justice-stat-mensuelle-2026-09
+        statut: definitif
+      - date: "2026-09-01"
+        valeur: 27.3
+        source: justice-stat-mensuelle-2026-09
+        statut: provisoire
+
+  # =====================================================================
+  # JUSTICE PÉNALE – CONDAMNATIONS ET RÉCIDIVE (SSER, Casier judiciaire)
+  # =====================================================================
+  - id: justice_penale.condamnations.total_annuel
+    titre: "Condamnations pénales prononcées par an (crimes, délits, contraventions de 5e classe)"
+    explication: "Nombre de condamnations de personnes physiques inscrites au Casier judiciaire national pour crime, délit ou contravention de 5e classe, prononcées dans l'année (France hors collectivités d'outre-mer). Flux annuel : date = 31 décembre de l'année. 2022 semi-définitif, 2023 et 2024 provisoires (première publication) ; la baisse de 2020 est liée à la crise sanitaire."
+    unite: condamnations
+    serie:
+      - date: "2020-12-31"
+        valeur: 472794
+        source: justice-condamnations-1990-2023
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: 559295
+        source: justice-condamnations-1990-2023
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 530457
+        source: justice-condamnations-1990-2023
+        statut: provisoire
+      - date: "2023-12-31"
+        valeur: 543851
+        source: justice-condamnations-1990-2023
+        statut: provisoire
+      - date: "2024-12-31"
+        valeur: 559444
+        source: justice-condamnations-2024
+        statut: provisoire
+
+  - id: justice_penale.condamnations.emprisonnement_ferme
+    titre: "Condamnations à une peine de prison entièrement ferme, par an"
+    explication: "Nombre de condamnations dont la peine principale est un emprisonnement entièrement ferme (sans sursis), toutes infractions, France hors COM. Ne comprend ni les peines avec sursis partiel ni les réclusions criminelles. Flux annuel : date = 31 décembre. 2022 semi-définitif, 2023 et 2024 provisoires."
+    unite: condamnations
+    serie:
+      - date: "2020-12-31"
+        valeur: 70126
+        source: justice-condamnations-peine-1990-2023
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: 83287
+        source: justice-condamnations-peine-1990-2023
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 82264
+        source: justice-condamnations-peine-1990-2023
+        statut: provisoire
+      - date: "2023-12-31"
+        valeur: 83719
+        source: justice-condamnations-peine-1990-2023
+        statut: provisoire
+      - date: "2024-12-31"
+        valeur: 86438
+        source: justice-condamnations-2024
+        statut: provisoire
+
+  - id: justice_penale.recidive.taux_1an_sortants_prison
+    titre: "Récidive dans l'année suivant la sortie de prison (taux à 1 an)"
+    explication: "Part des condamnés libérés de prison une année donnée qui commettent, dans les 12 mois suivant leur sortie, une nouvelle infraction sanctionnée par une condamnation ou une composition pénale inscrite au Casier judiciaire. Récidive « au sens large » (pas forcément les mêmes faits, différente de la récidive légale). Date = 31 décembre de l'année de sortie de la cohorte (ex. 2021-12-31 = sortants de 2021)."
+    unite: pourcent
+    serie:
+      - date: "2017-12-31"
+        valeur: 33.4
+        source: justice-irj37-recidive-sortants-2021
+        statut: definitif
+      - date: "2018-12-31"
+        valeur: 33.1
+        source: justice-irj37-recidive-sortants-2021
+        statut: definitif
+      - date: "2019-12-31"
+        valeur: 31.7
+        source: justice-irj37-recidive-sortants-2021
+        statut: definitif
+      - date: "2020-12-31"
+        valeur: 34.1
+        source: justice-irj37-recidive-sortants-2021
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: 34.2
+        source: justice-irj37-recidive-sortants-2021
+        statut: definitif
+
+  - id: justice_penale.recidive.taux_5ans_sortants_prison
+    titre: "Récidive dans les cinq ans suivant la sortie de prison (taux à 5 ans)"
+    explication: "Part des condamnés libérés de prison une année donnée qui ont été de nouveau condamnés (ou ont fait l'objet d'une composition pénale) pour une infraction commise dans les cinq ans suivant leur libération. Récidive au sens large. Date = 31 décembre de l'année de sortie de la cohorte ; le taux à 5 ans n'est connu que jusqu'à la cohorte 2017."
+    unite: pourcent
+    serie:
+      - date: "2016-12-31"
+        valeur: 61.6
+        source: justice-irj37-recidive-sortants-2021
+        statut: definitif
+      - date: "2017-12-31"
+        valeur: 61.7
+        source: justice-irj37-recidive-sortants-2021
+        statut: definitif
+
+  - id: justice_penale.recidive.part_condamnes_delit_recidive_legale
+    titre: "Part des condamnés pour délit en état de récidive légale"
+    explication: "Pourcentage des personnes condamnées pour un délit dans l'année dont la condamnation retient la récidive légale (nouvelle infraction identique ou assimilée dans les délais prévus par le Code pénal, qui fait encourir le double de la peine). Flux annuel : date = 31 décembre. 2023 semi-définitif, 2024 provisoire."
+    unite: pourcent
+    serie:
+      - date: "2022-12-31"
+        valeur: 19.1
+        source: justice-rsj2025-fiche-11-7
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 19.5
+        source: justice-rsj2025-fiche-11-7
+        statut: provisoire
+      - date: "2024-12-31"
+        valeur: 20.4
+        source: justice-rsj2025-fiche-11-7
+        statut: provisoire
+
+  - id: justice_penale.recidive.part_condamnes_delit_reiterants
+    titre: "Part des condamnés pour délit en situation de réitération"
+    explication: "Pourcentage des personnes condamnées pour un délit dans l'année qui avaient déjà été condamnées définitivement dans les cinq années précédentes, sans remplir les conditions de la récidive légale (un condamné à la fois récidiviste et réitérant est compté comme récidiviste). Flux annuel : date = 31 décembre. 2023 semi-définitif, 2024 provisoire."
+    unite: pourcent
+    serie:
+      - date: "2022-12-31"
+        valeur: 25.0
+        source: justice-rsj2025-fiche-11-7
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 24.4
+        source: justice-rsj2025-fiche-11-7
+        statut: provisoire
+      - date: "2024-12-31"
+        valeur: 24.1
+        source: justice-rsj2025-fiche-11-7
+        statut: provisoire
+
+  # =====================================================================
+  # JUSTICE – MOYENS
+  # =====================================================================
+  - id: justice_penale.moyens.magistrats_ordre_judiciaire_etp
+    titre: "Magistrats de l'ordre judiciaire dans les juridictions (effectif réel en équivalent temps plein)"
+    explication: "Effectif réel, en équivalents temps plein sur l'année, des magistrats de l'ordre judiciaire (juges et procureurs) rattachés au programme « Justice judiciaire » (juridictions), selon le rapport annuel de performance. Ne comprend pas les quelque 200 magistrats affectés à l'administration centrale (222 en 2024). Date = 31 décembre de l'année."
+    unite: etp
+    serie:
+      - date: "2022-12-31"
+        valeur: 9576.69
+        source: justice-rsj2023-fiche-1-1
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 9700
+        source: justice-rsj2024-fiche-1-1
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 9989
+        source: justice-rsj2025-fiche-1-1
+        statut: definitif
+
+  - id: justice_penale.moyens.budget_justice_credits_consommes
+    titre: "Budget de la Justice effectivement dépensé (crédits de paiement consommés, en euros)"
+    explication: "Crédits de paiement consommés par la mission Justice (justice judiciaire, administration pénitentiaire, protection judiciaire de la jeunesse, accès au droit, pilotage, Conseil supérieur de la magistrature), selon le rapport annuel de performance ; publiés en millions d'euros et convertis en euros. Dépense annuelle : date = 31 décembre. N.B. : les montants votés en loi de finances initiale, présentés ailleurs par le ministère, portent sur un autre périmètre et sont plus faibles."
+    unite: euros
+    serie:
+      - date: "2020-12-31"
+        valeur: 9150982815
+        source: justice-rsj2025-fiche-1-1
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: 9870695632
+        source: justice-rsj2025-fiche-1-1
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 10655233191
+        source: justice-rsj2025-fiche-1-1
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 11311928563
+        source: justice-rsj2025-fiche-1-1
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 11826772588
+        source: justice-rsj2025-fiche-1-1
+        statut: definitif
+
+  # =====================================================================
+  # NATIONALITÉ ET IMMIGRATION
+  # (site DGEF inaccessible : 403 Cloudflare -> Eurostat et OFPRA)
+  # =====================================================================
+  - id: nationalite_immigration.sejour.premiers_titres_eurostat
+    titre: "Premiers titres de séjour délivrés par an (définition Eurostat)"
+    explication: "Nombre de premiers permis de séjour délivrés par la France à des ressortissants de pays non membres de l'UE, toutes raisons et toutes durées de validité confondues, selon la série Eurostat « permis délivrés pour la première fois » (données transmises par la France). Les chiffres nationaux de la DGEF (« L'essentiel de l'immigration ») reposent sur un champ un peu différent et n'ont pas pu être consultés. Flux annuel : date = 31 décembre ; 2025 = première diffusion, révisable."
+    unite: titres
+    serie:
+      - date: "2021-12-31"
+        valeur: 287179
+        source: eurostat-migr-resfirst-fr
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 326948
+        source: eurostat-migr-resfirst-fr
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 338877
+        source: eurostat-migr-resfirst-fr
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 345587
+        source: eurostat-migr-resfirst-fr
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 377462
+        source: eurostat-migr-resfirst-fr
+        statut: provisoire
+
+  - id: nationalite_immigration.asile.demandes_ofpra
+    titre: "Demandes d'asile enregistrées par l'OFPRA par an (réexamens inclus)"
+    explication: "Nombre de demandes de protection internationale introduites à l'OFPRA dans l'année, premières demandes et demandes de réexamen comprises, telles que publiées dans le rapport d'activité de l'Office. Flux annuel : date = 31 décembre."
+    unite: demandes
+    serie:
+      - date: "2024-12-31"
+        valeur: 153715
+        source: ofpra-rapport-activite-2025
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 145270
+        source: ofpra-rapport-activite-2025
+        statut: definitif
+
+  - id: nationalite_immigration.asile.premieres_demandes_ofpra
+    titre: "Premières demandes d'asile à l'OFPRA par an"
+    explication: "Nombre de premières demandes de protection internationale introduites à l'OFPRA dans l'année (hors réexamens). Flux annuel : date = 31 décembre."
+    unite: demandes
+    serie:
+      - date: "2024-12-31"
+        valeur: 130029
+        source: ofpra-rapport-activite-2025
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 111343
+        source: ofpra-rapport-activite-2025
+        statut: definitif
+
+  - id: nationalite_immigration.asile.taux_protection_ofpra
+    titre: "Taux de protection accordé par l'OFPRA (première instance)"
+    explication: "Part des décisions de l'OFPRA de l'année qui accordent une protection (statut de réfugié ou protection subsidiaire), avant tout recours devant la Cour nationale du droit d'asile (CNDA). Flux annuel : date = 31 décembre. Le rapport 2025 indique 38,8 % pour 2024 (38,9 % dans le rapport 2024, retenu ici)."
+    unite: pourcent
+    serie:
+      - date: "2023-12-31"
+        valeur: 32.9
+        source: ofpra-rapport-activite-2023
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 38.9
+        source: ofpra-rapport-activite-2024
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 41.2
+        source: ofpra-rapport-activite-2025
+        statut: definitif
+
+  - id: nationalite_immigration.nationalite.acquisitions
+    titre: "Acquisitions de la nationalité française par an (définition Eurostat)"
+    explication: "Nombre de personnes ayant acquis la nationalité française dans l'année, tous modes d'acquisition et toutes nationalités d'origine confondus, selon la série Eurostat transmise par la France. Flux annuel : date = 31 décembre. Les chiffres 2025 de la DGEF n'ont pas pu être consultés (site inaccessible)."
+    unite: personnes
+    serie:
+      - date: "2020-12-31"
+        valeur: 86483
+        source: eurostat-migr-acq-fr
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: 130385
+        source: eurostat-migr-acq-fr
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 114483
+        source: eurostat-migr-acq-fr
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 97288
+        source: eurostat-migr-acq-fr
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 103661
+        source: eurostat-migr-acq-fr
+        statut: definitif
+
+  - id: nationalite_immigration.eloignement.obligations_quitter_territoire
+    titre: "Étrangers visés par une obligation de quitter le territoire, par an (définition Eurostat)"
+    explication: "Nombre de ressortissants de pays non membres de l'UE ayant fait l'objet dans l'année d'une décision les obligeant à quitter le territoire français (obligation de quitter le territoire), selon Eurostat ; valeurs arrondies. Flux annuel : date = 31 décembre ; 2025 = première diffusion."
+    unite: personnes
+    serie:
+      - date: "2021-12-31"
+        valeur: 125450
+        source: eurostat-migr-eiord-fr
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 135645
+        source: eurostat-migr-eiord-fr
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 136685
+        source: eurostat-migr-eiord-fr
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 128740
+        source: eurostat-migr-eiord-fr
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 137550
+        source: eurostat-migr-eiord-fr
+        statut: provisoire
+
+  - id: nationalite_immigration.eloignement.departs_apres_obligation
+    titre: "Étrangers ayant effectivement quitté la France après une obligation de quitter le territoire, par an (définition Eurostat)"
+    explication: "Nombre de ressortissants de pays non membres de l'UE qui ont effectivement quitté le territoire à la suite d'une obligation de quitter (toutes destinations), selon Eurostat ; valeurs arrondies, rupture de série en 2021. Ce n'est pas exactement le chiffre national des « éloignements » publié par le ministère de l'Intérieur, non consultable. Flux annuel : date = 31 décembre ; 2025 = première diffusion."
+    unite: personnes
+    serie:
+      - date: "2021-12-31"
+        valeur: 8210
+        source: eurostat-migr-eirtn-fr
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 10205
+        source: eurostat-migr-eirtn-fr
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 12165
+        source: eurostat-migr-eirtn-fr
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 16665
+        source: eurostat-migr-eirtn-fr
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 18930
+        source: eurostat-migr-eirtn-fr
+        statut: provisoire
+
+  # =====================================================================
+  # INSTITUTIONS – COMMUNES, ÉLUS, PARTICIPATION
+  # =====================================================================
+  - id: institutions.communes.nombre
+    titre: "Nombre de communes (France métropolitaine et DROM, au 1er janvier)"
+    explication: "Nombre de communes au 1er janvier selon le Code officiel géographique de l'INSEE (lignes de type « commune », hors communes déléguées ou associées, arrondissements municipaux et collectivités d'outre-mer du Pacifique). Comptage réalisé sur le fichier officiel. Aucune commune nouvelle n'a été créée pour 2026 en raison des municipales de mars 2026."
+    unite: communes
+    serie:
+      - date: "2022-01-01"
+        valeur: 34955
+        source: insee-cog-2022
+        statut: definitif
+      - date: "2023-01-01"
+        valeur: 34945
+        source: insee-cog-2023
+        statut: definitif
+      - date: "2024-01-01"
+        valeur: 34935
+        source: insee-cog-2024
+        statut: definitif
+      - date: "2025-01-01"
+        valeur: 34875
+        source: insee-cog-2025
+        statut: definitif
+      - date: "2026-01-01"
+        valeur: 34875
+        source: insee-cog-2026
+        statut: definitif
+
+  - id: institutions.elus.maires
+    titre: "Nombre de maires en fonction (Répertoire national des élus)"
+    explication: "Nombre de maires enregistrés dans le Répertoire national des élus du ministère de l'Intérieur à la mise à jour du 11 août 2026, après les municipales de mars 2026 (y compris Polynésie française, Nouvelle-Calédonie et Saint-Pierre-et-Miquelon). Comptage des lignes du fichier ; mises à jour encore en cours selon le ministère, d'où un nombre légèrement inférieur au nombre de communes."
+    unite: personnes
+    serie:
+      - date: "2026-08-11"
+        valeur: 34826
+        source: interieur-rne-maires-2026-08
+        statut: provisoire
+
+  - id: institutions.elus.part_femmes_maires
+    titre: "Part des femmes parmi les maires"
+    explication: "Pourcentage de femmes parmi les maires enregistrés dans le Répertoire national des élus (mise à jour du 11 août 2026) : 7 960 femmes sur 34 826 maires, calcul fait sur le fichier officiel."
+    unite: pourcent
+    serie:
+      - date: "2026-08-11"
+        valeur: 22.9
+        source: interieur-rne-maires-2026-08
+        statut: provisoire
+
+  - id: institutions.elus.conseillers_municipaux
+    titre: "Nombre de conseillers municipaux (Répertoire national des élus)"
+    explication: "Nombre de personnes titulaires d'un mandat de conseiller municipal (maires et adjoints compris) dans le Répertoire national des élus, mise à jour du 11 août 2026 après les municipales de mars 2026. Comptage de l'agent sur le fichier officiel, après suppression des doublons (une personne ayant plusieurs fonctions y apparaît plusieurs fois : 511 225 lignes). Mises à jour encore en cours selon le ministère."
+    unite: personnes
+    serie:
+      - date: "2026-08-11"
+        valeur: 510704
+        source: interieur-rne-conseillers-municipaux-2026-08
+        statut: provisoire
+
+  - id: institutions.participation.presidentielle_1er_tour
+    titre: "Participation au 1er tour de l'élection présidentielle"
+    explication: "Votants rapportés aux inscrits sur les listes électorales, France entière, au premier tour de l'élection présidentielle (résultats définitifs du ministère de l'Intérieur). Date = jour du scrutin."
+    unite: pourcent
+    serie:
+      - date: "2017-04-23"
+        valeur: 77.77
+        source: interieur-presidentielle-2017-t1
+        statut: definitif
+      - date: "2022-04-10"
+        valeur: 73.69
+        source: interieur-presidentielle-2022-t1-fe
+        statut: definitif
+
+  - id: institutions.participation.legislatives_1er_tour
+    titre: "Participation au 1er tour des élections législatives"
+    explication: "Votants rapportés aux inscrits, France entière, au premier tour des élections législatives (résultats définitifs du ministère de l'Intérieur). 2024 : élections anticipées après la dissolution. Date = jour du scrutin."
+    unite: pourcent
+    serie:
+      - date: "2022-06-12"
+        valeur: 47.51
+        source: interieur-legislatives-2022-t1-fe
+        statut: definitif
+      - date: "2024-06-30"
+        valeur: 66.71
+        source: interieur-legislatives-2024-t1-fe
+        statut: definitif
+
+  - id: institutions.participation.europeennes
+    titre: "Participation aux élections européennes (France)"
+    explication: "Part des inscrits ayant voté en France aux élections du Parlement européen, telle que publiée par le Parlement européen à partir des résultats officiels. Date = jour du scrutin en France."
+    unite: pourcent
+    serie:
+      - date: "2019-05-26"
+        valeur: 50.12
+        source: pe-resultats-europeennes-france
+        statut: definitif
+      - date: "2024-06-09"
+        valeur: 51.49
+        source: pe-resultats-europeennes-france
+        statut: definitif
+
+  - id: institutions.participation.municipales_1er_tour
+    titre: "Participation au 1er tour des élections municipales"
+    explication: "Votants rapportés aux inscrits au premier tour des municipales du 15 mars 2026, calculé par le Système en additionnant les inscrits (48 474 213) et les votants (27 678 488) des 34 836 communes du fichier officiel du ministère de l'Intérieur (hors Polynésie française). Ce n'est pas un taux national publié tel quel, d'où le statut « estimation »."
+    unite: pourcent
+    serie:
+      - date: "2026-03-15"
+        valeur: 57.1
+        source: interieur-municipales-2026-t1-communes
+        statut: estimation

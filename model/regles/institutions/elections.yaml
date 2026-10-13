@@ -1,0 +1,439 @@
+domaine: institutions
+theme: "Élections et vie politique"
+regles:
+  # ------------------------------------------------------------- Droit de vote
+  - id: institutions.vote.age_minimum
+    titre: "Droit de vote : âge minimal"
+    explication: "Il faut avoir au moins 18 ans (la veille du scrutin), être français et jouir de ses droits civils et politiques pour voter. Les jeunes recensés à 16 ans sont inscrits automatiquement."
+    type: nombre
+    unite: ans
+    bornes: [16, 21]
+    valeurs:
+      - depuis: "2016-08-01"
+        valeur: 18
+        sources: [sp-f1367, dgcl-guide-maire-2026, an-fiche-3-election-deputes, legi-ce-l2]
+        article: "Code électoral, art. L. 2"
+    tags: [vote, citoyennete, age]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie (majorité électorale à 18 ans bien antérieure) ; valeur attestée au 2016-08-01 : la loi n° 2016-1048 du 1er août 2016 confie à l'Insee l'inscription d'office des personnes « ayant atteint l'âge de dix-huit ans » (Guide du maire 2026). Les citoyens européens peuvent voter aux municipales et européennes."
+
+  - id: institutions.vote.obligatoire
+    titre: "Le vote est-il obligatoire pour les citoyens ?"
+    explication: "Non : en France, voter est un droit, pas une obligation, et l'abstention n'est pas sanctionnée. Seuls les « grands électeurs » qui élisent les sénateurs sont obligés de voter."
+    type: booleen
+    valeurs:
+      - depuis: "2026-10-13"
+        valeur: false
+        sources: [senat-mode-election-senateurs, an-fiche-1-caracteres-generaux-parlement]
+    tags: [vote, abstention]
+    a_verifier: true
+    note: "Aucune source officielle lue n'énonce explicitement l'absence d'obligation de vote pour les électeurs ordinaires ; les sources lues ne mentionnent qu'une obligation pour les grands électeurs sénatoriaux (art. L. 318 du code électoral, amende de 100 € en cas d'abstention non justifiée, selon le Sénat). Date d'entrée en vigueur non établie ; date retenue = date de consultation."
+
+  - id: institutions.vote.blanc_compte_dans_exprimes
+    titre: "Le vote blanc est-il compté dans les suffrages exprimés ?"
+    explication: "Non : le vote blanc est décompté à part (il figure dans le procès-verbal), mais il n'entre pas dans les suffrages exprimés qui servent à calculer les résultats et les majorités."
+    type: booleen
+    valeurs:
+      - depuis: "2025-10-13"
+        valeur: false
+        sources: [sp-f16828, legi-ce-l54]
+    tags: [vote, vote_blanc, mode_de_scrutin]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-10-13 (« Vérifié le » de la fiche service-public : « Un vote blanc est compté dans le nombre des votants, mais pas dans les suffrages exprimés »)."
+
+  - id: institutions.procuration.max_procurations_france_par_mandataire
+    titre: "Procuration : nombre maximal de procurations établies en France par mandataire"
+    explication: "Le jour du vote, une personne ne peut voter que pour un seul électeur ayant fait sa procuration en France (des procurations faites à l'étranger peuvent s'y ajouter)."
+    type: nombre
+    unite: procurations
+    bornes: [1, 5]
+    valeurs:
+      - depuis: "2026-02-02"
+        valeur: 1
+        sources: [sp-f1604, legi-ce-l71]
+    tags: [vote, procuration]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-02-02 (fiche service-public). Cumuls possibles : jusqu'à 3 procurations faites à l'étranger si un des mandants vote dans un consulat."
+
+  - id: institutions.procuration.justificatif_absence_requis
+    titre: "Procuration : faut-il justifier de son absence ?"
+    explication: "Non : on peut donner procuration sans avoir à prouver qu'on ne peut pas se déplacer le jour du vote."
+    type: booleen
+    valeurs:
+      - depuis: "2026-02-02"
+        valeur: false
+        sources: [sp-f1604, legi-ce-l71]
+    tags: [vote, procuration]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-02-02 (« Vous n'avez pas de justificatif d'absence à fournir »)."
+
+  - id: institutions.vote_detenus.correspondance_legislatives_et_locales
+    titre: "Détenus : vote par correspondance possible aux législatives et élections locales ?"
+    explication: "Non depuis 2025 : les personnes détenues ne peuvent plus voter par correspondance qu'à la présidentielle, aux européennes et aux référendums. Pour les autres élections, elles votent par procuration ou en se rendant au bureau de vote."
+    type: booleen
+    valeurs:
+      - depuis: "2025-07-18"
+        valeur: false
+        sources: [cc-decision-2025-889-dc, sp-f1227, legi-loi-2025-658]
+        article: "Code électoral, art. L. 12-1, III"
+    tags: [vote, detenus, prison, reforme_2025]
+    a_verifier: false
+    note: "Réforme : loi n° 2025-658 du 18 juillet 2025, jugée conforme par la décision n° 2025-889 DC du 17 juillet 2025 ; la possibilité de voter par correspondance aux législatives et municipales existait auparavant (date de sa création non établie). Date retenue = date de la loi (entrée en vigueur exacte non lue)."
+
+  # --------------------------------------------------------------- Éligibilité
+  - id: institutions.eligibilite.president_age_min
+    titre: "Éligibilité : âge minimal pour être candidat à la présidentielle"
+    explication: "Tout électeur français de 18 ans révolus, qui n'est pas frappé d'inéligibilité, peut être candidat (s'il réunit les 500 parrainages)."
+    type: nombre
+    unite: ans
+    bornes: [18, 40]
+    valeurs:
+      - depuis: "2022-12-15"
+        valeur: 18
+        sources: [elysee-president-4-questions, cc-presidentielle2022-etre-candidat, legi-ce-lo127]
+    tags: [eligibilite, president, age]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2022-12-15 (page elysee.fr mise à jour à cette date)."
+
+  - id: institutions.eligibilite.depute_age_min
+    titre: "Éligibilité : âge minimal pour être député"
+    explication: "On peut être élu député dès 18 ans, si l'on est électeur et qu'on n'est pas dans un cas d'inéligibilité."
+    type: nombre
+    unite: ans
+    bornes: [18, 40]
+    valeurs:
+      - depuis: "2023-09-30"
+        valeur: 18
+        sources: [an-fiche-3-election-deputes, legi-ce-lo127]
+        article: "Code électoral, art. L.O. 127"
+    tags: [eligibilite, assemblee, age]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée en septembre 2023 (fiche AN, jour non précisé, date retenue = fin du mois)."
+
+  - id: institutions.eligibilite.senateur_age_min
+    titre: "Éligibilité : âge minimal pour être sénateur"
+    explication: "Il faut avoir au moins 24 ans pour être élu sénateur."
+    type: nombre
+    unite: ans
+    bornes: [18, 40]
+    valeurs:
+      - depuis: "2011-04-14"
+        valeur: 24
+        sources: [senat-mode-election-senateurs, an-fiche-1-caracteres-generaux-parlement]
+        article: "Loi n° 2011-410 du 14 avril 2011"
+    tags: [eligibilite, senat, age]
+    a_verifier: false
+    note: "Âge fixé par la loi n° 2011-410 du 14 avril 2011 (senat.fr) ; date retenue = date de la loi. L'âge antérieur n'a pas été lu sur une source."
+
+  - id: institutions.eligibilite.maire_age_min
+    titre: "Éligibilité : âge minimal pour être maire"
+    explication: "Nul ne peut être maire s'il n'a pas 18 ans révolus ; le maire et ses adjoints doivent aussi être de nationalité française."
+    type: nombre
+    unite: ans
+    bornes: [18, 40]
+    valeurs:
+      - depuis: "2026-03-31"
+        valeur: 18
+        sources: [dgcl-guide-maire-2026]
+        article: "Code général des collectivités territoriales, art. L. 2122-4"
+    tags: [eligibilite, commune, maire, age]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée en mars 2026 (Guide du maire 2026, date retenue = fin du mois)."
+
+  # --------------------------------------------------------------- Municipales
+  - id: institutions.municipales.duree_mandat
+    titre: "Conseillers municipaux : durée du mandat"
+    explication: "Les conseillers municipaux sont élus pour six ans ; ils élisent ensuite le maire et les adjoints. Les dernières municipales ont eu lieu en mars 2026, les prochaines en 2032."
+    type: nombre
+    unite: ans
+    bornes: [3, 9]
+    valeurs:
+      - depuis: "2026-04-08"
+        valeur: 6
+        sources: [sp-f1952, cnccfp-municipales-2026]
+    tags: [commune, mandat, municipales]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-04-08 (« Vérifié le » de la fiche service-public)."
+
+  - id: institutions.municipales.seuil_population_scrutin_liste
+    titre: "Municipales : population à partir de laquelle on vote pour des listes paritaires"
+    explication: "Depuis les municipales de mars 2026, toutes les communes, même les plus petites, élisent leur conseil au scrutin de liste à deux tours, avec alternance femme-homme et sans possibilité de rayer des noms. Avant, les communes de moins de 1 000 habitants votaient pour des candidats individuels (panachage possible)."
+    type: nombre
+    unite: habitants
+    bornes: [0, 10000]
+    valeurs:
+      - depuis: "2013-05-17"
+        valeur: 1000
+        sources: [cc-commentaire-2025-883-dc]
+        article: "Loi n° 2013-403 du 17 mai 2013"
+      - depuis: "2026-03-15"
+        valeur: 0
+        sources: [cc-decision-2025-883-dc, cc-commentaire-2025-883-dc, dgcl-guide-executifs-locaux-2026, dgcl-election-executifs-locaux-2026, cnccfp-municipales-2026, legi-ce-l252]
+        article: "Code électoral, art. L. 252 et L. 255-2 (loi n° 2025-444 du 21 mai 2025)"
+    tags: [commune, municipales, mode_de_scrutin, parite, reforme_2025]
+    a_verifier: false
+    note: "0 = toutes les communes. Réforme : loi n° 2025-444 du 21 mai 2025 « visant à harmoniser le mode de scrutin aux élections municipales » (décision n° 2025-883 DC du 15 mai 2025), appliquée au renouvellement général de mars 2026 (1er tour le 15 mars 2026). Dans les communes de moins de 1 000 habitants, une liste reste valable avec jusqu'à deux candidats de moins que le nombre de sièges. Seuil de 1 000 habitants issu de la loi du 17 mai 2013 (appliqué à partir des municipales de 2014 ; date de la loi retenue) ; auparavant 3 500 habitants (depuis 1982)."
+
+  - id: institutions.municipales.prime_majoritaire
+    titre: "Municipales : prime de sièges accordée à la liste arrivée en tête"
+    explication: "La liste qui obtient la majorité absolue au 1er tour, ou qui arrive en tête au 2nd tour, reçoit d'office la moitié des sièges ; l'autre moitié est répartie à la proportionnelle entre les listes ayant au moins 5 % (y compris la gagnante)."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 75]
+    valeurs:
+      - depuis: "2025-05-15"
+        valeur: 50
+        sources: [cc-commentaire-2025-883-dc, legi-ce-l260]
+        article: "Code électoral, art. L. 262"
+    tags: [commune, municipales, mode_de_scrutin]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-05-15 (commentaire de la décision 2025-883 DC). Règle étendue à toutes les communes en 2026. Exception non chiffrée ici : la loi n° 2025-795 du 11 août 2025 a « ajusté la prime majoritaire » à Paris, Lyon et Marseille."
+
+  - id: institutions.municipales.seuil_repartition_sieges
+    titre: "Municipales : score minimal d'une liste pour obtenir des sièges"
+    explication: "Une liste doit obtenir au moins 5 % des suffrages exprimés pour participer à la répartition proportionnelle des sièges."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 20]
+    valeurs:
+      - depuis: "2025-05-15"
+        valeur: 5
+        sources: [cc-commentaire-2025-883-dc, legi-ce-l260]
+        article: "Code électoral, art. L. 262"
+    tags: [commune, municipales, mode_de_scrutin]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-05-15 (commentaire de la décision 2025-883 DC). Les seuils de maintien (10 %) et de fusion (5 %) au second tour n'ont pas été vérifiés sur une source officielle lue."
+
+  # --------------------------------------------------------------- Cumul des mandats
+  - id: institutions.cumul.parlementaire_fonction_executive_locale_interdit
+    titre: "Cumul : interdiction pour un parlementaire d'exercer une fonction exécutive locale"
+    explication: "Un député ou un sénateur ne peut pas être en même temps maire, adjoint au maire, président ou vice-président d'un département, d'une région ou d'une intercommunalité."
+    type: booleen
+    valeurs:
+      - depuis: "2017-10-01"
+        valeur: true
+        sources: [an-fiche-3-election-deputes, an-fiche-5-statut-depute, senat-statut-senateur]
+        article: "Code électoral, art. L.O. 141-1 ; loi organique n° 2014-125 du 14 février 2014"
+    tags: [cumul, parlement, elus_locaux]
+    a_verifier: false
+    note: "Applicable aux députés depuis les législatives de juin 2017 et aux sénateurs « depuis octobre 2017 » (senat.fr) ; date retenue = 1er octobre 2017, date citée par le Sénat pour les incompatibilités connexes (art. L.O. 147-1). Selon l'AN, un député élu maire doit démissionner de son mandat parlementaire (délai de 30 jours pour faire cesser l'incompatibilité)."
+
+  - id: institutions.cumul.parlementaire_mandats_locaux_max
+    titre: "Cumul : nombre maximal de mandats locaux pour un parlementaire"
+    explication: "Un député ou un sénateur peut garder au plus un mandat local (conseiller régional, départemental, ou municipal d'une commune de 1 000 habitants et plus…), sans fonction exécutive."
+    type: nombre
+    unite: mandats
+    bornes: [0, 3]
+    valeurs:
+      - depuis: "2023-09-30"
+        valeur: 1
+        sources: [an-fiche-5-statut-depute, senat-statut-senateur]
+        article: "Code électoral, art. L.O. 141"
+    tags: [cumul, parlement, elus_locaux]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée en septembre 2023 (fiche AN, date retenue = fin du mois). Les mandats de conseiller municipal des communes de moins de 1 000 habitants ne sont pas comptés. Le cumul député-sénateur et parlementaire national-député européen est interdit."
+
+  # --------------------------------------------------------------- Financement
+  - id: institutions.financement_politique.don_max_partis_par_an
+    titre: "Financement : plafond annuel des dons et cotisations d'une personne aux partis"
+    explication: "Une personne ne peut pas donner plus de 7 500 € par an au total à un ou plusieurs partis politiques (dons et cotisations confondus). Seuls les Français et les résidents en France peuvent donner."
+    type: nombre
+    unite: euros
+    bornes: [0, 50000]
+    valeurs:
+      - depuis: "2013-10-11"
+        valeur: 7500
+        sources: [an-fiche-4-financement-vie-politique, cnccfp-partis-politiques-dons, sp-f427, legi-loi-88-227]
+        article: "Loi n° 88-227 du 11 mars 1988, art. 11-4"
+    tags: [financement, partis, dons]
+    a_verifier: false
+    note: "Depuis la loi n° 2013-907 du 11 octobre 2013, le plafond s'applique par donateur (tous partis confondus) et non plus par parti (date retenue = date de la loi, entrée en vigueur exacte non établie). Les cotisations des élus ne sont pas prises en compte. Réduction d'impôt de 66 %, dans la limite de 15 000 € par foyer."
+
+  - id: institutions.financement_politique.don_max_candidats_par_election
+    titre: "Financement : plafond des dons d'une personne aux candidats pour une élection"
+    explication: "Une personne peut donner au maximum 4 600 € pour une même élection, tous candidats confondus (les deux tours comptent comme une seule élection)."
+    type: nombre
+    unite: euros
+    bornes: [0, 20000]
+    valeurs:
+      - depuis: "2023-09-30"
+        valeur: 4600
+        sources: [an-fiche-3-election-deputes, cnccfp-presidentielle-2027, cnccfp-guide-presidentielle-2027, sp-f427, legi-ce-l52-3-1]
+        article: "Code électoral, art. L. 52-8"
+    tags: [financement, campagne, dons]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée en septembre 2023 (fiche AN, date retenue = fin du mois) et confirmée pour la présidentielle 2027 (CNCCFP)."
+
+  - id: institutions.financement_politique.don_especes_max
+    titre: "Financement : montant maximal d'un don en espèces à un candidat"
+    explication: "Au-delà de 150 €, un don à un candidat doit être fait par chèque, virement, prélèvement ou carte bancaire."
+    type: nombre
+    unite: euros
+    bornes: [0, 1000]
+    valeurs:
+      - depuis: "2023-09-30"
+        valeur: 150
+        sources: [an-fiche-3-election-deputes, cnccfp-guide-presidentielle-2027]
+        article: "Code électoral, art. L. 52-8"
+    tags: [financement, campagne, dons]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée en septembre 2023 (fiche AN). Le total des dons en espèces est en outre limité à un cinquième du plafond de dépenses (législatives) selon l'AN."
+
+  - id: institutions.financement_politique.dons_personnes_morales_autorises
+    titre: "Financement : les entreprises et autres personnes morales peuvent-elles financer partis et candidats ?"
+    explication: "Non : les entreprises, associations, syndicats, collectivités… ne peuvent faire aucun don, ni en argent ni en nature, aux candidats ou aux partis. Seuls les partis politiques peuvent aider les candidats."
+    type: booleen
+    valeurs:
+      - depuis: "1995-12-31"
+        valeur: false
+        sources: [an-fiche-4-financement-vie-politique, an-fiche-3-election-deputes, cnccfp-presidentielle-2027, cnccfp-guide-presidentielle-2027]
+        article: "Code électoral, art. L. 52-8 ; loi n° 88-227 du 11 mars 1988"
+    tags: [financement, entreprises, dons]
+    a_verifier: false
+    note: "Interdiction « depuis 1995 » selon l'Assemblée nationale (jour exact non établi ; date retenue = fin 1995). Les partis, eux, reçoivent une aide publique de l'État."
+
+  - id: institutions.financement_partis.aide_publique_seuil_suffrages
+    titre: "Financement public des partis : score minimal aux législatives pour toucher la 1re fraction"
+    explication: "Pour recevoir la première moitié de l'aide publique de l'État, un parti doit présenter des candidats dans au moins 50 circonscriptions qui obtiennent au moins 1 % des suffrages exprimés. La seconde moitié dépend du nombre de parlementaires rattachés."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2003-12-31"
+        valeur: 1
+        sources: [an-fiche-4-financement-vie-politique, senat-financement-vie-politique, legi-loi-88-227-art9]
+        article: "Loi n° 88-227 du 11 mars 1988, art. 9"
+    tags: [financement, partis, aide_publique]
+    a_verifier: false
+    note: "Condition « ajoutée en 2003 » selon l'AN (jour non établi ; date retenue = fin 2003). Régime spécifique pour les partis présents seulement outre-mer. L'aide est réduite en cas de non-respect de la parité des candidatures."
+
+  - id: institutions.presidentielle.plafond_depenses_premier_tour
+    titre: "Présidentielle : plafond des dépenses de campagne (candidat du 1er tour)"
+    explication: "Un candidat à la présidentielle ne peut pas dépenser plus de 16,851 millions d'euros pour sa campagne. En cas de dépassement, il doit reverser le surplus au Trésor public."
+    type: nombre
+    unite: euros
+    bornes: [0, 50000000]
+    valeurs:
+      - depuis: "2026-03-26"
+        valeur: 16851000
+        sources: [cnccfp-guide-presidentielle-2027, cnccfp-presidentielle-2027]
+        article: "Code électoral, art. L. 52-11 ; décret n° 2009-1730 du 30 décembre 2009"
+    tags: [financement, campagne, presidentielle]
+    a_verifier: false
+    note: "Montant applicable à la présidentielle 2027 selon le guide CNCCFP adopté le 26 mars 2026 (aucune actualisation pour 2027) ; plafonds gelés depuis la loi de finances pour 2012 (date d'entrée en vigueur de ce montant non établie ; date retenue = adoption du guide). La page CNCCFP arrondit à 16,9 M€."
+
+  - id: institutions.presidentielle.plafond_depenses_second_tour
+    titre: "Présidentielle : plafond des dépenses de campagne (candidats du 2nd tour)"
+    explication: "Les deux candidats qualifiés pour le second tour peuvent dépenser jusqu'à 22,509 millions d'euros au total."
+    type: nombre
+    unite: euros
+    bornes: [0, 60000000]
+    valeurs:
+      - depuis: "2026-03-26"
+        valeur: 22509000
+        sources: [cnccfp-guide-presidentielle-2027, cnccfp-presidentielle-2027]
+        article: "Code électoral, art. L. 52-11 ; décret n° 2009-1730 du 30 décembre 2009"
+    tags: [financement, campagne, presidentielle]
+    a_verifier: false
+    note: "Même remarque que pour le plafond du 1er tour ; la page CNCCFP arrondit à 22,5 M€."
+
+  - id: institutions.financement_campagne.taux_remboursement_forfaitaire
+    titre: "Campagnes : remboursement maximal par l'État (en % du plafond de dépenses)"
+    explication: "Un candidat qui dépasse 5 % des voix au 1er tour peut se faire rembourser par l'État ses dépenses de campagne, jusqu'à 47,5 % du plafond autorisé (présidentielle, législatives)."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2021-03-29"
+        valeur: 47.5
+        sources: [cc-loi-62-1292-consolidee, cnccfp-guide-presidentielle-2027, an-fiche-3-election-deputes, legi-loi-62-1292]
+        article: "Loi n° 62-1292 du 6 novembre 1962, art. 3-V"
+    tags: [financement, campagne, remboursement]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2021-03-29 (version consolidée de la loi de 1962). À la présidentielle, les candidats sous 5 % sont remboursés au plus 4,75 % du plafond (environ 800 000 €). Le remboursement ne peut dépasser les dépenses réelles et n'est versé que si le compte est approuvé."
+
+  - id: institutions.financement_campagne.seuil_remboursement_suffrages
+    titre: "Campagnes : score minimal pour le remboursement majoré des dépenses"
+    explication: "Il faut obtenir au moins 5 % des suffrages exprimés au 1er tour pour avoir droit au remboursement à 47,5 % du plafond."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 20]
+    valeurs:
+      - depuis: "2021-03-29"
+        valeur: 5
+        sources: [cc-loi-62-1292-consolidee, cnccfp-guide-presidentielle-2027, an-fiche-3-election-deputes, legi-loi-62-1292]
+        article: "Loi n° 62-1292 du 6 novembre 1962, art. 3-V"
+    tags: [financement, campagne, remboursement]
+    a_verifier: false
+    note: "Formulation légèrement différente selon les sources : « plus de 5 % » (loi de 1962 consolidée, présidentielle) ; « au moins 5 % » (fiche AN pour les législatives, guide CNCCFP). Date d'entrée en vigueur non établie ; valeur attestée au 2021-03-29."
+
+  - id: institutions.presidentielle.avance_forfaitaire
+    titre: "Présidentielle : avance versée par l'État à chaque candidat"
+    explication: "Dès la publication de la liste officielle, l'État verse 200 000 € à chaque candidat, à valoir sur le remboursement de ses dépenses (à rendre si le remboursement final est inférieur)."
+    type: nombre
+    unite: euros
+    bornes: [0, 2000000]
+    valeurs:
+      - depuis: "2021-03-29"
+        valeur: 200000
+        sources: [cc-loi-62-1292-consolidee, cnccfp-presidentielle-2027, cnccfp-guide-presidentielle-2027, legi-loi-62-1292]
+        article: "Loi n° 62-1292 du 6 novembre 1962, art. 3-V"
+    tags: [financement, campagne, presidentielle]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2021-03-29 et confirmée pour 2027 par la CNCCFP."
+
+  # ------------------------------------------------------------- Élections européennes
+  - id: institutions.europeennes.periodicite
+    titre: "Européennes : durée du mandat des députés européens"
+    explication: "Les députés européens sont élus pour cinq ans au suffrage universel direct. La dernière élection a eu lieu en juin 2024, la prochaine aura lieu en 2029."
+    type: nombre
+    unite: ans
+    bornes: [4, 7]
+    valeurs:
+      - depuis: "2024-06-09"
+        valeur: 5
+        sources: [cnccfp-europeennes-2024, sp-f1944]
+    tags: [europeennes, mandat, parlement_europeen]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie (règle européenne ancienne) ; valeur attestée lors de l'élection du 9 juin 2024 (CNCCFP)."
+
+  - id: institutions.europeennes.circonscription_unique
+    titre: "Européennes : une seule circonscription nationale"
+    explication: "Les eurodéputés français sont élus sur des listes nationales, dans une circonscription unique couvrant toute la France : la loi du 25 juin 2018 a rétabli cette circonscription unique."
+    type: booleen
+    valeurs:
+      - depuis: "2018-06-25"
+        valeur: true
+        sources: [cnccfp-europeennes-2024, cc-2018-766-dc, legi-loi-77-729]
+        article: "Loi n° 77-729 du 7 juillet 1977, modifiée par la loi du 25 juin 2018"
+    tags: [europeennes, mode_de_scrutin, circonscription]
+    a_verifier: false
+    note: "Date = date de la loi du 25 juin 2018 (CNCCFP) ; selon la décision 2018-766 DC (§ 2), la loi entre en vigueur au lendemain de sa publication au JO, date de publication non lue. Première application aux élections de 2019 (non confirmé par une source lue)."
+
+  - id: institutions.europeennes.nombre_tours
+    titre: "Européennes : nombre de tours de scrutin"
+    explication: "L'élection européenne est un scrutin de listes à un seul tour."
+    type: nombre
+    unite: tours
+    bornes: [1, 2]
+    valeurs:
+      - depuis: "2024-06-09"
+        valeur: 1
+        sources: [sp-f1944, cnccfp-europeennes-2024, legi-loi-77-729]
+    tags: [europeennes, mode_de_scrutin]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée pour l'élection du 9 juin 2024 et par service-public (vérifié le 14 août 2026). Le seuil de 5 % des suffrages exprimés pour obtenir des sièges et le nombre de sièges attribués à la France (81 en 2024) n'ont pas pu être lus sur une source officielle accessible (vie-publique.fr, interieur.gouv.fr et europarl bloqués) et ne sont pas modélisés."
+
+  - id: institutions.europeennes.seuil_remboursement_suffrages
+    titre: "Européennes : score minimal pour le remboursement des frais de campagne"
+    explication: "Aux européennes, une liste doit obtenir au moins 3 % des suffrages exprimés pour que l'État lui rembourse une partie de ses dépenses de campagne (contre 5 % pour les autres élections)."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2023-11-28"
+        valeur: 3
+        sources: [cnccfp-guide-europeennes-2024, cnccfp-europeennes-2024]
+    tags: [europeennes, financement, campagne, remboursement]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée par le guide CNCCFP adopté le 28 novembre 2023 et appliquée en 2024 (7 listes ≥ 3 % remboursées)."

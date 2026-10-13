@@ -1,0 +1,25 @@
+# Liens entre les fiches de preuves (études) et les règles qu'elles éclairent.
+# Complète le champ `regles_liees` des fiches : motifs de type glob sur les identifiants de règles.
+# Utilisé pour afficher « ce que disent les études » sur chaque règle et dans les simulations.
+liens:
+  emploi_smic_elasticite: ["travail.smic.horaire_brut", "travail.smic.mensuel_brut_35h"]
+  elasticite_revenu_imposable: ["fiscalite.impot_revenu.*", "fiscalite.capital.pfu_*"]
+  offre_travail_marge_extensive: ["prestations.rsa.*", "prestations.prime_activite.*", "prestations.revenu_universel.*"]
+  allegements_cotisations_emploi: ["fiscalite.cotisations.*"]
+  tva_repercussion_prix: ["fiscalite.tva.*"]
+  multiplicateur_budgetaire: ["budget.etat.mission.*", "budget.secu.objectif_depenses.*", "budget.secu.ondam.total"]
+  isf_ifi_exil_fiscal: ["fiscalite.ifi.*"]
+  impot_societes_investissement: ["fiscalite.is.taux_normal", "fiscalite.is.taux_reduit_pme"]
+  revenu_universel_offre_travail: ["prestations.revenu_universel.*"]
+  duree_indemnisation_chomage_retour_emploi: ["travail.chomage.duree_max_*", "travail.chomage.rupture_conventionnelle_duree_max_*", "travail.chomage.coefficient_reduction_duree"]
+  duree_legale_travail_emploi: ["travail.duree.legale_*"]
+  non_recours_prestations: ["prestations.rsa.*", "prestations.prime_activite.*", "prestations.aspa.*", "prestations.aides_logement.*"]
+  aides_logement_effet_loyers: ["prestations.aides_logement.*"]
+  age_retraite_emploi_seniors: ["retraites.age_legal.*", "retraites.taux_plein.age_automatique", "retraites.duree_assurance.*"]
+  taille_classe_resultats: ["education.classes*"]
+  prison_recidive: ["justice_penale.*.prison_max", "justice_penale.*peine*", "justice_penale.amenagement*"]
+  vitesse_limite_mortalite_routiere: ["justice_penale.exces_vitesse*"]
+  elasticite_prix_carburants: ["environnement_energie.accise.gazole", "environnement_energie.accise.sp95*", "environnement_energie.composante_carbone.*"]
+  elasticite_prix_tabac: ["sante.tabac*", "fiscalite.tabac*"]
+  immigration_salaires_emploi_natifs: ["nationalite_immigration.*"]
+  logement_social_quotas_mixite: ["logement.*sru*", "logement.logement_social*"]

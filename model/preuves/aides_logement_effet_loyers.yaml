@@ -1,0 +1,110 @@
+question:
+  id: aides_logement_effet_loyers
+  titre: "Part des aides au logement captée par la hausse des loyers"
+  definition: "Sur 100 € d'aide au logement supplémentaire versée aux locataires, nombre d'euros qui se retrouvent dans des loyers plus élevés (au lieu de réduire le loyer net payé par le locataire). 0 % : le locataire garde tout ; 100 % : le bailleur capte tout."
+  unite: pourcent
+  regles_liees:
+    - prestations.aides_logement.forfait_charges
+  sens_attendu: positif
+  estimations:
+    - source: fack-2006-labour-economics
+      valeur: 78
+      intervalle_95: null
+      methode: "Expérience naturelle : extension des aides au logement de 1991-1993 (« bouclage ») ; différence de différences entre ménages modestes touchés et non touchés"
+      champ: "France, locataires à bas revenus (1er quartile de niveau de vie), enquêtes Logement de l'Insee 1973-2002"
+      pays: FR
+      annee_donnees: 2002
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "1 € d'aide supplémentaire augmente de 78 centimes le loyer des nouveaux bénéficiaires. La version française (Fack, Économie et Statistique, 2005) donne une fourchette de 50 % à 80 % des aides absorbées par la hausse des loyers. Mécanisme : offre de logements très peu réactive à court et moyen terme, afflux d'étudiants après la réforme."
+    - source: laferrere-leblanc-2002-economie-statistique
+      valeur: null
+      intervalle_95: null
+      methode: "Expérience naturelle du bouclage des aides 1992-1994 ; panel de logements de l'enquête Loyers et charges de l'Insee (1987-1999)"
+      champ: "France, logements locatifs dont le locataire devient (ou cesse d'être) aidé"
+      pays: FR
+      annee_donnees: 1999
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Les loyers des logements aidés ont augmenté de 10,7 % contre 5,9 % pour les non aidés entre fin 1993 et début 1996 (environ 5 points d'écart, 7,5 points pour les studios), avec une contagion ultérieure aux logements non aidés. Hausse en partie due à une meilleure qualité, mais une hausse « pure » subsiste. Les auteurs précisent que l'étude ne permet pas de mesurer exactement la part de l'aide captée : non convertible. Version anglaise publiée dans le Journal of Housing Economics (2004)."
+    - source: grislain-letremy-trevien-2014-insee
+      valeur: null
+      intervalle_95: null
+      methode: "Variable instrumentale exploitant une discontinuité géographique du barème (zone II à aides plus élevées, seuil de 100 000 habitants)"
+      champ: "France, parc locatif privé des agglomérations de 50 000 à 200 000 habitants, enquête Loyers et charges 1987-2012"
+      pays: FR
+      annee_donnees: 2012
+      type_etude: quasi_experimental
+      revue_par_les_pairs: false
+      note: "Être en zone II (aides plus élevées d'environ 20 à 30 € par mois) augmente les loyers de 5,3 % (environ 25 € par mois), davantage pour les ménages modestes (6,0 %) et les petits logements (5,7 %), sans effet sur la qualité ni sur le nombre de logements offerts. Comme la hausse porte sur tous les logements alors que seule une partie des locataires est aidée, cela suggère une captation proche ou supérieure à 100 %, mais la conversion n'est pas faite par les auteurs. Une version actualisée (Banque de France, document de travail n° 886, 2022) trouve un effet durable sur les loyers de 1995 à 2016, mais aussi une hausse du nombre de logements (petits logements notamment)."
+    - source: gibbons-manning-2003-cep
+      valeur: null
+      intervalle_95: null
+      methode: "Réformes du Housing Benefit de 1996-1997 (plafonnement des loyers pris en charge pour les nouveaux locataires) ; comparaison des locataires concernés et non concernés"
+      champ: "Royaume-Uni, locataires du parc privé bénéficiaires du Housing Benefit, milieu des années 1990"
+      pays: GB
+      annee_donnees: 1997
+      type_etude: quasi_experimental
+      revue_par_les_pairs: false
+      note: "Résultats divergents selon la source : dans le Survey of English Housing, les loyers baissent autant que les aides (incidence d'environ 100 % sur les bailleurs) ; dans le Family Resources Survey, les loyers baissent de 5 à 7 % pour une baisse des aides de 10 à 13 % (environ 40 % à 70 %). Les auteurs avertissent que des tendances préexistantes pourraient expliquer une partie de l'effet. Lu dans la version document de travail (CEP, 2003) ; article publié dans le Journal of Public Economics (2006)."
+    - source: susin-2002-jpube
+      valeur: 141
+      intervalle_95: null
+      methode: "Comparaison entre agglomérations selon l'abondance des bons de logement (vouchers) : évolution des loyers des ménages modestes là où les vouchers sont plus nombreux"
+      champ: "États-Unis, 90 plus grandes agglomérations, logements locatifs à bas revenus"
+      pays: US
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Les vouchers augmentent en moyenne de 16 % les loyers des ménages modestes. Hausse totale des loyers payés par les ménages modestes NON aidés : 8,2 Md$, pour 5,8 Md$ de subventions versées ; valeur = 8,2 / 5,8 = 141 % (perte nette de 2,4 Md$ pour les ménages modestes). Il s'agit d'un effet de débordement sur les non-bénéficiaires, pas exactement de la part captée sur l'aide de chaque bénéficiaire. Des travaux ultérieurs (Eriksen et Ross) craignent un biais lié à des déterminants des loyers corrélés à l'offre de vouchers."
+    - source: kangasharju-2010-sje
+      valeur: 65
+      intervalle_95: [60, 70]
+      methode: "Réforme de 2002 de l'allocation logement finlandaise utilisée comme instrument ; données sur 12 000 ménages locataires"
+      champ: "Finlande, ménages à bas revenus locataires des secteurs privé et municipal, réforme de 2002"
+      pays: FI
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "1 € d'allocation en plus augmente le loyer des bénéficiaires de 60 à 70 centimes dans le secteur privé ; effet nul dans le parc municipal, où les loyers sont fixés sur les coûts. La fourchette 60-70 est celle de l'auteur (pas un intervalle de confiance au sens strict)."
+    - source: viren-2011-bof
+      valeur: 33
+      intervalle_95: null
+      methode: "Panel de 50 000 ménages bénéficiaires 2000-2008 et coupes transversales de tous les ménages finlandais 1989-2008"
+      champ: "Finlande, ménages bénéficiaires de l'allocation logement, 2000-2008"
+      pays: FI
+      annee_donnees: 2008
+      type_etude: structurel
+      revue_par_les_pairs: false
+      note: "L'auteur juge « prudente » une estimation d'un tiers et n'exclut pas 50 %. Version publiée dans Empirical Economics (2013), dont le texte n'a pas été consulté."
+    - source: eerola-lyytikainen-2021-sje
+      valeur: 0
+      intervalle_95: null
+      methode: "Régression sur discontinuités : le barème finlandais varie par paliers selon la surface et l'année de construction du logement"
+      champ: "Finlande, ménages bénéficiaires de l'allocation logement"
+      pays: FI
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Les sauts d'allocation aux seuils sont importants et significatifs, mais les loyers ne présentent aucun saut : les écarts d'allocation se répercutent presque un pour un sur le loyer net, donc la captation par les bailleurs est proche de zéro (valeur 0 = lecture du résultat qualitatif, pas un coefficient publié dans le résumé). Période des données non précisée dans le résumé consulté."
+    - source: hyslop-rea-2019-jhe
+      valeur: 36
+      intervalle_95: null
+      methode: "Discontinuité spatiale : création en 2005 d'une zone d'aide plus généreuse autour du centre d'Auckland ; données administratives des bénéficiaires de part et d'autre de la limite"
+      champ: "Nouvelle-Zélande, bénéficiaires de l'Accommodation Supplement, 2005-2007"
+      pays: NZ
+      annee_donnees: 2007
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Aide supérieure de 6,80 $ par semaine dans la zone la deuxième année, dont 2,44 $ se retrouvent dans des loyers plus élevés : 2,44 / 6,80 = 36 % (« environ un tiers » selon les auteurs). Effet concentré sur les familles avec enfants et le haut de la distribution des loyers."
+    - source: brewer-et-al-2019-jue
+      valeur: 10
+      intervalle_95: null
+      methode: "Expérience naturelle : baisse des droits pour environ un million de ménages ; panel administratif des bénéficiaires"
+      champ: "Royaume-Uni, locataires bénéficiaires d'aides au logement touchés par une baisse des droits, court terme"
+      pays: GB
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "À court terme, environ 90 % de la baisse des aides est supportée par les locataires, donc environ 10 % par les bailleurs (valeur = 100 - 90). Porte sur une BAISSE d'aides, pas une hausse ; la part supportée par les bailleurs est plus forte là où l'ancien barème était le plus généreux."
+  note_synthese: "En France, les trois études de référence, qui s'appuient toutes sur l'extension des aides au début des années 1990, concluent que les aides au logement font monter les loyers. L'estimation chiffrée la plus citée est celle de Fack : environ 78 % de l'aide captée par les bailleurs (fourchette de 50 % à 80 %). Les travaux plus récents de l'Insee et de la Banque de France confirment un effet inflationniste durable, mais montrent aussi que l'offre de petits logements a fini par augmenter, ce qui atténue l'effet à long terme. À l'étranger, les résultats sont beaucoup plus dispersés : d'environ un tiers (Finlande, Nouvelle-Zélande) à plus de 60 % (Finlande, Royaume-Uni), jusqu'à une captation quasi nulle dans une étude finlandaise récente à la méthode très solide, et seulement environ 10 % lors des baisses d'aides britanniques de 2011. Le consensus porte donc sur l'existence d'un effet sur les loyers, d'autant plus fort que l'offre de logements réagit peu (marchés tendus, court terme), mais son ampleur reste discutée et dépend fortement du marché et de la conception du barème."

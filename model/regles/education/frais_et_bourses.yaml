@@ -1,0 +1,388 @@
+domaine: education
+theme: "Frais d'inscription universitaires et bourses"
+regles:
+  # ---------------------------------------------------------------------------
+  # DROITS D'INSCRIPTION (établissements publics, année universitaire 2026-2027)
+  # ---------------------------------------------------------------------------
+  - id: education.universite.droits_inscription_licence
+    titre: "Université publique : droits d'inscription annuels en licence (taux normal)"
+    explication: "Montant payé chaque année par un étudiant inscrit en licence (ou licence professionnelle) dans une université publique, hors boursiers qui en sont exonérés."
+    type: nombre
+    unite: euros
+    bornes: [0, 5000]
+    valeurs:
+      - depuis: "2026-09-01"
+        valeur: 178
+        sources: [sp-f36520-droits-inscription, sp-actu-a17481-frais-universite-2026]
+        article: "Arrêté du 19 avril 2019 relatif aux droits d'inscription dans les établissements publics d'enseignement supérieur"
+    tags: [enseignement_superieur, frais, universite]
+    a_verifier: false
+    note: "Montant pour l'année universitaire 2026-2027. Taux réduit : 118 €. Montants indexés chaque année sur l'indice des prix hors tabac (service-public)."
+
+  - id: education.universite.droits_inscription_master
+    titre: "Université publique : droits d'inscription annuels en master (taux normal)"
+    explication: "Montant payé chaque année par un étudiant inscrit en master dans une université publique (hors boursiers)."
+    type: nombre
+    unite: euros
+    bornes: [0, 6000]
+    valeurs:
+      - depuis: "2026-09-01"
+        valeur: 255
+        sources: [sp-f36520-droits-inscription, sp-actu-a17481-frais-universite-2026]
+        article: "Arrêté du 19 avril 2019"
+    tags: [enseignement_superieur, frais, universite]
+    a_verifier: false
+    note: "Année universitaire 2026-2027. Taux réduit : 167 €."
+
+  - id: education.universite.droits_inscription_doctorat
+    titre: "Université publique : droits d'inscription annuels en doctorat (taux normal)"
+    explication: "Montant annuel pour une inscription en doctorat ou en habilitation à diriger des recherches. Il est identique pour les étudiants étrangers."
+    type: nombre
+    unite: euros
+    bornes: [0, 6000]
+    valeurs:
+      - depuis: "2026-09-01"
+        valeur: 398
+        sources: [sp-f36520-droits-inscription, sp-actu-a17481-frais-universite-2026]
+        article: "Arrêté du 19 avril 2019"
+    tags: [enseignement_superieur, frais, universite, recherche]
+    a_verifier: false
+    note: "Année universitaire 2026-2027. Taux réduit : 265 €."
+
+  - id: education.universite.cvec
+    titre: "Contribution de vie étudiante et de campus (CVEC)"
+    explication: "Contribution annuelle due par les étudiants en formation initiale, qui finance la vie de campus (santé, culture, sport). Les boursiers en sont exonérés."
+    type: nombre
+    unite: euros
+    bornes: [0, 300]
+    valeurs:
+      - depuis: "2026-09-01"
+        valeur: 105
+        sources: [sp-f36520-droits-inscription, sp-actu-a17481-frais-universite-2026]
+    tags: [enseignement_superieur, frais, vie_etudiante]
+    a_verifier: false
+    note: "Montant pour la rentrée 2026-2027."
+
+  - id: education.universite.droits_differencies_licence_extra_europeens
+    titre: "Étudiants extra-européens : droits d'inscription annuels en licence"
+    explication: "Montant des droits « différenciés » applicables aux étudiants non ressortissants de l'Union européenne ou de l'Espace économique européen inscrits en licence, sauf exonération par l'université."
+    type: nombre
+    unite: euros
+    bornes: [0, 20000]
+    valeurs:
+      - depuis: "2026-09-01"
+        valeur: 2902
+        sources: [sp-actu-a18927-droits-differencies, sp-actu-a17481-frais-universite-2026]
+        article: "Arrêté du 19 avril 2019 relatif aux droits d'inscription (droits différenciés)"
+    tags: [enseignement_superieur, frais, etudiants_etrangers]
+    a_verifier: false
+    note: "Année 2026-2027 ; taux réduit 1 934 €. Les universités peuvent exonérer une partie de ces étudiants (plafond d'exonération : voir règle dédiée)."
+
+  - id: education.universite.droits_differencies_master_extra_europeens
+    titre: "Étudiants extra-européens : droits d'inscription annuels en master"
+    explication: "Montant des droits différenciés applicables aux étudiants extra-européens inscrits en master, sauf exonération."
+    type: nombre
+    unite: euros
+    bornes: [0, 25000]
+    valeurs:
+      - depuis: "2026-09-01"
+        valeur: 3950
+        sources: [sp-actu-a18927-droits-differencies, sp-actu-a17481-frais-universite-2026]
+        article: "Arrêté du 19 avril 2019 relatif aux droits d'inscription (droits différenciés)"
+    tags: [enseignement_superieur, frais, etudiants_etrangers]
+    a_verifier: false
+    note: "Année 2026-2027 ; taux réduit 2 633 €."
+
+  - id: education.universite.droits_differencies_applicables_doctorat
+    titre: "Étudiants extra-européens : droits différenciés appliqués au doctorat"
+    explication: "Indique si les doctorants extra-européens paient des droits majorés. Ce n'est pas le cas : ils paient le tarif national du doctorat."
+    type: booleen
+    unite: ""
+    valeurs:
+      - depuis: "2026-09-01"
+        valeur: false
+        sources: [sp-actu-a17481-frais-universite-2026]
+    tags: [enseignement_superieur, frais, etudiants_etrangers, recherche]
+    a_verifier: false
+    note: "« Les droits d'inscriptions différenciés ne s'appliquent pas aux doctorats » (service-public, 21/08/2026). Date de début de la règle non vérifiée : la date indiquée est la rentrée 2026."
+
+  - id: education.universite.plafond_exoneration_etudiants_etrangers
+    titre: "Part maximale d'étudiants étrangers qu'une université peut exonérer des droits différenciés"
+    explication: "Les universités ne peuvent plus exonérer librement les étudiants extra-européens : la part exonérée est plafonnée, avec une trajectoire de baisse."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2026-05-21"
+        valeur: 30
+        sources: [sp-actu-a18927-droits-differencies]
+        article: "Décret n° 2026-385 du 19 mai 2026 (entrée en vigueur le 21 mai 2026)"
+    tags: [enseignement_superieur, frais, etudiants_etrangers, reforme_2026]
+    a_verifier: false
+    note: "30 % pour 2026-2027, puis 25 % en 2027-2028 et 20 % à terme (service-public). Certains étudiants (accords avec un établissement étranger) sont hors plafond."
+
+  # ---------------------------------------------------------------------------
+  # BOURSES DE L'ENSEIGNEMENT SUPÉRIEUR SUR CRITÈRES SOCIAUX (2026-2027)
+  # ---------------------------------------------------------------------------
+  - id: education.bourse_superieur.echelon_0bis_montant_annuel
+    titre: "Bourse sur critères sociaux (enseignement supérieur) : montant annuel, échelon 0 bis"
+    explication: "Montant annuel versé à un étudiant boursier de l'échelon le plus bas (0 bis), en 10 mensualités. Les boursiers sont aussi exonérés de droits d'inscription et de CVEC."
+    type: nombre
+    unite: euros
+    bornes: [0, 10000]
+    valeurs:
+      - depuis: "2026-09-01"
+        valeur: 1454
+        sources: [sp-f12214-bourse-criteres-sociaux]
+        article: "Arrêté du 26 mars 2026 fixant les taux des bourses d'enseignement supérieur"
+    tags: [enseignement_superieur, bourses, aides_etudiants]
+    a_verifier: false
+    note: "Année universitaire 2026-2027."
+
+  - id: education.bourse_superieur.echelon_1_montant_annuel
+    titre: "Bourse sur critères sociaux (enseignement supérieur) : montant annuel, échelon 1"
+    explication: "Montant annuel de la bourse sur critères sociaux à l'échelon 1, versé en 10 mensualités."
+    type: nombre
+    unite: euros
+    bornes: [0, 10000]
+    valeurs:
+      - depuis: "2026-09-01"
+        valeur: 2163
+        sources: [sp-f12214-bourse-criteres-sociaux]
+        article: "Arrêté du 26 mars 2026 fixant les taux des bourses d'enseignement supérieur"
+    tags: [enseignement_superieur, bourses, aides_etudiants]
+    a_verifier: false
+    note: "Année universitaire 2026-2027."
+
+  - id: education.bourse_superieur.echelon_2_montant_annuel
+    titre: "Bourse sur critères sociaux (enseignement supérieur) : montant annuel, échelon 2"
+    explication: "Montant annuel de la bourse sur critères sociaux à l'échelon 2, versé en 10 mensualités."
+    type: nombre
+    unite: euros
+    bornes: [0, 10000]
+    valeurs:
+      - depuis: "2026-09-01"
+        valeur: 3071
+        sources: [sp-f12214-bourse-criteres-sociaux]
+        article: "Arrêté du 26 mars 2026 fixant les taux des bourses d'enseignement supérieur"
+    tags: [enseignement_superieur, bourses, aides_etudiants]
+    a_verifier: false
+    note: "Année universitaire 2026-2027."
+
+  - id: education.bourse_superieur.echelon_3_montant_annuel
+    titre: "Bourse sur critères sociaux (enseignement supérieur) : montant annuel, échelon 3"
+    explication: "Montant annuel de la bourse sur critères sociaux à l'échelon 3, versé en 10 mensualités."
+    type: nombre
+    unite: euros
+    bornes: [0, 10000]
+    valeurs:
+      - depuis: "2026-09-01"
+        valeur: 3828
+        sources: [sp-f12214-bourse-criteres-sociaux]
+        article: "Arrêté du 26 mars 2026 fixant les taux des bourses d'enseignement supérieur"
+    tags: [enseignement_superieur, bourses, aides_etudiants]
+    a_verifier: false
+    note: "Année universitaire 2026-2027."
+
+  - id: education.bourse_superieur.echelon_4_montant_annuel
+    titre: "Bourse sur critères sociaux (enseignement supérieur) : montant annuel, échelon 4"
+    explication: "Montant annuel de la bourse sur critères sociaux à l'échelon 4, versé en 10 mensualités."
+    type: nombre
+    unite: euros
+    bornes: [0, 10000]
+    valeurs:
+      - depuis: "2026-09-01"
+        valeur: 4587
+        sources: [sp-f12214-bourse-criteres-sociaux]
+        article: "Arrêté du 26 mars 2026 fixant les taux des bourses d'enseignement supérieur"
+    tags: [enseignement_superieur, bourses, aides_etudiants]
+    a_verifier: false
+    note: "Année universitaire 2026-2027."
+
+  - id: education.bourse_superieur.echelon_5_montant_annuel
+    titre: "Bourse sur critères sociaux (enseignement supérieur) : montant annuel, échelon 5"
+    explication: "Montant annuel de la bourse sur critères sociaux à l'échelon 5, versé en 10 mensualités."
+    type: nombre
+    unite: euros
+    bornes: [0, 10000]
+    valeurs:
+      - depuis: "2026-09-01"
+        valeur: 5212
+        sources: [sp-f12214-bourse-criteres-sociaux]
+        article: "Arrêté du 26 mars 2026 fixant les taux des bourses d'enseignement supérieur"
+    tags: [enseignement_superieur, bourses, aides_etudiants]
+    a_verifier: false
+    note: "Année universitaire 2026-2027."
+
+  - id: education.bourse_superieur.echelon_6_montant_annuel
+    titre: "Bourse sur critères sociaux (enseignement supérieur) : montant annuel, échelon 6"
+    explication: "Montant annuel de la bourse sur critères sociaux à l'échelon 6, versé en 10 mensualités."
+    type: nombre
+    unite: euros
+    bornes: [0, 10000]
+    valeurs:
+      - depuis: "2026-09-01"
+        valeur: 5506
+        sources: [sp-f12214-bourse-criteres-sociaux]
+        article: "Arrêté du 26 mars 2026 fixant les taux des bourses d'enseignement supérieur"
+    tags: [enseignement_superieur, bourses, aides_etudiants]
+    a_verifier: false
+    note: "Année universitaire 2026-2027."
+
+  - id: education.bourse_superieur.echelon_7_montant_annuel
+    titre: "Bourse sur critères sociaux (enseignement supérieur) : montant annuel, échelon 7"
+    explication: "Montant annuel de la bourse à l'échelon le plus élevé (7), réservé aux étudiants des familles aux plus faibles ressources, versé en 10 mensualités."
+    type: nombre
+    unite: euros
+    bornes: [0, 12000]
+    valeurs:
+      - depuis: "2026-09-01"
+        valeur: 6335
+        sources: [sp-f12214-bourse-criteres-sociaux]
+        article: "Arrêté du 26 mars 2026 fixant les taux des bourses d'enseignement supérieur"
+    tags: [enseignement_superieur, bourses, aides_etudiants]
+    a_verifier: false
+    note: "Année universitaire 2026-2027."
+
+  - id: education.bourse_superieur.nombre_mensualites
+    titre: "Bourse sur critères sociaux (enseignement supérieur) : nombre de mensualités"
+    explication: "Nombre de versements mensuels de la bourse dans l'année universitaire (hors maintien pendant les vacances d'été)."
+    type: nombre
+    unite: mois
+    bornes: [9, 12]
+    valeurs:
+      - depuis: "2026-04-10"
+        valeur: 10
+        sources: [sp-f12214-bourse-criteres-sociaux]
+    tags: [enseignement_superieur, bourses]
+    a_verifier: false
+    note: "Date « depuis » = date de vérification de la fiche service-public (10/04/2026) ; règle antérieure, date d'origine non vérifiée."
+
+  # ---------------------------------------------------------------------------
+  # BOURSES DE COLLÈGE ET DE LYCÉE (année scolaire 2026-2027)
+  # ---------------------------------------------------------------------------
+  - id: education.bourse_college.echelon_1_montant_trimestriel
+    titre: "Bourse de collège : montant trimestriel, échelon 1"
+    explication: "Montant versé chaque trimestre (3 fois par an) aux familles boursières de l'échelon 1, le moins élevé."
+    type: nombre
+    unite: euros
+    bornes: [0, 500]
+    valeurs:
+      - depuis: "2026-09-01"
+        valeur: 40
+        sources: [sp-f984-bourse-college]
+    tags: [college, bourses, aides_familles]
+    a_verifier: false
+    note: "Année scolaire 2026-2027 ; plafond de ressources 2025 pour 1 enfant à charge : 18 488 €."
+
+  - id: education.bourse_college.echelon_2_montant_trimestriel
+    titre: "Bourse de collège : montant trimestriel, échelon 2"
+    explication: "Montant versé chaque trimestre aux familles boursières de l'échelon 2."
+    type: nombre
+    unite: euros
+    bornes: [0, 500]
+    valeurs:
+      - depuis: "2026-09-01"
+        valeur: 112
+        sources: [sp-f984-bourse-college]
+    tags: [college, bourses, aides_familles]
+    a_verifier: false
+    note: "Année scolaire 2026-2027."
+
+  - id: education.bourse_college.echelon_3_montant_trimestriel
+    titre: "Bourse de collège : montant trimestriel, échelon 3"
+    explication: "Montant versé chaque trimestre aux familles boursières de l'échelon 3, le plus élevé (ressources les plus faibles)."
+    type: nombre
+    unite: euros
+    bornes: [0, 500]
+    valeurs:
+      - depuis: "2026-09-01"
+        valeur: 175
+        sources: [sp-f984-bourse-college]
+    tags: [college, bourses, aides_familles]
+    a_verifier: false
+    note: "Année scolaire 2026-2027 ; pour 1 enfant à charge, ressources annuelles 2025 inférieures à 3 526 €."
+
+  - id: education.bourse_lycee.echelon_1_montant_trimestriel
+    titre: "Bourse de lycée : montant trimestriel, échelon 1"
+    explication: "Montant versé chaque trimestre (3 fois par an) aux lycéens boursiers de l'échelon 1, le moins élevé."
+    type: nombre
+    unite: euros
+    bornes: [0, 800]
+    valeurs:
+      - depuis: "2026-09-01"
+        valeur: 168
+        sources: [sp-f616-bourse-lycee]
+    tags: [lycee, bourses, aides_familles]
+    a_verifier: false
+    note: "Année scolaire 2026-2027."
+
+  - id: education.bourse_lycee.echelon_2_montant_trimestriel
+    titre: "Bourse de lycée : montant trimestriel, échelon 2"
+    explication: "Montant versé chaque trimestre aux lycéens boursiers de l'échelon 2."
+    type: nombre
+    unite: euros
+    bornes: [0, 800]
+    valeurs:
+      - depuis: "2026-09-01"
+        valeur: 207
+        sources: [sp-f616-bourse-lycee]
+    tags: [lycee, bourses, aides_familles]
+    a_verifier: false
+    note: "Année scolaire 2026-2027."
+
+  - id: education.bourse_lycee.echelon_3_montant_trimestriel
+    titre: "Bourse de lycée : montant trimestriel, échelon 3"
+    explication: "Montant versé chaque trimestre aux lycéens boursiers de l'échelon 3."
+    type: nombre
+    unite: euros
+    bornes: [0, 800]
+    valeurs:
+      - depuis: "2026-09-01"
+        valeur: 244
+        sources: [sp-f616-bourse-lycee]
+    tags: [lycee, bourses, aides_familles]
+    a_verifier: false
+    note: "Année scolaire 2026-2027."
+
+  - id: education.bourse_lycee.echelon_4_montant_trimestriel
+    titre: "Bourse de lycée : montant trimestriel, échelon 4"
+    explication: "Montant versé chaque trimestre aux lycéens boursiers de l'échelon 4."
+    type: nombre
+    unite: euros
+    bornes: [0, 800]
+    valeurs:
+      - depuis: "2026-09-01"
+        valeur: 282
+        sources: [sp-f616-bourse-lycee]
+    tags: [lycee, bourses, aides_familles]
+    a_verifier: false
+    note: "Année scolaire 2026-2027."
+
+  - id: education.bourse_lycee.echelon_5_montant_trimestriel
+    titre: "Bourse de lycée : montant trimestriel, échelon 5"
+    explication: "Montant versé chaque trimestre aux lycéens boursiers de l'échelon 5."
+    type: nombre
+    unite: euros
+    bornes: [0, 800]
+    valeurs:
+      - depuis: "2026-09-01"
+        valeur: 319
+        sources: [sp-f616-bourse-lycee]
+    tags: [lycee, bourses, aides_familles]
+    a_verifier: false
+    note: "Année scolaire 2026-2027."
+
+  - id: education.bourse_lycee.echelon_6_montant_trimestriel
+    titre: "Bourse de lycée : montant trimestriel, échelon 6"
+    explication: "Montant versé chaque trimestre aux lycéens boursiers de l'échelon le plus élevé (6)."
+    type: nombre
+    unite: euros
+    bornes: [0, 800]
+    valeurs:
+      - depuis: "2026-09-01"
+        valeur: 357
+        sources: [sp-f616-bourse-lycee]
+    tags: [lycee, bourses, aides_familles]
+    a_verifier: false
+    note: "Année scolaire 2026-2027."

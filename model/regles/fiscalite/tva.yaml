@@ -1,0 +1,71 @@
+# FICHIER GÉNÉRÉ par system/sync_openfisca.py le 2026-10-13 à partir d'OpenFisca-France 176.1.2.
+# Ne pas modifier à la main : modifier model/moteur/openfisca_leviers.yaml puis relancer le Système.
+genere_par: system/sync_openfisca.py
+domaine: fiscalite
+theme: TVA
+regles:
+- id: fiscalite.tva.taux_normal
+  titre: 'TVA : taux normal'
+  explication: Taxe incluse dans le prix de la plupart des biens et services (vêtements, électronique, carburant…).
+  type: nombre
+  unite: pourcent
+  bornes:
+  - 0
+  - 35
+  valeurs:
+  - depuis: '2000-04-01'
+    valeur: 19.6
+    sources:
+    - of-ref-92bbf74fbb
+    - openfisca-france
+  - depuis: '2014-01-01'
+    valeur: 20.0
+    sources:
+    - of-ref-b5e3f2214a
+    - openfisca-france
+  verifie_le: null
+  moteur:
+    openfisca: taxation_indirecte.tva.taux_normal
+  a_verifier: false
+- id: fiscalite.tva.taux_intermediaire
+  titre: 'TVA : taux intermédiaire'
+  explication: Taux appliqué notamment à la restauration, aux transports de voyageurs et à certains travaux dans les logements.
+  type: nombre
+  unite: pourcent
+  bornes:
+  - 0
+  - 35
+  valeurs:
+  - depuis: '2012-01-01'
+    valeur: 7.0
+    sources:
+    - of-ref-5b099b361b
+    - openfisca-france
+  - depuis: '2014-01-01'
+    valeur: 10.0
+    sources:
+    - of-ref-b5e3f2214a
+    - openfisca-france
+  verifie_le: null
+  moteur:
+    openfisca: taxation_indirecte.tva.taux_intermediaire
+  a_verifier: false
+- id: fiscalite.tva.taux_reduit
+  titre: 'TVA : taux réduit'
+  explication: 'Taux appliqué aux produits de première nécessité : alimentation, énergie (abonnements), livres, équipements
+    pour personnes handicapées…'
+  type: nombre
+  unite: pourcent
+  bornes:
+  - 0
+  - 35
+  valeurs:
+  - depuis: '1982-07-01'
+    valeur: 5.5
+    sources:
+    - of-ref-7981bed4f7
+    - openfisca-france
+  verifie_le: null
+  moteur:
+    openfisca: taxation_indirecte.tva.taux_reduit
+  a_verifier: false

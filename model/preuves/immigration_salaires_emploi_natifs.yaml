@@ -1,0 +1,109 @@
+question:
+  id: immigration_salaires_emploi_natifs
+  titre: "Effet de l'immigration sur les salaires (et l'emploi) des natifs"
+  definition: "Variation en % du salaire des travailleurs natifs pour une hausse de 1 point de la part des immigrés dans la population active (ou, de façon équivalente, pour un afflux d'immigrés égal à environ 1 % de l'offre de travail concernée). Les effets sur l'emploi des natifs sont indiqués dans les notes."
+  unite: pourcent
+  regles_liees: []
+  sens_attendu: ambigu
+  estimations:
+    - source: ortega-verdugo-2014-labeco
+      valeur: 0.33
+      intervalle_95: null
+      methode: "Approche par cellules éducation-expérience à la Borjas (2003), sur extraits des recensements (jusqu'à 25 %) et enquêtes Emploi"
+      champ: "France, ensemble des natifs, 1968-1999"
+      pays: FR
+      annee_donnees: 1999
+      type_etude: structurel
+      revue_par_les_pairs: true
+      note: "Une hausse de 10 points de la part des immigrés dans une cellule augmente le salaire des natifs de 3,3 %, soit +0,33 % par point. Les auteurs l'expliquent par une substituabilité imparfaite (les natifs se réorientent vers des tâches plus abstraites et des professions mieux payées), mais n'excluent pas une limite du modèle."
+    - source: edo-2015-bejeap
+      valeur: 0
+      intervalle_95: null
+      methode: "Données microéconomiques françaises, approche par cellules de compétences"
+      champ: "France, natifs en concurrence directe avec les immigrés (même éducation et expérience)"
+      pays: FR
+      annee_donnees: null
+      type_etude: structurel
+      revue_par_les_pairs: true
+      note: "Pas d'effet sur les salaires des natifs en concurrence, mais des effets négatifs sur leur emploi, cohérents avec la rigidité des salaires en France (salaire minimum). D'après la synthèse du CEPII (Edo et Toubal, 2014), une hausse de 10 % de la part des immigrés dans une classe de compétences réduit d'environ 3 % le taux d'emploi des natifs comparables. Les natifs en CDD, moins protégés, subissent des baisses de salaire."
+    - source: edo-toubal-2015-roie
+      valeur: -0.2
+      intervalle_95: null
+      methode: "Simulations à partir d'un modèle structurel du marché du travail estimé (élasticités de substitution entre natifs et immigrés)"
+      champ: "France, ensemble des natifs, immigration de 1990 à 2010, COURT TERME"
+      pays: FR
+      annee_donnees: 2010
+      type_etude: structurel
+      revue_par_les_pairs: true
+      note: "L'immigration de 1990-2010 aurait réduit le salaire moyen des natifs de 0,6 % à court terme, et n'aurait aucun effet moyen à long terme (gagnants peu qualifiés, perdants très qualifiés). Conversion : la part des immigrés dans la population active est passée de 7 % à 10 % (chiffres de la synthèse CEPII des mêmes auteurs), soit -0,6 / 3 = -0,2 % par point à court terme, 0 à long terme."
+    - source: longhi-nijkamp-poot-2005-jes
+      valeur: -0.119
+      intervalle_95: null
+      methode: "Méta-analyse de 348 estimations issues de 18 études (surtout États-Unis, mais aussi Allemagne, Pays-Bas, France, Norvège, Autriche, Israël, Australie)"
+      champ: "International, salaires des natifs, marchés du travail locaux"
+      pays: INT
+      annee_donnees: null
+      type_etude: meta_analyse
+      revue_par_les_pairs: true
+      note: "Effet moyen -0,119 (après exclusion de 3 valeurs aberrantes) : doubler la part des immigrés de 5 % à 10 % de la population active réduirait les salaires locaux d'environ 0,6 %. Les auteurs jugent « robuste » un effet négatif mais faible sur les natifs de qualification comparable. Moyenne lue dans la version document de travail (Tinbergen Institute, 2004)."
+    - source: borjas-2003-qje
+      valeur: -0.35
+      intervalle_95: null
+      methode: "Variations de l'offre de travail par cellule éducation-expérience au niveau national"
+      champ: "États-Unis, travailleurs natifs en concurrence avec les immigrés (même éducation et expérience)"
+      pays: US
+      annee_donnees: null
+      type_etude: structurel
+      revue_par_les_pairs: true
+      note: "Une hausse de 10 % de l'offre de travail réduit les salaires des travailleurs en concurrence de 3 % à 4 % ; valeur = milieu, ramenée à 1 %. Effet sur les travailleurs de même qualification, pas sur la moyenne de tous les natifs."
+    - source: borjas-2017-ilrr
+      valeur: -1.0
+      intervalle_95: null
+      methode: "Réexamen de l'exode de Mariel (1980) en se concentrant sur les natifs sans diplôme du secondaire"
+      champ: "États-Unis (Miami), travailleurs sans diplôme du secondaire, après l'arrivée d'environ 125 000 réfugiés cubains en 1980"
+      pays: US
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Salaire des non-diplômés de Miami en baisse de 10 % à 30 % ; l'auteur en déduit une élasticité du salaire au nombre de travailleurs de -0,5 à -1,5 (valeur = milieu). Résultat fortement contesté pour la taille réduite des échantillons (voir Peri et Yasenov)."
+    - source: card-1990-ilrr
+      valeur: 0
+      intervalle_95: null
+      methode: "Comparaison de Miami avec des villes témoins après l'exode de Mariel"
+      champ: "États-Unis (Miami), travailleurs peu qualifiés non cubains, 1979-1985"
+      pays: US
+      annee_donnees: 1985
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Les immigrés de Mariel ont accru de 7 % la population active de Miami, avec un choc bien plus fort pour les peu qualifiés, sans effet visible sur les salaires ni sur le chômage des non-Cubains, y compris des Noirs peu qualifiés."
+    - source: peri-yasenov-2019-jhr
+      valeur: 0
+      intervalle_95: null
+      methode: "Méthode du contrôle synthétique appliquée à l'exode de Mariel"
+      champ: "États-Unis (Miami), natifs non cubains sans diplôme du secondaire, après 1980"
+      pays: US
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Aucune différence significative de salaire entre Miami et son groupe témoin synthétique après 1980 ; les auteurs attribuent les fortes baisses trouvées par Borjas à l'erreur de mesure liée aux petits échantillons."
+    - source: edo-2020-jeea
+      valeur: null
+      intervalle_95: null
+      methode: "Expérience naturelle : arrivée des rapatriés d'Algérie en 1962 comme choc exogène d'offre de travail, comparaison entre régions"
+      champ: "France, régions, 1962-1976"
+      pays: FR
+      annee_donnees: 1976
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Les salaires régionaux ont baissé entre 1962 et 1968, puis retrouvé leur niveau 15 ans après ; les natifs très et peu diplômés ont tous deux subi une baisse initiale, entièrement résorbée en 1976. Ampleur absente du résumé consulté."
+    - source: dustmann-schonberg-stuhler-2017-qje
+      valeur: null
+      intervalle_95: null
+      methode: "Expérience naturelle : ouverture aux travailleurs frontaliers tchèques dans les zones allemandes proches de la frontière"
+      champ: "Allemagne, zones frontalières de la République tchèque"
+      pays: DE
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Forte baisse de l'emploi local des natifs et baisse modérée des salaires en moyenne (plus forte pour les jeunes) ; l'ajustement passe surtout par moins d'entrées de natifs dans l'emploi. Ampleur absente du résumé consulté."
+  note_synthese: "La majorité des études trouve que l'immigration a un effet nul ou faible sur le salaire moyen des natifs : la méta-analyse de référence (Longhi et al.) donne -0,1 % pour une hausse d'un point de la part des immigrés, et la revue d'Edo (2019) parle d'un effet « nul ou légèrement positif ». Les désaccords portent sur les travailleurs directement en concurrence avec les nouveaux arrivants et sur le court terme. Borjas trouve des baisses de salaire importantes pour les moins qualifiés, contestées par Card et par Peri et Yasenov sur le même épisode (Mariel). En France, les études convergent vers un effet quasi nul sur les salaires (voire positif selon Ortega et Verdugo), mais l'ajustement peut passer par l'emploi des natifs les plus proches des immigrés, en raison de la rigidité des salaires (Edo). Les chocs migratoires soudains (rapatriés d'Algérie en 1962, frontaliers tchèques en Allemagne) ont des effets négatifs temporaires qui se résorbent en une à deux décennies."

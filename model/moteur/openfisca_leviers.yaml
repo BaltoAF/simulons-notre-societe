@@ -1,0 +1,416 @@
+# Leviers de la Société 1.0 adossés au moteur OpenFisca-France.
+#
+# Ce fichier décrit QUELS paramètres du moteur sont exposés au grand public et COMMENT les présenter.
+# Les valeurs, l'historique et les références légales ne sont PAS saisis ici : le Système
+# (system/sync_openfisca.py) les extrait d'OpenFisca-France et génère model/regles/<domaine>/<fichier>.yaml.
+#
+# Champs :
+#   lecture   : chemin OpenFisca dont on lit la valeur (unité OpenFisca)
+#   ecriture  : liste des paramètres OpenFisca modifiés quand le levier change ; `formule` exprime la
+#               nouvelle valeur OpenFisca en fonction de v (= nouvelle valeur du levier, en unité OpenFisca).
+#               Par défaut : [{chemin: lecture, formule: "v"}]
+#   facteur   : multiplicateur d'affichage (ex. 100 pour présenter un taux 0.2 en 20 %)
+#   type      : nombre | bareme | booleen
+
+leviers:
+  # ───────────── Impôt sur le revenu ─────────────
+  - id: fiscalite.impot_revenu.bareme
+    domaine: fiscalite
+    fichier: impot_revenu
+    theme: Impôt sur le revenu
+    titre: "Barème de l'impôt sur le revenu (tranches et taux)"
+    explication: "Le revenu imposable, divisé par le nombre de parts, est découpé en tranches. Chaque tranche est taxée à son propre taux : on ne paie le taux le plus élevé que sur la partie du revenu qui dépasse le seuil."
+    lecture: impot_revenu.bareme_ir_depuis_1945.bareme
+    type: bareme
+    unite: euros
+    tags: [impot, progressivite]
+
+  - id: fiscalite.impot_revenu.decote.taux
+    domaine: fiscalite
+    fichier: impot_revenu
+    theme: Impôt sur le revenu
+    titre: "Décote : taux"
+    explication: "La décote réduit l'impôt des foyers modestes pour éviter un passage brutal de 0 à quelques centaines d'euros d'impôt."
+    lecture: impot_revenu.calcul_impot_revenu.plaf_qf.decote.taux
+    type: nombre
+    unite: pourcent
+    facteur: 100
+    bornes: [0, 100]
+
+  - id: fiscalite.impot_revenu.decote.plafond_celibataire
+    domaine: fiscalite
+    fichier: impot_revenu
+    theme: Impôt sur le revenu
+    titre: "Décote : plafond pour une personne seule"
+    explication: "En dessous de ce montant d'impôt brut, une personne seule bénéficie de la décote."
+    lecture: impot_revenu.calcul_impot_revenu.plaf_qf.decote.seuil_celib
+    type: nombre
+    unite: euros
+    bornes: [0, 3000]
+
+  - id: fiscalite.impot_revenu.decote.plafond_couple
+    domaine: fiscalite
+    fichier: impot_revenu
+    theme: Impôt sur le revenu
+    titre: "Décote : plafond pour un couple"
+    explication: "En dessous de ce montant d'impôt brut, un couple marié ou pacsé bénéficie de la décote."
+    lecture: impot_revenu.calcul_impot_revenu.plaf_qf.decote.seuil_couple
+    type: nombre
+    unite: euros
+    bornes: [0, 5000]
+
+  - id: fiscalite.impot_revenu.quotient_familial.plafond_demi_part
+    domaine: fiscalite
+    fichier: impot_revenu
+    theme: Impôt sur le revenu
+    titre: "Plafond de l'avantage par demi-part (quotient familial)"
+    explication: "Chaque demi-part supplémentaire (par exemple pour un enfant) réduit l'impôt, mais cette réduction est plafonnée à ce montant par an."
+    lecture: impot_revenu.calcul_impot_revenu.plaf_qf.plafond_avantages_procures_par_demi_part.general
+    type: nombre
+    unite: euros
+    bornes: [0, 6000]
+
+  - id: fiscalite.impot_revenu.quotient_familial.parts_premier_enfant
+    domaine: fiscalite
+    fichier: impot_revenu
+    theme: Impôt sur le revenu
+    titre: "Parts fiscales pour le 1er enfant (et le 2e)"
+    explication: "Nombre de parts de quotient familial ajoutées pour le premier enfant à charge (le deuxième enfant donne le même nombre de parts)."
+    lecture: impot_revenu.calcul_impot_revenu.plaf_qf.quotient_familial.cas_general.enf1
+    ecriture:
+      - chemin: impot_revenu.calcul_impot_revenu.plaf_qf.quotient_familial.cas_general.enf1
+        formule: "v"
+      - chemin: impot_revenu.calcul_impot_revenu.plaf_qf.quotient_familial.cas_general.enf2
+        formule: "v"
+    type: nombre
+    unite: parts
+    bornes: [0, 2]
+
+  - id: fiscalite.impot_revenu.quotient_familial.parts_enfant_3_et_plus
+    domaine: fiscalite
+    fichier: impot_revenu
+    theme: Impôt sur le revenu
+    titre: "Parts fiscales à partir du 3e enfant"
+    explication: "Nombre de parts de quotient familial ajoutées pour chaque enfant à partir du troisième."
+    lecture: impot_revenu.calcul_impot_revenu.plaf_qf.quotient_familial.cas_general.enf3_et_sup
+    type: nombre
+    unite: parts
+    bornes: [0, 2]
+
+  - id: fiscalite.impot_revenu.abattement_salaires.taux
+    domaine: fiscalite
+    fichier: impot_revenu
+    theme: Impôt sur le revenu
+    titre: "Abattement forfaitaire pour frais professionnels (taux)"
+    explication: "Avant de calculer l'impôt, les salaires sont réduits de ce pourcentage pour tenir compte des frais liés au travail (transport, repas…)."
+    lecture: impot_revenu.calcul_revenus_imposables.deductions.abatpro.taux
+    type: nombre
+    unite: pourcent
+    facteur: 100
+    bornes: [0, 30]
+
+  - id: fiscalite.impot_revenu.abattement_salaires.plafond
+    domaine: fiscalite
+    fichier: impot_revenu
+    theme: Impôt sur le revenu
+    titre: "Abattement forfaitaire pour frais professionnels (plafond annuel)"
+    explication: "Montant maximal de l'abattement de 10 % sur les salaires, par personne et par an."
+    lecture: impot_revenu.calcul_revenus_imposables.deductions.abatpro.max
+    type: nombre
+    unite: euros
+    bornes: [0, 40000]
+
+  - id: fiscalite.impot_revenu.abattement_pensions.plafond
+    domaine: fiscalite
+    fichier: impot_revenu
+    theme: Impôt sur le revenu
+    titre: "Abattement de 10 % sur les pensions de retraite (plafond annuel par foyer)"
+    explication: "Les pensions de retraite sont réduites de 10 % avant le calcul de l'impôt, dans la limite de ce plafond par foyer."
+    lecture: impot_revenu.calcul_revenus_imposables.deductions.abatpen.max
+    type: nombre
+    unite: euros
+    bornes: [0, 15000]
+
+  - id: fiscalite.capital.pfu_taux_ir
+    domaine: fiscalite
+    fichier: impot_revenu
+    theme: Revenus du capital
+    titre: "Prélèvement forfaitaire unique (« flat tax ») : part impôt sur le revenu"
+    explication: "Les intérêts et dividendes sont taxés à ce taux fixe au titre de l'impôt sur le revenu, auquel s'ajoutent les prélèvements sociaux."
+    lecture: taxation_capital.prelevement_forfaitaire.partir_2018.taux_prelevement_forfaitaire_rev_capital_eligibles_pfu_interets_dividendes_etc
+    type: nombre
+    unite: pourcent
+    facteur: 100
+    bornes: [0, 60]
+
+  # ───────────── CSG / CRDS / cotisations ─────────────
+  - id: fiscalite.csg.salaires_taux
+    domaine: fiscalite
+    fichier: prelevements_sociaux
+    theme: CSG et CRDS
+    titre: "CSG sur les revenus d'activité (taux total)"
+    explication: "La contribution sociale généralisée est prélevée sur les salaires (sur 98,25 % du salaire brut) pour financer la Sécurité sociale."
+    lecture: prelevements_sociaux.contributions_sociales.csg.activite.taux_global
+    ecriture:
+      - chemin: prelevements_sociaux.contributions_sociales.csg.activite.deductible
+        formule: "v - 0.024"
+      - chemin: prelevements_sociaux.contributions_sociales.csg.activite.taux_global
+        formule: "v"
+    type: nombre
+    unite: pourcent
+    facteur: 100
+    bornes: [2.4, 20]
+
+  - id: fiscalite.csg.retraites_taux_plein
+    domaine: fiscalite
+    fichier: prelevements_sociaux
+    theme: CSG et CRDS
+    titre: "CSG sur les pensions de retraite (taux plein)"
+    explication: "Taux de CSG appliqué aux retraités dont le revenu fiscal dépasse un certain seuil (des taux réduits existent pour les plus modestes)."
+    lecture: prelevements_sociaux.contributions_sociales.csg.remplacement.pensions_retraite_invalidite.taux_plein
+    ecriture:
+      - chemin: prelevements_sociaux.contributions_sociales.csg.remplacement.pensions_retraite_invalidite.deductible.taux_plein
+        formule: "v - 0.024"
+      - chemin: prelevements_sociaux.contributions_sociales.csg.remplacement.pensions_retraite_invalidite.taux_plein
+        formule: "v"
+    type: nombre
+    unite: pourcent
+    facteur: 100
+    bornes: [2.4, 20]
+
+  - id: fiscalite.crds.taux
+    domaine: fiscalite
+    fichier: prelevements_sociaux
+    theme: CSG et CRDS
+    titre: "CRDS (taux)"
+    explication: "La contribution au remboursement de la dette sociale finance le remboursement de la dette de la Sécurité sociale."
+    lecture: prelevements_sociaux.contributions_sociales.crds
+    type: nombre
+    unite: pourcent
+    facteur: 100
+    bornes: [0, 5]
+
+  - id: fiscalite.cotisations.allegement_general
+    domaine: fiscalite
+    fichier: prelevements_sociaux
+    theme: Cotisations sociales
+    titre: "Réduction générale des cotisations patronales : plafond (en SMIC)"
+    explication: "Les employeurs paient moins de cotisations sur les bas et moyens salaires. La réduction est maximale au SMIC et s'annule à ce multiple du SMIC."
+    lecture: prelevements_sociaux.reductions_cotisations_sociales.allegement_general.ensemble_des_entreprises.plafond
+    type: nombre
+    unite: smic
+    bornes: [1, 4]
+
+  - id: fiscalite.tva.taux_normal
+    domaine: fiscalite
+    fichier: tva
+    theme: TVA
+    titre: "TVA : taux normal"
+    explication: "Taxe incluse dans le prix de la plupart des biens et services (vêtements, électronique, carburant…)."
+    lecture: taxation_indirecte.tva.taux_normal
+    type: nombre
+    unite: pourcent
+    facteur: 100
+    bornes: [0, 35]
+
+  - id: fiscalite.tva.taux_intermediaire
+    domaine: fiscalite
+    fichier: tva
+    theme: TVA
+    titre: "TVA : taux intermédiaire"
+    explication: "Taux appliqué notamment à la restauration, aux transports de voyageurs et à certains travaux dans les logements."
+    lecture: taxation_indirecte.tva.taux_intermediaire
+    type: nombre
+    unite: pourcent
+    facteur: 100
+    bornes: [0, 35]
+
+  - id: fiscalite.tva.taux_reduit
+    domaine: fiscalite
+    fichier: tva
+    theme: TVA
+    titre: "TVA : taux réduit"
+    explication: "Taux appliqué aux produits de première nécessité : alimentation, énergie (abonnements), livres, équipements pour personnes handicapées…"
+    lecture: taxation_indirecte.tva.taux_reduit
+    type: nombre
+    unite: pourcent
+    facteur: 100
+    bornes: [0, 35]
+
+  # ───────────── Minima sociaux et prime d'activité ─────────────
+  - id: prestations.rsa.montant_forfaitaire
+    domaine: prestations
+    fichier: minima_sociaux
+    theme: RSA
+    titre: "RSA : montant forfaitaire pour une personne seule (par mois)"
+    explication: "Revenu minimum garanti à une personne seule sans ressources. Il est majoré selon la composition du foyer et diminue quand les autres revenus augmentent."
+    lecture: prestations_sociales.solidarite_insertion.minima_sociaux.rsa.rsa_m.montant_de_base_du_rsa
+    type: nombre
+    unite: euros
+    bornes: [0, 2000]
+    tags: [minima_sociaux, pauvrete]
+
+  - id: prestations.prime_activite.montant_forfaitaire
+    domaine: prestations
+    fichier: minima_sociaux
+    theme: Prime d'activité
+    titre: "Prime d'activité : montant forfaitaire (par mois)"
+    explication: "Base de calcul de la prime d'activité, l'aide versée aux travailleurs modestes pour compléter leurs revenus."
+    lecture: prestations_sociales.solidarite_insertion.minima_sociaux.ppa.pa_m.montant_de_base
+    type: nombre
+    unite: euros
+    bornes: [0, 2000]
+    tags: [travail, incitation]
+
+  - id: prestations.prime_activite.part_revenus_activite
+    domaine: prestations
+    fichier: minima_sociaux
+    theme: Prime d'activité
+    titre: "Prime d'activité : part des revenus du travail prise en compte"
+    explication: "Pour 100 € gagnés en travaillant, cette part s'ajoute au droit. Plus elle est élevée, plus travailler davantage est récompensé."
+    lecture: prestations_sociales.solidarite_insertion.minima_sociaux.ppa.pa_m.majoration_ressources_revenus_activite
+    type: nombre
+    unite: pourcent
+    facteur: 100
+    bornes: [0, 100]
+
+  - id: prestations.prime_activite.bonification_max
+    domaine: prestations
+    fichier: minima_sociaux
+    theme: Prime d'activité
+    titre: "Prime d'activité : bonification individuelle maximale (en % du montant forfaitaire)"
+    explication: "Supplément versé à chaque travailleur dont les revenus approchent ou dépassent le SMIC."
+    lecture: prestations_sociales.solidarite_insertion.minima_sociaux.ppa.pa_m.bonification.taux_bonification_max
+    type: nombre
+    unite: pourcent
+    facteur: 100
+    bornes: [0, 100]
+
+  - id: prestations.aah.montant
+    domaine: prestations
+    fichier: minima_sociaux
+    theme: Handicap
+    titre: "Allocation aux adultes handicapés (AAH) : montant maximal (par mois)"
+    explication: "Revenu minimum versé aux personnes en situation de handicap qui ont peu ou pas de ressources."
+    lecture: prestations_sociales.prestations_etat_de_sante.invalidite.aah.montant
+    type: nombre
+    unite: euros
+    bornes: [0, 3000]
+
+  - id: prestations.aspa.montant_personne_seule
+    domaine: prestations
+    fichier: minima_sociaux
+    theme: Minimum vieillesse
+    titre: "Minimum vieillesse (ASPA) : montant maximal pour une personne seule (par an)"
+    explication: "Revenu minimum garanti aux personnes âgées. Le plafond de ressources évolue avec le montant."
+    lecture: prestations_sociales.solidarite_insertion.minimum_vieillesse.aspa.montant_maximum_annuel.personnes_seules
+    ecriture:
+      - chemin: prestations_sociales.solidarite_insertion.minimum_vieillesse.aspa.montant_maximum_annuel.personnes_seules
+        formule: "v"
+      - chemin: prestations_sociales.solidarite_insertion.minimum_vieillesse.aspa.plafond_ressources.personnes_seules
+        formule: "v"
+    type: nombre
+    unite: euros
+    bornes: [0, 30000]
+
+  # ───────────── Famille ─────────────
+  - id: prestations.famille.bmaf
+    domaine: prestations
+    fichier: famille
+    theme: Prestations familiales
+    titre: "Base mensuelle de calcul des allocations familiales (BMAF)"
+    explication: "Montant de référence : la plupart des prestations familiales sont exprimées en pourcentage de cette base."
+    lecture: prestations_sociales.prestations_familiales.bmaf.bmaf
+    type: nombre
+    unite: euros
+    bornes: [0, 1500]
+
+  - id: prestations.famille.af_nombre_enfants_minimum
+    domaine: prestations
+    fichier: famille
+    theme: Allocations familiales
+    titre: "Allocations familiales : nombre d'enfants minimum pour y avoir droit"
+    explication: "Aujourd'hui, les allocations familiales ne sont versées qu'à partir du deuxième enfant à charge (hors outre-mer)."
+    lecture: prestations_sociales.prestations_familiales.prestations_generales.af.af_cm.nb_enfants_min_pour_allocation
+    type: nombre
+    unite: enfants
+    bornes: [1, 4]
+
+  - id: prestations.famille.af_taux_deux_enfants
+    domaine: prestations
+    fichier: famille
+    theme: Allocations familiales
+    titre: "Allocations familiales : montant pour 2 enfants (en % de la BMAF)"
+    explication: "Pour deux enfants à charge, les allocations familiales valent ce pourcentage de la base mensuelle (avant modulation selon les revenus)."
+    lecture: prestations_sociales.prestations_familiales.prestations_generales.af.af_cm.taux.enf2
+    type: nombre
+    unite: pourcent
+    facteur: 100
+    bornes: [0, 100]
+
+  - id: prestations.famille.af_taux_enfant_supplementaire
+    domaine: prestations
+    fichier: famille
+    theme: Allocations familiales
+    titre: "Allocations familiales : supplément par enfant à partir du 3e (en % de la BMAF)"
+    explication: "Montant ajouté pour chaque enfant à partir du troisième."
+    lecture: prestations_sociales.prestations_familiales.prestations_generales.af.af_cm.taux.enf3
+    type: nombre
+    unite: pourcent
+    facteur: 100
+    bornes: [0, 100]
+
+  - id: prestations.famille.af_plafond_modulation
+    domaine: prestations
+    fichier: famille
+    theme: Allocations familiales
+    titre: "Allocations familiales : plafond de revenus avant division par deux (2 enfants)"
+    explication: "Au-delà de ce revenu annuel, les allocations familiales sont divisées par deux (puis par quatre au-delà d'un second plafond)."
+    lecture: prestations_sociales.prestations_familiales.prestations_generales.af.af_cond_ress.plafond_tranche_1_base
+    type: nombre
+    unite: euros
+    bornes: [0, 300000]
+
+  # ───────────── Logement ─────────────
+  - id: prestations.aides_logement.forfait_charges
+    domaine: prestations
+    fichier: logement
+    theme: Aides au logement
+    titre: "Aides au logement : forfait de charges (cas général, par mois)"
+    explication: "Montant forfaitaire ajouté au loyer pour tenir compte des charges dans le calcul de l'aide au logement."
+    lecture: prestations_sociales.aides_logement.allocations_logement.locatif.formule.c_forfait_charges.cas_general.cas_general
+    type: nombre
+    unite: euros
+    bornes: [0, 500]
+
+  # ───────────── Travail (moteur) ─────────────
+  # Si une autre fiche de règles définit déjà le même id (ex. fiche « travail » sourcée par décret),
+  # le Système n'en génère pas de doublon : il rattache simplement le lien moteur à cette règle
+  # et vérifie que les deux valeurs concordent.
+  - id: travail.smic.horaire_brut
+    domaine: travail
+    fichier: smic_moteur
+    theme: Salaire minimum
+    titre: "SMIC horaire brut"
+    explication: "Salaire minimum par heure de travail, avant cotisations. Le SMIC mensuel correspond à 151,67 heures."
+    lecture: marche_travail.salaire_minimum.smic.smic_b_horaire
+    ecriture:
+      - chemin: marche_travail.salaire_minimum.smic.smic_b_horaire
+        formule: "v"
+      - chemin: marche_travail.salaire_minimum.smic.smic_b_mensuel
+        formule: "v * 151.67"
+    type: nombre
+    unite: euros
+    bornes: [5, 30]
+
+  - id: travail.chomage.taux_remplacement
+    domaine: travail
+    fichier: chomage_moteur
+    theme: Assurance chômage
+    titre: "Allocation chômage : pourcentage du salaire journalier de référence"
+    explication: "L'allocation chômage vaut le plus favorable de deux calculs : ce pourcentage du salaire journalier de référence, ou 40,4 % plus une partie fixe."
+    lecture: chomage.allocations_assurance_chomage.alloc_base_taux.pourcentage_sjr
+    type: nombre
+    unite: pourcent
+    facteur: 100
+    bornes: [0, 100]

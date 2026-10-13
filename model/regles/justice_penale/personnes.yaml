@@ -1,0 +1,497 @@
+domaine: justice_penale
+theme: "Atteintes aux personnes"
+regles:
+  # --- Homicides volontaires ---
+  - id: justice_penale.meurtre.reclusion_max
+    titre: "Meurtre : peine maximale de réclusion criminelle"
+    explication: "Tuer volontairement une personne (meurtre) est un crime. La peine maximale prévue est une durée de réclusion criminelle (prison pour les crimes)."
+    type: nombre
+    unite: ans
+    bornes: [0, 30]
+    valeurs:
+      - depuis: "2026-10-10"
+        valeur: 30
+        sources: [wikipedia-meurtre]
+        article: "Code pénal, art. 221-1"
+    tags: [peine, crime, homicide, personnes]
+    a_verifier: true
+    note: "Valeur trouvée uniquement sur une source non officielle (Wikipédia), aucune page officielle lue ne la cite. Date d'entrée en vigueur non établie ; valeur attestée au 2026-10-10."
+
+  - id: justice_penale.meurtre_aggrave.peine_max
+    titre: "Meurtre aggravé : peine maximale"
+    explication: "Un meurtre commis dans certaines circonstances aggravantes (par exemple un meurtre qui suit un viol) est puni plus sévèrement qu'un meurtre simple."
+    type: choix
+    choix: ["15_ans", "20_ans", "30_ans", "perpetuite"]
+    valeurs:
+      - depuis: "2026-10-10"
+        valeur: "perpetuite"
+        sources: [wikipedia-meurtre]
+        article: "Code pénal, art. 221-4"
+    tags: [peine, crime, homicide, personnes, perpetuite]
+    a_verifier: true
+    note: "Perpétuité attestée seulement par Wikipédia (renvoi à l'art. 221-4). La fiche officielle service-public F1278 (« Surveillance de sûreté d'un criminel ») cite le « meurtre aggravé (le meurtre qui suit un viol, par exemple) » sans donner la peine. La liste complète des circonstances (conjoint, mineur de 15 ans, etc.) n'a pas été lue sur une source officielle. Date d'entrée en vigueur non établie ; valeur attestée au 2026-10-10."
+
+  - id: justice_penale.assassinat.peine_max
+    titre: "Assassinat : peine maximale"
+    explication: "L'assassinat est un meurtre commis avec préméditation. C'est l'un des crimes punis de la peine la plus lourde : la réclusion criminelle à perpétuité."
+    type: choix
+    choix: ["15_ans", "20_ans", "30_ans", "perpetuite"]
+    valeurs:
+      - depuis: "2024-09-30"
+        valeur: "perpetuite"
+        sources: [sp-f1487, wikipedia-meurtre]
+        article: "Code pénal, art. 221-3"
+    tags: [peine, crime, homicide, personnes, perpetuite]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2024-09-30 (fiche service-public F1487 : « réclusion criminelle à perpétuité (assassinat, trafic de stupéfiants...) »)."
+
+  # --- Viol et agressions sexuelles ---
+  - id: justice_penale.viol.definition_non_consentement
+    titre: "Viol et agressions sexuelles : définition fondée sur l'absence de consentement"
+    explication: "Depuis la loi du 6 novembre 2025, tout acte sexuel non consenti est une agression sexuelle (un viol s'il y a pénétration ou acte bucco-génital ou bucco-anal). Le consentement doit être libre et éclairé, spécifique, préalable et révocable ; il ne se déduit pas du silence ou de l'absence de réaction."
+    type: booleen
+    valeurs:
+      - depuis: "2025-11-08"
+        valeur: true
+        sources: [sp-f1526, legi-cp-222-22, lemondedudroit-viol-application-temps-2026]
+        article: "Code pénal, art. 222-22 et 222-23 (loi n° 2025-1057 du 6 novembre 2025)"
+    tags: [definition, sexuel, viol, consentement, reforme_2025]
+    a_verifier: false
+    note: "Avant cette loi, l'acte devait avoir été commis avec violence, contrainte, menace ou surprise (critères maintenus comme cas de non-consentement). Date du 8 novembre 2025 lue dans le compte rendu par Le Monde du Droit de l'arrêt Cass. crim. du 1er juillet 2026 (n° 26-82.275), qui juge la loi plus sévère et donc non rétroactive."
+
+  - id: justice_penale.viol.reclusion_max
+    titre: "Viol (cas général) : peine maximale de réclusion criminelle"
+    explication: "Le viol est un crime. Dans le cas général, son auteur risque jusqu'à 15 ans de réclusion criminelle."
+    type: nombre
+    unite: ans
+    bornes: [0, 30]
+    valeurs:
+      - depuis: "2026-08-20"
+        valeur: 15
+        sources: [sp-f1526, legi-cp-222-23]
+        article: "Code pénal, art. 222-23 à 222-26-2"
+    tags: [peine, crime, sexuel, viol, personnes]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-08-20. Même peine en cas de tentative."
+
+  - id: justice_penale.viol_aggrave.reclusion_max
+    titre: "Viol aggravé : peine maximale de réclusion criminelle"
+    explication: "La peine monte à 20 ans dans de nombreux cas : viol commis par le conjoint, le partenaire de Pacs ou le concubin, par plusieurs personnes, avec une arme, par une personne ivre ou droguée, sur une victime droguée à son insu, en présence d'un mineur, dans les transports, etc."
+    type: nombre
+    unite: ans
+    bornes: [0, 30]
+    valeurs:
+      - depuis: "2026-08-20"
+        valeur: 20
+        sources: [sp-f1526, legi-cp-222-23]
+        article: "Code pénal, art. 222-23 à 222-26-2"
+    tags: [peine, crime, sexuel, viol, conjugal, personnes]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-08-20."
+
+  - id: justice_penale.viol_ayant_entraine_la_mort.reclusion_max
+    titre: "Viol ayant entraîné la mort : peine maximale de réclusion criminelle"
+    explication: "Lorsque le viol a entraîné la mort de la victime, la peine encourue est de 30 ans de réclusion criminelle."
+    type: nombre
+    unite: ans
+    bornes: [0, 30]
+    valeurs:
+      - depuis: "2026-08-20"
+        valeur: 30
+        sources: [sp-f1526, legi-cp-222-23]
+        article: "Code pénal, art. 222-23 à 222-26-2"
+    tags: [peine, crime, sexuel, viol, personnes]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-08-20. La fiche F1487 cite aussi le « viol suivi de mort » comme crime puni de 30 ans."
+
+  - id: justice_penale.agression_sexuelle.prison_max
+    titre: "Agression sexuelle (hors viol) : peine maximale de prison"
+    explication: "Un acte sexuel non consenti sans pénétration est une agression sexuelle, un délit puni dans le cas général de 5 ans de prison au maximum."
+    type: nombre
+    unite: ans
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2026-08-20"
+        valeur: 5
+        sources: [sp-f33891, legi-cp-222-27]
+        article: "Code pénal, art. 222-27 à 222-31"
+    tags: [peine, delit, sexuel, personnes]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-08-20."
+
+  - id: justice_penale.agression_sexuelle.amende_max
+    titre: "Agression sexuelle (hors viol) : amende maximale"
+    explication: "En plus de la prison, l'auteur d'une agression sexuelle risque une amende pouvant aller jusqu'à 75 000 €."
+    type: nombre
+    unite: euros
+    bornes: [0, 150000]
+    valeurs:
+      - depuis: "2026-08-20"
+        valeur: 75000
+        sources: [sp-f33891, legi-cp-222-27]
+        article: "Code pénal, art. 222-27 à 222-31"
+    tags: [peine, amende, delit, sexuel, personnes]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-08-20."
+
+  - id: justice_penale.agression_sexuelle_aggravee.prison_max
+    titre: "Agression sexuelle aggravée : peine maximale de prison"
+    explication: "La peine passe à 7 ans de prison (et 100 000 € d'amende) notamment si l'agression est commise par le conjoint, le partenaire de Pacs ou le concubin, par plusieurs personnes, avec une arme, ou si elle a causé une ITT de plus de 8 jours."
+    type: nombre
+    unite: ans
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2026-08-20"
+        valeur: 7
+        sources: [sp-f33891, legi-cp-222-27]
+        article: "Code pénal, art. 222-27 à 222-31"
+    tags: [peine, delit, sexuel, conjugal, personnes]
+    a_verifier: false
+    note: "Amende associée : 100 000 €. Sur une personne particulièrement vulnérable avec une autre circonstance : jusqu'à 10 ans et 150 000 €. Date d'entrée en vigueur non établie ; valeur attestée au 2026-08-20."
+
+  # --- Violences volontaires ---
+  - id: justice_penale.violences_itt_8_jours_ou_moins.amende_max
+    titre: "Violences ayant entraîné une ITT de 8 jours ou moins : amende maximale"
+    explication: "Sans circonstance aggravante, des violences sur un adulte ayant causé une incapacité totale de travail (ITT) de 8 jours au plus sont une contravention punie d'une amende de 1 500 € au maximum (3 000 € en cas de récidive)."
+    type: nombre
+    unite: euros
+    bornes: [0, 3000]
+    valeurs:
+      - depuis: "2026-08-07"
+        valeur: 1500
+        sources: [sp-f1524, legi-cp-r625-1]
+        article: "Code pénal, art. R625-1"
+    tags: [peine, amende, contravention, violences, personnes]
+    a_verifier: false
+    note: "Sans aucune blessure : 750 € d'amende (art. R624-1). Avec une circonstance aggravante (conjoint, arme, ivresse…), ces violences deviennent un délit. Date d'entrée en vigueur non établie ; valeur attestée au 2026-08-07."
+
+  - id: justice_penale.violences_itt_plus_8_jours.prison_max
+    titre: "Violences ayant entraîné une ITT de plus de 8 jours : peine maximale de prison"
+    explication: "Des violences volontaires sur un adulte ayant causé une incapacité totale de travail de plus de 8 jours sont un délit puni de 3 ans de prison au maximum."
+    type: nombre
+    unite: ans
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2026-08-07"
+        valeur: 3
+        sources: [sp-f1524, legi-cp-222-7]
+        article: "Code pénal, art. 222-7 à 222-16-3"
+    tags: [peine, delit, violences, personnes]
+    a_verifier: false
+    note: "Cas sans circonstance aggravante, victime majeure. Date d'entrée en vigueur non établie ; valeur attestée au 2026-08-07."
+
+  - id: justice_penale.violences_itt_plus_8_jours.amende_max
+    titre: "Violences ayant entraîné une ITT de plus de 8 jours : amende maximale"
+    explication: "En plus de la prison, l'auteur risque jusqu'à 45 000 € d'amende."
+    type: nombre
+    unite: euros
+    bornes: [0, 150000]
+    valeurs:
+      - depuis: "2026-08-07"
+        valeur: 45000
+        sources: [sp-f1524, legi-cp-222-7]
+        article: "Code pénal, art. 222-7 à 222-16-3"
+    tags: [peine, amende, delit, violences, personnes]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-08-07."
+
+  - id: justice_penale.violences_mutilation.prison_max
+    titre: "Violences ayant entraîné une mutilation ou une infirmité permanente : peine maximale de prison"
+    explication: "Si les violences ont causé une mutilation ou une infirmité permanente, l'auteur risque jusqu'à 10 ans de prison et 150 000 € d'amende."
+    type: nombre
+    unite: ans
+    bornes: [0, 20]
+    valeurs:
+      - depuis: "2026-08-07"
+        valeur: 10
+        sources: [sp-f1524, legi-cp-222-7]
+        article: "Code pénal, art. 222-7 à 222-16-3"
+    tags: [peine, delit, violences, personnes]
+    a_verifier: false
+    note: "Amende associée : 150 000 €. Victime majeure, sans circonstance aggravante. Date d'entrée en vigueur non établie ; valeur attestée au 2026-08-07."
+
+  - id: justice_penale.violences_mort_sans_intention.reclusion_max
+    titre: "Violences ayant entraîné la mort sans intention de la donner : peine maximale"
+    explication: "Lorsque des coups volontaires ont causé la mort sans que l'auteur ait voulu tuer, c'est un crime puni de 15 ans de réclusion criminelle."
+    type: nombre
+    unite: ans
+    bornes: [0, 30]
+    valeurs:
+      - depuis: "2026-08-07"
+        valeur: 15
+        sources: [sp-f1524, legi-cp-222-7]
+        article: "Code pénal, art. 222-7 à 222-16-3"
+    tags: [peine, crime, violences, personnes]
+    a_verifier: false
+    note: "Victime majeure, sans circonstance aggravante (victime de moins de 15 ans : 20 ans ; par un parent : 30 ans). Date d'entrée en vigueur non établie ; valeur attestée au 2026-08-07."
+
+  - id: justice_penale.violences_conjugales.circonstance_aggravante
+    titre: "Violences conjugales : circonstance aggravante"
+    explication: "Des violences commises sur un conjoint, un partenaire de Pacs ou un concubin sont punies plus sévèrement que les mêmes violences sur un inconnu. Selon les blessures, la peine va de 3 ans de prison et 45 000 € d'amende jusqu'à 20 ans de réclusion criminelle."
+    type: booleen
+    valeurs:
+      - depuis: "2026-08-07"
+        valeur: true
+        sources: [sp-f1524, legi-cp-222-7]
+        article: "Code pénal, art. 222-7 à 222-16-3"
+    tags: [violences, conjugal, circonstance_aggravante, personnes]
+    a_verifier: false
+    note: "La fourchette (3 ans et 45 000 € à 20 ans) vaut pour l'ensemble des circonstances aggravantes listées par la fiche F1524. Les peines exactes par niveau d'ITT pour le conjoint n'ont pas été lues sur une source officielle. Le harcèlement moral au sein du couple est traité dans une règle distincte. Date d'entrée en vigueur non établie ; valeur attestée au 2026-08-07."
+
+  # --- Harcèlement ---
+  - id: justice_penale.harcelement_moral.prison_max
+    titre: "Harcèlement moral (hors travail et hors couple) : peine maximale de prison"
+    explication: "Des propos ou comportements répétés qui dégradent les conditions de vie d'une personne sont punis d'un an de prison au maximum. La peine passe à 2 ans en cas d'ITT de plus de 8 jours, sur un mineur ou en ligne, et à 3 ans avec deux circonstances aggravantes."
+    type: nombre
+    unite: ans
+    bornes: [0, 5]
+    valeurs:
+      - depuis: "2025-10-31"
+        valeur: 1
+        sources: [sp-f2354, legi-cp-222-33-2]
+        article: "Code pénal, art. 222-33-2 à 222-33-2-2"
+    tags: [peine, delit, harcelement, personnes]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-10-31."
+
+  - id: justice_penale.harcelement_moral.amende_max
+    titre: "Harcèlement moral (hors travail et hors couple) : amende maximale"
+    explication: "L'amende maximale est de 15 000 € (30 000 € avec une circonstance aggravante, 45 000 € avec deux)."
+    type: nombre
+    unite: euros
+    bornes: [0, 100000]
+    valeurs:
+      - depuis: "2025-10-31"
+        valeur: 15000
+        sources: [sp-f2354, legi-cp-222-33-2]
+        article: "Code pénal, art. 222-33-2 à 222-33-2-2"
+    tags: [peine, amende, delit, harcelement, personnes]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-10-31."
+
+  - id: justice_penale.harcelement_moral_conjugal.prison_max
+    titre: "Harcèlement moral au sein du couple : peine maximale de prison"
+    explication: "Le harcèlement moral commis par un conjoint, un partenaire de Pacs ou un concubin est puni de 3 ans de prison et 45 000 € d'amende."
+    type: nombre
+    unite: ans
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2025-10-31"
+        valeur: 3
+        sources: [sp-f2354, legi-cp-222-33-2]
+        article: "Code pénal, art. 222-33-2 à 222-33-2-2"
+    tags: [peine, delit, harcelement, conjugal, personnes]
+    a_verifier: false
+    note: "Amende associée : 45 000 €. Date d'entrée en vigueur non établie ; valeur attestée au 2025-10-31."
+
+  - id: justice_penale.harcelement_moral_travail.prison_max
+    titre: "Harcèlement moral au travail : peine maximale de prison"
+    explication: "Le harcèlement moral au travail est puni de 2 ans de prison et 30 000 € d'amende, et jusqu'à 3 ans et 45 000 € avec deux circonstances aggravantes."
+    type: nombre
+    unite: ans
+    bornes: [0, 5]
+    valeurs:
+      - depuis: "2025-10-31"
+        valeur: 2
+        sources: [sp-f2354, legi-cp-222-33-2]
+        article: "Code pénal, art. 222-33-2 à 222-33-2-2"
+    tags: [peine, delit, harcelement, travail, personnes]
+    a_verifier: false
+    note: "Amende associée : 30 000 €. Date d'entrée en vigueur non établie ; valeur attestée au 2025-10-31."
+
+  - id: justice_penale.harcelement_sexuel.prison_max
+    titre: "Harcèlement sexuel ou sexiste : peine maximale de prison"
+    explication: "Le harcèlement sexuel est puni de 2 ans de prison. La peine passe à 3 ans notamment s'il est commis par un supérieur hiérarchique, sur une personne vulnérable, à plusieurs ou en ligne."
+    type: nombre
+    unite: ans
+    bornes: [0, 5]
+    valeurs:
+      - depuis: "2025-10-31"
+        valeur: 2
+        sources: [sp-f1043, legi-cp-222-32]
+        article: "Code pénal, art. 222-32 et 222-33"
+    tags: [peine, delit, harcelement, sexuel, personnes]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-10-31."
+
+  - id: justice_penale.harcelement_sexuel.amende_max
+    titre: "Harcèlement sexuel ou sexiste : amende maximale"
+    explication: "L'amende maximale est de 30 000 € (45 000 € en cas de circonstance aggravante)."
+    type: nombre
+    unite: euros
+    bornes: [0, 100000]
+    valeurs:
+      - depuis: "2025-10-31"
+        valeur: 30000
+        sources: [sp-f1043, legi-cp-222-32]
+        article: "Code pénal, art. 222-32 et 222-33"
+    tags: [peine, amende, delit, harcelement, sexuel, personnes]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-10-31."
+
+  - id: justice_penale.harcelement_scolaire.prison_max
+    titre: "Harcèlement scolaire (auteur majeur) : peine maximale de prison"
+    explication: "Le harcèlement d'un élève, sans ITT ou avec une ITT de moins de 8 jours, est puni de 3 ans de prison et 45 000 € d'amende lorsque l'auteur est majeur. Pour un auteur mineur de plus de 13 ans, la peine est réduite (1 an et demi)."
+    type: nombre
+    unite: ans
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2022-03-02"
+        valeur: 3
+        sources: [sp-f31985, legi-loi-2022-299]
+        article: "Code pénal, art. 222-33-2 à 222-33-2-3 (loi n° 2022-299 du 2 mars 2022)"
+    tags: [peine, delit, harcelement, ecole, mineurs, personnes]
+    a_verifier: false
+    note: "Délit créé par la loi n° 2022-299 du 2 mars 2022 ; la date retenue est celle de la loi (entrée en vigueur exacte non lue). Amende associée : 45 000 €. Avec ITT de plus de 8 jours : 5 ans et 75 000 €."
+
+  - id: justice_penale.harcelement_scolaire_suicide.prison_max
+    titre: "Harcèlement scolaire ayant conduit au suicide ou à une tentative : peine maximale de prison"
+    explication: "Si le harcèlement scolaire a conduit la victime à se suicider ou à tenter de se suicider, l'auteur majeur risque 10 ans de prison et 150 000 € d'amende."
+    type: nombre
+    unite: ans
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2022-03-02"
+        valeur: 10
+        sources: [sp-f31985, legi-loi-2022-299]
+        article: "Code pénal, art. 222-33-2 à 222-33-2-3 (loi n° 2022-299 du 2 mars 2022)"
+    tags: [peine, delit, harcelement, ecole, mineurs, personnes]
+    a_verifier: false
+    note: "Date de la loi n° 2022-299 du 2 mars 2022 (entrée en vigueur exacte non lue). Auteur mineur de plus de 13 ans : 5 ans et 7 500 €."
+
+  # --- Atteintes involontaires et route ---
+  - id: justice_penale.homicide_involontaire.prison_max
+    titre: "Homicide involontaire (cas général) : peine maximale de prison"
+    explication: "Causer la mort d'une personne par maladresse, imprudence ou négligence, sans circonstance aggravante, est puni de 3 ans de prison."
+    type: nombre
+    unite: ans
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2025-10-20"
+        valeur: 3
+        sources: [sp-f35148, legi-cp-221-6]
+        article: "Code pénal, art. 221-6 à 221-7"
+    tags: [peine, delit, involontaire, homicide, personnes]
+    a_verifier: false
+    note: "Violation délibérée d'une obligation de sécurité : 5 ans et 75 000 €. Date d'entrée en vigueur non établie ; valeur attestée au 2025-10-20."
+
+  - id: justice_penale.homicide_involontaire.amende_max
+    titre: "Homicide involontaire (cas général) : amende maximale"
+    explication: "En plus de la prison, l'auteur risque jusqu'à 45 000 € d'amende."
+    type: nombre
+    unite: euros
+    bornes: [0, 150000]
+    valeurs:
+      - depuis: "2025-10-20"
+        valeur: 45000
+        sources: [sp-f35148, legi-cp-221-6]
+        article: "Code pénal, art. 221-6 à 221-7"
+    tags: [peine, amende, delit, involontaire, homicide, personnes]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-10-20."
+
+  - id: justice_penale.homicide_involontaire_conduite.prison_max
+    titre: "Homicide involontaire par un conducteur (sans circonstance d'homicide routier) : peine maximale de prison"
+    explication: "Un conducteur qui cause un accident mortel par une faute ordinaire (sans alcool, drogue, grand excès de vitesse, délit de fuite…) risque 5 ans de prison et 75 000 € d'amende."
+    type: nombre
+    unite: ans
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2025-10-20"
+        valeur: 5
+        sources: [sp-f35148]
+        article: "Code pénal, art. 221-6 à 221-7"
+    tags: [peine, delit, involontaire, homicide, route, personnes]
+    a_verifier: false
+    note: "Amende associée : 75 000 €. Si le conducteur a délibérément violé une règle (ivresse, stupéfiants, excès de vitesse de 30 km/h ou plus, délit de fuite…), il est poursuivi pour homicide routier. Date d'entrée en vigueur non établie ; valeur attestée au 2025-10-20."
+
+  - id: justice_penale.homicide_routier.prison_max
+    titre: "Homicide routier : peine maximale de prison"
+    explication: "Un conducteur qui cause un accident mortel en étant ivre, drogué, sans permis, en grand excès de vitesse, au téléphone, en refusant d'obtempérer ou en prenant la fuite commet un « homicide routier », puni de 7 ans de prison."
+    type: nombre
+    unite: ans
+    bornes: [0, 15]
+    valeurs:
+      - depuis: "2025-07-10"
+        valeur: 7
+        sources: [sp-f39230, legi-cp-221-18, banquedesterritoires-homicide-routier-2025]
+        article: "Code pénal, art. 221-18 à 221-20 (loi n° 2025-622 du 9 juillet 2025)"
+    tags: [peine, delit, route, homicide, reforme_2025, personnes]
+    a_verifier: false
+    note: "Délit créé par la loi n° 2025-622 du 9 juillet 2025 (publiée au JO du 10 juillet 2025 ; date exacte d'entrée en vigueur non lue). Les quantums sont ceux de l'ancien homicide involontaire aggravé, mais la liste des circonstances a été élargie (refus d'obtempérer, téléphone, rodéos ; seuil d'excès de vitesse abaissé à 30 km/h)."
+
+  - id: justice_penale.homicide_routier.amende_max
+    titre: "Homicide routier : amende maximale"
+    explication: "En plus de la prison, l'auteur d'un homicide routier risque jusqu'à 100 000 € d'amende."
+    type: nombre
+    unite: euros
+    bornes: [0, 200000]
+    valeurs:
+      - depuis: "2025-07-10"
+        valeur: 100000
+        sources: [sp-f39230, legi-cp-221-18, banquedesterritoires-homicide-routier-2025]
+        article: "Code pénal, art. 221-18 à 221-20"
+    tags: [peine, amende, delit, route, homicide, reforme_2025, personnes]
+    a_verifier: false
+    note: "Loi n° 2025-622 du 9 juillet 2025 (JO du 10 juillet 2025 ; date exacte d'entrée en vigueur non lue)."
+
+  - id: justice_penale.homicide_routier_aggrave.prison_max
+    titre: "Homicide routier avec plusieurs circonstances aggravantes : peine maximale de prison"
+    explication: "Si plusieurs circonstances sont réunies (par exemple alcool et excès de vitesse), l'homicide routier est puni de 10 ans de prison et 150 000 € d'amende."
+    type: nombre
+    unite: ans
+    bornes: [0, 15]
+    valeurs:
+      - depuis: "2025-07-10"
+        valeur: 10
+        sources: [sp-f39230, legi-cp-221-18, banquedesterritoires-homicide-routier-2025]
+        article: "Code pénal, art. 221-18 à 221-20"
+    tags: [peine, delit, route, homicide, reforme_2025, personnes]
+    a_verifier: false
+    note: "Amende associée : 150 000 €. Loi n° 2025-622 du 9 juillet 2025 (JO du 10 juillet 2025 ; date exacte d'entrée en vigueur non lue)."
+
+  - id: justice_penale.blessures_routieres_itt_plus_3_mois.prison_max
+    titre: "Blessures routières avec ITT de plus de 3 mois : peine maximale de prison"
+    explication: "Un conducteur fautif (ivresse, drogue, grand excès de vitesse, etc.) qui blesse une personne avec une incapacité de travail de plus de 3 mois risque 5 ans de prison et 75 000 € d'amende."
+    type: nombre
+    unite: ans
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2025-07-10"
+        valeur: 5
+        sources: [sp-f39230, legi-cp-221-18]
+        article: "Code pénal, art. 221-18 à 221-20"
+    tags: [peine, delit, route, blessures, reforme_2025, personnes]
+    a_verifier: false
+    note: "Amende associée : 75 000 € (7 ans et 100 000 € avec plusieurs circonstances). ITT de 3 mois ou moins : 3 ans et 45 000 € (5 ans et 75 000 € avec plusieurs circonstances). Délit créé par la loi n° 2025-622 du 9 juillet 2025 (JO du 10 juillet 2025 ; date exacte d'entrée en vigueur non lue)."
+
+  # --- Outrage sexiste et sexuel ---
+  - id: justice_penale.outrage_sexiste.amende_max
+    titre: "Outrage sexiste ou sexuel (contravention) : amende maximale"
+    explication: "Imposer à quelqu'un un propos ou un comportement sexiste ou sexuel humiliant ou intimidant est une contravention punie d'une amende de 1 500 € au maximum."
+    type: nombre
+    unite: euros
+    bornes: [0, 3750]
+    valeurs:
+      - depuis: "2026-08-19"
+        valeur: 1500
+        sources: [sp-f34550, arretonslesviolences-outrages, legi-cp-r625-8-3]
+        article: "Code pénal, art. R625-8-3"
+    tags: [peine, amende, contravention, sexisme, personnes]
+    a_verifier: false
+    note: "Contravention de 5e classe. L'auteur peut aussi être verbalisé par une amende forfaitaire (150 € en règle générale selon la fiche F34550). Date d'entrée en vigueur non établie ; valeur attestée au 2026-08-19."
+
+  - id: justice_penale.outrage_sexiste_aggrave.amende_max
+    titre: "Outrage sexiste ou sexuel aggravé (délit) : amende maximale"
+    explication: "Commis sur un mineur, dans les transports, à plusieurs, par abus d'autorité ou en récidive, l'outrage sexiste devient un délit puni de 3 750 € d'amende."
+    type: nombre
+    unite: euros
+    bornes: [0, 15000]
+    valeurs:
+      - depuis: "2026-08-19"
+        valeur: 3750
+        sources: [sp-f34550, arretonslesviolences-outrages, legi-cp-222-33-1-1]
+        article: "Code pénal, art. 222-33-1-1"
+    tags: [peine, amende, delit, sexisme, personnes]
+    a_verifier: false
+    note: "Sources divergentes sur la prison : la fiche F34550 mentionne aussi 2 mois de prison, alors que arretonslesviolences.gouv.fr n'indique que l'amende de 3 750 € ; la peine de prison n'est donc pas retenue ici. Date d'entrée en vigueur non établie ; valeur attestée au 2026-08-19."

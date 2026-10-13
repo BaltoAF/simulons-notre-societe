@@ -1,0 +1,220 @@
+domaine: environnement_energie
+theme: "Véhicules et mobilité : malus automobile, ZFE, fin des voitures thermiques neuves"
+regles:
+  # ---------------------------------------------------------------------------
+  # MALUS CO2 (voitures particulières neuves, réception UE, norme WLTP)
+  # ---------------------------------------------------------------------------
+  - id: environnement_energie.malus_co2.seuil_declenchement
+    titre: "Malus CO2 : seuil d'émissions à partir duquel le malus est dû"
+    explication: "Émissions de CO2 (en grammes par kilomètre, norme WLTP) à partir desquelles une taxe est due lors de la première immatriculation d'une voiture particulière."
+    type: nombre
+    unite: g_co2_par_km
+    bornes: [50, 200]
+    valeurs:
+      - depuis: "2024-01-01"
+        valeur: 118
+        sources: [sp-f35947-malus-co2]
+        article: "Code des impositions sur les biens et services, art. L421-58 à L421-70"
+      - depuis: "2025-03-01"
+        valeur: 113
+        sources: [sp-f35947-malus-co2]
+      - depuis: "2026-01-01"
+        valeur: 108
+        sources: [sp-f35947-malus-co2]
+    tags: [vehicules, malus, fiscalite_ecologique]
+    a_verifier: false
+    note: "À 108 g/km, le malus 2026 est de 50 €. Barèmes historiques lus dans la section « véhicule immatriculé à l'étranger » de la fiche, qui reprend les barèmes annuels (2024-28/02/2025 ; 01/03/2025-31/12/2025 ; 2026). Aucun barème 2027 affiché sur la fiche (vérifiée le 21/02/2026)."
+
+  - id: environnement_energie.malus_co2.montant_minimal
+    titre: "Malus CO2 : montant au seuil de déclenchement"
+    explication: "Montant du malus pour une voiture émettant exactement le seuil de déclenchement en 2026."
+    type: nombre
+    unite: euros
+    bornes: [0, 1000]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 50
+        sources: [sp-f35947-malus-co2]
+        article: "Code des impositions sur les biens et services, art. L421-58 à L421-70"
+    tags: [vehicules, malus, fiscalite_ecologique]
+    a_verifier: false
+    note: "Barème 2026 (fiche service-public vérifiée le 21/02/2026)."
+
+  - id: environnement_energie.malus_co2.montant_maximal
+    titre: "Malus CO2 : montant maximal"
+    explication: "Montant maximal du malus CO2, applicable aux voitures les plus émettrices."
+    type: nombre
+    unite: euros
+    bornes: [0, 200000]
+    valeurs:
+      - depuis: "2024-01-01"
+        valeur: 60000
+        sources: [sp-f35947-malus-co2]
+        article: "Code des impositions sur les biens et services, art. L421-58 à L421-70"
+      - depuis: "2025-03-01"
+        valeur: 70000
+        sources: [sp-f35947-malus-co2]
+      - depuis: "2026-01-01"
+        valeur: 80000
+        sources: [sp-f35947-malus-co2]
+    tags: [vehicules, malus, fiscalite_ecologique]
+    a_verifier: false
+    note: "Atteint au-delà de 193 g/km (2024), 192 g/km (mars-décembre 2025), 191 g/km (2026)."
+
+  - id: environnement_energie.malus_co2.seuil_montant_maximal
+    titre: "Malus CO2 : émissions au-delà desquelles le montant maximal s'applique"
+    explication: "Niveau d'émissions (g/km WLTP) au-delà duquel le malus atteint son plafond."
+    type: nombre
+    unite: g_co2_par_km
+    bornes: [100, 300]
+    valeurs:
+      - depuis: "2024-01-01"
+        valeur: 193
+        sources: [sp-f35947-malus-co2]
+      - depuis: "2025-03-01"
+        valeur: 192
+        sources: [sp-f35947-malus-co2]
+      - depuis: "2026-01-01"
+        valeur: 191
+        sources: [sp-f35947-malus-co2]
+    tags: [vehicules, malus, fiscalite_ecologique]
+    a_verifier: false
+    note: "Valeurs « supérieures à » ces seuils."
+
+  # ---------------------------------------------------------------------------
+  # MALUS AU POIDS (« malus masse »)
+  # ---------------------------------------------------------------------------
+  - id: environnement_energie.malus_masse.seuil
+    titre: "Malus au poids : masse à partir de laquelle la taxe est due"
+    explication: "Masse en ordre de marche (en kg) au-delà de laquelle une voiture neuve paie une taxe supplémentaire par kilogramme."
+    type: nombre
+    unite: kg
+    bornes: [1000, 2500]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 1500
+        sources: [sp-f35950-malus-masse]
+        article: "Code des impositions sur les biens et services, art. L421-71 à L421-81"
+    tags: [vehicules, malus, poids, fiscalite_ecologique]
+    a_verifier: false
+    note: "Barème 2026 (fiche vérifiée le 01/03/2026) ; seuils des années précédentes non relus. Abattements : 100 kg pour les hybrides non rechargeables, 200 kg pour les hybrides rechargeables à plus de 50 km d'autonomie électrique, 600 kg pour certains véhicules de 8 places et plus des personnes morales."
+
+  - id: environnement_energie.malus_masse.tarif_premiere_tranche
+    titre: "Malus au poids : tarif par kilogramme de la première tranche (1 500 à 1 699 kg)"
+    explication: "Montant dû par kilogramme au-dessus du seuil, pour la première tranche de masse."
+    type: nombre
+    unite: euros_par_kg
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 10
+        sources: [sp-f35950-malus-masse]
+    tags: [vehicules, malus, poids]
+    a_verifier: false
+    note: "Tranches 2026 : 10 € (1 500-1 699 kg), 15 € (1 700-1 799), 20 € (1 800-1 899), 25 € (1 900-1 999), 30 € (2 000 kg et plus)."
+
+  - id: environnement_energie.malus_masse.tarif_tranche_maximale
+    titre: "Malus au poids : tarif par kilogramme de la tranche la plus haute (2 000 kg et plus)"
+    explication: "Montant dû par kilogramme pour la partie de la masse supérieure à 2 tonnes."
+    type: nombre
+    unite: euros_par_kg
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 30
+        sources: [sp-f35950-malus-masse]
+    tags: [vehicules, malus, poids]
+    a_verifier: false
+    note: ""
+
+  - id: environnement_energie.malus.plafond_cumule_co2_masse
+    titre: "Plafond du cumul malus CO2 + malus au poids"
+    explication: "Montant total maximal que peuvent atteindre ensemble le malus CO2 et le malus au poids pour un véhicule."
+    type: nombre
+    unite: euros
+    bornes: [0, 200000]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 80000
+        sources: [sp-f35950-malus-masse]
+    tags: [vehicules, malus]
+    a_verifier: false
+    note: "Plafond 2026."
+
+  - id: environnement_energie.malus_masse.exoneration_vehicules_electriques
+    titre: "Malus au poids : exonération des véhicules électriques et à hydrogène"
+    explication: "Indique si les voitures 100 % électriques ou à hydrogène échappent au malus au poids."
+    type: booleen
+    unite: ""
+    valeurs:
+      - depuis: "2026-03-01"
+        valeur: true
+        sources: [sp-f35950-malus-masse]
+    tags: [vehicules, malus, electrique]
+    a_verifier: true
+    note: "La fiche (vérifiée le 01/03/2026) indique une exonération en renvoyant à la date de 1re immatriculation, sans préciser les conditions éventuelles (ex. éco-score) ni la date de fin. Date « depuis » = date de vérification."
+
+  # ---------------------------------------------------------------------------
+  # ZONES À FAIBLES ÉMISSIONS
+  # ---------------------------------------------------------------------------
+  - id: environnement_energie.zfe.dispositif_en_vigueur
+    titre: "Zones à faibles émissions mobilité (ZFE-m) : dispositif légal en vigueur"
+    explication: "Les ZFE permettent de restreindre la circulation des véhicules les plus polluants (vignette Crit'Air) dans les agglomérations polluées. Le Parlement avait voté leur suppression en 2026, mais le Conseil constitutionnel l'a annulée : elles restent dans la loi."
+    type: booleen
+    unite: ""
+    valeurs:
+      - depuis: "2019-12-24"
+        valeur: true
+        sources: [vp-zfe-questions-reponses, sp-f33371-critair]
+        article: "Loi d'orientation des mobilités (LOM) de décembre 2019 ; loi Climat et résilience du 22 août 2021 ; décision du Conseil constitutionnel n° 2026-903 DC du 21 mai 2026"
+    tags: [zfe, qualite_air, mobilite, reforme_2026]
+    a_verifier: false
+    note: "Vie-publique (05/10/2026) : la suppression des ZFE adoptée dans la loi de simplification de la vie économique « a été annulée par le Conseil Constitutionnel le 21 mai 2026 » (cavalier législatif, art. 45 de la Constitution). Date « depuis » : la LOM date de décembre 2019 ; le 24/12/2019 est retenu par convention (jour exact non vérifié)."
+
+  - id: environnement_energie.zfe.seuil_population_agglomeration_obligatoire
+    titre: "ZFE : taille d'agglomération à partir de laquelle une ZFE est obligatoire"
+    explication: "La loi Climat et résilience impose une ZFE aux agglomérations de plus de ce nombre d'habitants (sauf preuve d'actions aussi efficaces) ; restrictions renforcées obligatoires seulement là où les normes de qualité de l'air sont dépassées."
+    type: nombre
+    unite: habitants
+    bornes: [0, 1000000]
+    valeurs:
+      - depuis: "2021-08-22"
+        valeur: 150000
+        sources: [vp-zfe-questions-reponses]
+        article: "Loi n° 2021-1104 du 22 août 2021 (Climat et résilience)"
+    tags: [zfe, qualite_air, mobilite]
+    a_verifier: false
+    note: "Seules les agglomérations de Paris et Lyon doivent restreindre les véhicules Crit'Air 3 et plus ; les autres doivent au minimum restreindre certains jours ou heures les véhicules « non classés » (vie-publique)."
+
+  # ---------------------------------------------------------------------------
+  # FIN DES VOITURES THERMIQUES NEUVES (UE)
+  # ---------------------------------------------------------------------------
+  - id: environnement_energie.ue.reduction_co2_voitures_neuves_2035
+    titre: "UE : réduction des émissions de CO2 des voitures neuves exigée à partir de 2035"
+    explication: "Objectif de réduction des émissions moyennes de CO2 des voitures particulières neuves vendues dans l'UE à partir de 2035, par rapport à l'objectif de 2021. Une réduction de 100 % revient à interdire la vente de voitures neuves émettant du CO2 à l'échappement."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2023-05-15"
+        valeur: 100
+        sources: [eurlex-reg-2023-851, eurlex-reg-2019-631-historique]
+        article: "Règlement (UE) 2019/631, art. 1er, § 5 bis, inséré par le règlement (UE) 2023/851"
+    tags: [vehicules, union_europeenne, climat, thermique]
+    a_verifier: false
+    note: "Également 100 % pour les véhicules utilitaires légers neufs. Objectif 2030 : -55 % pour les voitures, -50 % pour les utilitaires. Selon EUR-Lex, le règlement 2019/631 a été modifié en 2025 (règlements 2025/371 et 2025/1214) sans modification relevée de l'objectif 2035 ; d'éventuelles propositions de révision en cours n'ont pas été vérifiées. Date « depuis » = date de prise d'effet des modifications indiquée par EUR-Lex."
+
+  - id: environnement_energie.ue.reduction_co2_voitures_neuves_2030
+    titre: "UE : réduction des émissions de CO2 des voitures neuves exigée à partir de 2030"
+    explication: "Objectif intermédiaire de réduction des émissions moyennes de CO2 des voitures particulières neuves dans l'UE, par rapport à l'objectif de 2021."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2023-05-15"
+        valeur: 55
+        sources: [eurlex-reg-2023-851]
+        article: "Règlement (UE) 2019/631, art. 1er, § 5, point a), modifié par le règlement (UE) 2023/851"
+    tags: [vehicules, union_europeenne, climat]
+    a_verifier: false
+    note: "Le règlement 2023/851 a remplacé « 37,5 % » par « 55 % »."

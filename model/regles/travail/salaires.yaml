@@ -1,0 +1,249 @@
+# Salaire minimum et règles de rémunération en vigueur au 13 octobre 2026.
+# L'id travail.smic.horaire_brut est aussi un levier du moteur (model/moteur/openfisca_leviers.yaml) :
+# le Système rattache le lien moteur à cette règle et vérifie la concordance des valeurs.
+domaine: travail
+theme: "Salaires et SMIC"
+regles:
+  - id: travail.smic.horaire_brut
+    titre: "SMIC horaire brut (métropole et outre-mer hors Mayotte)"
+    explication: "Salaire minimum par heure de travail, avant cotisations. Aucun salarié majeur et expérimenté ne peut être payé moins. Il est revalorisé chaque 1er janvier, et en cours d'année si l'inflation dépasse 2 %."
+    type: nombre
+    unite: euros
+    bornes: [5, 30]
+    valeurs:
+      - depuis: "2020-01-01"
+        valeur: 10.15
+        sources: [insee-smic-historique]
+        article: "Décret n° 2019-1387 du 18 décembre 2019 (JO du 19/12/2019)"
+      - depuis: "2021-01-01"
+        valeur: 10.25
+        sources: [insee-smic-historique]
+        article: "Décret n° 2020-1598 du 16 décembre 2020 (JO du 17/12/2020)"
+      - depuis: "2021-10-01"
+        valeur: 10.48
+        sources: [insee-smic-historique]
+        article: "Arrêté du 27 septembre 2021, relèvement automatique (JO du 30/09/2021)"
+      - depuis: "2022-01-01"
+        valeur: 10.57
+        sources: [insee-smic-historique]
+        article: "Décret n° 2021-1741 du 22 décembre 2021 (JO du 22/12/2021 selon l'INSEE)"
+      - depuis: "2022-05-01"
+        valeur: 10.85
+        sources: [insee-smic-historique]
+        article: "Arrêté de relèvement automatique publié au JO du 19/04/2022 (date INSEE)"
+      - depuis: "2022-08-01"
+        valeur: 11.07
+        sources: [insee-smic-historique]
+        article: "Arrêté du 29 juillet 2022, relèvement automatique (JO du 29/07/2022)"
+      - depuis: "2023-01-01"
+        valeur: 11.27
+        sources: [insee-smic-historique]
+        article: "Décret n° 2022-1608 du 22 décembre 2022 (JO du 23/12/2022)"
+      - depuis: "2023-05-01"
+        valeur: 11.52
+        sources: [insee-smic-historique]
+        article: "Arrêté du 26 avril 2023, relèvement automatique (JO du 27/04/2023)"
+      - depuis: "2024-01-01"
+        valeur: 11.65
+        sources: [insee-smic-historique]
+        article: "Décret n° 2023-1216 du 20 décembre 2023 (JO du 21/12/2023)"
+      - depuis: "2024-11-01"
+        valeur: 11.88
+        sources: [insee-smic-historique]
+        article: "Décret n° 2024-951 du 23 octobre 2024, relèvement anticipé (JO du 24/10/2024)"
+      - depuis: "2026-01-01"
+        valeur: 12.02
+        sources: [insee-smic-historique, cnav-circ-2025-33]
+        article: "Décret n° 2025-1228 du 17 décembre 2025 (JO du 18/12/2025)"
+      - depuis: "2026-06-01"
+        valeur: 12.31
+        sources: [jorf-arrete-smic-2026-05-22, cnav-circ-2026-16, sp-f2300, insee-smic-historique]
+        article: "Arrêté du 22 mai 2026 relatif au relèvement du SMIC (JO du 24/05/2026 selon la Cnav ; 22/05/2026 selon l'INSEE)"
+    tags: [smic, salaire_minimum]
+    a_verifier: false
+    note: "Aucune revalorisation au 1er janvier 2025 (11,88 € maintenu). Hausse de 2,41 % au 1er juin 2026 par le mécanisme automatique (inflation ≥ 2 %). Montants lus sur la page INSEE et, pour 2026, dans les circulaires Cnav ; les numéros des textes de 2020 à 2024 viennent de la presse juridique et n'ont pas été relus sur Légifrance, qui bloque l'accès automatisé."
+
+  - id: travail.smic.mensuel_brut_35h
+    titre: "SMIC mensuel brut pour 35 heures par semaine"
+    explication: "Salaire minimum mensuel d'un temps plein (151,67 heures par mois), avant cotisations."
+    type: nombre
+    unite: euros
+    bornes: [800, 4500]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 1823.03
+        sources: [cnav-circ-2025-33]
+        article: "Décret n° 2025-1228 du 17 décembre 2025"
+      - depuis: "2026-06-01"
+        valeur: 1867.02
+        sources: [cnav-circ-2026-16, sp-f2300]
+        article: "Arrêté du 22 mai 2026"
+    tags: [smic, salaire_minimum]
+    a_verifier: false
+    note: "Égal au SMIC horaire × 151,67 ; à garder cohérent avec travail.smic.horaire_brut dans un fork."
+
+  - id: travail.smic.mensuel_net_indicatif
+    titre: "SMIC mensuel net indicatif (35 heures)"
+    explication: "Ce que touche environ un salarié au SMIC à temps plein après cotisations salariales (montant indicatif, variable selon la situation)."
+    type: nombre
+    unite: euros
+    bornes: [600, 3500]
+    valeurs:
+      - depuis: "2026-06-01"
+        valeur: 1477.93
+        sources: [sp-f2300]
+    tags: [smic, salaire_minimum]
+    a_verifier: false
+    note: "Montant indicatif publié par service-public.gouv.fr ; le net exact dépend des cotisations applicables."
+
+  - id: travail.smic.horaire_brut_mayotte
+    titre: "SMIC horaire brut à Mayotte"
+    explication: "Mayotte a un SMIC spécifique, plus bas, qui rattrape progressivement celui de la métropole."
+    type: nombre
+    unite: euros
+    bornes: [5, 30]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 9.33
+        sources: [cnav-circ-2025-33]
+        article: "Décret n° 2025-1228 du 17 décembre 2025"
+      - depuis: "2026-06-01"
+        valeur: 9.56
+        sources: [cnav-circ-2026-16]
+        article: "Arrêté du 22 mai 2026"
+    tags: [smic, outre_mer]
+    a_verifier: false
+
+  - id: travail.smic.seuil_revalorisation_automatique
+    titre: "Hausse des prix déclenchant une revalorisation automatique du SMIC en cours d'année"
+    explication: "Si les prix ont augmenté d'au moins 2 % depuis la dernière fixation du SMIC, celui-ci est relevé automatiquement dans la même proportion le mois suivant."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2008-05-01"
+        valeur: 2
+        sources: [legi-ct-l3231-5]
+        article: "Code du travail, art. L3231-5"
+    tags: [smic, indexation]
+    a_verifier: false
+    note: "Ce mécanisme a joué en octobre 2021, mai 2022, août 2022, mai 2023 et juin 2026."
+
+  - id: travail.minimum_garanti
+    titre: "Minimum garanti (MG)"
+    explication: "Valeur de référence utilisée notamment pour évaluer les avantages en nature (un repas fourni par l'employeur vaut 1 MG)."
+    type: nombre
+    unite: euros
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 4.25
+        sources: [cnav-circ-2025-33]
+        article: "Code du travail, art. L3231-12 ; décret n° 2025-1228"
+      - depuis: "2026-06-01"
+        valeur: 4.35
+        sources: [cnav-circ-2026-16]
+        article: "Code du travail, art. L3231-12 ; arrêté du 22 mai 2026"
+    tags: [minimum_garanti, avantages_en_nature]
+    a_verifier: false
+
+  - id: travail.age_minimum_travail
+    titre: "Âge minimum pour être employé"
+    explication: "Il est interdit d'employer des jeunes de moins de 16 ans, sauf exceptions (apprentis d'au moins 15 ans, stages d'observation des élèves…)."
+    type: nombre
+    unite: ans
+    bornes: [14, 18]
+    valeurs:
+      - depuis: "2019-01-01"
+        valeur: 16
+        sources: [legi-ct-l4153-1]
+        article: "Code du travail, art. L4153-1"
+    tags: [jeunes, travail_des_mineurs]
+    a_verifier: false
+    note: "Les apprentis peuvent être employés dès 15 ans."
+
+  - id: travail.smic.abattement_moins_17_ans
+    titre: "Abattement sur le SMIC pour un salarié de moins de 17 ans"
+    explication: "Un jeune de moins de 17 ans sans 6 mois d'expérience dans sa branche peut être payé 20 % de moins que le SMIC."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 50]
+    valeurs:
+      - depuis: "2008-05-01"
+        valeur: 20
+        sources: [legi-ct-d3231-3, sp-f2300]
+        article: "Code du travail, art. D3231-3"
+    tags: [smic, jeunes]
+    a_verifier: false
+    note: "Soit 9,85 € brut de l'heure pour les 16 ans et moins depuis le 1er juin 2026 (service-public.gouv.fr). Abattement supprimé après 6 mois de pratique professionnelle dans la branche."
+
+  - id: travail.smic.abattement_17_18_ans
+    titre: "Abattement sur le SMIC pour un salarié de 17 ans"
+    explication: "Un jeune de 17 à 18 ans sans 6 mois d'expérience dans sa branche peut être payé 10 % de moins que le SMIC."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 50]
+    valeurs:
+      - depuis: "2008-05-01"
+        valeur: 10
+        sources: [legi-ct-d3231-3, sp-f2300]
+        article: "Code du travail, art. D3231-3"
+    tags: [smic, jeunes]
+    a_verifier: false
+    note: "Soit 11,08 € brut de l'heure à 17 ans depuis le 1er juin 2026 (service-public.gouv.fr)."
+
+  - id: travail.apprentissage.remuneration_16_17_ans_1re_annee
+    titre: "Salaire minimum d'un apprenti de 16-17 ans en 1re année (en % du SMIC)"
+    explication: "Un apprenti de 16 ou 17 ans touche au minimum 27 % du SMIC la 1re année, 39 % la 2e et 55 % la 3e."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2019-01-01"
+        valeur: 27
+        sources: [legi-ct-d6222-26]
+        article: "Code du travail, art. D6222-26"
+    tags: [apprentissage, jeunes, salaire]
+    a_verifier: false
+
+  - id: travail.apprentissage.remuneration_18_20_ans_1re_annee
+    titre: "Salaire minimum d'un apprenti de 18-20 ans en 1re année (en % du SMIC)"
+    explication: "Un apprenti de 18 à 20 ans touche au minimum 43 % du SMIC la 1re année, 51 % la 2e et 67 % la 3e."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2019-01-01"
+        valeur: 43
+        sources: [legi-ct-d6222-26]
+        article: "Code du travail, art. D6222-26"
+    tags: [apprentissage, jeunes, salaire]
+    a_verifier: false
+
+  - id: travail.apprentissage.remuneration_21_25_ans_1re_annee
+    titre: "Salaire minimum d'un apprenti de 21-25 ans en 1re année (en % du SMIC)"
+    explication: "Un apprenti de 21 à 25 ans touche au minimum 53 % du SMIC la 1re année, 61 % la 2e et 78 % la 3e (ou plus si le minimum conventionnel est supérieur)."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2019-01-01"
+        valeur: 53
+        sources: [legi-ct-d6222-26]
+        article: "Code du travail, art. D6222-26"
+    tags: [apprentissage, jeunes, salaire]
+    a_verifier: false
+
+  - id: travail.apprentissage.remuneration_26_ans_et_plus
+    titre: "Salaire minimum d'un apprenti de 26 ans et plus (en % du SMIC)"
+    explication: "À partir de 26 ans, un apprenti est payé au moins le SMIC (ou le minimum conventionnel s'il est plus élevé), pendant toute la durée du contrat."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2019-01-01"
+        valeur: 100
+        sources: [legi-ct-d6222-26]
+        article: "Code du travail, art. D6222-26"
+    tags: [apprentissage, salaire]
+    a_verifier: false

@@ -1,0 +1,120 @@
+domaine: education
+theme: "Organisation des enseignements : volumes horaires et taille des classes"
+regles:
+  - id: education.ecole.duree_hebdomadaire_enseignement
+    titre: "École maternelle et élémentaire : durée hebdomadaire d'enseignement"
+    explication: "Nombre d'heures de classe obligatoires par semaine pour tous les élèves du premier degré, réparties sur 4 jours ou 9 demi-journées, sans classe le samedi."
+    type: nombre
+    unite: heures
+    bornes: [18, 30]
+    valeurs:
+      - depuis: "2008-09-01"
+        valeur: 24
+        sources: [men-temps-scolaire-elementaire, bo-2015-44-horaires-ecole]
+        article: "Arrêté du 9 novembre 2015 fixant les horaires d'enseignement des écoles maternelles et élémentaires, art. 1"
+    tags: [ecole, horaires, premier_degre]
+    a_verifier: false
+    note: "« Depuis la rentrée 2008, la durée de la semaine scolaire est fixée à 24 heures pour tous les élèves » (education.gouv.fr). Durée maximale : 6 heures par jour. Des activités pédagogiques complémentaires peuvent s'ajouter."
+
+  - id: education.ecole.volume_annuel_enseignement
+    titre: "École élémentaire : volume annuel d'enseignement par élève (cycles 2 et 3)"
+    explication: "Nombre total d'heures d'enseignement par an en CP-CE1-CE2 (cycle 2) comme en CM1-CM2 (cycle 3), soit 36 semaines de 24 heures."
+    type: nombre
+    unite: heures
+    bornes: [600, 1100]
+    valeurs:
+      - depuis: "2016-09-01"
+        valeur: 864
+        sources: [bo-2015-44-horaires-ecole]
+        article: "Arrêté du 9 novembre 2015, art. 2 (entré en application à la rentrée 2016, art. 7)"
+    tags: [ecole, horaires, premier_degre]
+    a_verifier: false
+    note: "Le texte lu est l'arrêté de 2015 publié au BO n° 44 du 26 novembre 2015 ; d'éventuelles modifications ultérieures de la répartition par discipline n'ont pas été vérifiées."
+
+  - id: education.ecole.cycle2_francais_heures_annuelles
+    titre: "Cycle 2 (CP-CE1-CE2) : heures annuelles de français"
+    explication: "Volume annuel consacré au français au cycle des apprentissages fondamentaux (10 heures par semaine en moyenne)."
+    type: nombre
+    unite: heures
+    bornes: [200, 500]
+    valeurs:
+      - depuis: "2016-09-01"
+        valeur: 360
+        sources: [bo-2015-44-horaires-ecole]
+        article: "Arrêté du 9 novembre 2015, art. 2"
+    tags: [ecole, horaires, francais]
+    a_verifier: false
+    note: "Mathématiques au cycle 2 : 180 heures annuelles (5 h/semaine) selon le même arrêté. Modifications postérieures à 2015 non vérifiées."
+
+  - id: education.ecole.cycle3_francais_heures_annuelles
+    titre: "Cycle 3 (CM1-CM2) : heures annuelles de français"
+    explication: "Volume annuel consacré au français en CM1 et CM2 (8 heures par semaine en moyenne)."
+    type: nombre
+    unite: heures
+    bornes: [150, 450]
+    valeurs:
+      - depuis: "2016-09-01"
+        valeur: 288
+        sources: [bo-2015-44-horaires-ecole]
+        article: "Arrêté du 9 novembre 2015, art. 2"
+    tags: [ecole, horaires, francais]
+    a_verifier: false
+    note: "Mathématiques au cycle 3 : 180 heures annuelles (5 h/semaine) selon le même arrêté. Modifications postérieures à 2015 non vérifiées."
+
+  - id: education.college.duree_hebdomadaire_enseignement
+    titre: "Collège : durée hebdomadaire des enseignements obligatoires"
+    explication: "Chaque collégien suit 26 heures d'enseignement obligatoire par semaine, de la 6e à la 3e, dont 3 heures (6e) ou 4 heures (5e-3e) d'accompagnement personnalisé ou d'enseignements interdisciplinaires."
+    type: nombre
+    unite: heures
+    bornes: [20, 35]
+    valeurs:
+      - depuis: "2019-10-28"
+        valeur: 26
+        sources: [men-horaires-college]
+        article: "Arrêté du 19 mai 2015 relatif à l'organisation des enseignements dans les classes de collège, modifié par l'arrêté du 16 juin 2017"
+    tags: [college, horaires, second_degre]
+    a_verifier: false
+    note: "Date « depuis » = date de la page ministérielle (28/10/2019) ; la règle est antérieure (arrêté de 2015). S'y ajoutent au moins 10 heures annuelles de vie de classe."
+
+  - id: education.classes_dedoublees.cp_ce1_education_prioritaire_effectif_max
+    titre: "Classes de CP et CE1 en éducation prioritaire (REP/REP+) : effectif maximal"
+    explication: "Dans les écoles des réseaux d'éducation prioritaire, les classes de CP et de CE1 sont dédoublées pour ne pas dépasser 12 élèves."
+    type: nombre
+    unite: eleves
+    bornes: [8, 30]
+    valeurs:
+      - depuis: "2020-09-01"
+        valeur: 12
+        sources: [bo-2020-28-circulaire-rentree, men-education-prioritaire]
+        article: "Circulaire de rentrée 2020 (BO n° 28 du 10 juillet 2020)"
+    tags: [ecole, education_prioritaire, taille_classes]
+    a_verifier: false
+    note: "Déploiement progressif : 100 % des CP dédoublés en REP+ en 2017, 100 % des CP et CE1 en REP et REP+ en 2019 (education.gouv.fr). La circulaire 2020 fixe « un maximum de 12 élèves par classe »."
+
+  - id: education.classes_dedoublees.grande_section_education_prioritaire
+    titre: "Grande section de maternelle en éducation prioritaire : dédoublement généralisé"
+    explication: "Les classes de grande section de maternelle des réseaux REP et REP+ sont, elles aussi, dédoublées."
+    type: booleen
+    unite: ""
+    valeurs:
+      - depuis: "2024-09-01"
+        valeur: true
+        sources: [men-education-prioritaire]
+    tags: [ecole, education_prioritaire, taille_classes, maternelle]
+    a_verifier: false
+    note: "« 2024 : 100 % des classes de grande section de maternelle (GS) dédoublées en REP et REP+ » (education.gouv.fr, page du 29/12/2025). Le 1er septembre 2024 est retenu par convention."
+
+  - id: education.classes.gs_cp_ce1_hors_education_prioritaire_effectif_max
+    titre: "Grande section, CP et CE1 hors éducation prioritaire : plafond d'effectif"
+    explication: "Partout où c'est possible, les classes de grande section, CP et CE1 sont limitées à 24 élèves, y compris hors éducation prioritaire."
+    type: nombre
+    unite: eleves
+    bornes: [15, 35]
+    valeurs:
+      - depuis: "2020-09-01"
+        valeur: 24
+        sources: [bo-2020-28-circulaire-rentree]
+        article: "Circulaire de rentrée 2020 (BO n° 28 du 10 juillet 2020)"
+    tags: [ecole, taille_classes]
+    a_verifier: false
+    note: "Objectif « partout où cela est possible » et non plafond juridiquement contraignant."

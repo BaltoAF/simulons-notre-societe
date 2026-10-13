@@ -1,0 +1,315 @@
+domaine: sante
+theme: "Assurance maladie : tarifs, taux de remboursement et restes à charge"
+regles:
+  # ---------------------------------------------------------------------------
+  # TARIF DE CONSULTATION
+  # ---------------------------------------------------------------------------
+  - id: sante.consultation.generaliste_tarif
+    titre: "Consultation chez un médecin généraliste (secteur 1) : tarif conventionnel"
+    explication: "Prix d'une consultation de référence chez un médecin généraliste conventionné en secteur 1 (sans dépassement d'honoraires). C'est aussi la base de remboursement de l'Assurance maladie."
+    type: nombre
+    unite: euros
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2024-12-22"
+        valeur: 30
+        sources: [cnam-cp-2024-12-05-convention-medicale, ameli-consultations-metropole]
+        article: "Convention médicale 2024-2029 (consultation G)"
+    tags: [consultation, medecin_generaliste, tarif]
+    a_verifier: false
+    note: "Revalorisation à 30 € « à compter du 22 décembre 2024 » (Assurance maladie). Le montant antérieur n'a pas été lu sur une source officielle et n'est pas historisé."
+
+  # ---------------------------------------------------------------------------
+  # TAUX DE REMBOURSEMENT (régime général)
+  # ---------------------------------------------------------------------------
+  - id: sante.remboursement.taux_honoraires_medecins
+    titre: "Taux de remboursement des consultations de médecin (généraliste ou spécialiste)"
+    explication: "Part du tarif conventionnel remboursée par l'Assurance maladie pour une consultation de médecin dans le parcours de soins. Le reste (ticket modérateur) est en général pris en charge par la complémentaire."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2026-09-30"
+        valeur: 70
+        sources: [ameli-taux-remboursement, ameli-consultations-metropole]
+        article: "Code de la sécurité sociale, art. L160-13 (participation de l'assuré)"
+    tags: [remboursement, consultation, ticket_moderateur]
+    a_verifier: false
+    note: "Date « depuis » = date de mise à jour de la page ameli (30/09/2026), qui ne mentionne aucune modification récente ; date d'origine du taux non vérifiée. Exemple ameli : consultation à 30 € → 21 € moins 2 € de participation forfaitaire = 19 € remboursés. Taux de 80 % pour les bénéficiaires de l'ASPA."
+
+  - id: sante.remboursement.taux_auxiliaires_medicaux
+    titre: "Taux de remboursement des actes des auxiliaires médicaux"
+    explication: "Part remboursée des actes d'infirmiers, masseurs-kinésithérapeutes, orthophonistes, orthoptistes et pédicures-podologues."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2026-09-30"
+        valeur: 60
+        sources: [ameli-taux-remboursement]
+    tags: [remboursement, paramedical]
+    a_verifier: false
+    note: "Date « depuis » = date de mise à jour de la page ameli ; date d'origine non vérifiée. Même taux pour les consultations de chirurgien-dentiste, les actes de biologie (B) et l'optique."
+
+  - id: sante.remboursement.taux_medicaments_smr_majeur_important
+    titre: "Taux de remboursement des médicaments à service médical rendu majeur ou important"
+    explication: "Part du prix remboursée pour les médicaments dont la Haute Autorité de santé juge l'intérêt majeur ou important."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2026-09-30"
+        valeur: 65
+        sources: [ameli-taux-remboursement]
+    tags: [remboursement, medicaments]
+    a_verifier: false
+    note: "Date « depuis » = date de mise à jour de la page ameli ; date d'origine non vérifiée."
+
+  - id: sante.remboursement.taux_medicaments_smr_modere
+    titre: "Taux de remboursement des médicaments à service médical rendu modéré"
+    explication: "Part du prix remboursée pour les médicaments dont l'intérêt thérapeutique est jugé modéré."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2026-09-30"
+        valeur: 30
+        sources: [ameli-taux-remboursement]
+    tags: [remboursement, medicaments]
+    a_verifier: false
+    note: "Date « depuis » = date de mise à jour de la page ameli ; date d'origine non vérifiée."
+
+  - id: sante.remboursement.taux_medicaments_smr_faible
+    titre: "Taux de remboursement des médicaments à service médical rendu faible"
+    explication: "Part du prix remboursée pour les médicaments dont l'intérêt thérapeutique est jugé faible."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2026-09-30"
+        valeur: 15
+        sources: [ameli-taux-remboursement]
+    tags: [remboursement, medicaments]
+    a_verifier: false
+    note: "Date « depuis » = date de mise à jour de la page ameli ; date d'origine non vérifiée."
+
+  - id: sante.remboursement.taux_medicaments_irremplacables_couteux
+    titre: "Taux de remboursement des médicaments reconnus irremplaçables et particulièrement coûteux"
+    explication: "Ces médicaments sont remboursés intégralement par l'Assurance maladie."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2026-09-30"
+        valeur: 100
+        sources: [ameli-taux-remboursement]
+    tags: [remboursement, medicaments]
+    a_verifier: false
+    note: "Date « depuis » = date de mise à jour de la page ameli ; date d'origine non vérifiée."
+
+  - id: sante.remboursement.taux_hospitalisation
+    titre: "Taux de remboursement des frais d'hospitalisation"
+    explication: "Part des frais de séjour hospitalier prise en charge par l'Assurance maladie (hors forfait journalier, qui reste dû par le patient)."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2026-09-30"
+        valeur: 80
+        sources: [ameli-taux-remboursement]
+    tags: [remboursement, hopital]
+    a_verifier: false
+    note: "Date « depuis » = date de mise à jour de la page ameli ; date d'origine non vérifiée. Transferts entre établissements : 65 %."
+
+  # ---------------------------------------------------------------------------
+  # PARTICIPATION FORFAITAIRE ET FRANCHISES MÉDICALES
+  # ---------------------------------------------------------------------------
+  - id: sante.participation_forfaitaire.montant
+    titre: "Participation forfaitaire par consultation, acte médical, radiologie ou analyse"
+    explication: "Somme laissée à la charge de l'assuré de plus de 18 ans à chaque consultation ou acte de médecin, examen de radiologie ou analyse de biologie. Elle est déduite des remboursements et non remboursable par les complémentaires « responsables »."
+    type: nombre
+    unite: euros
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2026-09-29"
+        valeur: 2
+        sources: [ameli-participation-forfaitaire-2-euros, sp-actu-a17166-plafonds-franchises-2026]
+        article: "Code de la sécurité sociale, art. L160-13"
+    tags: [reste_a_charge, participation_forfaitaire]
+    a_verifier: false
+    note: "Date « depuis » = date de la page ameli (29/09/2026) ; la date de passage de 1 € à 2 € n'a pas été lue sur une source officielle. Exonérés : moins de 18 ans, bénéficiaires de la Complémentaire santé solidaire ou de l'AME, femmes enceintes du 6e mois au 12e jour après l'accouchement."
+
+  - id: sante.participation_forfaitaire.plafond_journalier
+    titre: "Participation forfaitaire : plafond journalier pour un même professionnel"
+    explication: "Montant maximal de participations forfaitaires retenu en une journée pour un même professionnel de santé."
+    type: nombre
+    unite: euros
+    bornes: [0, 20]
+    valeurs:
+      - depuis: "2026-09-29"
+        valeur: 8
+        sources: [ameli-participation-forfaitaire-2-euros]
+    tags: [reste_a_charge, participation_forfaitaire]
+    a_verifier: false
+    note: "« dans la limite de 8 € par jour pour un même professionnel de santé » (ameli). Date « depuis » = date de la page."
+
+  - id: sante.participation_forfaitaire.plafond_annuel
+    titre: "Participation forfaitaire : plafond annuel par personne"
+    explication: "Montant maximal de participations forfaitaires qu'un assuré peut payer sur une année civile."
+    type: nombre
+    unite: euros
+    bornes: [0, 300]
+    valeurs:
+      - depuis: "2026-10-01"
+        valeur: 70
+        sources: [sp-actu-a17166-plafonds-franchises-2026, ameli-participation-forfaitaire-2-euros]
+        article: "Décret n° 2026-858 du 11 septembre 2026 (JO du 12 septembre 2026)"
+    tags: [reste_a_charge, participation_forfaitaire, reforme_2026]
+    a_verifier: false
+    note: "Relevé de 50 € à 70 € au 1er octobre 2026 (service-public, actualité du 16/09/2026). La valeur antérieure (50 €) n'est pas historisée faute de date de début vérifiée."
+
+  - id: sante.franchise.medicament_par_boite
+    titre: "Franchise médicale par boîte de médicament"
+    explication: "Somme laissée à la charge de l'assuré pour chaque boîte (ou flacon) de médicament remboursé."
+    type: nombre
+    unite: euros
+    bornes: [0, 5]
+    valeurs:
+      - depuis: "2026-09-29"
+        valeur: 1
+        sources: [ameli-franchise-medicale, sp-actu-a17166-plafonds-franchises-2026]
+        article: "Code de la sécurité sociale, art. L160-13"
+    tags: [reste_a_charge, franchise, medicaments]
+    a_verifier: false
+    note: "Date « depuis » = date de la page ameli ; la date d'entrée en vigueur du montant de 1 € n'a pas été lue sur une source officielle. Mêmes exonérations que la participation forfaitaire."
+
+  - id: sante.franchise.acte_paramedical
+    titre: "Franchise médicale par acte paramédical"
+    explication: "Somme laissée à la charge de l'assuré pour chaque acte d'infirmier, de kinésithérapeute, etc."
+    type: nombre
+    unite: euros
+    bornes: [0, 5]
+    valeurs:
+      - depuis: "2026-09-29"
+        valeur: 1
+        sources: [ameli-franchise-medicale, sp-actu-a17166-plafonds-franchises-2026]
+    tags: [reste_a_charge, franchise, paramedical]
+    a_verifier: false
+    note: "Plafonnée à 4 € par jour. Date « depuis » = date de la page ameli."
+
+  - id: sante.franchise.transport_sanitaire
+    titre: "Franchise médicale par transport sanitaire"
+    explication: "Somme laissée à la charge de l'assuré pour chaque transport sanitaire remboursé (ambulance, VSL, taxi conventionné)."
+    type: nombre
+    unite: euros
+    bornes: [0, 20]
+    valeurs:
+      - depuis: "2026-09-29"
+        valeur: 4
+        sources: [ameli-franchise-medicale, sp-actu-a17166-plafonds-franchises-2026]
+    tags: [reste_a_charge, franchise, transport]
+    a_verifier: false
+    note: "Plafonnée à 8 € par jour. Date « depuis » = date de la page ameli."
+
+  - id: sante.franchise.plafond_annuel
+    titre: "Franchises médicales : plafond annuel par personne"
+    explication: "Montant maximal de franchises médicales qu'un assuré peut payer sur une année civile (médicaments, actes paramédicaux et transports confondus)."
+    type: nombre
+    unite: euros
+    bornes: [0, 300]
+    valeurs:
+      - depuis: "2026-10-01"
+        valeur: 70
+        sources: [sp-actu-a17166-plafonds-franchises-2026, ameli-franchise-medicale]
+        article: "Décret n° 2026-858 du 11 septembre 2026 (JO du 12 septembre 2026)"
+    tags: [reste_a_charge, franchise, reforme_2026]
+    a_verifier: false
+    note: "Relevé de 50 € à 70 € au 1er octobre 2026. Montants unitaires inchangés."
+
+  - id: sante.reste_a_charge.plafond_annuel_cumule_franchises_participations
+    titre: "Plafond annuel cumulé des franchises et participations forfaitaires"
+    explication: "Somme maximale qu'un assuré non exonéré peut payer en un an au titre des franchises médicales et des participations forfaitaires réunies."
+    type: nombre
+    unite: euros
+    bornes: [0, 600]
+    valeurs:
+      - depuis: "2026-10-01"
+        valeur: 140
+        sources: [sp-actu-a17166-plafonds-franchises-2026]
+        article: "Décret n° 2026-858 du 11 septembre 2026"
+    tags: [reste_a_charge, franchise, participation_forfaitaire, reforme_2026]
+    a_verifier: false
+    note: "140 € contre 100 € auparavant (2 × 70 € au lieu de 2 × 50 €)."
+
+  - id: sante.reste_a_charge.age_exoneration_franchises
+    titre: "Âge en dessous duquel l'assuré est exonéré de franchises et de participations forfaitaires"
+    explication: "Les enfants et jeunes de moins de cet âge ne paient ni franchise médicale ni participation forfaitaire."
+    type: nombre
+    unite: ans
+    bornes: [0, 26]
+    valeurs:
+      - depuis: "2026-09-29"
+        valeur: 18
+        sources: [ameli-franchise-medicale, ameli-participation-forfaitaire-2-euros]
+    tags: [reste_a_charge, exoneration, jeunes]
+    a_verifier: false
+    note: "Date « depuis » = date des pages ameli ; date d'origine non vérifiée."
+
+  # ---------------------------------------------------------------------------
+  # 100 % SANTÉ (OPTIQUE, AUDIOLOGIE)
+  # ---------------------------------------------------------------------------
+  - id: sante.cent_pour_cent_sante.aide_auditive_prix_limite
+    titre: "100 % Santé : prix maximal d'une aide auditive de classe I (par oreille, 20 ans et plus)"
+    explication: "Les aides auditives du panier « 100 % Santé » (classe I) sont vendues au plus à ce prix et remboursées intégralement par l'Assurance maladie et la complémentaire responsable."
+    type: nombre
+    unite: euros
+    bornes: [0, 3000]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 950
+        sources: [ameli-protheses-auditives]
+    tags: [cent_pour_cent_sante, audition, reste_a_charge]
+    a_verifier: false
+    note: "Date « depuis » = date de la page ameli (20/02/2026) ; date d'entrée en vigueur du plafond non vérifiée. Base de remboursement : 400 € par oreille, remboursée à 60 % par l'Assurance maladie ; renouvellement possible après 4 ans."
+
+  - id: sante.cent_pour_cent_sante.monture_prix_limite
+    titre: "100 % Santé : prix maximal d'une monture de lunettes sans reste à charge"
+    explication: "Les montures du panier « 100 % Santé » (avec verres de classe A) ne laissent aucun reste à charge si leur prix ne dépasse pas ce montant."
+    type: nombre
+    unite: euros
+    bornes: [0, 200]
+    valeurs:
+      - depuis: "2026-01-13"
+        valeur: 30
+        sources: [ameli-lunettes-lentilles]
+    tags: [cent_pour_cent_sante, optique, reste_a_charge]
+    a_verifier: false
+    note: "Date « depuis » = date de la page ameli (13/01/2026) ; date d'entrée en vigueur non vérifiée. Renouvellement des lunettes tous les 2 ans à partir de 16 ans."
+
+  - id: sante.audition.delai_renouvellement_aide_auditive
+    titre: "Délai minimal de renouvellement d'une aide auditive remboursée"
+    explication: "Nombre d'années à respecter entre deux prises en charge d'un appareil auditif."
+    type: nombre
+    unite: ans
+    bornes: [1, 10]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 4
+        sources: [ameli-protheses-auditives]
+    tags: [cent_pour_cent_sante, audition]
+    a_verifier: false
+    note: "Date « depuis » = date de la page ameli."
+
+  - id: sante.optique.delai_renouvellement_lunettes_adulte
+    titre: "Délai minimal de renouvellement des lunettes remboursées (16 ans et plus)"
+    explication: "Nombre d'années à respecter entre deux prises en charge de lunettes pour une personne de 16 ans ou plus (sauf évolution de la vue)."
+    type: nombre
+    unite: ans
+    bornes: [1, 5]
+    valeurs:
+      - depuis: "2026-01-13"
+        valeur: 2
+        sources: [ameli-lunettes-lentilles]
+    tags: [optique]
+    a_verifier: false
+    note: "Date « depuis » = date de la page ameli."

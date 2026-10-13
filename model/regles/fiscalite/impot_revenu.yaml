@@ -1,0 +1,841 @@
+# FICHIER GÉNÉRÉ par system/sync_openfisca.py le 2026-10-13 à partir d'OpenFisca-France 176.1.2.
+# Ne pas modifier à la main : modifier model/moteur/openfisca_leviers.yaml puis relancer le Système.
+genere_par: system/sync_openfisca.py
+domaine: fiscalite
+theme: Impôt sur le revenu
+regles:
+- id: fiscalite.impot_revenu.bareme
+  titre: Barème de l'impôt sur le revenu (tranches et taux)
+  explication: 'Le revenu imposable, divisé par le nombre de parts, est découpé en tranches. Chaque tranche est taxée à son
+    propre taux : on ne paie le taux le plus élevé que sur la partie du revenu qui dépasse le seuil.'
+  type: bareme
+  unite: euros
+  valeurs:
+  - depuis: '2010-01-01'
+    valeur:
+    - seuil: 0.0
+      taux: 0.0
+    - seuil: 5963.0
+      taux: 5.5
+    - seuil: 11896.0
+      taux: 14.0
+    - seuil: 26420.0
+      taux: 30.0
+    - seuil: 70830.0
+      taux: 41.0
+    sources:
+    - of-ref-52c09d1657
+    - of-ref-cc3812c9a1
+    - openfisca-france
+  - depuis: '2012-01-01'
+    valeur:
+    - seuil: 0.0
+      taux: 0.0
+    - seuil: 5963.0
+      taux: 5.5
+    - seuil: 11896.0
+      taux: 14.0
+    - seuil: 26420.0
+      taux: 30.0
+    - seuil: 70830.0
+      taux: 41.0
+    - seuil: 150000.0
+      taux: 45.0
+    sources:
+    - of-ref-516a7870ca
+    - openfisca-france
+  - depuis: '2013-01-01'
+    valeur:
+    - seuil: 0.0
+      taux: 0.0
+    - seuil: 6011.0
+      taux: 5.5
+    - seuil: 11991.0
+      taux: 14.0
+    - seuil: 26631.0
+      taux: 30.0
+    - seuil: 71397.0
+      taux: 41.0
+    - seuil: 151200.0
+      taux: 45.0
+    sources:
+    - of-ref-10c7b9451b
+    - openfisca-france
+  - depuis: '2014-01-01'
+    valeur:
+    - seuil: 0.0
+      taux: 0.0
+    - seuil: 9690.0
+      taux: 14.0
+    - seuil: 26764.0
+      taux: 30.0
+    - seuil: 71754.0
+      taux: 41.0
+    - seuil: 151956.0
+      taux: 45.0
+    sources:
+    - of-ref-227e074c5c
+    - openfisca-france
+  - depuis: '2015-01-01'
+    valeur:
+    - seuil: 0.0
+      taux: 0.0
+    - seuil: 9700.0
+      taux: 14.0
+    - seuil: 26791.0
+      taux: 30.0
+    - seuil: 71826.0
+      taux: 41.0
+    - seuil: 152108.0
+      taux: 45.0
+    sources:
+    - of-ref-e1cc8253e5
+    - openfisca-france
+  - depuis: '2016-01-01'
+    valeur:
+    - seuil: 0.0
+      taux: 0.0
+    - seuil: 9710.0
+      taux: 14.0
+    - seuil: 26818.0
+      taux: 30.0
+    - seuil: 71898.0
+      taux: 41.0
+    - seuil: 152260.0
+      taux: 45.0
+    sources:
+    - of-ref-ee87a06848
+    - openfisca-france
+  - depuis: '2017-01-01'
+    valeur:
+    - seuil: 0.0
+      taux: 0.0
+    - seuil: 9807.0
+      taux: 14.0
+    - seuil: 27086.0
+      taux: 30.0
+    - seuil: 72617.0
+      taux: 41.0
+    - seuil: 153783.0
+      taux: 45.0
+    sources:
+    - of-ref-b7243152da
+    - openfisca-france
+  - depuis: '2018-01-01'
+    valeur:
+    - seuil: 0.0
+      taux: 0.0
+    - seuil: 9964.0
+      taux: 14.0
+    - seuil: 27519.0
+      taux: 30.0
+    - seuil: 73779.0
+      taux: 41.0
+    - seuil: 156244.0
+      taux: 45.0
+    sources:
+    - of-ref-1f556b62cd
+    - openfisca-france
+  - depuis: '2019-01-01'
+    valeur:
+    - seuil: 0.0
+      taux: 0.0
+    - seuil: 10064.0
+      taux: 14.0
+    - seuil: 27794.0
+      taux: 30.0
+    - seuil: 74517.0
+      taux: 41.0
+    - seuil: 157806.0
+      taux: 45.0
+    sources:
+    - of-ref-223d63e51c
+    - openfisca-france
+  - depuis: '2020-01-01'
+    valeur:
+    - seuil: 0.0
+      taux: 0.0
+    - seuil: 10084.0
+      taux: 11.0
+    - seuil: 25710.0
+      taux: 30.0
+    - seuil: 73516.0
+      taux: 41.0
+    - seuil: 158122.0
+      taux: 45.0
+    sources:
+    - of-ref-2a7ea8b788
+    - of-ref-e2639ddb9c
+    - openfisca-france
+  - depuis: '2021-01-01'
+    valeur:
+    - seuil: 0.0
+      taux: 0.0
+    - seuil: 10225.0
+      taux: 11.0
+    - seuil: 26070.0
+      taux: 30.0
+    - seuil: 74545.0
+      taux: 41.0
+    - seuil: 160336.0
+      taux: 45.0
+    sources:
+    - of-ref-59baba6da2
+    - of-ref-659b27b176
+    - openfisca-france
+  - depuis: '2022-01-01'
+    valeur:
+    - seuil: 0.0
+      taux: 0.0
+    - seuil: 10777.0
+      taux: 11.0
+    - seuil: 27478.0
+      taux: 30.0
+    - seuil: 78570.0
+      taux: 41.0
+    - seuil: 168994.0
+      taux: 45.0
+    sources:
+    - of-ref-a090141244
+    - of-ref-b36e43c4e6
+    - openfisca-france
+  - depuis: '2023-01-01'
+    valeur:
+    - seuil: 0.0
+      taux: 0.0
+    - seuil: 11294.0
+      taux: 11.0
+    - seuil: 28797.0
+      taux: 30.0
+    - seuil: 82341.0
+      taux: 41.0
+    - seuil: 177106.0
+      taux: 45.0
+    sources:
+    - of-ref-93cae7e76d
+    - of-ref-af5010b410
+    - openfisca-france
+  - depuis: '2024-01-01'
+    valeur:
+    - seuil: 0.0
+      taux: 0.0
+    - seuil: 11497.0
+      taux: 11.0
+    - seuil: 29315.0
+      taux: 30.0
+    - seuil: 83823.0
+      taux: 41.0
+    - seuil: 180294.0
+      taux: 45.0
+    sources:
+    - of-ref-0a1508c179
+    - of-ref-add56660e2
+    - openfisca-france
+  - depuis: '2025-01-01'
+    valeur:
+    - seuil: 0.0
+      taux: 0.0
+    - seuil: 11600.0
+      taux: 11.0
+    - seuil: 29579.0
+      taux: 30.0
+    - seuil: 84577.0
+      taux: 41.0
+    - seuil: 181917.0
+      taux: 45.0
+    sources:
+    - of-ref-d626caaf3c
+    - of-ref-9ecbaa739c
+    - openfisca-france
+  tags:
+  - impot
+  - progressivite
+  verifie_le: '2025-02-18'
+  moteur:
+    openfisca: impot_revenu.bareme_ir_depuis_1945.bareme
+  a_verifier: false
+- id: fiscalite.impot_revenu.decote.taux
+  titre: 'Décote : taux'
+  explication: La décote réduit l'impôt des foyers modestes pour éviter un passage brutal de 0 à quelques centaines d'euros
+    d'impôt.
+  type: nombre
+  unite: pourcent
+  bornes:
+  - 0
+  - 100
+  valeurs:
+  - depuis: '2001-01-01'
+    valeur: 50.0
+    sources:
+    - of-ref-6391d7a5cc
+    - openfisca-france
+  - depuis: '2014-01-01'
+    valeur: 100.0
+    sources:
+    - of-ref-6391d7a5cc
+    - openfisca-france
+  - depuis: '2015-01-01'
+    valeur: 75.0
+    sources:
+    - of-ref-6391d7a5cc
+    - openfisca-france
+  - depuis: '2020-01-01'
+    valeur: 45.25
+    sources:
+    - of-ref-c1b0e67f3b
+    - openfisca-france
+  verifie_le: '2025-02-04'
+  moteur:
+    openfisca: impot_revenu.calcul_impot_revenu.plaf_qf.decote.taux
+  a_verifier: false
+- id: fiscalite.impot_revenu.decote.plafond_celibataire
+  titre: 'Décote : plafond pour une personne seule'
+  explication: En dessous de ce montant d'impôt brut, une personne seule bénéficie de la décote.
+  type: nombre
+  unite: euros
+  bornes:
+  - 0
+  - 3000
+  valeurs:
+  - depuis: '2009-01-01'
+    valeur: 433.0
+    sources:
+    - of-ref-5a7d7fd204
+    - of-ref-67d55e2092
+    - openfisca-france
+  - depuis: '2010-01-01'
+    valeur: 439.0
+    sources:
+    - of-ref-52c09d1657
+    - of-ref-cc3812c9a1
+    - openfisca-france
+  - depuis: '2012-01-01'
+    valeur: 480.0
+    sources:
+    - of-ref-516a7870ca
+    - openfisca-france
+  - depuis: '2013-01-01'
+    valeur: 508.0
+    sources:
+    - of-ref-3b31f99baf
+    - of-ref-10c7b9451b
+    - openfisca-france
+  - depuis: '2014-01-01'
+    valeur: 1135.0
+    sources:
+    - of-ref-227e074c5c
+    - openfisca-france
+  - depuis: '2015-01-01'
+    valeur: 1165.0
+    sources:
+    - of-ref-e1cc8253e5
+    - openfisca-france
+  - depuis: '2017-01-01'
+    valeur: 1177.0
+    sources:
+    - of-ref-35df0b00a6
+    - of-ref-b7243152da
+    - openfisca-france
+  - depuis: '2018-01-01'
+    valeur: 1196.0
+    sources:
+    - of-ref-63cc4570bf
+    - of-ref-1f556b62cd
+    - openfisca-france
+  - depuis: '2019-01-01'
+    valeur: 1208.0
+    sources:
+    - of-ref-ac46bd9840
+    - openfisca-france
+  - depuis: '2020-01-01'
+    valeur: 779.0
+    sources:
+    - of-ref-88e45b6d67
+    - of-ref-e2639ddb9c
+    - openfisca-france
+  - depuis: '2021-01-01'
+    valeur: 790.0
+    sources:
+    - of-ref-559468d25f
+    - of-ref-659b27b176
+    - openfisca-france
+  - depuis: '2022-01-01'
+    valeur: 833.0
+    sources:
+    - of-ref-1981d07dab
+    - of-ref-6d680fbec7
+    - openfisca-france
+  - depuis: '2023-01-01'
+    valeur: 873.0
+    sources:
+    - of-ref-93cae7e76d
+    - of-ref-611b188510
+    - openfisca-france
+  - depuis: '2024-01-01'
+    valeur: 889.0
+    sources:
+    - of-ref-0a1508c179
+    - of-ref-66f3fd08d8
+    - openfisca-france
+  - depuis: '2025-01-01'
+    valeur: 897.0
+    sources:
+    - of-ref-d626caaf3c
+    - of-ref-9fe845ad59
+    - openfisca-france
+  verifie_le: '2026-02-04'
+  moteur:
+    openfisca: impot_revenu.calcul_impot_revenu.plaf_qf.decote.seuil_celib
+  a_verifier: false
+- id: fiscalite.impot_revenu.decote.plafond_couple
+  titre: 'Décote : plafond pour un couple'
+  explication: En dessous de ce montant d'impôt brut, un couple marié ou pacsé bénéficie de la décote.
+  type: nombre
+  unite: euros
+  bornes:
+  - 0
+  - 5000
+  valeurs:
+  - depuis: '2014-01-01'
+    valeur: 1870.0
+    sources:
+    - of-ref-227e074c5c
+    - openfisca-france
+  - depuis: '2015-01-01'
+    valeur: 1920.0
+    sources:
+    - of-ref-e1cc8253e5
+    - openfisca-france
+  - depuis: '2017-01-01'
+    valeur: 1939.0
+    sources:
+    - of-ref-35df0b00a6
+    - of-ref-b7243152da
+    - openfisca-france
+  - depuis: '2018-01-01'
+    valeur: 1970.0
+    sources:
+    - of-ref-63cc4570bf
+    - of-ref-1f556b62cd
+    - openfisca-france
+  - depuis: '2019-01-01'
+    valeur: 1990.0
+    sources:
+    - of-ref-ac46bd9840
+    - openfisca-france
+  - depuis: '2020-01-01'
+    valeur: 1289.0
+    sources:
+    - of-ref-88e45b6d67
+    - of-ref-e2639ddb9c
+    - openfisca-france
+  - depuis: '2021-01-01'
+    valeur: 1307.0
+    sources:
+    - of-ref-92c23fecf2
+    - of-ref-659b27b176
+    - openfisca-france
+  - depuis: '2022-01-01'
+    valeur: 1378.0
+    sources:
+    - of-ref-1981d07dab
+    - of-ref-e0f913978c
+    - openfisca-france
+  - depuis: '2023-01-01'
+    valeur: 1444.0
+    sources:
+    - of-ref-93cae7e76d
+    - of-ref-fdb6132899
+    - openfisca-france
+  - depuis: '2024-01-01'
+    valeur: 1470.0
+    sources:
+    - of-ref-0a1508c179
+    - of-ref-9f7049e171
+    - openfisca-france
+  - depuis: '2025-01-01'
+    valeur: 1483.0
+    sources:
+    - of-ref-d626caaf3c
+    - of-ref-aa12168487
+    - openfisca-france
+  verifie_le: '2026-02-04'
+  moteur:
+    openfisca: impot_revenu.calcul_impot_revenu.plaf_qf.decote.seuil_couple
+  a_verifier: false
+- id: fiscalite.impot_revenu.quotient_familial.plafond_demi_part
+  titre: Plafond de l'avantage par demi-part (quotient familial)
+  explication: Chaque demi-part supplémentaire (par exemple pour un enfant) réduit l'impôt, mais cette réduction est plafonnée
+    à ce montant par an.
+  type: nombre
+  unite: euros
+  bornes:
+  - 0
+  - 6000
+  valeurs:
+  - depuis: '2009-01-01'
+    valeur: 2301.0
+    sources:
+    - of-ref-5a7d7fd204
+    - of-ref-67d55e2092
+    - openfisca-france
+  - depuis: '2010-01-01'
+    valeur: 2336.0
+    sources:
+    - of-ref-52c09d1657
+    - of-ref-cc3812c9a1
+    - openfisca-france
+  - depuis: '2012-01-01'
+    valeur: 2000.0
+    sources:
+    - of-ref-516a7870ca
+    - openfisca-france
+  - depuis: '2013-01-01'
+    valeur: 1500.0
+    sources:
+    - of-ref-3b31f99baf
+    - of-ref-10c7b9451b
+    - openfisca-france
+  - depuis: '2014-01-01'
+    valeur: 1508.0
+    sources:
+    - of-ref-227e074c5c
+    - openfisca-france
+  - depuis: '2015-01-01'
+    valeur: 1510.0
+    sources:
+    - of-ref-e1cc8253e5
+    - openfisca-france
+  - depuis: '2016-01-01'
+    valeur: 1512.0
+    sources:
+    - of-ref-7a9a3c1cc0
+    - of-ref-ee87a06848
+    - openfisca-france
+  - depuis: '2017-01-01'
+    valeur: 1527.0
+    sources:
+    - of-ref-35df0b00a6
+    - of-ref-b7243152da
+    - openfisca-france
+  - depuis: '2018-01-01'
+    valeur: 1551.0
+    sources:
+    - of-ref-63cc4570bf
+    - of-ref-1f556b62cd
+    - openfisca-france
+  - depuis: '2019-01-01'
+    valeur: 1567.0
+    sources:
+    - of-ref-ac46bd9840
+    - openfisca-france
+  - depuis: '2020-01-01'
+    valeur: 1570.0
+    sources:
+    - of-ref-88e45b6d67
+    - of-ref-e2639ddb9c
+    - openfisca-france
+  - depuis: '2021-01-01'
+    valeur: 1592.0
+    sources:
+    - of-ref-d22028434c
+    - of-ref-659b27b176
+    - openfisca-france
+  - depuis: '2022-01-01'
+    valeur: 1678.0
+    sources:
+    - of-ref-7a25612bf5
+    - of-ref-242ac4a1ee
+    - openfisca-france
+  - depuis: '2023-01-01'
+    valeur: 1759.0
+    sources:
+    - of-ref-93cae7e76d
+    - of-ref-ff0c6ca01c
+    - openfisca-france
+  - depuis: '2024-01-01'
+    valeur: 1791.0
+    sources:
+    - of-ref-0a1508c179
+    - of-ref-b182dd254e
+    - openfisca-france
+  - depuis: '2025-01-01'
+    valeur: 1807.0
+    sources:
+    - of-ref-d626caaf3c
+    - of-ref-f695198afd
+    - openfisca-france
+  verifie_le: '2026-02-04'
+  moteur:
+    openfisca: impot_revenu.calcul_impot_revenu.plaf_qf.plafond_avantages_procures_par_demi_part.general
+  a_verifier: false
+- id: fiscalite.impot_revenu.quotient_familial.parts_premier_enfant
+  titre: Parts fiscales pour le 1er enfant (et le 2e)
+  explication: Nombre de parts de quotient familial ajoutées pour le premier enfant à charge (le deuxième enfant donne le
+    même nombre de parts).
+  type: nombre
+  unite: parts
+  bornes:
+  - 0
+  - 2
+  valeurs:
+  - depuis: '1951-01-01'
+    valeur: 0.5
+    sources:
+    - of-ref-93ca7d772c
+    - openfisca-france
+  verifie_le: '2024-10-23'
+  moteur:
+    openfisca: impot_revenu.calcul_impot_revenu.plaf_qf.quotient_familial.cas_general.enf1
+  a_verifier: false
+- id: fiscalite.impot_revenu.quotient_familial.parts_enfant_3_et_plus
+  titre: Parts fiscales à partir du 3e enfant
+  explication: Nombre de parts de quotient familial ajoutées pour chaque enfant à partir du troisième.
+  type: nombre
+  unite: parts
+  bornes:
+  - 0
+  - 2
+  valeurs:
+  - depuis: '1995-01-01'
+    valeur: 1.0
+    sources:
+    - of-ref-5c133443d5
+    - openfisca-france
+  verifie_le: '2024-10-23'
+  moteur:
+    openfisca: impot_revenu.calcul_impot_revenu.plaf_qf.quotient_familial.cas_general.enf3_et_sup
+  a_verifier: false
+- id: fiscalite.impot_revenu.abattement_salaires.taux
+  titre: Abattement forfaitaire pour frais professionnels (taux)
+  explication: Avant de calculer l'impôt, les salaires sont réduits de ce pourcentage pour tenir compte des frais liés au
+    travail (transport, repas…).
+  type: nombre
+  unite: pourcent
+  bornes:
+  - 0
+  - 30
+  valeurs:
+  - depuis: '1943-01-01'
+    valeur: 10.0
+    sources:
+    - of-ref-677e5e6ae8
+    - openfisca-france
+  verifie_le: '2025-02-25'
+  moteur:
+    openfisca: impot_revenu.calcul_revenus_imposables.deductions.abatpro.taux
+  a_verifier: false
+- id: fiscalite.impot_revenu.abattement_salaires.plafond
+  titre: Abattement forfaitaire pour frais professionnels (plafond annuel)
+  explication: Montant maximal de l'abattement de 10 % sur les salaires, par personne et par an.
+  type: nombre
+  unite: euros
+  bornes:
+  - 0
+  - 40000
+  valeurs:
+  - depuis: '2009-01-01'
+    valeur: 13948.0
+    sources:
+    - of-ref-e6b3336dd0
+    - of-ref-3f28e179c0
+    - openfisca-france
+  - depuis: '2010-01-01'
+    valeur: 14157.0
+    sources:
+    - of-ref-7421d2bf56
+    - of-ref-1aecfe11f4
+    - openfisca-france
+  - depuis: '2012-01-01'
+    valeur: 12000.0
+    sources:
+    - of-ref-516a7870ca
+    - openfisca-france
+  - depuis: '2013-01-01'
+    valeur: 12097.0
+    sources:
+    - of-ref-10c7b9451b
+    - openfisca-france
+  - depuis: '2014-01-01'
+    valeur: 12157.0
+    sources:
+    - of-ref-227e074c5c
+    - openfisca-france
+  - depuis: '2015-01-01'
+    valeur: 12170.0
+    sources:
+    - of-ref-e1cc8253e5
+    - openfisca-france
+  - depuis: '2016-01-01'
+    valeur: 12183.0
+    sources:
+    - of-ref-1033fd52f0
+    - openfisca-france
+  - depuis: '2017-01-01'
+    valeur: 12305.0
+    sources:
+    - of-ref-e85c4700a8
+    - openfisca-france
+  - depuis: '2018-01-01'
+    valeur: 12502.0
+    sources:
+    - of-ref-66c665eab5
+    - openfisca-france
+  - depuis: '2019-01-01'
+    valeur: 12627.0
+    sources:
+    - of-ref-bcfa54f3f3
+    - openfisca-france
+  - depuis: '2020-01-01'
+    valeur: 12652.0
+    sources:
+    - of-ref-50e8ea4a7f
+    - openfisca-france
+  - depuis: '2021-01-01'
+    valeur: 12829.0
+    sources:
+    - of-ref-45b9b23890
+    - openfisca-france
+  - depuis: '2022-01-01'
+    valeur: 13522.0
+    sources:
+    - of-ref-55dd4545c8
+    - of-ref-af4cce448d
+    - openfisca-france
+  - depuis: '2023-01-01'
+    valeur: 14171.0
+    sources:
+    - of-ref-38e3ccce69
+    - of-ref-8d2208d11c
+    - openfisca-france
+  - depuis: '2024-01-01'
+    valeur: 14426.0
+    sources:
+    - of-ref-38e3ccce69
+    - openfisca-france
+  - depuis: '2025-01-01'
+    valeur: 14555.0
+    sources:
+    - of-ref-8ca907da81
+    - of-ref-38e3ccce69
+    - openfisca-france
+  verifie_le: '2026-07-15'
+  moteur:
+    openfisca: impot_revenu.calcul_revenus_imposables.deductions.abatpro.max
+  a_verifier: false
+- id: fiscalite.impot_revenu.abattement_pensions.plafond
+  titre: Abattement de 10 % sur les pensions de retraite (plafond annuel par foyer)
+  explication: Les pensions de retraite sont réduites de 10 % avant le calcul de l'impôt, dans la limite de ce plafond par
+    foyer.
+  type: nombre
+  unite: euros
+  bornes:
+  - 0
+  - 15000
+  valeurs:
+  - depuis: '2009-01-01'
+    valeur: 3606.0
+    sources:
+    - of-ref-e6b3336dd0
+    - of-ref-3f28e179c0
+    - openfisca-france
+  - depuis: '2010-01-01'
+    valeur: 3660.0
+    sources:
+    - of-ref-7421d2bf56
+    - of-ref-1aecfe11f4
+    - openfisca-france
+  - depuis: '2013-01-01'
+    valeur: 3689.0
+    sources:
+    - of-ref-10c7b9451b
+    - openfisca-france
+  - depuis: '2014-01-01'
+    valeur: 3707.0
+    sources:
+    - of-ref-227e074c5c
+    - openfisca-france
+  - depuis: '2015-01-01'
+    valeur: 3711.0
+    sources:
+    - of-ref-e1cc8253e5
+    - openfisca-france
+  - depuis: '2016-01-01'
+    valeur: 3715.0
+    sources:
+    - of-ref-1033fd52f0
+    - openfisca-france
+  - depuis: '2017-01-01'
+    valeur: 3752.0
+    sources:
+    - of-ref-e85c4700a8
+    - openfisca-france
+  - depuis: '2018-01-01'
+    valeur: 3812.0
+    sources:
+    - of-ref-66c665eab5
+    - openfisca-france
+  - depuis: '2019-01-01'
+    valeur: 3850.0
+    sources:
+    - of-ref-bcfa54f3f3
+    - openfisca-france
+  - depuis: '2020-01-01'
+    valeur: 3858.0
+    sources:
+    - of-ref-1e764ce546
+    - of-ref-50e8ea4a7f
+    - openfisca-france
+  - depuis: '2021-01-01'
+    valeur: 3912.0
+    sources:
+    - of-ref-e9036818d6
+    - of-ref-45b9b23890
+    - openfisca-france
+  - depuis: '2022-01-01'
+    valeur: 4123.0
+    sources:
+    - of-ref-9ce63877b8
+    - of-ref-af4cce448d
+    - openfisca-france
+  - depuis: '2023-01-01'
+    valeur: 4321.0
+    sources:
+    - of-ref-16a660b65b
+    - of-ref-8d2208d11c
+    - openfisca-france
+  - depuis: '2024-01-01'
+    valeur: 4399.0
+    sources:
+    - of-ref-16a660b65b
+    - openfisca-france
+  - depuis: '2025-01-01'
+    valeur: 4439.0
+    sources:
+    - of-ref-8ca907da81
+    - of-ref-16a660b65b
+    - openfisca-france
+  verifie_le: '2026-07-15'
+  moteur:
+    openfisca: impot_revenu.calcul_revenus_imposables.deductions.abatpen.max
+  a_verifier: false
+- id: fiscalite.capital.pfu_taux_ir
+  titre: 'Prélèvement forfaitaire unique (« flat tax ») : part impôt sur le revenu'
+  explication: Les intérêts et dividendes sont taxés à ce taux fixe au titre de l'impôt sur le revenu, auquel s'ajoutent les
+    prélèvements sociaux.
+  type: nombre
+  unite: pourcent
+  bornes:
+  - 0
+  - 60
+  valeurs:
+  - depuis: '2018-01-01'
+    valeur: 12.8
+    sources:
+    - of-ref-75e74ffffb
+    - of-ref-676ad80177
+    - openfisca-france
+  verifie_le: '2026-03-30'
+  moteur:
+    openfisca: taxation_capital.prelevement_forfaitaire.partir_2018.taux_prelevement_forfaitaire_rev_capital_eligibles_pfu_interets_dividendes_etc
+  a_verifier: false

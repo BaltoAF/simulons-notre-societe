@@ -1,0 +1,1204 @@
+# Finances publiques de la France : séries observées (Insee, Eurostat, lois de finances) et prévisions 2026-2027.
+# Comptes nationaux base 2020 publiés par l'Insee le 29 mai 2026 (comptes de la Nation 2025) ; prévisions : PLF et PLFSS 2027 (1er octobre 2026).
+# Convention : date = 31 décembre de l'année pour les données annuelles ; solde négatif = déficit.
+metriques:
+  - id: finances_publiques.pib_valeur
+    titre: "Produit intérieur brut (PIB) en valeur"
+    explication: "Richesse produite en France dans l'année, en euros courants (comptes nationaux, base 2020). Statuts Insee : 2023 et avant définitifs, 2024 semi-définitif (codé « provisoire »), 2025 provisoire. Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2019-12-31"
+        valeur: 2432.21
+        source: insee-cn2025-t1101
+        statut: definitif
+      - date: "2020-12-31"
+        valeur: 2318.28
+        source: insee-cn2025-t1101
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: 2508.1
+        source: insee-cn2025-t1101
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 2654.0
+        source: insee-cn2025-t1101
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 2833.83
+        source: insee-cn2025-t1101
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 2935.24
+        source: insee-cn2025-t1101
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 2991.06
+        source: insee-cn2025-t1101
+        statut: provisoire
+  - id: finances_publiques.croissance_pib_volume
+    titre: "Croissance du PIB en volume"
+    explication: "Évolution annuelle du PIB corrigée de la hausse des prix (prix de l'année précédente chaînés). 2026 et 2027 : prévisions du Gouvernement dans le PLF 2027 (1er octobre 2026). Statuts Insee : 2023 et avant définitifs, 2024 semi-définitif (codé « provisoire »), 2025 provisoire. Date = 31 décembre de l'année."
+    unite: pourcent
+    serie:
+      - date: "2019-12-31"
+        valeur: 2.027
+        source: insee-cn2025-t1101
+        statut: definitif
+      - date: "2020-12-31"
+        valeur: -7.441
+        source: insee-cn2025-t1101
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: 6.882
+        source: insee-cn2025-t1101
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 2.717
+        source: insee-cn2025-t1101
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 1.633
+        source: insee-cn2025-t1101
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 1.504
+        source: insee-cn2025-t1101
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 0.805
+        source: insee-cn2025-t1101
+        statut: provisoire
+      - date: "2026-12-31"
+        valeur: 0.5
+        source: an-plf-2027-n3210
+        statut: prevision
+      - date: "2027-12-31"
+        valeur: 1.0
+        source: an-plf-2027-n3210
+        statut: prevision
+  - id: finances_publiques.inflation_ipc
+    titre: "Inflation (indice des prix à la consommation, moyenne annuelle)"
+    explication: "Hausse moyenne des prix à la consommation sur l'année, ensemble des ménages, France (IPC base 2015, série Insee 001768676). 2026 et 2027 : prévisions du PLF 2027."
+    unite: pourcent
+    serie:
+      - date: "2019-12-31"
+        valeur: 1.1
+        source: insee-bdm-ipc-001768676
+        statut: definitif
+      - date: "2020-12-31"
+        valeur: 0.5
+        source: insee-bdm-ipc-001768676
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: 1.6
+        source: insee-bdm-ipc-001768676
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 5.2
+        source: insee-bdm-ipc-001768676
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 4.9
+        source: insee-bdm-ipc-001768676
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 2.0
+        source: insee-bdm-ipc-001768676
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 0.9
+        source: insee-bdm-ipc-001768676
+        statut: definitif
+      - date: "2026-12-31"
+        valeur: 2.1
+        source: an-plf-2027-n3210
+        statut: prevision
+      - date: "2027-12-31"
+        valeur: 1.8
+        source: an-plf-2027-n3210
+        statut: prevision
+  - id: finances_publiques.depenses_publiques
+    titre: "Dépenses publiques totales (toutes administrations publiques)"
+    explication: "Total des dépenses de l'État, des organismes publics, des collectivités locales et de la Sécurité sociale, consolidé (comptabilité nationale, y compris crédits d'impôt et éléments imputés). 2019-2024 : tableau 3.201 ; 2025 : Insee Première n° 2106 (le tableau 3.201 indique 1 714,11 Md€). Statuts Insee : 2023 et avant définitifs, 2024 semi-définitif (codé « provisoire »), 2025 provisoire. Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2019-12-31"
+        valeur: 1346.15
+        source: insee-cn2025-t3201
+        statut: definitif
+      - date: "2020-12-31"
+        valeur: 1430.36
+        source: insee-cn2025-t3201
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: 1491.42
+        source: insee-cn2025-t3201
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 1550.33
+        source: insee-cn2025-t3201
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 1608.27
+        source: insee-cn2025-t3201
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 1672.59
+        source: insee-cn2025-t3201
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 1714.2
+        source: insee-ip-2106
+        statut: provisoire
+  - id: finances_publiques.depenses_publiques_pct_pib
+    titre: "Dépenses publiques totales (% du PIB)"
+    explication: "Poids des dépenses de l'ensemble des administrations publiques dans le PIB (définition Insee, y compris crédits d'impôt). Statuts Insee : 2023 et avant définitifs, 2024 semi-définitif (codé « provisoire »), 2025 provisoire. Date = 31 décembre de l'année."
+    unite: pourcent_pib
+    serie:
+      - date: "2019-12-31"
+        valeur: 55.3
+        source: insee-chiffres-cles-depenses-recettes
+        statut: definitif
+      - date: "2020-12-31"
+        valeur: 61.7
+        source: insee-chiffres-cles-depenses-recettes
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: 59.5
+        source: insee-chiffres-cles-depenses-recettes
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 58.4
+        source: insee-chiffres-cles-depenses-recettes
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 56.8
+        source: insee-chiffres-cles-depenses-recettes
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 57.0
+        source: insee-chiffres-cles-depenses-recettes
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 57.3
+        source: insee-chiffres-cles-depenses-recettes
+        statut: provisoire
+  - id: finances_publiques.depense_publique_hors_credits_impot
+    titre: "Dépense publique hors crédits d'impôt (définition des lois de finances)"
+    explication: "Dépense publique telle que suivie dans l'article liminaire des lois de finances (hors crédits d'impôt) : 2025 = exécution, 2026 = prévision révisée, 2027 = prévision du PLF 2027. Définition différente de la série Insee « dépenses publiques totales »."
+    unite: milliards_euros
+    serie:
+      - date: "2025-12-31"
+        valeur: 1694
+        source: an-plf-2027-n3210
+        statut: provisoire
+      - date: "2026-12-31"
+        valeur: 1742
+        source: an-plf-2027-n3210
+        statut: prevision
+      - date: "2027-12-31"
+        valeur: 1782
+        source: an-plf-2027-n3210
+        statut: prevision
+  - id: finances_publiques.depense_publique_hors_credits_impot_pct_pib
+    titre: "Dépense publique hors crédits d'impôt (% du PIB, définition des lois de finances)"
+    explication: "Même périmètre que la métrique précédente, rapporté au PIB (article liminaire du PLF 2027)."
+    unite: pourcent_pib
+    serie:
+      - date: "2025-12-31"
+        valeur: 56.6
+        source: an-plf-2027-n3210
+        statut: provisoire
+      - date: "2026-12-31"
+        valeur: 57.1
+        source: an-plf-2027-n3210
+        statut: prevision
+      - date: "2027-12-31"
+        valeur: 56.9
+        source: an-plf-2027-n3210
+        statut: prevision
+  - id: finances_publiques.recettes_publiques
+    titre: "Recettes publiques totales (toutes administrations publiques)"
+    explication: "Total des impôts, cotisations sociales et autres recettes de l'ensemble des administrations publiques (comptabilité nationale). 2019-2024 : tableau 3.201 ; 2025 : Insee Première n° 2106 (le tableau 3.201 indique 1 562,52 Md€). Statuts Insee : 2023 et avant définitifs, 2024 semi-définitif (codé « provisoire »), 2025 provisoire. Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2019-12-31"
+        valeur: 1287.93
+        source: insee-cn2025-t3201
+        statut: definitif
+      - date: "2020-12-31"
+        valeur: 1223.27
+        source: insee-cn2025-t3201
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: 1326.27
+        source: insee-cn2025-t3201
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 1424.44
+        source: insee-cn2025-t3201
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 1456.35
+        source: insee-cn2025-t3201
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 1503.47
+        source: insee-cn2025-t3201
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 1561.7
+        source: insee-ip-2106
+        statut: provisoire
+  - id: finances_publiques.recettes_publiques_pct_pib
+    titre: "Recettes publiques totales (% du PIB)"
+    explication: "Poids des recettes de l'ensemble des administrations publiques dans le PIB. Statuts Insee : 2023 et avant définitifs, 2024 semi-définitif (codé « provisoire »), 2025 provisoire. Date = 31 décembre de l'année."
+    unite: pourcent_pib
+    serie:
+      - date: "2019-12-31"
+        valeur: 53.0
+        source: insee-chiffres-cles-depenses-recettes
+        statut: definitif
+      - date: "2020-12-31"
+        valeur: 52.8
+        source: insee-chiffres-cles-depenses-recettes
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: 52.9
+        source: insee-chiffres-cles-depenses-recettes
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 53.7
+        source: insee-chiffres-cles-depenses-recettes
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 51.4
+        source: insee-chiffres-cles-depenses-recettes
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 51.2
+        source: insee-chiffres-cles-depenses-recettes
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 52.2
+        source: insee-chiffres-cles-depenses-recettes
+        statut: provisoire
+  - id: finances_publiques.prelevements_obligatoires
+    titre: "Prélèvements obligatoires (impôts et cotisations sociales effectives)"
+    explication: "Impôts et cotisations sociales effectives perçus par les administrations publiques et l'Union européenne, nets des crédits d'impôt. Statuts Insee : 2023 et avant définitifs, 2024 semi-définitif (codé « provisoire »), 2025 provisoire. Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2019-12-31"
+        valeur: 1069.15
+        source: insee-cn2025-t3216
+        statut: definitif
+      - date: "2020-12-31"
+        valeur: 1026.83
+        source: insee-cn2025-t3216
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: 1108.45
+        source: insee-cn2025-t3216
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 1195.48
+        source: insee-cn2025-t3216
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 1222.91
+        source: insee-cn2025-t3216
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 1254.02
+        source: insee-cn2025-t3216
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 1305.07
+        source: insee-cn2025-t3216
+        statut: provisoire
+  - id: finances_publiques.prelevements_obligatoires_pct_pib
+    titre: "Taux de prélèvements obligatoires (% du PIB)"
+    explication: "Poids des impôts et cotisations sociales dans le PIB (y compris Union européenne, nets des crédits d'impôt). 2026 et 2027 : prévisions du PLF 2027 (même définition). Statuts Insee : 2023 et avant définitifs, 2024 semi-définitif (codé « provisoire »), 2025 provisoire. Date = 31 décembre de l'année."
+    unite: pourcent_pib
+    serie:
+      - date: "2019-12-31"
+        valeur: 43.96
+        source: insee-cn2025-t3216
+        statut: definitif
+      - date: "2020-12-31"
+        valeur: 44.29
+        source: insee-cn2025-t3216
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: 44.19
+        source: insee-cn2025-t3216
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 45.04
+        source: insee-cn2025-t3216
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 43.15
+        source: insee-cn2025-t3216
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 42.72
+        source: insee-cn2025-t3216
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 43.63
+        source: insee-cn2025-t3216
+        statut: provisoire
+      - date: "2026-12-31"
+        valeur: 43.9
+        source: an-plf-2027-n3210
+        statut: prevision
+      - date: "2027-12-31"
+        valeur: 44.2
+        source: an-plf-2027-n3210
+        statut: prevision
+  - id: finances_publiques.solde_public
+    titre: "Solde public au sens de Maastricht (déficit si négatif)"
+    explication: "Différence entre recettes et dépenses de l'ensemble des administrations publiques : une valeur négative est un déficit. 2025 : Insee Première n° 2106 et notification d'avril 2026 (le tableau 3.106 indique -151,6 Md€ pour 2025). Statuts Insee : 2023 et avant définitifs, 2024 semi-définitif (codé « provisoire »), 2025 provisoire. Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2019-12-31"
+        valeur: -58.226
+        source: insee-cn2025-t3106
+        statut: definitif
+      - date: "2020-12-31"
+        valeur: -207.084
+        source: insee-cn2025-t3106
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: -165.149
+        source: insee-cn2025-t3106
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: -125.896
+        source: insee-cn2025-t3106
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: -151.92
+        source: insee-cn2025-t3106
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: -169.118
+        source: insee-cn2025-t3106
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: -152.5
+        source: insee-ip-2106
+        statut: provisoire
+  - id: finances_publiques.solde_public_pct_pib
+    titre: "Solde public au sens de Maastricht (% du PIB)"
+    explication: "Déficit (valeur négative) de l'ensemble des administrations publiques rapporté au PIB. 2026 et 2027 : prévisions du PLF 2027 (la LFI 2026 visait -5,0 % pour 2026). Statuts Insee : 2023 et avant définitifs, 2024 semi-définitif (codé « provisoire »), 2025 provisoire. Date = 31 décembre de l'année."
+    unite: pourcent_pib
+    serie:
+      - date: "2019-12-31"
+        valeur: -2.4
+        source: insee-cn2025-t3106
+        statut: definitif
+      - date: "2020-12-31"
+        valeur: -8.9
+        source: insee-cn2025-t3106
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: -6.6
+        source: insee-cn2025-t3106
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: -4.7
+        source: insee-cn2025-t3106
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: -5.4
+        source: insee-cn2025-t3106
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: -5.8
+        source: insee-cn2025-t3106
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: -5.1
+        source: insee-cn2025-t3106
+        statut: provisoire
+      - date: "2026-12-31"
+        valeur: -5.4
+        source: an-plf-2027-n3210
+        statut: prevision
+      - date: "2027-12-31"
+        valeur: -5.0
+        source: an-plf-2027-n3210
+        statut: prevision
+  - id: finances_publiques.dette_maastricht
+    titre: "Dette publique au sens de Maastricht"
+    explication: "Dette brute de l'ensemble des administrations publiques en fin d'année (valeur nominale). 2025 : Insee Première n° 2106 (le tableau 3.101 indique 3 460,1 Md€). Statuts Insee : 2023 et avant définitifs, 2024 semi-définitif (codé « provisoire »), 2025 provisoire. Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2019-12-31"
+        valeur: 2387.4
+        source: insee-cn2025-t3101
+        statut: definitif
+      - date: "2020-12-31"
+        valeur: 2663.85
+        source: insee-cn2025-t3101
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: 2828.78
+        source: insee-cn2025-t3101
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 2955.64
+        source: insee-cn2025-t3101
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 3103.25
+        source: insee-cn2025-t3101
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 3306.1
+        source: insee-cn2025-t3101
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 3460.5
+        source: insee-ip-2106
+        statut: provisoire
+  - id: finances_publiques.dette_maastricht_pct_pib
+    titre: "Dette publique au sens de Maastricht (% du PIB)"
+    explication: "Dette brute de l'ensemble des administrations publiques rapportée au PIB. 2026 et 2027 : prévisions du PLF 2027 (la LFI 2026 prévoyait 118,2 % fin 2026). Pour 2019, l'Insee Première n° 2106 indique 97,9 % (autre PIB de référence). Statuts Insee : 2023 et avant définitifs, 2024 semi-définitif (codé « provisoire »), 2025 provisoire. Date = 31 décembre de l'année."
+    unite: pourcent_pib
+    serie:
+      - date: "2019-12-31"
+        valeur: 98.2
+        source: insee-chiffres-cles-depenses-recettes
+        statut: definitif
+      - date: "2020-12-31"
+        valeur: 114.9
+        source: insee-chiffres-cles-depenses-recettes
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: 112.8
+        source: insee-chiffres-cles-depenses-recettes
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 111.4
+        source: insee-chiffres-cles-depenses-recettes
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 109.5
+        source: insee-chiffres-cles-depenses-recettes
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 112.6
+        source: insee-chiffres-cles-depenses-recettes
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 115.7
+        source: insee-chiffres-cles-depenses-recettes
+        statut: provisoire
+      - date: "2026-12-31"
+        valeur: 119.3
+        source: an-plf-2027-n3210
+        statut: prevision
+      - date: "2027-12-31"
+        valeur: 121.7
+        source: an-plf-2027-n3210
+        statut: prevision
+  - id: finances_publiques.charge_interets_apu
+    titre: "Charge d'intérêts de l'ensemble des administrations publiques"
+    explication: "Intérêts versés par l'ensemble des administrations publiques (comptabilité nationale, hors correction au titre des services d'intermédiation financière, Sifim). Statuts Insee : 2023 et avant définitifs, 2024 semi-définitif (codé « provisoire »), 2025 provisoire. Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2019-12-31"
+        valeur: 39.72
+        source: insee-cn2025-t3201
+        statut: definitif
+      - date: "2020-12-31"
+        valeur: 32.693
+        source: insee-cn2025-t3201
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: 37.609
+        source: insee-cn2025-t3201
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 52.752
+        source: insee-cn2025-t3201
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 51.046
+        source: insee-cn2025-t3201
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 58.147
+        source: insee-cn2025-t3201
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 64.652
+        source: insee-cn2025-t3201
+        statut: provisoire
+  - id: finances_publiques.charge_dette_etat_budgetaire
+    titre: "Charge de la dette de l'État (comptabilité budgétaire, y compris SNCF Réseau)"
+    explication: "Intérêts de la dette de l'État inscrits au budget (mission Engagements financiers, y compris la dette reprise de SNCF Réseau). 2025 : exécution ; 2026 : prévision révisée (59,3 Md€ en LFI) ; 2027 : PLF 2027."
+    unite: milliards_euros
+    serie:
+      - date: "2025-12-31"
+        valeur: 51.6
+        source: an-plf-2027-n3210
+        statut: definitif
+      - date: "2026-12-31"
+        valeur: 63.4
+        source: an-plf-2027-n3210
+        statut: prevision
+      - date: "2027-12-31"
+        valeur: 72.9
+        source: an-plf-2027-n3210
+        statut: prevision
+  - id: finances_publiques.taux_oat_10_ans
+    titre: "Taux de l'emprunt d'État à 10 ans (OAT 10 ans)"
+    explication: "Rendement des obligations de l'État français à 10 ans (série « critère de convergence » de l'UEM) : moyenne annuelle de 2019 à 2025, puis dernière moyenne mensuelle disponible (septembre 2026)."
+    unite: pourcent
+    serie:
+      - date: "2019-12-31"
+        valeur: 0.13
+        source: eurostat-irt-lt-mcby-a
+        statut: definitif
+      - date: "2020-12-31"
+        valeur: -0.15
+        source: eurostat-irt-lt-mcby-a
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: 0.01
+        source: eurostat-irt-lt-mcby-a
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 1.7
+        source: eurostat-irt-lt-mcby-a
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 2.99
+        source: eurostat-irt-lt-mcby-a
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 2.97
+        source: eurostat-irt-lt-mcby-a
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 3.35
+        source: eurostat-irt-lt-mcby-a
+        statut: definitif
+      - date: "2026-09-30"
+        valeur: 4.44
+        source: eurostat-irt-lt-mcby-m
+        statut: definitif
+  - id: finances_publiques.solde_budgetaire_etat
+    titre: "Solde budgétaire de l'État (hors FMI)"
+    explication: "Déficit du budget de l'État en comptabilité budgétaire (différent du déficit de l'État en comptabilité nationale). 2025 : exécution ; 2026 : prévision révisée (LFI : -134,6 Md€) ; 2027 : PLF 2027."
+    unite: milliards_euros
+    serie:
+      - date: "2025-12-31"
+        valeur: -124.2
+        source: an-plf-2027-n3210
+        statut: definitif
+      - date: "2026-12-31"
+        valeur: -137.2
+        source: an-plf-2027-n3210
+        statut: prevision
+      - date: "2027-12-31"
+        valeur: -156.4
+        source: an-plf-2027-n3210
+        statut: prevision
+  - id: finances_publiques.recettes_fiscales_nettes_etat
+    titre: "Recettes fiscales nettes de l'État (comptabilité budgétaire)"
+    explication: "Impôts revenant au budget de l'État après remboursements et dégrèvements. 2025 : exécution ; 2026 : prévision révisée (LFI : 363,6 Md€) ; 2027 : PLF 2027."
+    unite: milliards_euros
+    serie:
+      - date: "2025-12-31"
+        valeur: 356.4
+        source: an-plf-2027-n3210
+        statut: definitif
+      - date: "2026-12-31"
+        valeur: 357.7
+        source: an-plf-2027-n3210
+        statut: prevision
+      - date: "2027-12-31"
+        valeur: 375.7
+        source: an-plf-2027-n3210
+        statut: prevision
+  - id: finances_publiques.solde_securite_sociale_robss
+    titre: "Solde des régimes obligatoires de base de sécurité sociale et du FSV"
+    explication: "« Trou de la Sécu » : solde des régimes de base et du Fonds de solidarité vieillesse. 2024 : annexe de la LFSS 2026 ; 2025 : exécution (annexe du PLFSS 2027) ; 2026 : prévision révisée (LFSS : -19,4 Md€) ; 2027 : PLFSS 2027."
+    unite: milliards_euros
+    serie:
+      - date: "2024-12-31"
+        valeur: -15.3
+        source: jo-loi-2025-1403-lfss-2026
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: -21.6
+        source: an-plfss-2027-n3211
+        statut: provisoire
+      - date: "2026-12-31"
+        valeur: -21.8
+        source: an-plfss-2027-n3211
+        statut: prevision
+      - date: "2027-12-31"
+        valeur: -12.7
+        source: an-plfss-2027-n3211
+        statut: prevision
+  - id: finances_publiques.depenses_etat
+    titre: "Dépenses de l'État (comptabilité nationale, non consolidées)"
+    explication: "Dépenses de l'État au sens de la comptabilité nationale, y compris ses transferts aux autres administrations (les sous-secteurs ne s'additionnent donc pas au total consolidé). Statuts Insee : 2023 et avant définitifs, 2024 semi-définitif (codé « provisoire »), 2025 provisoire. Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2019-12-31"
+        valeur: 483.846
+        source: insee-cn2025-t3215
+        statut: definitif
+      - date: "2020-12-31"
+        valeur: 562.792
+        source: insee-cn2025-t3215
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: 567.736
+        source: insee-cn2025-t3215
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 608.709
+        source: insee-cn2025-t3215
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 597.717
+        source: insee-cn2025-t3215
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 600.702
+        source: insee-cn2025-t3215
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 607.73
+        source: insee-cn2025-t3215
+        statut: provisoire
+  - id: finances_publiques.depenses_odac
+    titre: "Dépenses des organismes divers d'administration centrale (ODAC)"
+    explication: "Dépenses des opérateurs et organismes nationaux rattachés à l'État (universités, agences…), non consolidées. Statuts Insee : 2023 et avant définitifs, 2024 semi-définitif (codé « provisoire »), 2025 provisoire. Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2019-12-31"
+        valeur: 112.262
+        source: insee-cn2025-t3215
+        statut: definitif
+      - date: "2020-12-31"
+        valeur: 119.526
+        source: insee-cn2025-t3215
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: 129.978
+        source: insee-cn2025-t3215
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 133.447
+        source: insee-cn2025-t3215
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 137.649
+        source: insee-cn2025-t3215
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 142.631
+        source: insee-cn2025-t3215
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 142.266
+        source: insee-cn2025-t3215
+        statut: provisoire
+  - id: finances_publiques.depenses_apul
+    titre: "Dépenses des administrations publiques locales (APUL)"
+    explication: "Dépenses des collectivités territoriales et organismes locaux (comptabilité nationale, non consolidées). En 2025 : 335,5 Md€, soit 11,2 % du PIB. Statuts Insee : 2023 et avant définitifs, 2024 semi-définitif (codé « provisoire »), 2025 provisoire. Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2019-12-31"
+        valeur: 268.69
+        source: insee-cn2025-t3215
+        statut: definitif
+      - date: "2020-12-31"
+        valeur: 266.298
+        source: insee-cn2025-t3215
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: 279.451
+        source: insee-cn2025-t3215
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 294.96
+        source: insee-cn2025-t3215
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 315.721
+        source: insee-cn2025-t3215
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 330.484
+        source: insee-cn2025-t3215
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 335.482
+        source: insee-cn2025-t3215
+        statut: provisoire
+  - id: finances_publiques.depenses_asso
+    titre: "Dépenses des administrations de sécurité sociale (ASSO)"
+    explication: "Dépenses des régimes de sécurité sociale, de l'assurance chômage, des retraites complémentaires, des hôpitaux publics et de la CADES (comptabilité nationale, non consolidées). En 2025 : 26,9 % du PIB. Statuts Insee : 2023 et avant définitifs, 2024 semi-définitif (codé « provisoire »), 2025 provisoire. Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2019-12-31"
+        valeur: 623.494
+        source: insee-cn2025-t3215
+        statut: definitif
+      - date: "2020-12-31"
+        valeur: 661.826
+        source: insee-cn2025-t3215
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: 685.876
+        source: insee-cn2025-t3215
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 706.672
+        source: insee-cn2025-t3215
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 737.017
+        source: insee-cn2025-t3215
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 777.288
+        source: insee-cn2025-t3215
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 803.164
+        source: insee-cn2025-t3215
+        statut: provisoire
+  - id: finances_publiques.depenses_apuc_2025
+    titre: "Dépenses des administrations publiques centrales (État + ODAC, consolidées)"
+    explication: "Dépenses de l'État et de ses organismes nationaux, consolidées entre eux (Insee Première n° 2106)."
+    unite: milliards_euros
+    serie:
+      - date: "2025-12-31"
+        valeur: 681.1
+        source: insee-ip-2106
+        statut: provisoire
+  - id: finances_publiques.solde_etat_compta_nationale
+    titre: "Solde de l'État en comptabilité nationale"
+    explication: "Capacité (+) ou besoin (-) de financement de l'État au sens de la comptabilité nationale. Statuts Insee : 2023 et avant définitifs, 2024 semi-définitif (codé « provisoire »), 2025 provisoire. Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2019-12-31"
+        valeur: -65.9
+        source: insee-ip-2106
+        statut: definitif
+      - date: "2020-12-31"
+        valeur: -177.0
+        source: insee-cn2025-t3106
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: -144.06
+        source: insee-cn2025-t3106
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: -148.1
+        source: insee-ip-2106
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: -152.9
+        source: insee-ip-2106
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: -151.1
+        source: insee-ip-2106
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: -128.1
+        source: insee-ip-2106
+        statut: provisoire
+  - id: finances_publiques.solde_apul
+    titre: "Solde des administrations publiques locales (comptabilité nationale)"
+    explication: "Capacité (+) ou besoin (-) de financement des collectivités territoriales et organismes locaux. Statuts Insee : 2023 et avant définitifs, 2024 semi-définitif (codé « provisoire »), 2025 provisoire. Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2019-12-31"
+        valeur: -2.5
+        source: insee-ip-2106
+        statut: definitif
+      - date: "2020-12-31"
+        valeur: -3.858
+        source: insee-cn2025-t3106
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: -0.892
+        source: insee-cn2025-t3106
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: -1.1
+        source: insee-ip-2106
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: -9.9
+        source: insee-ip-2106
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: -17.8
+        source: insee-ip-2106
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: -15.6
+        source: insee-ip-2106
+        statut: provisoire
+  - id: finances_publiques.solde_asso
+    titre: "Solde des administrations de sécurité sociale (comptabilité nationale)"
+    explication: "Capacité (+) ou besoin (-) de financement de l'ensemble des administrations de sécurité sociale (y compris CADES, Unédic, retraites complémentaires). 2025 : Insee Première n° 2106 (-6,7 Md€ ; le tableau 3.106 indique -5,8 Md€). Statuts Insee : 2023 et avant définitifs, 2024 semi-définitif (codé « provisoire »), 2025 provisoire. Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2019-12-31"
+        valeur: 12.1
+        source: insee-ip-2106
+        statut: definitif
+      - date: "2020-12-31"
+        valeur: -48.304
+        source: insee-cn2025-t3106
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: -19.711
+        source: insee-cn2025-t3106
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 8.5
+        source: insee-ip-2106
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 11.8
+        source: insee-ip-2106
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 1.1
+        source: insee-ip-2106
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: -6.7
+        source: insee-ip-2106
+        statut: provisoire
+  - id: finances_publiques.recettes.tva
+    titre: "Recettes de TVA (toutes administrations publiques)"
+    explication: "Produit total de la taxe sur la valeur ajoutée, tous bénéficiaires confondus (État, Sécurité sociale, collectivités). Statuts Insee : 2023 et avant définitifs, 2024 semi-définitif (codé « provisoire »), 2025 provisoire. Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2019-12-31"
+        valeur: 174.424
+        source: insee-cn2025-t3217
+        statut: definitif
+      - date: "2020-12-31"
+        valeur: 162.09
+        source: insee-cn2025-t3217
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: 185.35
+        source: insee-cn2025-t3217
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 199.272
+        source: insee-cn2025-t3217
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 206.312
+        source: insee-cn2025-t3217
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 207.753
+        source: insee-cn2025-t3217
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 208.821
+        source: insee-cn2025-t3217
+        statut: provisoire
+  - id: finances_publiques.recettes.impot_revenu
+    titre: "Recettes de l'impôt sur le revenu des personnes physiques (avant crédits d'impôt)"
+    explication: "Produit de l'impôt sur le revenu avant imputation des crédits d'impôt (comptabilité nationale). Statuts Insee : 2023 et avant définitifs, 2024 semi-définitif (codé « provisoire »), 2025 provisoire. Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2019-12-31"
+        valeur: 83.926
+        source: insee-cn2025-t3217
+        statut: definitif
+      - date: "2020-12-31"
+        valeur: 82.266
+        source: insee-cn2025-t3217
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: 85.844
+        source: insee-cn2025-t3217
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 95.987
+        source: insee-cn2025-t3217
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 96.925
+        source: insee-cn2025-t3217
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 96.018
+        source: insee-cn2025-t3217
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 103.626
+        source: insee-cn2025-t3217
+        statut: provisoire
+  - id: finances_publiques.recettes.impot_societes
+    titre: "Recettes de l'impôt sur les sociétés (avant crédits d'impôt)"
+    explication: "Produit de l'impôt sur les sociétés avant imputation des crédits d'impôt (comptabilité nationale), hors contribution exceptionnelle des grandes entreprises. Statuts Insee : 2023 et avant définitifs, 2024 semi-définitif (codé « provisoire »), 2025 provisoire. Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2019-12-31"
+        valeur: 59.71
+        source: insee-cn2025-t3217
+        statut: definitif
+      - date: "2020-12-31"
+        valeur: 56.043
+        source: insee-cn2025-t3217
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: 62.013
+        source: insee-cn2025-t3217
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 78.026
+        source: insee-cn2025-t3217
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 67.465
+        source: insee-cn2025-t3217
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 67.955
+        source: insee-cn2025-t3217
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 69.473
+        source: insee-cn2025-t3217
+        statut: provisoire
+  - id: finances_publiques.recettes.csg
+    titre: "Recettes de la contribution sociale généralisée (CSG)"
+    explication: "Produit de la CSG sur les revenus d'activité, de remplacement et du capital (hors CSG sur les jeux). Statuts Insee : 2023 et avant définitifs, 2024 semi-définitif (codé « provisoire »), 2025 provisoire. Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2019-12-31"
+        valeur: 126.024
+        source: insee-cn2025-t3217
+        statut: definitif
+      - date: "2020-12-31"
+        valeur: 123.172
+        source: insee-cn2025-t3217
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: 128.951
+        source: insee-cn2025-t3217
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 141.064
+        source: insee-cn2025-t3217
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 147.45
+        source: insee-cn2025-t3217
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 153.148
+        source: insee-cn2025-t3217
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 156.583
+        source: insee-cn2025-t3217
+        statut: provisoire
+  - id: finances_publiques.recettes.cotisations_sociales_effectives
+    titre: "Cotisations sociales effectives"
+    explication: "Cotisations sociales réellement versées par les employeurs et les assurés (hors cotisations imputées). Statuts Insee : 2023 et avant définitifs, 2024 semi-définitif (codé « provisoire »), 2025 provisoire. Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2019-12-31"
+        valeur: 361.888
+        source: insee-cn2025-t3217
+        statut: definitif
+      - date: "2020-12-31"
+        valeur: 346.095
+        source: insee-cn2025-t3217
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: 372.809
+        source: insee-cn2025-t3217
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 395.795
+        source: insee-cn2025-t3217
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 414.653
+        source: insee-cn2025-t3217
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 432.389
+        source: insee-cn2025-t3217
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 446.329
+        source: insee-cn2025-t3217
+        statut: provisoire
+  - id: finances_publiques.recettes.taxe_fonciere
+    titre: "Recettes de la taxe foncière"
+    explication: "Produit de la taxe foncière perçue par les collectivités locales (ménages et entreprises). Statuts Insee : 2023 et avant définitifs, 2024 semi-définitif (codé « provisoire »), 2025 provisoire. Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2019-12-31"
+        valeur: 35.72
+        source: insee-cn2025-t3217
+        statut: definitif
+      - date: "2020-12-31"
+        valeur: 36.377
+        source: insee-cn2025-t3217
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: 35.437
+        source: insee-cn2025-t3217
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 37.299
+        source: insee-cn2025-t3217
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 41.126
+        source: insee-cn2025-t3217
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 42.94
+        source: insee-cn2025-t3217
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 44.179
+        source: insee-cn2025-t3217
+        statut: provisoire
+  - id: finances_publiques.recettes.contribution_exceptionnelle_grandes_entreprises
+    titre: "Recettes de la contribution exceptionnelle sur les bénéfices des grandes entreprises"
+    explication: "Produit de la surtaxe temporaire d'impôt sur les sociétés des grandes entreprises (première année : 2025)."
+    unite: milliards_euros
+    serie:
+      - date: "2025-12-31"
+        valeur: 7.52
+        source: insee-cn2025-t3217
+        statut: provisoire
+  - id: finances_publiques.recettes.contribution_differentielle_hauts_revenus
+    titre: "Recettes de la contribution différentielle sur les hauts revenus"
+    explication: "Produit de l'impôt minimum de 20 % sur les très hauts revenus (première année : 2025, acomptes de décembre)."
+    unite: milliards_euros
+    serie:
+      - date: "2025-12-31"
+        valeur: 0.369
+        source: insee-cn2025-t3217
+        statut: provisoire
+  - id: finances_publiques.cofog.services_generaux_pct_pib
+    titre: "Dépenses publiques par fonction (COFOG) : Services publics généraux (y compris intérêts de la dette) (% du PIB)"
+    explication: "Dépenses de l'ensemble des administrations publiques consacrées à cette fonction en 2024, soit 181,1 Md€ (Eurostat, données transmises par l'Insee ; dernière année disponible, les données 2025 de l'Insee paraîtront en décembre 2026). Le ratio au PIB d'Eurostat repose sur un PIB 2024 antérieur à la révision de mai 2026 (Insee : dépenses totales = 57,0 % du PIB)."
+    unite: pourcent_pib
+    serie:
+      - date: "2024-12-31"
+        valeur: 6.2
+        source: eurostat-gov-10a-exp
+        statut: provisoire
+  - id: finances_publiques.cofog.defense_pct_pib
+    titre: "Dépenses publiques par fonction (COFOG) : Défense (% du PIB)"
+    explication: "Dépenses de l'ensemble des administrations publiques consacrées à cette fonction en 2024, soit 54,2 Md€ (Eurostat, données transmises par l'Insee ; dernière année disponible, les données 2025 de l'Insee paraîtront en décembre 2026). Le ratio au PIB d'Eurostat repose sur un PIB 2024 antérieur à la révision de mai 2026 (Insee : dépenses totales = 57,0 % du PIB)."
+    unite: pourcent_pib
+    serie:
+      - date: "2024-12-31"
+        valeur: 1.9
+        source: eurostat-gov-10a-exp
+        statut: provisoire
+  - id: finances_publiques.cofog.ordre_securite_pct_pib
+    titre: "Dépenses publiques par fonction (COFOG) : Ordre et sécurité publics (police, justice, prisons, pompiers) (% du PIB)"
+    explication: "Dépenses de l'ensemble des administrations publiques consacrées à cette fonction en 2024, soit 52,1 Md€ (Eurostat, données transmises par l'Insee ; dernière année disponible, les données 2025 de l'Insee paraîtront en décembre 2026). Le ratio au PIB d'Eurostat repose sur un PIB 2024 antérieur à la révision de mai 2026 (Insee : dépenses totales = 57,0 % du PIB)."
+    unite: pourcent_pib
+    serie:
+      - date: "2024-12-31"
+        valeur: 1.8
+        source: eurostat-gov-10a-exp
+        statut: provisoire
+  - id: finances_publiques.cofog.affaires_economiques_pct_pib
+    titre: "Dépenses publiques par fonction (COFOG) : Affaires économiques (transports, énergie, aides aux entreprises, emploi) (% du PIB)"
+    explication: "Dépenses de l'ensemble des administrations publiques consacrées à cette fonction en 2024, soit 166,1 Md€ (Eurostat, données transmises par l'Insee ; dernière année disponible, les données 2025 de l'Insee paraîtront en décembre 2026). Le ratio au PIB d'Eurostat repose sur un PIB 2024 antérieur à la révision de mai 2026 (Insee : dépenses totales = 57,0 % du PIB)."
+    unite: pourcent_pib
+    serie:
+      - date: "2024-12-31"
+        valeur: 5.7
+        source: eurostat-gov-10a-exp
+        statut: provisoire
+  - id: finances_publiques.cofog.environnement_pct_pib
+    titre: "Dépenses publiques par fonction (COFOG) : Protection de l'environnement (% du PIB)"
+    explication: "Dépenses de l'ensemble des administrations publiques consacrées à cette fonction en 2024, soit 30,3 Md€ (Eurostat, données transmises par l'Insee ; dernière année disponible, les données 2025 de l'Insee paraîtront en décembre 2026). Le ratio au PIB d'Eurostat repose sur un PIB 2024 antérieur à la révision de mai 2026 (Insee : dépenses totales = 57,0 % du PIB)."
+    unite: pourcent_pib
+    serie:
+      - date: "2024-12-31"
+        valeur: 1.0
+        source: eurostat-gov-10a-exp
+        statut: provisoire
+  - id: finances_publiques.cofog.logement_equipements_pct_pib
+    titre: "Dépenses publiques par fonction (COFOG) : Logement et équipements collectifs (% du PIB)"
+    explication: "Dépenses de l'ensemble des administrations publiques consacrées à cette fonction en 2024, soit 42,1 Md€ (Eurostat, données transmises par l'Insee ; dernière année disponible, les données 2025 de l'Insee paraîtront en décembre 2026). Le ratio au PIB d'Eurostat repose sur un PIB 2024 antérieur à la révision de mai 2026 (Insee : dépenses totales = 57,0 % du PIB)."
+    unite: pourcent_pib
+    serie:
+      - date: "2024-12-31"
+        valeur: 1.4
+        source: eurostat-gov-10a-exp
+        statut: provisoire
+  - id: finances_publiques.cofog.sante_pct_pib
+    titre: "Dépenses publiques par fonction (COFOG) : Santé (% du PIB)"
+    explication: "Dépenses de l'ensemble des administrations publiques consacrées à cette fonction en 2024, soit 261,2 Md€ (Eurostat, données transmises par l'Insee ; dernière année disponible, les données 2025 de l'Insee paraîtront en décembre 2026). Le ratio au PIB d'Eurostat repose sur un PIB 2024 antérieur à la révision de mai 2026 (Insee : dépenses totales = 57,0 % du PIB)."
+    unite: pourcent_pib
+    serie:
+      - date: "2024-12-31"
+        valeur: 8.9
+        source: eurostat-gov-10a-exp
+        statut: provisoire
+  - id: finances_publiques.cofog.loisirs_culture_pct_pib
+    titre: "Dépenses publiques par fonction (COFOG) : Loisirs, culture et culte (% du PIB)"
+    explication: "Dépenses de l'ensemble des administrations publiques consacrées à cette fonction en 2024, soit 43,1 Md€ (Eurostat, données transmises par l'Insee ; dernière année disponible, les données 2025 de l'Insee paraîtront en décembre 2026). Le ratio au PIB d'Eurostat repose sur un PIB 2024 antérieur à la révision de mai 2026 (Insee : dépenses totales = 57,0 % du PIB)."
+    unite: pourcent_pib
+    serie:
+      - date: "2024-12-31"
+        valeur: 1.5
+        source: eurostat-gov-10a-exp
+        statut: provisoire
+  - id: finances_publiques.cofog.enseignement_pct_pib
+    titre: "Dépenses publiques par fonction (COFOG) : Enseignement (% du PIB)"
+    explication: "Dépenses de l'ensemble des administrations publiques consacrées à cette fonction en 2024, soit 148,6 Md€ (Eurostat, données transmises par l'Insee ; dernière année disponible, les données 2025 de l'Insee paraîtront en décembre 2026). Le ratio au PIB d'Eurostat repose sur un PIB 2024 antérieur à la révision de mai 2026 (Insee : dépenses totales = 57,0 % du PIB)."
+    unite: pourcent_pib
+    serie:
+      - date: "2024-12-31"
+        valeur: 5.1
+        source: eurostat-gov-10a-exp
+        statut: provisoire
+  - id: finances_publiques.cofog.protection_sociale_pct_pib
+    titre: "Dépenses publiques par fonction (COFOG) : Protection sociale (retraites, famille, chômage, handicap, logement social…) (% du PIB)"
+    explication: "Dépenses de l'ensemble des administrations publiques consacrées à cette fonction en 2024, soit 693,0 Md€ (Eurostat, données transmises par l'Insee ; dernière année disponible, les données 2025 de l'Insee paraîtront en décembre 2026). Le ratio au PIB d'Eurostat repose sur un PIB 2024 antérieur à la révision de mai 2026 (Insee : dépenses totales = 57,0 % du PIB)."
+    unite: pourcent_pib
+    serie:
+      - date: "2024-12-31"
+        valeur: 23.7
+        source: eurostat-gov-10a-exp
+        statut: provisoire
+  - id: finances_publiques.cofog.total_pct_pib
+    titre: "Dépenses publiques par fonction (COFOG) : Total des dépenses publiques (% du PIB)"
+    explication: "Dépenses de l'ensemble des administrations publiques consacrées à cette fonction en 2024, soit 1671,8 Md€ (Eurostat, données transmises par l'Insee ; dernière année disponible, les données 2025 de l'Insee paraîtront en décembre 2026). Le ratio au PIB d'Eurostat repose sur un PIB 2024 antérieur à la révision de mai 2026 (Insee : dépenses totales = 57,0 % du PIB)."
+    unite: pourcent_pib
+    serie:
+      - date: "2024-12-31"
+        valeur: 57.3
+        source: eurostat-gov-10a-exp
+        statut: provisoire

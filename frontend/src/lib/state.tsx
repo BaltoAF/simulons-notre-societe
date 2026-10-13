@@ -1,0 +1,134 @@
+// État partagé : utilisateur connecté, brouillon de réforme (atelier), situation du foyer (« Mes droits »).
+// Le brouillon et la situation restent dans le navigateur : rien n'est stocké côté serveur sans action explicite.
+import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react'
+import { api, type Meta, type Utilisateur, type Valeur } from './api'
+
+type Ctx = {
+  user: Utilisateur | null
+  setUser: (u: Utilisateur | null) => void
+  meta: Meta | null
+  draft: Brouillon
+  setDraft: (d: Brouillon | ((d: Brouillon) => Brouillon)) => void
+  situation: SituationSaisie | null
+  setSituation: (s: SituationSaisie | null) => void
+}
+
+export type Brouillon = {
+  overrides: Record<string, Valeur>
+  justifications: Record<string, string>
+  societe: string | null   // société de départ (fork), null = Société 1.0
+  branche: string
+  nomSociete?: string
+}
+
+export type AdulteSaisie = {
+  age: number
+  activite: 'salarie' | 'chomeur' | 'retraite' | 'etudiant' | 'inactif'
+  montant_net: number
+  cadre: boolean
+  handicap: boolean
+}
+
+export type SituationSaisie = {
+  couple: 'seul' | 'marie' | 'pacse' | 'concubin'
+  adultes: AdulteSaisie[]
+  enfants: number[]
+  logement: 'locataire_prive' | 'locataire_social' | 'proprietaire' | 'heberge'
+  loyer_mensuel: number
+  zone: 1 | 2 | 3
+  revenus_capital_annuels: number
+}
+
+export const BROUILLON_VIDE: Brouillon = { overrides: {}, justifications: {}, societe: null, branche: 'principale' }
+
+function load<T>(key: string, def: T): T {
+  try {
+    const s = localStorage.getItem(key)
+    return s ? (JSON.parse(s) as T) : def
+  } catch {
+    return def
+  }
+}
+function save(key: string, v: unknown) {
+  try {
+    if (v === null) localStorage.removeItem(key)
+    else localStorage.setItem(key, JSON.stringify(v))
+  } catch { /* stockage indisponible : on continue sans */ }
+}
+
+const AppContext = createContext<Ctx | null>(null)
+
+export function AppProvider({ children }: { children: ReactNode }) {
+  const [user, setUser] = useState<Utilisateur | null>(null)
+  const [meta, setMeta] = useState<Meta | null>(null)
+  const [draft, setDraftState] = useState<Brouillon>(() => load('societe.brouillon', BROUILLON_VIDE))
+  const [situation, setSituationState] = useState<SituationSaisie | null>(() => load('societe.situation', null))
+
+  useEffect(() => {
+    api<{ utilisateur: Utilisateur | null }>('/api/auth/moi').then((r) => setUser(r.utilisateur)).catch(() => {})
+    api<Meta>('/api/meta').then(setMeta).catch(() => {})
+  }, [])
+
+  const setDraft = useCallback((d: Brouillon | ((d: Brouillon) => Brouillon)) => {
+    setDraftState((prev) => {
+      const next = typeof d === 'function' ? (d as (x: Brouillon) => Brouillon)(prev) : d
+      save('societe.brouillon', next)
+      return next
+    })
+  }, [])
+  const setSituation = useCallback((s: SituationSaisie | null) => {
+    setSituationState(s)
+    save('societe.situation', s)
+  }, [])
+
+  const value = useMemo(() => ({ user, setUser, meta, draft, setDraft, situation, setSituation }),
+    [user, meta, draft, setDraft, situation, setSituation])
+  return <AppContext.Provider value={value}>{children}</AppContext.Provider>
+}
+
+export function useApp(): Ctx {
+  const c = useContext(AppContext)
+  if (!c) throw new Error('AppProvider manquant')
+  return c
+}
+
+/** Convertit la saisie grand public en ménage pour l'API (montants nets). */
+export function situationVersMenage(s: SituationSaisie) {
+  return {
+    couple: s.adultes.length > 1 ? s.couple : 'seul',
+    enfants: s.enfants,
+    logement: s.logement,
+    loyer_mensuel: s.logement.startsWith('locataire') ? s.loyer_mensuel : 0,
+    zone: s.zone,
+    revenus_capital_annuels: s.revenus_capital_annuels,
+    adultes: s.adultes.map((a) => ({
+      age: a.age,
+      activite: a.activite,
+      cadre: a.cadre,
+      handicap: a.handicap,
+      salaire_net_mensuel: a.activite === 'salarie' ? a.montant_net : 0,
+      chomage_net_mensuel: a.activite === 'chomeur' ? a.montant_net : 0,
+      retraite_nette_mensuelle: a.activite === 'retraite' ? a.montant_net : 0,
+    })),
+  }
+}
+
+/** Petit hook de chargement de données. */
+export function useFetch<T>(path: string | null, deps: unknown[] = []) {
+  const [data, setData] = useState<T | null>(null)
+  const [error, setError] = useState<string | null>(null)
+  const [loading, setLoading] = useState<boolean>(!!path)
+  const [tick, setTick] = useState(0)
+  useEffect(() => {
+    if (!path) { setLoading(false); return }
+    const ctrl = new AbortController()
+    setLoading(true)
+    setError(null)
+    api<T>(path, { signal: ctrl.signal })
+      .then((d) => { setData(d); setLoading(false) })
+      .catch((e) => { if (e.name !== 'AbortError') { setError(e.message); setLoading(false) } })
+    return () => ctrl.abort()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [path, tick, ...deps])
+  return { data, error, loading, reload: () => setTick((t) => t + 1), setData }
+}

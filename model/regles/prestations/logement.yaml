@@ -1,0 +1,100 @@
+# FICHIER GÉNÉRÉ par system/sync_openfisca.py le 2026-10-13 à partir d'OpenFisca-France 176.1.2.
+# Ne pas modifier à la main : modifier model/moteur/openfisca_leviers.yaml puis relancer le Système.
+genere_par: system/sync_openfisca.py
+domaine: prestations
+theme: Aides au logement
+regles:
+- id: prestations.aides_logement.forfait_charges
+  titre: 'Aides au logement : forfait de charges (cas général, par mois)'
+  explication: Montant forfaitaire ajouté au loyer pour tenir compte des charges dans le calcul de l'aide au logement.
+  type: nombre
+  unite: euros
+  bornes:
+  - 0
+  - 500
+  valeurs:
+  - depuis: '2009-01-01'
+    valeur: 50.59
+    sources:
+    - of-ref-d302627898
+    - openfisca-france
+  - depuis: '2010-01-01'
+    valeur: 50.75
+    sources:
+    - of-ref-e3381ad387
+    - openfisca-france
+  - depuis: '2011-01-01'
+    valeur: 51.31
+    sources:
+    - of-ref-15bb82451b
+    - openfisca-france
+  - depuis: '2012-01-01'
+    valeur: 51.82
+    sources:
+    - of-ref-5698e285da
+    - openfisca-france
+  - depuis: '2013-01-01'
+    valeur: 52.93
+    sources:
+    - of-ref-a67e599a8d
+    - openfisca-france
+  - depuis: '2014-10-01'
+    valeur: 53.23
+    sources:
+    - of-ref-a3a7b8c031
+    - openfisca-france
+  - depuis: '2015-10-01'
+    valeur: 53.27
+    sources:
+    - of-ref-ff31521afd
+    - openfisca-france
+  - depuis: '2017-10-01'
+    valeur: 53.67
+    sources:
+    - of-ref-f851647f71
+    - openfisca-france
+  - depuis: '2019-10-01'
+    valeur: 53.83
+    sources:
+    - of-ref-4001b8f71e
+    - openfisca-france
+  - depuis: '2020-10-01'
+    valeur: 53.99
+    sources:
+    - of-ref-134c052b9f
+    - openfisca-france
+  - depuis: '2021-10-01'
+    valeur: 54.22
+    sources:
+    - of-ref-8f68c716a4
+    - openfisca-france
+  - depuis: '2022-07-01'
+    valeur: 56.12
+    sources:
+    - of-ref-a20d7ae5af
+    - openfisca-france
+  - depuis: '2023-10-01'
+    valeur: 58.08
+    sources:
+    - of-ref-5859285a97
+    - openfisca-france
+  - depuis: '2024-10-01'
+    valeur: 59.97
+    sources:
+    - of-ref-6b9f0418a4
+    - of-ref-101b4f0a98
+    - openfisca-france
+  - depuis: '2025-10-01'
+    valeur: 60.59
+    sources:
+    - of-ref-361e46e797
+    - openfisca-france
+  - depuis: '2026-10-01'
+    valeur: 61.29
+    sources:
+    - of-ref-bf5a1a766c
+    - openfisca-france
+  verifie_le: '2026-09-30'
+  moteur:
+    openfisca: prestations_sociales.aides_logement.allocations_logement.locatif.formule.c_forfait_charges.cas_general.cas_general
+  a_verifier: false

@@ -1,0 +1,320 @@
+domaine: nationalite_immigration
+theme: "Accès à la nationalité française"
+regles:
+  # ---------------------------------------------------------------------------
+  # Naturalisation par décret
+  # ---------------------------------------------------------------------------
+  - id: nationalite_immigration.naturalisation.duree_residence
+    titre: "Naturalisation : durée minimale de résidence en France"
+    explication: "Pour demander la nationalité française par naturalisation, il faut en principe vivre en France depuis au moins 5 ans."
+    type: nombre
+    unite: ans
+    bornes: [0, 15]
+    valeurs:
+      - depuis: "2026-07-16"
+        valeur: 5
+        sources: [sp-f2213, legi-cc-21-14-1-a-21-25-1]
+        article: "Code civil, art. 21-14-1 à 21-25-1"
+    tags: [naturalisation, residence, conditions]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-07-16. Aucune durée n'est exigée notamment pour les réfugiés, certains francophones ou les anciens militaires ; durée réduite à 2 ans dans certains cas (voir règle dédiée)."
+
+  - id: nationalite_immigration.naturalisation.duree_residence_reduite
+    titre: "Naturalisation : durée de résidence réduite (diplôme du supérieur, talents, parcours d'intégration)"
+    explication: "La durée de résidence exigée tombe à 2 ans pour une personne diplômée d'un établissement d'enseignement supérieur français après 2 ans d'études, qui rend des services importants à la France ou qui a un parcours d'intégration exceptionnel."
+    type: nombre
+    unite: ans
+    bornes: [0, 5]
+    valeurs:
+      - depuis: "2026-07-16"
+        valeur: 2
+        sources: [sp-f2213, legi-cc-21-14-1-a-21-25-1]
+        article: "Code civil, art. 21-14-1 à 21-25-1"
+    tags: [naturalisation, residence, etudes, conditions]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-07-16."
+
+  - id: nationalite_immigration.naturalisation.age_minimum
+    titre: "Naturalisation : âge minimum"
+    explication: "Il faut avoir 18 ans pour être naturalisé français ; la demande peut être déposée dès 17 ans."
+    type: nombre
+    unite: ans
+    bornes: [16, 21]
+    valeurs:
+      - depuis: "2026-07-16"
+        valeur: 18
+        sources: [sp-f2213, legi-cc-21-14-1-a-21-25-1]
+    tags: [naturalisation, age, conditions]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-07-16. Un enfant mineur resté étranger peut être naturalisé si l'un de ses parents est devenu français et qu'il a résidé avec lui en France pendant les 5 ans précédant la demande."
+
+  - id: nationalite_immigration.naturalisation.niveau_langue
+    titre: "Naturalisation : niveau de français exigé (oral et écrit)"
+    explication: "Le candidat à la naturalisation doit prouver, par un diplôme ou un test officiel, qu'il parle et écrit le français à un niveau donné de l'échelle européenne des langues (A1 = débutant, C2 = maîtrise)."
+    type: choix
+    choix: ["aucun", "A1", "A2", "B1", "B2", "C1", "C2"]
+    valeurs:
+      - depuis: "2025-10-27"
+        valeur: "B1"
+        sources: [gisti-addendum-guide-nationalite-2025]
+      - depuis: "2026-01-01"
+        valeur: "B2"
+        sources: [sp-f11926, legi-decret-2025-648, legi-cc-21-14-1-a-21-25-1]
+        article: "Code civil, art. 21-24 ; décret n° 93-1362 du 30 décembre 1993 modifié par le décret n° 2025-648 du 15 juillet 2025"
+    tags: [naturalisation, langue, integration, reforme_2026]
+    a_verifier: true
+    note: "Valeur actuelle (B2) confirmée sur service-public (fiche vérifiée le 1er janvier 2026). Seule la valeur antérieure (B1) repose sur une source non officielle (GISTI, valeur attestée au 2025-10-27, date d'entrée en vigueur du B1 non établie). Relèvement opéré par le décret n° 2025-648 du 15 juillet 2025, applicable au 1er janvier 2026. Dispense possible pour raison de santé ou handicap, et pour les réfugiés ou apatrides de plus de 70 ans résidant en France depuis au moins 15 ans."
+
+  - id: nationalite_immigration.naturalisation.examen_civique_obligatoire
+    titre: "Naturalisation : réussite obligatoire à l'examen civique"
+    explication: "Depuis le 1er janvier 2026, le candidat à la naturalisation doit avoir réussi un examen civique (questionnaire sur les valeurs de la République, les institutions, l'histoire et la vie en France) avant de déposer sa demande."
+    type: booleen
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: true
+        sources: [sp-a18713, sp-f2213, legi-arrete-2025-10-10-examen-civique]
+    tags: [naturalisation, examen_civique, integration, reforme_2026]
+    a_verifier: false
+    note: "Examen créé par la loi du 26 janvier 2024 pour contrôler l'immigration, améliorer l'intégration, obligatoire à compter du 1er janvier 2026. L'attestation de réussite n'a pas de durée de validité limitée. L'assimilation est aussi vérifiée lors d'un entretien en préfecture."
+
+  - id: nationalite_immigration.examen_civique.seuil_reussite
+    titre: "Examen civique : part minimale de bonnes réponses pour réussir"
+    explication: "L'examen civique est un questionnaire à choix multiples de 40 questions en 45 minutes au plus ; il faut au moins 32 bonnes réponses, soit 80 %, pour le réussir."
+    type: nombre
+    unite: pourcent
+    bornes: [50, 100]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 80
+        sources: [sp-a18713, legi-arrete-2025-10-10-examen-civique]
+        article: "Arrêté du 10 octobre 2025 relatif au programme, aux épreuves et aux modalités d'organisation de l'examen civique"
+    tags: [examen_civique, naturalisation, titre_de_sejour, reforme_2026]
+    a_verifier: false
+    note: "40 questions (28 de connaissances générales, 12 de mises en situation), 4 réponses proposées dont une seule correcte. Le même examen conditionne la première carte de séjour pluriannuelle et la première carte de résident."
+
+  - id: nationalite_immigration.naturalisation.delai_reponse_administration
+    titre: "Naturalisation : délai maximal de réponse de l'administration"
+    explication: "L'administration a au maximum 18 mois après la remise du récépissé pour répondre à une demande de naturalisation (12 mois si le demandeur vit en France depuis au moins 10 ans), prolongeables une fois de 3 mois."
+    type: nombre
+    unite: mois
+    bornes: [6, 36]
+    valeurs:
+      - depuis: "2026-07-16"
+        valeur: 18
+        sources: [sp-f2213]
+    tags: [naturalisation, delai, procedure]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-07-16."
+
+  - id: nationalite_immigration.naturalisation.droit_de_timbre
+    titre: "Naturalisation ou déclaration par mariage : droit de timbre à payer"
+    explication: "Le dépôt d'une demande de naturalisation ou d'une déclaration de nationalité par mariage coûte un timbre fiscal de 255 € (127,50 € en Guyane) ; le reste de la démarche est gratuit."
+    type: nombre
+    unite: euros
+    bornes: [0, 1000]
+    valeurs:
+      - depuis: "2026-05-01"
+        valeur: 255
+        sources: [sp-f2726, sp-f2213]
+    tags: [naturalisation, mariage, cout, timbre_fiscal]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-05-01. Montant réduit à 127,50 € en Guyane."
+
+  - id: nationalite_immigration.naturalisation.condamnation_prison_bloquante
+    titre: "Naturalisation ou mariage : peine de prison ferme qui interdit d'acquérir la nationalité"
+    explication: "Une personne condamnée en France à une peine de prison sans sursis d'au moins 6 mois ne peut pas acquérir la nationalité française par naturalisation ou par mariage, sauf réhabilitation ou effacement de la condamnation du bulletin n° 2 du casier judiciaire."
+    type: nombre
+    unite: mois
+    bornes: [0, 24]
+    valeurs:
+      - depuis: "2026-05-01"
+        valeur: 6
+        sources: [sp-f2726, sp-f2213]
+    tags: [naturalisation, mariage, casier_judiciaire, conditions]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-05-01. Une condamnation pour atteinte aux intérêts fondamentaux de la Nation ou pour terrorisme est également bloquante, quelle que soit la peine."
+
+  # ---------------------------------------------------------------------------
+  # Déclaration de nationalité par mariage
+  # ---------------------------------------------------------------------------
+  - id: nationalite_immigration.mariage.duree_mariage
+    titre: "Nationalité par mariage : durée minimale de mariage (vie en France)"
+    explication: "Le conjoint étranger d'un Français peut demander la nationalité française par déclaration après au moins 4 ans de mariage, s'il a vécu en France sans interruption depuis le mariage (ou au moins 3 ans de manière continue)."
+    type: nombre
+    unite: ans
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2026-05-01"
+        valeur: 4
+        sources: [sp-f2726, legi-cc-21-1-a-21-6]
+        article: "Code civil, art. 21-2"
+    tags: [mariage, nationalite, conditions]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-05-01. La communauté de vie doit être continue depuis le mariage et le conjoint français doit avoir gardé sa nationalité."
+
+  - id: nationalite_immigration.mariage.duree_mariage_hors_france
+    titre: "Nationalité par mariage : durée minimale de mariage en cas de vie à l'étranger"
+    explication: "Si le couple a vécu moins de 3 ans en France depuis le mariage et que le conjoint français n'était pas inscrit au registre des Français de l'étranger, il faut au moins 5 ans de mariage."
+    type: nombre
+    unite: ans
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2026-05-01"
+        valeur: 5
+        sources: [sp-f2726, legi-cc-21-1-a-21-6]
+        article: "Code civil, art. 21-2"
+    tags: [mariage, nationalite, conditions]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-05-01. La durée reste de 4 ans si le conjoint français était inscrit sur les registres consulaires pendant le séjour à l'étranger."
+
+  - id: nationalite_immigration.mariage.niveau_langue
+    titre: "Nationalité par mariage : niveau de français exigé (oral et écrit)"
+    explication: "Le conjoint étranger qui demande la nationalité par mariage doit prouver par un diplôme ou un test officiel un niveau de français donné sur l'échelle européenne des langues (A1 = débutant, C2 = maîtrise)."
+    type: choix
+    choix: ["aucun", "A1", "A2", "B1", "B2", "C1", "C2"]
+    valeurs:
+      - depuis: "2025-10-27"
+        valeur: "B1"
+        sources: [gisti-addendum-guide-nationalite-2025]
+      - depuis: "2026-01-01"
+        valeur: "B2"
+        sources: [sp-f11926, legi-decret-2025-648, legi-cc-21-1-a-21-6]
+        article: "Code civil, art. 21-2 ; décret n° 93-1362 du 30 décembre 1993 modifié par le décret n° 2025-648 du 15 juillet 2025"
+    tags: [mariage, langue, integration, reforme_2026]
+    a_verifier: true
+    note: "Valeur actuelle (B2) confirmée sur service-public (fiche vérifiée le 1er janvier 2026), identique à celle de la naturalisation. Seule la valeur antérieure (B1) repose sur une source non officielle (GISTI, valeur attestée au 2025-10-27, date d'entrée en vigueur du B1 non établie). Contrairement à la naturalisation, la fiche service-public sur le mariage ne mentionne pas d'examen civique."
+
+  # ---------------------------------------------------------------------------
+  # Droit du sol (enfant né en France de parents étrangers)
+  # ---------------------------------------------------------------------------
+  - id: nationalite_immigration.droit_du_sol.age_acquisition_automatique
+    titre: "Droit du sol : âge d'acquisition automatique de la nationalité"
+    explication: "Un enfant né en France de parents étrangers (eux-mêmes nés à l'étranger) devient automatiquement français à 18 ans s'il réside en France à cet âge et y a vécu au moins 5 ans depuis ses 11 ans."
+    type: nombre
+    unite: ans
+    bornes: [13, 21]
+    valeurs:
+      - depuis: "2025-05-07"
+        valeur: 18
+        sources: [cc-2025-881-dc, sp-f295, legi-cc-21-7-a-21-11]
+        article: "Code civil, art. 21-7"
+    tags: [droit_du_sol, enfant, nationalite]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-05-07. Si l'un des parents étrangers est lui-même né en France, l'enfant né en France est français de naissance. La modification de l'article 21-7 votée en 2023 a été censurée par le Conseil constitutionnel (décision n° 2023-863 DC). Règles particulières à Mayotte (voir règles dédiées)."
+
+  - id: nationalite_immigration.droit_du_sol.duree_residence
+    titre: "Droit du sol : durée de résidence habituelle exigée de l'enfant"
+    explication: "Pour devenir français au titre de sa naissance en France, l'enfant doit avoir résidé habituellement en France pendant au moins 5 ans (continus ou non), depuis l'âge de 11 ans (ou de 8 ans pour une demande faite par les parents entre 13 et 16 ans)."
+    type: nombre
+    unite: ans
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2025-05-07"
+        valeur: 5
+        sources: [cc-2025-881-dc, sp-f295, legi-cc-21-7-a-21-11]
+        article: "Code civil, art. 21-7 et 21-11"
+    tags: [droit_du_sol, enfant, residence]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-05-07."
+
+  - id: nationalite_immigration.droit_du_sol.age_declaration_anticipee_parents
+    titre: "Droit du sol : âge à partir duquel les parents peuvent demander la nationalité pour l'enfant"
+    explication: "Dès 13 ans, les parents étrangers d'un enfant né en France peuvent demander pour lui la nationalité française par déclaration, avec son accord, s'il a vécu en France au moins 5 ans depuis ses 8 ans."
+    type: nombre
+    unite: ans
+    bornes: [0, 18]
+    valeurs:
+      - depuis: "2025-05-07"
+        valeur: 13
+        sources: [cc-2025-881-dc, sp-f295, legi-cc-21-7-a-21-11]
+        article: "Code civil, art. 21-11"
+    tags: [droit_du_sol, enfant, declaration]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-05-07. Déclaration possible de 13 à 15 ans inclus par les représentants légaux."
+
+  - id: nationalite_immigration.droit_du_sol.age_declaration_anticipee_seul
+    titre: "Droit du sol : âge à partir duquel le jeune peut demander seul la nationalité"
+    explication: "Dès 16 ans, le jeune né en France de parents étrangers peut demander lui-même la nationalité française par déclaration, s'il a vécu en France au moins 5 ans depuis ses 11 ans."
+    type: nombre
+    unite: ans
+    bornes: [0, 18]
+    valeurs:
+      - depuis: "2025-05-07"
+        valeur: 16
+        sources: [cc-2025-881-dc, sp-f295, legi-cc-21-7-a-21-11]
+        article: "Code civil, art. 21-11"
+    tags: [droit_du_sol, enfant, declaration]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-05-07."
+
+  # ---------------------------------------------------------------------------
+  # Régime spécifique de Mayotte
+  # ---------------------------------------------------------------------------
+  - id: nationalite_immigration.mayotte.duree_sejour_regulier_parents
+    titre: "Mayotte : durée de séjour régulier exigée des parents à la naissance de l'enfant"
+    explication: "À Mayotte, un enfant né de parents étrangers ne peut devenir français par le droit du sol que si, à sa naissance, ses parents résidaient en France de manière régulière et ininterrompue depuis une durée minimale."
+    type: nombre
+    unite: mois
+    bornes: [0, 60]
+    valeurs:
+      - depuis: "2019-03-01"
+        valeur: 3
+        sources: [justice-circ-2026-05-05-nationalite-mayotte, cc-2025-881-dc]
+        article: "Code civil, art. 2493 (rédaction issue de la loi n° 2018-778 du 10 septembre 2018)"
+      - depuis: "2025-05-14"
+        valeur: 12
+        sources: [justice-circ-2026-05-05-nationalite-mayotte, cc-2025-881-dc]
+        article: "Code civil, art. 2493 (rédaction issue de la loi n° 2025-412 du 12 mai 2025)"
+    tags: [mayotte, droit_du_sol, outre_mer, reforme_2025]
+    a_verifier: false
+    note: "La loi n° 2025-412 du 12 mai 2025, entrée en vigueur le 14 mai 2025, a porté la durée de 3 mois à un an (« plus d'un an ») et l'a étendue aux deux parents. Le régime de 3 mois s'applique aux déclarations souscrites du 1er mars 2019 au 13 mai 2025. Validée par le Conseil constitutionnel (décision n° 2025-881 DC) sous réserve : pas d'exigence de passeport biométrique pour les ressortissants de pays qui n'en délivrent pas. Décret d'application n° 2026-338 du 30 avril 2026."
+
+  - id: nationalite_immigration.mayotte.condition_deux_parents
+    titre: "Mayotte : la condition de séjour régulier s'applique-t-elle aux deux parents ?"
+    explication: "Depuis 2025, à Mayotte, ce sont les deux parents (et non plus un seul) qui doivent avoir été en séjour régulier à la naissance de l'enfant pour qu'il puisse devenir français par le droit du sol ; si la filiation n'est établie qu'à l'égard d'un parent, la condition ne vise que lui."
+    type: booleen
+    valeurs:
+      - depuis: "2019-03-01"
+        valeur: false
+        sources: [justice-circ-2026-05-05-nationalite-mayotte]
+        article: "Code civil, art. 2493 (rédaction issue de la loi n° 2018-778 du 10 septembre 2018)"
+      - depuis: "2025-05-14"
+        valeur: true
+        sources: [justice-circ-2026-05-05-nationalite-mayotte, cc-2025-881-dc]
+        article: "Code civil, art. 2493 (rédaction issue de la loi n° 2025-412 du 12 mai 2025)"
+    tags: [mayotte, droit_du_sol, outre_mer, reforme_2025]
+    a_verifier: false
+    note: "Sous la loi du 10 septembre 2018, il suffisait qu'un des parents réside régulièrement en France depuis plus de 3 mois."
+
+  # ---------------------------------------------------------------------------
+  # Déchéance de nationalité
+  # ---------------------------------------------------------------------------
+  - id: nationalite_immigration.decheance.delai_apres_acquisition
+    titre: "Déchéance de nationalité : délai après l'acquisition (cas général)"
+    explication: "Une personne devenue française (et ayant une autre nationalité) ne peut être déchue de la nationalité que pour des faits commis avant l'acquisition ou dans les 10 ans qui la suivent. Un Français de naissance ne peut pas être déchu."
+    type: nombre
+    unite: ans
+    bornes: [0, 30]
+    valeurs:
+      - depuis: "2025-05-27"
+        valeur: 10
+        sources: [sp-f32827, legi-cc-25-a-25-1]
+        article: "Code civil, art. 25 et 25-1"
+    tags: [decheance, nationalite, sanction]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-05-27. La déchéance ne peut pas rendre la personne apatride. L'extension des motifs de déchéance votée en 2023 a été censurée par le Conseil constitutionnel (décision n° 2023-863 DC)."
+
+  - id: nationalite_immigration.decheance.delai_apres_acquisition_terrorisme
+    titre: "Déchéance de nationalité : délai après l'acquisition (terrorisme, atteinte aux intérêts de la Nation)"
+    explication: "En cas d'acte de terrorisme ou d'atteinte aux intérêts fondamentaux de la Nation, la déchéance reste possible pour des faits commis jusqu'à 15 ans après l'acquisition de la nationalité."
+    type: nombre
+    unite: ans
+    bornes: [0, 30]
+    valeurs:
+      - depuis: "2025-05-27"
+        valeur: 15
+        sources: [sp-f32827, legi-cc-25-a-25-1]
+        article: "Code civil, art. 25 et 25-1"
+    tags: [decheance, nationalite, terrorisme, sanction]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-05-27. La décision est prise par décret sur avis conforme du Conseil d'État."

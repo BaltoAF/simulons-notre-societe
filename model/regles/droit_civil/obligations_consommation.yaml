@@ -1,0 +1,172 @@
+domaine: droit_civil
+theme: "Contrats, prescription et consommation"
+regles:
+  # ---------------------------------------------------------------- prescription
+  - id: droit_civil.prescription.droit_commun
+    titre: "Prescription civile de droit commun (délai pour agir en justice)"
+    explication: "Sauf règle particulière, on dispose de 5 ans pour agir en justice (réclamer une somme, demander réparation…) à partir du jour où l'on a connu, ou aurait dû connaître, les faits."
+    type: nombre
+    unite: ans
+    bornes: [1, 30]
+    valeurs:
+      - depuis: "2008-06-18"
+        valeur: 5
+        sources: [an-ta-138-2007, senat-dossier-prescription-2008, sp-f19134, legi-cc-2224]
+        article: "Code civil, art. 2224 (loi n° 2008-561 du 17 juin 2008)"
+    tags: [prescription, contrats, justice_civile, delai]
+    a_verifier: false
+    note: "Texte de l'art. 2224 lu dans le texte adopté par l'Assemblée nationale puis adopté sans modification par le Sénat (loi n° 2008-561 du 17 juin 2008, parue au JO n° 141 du 18 juin 2008 : date de publication retenue). En 2026, sp-f19134 renvoie à l'art. 2224 et retient 5 ans pour de nombreux documents. Nombreuses exceptions (ex. 2 ans pour l'établissement de crédit en cas de défaillance d'un emprunteur à la consommation selon sp-f19134 ; 20 ans pour l'action en responsabilité civile en cas de violences ou agressions sexuelles sur mineur dans le texte de 2008)."
+
+  - id: droit_civil.prescription.delai_butoir
+    titre: "Délai butoir de la prescription civile"
+    explication: "Même si le point de départ est reporté ou si la prescription est suspendue ou interrompue, une action ne peut plus être engagée plus de 20 ans après la naissance du droit."
+    type: nombre
+    unite: ans
+    bornes: [10, 50]
+    valeurs:
+      - depuis: "2008-06-18"
+        valeur: 20
+        sources: [an-ta-138-2007, senat-dossier-prescription-2008]
+        article: "Code civil, art. 2232 (loi n° 2008-561 du 17 juin 2008)"
+    tags: [prescription, justice_civile, delai]
+    a_verifier: true
+    note: "Valeur lue dans le texte définitif de 2008 (date de publication au JO retenue) ; aucune source officielle à jour lue pour confirmer la rédaction en vigueur au 13/10/2026 (Légifrance inaccessible, fiche DGCCRF « Délais de prescription » bloquée par protection anti-bot). Le texte de 2008 écarte ce plafond notamment pour le dommage corporel (art. 2226), les actions réelles immobilières (art. 2227) et les actions relatives à l'état des personnes."
+
+  # ---------------------------------------------------------------- droits de rétractation
+  - id: droit_civil.retractation.achat_a_distance
+    titre: "Droit de rétractation pour un achat à distance (internet, téléphone, courrier)"
+    explication: "Après un achat à distance auprès d'un professionnel, le consommateur peut changer d'avis sans justification pendant 14 jours calendaires et se faire rembourser."
+    type: nombre
+    unite: jours
+    bornes: [0, 30]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 14
+        sources: [sp-f10485, legi-cconso-l221-18]
+        article: "Code de la consommation, art. L221-18 à L221-28"
+    tags: [consommation, retractation, achat_en_ligne, delai]
+    a_verifier: false
+    note: "Délai minimum ; prolongé jusqu'à 12 mois si le vendeur n'a pas informé du droit. Nombreuses exceptions (biens sur mesure, périssables…). Un régime renforcé pour les services financiers à distance s'applique à partir du 19 juin 2026 (ordonnance du 5 janvier 2026) sans changer le délai indiqué. Le cas des contrats hors établissement (démarchage) n'a pas été vérifié sur une fiche dédiée. Date d'entrée en vigueur non établie ; valeur attestée au 2026-01-01."
+
+  - id: droit_civil.credit_consommation.delai_retractation
+    titre: "Crédit à la consommation : délai de rétractation de l'emprunteur"
+    explication: "Après avoir signé un crédit à la consommation, l'emprunteur dispose de 14 jours calendaires pour y renoncer sans motif."
+    type: nombre
+    unite: jours
+    bornes: [0, 30]
+    valeurs:
+      - depuis: "2025-05-20"
+        valeur: 14
+        sources: [sp-f2435, legi-cconso-l312-18]
+        article: "Code de la consommation, art. L312-18 à L312-27"
+    tags: [consommation, credit, retractation, delai]
+    a_verifier: false
+    note: "Les fonds peuvent être versés 7 jours après la signature si aucune rétractation n'est exercée. Date d'entrée en vigueur non établie ; valeur attestée au 2025-05-20."
+
+  - id: droit_civil.credit_consommation.duree_validite_offre
+    titre: "Crédit à la consommation : durée pendant laquelle le prêteur doit maintenir son offre"
+    explication: "Le prêteur doit maintenir les conditions de son offre de crédit pendant au moins 15 jours, pour laisser le temps de comparer."
+    type: nombre
+    unite: jours
+    bornes: [0, 60]
+    valeurs:
+      - depuis: "2025-05-20"
+        valeur: 15
+        sources: [sp-f2435, legi-cconso-l312-18]
+        article: "Code de la consommation, art. L312-18 à L312-27"
+    tags: [consommation, credit, delai]
+    a_verifier: false
+    note: "« L'offre doit être maintenue pendant un délai de 15 jours francs ». Date d'entrée en vigueur non établie ; valeur attestée au 2025-05-20."
+
+  - id: droit_civil.immobilier.delai_retractation_acquereur
+    titre: "Achat d'un logement : délai de rétractation de l'acquéreur non professionnel"
+    explication: "Après la signature d'une promesse ou d'un compromis de vente d'un logement, l'acheteur particulier peut renoncer sans motif pendant 10 jours calendaires à compter de la notification de l'acte."
+    type: nombre
+    unite: jours
+    bornes: [0, 30]
+    valeurs:
+      - depuis: "2026-04-10"
+        valeur: 10
+        sources: [sp-f2965, legi-cch-l271-1]
+        article: "Code de la construction et de l'habitation, art. L271-1 à L271-3"
+    tags: [logement, immobilier, retractation, delai]
+    a_verifier: false
+    note: "Le délai court à partir du lendemain de la première présentation de la lettre recommandée notifiant l'acte. Le vendeur, lui, ne peut pas se rétracter (sauf clause). Date d'entrée en vigueur non établie ; valeur attestée au 2026-04-10."
+
+  - id: droit_civil.assurance_vie.delai_renonciation
+    titre: "Assurance-vie : délai de renonciation après la souscription"
+    explication: "Après avoir souscrit un contrat d'assurance-vie, on peut y renoncer pendant 30 jours calendaires et récupérer l'intégralité des sommes versées."
+    type: nombre
+    unite: jours
+    bornes: [0, 60]
+    valeurs:
+      - depuis: "2026-10-08"
+        valeur: 30
+        sources: [sp-f15268, legi-cassur-l132-1]
+        article: "Code des assurances, art. L132-1 à L132-27-2"
+    tags: [assurance_vie, epargne, retractation, delai]
+    a_verifier: false
+    note: "Le délai court à partir du moment où l'on est informé de la conclusion du contrat ; en cas d'information incomplète, il est prolongé dans la limite de 8 ans. L'assureur rembourse sous 30 jours. Date d'entrée en vigueur non établie ; valeur attestée au 2026-10-08."
+
+  # ---------------------------------------------------------------- garanties
+  - id: droit_civil.garantie_conformite.duree
+    titre: "Garantie légale de conformité : durée"
+    explication: "Un produit acheté à un professionnel (neuf, d'occasion ou reconditionné) ou un service numérique est couvert contre les défauts de conformité qui apparaissent dans les 2 ans suivant la livraison."
+    type: nombre
+    unite: ans
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2026-08-17"
+        valeur: 2
+        sources: [sp-f11094, legi-cconso-l217-3]
+        article: "Code de la consommation, art. L217-3 à L217-20"
+    tags: [consommation, garantie, produits]
+    a_verifier: false
+    note: "Ne s'applique qu'entre un acheteur non professionnel et un vendeur professionnel (pas aux ventes entre particuliers, ni aux enchères publiques de biens d'occasion). Date d'entrée en vigueur non établie ; valeur attestée au 2026-08-17."
+
+  # ---------------------------------------------------------------- intérêt légal
+  - id: droit_civil.interet_legal.taux_creancier_particulier
+    titre: "Taux de l'intérêt légal – créancier particulier (n'agissant pas pour des besoins professionnels)"
+    explication: "Taux appliqué aux sommes dues en retard (par exemple après une condamnation) lorsque le créancier est un particulier. Il est fixé chaque semestre."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 15]
+    valeurs:
+      - depuis: "2025-07-01"
+        valeur: 6.65
+        sources: [sp-f783, legi-cmf-l313-2]
+        article: "Code monétaire et financier, art. L313-2 et L313-3"
+      - depuis: "2026-01-01"
+        valeur: 6.67
+        sources: [sp-f783, legi-cmf-l313-2]
+        article: "Code monétaire et financier, art. L313-2 et L313-3"
+      - depuis: "2026-07-01"
+        valeur: 6.84
+        sources: [sp-f783, legi-cmf-l313-2]
+        article: "Code monétaire et financier, art. L313-2 et L313-3"
+    tags: [interet_legal, dettes, taux]
+    a_verifier: false
+    note: "Valeurs du tableau sp-f783 (2e semestre 2025, 1er et 2e semestres 2026 ; dates de début de semestre retenues). Taux simple : dû si la somme est payée dans les 2 mois suivant la date d'application du jugement ; au-delà, taux majoré égal au taux simple + 5 points « depuis 2015 » (sp-f783), soit 11,67 % au 1er semestre 2026."
+
+  - id: droit_civil.interet_legal.taux_autres_cas
+    titre: "Taux de l'intérêt légal – autres cas (notamment créancier professionnel)"
+    explication: "Taux appliqué aux sommes dues en retard lorsque le créancier n'est pas un particulier (par exemple une entreprise). Il est fixé chaque semestre."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 15]
+    valeurs:
+      - depuis: "2025-07-01"
+        valeur: 2.76
+        sources: [sp-f783, legi-cmf-l313-2]
+        article: "Code monétaire et financier, art. L313-2 et L313-3"
+      - depuis: "2026-01-01"
+        valeur: 2.62
+        sources: [sp-f783, legi-cmf-l313-2]
+        article: "Code monétaire et financier, art. L313-2 et L313-3"
+      - depuis: "2026-07-01"
+        valeur: 2.75
+        sources: [sp-f783, legi-cmf-l313-2]
+        article: "Code monétaire et financier, art. L313-2 et L313-3"
+    tags: [interet_legal, dettes, taux]
+    a_verifier: false
+    note: "Valeurs du tableau sp-f783 (2e semestre 2025, 1er et 2e semestres 2026 ; dates de début de semestre retenues)."

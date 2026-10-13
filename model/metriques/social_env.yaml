@@ -1,0 +1,529 @@
+# Métriques des domaines éducation, santé, logement, environnement-énergie.
+# Convention de date : un stock est daté du jour d'observation ; une grandeur annuelle
+# (dépense, émissions, production) est datée du 31 décembre de l'année de référence ;
+# une année scolaire est datée de sa rentrée (1er septembre) ; un indice trimestriel
+# est daté du premier jour du trimestre.
+metriques:
+  # ---------------------------------------------------------------------------
+  # ÉDUCATION
+  # ---------------------------------------------------------------------------
+  - id: education.eleves_apprentis_1er_2d_degres
+    titre: "Élèves et apprentis des 1er et 2d degrés (France, toutes tutelles)"
+    explication: "Nombre total d'écoliers, collégiens, lycéens et apprentis du second degré, y compris les élèves relevant des ministères de l'agriculture et de la santé, à la rentrée 2025."
+    unite: personnes
+    serie:
+      - date: "2025-09-01"
+        valeur: 12459500
+        source: depp-enc-2026
+        statut: provisoire
+
+  - id: education.eleves_premier_degre
+    titre: "Élèves du premier degré (écoles maternelles et élémentaires)"
+    explication: "Nombre d'écoliers à la rentrée 2025, dont 86,4 % dans le public (2 231 600 en préélémentaire, 3 923 300 en élémentaire et ULIS)."
+    unite: personnes
+    serie:
+      - date: "2025-09-01"
+        valeur: 6154900
+        source: depp-enc-2026
+        statut: provisoire
+
+  - id: education.eleves_second_degre
+    titre: "Élèves du second degré (collèges et lycées de l'Éducation nationale)"
+    explication: "Nombre de collégiens et lycéens à la rentrée 2025, dont 78,8 % dans le public (3 359 900 collégiens, 1 599 400 lycéens généraux et technologiques, 661 600 lycéens professionnels)."
+    unite: personnes
+    serie:
+      - date: "2025-09-01"
+        valeur: 5621000
+        source: depp-enc-2026
+        statut: provisoire
+
+  - id: education.enseignants_total
+    titre: "Enseignants en poste dans les écoles et établissements (public et privé sous contrat)"
+    explication: "Nombre d'enseignants de l'Éducation nationale en 2025-2026 : 711 600 dans le public et 139 900 dans le privé sous contrat, sur 1 219 600 personnels au total."
+    unite: personnes
+    serie:
+      - date: "2025-09-01"
+        valeur: 851500
+        source: depp-enc-2026
+        statut: provisoire
+
+  - id: education.enseignants_premier_degre
+    titre: "Enseignants du premier degré"
+    explication: "Nombre d'enseignants dans les écoles à la rentrée 2025, dont 326 500 dans le public."
+    unite: personnes
+    serie:
+      - date: "2025-09-01"
+        valeur: 366100
+        source: depp-enc-2026
+        statut: provisoire
+
+  - id: education.enseignants_second_degre
+    titre: "Enseignants du second degré"
+    explication: "Nombre d'enseignants dans les collèges et lycées à la rentrée 2025, dont 389 050 dans le public."
+    unite: personnes
+    serie:
+      - date: "2025-09-01"
+        valeur: 485450
+        source: depp-enc-2026
+        statut: provisoire
+
+  - id: education.depense_interieure_education
+    titre: "Dépense intérieure d'éducation (DIE)"
+    explication: "Ensemble des dépenses d'éducation engagées en France par l'État, les collectivités, les entreprises, les ménages et les autres administrations (de la maternelle au supérieur, formation continue comprise). Les éditions successives révisent les montants."
+    unite: milliards_euros
+    serie:
+      - date: "2023-12-31"
+        valeur: 197.1
+        source: depp-enc-2026
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 199.2
+        source: depp-ni-26-42-die-2025
+        statut: provisoire
+
+  - id: education.depense_interieure_education_part_pib
+    titre: "Dépense intérieure d'éducation en part du PIB"
+    explication: "Poids de la dépense intérieure d'éducation dans la richesse nationale."
+    unite: pourcent
+    serie:
+      - date: "2023-12-31"
+        valeur: 6.8
+        source: depp-enc-2026
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 6.7
+        source: depp-ni-26-42-die-2025
+        statut: provisoire
+
+  - id: education.depense_moyenne_par_eleve_etudiant
+    titre: "Dépense moyenne d'éducation par élève ou étudiant (y compris apprentissage)"
+    explication: "Dépense annuelle moyenne pour un élève ou un étudiant en 2025 : 9 440 € dans le premier degré, 11 780 € dans le second degré, 13 350 € pour un étudiant."
+    unite: euros
+    serie:
+      - date: "2025-12-31"
+        valeur: 11140
+        source: depp-ni-26-42-die-2025
+        statut: provisoire
+
+  - id: education.pisa_culture_mathematique
+    titre: "PISA : score moyen de la France en culture mathématique (élèves de 15 ans)"
+    explication: "Score moyen des élèves français à l'enquête PISA de l'OCDE en mathématiques. En 2022 il se situe dans la moyenne de l'OCDE (472), en forte baisse par rapport à 2012."
+    unite: points
+    serie:
+      - date: "2022-12-31"
+        valeur: 474
+        source: depp-ni-23-48-pisa-maths
+        statut: definitif
+
+  - id: education.pisa_comprehension_ecrit
+    titre: "PISA : score moyen de la France en compréhension de l'écrit"
+    explication: "Score moyen des élèves français de 15 ans en lecture à l'enquête PISA, en nette baisse entre 2018 et 2022."
+    unite: points
+    serie:
+      - date: "2018-12-31"
+        valeur: 493
+        source: depp-ni-23-49-pisa-sciences-ecrit
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 474
+        source: depp-ni-23-49-pisa-sciences-ecrit
+        statut: definitif
+
+  - id: education.pisa_culture_scientifique
+    titre: "PISA : score moyen de la France en culture scientifique"
+    explication: "Score moyen des élèves français de 15 ans en sciences à l'enquête PISA 2022, en baisse par rapport à 2015 et au niveau de la moyenne de l'OCDE."
+    unite: points
+    serie:
+      - date: "2022-12-31"
+        valeur: 487
+        source: depp-ni-23-49-pisa-sciences-ecrit
+        statut: definitif
+
+  - id: education.proportion_bacheliers_generation
+    titre: "Proportion de bacheliers dans une génération"
+    explication: "Part d'une génération qui obtient le baccalauréat (général, technologique ou professionnel). En 2026 : 42,2 % général, 15,5 % technologique, 21,3 % professionnel."
+    unite: pourcent
+    serie:
+      - date: "1970-07-01"
+        valeur: 20.1
+        source: depp-enc-2026
+        statut: definitif
+      - date: "2010-07-01"
+        valeur: 65
+        source: depp-enc-2026
+        statut: definitif
+      - date: "2026-07-01"
+        valeur: 79.0
+        source: depp-enc-2026
+        statut: provisoire
+
+  - id: education.taux_reussite_baccalaureat
+    titre: "Taux de réussite au baccalauréat (toutes séries)"
+    explication: "Part des candidats présents qui obtiennent le baccalauréat : 95,9 % en voie générale, 90,3 % en technologique et 84,3 % en professionnel à la session 2026."
+    unite: pourcent
+    serie:
+      - date: "2026-07-01"
+        valeur: 91.4
+        source: depp-enc-2026
+        statut: provisoire
+
+  # ---------------------------------------------------------------------------
+  # SANTÉ
+  # ---------------------------------------------------------------------------
+  - id: sante.esperance_vie_naissance_femmes
+    titre: "Espérance de vie à la naissance des femmes"
+    explication: "Nombre moyen d'années que vivrait une fille née cette année-là si elle connaissait toute sa vie les conditions de mortalité de l'année."
+    unite: ans
+    serie:
+      - date: "2024-12-31"
+        valeur: 85.8
+        source: insee-ip2087-esperance-vie-2025
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 85.9
+        source: insee-ip2087-esperance-vie-2025
+        statut: provisoire
+
+  - id: sante.esperance_vie_naissance_hommes
+    titre: "Espérance de vie à la naissance des hommes"
+    explication: "Nombre moyen d'années que vivrait un garçon né cette année-là si les conditions de mortalité de l'année restaient inchangées."
+    unite: ans
+    serie:
+      - date: "2024-12-31"
+        valeur: 80.2
+        source: insee-ip2087-esperance-vie-2025
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 80.3
+        source: insee-ip2087-esperance-vie-2025
+        statut: provisoire
+
+  - id: sante.consommation_soins_biens_medicaux
+    titre: "Consommation de soins et de biens médicaux (CSBM)"
+    explication: "Valeur totale des soins hospitaliers, soins de ville, médicaments et autres biens médicaux consommés en France dans l'année, quel que soit le financeur."
+    unite: milliards_euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 255
+        source: drees-cns-2025-depenses-sante-2024
+        statut: provisoire
+
+  - id: sante.depense_courante_sante_internationale
+    titre: "Dépense courante de santé au sens international (DCSi)"
+    explication: "Agrégat utilisé pour les comparaisons internationales : CSBM plus soins de longue durée, prévention, gouvernance et autres dépenses courantes de santé."
+    unite: milliards_euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 333
+        source: drees-cns-2025-depenses-sante-2024
+        statut: provisoire
+
+  - id: sante.depense_courante_sante_internationale_part_pib
+    titre: "Dépense courante de santé au sens international, en part du PIB"
+    explication: "Poids de la dépense de santé (DCSi) dans le PIB, stable entre 2023 et 2024."
+    unite: pourcent
+    serie:
+      - date: "2023-12-31"
+        valeur: 11.4
+        source: drees-cns-2025-depenses-sante-2024
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 11.4
+        source: drees-cns-2025-depenses-sante-2024
+        statut: provisoire
+
+  - id: sante.reste_a_charge_menages_par_habitant
+    titre: "Reste à charge des ménages en santé, par habitant (champ CSBM)"
+    explication: "Somme moyenne restant à la charge des ménages après remboursements de la Sécurité sociale et des complémentaires, soit 7,8 % de la CSBM en 2024."
+    unite: euros
+    serie:
+      - date: "2023-12-31"
+        valeur: 276
+        source: drees-cns-2025-depenses-sante-2024
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 292
+        source: drees-cns-2025-depenses-sante-2024
+        statut: provisoire
+
+  - id: sante.medecins_en_activite_et_internes
+    titre: "Médecins en activité et étudiants de 3e cycle (internes)"
+    explication: "Effectif cumulé des médecins en activité de moins de 70 ans et des internes en 2025, base des projections de la DREES (351 300 projetés en 2040 dont 140 000 généralistes en activité). Le nombre de médecins généralistes en 2025 n'a pas pu être relevé."
+    unite: personnes
+    serie:
+      - date: "2025-01-01"
+        valeur: 261800
+        source: drees-projections-medecins-2026
+        statut: estimation
+
+  # ---------------------------------------------------------------------------
+  # LOGEMENT
+  # ---------------------------------------------------------------------------
+  - id: logement.parc_logements_ordinaires
+    titre: "Parc de logements ordinaires (France)"
+    explication: "Nombre total de logements ordinaires (résidences principales, secondaires et logements vacants) au 1er juillet 2025 ; 82,6 % sont des résidences principales, 9,7 % des résidences secondaires et 7,6 % des logements vacants."
+    unite: logements
+    serie:
+      - date: "2025-07-01"
+        valeur: 38500000
+        source: sdes-compte-logement-2025
+        statut: estimation
+
+  - id: logement.parc_locatif_social
+    titre: "Logements locatifs sociaux (parc des bailleurs sociaux, France)"
+    explication: "Nombre de logements locatifs détenus par les bailleurs sociaux au 1er janvier 2025 (valeur arrondie publiée), en hausse de 0,5 % sur un an ; taux de vacance 2,1 %."
+    unite: logements
+    serie:
+      - date: "2025-01-01"
+        valeur: 5400000
+        source: sdes-parc-social-2025
+        statut: definitif
+
+  - id: logement.part_menages_proprietaires
+    titre: "Part des ménages propriétaires occupants de leur résidence principale"
+    explication: "Proportion des ménages propriétaires de leur logement (17,7 millions de ménages en 2022)."
+    unite: pourcent
+    serie:
+      - date: "2022-12-31"
+        valeur: 57.1
+        source: sdes-residences-principales-statuts
+        statut: definitif
+
+  - id: logement.part_menages_locataires_prive
+    titre: "Part des ménages locataires du parc privé"
+    explication: "Proportion des ménages locataires d'un bailleur privé (7,7 millions de ménages en 2022)."
+    unite: pourcent
+    serie:
+      - date: "2022-12-31"
+        valeur: 24.8
+        source: sdes-residences-principales-statuts
+        statut: definitif
+
+  - id: logement.part_menages_locataires_social
+    titre: "Part des ménages locataires du parc social"
+    explication: "Proportion des ménages logés dans le parc social (5,6 millions de ménages en 2022)."
+    unite: pourcent
+    serie:
+      - date: "2022-12-31"
+        valeur: 18.0
+        source: sdes-residences-principales-statuts
+        statut: definitif
+
+  - id: logement.indice_prix_logements_anciens
+    titre: "Indice des prix des logements anciens (France métropolitaine, base 100 en 2015, CVS)"
+    explication: "Évolution des prix de vente des logements anciens à partir des actes notariés. Après un pic fin 2022 (134,0), les prix ont reculé puis se sont stabilisés."
+    unite: indice
+    serie:
+      - date: "2022-10-01"
+        valeur: 134.0
+        source: insee-ipla-010567059
+        statut: definitif
+      - date: "2024-04-01"
+        valeur: 126.1
+        source: insee-ipla-010567059
+        statut: definitif
+      - date: "2025-04-01"
+        valeur: 126.8
+        source: insee-ipla-010567059
+        statut: definitif
+      - date: "2025-10-01"
+        valeur: 127.3
+        source: insee-ipla-010567059
+        statut: definitif
+      - date: "2026-01-01"
+        valeur: 127.0
+        source: insee-ipla-010567059
+        statut: provisoire
+      - date: "2026-04-01"
+        valeur: 125.7
+        source: insee-ipla-010567059
+        statut: provisoire
+
+  - id: logement.depense_logement
+    titre: "Dépense nationale de logement"
+    explication: "Ensemble des dépenses courantes et d'investissement consacrées au logement en 2025 (compte du logement), soit 21,2 % du PIB."
+    unite: milliards_euros
+    serie:
+      - date: "2025-12-31"
+        valeur: 621
+        source: sdes-compte-logement-2025
+        statut: provisoire
+
+  # ---------------------------------------------------------------------------
+  # ENVIRONNEMENT - ÉNERGIE
+  # ---------------------------------------------------------------------------
+  - id: environnement_energie.emissions_ges_hors_utcatf
+    titre: "Émissions territoriales de gaz à effet de serre de la France, hors puits de carbone (UTCATF)"
+    explication: "Émissions brutes de gaz à effet de serre sur le territoire, inventaire du Citepa (Secten 2026), reprises par le ministère pour le suivi de la SNBC ; la valeur 2030 est la trajectoire projetée (objectif de baisse de moitié par rapport à 1990)."
+    unite: mt_co2e
+    serie:
+      - date: "1990-12-31"
+        valeur: 547
+        source: mte-suivi-snbc-secten-2026
+        statut: definitif
+      - date: "2005-12-31"
+        valeur: 556
+        source: mte-suivi-snbc-secten-2026
+        statut: definitif
+      - date: "2015-12-31"
+        valeur: 461
+        source: mte-suivi-snbc-secten-2026
+        statut: definitif
+      - date: "2019-12-31"
+        valeur: 438
+        source: mte-suivi-snbc-secten-2026
+        statut: definitif
+      - date: "2020-12-31"
+        valeur: 398
+        source: mte-suivi-snbc-secten-2026
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: 422
+        source: mte-suivi-snbc-secten-2026
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 406
+        source: mte-suivi-snbc-secten-2026
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 378
+        source: mte-suivi-snbc-secten-2026
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 367
+        source: mte-suivi-snbc-secten-2026
+        statut: provisoire
+      - date: "2030-12-31"
+        valeur: 276
+        source: mte-suivi-snbc-secten-2026
+        statut: prevision
+
+  - id: environnement_energie.emissions_ges_avec_puits
+    titre: "Émissions nettes de gaz à effet de serre de la France (y compris puits de carbone)"
+    explication: "Émissions territoriales diminuées des absorptions des forêts et des sols (UTCATF), dont la capacité d'absorption s'est dégradée. Trajectoire projetée par le ministère : 224 Mt en 2030 et neutralité en 2050."
+    unite: mt_co2e
+    serie:
+      - date: "1990-12-31"
+        valeur: 498
+        source: mte-suivi-snbc-secten-2026
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 316
+        source: mte-suivi-snbc-secten-2026
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 303
+        source: mte-suivi-snbc-secten-2026
+        statut: provisoire
+
+  - id: environnement_energie.empreinte_carbone_totale
+    titre: "Empreinte carbone de la France"
+    explication: "Émissions de gaz à effet de serre liées à la consommation des Français, y compris celles des produits importés (environ la moitié en 2024), et hors émissions des exportations. Série révisée en 2025 (la valeur 2023 publiée en 2024 était de 644 Mt)."
+    unite: mt_co2e
+    serie:
+      - date: "2023-12-31"
+        valeur: 583
+        source: sdes-empreinte-carbone-1990-2024
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 563
+        source: sdes-empreinte-carbone-1990-2024
+        statut: provisoire
+
+  - id: environnement_energie.empreinte_carbone_par_habitant
+    titre: "Empreinte carbone par habitant"
+    explication: "Empreinte carbone rapportée à la population : 12,1 t en 1990, 8,2 t en 2024 (estimation provisoire)."
+    unite: t_co2e_par_habitant
+    serie:
+      - date: "1990-12-31"
+        valeur: 12.1
+        source: sdes-empreinte-carbone-1990-2024
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 8.5
+        source: sdes-empreinte-carbone-1990-2024
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 8.2
+        source: sdes-ges-empreinte-2024
+        statut: provisoire
+
+  - id: environnement_energie.production_electricite_totale
+    titre: "Production d'électricité (France métropolitaine)"
+    explication: "Production totale d'électricité en 2025 selon le bilan électrique de RTE ; le solde exportateur atteint 92,3 TWh, record historique."
+    unite: twh
+    serie:
+      - date: "2025-12-31"
+        valeur: 547.5
+        source: rte-bilan-2025-synthese
+        statut: provisoire
+
+  - id: environnement_energie.production_electricite_nucleaire
+    titre: "Production d'électricité d'origine nucléaire"
+    explication: "Production des centrales nucléaires en 2025, en hausse de 11,3 TWh sur un an."
+    unite: twh
+    serie:
+      - date: "2025-12-31"
+        valeur: 373.0
+        source: rte-bilan-2025-synthese
+        statut: provisoire
+
+  - id: environnement_energie.part_nucleaire_production_electricite
+    titre: "Part du nucléaire dans la production d'électricité"
+    explication: "Proportion de l'électricité produite en France métropolitaine par le nucléaire."
+    unite: pourcent
+    serie:
+      - date: "2025-12-31"
+        valeur: 68.1
+        source: rte-bilan-2025-production
+        statut: provisoire
+
+  - id: environnement_energie.part_renouvelables_production_electricite
+    titre: "Part des énergies renouvelables dans la production d'électricité"
+    explication: "Proportion de l'électricité produite à partir d'hydraulique, d'éolien, de solaire et de bioénergies en 2025 (hydraulique 62,4 TWh, éolien 49,6 TWh, solaire 32,9 TWh)."
+    unite: pourcent
+    serie:
+      - date: "2025-12-31"
+        valeur: 27
+        source: rte-bilan-2025-production
+        statut: provisoire
+
+  - id: environnement_energie.part_bas_carbone_production_electricite
+    titre: "Part de l'électricité bas-carbone (nucléaire + renouvelables) dans la production"
+    explication: "Production bas-carbone de 521,1 TWh en 2025, maximum historique ; la production fossile (18,7 TWh) est la plus faible depuis près de 75 ans."
+    unite: pourcent
+    serie:
+      - date: "2025-12-31"
+        valeur: 95.2
+        source: rte-bilan-2025-synthese
+        statut: provisoire
+
+  - id: environnement_energie.prix_moyen_electricite_menages
+    titre: "Prix moyen de l'électricité pour les ménages (TTC)"
+    explication: "Prix moyen payé par les ménages, toutes taxes comprises, en 2025 : -9,0 % sur un an et 13 % en dessous de la moyenne européenne. La part hors taxes représente 70 % du prix."
+    unite: euros_par_mwh
+    serie:
+      - date: "2025-12-31"
+        valeur: 254.6
+        source: sdes-prix-electricite-2025
+        statut: provisoire
+
+  - id: environnement_energie.prix_moyen_electricite_entreprises
+    titre: "Prix moyen de l'électricité pour les entreprises (hors TVA)"
+    explication: "Prix moyen hors TVA payé par les entreprises en 2025, en baisse de 9,6 % sur un an et 16 % sous la moyenne européenne."
+    unite: euros_par_mwh
+    serie:
+      - date: "2025-12-31"
+        valeur: 148.8
+        source: sdes-prix-electricite-2025
+        statut: provisoire
+
+  - id: environnement_energie.tarification_effective_carbone_moyenne
+    titre: "Niveau moyen de tarification effective du carbone"
+    explication: "Prix moyen implicite de la tonne de CO2 équivalent en France, toutes taxes et marchés carbone confondus ; 71 % des émissions sont tarifées à moins de 100 €/t en 2024."
+    unite: euros_par_tco2e
+    serie:
+      - date: "2024-12-31"
+        valeur: 91
+        source: mte-tarification-effective-carbone
+        statut: estimation

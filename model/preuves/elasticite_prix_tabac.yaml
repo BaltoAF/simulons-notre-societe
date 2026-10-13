@@ -1,0 +1,89 @@
+question:
+  id: elasticite_prix_tabac
+  titre: "Élasticité-prix de la consommation de tabac (cigarettes)"
+  definition: "Variation en % de la consommation de cigarettes des adultes pour une hausse de 1 % du prix. Quand une étude ne mesure que la décision de fumer ou non (élasticité de participation, environ la moitié de l'effet total selon la littérature), c'est précisé dans le champ."
+  unite: elasticite
+  regles_liees: []
+  sens_attendu: negatif
+  estimations:
+    - source: gallet-list-2003-hec
+      valeur: -0.48
+      intervalle_95: null
+      methode: "Méta-analyse de 523 études publiées"
+      champ: "Monde (surtout pays à revenu élevé), élasticité-prix totale de la demande de cigarettes"
+      pays: INT
+      annee_donnees: null
+      type_etude: meta_analyse
+      revue_par_les_pairs: true
+      note: "Élasticité moyenne -0,48 (écart-type 0,43) : la dispersion entre études est très forte. Chiffre lu dans la revue de littérature de DeCicca, Kenkel et Lovenheim (2022), le résumé de l'article ne le donnant pas."
+    - source: chaloupka-warner-2000-handbook
+      valeur: -0.55
+      intervalle_95: null
+      methode: "Revue de littérature (Handbook of Health Economics)"
+      champ: "Pays à revenu élevé, adultes, élasticité-prix totale"
+      pays: INT
+      annee_donnees: null
+      type_etude: meta_analyse
+      revue_par_les_pairs: true
+      note: "Consensus de -0,4 à -0,7 ; valeur = milieu. Les auteurs estiment que la décision de fumer (participation) et la quantité fumée contribuent à parts égales, soit environ -0,2 à -0,35 chacune. Lu dans DeCicca et al. (2022)."
+    - source: circ-2011-handbook-14
+      valeur: -0.4
+      intervalle_95: null
+      methode: "Revue systématique des études sur données agrégées par un groupe de travail international (CIRC/OMS)"
+      champ: "Pays à revenu élevé, études sur données agrégées"
+      pays: INT
+      annee_donnees: null
+      type_etude: meta_analyse
+      revue_par_les_pairs: false
+      note: "Les élasticités vont de zéro (non significatif) à -1,2, la plupart des études se situant entre -0,2 et -0,6 ; le Handbook rappelle que la « sagesse conventionnelle » situe l'élasticité moyenne autour de -0,4. Pas de preuve forte que la demande soit devenue moins élastique avec le temps."
+    - source: decicca-kenkel-lovenheim-2022-jel
+      valeur: -0.2
+      intervalle_95: null
+      methode: "Revue de littérature des études publiées depuis 2000"
+      champ: "Principalement États-Unis, adultes, élasticité de PARTICIPATION (fumer ou non), estimations récentes"
+      pays: US
+      annee_donnees: null
+      type_etude: meta_analyse
+      revue_par_les_pairs: true
+      note: "La plupart des estimations récentes de l'élasticité de participation des adultes se situent entre -0,1 et -0,3 (valeur = milieu), soit un peu moins que l'ancien consensus de -0,2 à -0,35 ; plusieurs études récentes suggèrent même que ce consensus surestime l'effet. L'élasticité totale est plus élevée, car elle inclut la baisse des quantités fumées."
+    - source: callison-kaestner-2014-ei
+      valeur: -0.015
+      intervalle_95: null
+      methode: "Appariement et doubles différences sur les fortes hausses de taxes des États américains"
+      champ: "États-Unis, adultes, élasticité de PARTICIPATION, hausses de taxes récentes"
+      pays: US
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Estimation principale -0,015 ; autres spécifications -0,026 à -0,058 (lu dans DeCicca et al., 2022). Selon le résumé, il faudrait des hausses de taxe de l'ordre de 100 % pour réduire le tabagisme adulte d'au plus 5 %."
+    - source: lovenheim-2008-ntj
+      valeur: -0.45
+      intervalle_95: null
+      methode: "Modèles de demande sur l'enquête CPS Tobacco Supplement, tenant compte de la distance à un État frontalier moins cher"
+      champ: "États-Unis, adultes, élasticité « pleine » hors contrebande transfrontalière"
+      pays: US
+      annee_donnees: null
+      type_etude: structurel
+      revue_par_les_pairs: true
+      note: "Élasticité pleine (sans possibilité d'achat transfrontalier) de -0,4 à -0,5 (valeur = milieu, lue dans DeCicca et al., 2022). Mais l'élasticité au prix de l'État de résidence est en moyenne indiscernable de zéro, car 13 % à 25 % des consommateurs achètent près d'une frontière : les achats transfrontaliers annulent une bonne partie de l'effet des hausses de taxes. Enjeu direct pour la France (Belgique, Luxembourg, Espagne, Andorre)."
+    - source: stewart-1993-ija
+      valeur: -0.23
+      intervalle_95: null
+      methode: "Régression non linéaire sur données annuelles poolées de 22 pays de l'OCDE"
+      champ: "France, 1964-1990"
+      pays: FR
+      annee_donnees: 1990
+      type_etude: structurel
+      revue_par_les_pairs: true
+      note: "Estimation propre à la France ; -0,31 pour l'ensemble des pays, en baisse au fil du temps. Étude critiquée par la suite (Saffer et Chaloupka, 2000 ; Blecher, 2008). Lu dans le tableau 4.2 du Handbook CIRC n° 14 (2011)."
+    - source: koutsoyiannis-1963-manchester-school
+      valeur: -0.54
+      intervalle_95: null
+      methode: "Équations de demande par pays, modèle log-linéaire statique estimé par MCO sur séries annuelles"
+      champ: "France, 1950-1959"
+      pays: FR
+      annee_donnees: 1959
+      type_etude: structurel
+      revue_par_les_pairs: true
+      note: "Estimation ancienne pour la France (14 pays étudiés). Lu dans le tableau 4.2 du Handbook CIRC n° 14 (2011)."
+  note_synthese: "Le consensus international est que la consommation de cigarettes baisse quand le prix augmente, mais moins que proportionnellement : environ -0,4 (une hausse de 10 % du prix réduit la consommation d'environ 4 %), avec la plupart des estimations entre -0,2 et -0,6 (CIRC/OMS, méta-analyse de Gallet et List). Le principal désaccord est récent : plusieurs études américaines depuis 2000 trouvent que la décision de fumer des adultes est devenue très peu sensible au prix (participation de -0,02 à -0,3), ce qui suggère des effets plus faibles qu'avant sur la prévalence. Les achats transfrontaliers et la contrebande réduisent aussi fortement l'effet réel d'une hausse de taxe, un point crucial pour la France. Les estimations propres à la France disponibles ici sont anciennes (-0,23 sur 1964-1990, -0,54 sur 1950-1959) : les études récentes de l'OFDT ou de Santé publique France n'ont pas pu être consultées, ce qui est une vraie lacune."

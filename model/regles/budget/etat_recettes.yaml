@@ -1,0 +1,473 @@
+# Budget de l'État — recettes et équilibre prévus par la loi de finances initiale (LFI) pour 2026.
+# Loi n° 2026-103 du 19 février 2026 de finances pour 2026 (JO du 20 février 2026), validée pour l'essentiel
+# par la décision n° 2026-901 DC du 19 février 2026 (l'article d'équilibre n'a pas été censuré).
+# Montants lus dans l'état A (voies et moyens) et l'article 147 (équilibre) du texte définitif
+# (Assemblée nationale, TA n° 227 du 2 février 2026). Unité : milliards d'euros (arrondis au million).
+domaine: budget
+theme: "Recettes et équilibre du budget de l'État (LFI 2026)"
+regles:
+  # ---------------------------------------------------------------- Recettes fiscales nettes par impôt
+  - id: budget.etat.recettes.impot_revenu_net
+    titre: "Impôt sur le revenu : recette nette prévue pour l'État en 2026"
+    explication: "Ce que l'impôt sur le revenu doit rapporter à l'État en 2026, après remboursements et dégrèvements."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 200]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 99.836
+        sources: [an-ta227-lfi-2026, an-plf-2027-n3210]
+        article: "Loi n° 2026-103, état A, ligne 1101 « Impôt net sur le revenu » (99 836 208 951 €)"
+    tags: [budget, etat, recettes, impot_revenu]
+    a_verifier: false
+    note: "Montant brut (avant remboursements et dégrèvements) : 125,278 Md€ (colonne « évaluations initiales (LFI) pour 2026 » du PLF 2027). Le PLF 2027 révise le brut 2026 à 122,082 Md€ et prévoit 127,616 Md€ brut en 2027."
+  - id: budget.etat.recettes.impot_societes_net
+    titre: "Impôt sur les sociétés : recette nette prévue pour l'État en 2026"
+    explication: "Ce que l'impôt sur les bénéfices des sociétés doit rapporter à l'État en 2026, après remboursements (crédits d'impôt notamment)."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 150]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 61.629
+        sources: [an-ta227-lfi-2026, an-plf-2027-n3210]
+        article: "Loi n° 2026-103, état A, ligne 1301 « Impôt net sur les sociétés » (61 628 838 886 €)"
+    tags: [budget, etat, recettes, impot_societes]
+    a_verifier: false
+    note: "Montant brut : 86,827 Md€ (évaluation initiale LFI 2026 reprise dans le PLF 2027). Révisé 2026 (PLF 2027) : 85,029 Md€ brut ; prévision 2027 : 83,890 Md€ brut. Hors contribution exceptionnelle sur les bénéfices des grandes entreprises (ligne distincte)."
+  - id: budget.etat.recettes.tva_nette
+    titre: "TVA : recette nette prévue pour l'État en 2026"
+    explication: "Part de la TVA qui reste à l'État en 2026 (une grande partie de la TVA est reversée à la Sécurité sociale et aux collectivités)."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 250]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 99.805
+        sources: [an-ta227-lfi-2026, an-plf-2027-n3210]
+        article: "Loi n° 2026-103, état A, ligne 1601 « Taxe sur la valeur ajoutée nette » (99 805 199 715 €)"
+    tags: [budget, etat, recettes, tva]
+    a_verifier: false
+    note: "Montant brut de TVA perçu par l'État avant remboursements : 179,710 Md€ (évaluation initiale LFI 2026 reprise dans le PLF 2027) ; révisé 2026 : 178,551 Md€ ; prévision 2027 : 187,068 Md€."
+  - id: budget.etat.recettes.accises_energies_ex_ticpe
+    titre: "Accises sur les énergies (ex-TICPE, carburants) : part de l'État prévue en 2026"
+    explication: "Taxe sur les carburants et combustibles pétroliers revenant au budget de l'État en 2026."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 60]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 17.470
+        sources: [an-ta227-lfi-2026]
+        article: "Loi n° 2026-103, état A, ligne 1501 « Accises sur les énergies (ex-TICPE) » (17 469 533 401 €)"
+    tags: [budget, etat, recettes, energie, ticpe]
+    a_verifier: false
+    note: "Ensemble des accises sur les énergies pour l'État (ligne 15) : 25,290 Md€, dont ex-TICGN (gaz) 2,226 Md€ et ex-TICFE (électricité) 5,585 Md€. Une autre part de ces accises est affectée aux collectivités et n'apparaît pas ici."
+  - id: budget.etat.recettes.accises_energies_total
+    titre: "Accises sur les énergies (carburants, gaz, électricité) : total prévu pour l'État en 2026"
+    explication: "Total des taxes sur l'énergie revenant au budget de l'État en 2026."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 80]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 25.290
+        sources: [an-ta227-lfi-2026, an-plf-2027-n3210]
+        article: "Loi n° 2026-103, état A, ligne 15 « Accises sur les énergies » (25 290 133 401 €)"
+    tags: [budget, etat, recettes, energie]
+    a_verifier: false
+    note: "Le PLF 2027 révise ce montant à 23,479 Md€ pour 2026 (baisse liée à la crise énergétique) et prévoit 25,249 Md€ en 2027."
+  - id: budget.etat.recettes.autres_impots_directs
+    titre: "Autres impôts directs et taxes assimilées : recette prévue en 2026"
+    explication: "Ensemble d'impôts directs autres que l'IR et l'IS : prélèvements sur les revenus du capital, IFI, CVAE, surtaxe des grandes entreprises, taxe sur les services numériques…"
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 39.891
+        sources: [an-ta227-lfi-2026]
+        article: "Loi n° 2026-103, état A, ligne 14 (39 891 218 860 €)"
+    tags: [budget, etat, recettes]
+    a_verifier: false
+    note: "Principales lignes : prélèvements de solidarité 15,635 Md€ ; contribution exceptionnelle sur les bénéfices des grandes entreprises 7,300 Md€ ; retenues à la source et prélèvements sur les revenus de capitaux mobiliers 4,800 Md€ ; CVAE 4,041 Md€ ; IFI 3,095 Md€ ; taxe sur les services numériques 0,882 Md€ ; contribution différentielle sur les très hauts revenus 0,650 Md€ ; taxe sur les petits colis 0,400 Md€."
+  - id: budget.etat.recettes.contribution_exceptionnelle_grandes_entreprises
+    titre: "Contribution exceptionnelle sur les bénéfices des grandes entreprises : recette prévue en 2026"
+    explication: "Surtaxe temporaire de l'impôt sur les sociétés payée par les entreprises réalisant au moins 1 à 1,5 milliard d'euros de chiffre d'affaires."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 20]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 7.300
+        sources: [an-ta227-lfi-2026]
+        article: "Loi n° 2026-103, état A, ligne 1441 (7 300 000 000 €)"
+    tags: [budget, etat, recettes, impot_societes, grandes_entreprises]
+    a_verifier: false
+  - id: budget.etat.recettes.impot_fortune_immobiliere
+    titre: "Impôt sur la fortune immobilière (IFI) : recette prévue en 2026"
+    explication: "Ce que l'IFI, payé par les ménages dont le patrimoine immobilier net dépasse 1,3 million d'euros, doit rapporter en 2026."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 20]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 3.095
+        sources: [an-ta227-lfi-2026]
+        article: "Loi n° 2026-103, état A, ligne 1406 (3 094 517 338 €)"
+    tags: [budget, etat, recettes, patrimoine, ifi]
+    a_verifier: false
+  - id: budget.etat.recettes.cvae
+    titre: "Cotisation sur la valeur ajoutée des entreprises (CVAE) : recette prévue pour l'État en 2026"
+    explication: "Impôt de production sur la valeur ajoutée des entreprises, en cours de suppression progressive."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 20]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 4.041
+        sources: [an-ta227-lfi-2026]
+        article: "Loi n° 2026-103, état A, ligne 1497 (4 041 291 801 €)"
+    tags: [budget, etat, recettes, entreprises, cvae]
+    a_verifier: false
+  - id: budget.etat.recettes.contribution_differentielle_hauts_revenus
+    titre: "Contribution différentielle sur les très hauts revenus : recette prévue en 2026"
+    explication: "Impôt minimum garantissant aux foyers les plus aisés une imposition d'au moins 20 % de leur revenu."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 0.650
+        sources: [an-ta227-lfi-2026, an-plf-2027-n3210]
+        article: "Loi n° 2026-103, état A, ligne 1440 (650 000 000 €)"
+    tags: [budget, etat, recettes, hauts_revenus]
+    a_verifier: false
+    note: "L'état A du PLF 2027 évalue cette ligne à 0,600 Md€ pour 2027."
+  - id: budget.etat.recettes.prelevements_solidarite
+    titre: "Prélèvements de solidarité sur les revenus du capital : recette prévue pour l'État en 2026"
+    explication: "Prélèvement social sur les revenus du patrimoine et des placements dont le produit revient à l'État."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 40]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 15.635
+        sources: [an-ta227-lfi-2026]
+        article: "Loi n° 2026-103, état A, ligne 1427 (15 634 906 822 €)"
+    tags: [budget, etat, recettes, capital]
+    a_verifier: false
+  - id: budget.etat.recettes.taxe_services_numeriques
+    titre: "Taxe sur les services numériques : recette prévue en 2026"
+    explication: "Taxe sur certains revenus des grandes entreprises du numérique (publicité ciblée, places de marché)."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 5]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 0.882
+        sources: [an-ta227-lfi-2026]
+        article: "Loi n° 2026-103, état A, ligne 1430 (881 600 000 €)"
+    tags: [budget, etat, recettes, numerique]
+    a_verifier: false
+  - id: budget.etat.recettes.enregistrement_timbre_autres
+    titre: "Droits d'enregistrement, timbre et autres taxes indirectes : recette prévue en 2026"
+    explication: "Droits de succession et de donation, taxes sur les jeux, taxe sur les transactions financières, droits divers."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 42.914
+        sources: [an-ta227-lfi-2026]
+        article: "Loi n° 2026-103, état A, ligne 17 (42 913 820 990 €)"
+    tags: [budget, etat, recettes]
+    a_verifier: false
+    note: "Principales lignes : droits de succession 16,995 Md€ ; droits de donation 4,423 Md€ ; autres taxes 4,927 Md€ ; produits des jeux de la Française des jeux (hors paris sportifs) 3,233 Md€ ; taxe sur les transactions financières 2,630 Md€ ; taxe additionnelle sur les certificats d'immatriculation 1,270 Md€ ; TGAP 1,273 Md€ ; prélèvement sur les paris sportifs 1,042 Md€."
+  - id: budget.etat.recettes.droits_succession
+    titre: "Droits de succession : recette prévue en 2026"
+    explication: "Impôt payé par les héritiers sur ce qu'ils reçoivent au décès d'un proche."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 40]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 16.995
+        sources: [an-ta227-lfi-2026]
+        article: "Loi n° 2026-103, état A, ligne 1706 « Mutations à titre gratuit par décès » (16 995 331 339 €)"
+    tags: [budget, etat, recettes, patrimoine, successions]
+    a_verifier: false
+  - id: budget.etat.recettes.droits_donation
+    titre: "Droits de donation : recette prévue en 2026"
+    explication: "Impôt payé sur les biens donnés de son vivant (donations entre vifs)."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 20]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 4.423
+        sources: [an-ta227-lfi-2026]
+        article: "Loi n° 2026-103, état A, ligne 1705 « Mutations à titre gratuit entre vifs (donations) » (4 422 986 306 €)"
+    tags: [budget, etat, recettes, patrimoine, donations]
+    a_verifier: false
+  - id: budget.etat.recettes.taxe_transactions_financieres
+    titre: "Taxe sur les transactions financières : recette prévue en 2026"
+    explication: "Taxe payée lors de l'achat d'actions de grandes sociétés françaises cotées."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 2.630
+        sources: [an-ta227-lfi-2026]
+        article: "Loi n° 2026-103, état A, ligne 1797 (2 630 000 000 €)"
+    tags: [budget, etat, recettes, finance]
+    a_verifier: false
+  - id: budget.etat.recettes.contribution_sociale_benefices
+    titre: "Contribution sociale sur les bénéfices des sociétés : recette prévue en 2026"
+    explication: "Contribution additionnelle à l'impôt sur les sociétés payée par les plus grandes entreprises."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 5]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 1.411
+        sources: [an-ta227-lfi-2026]
+        article: "Loi n° 2026-103, état A, ligne 1302 (1 411 000 000 €)"
+    tags: [budget, etat, recettes, impot_societes]
+    a_verifier: false
+  - id: budget.etat.recettes.impot_minimum_mondial
+    titre: "Impôt minimum mondial à 15 % (pilier 2) : recette prévue en 2026"
+    explication: "Impôt complémentaire garantissant que les grands groupes multinationaux paient au moins 15 % d'impôt sur leurs bénéfices."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 0.500
+        sources: [an-ta227-lfi-2026]
+        article: "Loi n° 2026-103, état A, ligne 1304 « Impôt minimum mondial à 15 % - pilier 2 » (500 000 000 €)"
+    tags: [budget, etat, recettes, impot_societes, international]
+    a_verifier: false
+  - id: budget.etat.recettes.autres_remboursements_degrevements
+    titre: "Autres remboursements et dégrèvements d'impôts d'État (à déduire) en 2026"
+    explication: "Remboursements d'impôts autres que ceux sur l'IR, l'IS et la TVA, déduits des recettes fiscales."
+    type: nombre
+    unite: milliards_euros
+    bornes: [-50, 0]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: -10.462
+        sources: [an-ta227-lfi-2026]
+        article: "Loi n° 2026-103, état A, ligne 18 (-10 461 709 884 €)"
+    tags: [budget, etat, recettes, remboursements]
+    a_verifier: false
+    note: "Le total des remboursements et dégrèvements d'impôts d'État (tous impôts) est de 141,174 Md€ (état B, programme 200)."
+  # ---------------------------------------------------------------- Totaux
+  - id: budget.etat.recettes.fiscales_nettes_total
+    titre: "Recettes fiscales nettes de l'État prévues en 2026"
+    explication: "Total des impôts revenant à l'État en 2026, après remboursements et dégrèvements."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 600]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 363.603
+        sources: [an-ta227-lfi-2026, cc-2026-901-dc, an-plf-2027-n3210]
+        article: "Loi n° 2026-103, art. 147 et état A, ligne 1 « Recettes fiscales » (363 603 010 919 €)"
+    tags: [budget, etat, recettes, total]
+    a_verifier: false
+    note: "Recettes fiscales brutes : 504,777 Md€ ; remboursements et dégrèvements : 141,174 Md€ (PLF 2027, évaluations initiales LFI 2026). Le PLF 2027 révise les recettes fiscales nettes 2026 à 357,682 Md€ (-5,9 Md€) et prévoit 375,688 Md€ en 2027."
+  - id: budget.etat.recettes.non_fiscales_total
+    titre: "Recettes non fiscales de l'État prévues en 2026"
+    explication: "Recettes de l'État qui ne sont pas des impôts : dividendes des entreprises publiques, revenus du domaine, amendes, remboursements de prêts, versements de l'Union européenne…"
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 80]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 28.900
+        sources: [an-ta227-lfi-2026, an-plf-2027-n3210]
+        article: "Loi n° 2026-103, état A, ligne 2 « Recettes non fiscales » (28 900 104 103 €)"
+    tags: [budget, etat, recettes, total]
+    a_verifier: false
+    note: "Détail : dividendes 5,175 Md€ ; produits du domaine 1,360 Md€ ; ventes de biens et services 2,525 Md€ ; remboursements et intérêts de prêts 7,864 Md€ ; amendes et sanctions 2,696 Md€ ; divers 9,280 Md€ (dont versements de l'Union européenne 6,140 Md€). Le PLF 2027 révise ces recettes à 33,617 Md€ pour 2026 et prévoit 16,678 Md€ en 2027."
+  - id: budget.etat.recettes.totales_avant_prelevements
+    titre: "Recettes totales du budget général (fiscales et non fiscales) prévues en 2026, avant prélèvements sur recettes"
+    explication: "Somme des recettes fiscales nettes et des recettes non fiscales de l'État, avant reversements aux collectivités et à l'Union européenne."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 700]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 392.503
+        sources: [an-ta227-lfi-2026]
+        article: "Loi n° 2026-103, art. 147 et récapitulation de l'état A (392 503 115 022 €)"
+    tags: [budget, etat, recettes, total]
+    a_verifier: false
+  - id: budget.etat.recettes.nettes_des_prelevements
+    titre: "Recettes du budget général nettes des prélèvements sur recettes, prévues en 2026"
+    explication: "Recettes qui restent à l'État une fois déduits les reversements aux collectivités (44,8 Md€) et à l'Union européenne (28,4 Md€)."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 600]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 319.239
+        sources: [an-ta227-lfi-2026]
+        article: "Loi n° 2026-103, art. 147 et récapitulation de l'état A (319 239 149 069 €)"
+    tags: [budget, etat, recettes, total]
+    a_verifier: false
+  - id: budget.etat.recettes.fonds_de_concours
+    titre: "Fonds de concours et attributions de produits prévus en 2026"
+    explication: "Sommes versées à l'État par des tiers pour financer des dépenses précises."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 20]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 6.143
+        sources: [an-ta227-lfi-2026]
+        article: "Loi n° 2026-103, état A, ligne 4 (6 142 822 550 €)"
+    tags: [budget, etat, recettes]
+    a_verifier: false
+  # ---------------------------------------------------------------- Soldes et financement
+  - id: budget.etat.solde.budget_general
+    titre: "Solde prévu du budget général de l'État en 2026"
+    explication: "Différence entre les recettes nettes et les dépenses nettes du budget général (négatif = déficit)."
+    type: nombre
+    unite: milliards_euros
+    bornes: [-300, 50]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: -133.477
+        sources: [an-ta227-lfi-2026, cc-2026-901-dc]
+        article: "Loi n° 2026-103, art. 147, I (tableau d'équilibre, en millions d'euros : -133 477)"
+    tags: [budget, etat, solde, deficit]
+    a_verifier: false
+  - id: budget.etat.solde.comptes_speciaux_budgets_annexes
+    titre: "Solde prévu des comptes spéciaux de l'État en 2026"
+    explication: "Solde des comptes d'affectation spéciale, de concours financiers, de commerce et d'opérations monétaires."
+    type: nombre
+    unite: milliards_euros
+    bornes: [-20, 20]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: -1.527
+        sources: [an-ta227-lfi-2026]
+        article: "Loi n° 2026-103, art. 147, I (solde pour les comptes spéciaux : -1 527 M€)"
+    tags: [budget, etat, solde]
+    a_verifier: false
+    note: "Les budgets annexes (contrôle aérien, publications officielles) dégagent par ailleurs un solde de +0,376 Md€."
+  - id: budget.etat.solde.general
+    titre: "Déficit budgétaire de l'État prévu en 2026 (solde général)"
+    explication: "Solde de l'ensemble du budget de l'État voté pour 2026 : c'est le « déficit de l'État » qu'il faut financer par l'emprunt."
+    type: nombre
+    unite: milliards_euros
+    bornes: [-300, 50]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: -134.627
+        sources: [an-ta227-lfi-2026, cc-2026-901-dc, an-plf-2027-n3210]
+        article: "Loi n° 2026-103, art. 147, I (solde général : -134 627 M€)"
+    tags: [budget, etat, solde, deficit]
+    a_verifier: false
+    note: "Le PLF 2027 révise ce solde à -137,2 Md€ pour 2026 et prévoit -156,4 Md€ en 2027 (exécution 2025 : -124,2 Md€)."
+  - id: budget.etat.financement.besoin_total
+    titre: "Besoin de financement de l'État prévu en 2026"
+    explication: "Somme à emprunter en 2026 : remboursement des emprunts arrivant à échéance plus déficit à financer et autres besoins de trésorerie."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 500]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 310.0
+        sources: [an-ta227-lfi-2026, an-plf-2027-n3210]
+        article: "Loi n° 2026-103, art. 147, II, 1° (amortissement de la dette à moyen et long termes 169,9 Md€ ; dette reprise de SNCF Réseau 2,5 Md€ ; déficit à financer 134,6 Md€ ; autres besoins 3,0 Md€)"
+    tags: [budget, etat, dette, financement]
+    a_verifier: false
+    note: "Couvert par 310,0 Md€ d'émissions de dette à moyen et long termes nettes des rachats. Le PLF 2027 prévoit un besoin de financement de 339,7 Md€ en 2027."
+  - id: budget.etat.financement.plafond_variation_dette_negociable
+    titre: "Plafond de hausse de la dette négociable de l'État à plus d'un an en 2026"
+    explication: "Augmentation maximale, sur l'année, de l'encours des titres de dette de l'État de plus d'un an, autorisée par le Parlement."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 300]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 142.5
+        sources: [an-ta227-lfi-2026, an-plf-2027-n3210]
+        article: "Loi n° 2026-103, art. 147, II, 3°"
+    tags: [budget, etat, dette]
+    a_verifier: false
+    note: "Le PLF 2027 propose un plafond de 160,5 Md€ pour 2027."
+  - id: budget.etat.emplois.plafond_etpt
+    titre: "Plafond d'emplois rémunérés par l'État en 2026"
+    explication: "Nombre maximal d'emplois (en équivalents temps plein travaillé) que l'État peut rémunérer en 2026."
+    type: nombre
+    unite: etpt
+    bornes: [0, 3000000]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 2016088
+        sources: [an-ta227-lfi-2026, an-plf-2027-n3210]
+        article: "Loi n° 2026-103, art. 147, III"
+    tags: [budget, etat, emplois, fonction_publique]
+    a_verifier: false
+    note: "Le PLF 2027 propose 2 032 750 ETPT pour 2027."
+  # ---------------------------------------------------------------- Prévisions de l'article liminaire (ensemble des administrations publiques)
+  - id: budget.lfi_2026.prevision.solde_public_pct_pib
+    titre: "Solde public prévu pour 2026 par la LFI (toutes administrations publiques, % du PIB)"
+    explication: "Déficit de l'ensemble des administrations publiques (État, collectivités, Sécurité sociale) visé par la loi de finances pour 2026."
+    type: nombre
+    unite: pourcent_pib
+    bornes: [-15, 5]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: -5.0
+        sources: [an-ta227-lfi-2026, an-plf-2027-n3210]
+        article: "Loi n° 2026-103, article liminaire"
+    tags: [budget, apu, deficit, prevision]
+    a_verifier: false
+    note: "Prévision LFI : solde structurel -4,6 points de PIB potentiel ; administrations centrales -4,7 % ; locales -0,4 % ; sécurité sociale +0,1 %. Le PLF 2027 révise le solde public 2026 à -5,4 % du PIB."
+  - id: budget.lfi_2026.prevision.dette_pct_pib
+    titre: "Dette publique prévue fin 2026 par la LFI (% du PIB, au sens de Maastricht)"
+    explication: "Niveau de dette de l'ensemble des administrations publiques prévu pour fin 2026 dans la loi de finances."
+    type: nombre
+    unite: pourcent_pib
+    bornes: [0, 200]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 118.2
+        sources: [an-ta227-lfi-2026, an-plf-2027-n3210]
+        article: "Loi n° 2026-103, article liminaire"
+    tags: [budget, apu, dette, prevision]
+    a_verifier: false
+    note: "Le PLF 2027 révise la prévision à 119,3 % du PIB pour 2026 et prévoit 121,7 % en 2027."
+  - id: budget.lfi_2026.prevision.taux_prelevements_obligatoires
+    titre: "Taux de prélèvements obligatoires prévu pour 2026 par la LFI (% du PIB)"
+    explication: "Poids des impôts et cotisations sociales dans la richesse nationale prévu pour 2026 (y compris Union européenne, nets des crédits d'impôt)."
+    type: nombre
+    unite: pourcent_pib
+    bornes: [30, 60]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 43.9
+        sources: [an-ta227-lfi-2026]
+        article: "Loi n° 2026-103, article liminaire"
+    tags: [budget, apu, prelevements_obligatoires, prevision]
+    a_verifier: false
+  - id: budget.lfi_2026.prevision.depense_publique
+    titre: "Dépense publique prévue pour 2026 par la LFI (hors crédits d'impôt, en milliards d'euros)"
+    explication: "Total des dépenses de l'ensemble des administrations publiques prévu pour 2026, hors crédits d'impôt."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 2500]
+    valeurs:
+      - depuis: "2026-02-20"
+        valeur: 1733
+        sources: [an-ta227-lfi-2026, an-plf-2027-n3210]
+        article: "Loi n° 2026-103, article liminaire (56,6 % du PIB)"
+    tags: [budget, apu, depense_publique, prevision]
+    a_verifier: false
+    note: "Répartition prévue : administrations centrales 681 Md€, locales 341 Md€, sécurité sociale 821 Md€ (non consolidés). Le PLF 2027 révise la dépense 2026 à 1 742 Md€ (57,1 % du PIB)."

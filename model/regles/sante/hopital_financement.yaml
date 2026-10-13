@@ -1,0 +1,92 @@
+domaine: sante
+theme: "Hôpital et financement de l'Assurance maladie (forfaits hospitaliers, ONDAM)"
+regles:
+  - id: sante.hopital.forfait_journalier
+    titre: "Forfait journalier hospitalier (cas général)"
+    explication: "Somme due par le patient pour chaque journée d'hospitalisation (y compris le jour de sortie), pour participer aux frais d'hébergement. Elle n'est pas remboursée par l'Assurance maladie mais souvent par la complémentaire."
+    type: nombre
+    unite: euros
+    bornes: [0, 60]
+    valeurs:
+      - depuis: "2026-03-01"
+        valeur: 23
+        sources: [jorf-arrete-2026-02-27-forfait-journalier, fhf-forfait-journalier-mars-2026]
+        article: "Code de la sécurité sociale, art. L174-4 ; arrêté du 27 février 2026 (NOR SFHS2605626A), art. 1er"
+    tags: [hopital, reste_a_charge, forfait_journalier, reforme_2026]
+    a_verifier: false
+    note: "L'arrêté abroge l'arrêté du 20 juin 2019 qui fixait le montant précédent (montant antérieur non relu sur une source officielle, donc non historisé)."
+
+  - id: sante.hopital.forfait_journalier_psychiatrie
+    titre: "Forfait journalier hospitalier en service de psychiatrie"
+    explication: "Montant journalier dû par le patient hospitalisé dans un service de psychiatrie."
+    type: nombre
+    unite: euros
+    bornes: [0, 60]
+    valeurs:
+      - depuis: "2026-03-01"
+        valeur: 17
+        sources: [jorf-arrete-2026-02-27-forfait-journalier, fhf-forfait-journalier-mars-2026]
+        article: "Code de la sécurité sociale, art. R174-5-1 ; arrêté du 27 février 2026, art. 1er"
+    tags: [hopital, reste_a_charge, psychiatrie, reforme_2026]
+    a_verifier: false
+    note: ""
+
+  - id: sante.urgences.forfait_patient_urgences
+    titre: "Forfait patient urgences (passage aux urgences sans hospitalisation)"
+    explication: "Somme forfaitaire due pour un passage aux urgences non suivi d'une hospitalisation."
+    type: nombre
+    unite: euros
+    bornes: [0, 60]
+    valeurs:
+      - depuis: "2026-03-01"
+        valeur: 23
+        sources: [jorf-arrete-2026-02-27-forfait-journalier]
+        article: "Code de la sécurité sociale, art. L160-13 ; arrêté du 27 février 2026, art. 2"
+    tags: [hopital, urgences, reste_a_charge, reforme_2026]
+    a_verifier: false
+    note: "L'arrêté abroge l'arrêté du 17 décembre 2021 qui fixait le montant précédent (non historisé). Montant facturable à l'Assurance maladie lorsque la participation de l'assuré est supprimée."
+
+  - id: sante.urgences.forfait_patient_urgences_reduit
+    titre: "Forfait patient urgences : montant de la participation réduite"
+    explication: "Montant réduit du forfait urgences applicable à certains assurés (par exemple en affection de longue durée), dans les cas prévus par la loi."
+    type: nombre
+    unite: euros
+    bornes: [0, 30]
+    valeurs:
+      - depuis: "2026-03-01"
+        valeur: 9.96
+        sources: [jorf-arrete-2026-02-27-forfait-journalier]
+        article: "Arrêté du 27 février 2026, art. 2, 2°"
+    tags: [hopital, urgences, reste_a_charge, reforme_2026]
+    a_verifier: false
+    note: "Un « complément forfait patient urgences » de 13,04 € est alors facturable à l'Assurance maladie. Les catégories d'assurés concernées ne sont pas détaillées dans l'arrêté (renvoi à l'art. L160-13)."
+
+  - id: sante.ondam.montant_2026
+    titre: "ONDAM 2026 voté (objectif national de dépenses d'assurance maladie)"
+    explication: "Plafond de dépenses d'assurance maladie (soins de ville, hôpital, médico-social) voté par le Parlement pour 2026 dans la loi de financement de la sécurité sociale."
+    type: nombre
+    unite: milliards_euros
+    bornes: [200, 350]
+    valeurs:
+      - depuis: "2025-12-31"
+        valeur: 274.4
+        sources: [an-plfss-2027-exposemotifs-ondam, bdt-localtis-lfss-2026]
+        article: "Loi n° 2025-1403 du 30 décembre 2025 de financement de la sécurité sociale pour 2026"
+    tags: [ondam, finances_sociales, budget_sante]
+    a_verifier: true
+    note: "274,4 Md€ = montant « inscrit dans la loi de financement de la sécurité sociale pour 2026 » selon l'exposé des motifs du PLFSS 2027 (AN n° 3211, 01/10/2026). Banque des territoires (06/01/2026) indique 271,3 Md€ : divergence non résolue. Le PLFSS 2027, non adopté au 13/10/2026, propose de rectifier l'ONDAM 2026 de 1,1 Md€ (tableau : 273,3 Md€, +2,8 %). Date « depuis » = publication de la LFSS au JO (31/12/2025) selon Banque des territoires."
+
+  - id: sante.ondam.taux_evolution_2026
+    titre: "ONDAM 2026 : taux d'évolution voté par rapport à 2025"
+    explication: "Hausse autorisée des dépenses d'assurance maladie en 2026 par rapport à 2025, telle que votée dans la loi de financement initiale."
+    type: nombre
+    unite: pourcent
+    bornes: [-5, 10]
+    valeurs:
+      - depuis: "2025-12-31"
+        valeur: 3.1
+        sources: [an-plfss-2027-exposemotifs-ondam, bdt-localtis-lfss-2026]
+        article: "Loi n° 2025-1403 du 30 décembre 2025 de financement de la sécurité sociale pour 2026"
+    tags: [ondam, finances_sociales, budget_sante]
+    a_verifier: false
+    note: "« une évolution de 3,1 % inscrite en loi de financement initiale » (PLFSS 2027) ; même taux chez Banque des territoires. Le PLFSS 2027 anticipe une croissance effective de 2,8 % après rectification."

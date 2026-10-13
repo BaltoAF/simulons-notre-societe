@@ -1,0 +1,896 @@
+# Registre des sources des domaines « travail » et « retraites » (règles et métriques).
+# Consultées le 13 octobre 2026. Légifrance refusant l'accès automatisé (HTTP 403), les articles de code
+# ont été lus sur leur reproduction officielle (code.travail.gouv.fr) ou via des pages officielles qui les citent ;
+# c'est indiqué dans la note de chaque source. Les fichiers téléchargés sont copiés dans system/cache/travail-retraites/.
+sources:
+  # ─────────────────────────────── Code du travail (Légifrance) ───────────────────────────────
+  - id: legi-ct-l3121-27
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Code du travail – Article L3121-27 : Durée légale du travail effectif (35 heures)"
+    url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033020376"
+    auteurs: []
+    date_publication: "2016-08-10"
+    consulte_le: "2026-10-13"
+    note: "Texte lu sur la reproduction officielle du ministère du Travail https://code.travail.gouv.fr/code-du-travail/l3121-27 (Légifrance refuse l'accès automatisé, HTTP 403). date_publication = date de la version en vigueur indiquée par code.travail.gouv.fr."
+  - id: legi-ct-l3121-18
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Code du travail – Article L3121-18 : Durée quotidienne maximale de travail effectif (10 heures)"
+    url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033020428"
+    auteurs: []
+    date_publication: "2016-08-10"
+    consulte_le: "2026-10-13"
+    note: "Texte lu sur la reproduction officielle du ministère du Travail https://code.travail.gouv.fr/code-du-travail/l3121-18 (Légifrance refuse l'accès automatisé, HTTP 403). date_publication = date de la version en vigueur indiquée par code.travail.gouv.fr."
+  - id: legi-ct-l3121-20
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Code du travail – Article L3121-20 : Durée hebdomadaire maximale sur une même semaine (48 heures)"
+    url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033020414"
+    auteurs: []
+    date_publication: "2016-08-10"
+    consulte_le: "2026-10-13"
+    note: "Texte lu sur la reproduction officielle du ministère du Travail https://code.travail.gouv.fr/code-du-travail/l3121-20 (Légifrance refuse l'accès automatisé, HTTP 403). date_publication = date de la version en vigueur indiquée par code.travail.gouv.fr."
+  - id: legi-ct-l3121-22
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Code du travail – Article L3121-22 : Durée hebdomadaire moyenne maximale sur 12 semaines (44 heures)"
+    url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033020402"
+    auteurs: []
+    date_publication: "2016-08-10"
+    consulte_le: "2026-10-13"
+    note: "Texte lu sur la reproduction officielle du ministère du Travail https://code.travail.gouv.fr/code-du-travail/l3121-22 (Légifrance refuse l'accès automatisé, HTTP 403). date_publication = date de la version en vigueur indiquée par code.travail.gouv.fr."
+  - id: legi-ct-l3131-1
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Code du travail – Article L3131-1 : Repos quotidien (11 heures consécutives)"
+    url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033020918"
+    auteurs: []
+    date_publication: "2016-08-10"
+    consulte_le: "2026-10-13"
+    note: "Texte lu sur la reproduction officielle du ministère du Travail https://code.travail.gouv.fr/code-du-travail/l3131-1 (Légifrance refuse l'accès automatisé, HTTP 403). date_publication = date de la version en vigueur indiquée par code.travail.gouv.fr."
+  - id: legi-ct-l3132-2
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Code du travail – Article L3132-2 : Repos hebdomadaire (24 heures consécutives + repos quotidien)"
+    url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006902581"
+    auteurs: []
+    date_publication: "2008-05-01"
+    consulte_le: "2026-10-13"
+    note: "Texte lu sur la reproduction officielle du ministère du Travail https://code.travail.gouv.fr/code-du-travail/l3132-2 (Légifrance refuse l'accès automatisé, HTTP 403). date_publication = date de la version en vigueur indiquée par code.travail.gouv.fr."
+  - id: legi-ct-l3121-36
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Code du travail – Article L3121-36 : Majoration des heures supplémentaires à défaut d'accord (25 % / 50 %)"
+    url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033020341"
+    auteurs: []
+    date_publication: "2016-08-10"
+    consulte_le: "2026-10-13"
+    note: "Texte lu sur la reproduction officielle du ministère du Travail https://code.travail.gouv.fr/code-du-travail/l3121-36 (Légifrance refuse l'accès automatisé, HTTP 403). date_publication = date de la version en vigueur indiquée par code.travail.gouv.fr."
+  - id: legi-ct-l3121-33
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Code du travail – Article L3121-33 : Heures supplémentaires : champ de la négociation collective (taux minimal 10 %)"
+    url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038610166"
+    auteurs: []
+    date_publication: "2020-01-01"
+    consulte_le: "2026-10-13"
+    note: "Texte lu sur la reproduction officielle du ministère du Travail https://code.travail.gouv.fr/code-du-travail/l3121-33 (Légifrance refuse l'accès automatisé, HTTP 403). date_publication = date de la version en vigueur indiquée par code.travail.gouv.fr."
+  - id: legi-ct-d3121-24
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Code du travail – Article D3121-24 : Contingent annuel d'heures supplémentaires à défaut d'accord (220 heures)"
+    url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033509251"
+    auteurs: []
+    date_publication: "2017-01-01"
+    consulte_le: "2026-10-13"
+    note: "Texte lu sur la reproduction officielle du ministère du Travail https://code.travail.gouv.fr/code-du-travail/d3121-24 (Légifrance refuse l'accès automatisé, HTTP 403). date_publication = date de la version en vigueur indiquée par code.travail.gouv.fr."
+  - id: legi-ct-l3122-6
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Code du travail – Article L3122-6 : Travail de nuit : durée quotidienne maximale (8 heures)"
+    url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035653023"
+    auteurs: []
+    date_publication: "2018-01-01"
+    consulte_le: "2026-10-13"
+    note: "Texte lu sur la reproduction officielle du ministère du Travail https://code.travail.gouv.fr/code-du-travail/l3122-6 (Légifrance refuse l'accès automatisé, HTTP 403). date_publication = date de la version en vigueur indiquée par code.travail.gouv.fr."
+  - id: legi-ct-l3122-7
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Code du travail – Article L3122-7 : Travail de nuit : durée hebdomadaire moyenne maximale (40 heures sur 12 semaines)"
+    url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033020165"
+    auteurs: []
+    date_publication: "2016-08-10"
+    consulte_le: "2026-10-13"
+    note: "Texte lu sur la reproduction officielle du ministère du Travail https://code.travail.gouv.fr/code-du-travail/l3122-7 (Légifrance refuse l'accès automatisé, HTTP 403). date_publication = date de la version en vigueur indiquée par code.travail.gouv.fr."
+  - id: legi-ct-l3123-27
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Code du travail – Article L3123-27 : Temps partiel : durée minimale de travail (24 heures par semaine)"
+    url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033019953"
+    auteurs: []
+    date_publication: "2016-08-10"
+    consulte_le: "2026-10-13"
+    note: "Texte lu sur la reproduction officielle du ministère du Travail https://code.travail.gouv.fr/code-du-travail/l3123-27 (Légifrance refuse l'accès automatisé, HTTP 403). date_publication = date de la version en vigueur indiquée par code.travail.gouv.fr."
+  - id: legi-ct-l3141-3
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Code du travail – Article L3141-3 : Congés payés : 2,5 jours ouvrables par mois, 30 jours au total"
+    url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033020826"
+    auteurs: []
+    date_publication: "2016-08-10"
+    consulte_le: "2026-10-13"
+    note: "Texte lu sur la reproduction officielle du ministère du Travail https://code.travail.gouv.fr/code-du-travail/l3141-3 (Légifrance refuse l'accès automatisé, HTTP 403). date_publication = date de la version en vigueur indiquée par code.travail.gouv.fr."
+  - id: legi-ct-l3141-5-1
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Code du travail – Article L3141-5-1 : Congés payés acquis pendant un arrêt maladie non professionnel (2 jours par mois, 24 jours)"
+    url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049459068"
+    auteurs: []
+    date_publication: "2024-04-24"
+    consulte_le: "2026-10-13"
+    note: "Texte lu sur la reproduction officielle du ministère du Travail https://code.travail.gouv.fr/code-du-travail/l3141-5-1 (Légifrance refuse l'accès automatisé, HTTP 403). date_publication = date de la version en vigueur indiquée par code.travail.gouv.fr."
+  - id: legi-ct-l3133-1
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Code du travail – Article L3133-1 : Liste des fêtes légales"
+    url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033020901"
+    auteurs: []
+    date_publication: "2016-08-10"
+    consulte_le: "2026-10-13"
+    note: "Texte lu sur la reproduction officielle du ministère du Travail https://code.travail.gouv.fr/code-du-travail/l3133-1 (Légifrance refuse l'accès automatisé, HTTP 403). date_publication = date de la version en vigueur indiquée par code.travail.gouv.fr."
+  - id: legi-ct-l3133-4
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Code du travail – Article L3133-4 : Le 1er mai est jour férié et chômé"
+    url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033020884"
+    auteurs: []
+    date_publication: "2016-08-10"
+    consulte_le: "2026-10-13"
+    note: "Texte lu sur la reproduction officielle du ministère du Travail https://code.travail.gouv.fr/code-du-travail/l3133-4 (Légifrance refuse l'accès automatisé, HTTP 403). date_publication = date de la version en vigueur indiquée par code.travail.gouv.fr."
+  - id: legi-ct-l3133-8
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Code du travail – Article L3133-8 : Journée de solidarité (7 heures non rémunérées)"
+    url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033020862"
+    auteurs: []
+    date_publication: "2016-08-10"
+    consulte_le: "2026-10-13"
+    note: "Texte lu sur la reproduction officielle du ministère du Travail https://code.travail.gouv.fr/code-du-travail/l3133-8 (Légifrance refuse l'accès automatisé, HTTP 403). date_publication = date de la version en vigueur indiquée par code.travail.gouv.fr."
+  - id: legi-ct-l3121-64
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Code du travail – Article L3121-64 : Conventions de forfait en jours (218 jours)"
+    url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036262805"
+    auteurs: []
+    date_publication: "2017-12-22"
+    consulte_le: "2026-10-13"
+    note: "Texte lu sur la reproduction officielle du ministère du Travail https://code.travail.gouv.fr/code-du-travail/l3121-64 (Légifrance refuse l'accès automatisé, HTTP 403). date_publication = date de la version en vigueur indiquée par code.travail.gouv.fr."
+  - id: legi-ct-l3231-5
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Code du travail – Article L3231-5 : Revalorisation automatique du SMIC (hausse des prix d'au moins 2 %)"
+    url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006902835"
+    auteurs: []
+    date_publication: "2008-05-01"
+    consulte_le: "2026-10-13"
+    note: "Texte lu sur la reproduction officielle du ministère du Travail https://code.travail.gouv.fr/code-du-travail/l3231-5 (Légifrance refuse l'accès automatisé, HTTP 403). date_publication = date de la version en vigueur indiquée par code.travail.gouv.fr."
+  - id: legi-ct-l4153-1
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Code du travail – Article L4153-1 : Âge minimum d'admission au travail (16 ans)"
+    url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037386047"
+    auteurs: []
+    date_publication: "2019-01-01"
+    consulte_le: "2026-10-13"
+    note: "Texte lu sur la reproduction officielle du ministère du Travail https://code.travail.gouv.fr/code-du-travail/l4153-1 (Légifrance refuse l'accès automatisé, HTTP 403). date_publication = date de la version en vigueur indiquée par code.travail.gouv.fr."
+  - id: legi-ct-d3231-3
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Code du travail – Article D3231-3 : Abattements sur le SMIC des jeunes travailleurs de moins de 18 ans"
+    url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000018533884"
+    auteurs: []
+    date_publication: "2008-05-01"
+    consulte_le: "2026-10-13"
+    note: "Texte lu sur la reproduction officielle du ministère du Travail https://code.travail.gouv.fr/code-du-travail/d3231-3 (Légifrance refuse l'accès automatisé, HTTP 403). date_publication = date de la version en vigueur indiquée par code.travail.gouv.fr."
+  - id: legi-ct-d6222-26
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Code du travail – Article D6222-26 : Salaire minimum des apprentis en pourcentage du SMIC"
+    url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038033238"
+    auteurs: []
+    date_publication: "2019-01-01"
+    consulte_le: "2026-10-13"
+    note: "Texte lu sur la reproduction officielle du ministère du Travail https://code.travail.gouv.fr/code-du-travail/d6222-26 (Légifrance refuse l'accès automatisé, HTTP 403). date_publication = date de la version en vigueur indiquée par code.travail.gouv.fr."
+  - id: legi-ct-l1221-19
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Code du travail – Article L1221-19 : Durée maximale de la période d'essai du CDI"
+    url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000019071113"
+    auteurs: []
+    date_publication: "2008-06-27"
+    consulte_le: "2026-10-13"
+    note: "Texte lu sur la reproduction officielle du ministère du Travail https://code.travail.gouv.fr/code-du-travail/l1221-19 (Légifrance refuse l'accès automatisé, HTTP 403). date_publication = date de la version en vigueur indiquée par code.travail.gouv.fr."
+  - id: legi-ct-l1221-21
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Code du travail – Article L1221-21 : Renouvellement de la période d'essai et durée maximale"
+    url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000019071109"
+    auteurs: []
+    date_publication: "2008-06-27"
+    consulte_le: "2026-10-13"
+    note: "Texte lu sur la reproduction officielle du ministère du Travail https://code.travail.gouv.fr/code-du-travail/l1221-21 (Légifrance refuse l'accès automatisé, HTTP 403). date_publication = date de la version en vigueur indiquée par code.travail.gouv.fr."
+  - id: legi-ct-l1242-10
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Code du travail – Article L1242-10 : Période d'essai du contrat à durée déterminée"
+    url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006901204"
+    auteurs: []
+    date_publication: "2008-05-01"
+    consulte_le: "2026-10-13"
+    note: "Texte lu sur la reproduction officielle du ministère du Travail https://code.travail.gouv.fr/code-du-travail/l1242-10 (Légifrance refuse l'accès automatisé, HTTP 403). date_publication = date de la version en vigueur indiquée par code.travail.gouv.fr."
+  - id: legi-ct-l1234-1
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Code du travail – Article L1234-1 : Préavis de licenciement selon l'ancienneté"
+    url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006901112"
+    auteurs: []
+    date_publication: "2008-05-01"
+    consulte_le: "2026-10-13"
+    note: "Texte lu sur la reproduction officielle du ministère du Travail https://code.travail.gouv.fr/code-du-travail/l1234-1 (Légifrance refuse l'accès automatisé, HTTP 403). date_publication = date de la version en vigueur indiquée par code.travail.gouv.fr."
+  - id: legi-ct-l1234-9
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Code du travail – Article L1234-9 : Indemnité légale de licenciement : condition de 8 mois d'ancienneté"
+    url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035644154"
+    auteurs: []
+    date_publication: "2017-09-24"
+    consulte_le: "2026-10-13"
+    note: "Texte lu sur la reproduction officielle du ministère du Travail https://code.travail.gouv.fr/code-du-travail/l1234-9 (Légifrance refuse l'accès automatisé, HTTP 403). date_publication = date de la version en vigueur indiquée par code.travail.gouv.fr."
+  - id: legi-ct-r1234-2
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Code du travail – Article R1234-2 : Montant de l'indemnité légale de licenciement (1/4 puis 1/3 de mois par année)"
+    url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035644692"
+    auteurs: []
+    date_publication: "2017-09-27"
+    consulte_le: "2026-10-13"
+    note: "Texte lu sur la reproduction officielle du ministère du Travail https://code.travail.gouv.fr/code-du-travail/r1234-2 (Légifrance refuse l'accès automatisé, HTTP 403). date_publication = date de la version en vigueur indiquée par code.travail.gouv.fr."
+  - id: legi-ct-l1235-3
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Code du travail – Article L1235-3 : Barème des indemnités pour licenciement sans cause réelle et sérieuse"
+    url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036762052"
+    auteurs: []
+    date_publication: "2018-04-01"
+    consulte_le: "2026-10-13"
+    note: "Texte lu sur la reproduction officielle du ministère du Travail https://code.travail.gouv.fr/code-du-travail/l1235-3 (Légifrance refuse l'accès automatisé, HTTP 403). date_publication = date de la version en vigueur indiquée par code.travail.gouv.fr."
+  - id: legi-ct-l1235-3-1
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Code du travail – Article L1235-3-1 : Licenciement nul : indemnité minimale de six mois de salaire"
+    url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036762026"
+    auteurs: []
+    date_publication: "2018-04-01"
+    consulte_le: "2026-10-13"
+    note: "Texte lu sur la reproduction officielle du ministère du Travail https://code.travail.gouv.fr/code-du-travail/l1235-3-1 (Légifrance refuse l'accès automatisé, HTTP 403). date_publication = date de la version en vigueur indiquée par code.travail.gouv.fr."
+  - id: legi-ct-l1242-8-1
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Code du travail – Article L1242-8-1 : Durée maximale du CDD à défaut de stipulation conventionnelle (18 mois)"
+    url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035643961"
+    auteurs: []
+    date_publication: "2017-09-24"
+    consulte_le: "2026-10-13"
+    note: "Texte lu sur la reproduction officielle du ministère du Travail https://code.travail.gouv.fr/code-du-travail/l1242-8-1 (Légifrance refuse l'accès automatisé, HTTP 403). date_publication = date de la version en vigueur indiquée par code.travail.gouv.fr."
+  - id: legi-ct-l1243-13-1
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Code du travail – Article L1243-13-1 : Nombre de renouvellements du CDD à défaut de stipulation conventionnelle (2)"
+    url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035639380"
+    auteurs: []
+    date_publication: "2017-09-24"
+    consulte_le: "2026-10-13"
+    note: "Texte lu sur la reproduction officielle du ministère du Travail https://code.travail.gouv.fr/code-du-travail/l1243-13-1 (Légifrance refuse l'accès automatisé, HTTP 403). date_publication = date de la version en vigueur indiquée par code.travail.gouv.fr."
+  - id: legi-ct-l1244-3-1
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Code du travail – Article L1244-3-1 : Délai de carence entre deux CDD à défaut de stipulation conventionnelle"
+    url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035639421"
+    auteurs: []
+    date_publication: "2017-09-24"
+    consulte_le: "2026-10-13"
+    note: "Texte lu sur la reproduction officielle du ministère du Travail https://code.travail.gouv.fr/code-du-travail/l1244-3-1 (Légifrance refuse l'accès automatisé, HTTP 403). date_publication = date de la version en vigueur indiquée par code.travail.gouv.fr."
+  - id: legi-ct-l1243-8
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Code du travail – Article L1243-8 : Indemnité de fin de contrat à durée déterminée (10 %)"
+    url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006901219"
+    auteurs: []
+    date_publication: "2008-05-01"
+    consulte_le: "2026-10-13"
+    note: "Texte lu sur la reproduction officielle du ministère du Travail https://code.travail.gouv.fr/code-du-travail/l1243-8 (Légifrance refuse l'accès automatisé, HTTP 403). date_publication = date de la version en vigueur indiquée par code.travail.gouv.fr."
+  - id: legi-ct-l1237-13
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Code du travail – Article L1237-13 : Rupture conventionnelle : délai de rétractation de 15 jours calendaires"
+    url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000019071182"
+    auteurs: []
+    date_publication: "2008-06-27"
+    consulte_le: "2026-10-13"
+    note: "Texte lu sur la reproduction officielle du ministère du Travail https://code.travail.gouv.fr/code-du-travail/l1237-13 (Légifrance refuse l'accès automatisé, HTTP 403). date_publication = date de la version en vigueur indiquée par code.travail.gouv.fr."
+  - id: legi-ct-l1237-14
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Code du travail – Article L1237-14 : Rupture conventionnelle : homologation dans un délai de 15 jours ouvrables"
+    url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000019071180"
+    auteurs: []
+    date_publication: "2008-06-27"
+    consulte_le: "2026-10-13"
+    note: "Texte lu sur la reproduction officielle du ministère du Travail https://code.travail.gouv.fr/code-du-travail/l1237-14 (Légifrance refuse l'accès automatisé, HTTP 403). date_publication = date de la version en vigueur indiquée par code.travail.gouv.fr."
+  - id: legi-ct-l2311-2
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Code du travail – Article L2311-2 : Mise en place du comité social et économique (11 salariés)"
+    url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035609353"
+    auteurs: []
+    date_publication: "2018-01-01"
+    consulte_le: "2026-10-13"
+    note: "Texte lu sur la reproduction officielle du ministère du Travail https://code.travail.gouv.fr/code-du-travail/l2311-2 (Légifrance refuse l'accès automatisé, HTTP 403). date_publication = date de la version en vigueur indiquée par code.travail.gouv.fr."
+  - id: legi-ct-l2312-1
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Code du travail – Article L2312-1 : Attributions du CSE selon l'effectif (moins de 50 / au moins 50 salariés)"
+    url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036262407"
+    auteurs: []
+    date_publication: "2018-01-01"
+    consulte_le: "2026-10-13"
+    note: "Texte lu sur la reproduction officielle du ministère du Travail https://code.travail.gouv.fr/code-du-travail/l2312-1 (Légifrance refuse l'accès automatisé, HTTP 403). date_publication = date de la version en vigueur indiquée par code.travail.gouv.fr."
+  - id: legi-ct-l1311-2
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Code du travail – Article L1311-2 : Règlement intérieur obligatoire à partir de 50 salariés"
+    url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038610176"
+    auteurs: []
+    date_publication: "2020-01-01"
+    consulte_le: "2026-10-13"
+    note: "Texte lu sur la reproduction officielle du ministère du Travail https://code.travail.gouv.fr/code-du-travail/l1311-2 (Légifrance refuse l'accès automatisé, HTTP 403). date_publication = date de la version en vigueur indiquée par code.travail.gouv.fr."
+  - id: legi-ct-l3322-2
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Code du travail – Article L3322-2 : Participation obligatoire à partir de 50 salariés"
+    url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038613208"
+    auteurs: []
+    date_publication: "2019-01-01"
+    consulte_le: "2026-10-13"
+    note: "Texte lu sur la reproduction officielle du ministère du Travail https://code.travail.gouv.fr/code-du-travail/l3322-2 (Légifrance refuse l'accès automatisé, HTTP 403). date_publication = date de la version en vigueur indiquée par code.travail.gouv.fr."
+  - id: legi-ct-l5212-1
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Code du travail – Article L5212-1 : Obligation d'emploi des travailleurs handicapés : employeurs d'au moins 20 salariés"
+    url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044982351"
+    auteurs: []
+    date_publication: "2022-01-01"
+    consulte_le: "2026-10-13"
+    note: "Texte lu sur la reproduction officielle du ministère du Travail https://code.travail.gouv.fr/code-du-travail/l5212-1 (Légifrance refuse l'accès automatisé, HTTP 403). date_publication = date de la version en vigueur indiquée par code.travail.gouv.fr."
+  - id: legi-ct-l5212-2
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Code du travail – Article L5212-2 : Obligation d'emploi des travailleurs handicapés : proportion de 6 %"
+    url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037388717"
+    auteurs: []
+    date_publication: "2020-01-01"
+    consulte_le: "2026-10-13"
+    note: "Texte lu sur la reproduction officielle du ministère du Travail https://code.travail.gouv.fr/code-du-travail/l5212-2 (Légifrance refuse l'accès automatisé, HTTP 403). date_publication = date de la version en vigueur indiquée par code.travail.gouv.fr."
+  # ─────────────────────────────── Service-public.gouv.fr (DILA) ───────────────────────────────
+  - id: sp-f1911
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Durée du travail d'un salarié du secteur privé à temps plein âgé d'au moins 18 ans"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F1911"
+    auteurs: []
+    date_publication: "2025-09-25"
+    consulte_le: "2026-10-13"
+    note: "Fiche « vérifiée le 25 septembre 2025 ». 35 h = 151,67 h/mois = 1 607 h/an ; 10 h/jour (12 h par accord) ; 48 h/semaine (60 h exceptionnellement) ; 44 h en moyenne sur 12 semaines (46 h par accord) ; pause de 20 min après 6 h. Renvoie aux art. L3121-16 à L3121-27 du Code du travail sur Légifrance."
+
+  - id: sp-f2300
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Smic (salaire minimum interprofessionnel de croissance)"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F2300"
+    auteurs: []
+    date_publication: "2026-06-01"
+    consulte_le: "2026-10-13"
+    note: "Fiche « vérifiée le 01 juin 2026 » : 12,31 € brut/h, 1 867,02 € brut/mois (net indicatif 1 477,93 €) ; Smic minoré des mineurs : 11,08 € (17 ans), 9,85 € (16 ans et moins). Renvoie à l'arrêté du 22 mai 2026 (JORFTEXT000054126589)."
+
+  - id: sp-f19030
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Rupture conventionnelle d'un salarié du secteur privé"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F19030"
+    auteurs: []
+    date_publication: "2026-06-26"
+    consulte_le: "2026-10-13"
+    note: "Fiche « vérifiée le 26 juin 2026 » : rétractation 15 jours calendaires ; homologation par la DDETSPP en 15 jours ouvrables."
+
+  - id: sp-f13966
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Un employeur peut-il mettre d'office un salarié à la retraite ?"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F13966"
+    auteurs: []
+    date_publication: "2025-11-17"
+    consulte_le: "2026-10-13"
+    note: "Mise à la retraite d'office possible à 70 ans ; accord du salarié nécessaire entre 67 et 69 ans. Références : Code du travail, art. L1237-5 à L1237-8 et D1237-2-1."
+
+  - id: sp-actu-a18945
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Allocations chômage – Rupture conventionnelle : ce qui change au 1er septembre 2026"
+    url: "https://www.service-public.gouv.fr/particuliers/actualites/A18945"
+    auteurs: []
+    date_publication: "2026-06-12"
+    consulte_le: "2026-10-13"
+    note: "Actualité publiée le 12/06/2026, mise à jour le 02/09/2026. Références : loi n° 2026-470 du 11 juin 2026 (https://www.legifrance.gouv.fr/eli/loi/2026/6/11/TRSD2606801L/jo/texte) et arrêté du 19 juin 2026 portant agrément de l'avenant n° 2 du 10 avril 2026 (https://www.legifrance.gouv.fr/eli/arrete/2026/6/19/TRSD2614637A/jo/texte)."
+
+  - id: sp-f14043
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "À partir de quel âge un salarié peut-il partir en retraite ?"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F14043"
+    auteurs: []
+    date_publication: "2026-08-14"
+    consulte_le: "2026-10-13"
+    note: "Fiche « vérifiée le 14 août 2026 » : tableau des âges intégrant la suspension (1963 à mars 1965 : 62 ans 9 mois ; avril-déc. 1965 : 63 ans ; 1966 : 63 ans 3 mois ; 1967 : 63 ans 6 mois ; 1968 : 63 ans 9 mois ; 1969 et après : 64 ans). Références : CSS art. L161-17-2, L351-1-2-1, D161-2-1-9 et s., R351-2-1 (LEGIARTI000054589948)."
+
+  - id: sp-f35063
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Combien de trimestres un salarié doit-il avoir pour bénéficier d'une retraite à taux plein ?"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F35063"
+    auteurs: []
+    date_publication: "2026-01-01"
+    consulte_le: "2026-10-13"
+    note: "Fiche « vérifiée le 1er janvier 2026 » : tableau âge / trimestres par date de naissance, de 1958 à 1969 et après, intégrant la suspension ; taux plein automatique à 67 ans. Référence : CSS art. L161-17-3."
+
+  - id: sp-f19666
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Retraite du salarié : qu'est-ce que la décote ?"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F19666"
+    auteurs: []
+    date_publication: "2026-01-01"
+    consulte_le: "2026-10-13"
+    note: "Décote de 0,625 point par trimestre manquant, dans la limite de 20 trimestres (taux minimal 37,5 %). Références : CSS art. L351-1, L351-8, R351-27."
+
+  - id: sp-f19643
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Retraite du salarié du secteur privé : qu'est-ce que la surcote ?"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F19643"
+    auteurs: []
+    date_publication: "2026-01-01"
+    consulte_le: "2026-10-13"
+    note: "Surcote de 1,25 % par trimestre civil entier supplémentaire. Références : CSS art. L351-1-2 et D351-1-4."
+
+  - id: sp-f21552
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Montant de la retraite du salarié du secteur privé"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F21552"
+    auteurs: []
+    date_publication: "2026-09-01"
+    consulte_le: "2026-10-13"
+    note: "Fiche « vérifiée le 1er septembre 2026 » : 25 meilleures années (24 pour un parent d'un enfant, 23 pour deux enfants ou plus) ; taux plein 50 % ; décote 0,625 % par trimestre (20 au plus) ; minimum contributif 756,29 € et 903,94 € (Cnav : 903,93 €) ; plafond 1 410,89 € ; pension maximale 50 % du PASS soit 2 002,50 €/mois en 2026."
+
+  - id: sp-f13845
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Retraite anticipée pour carrière longue du salarié"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F13845"
+    auteurs: []
+    date_publication: "2026-09-01"
+    consulte_le: "2026-10-13"
+    note: "5 trimestres en début d'activité (4 si né d'octobre à décembre) ; début avant 16, 18, 20 ou 21 ans. Références : CSS art. L351-1-1 et D351-1-1 à D351-1-14."
+
+  - id: sp-f15396
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Retraite complémentaire dans le privé : Agirc-Arrco"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F15396"
+    auteurs: []
+    date_publication: "2026-01-01"
+    consulte_le: "2026-10-13"
+    note: "Valeur de service du point 1,4386 € ; salaire de référence 2026 20,1877 € ; taux T1 7,87 % (3,15 % salarié, 4,72 % employeur), T2 21,59 % (8,64 % / 12,95 %)."
+
+  - id: sp-f16871
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Allocation de solidarité aux personnes âgées (Aspa)"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F16871"
+    auteurs: []
+    date_publication: "2026-06-23"
+    consulte_le: "2026-10-13"
+    note: "Montants depuis le 1er janvier 2026 : 1 043,59 €/mois personne seule ; 1 620,18 €/mois pour un couple de bénéficiaires ; âge minimum 65 ans (62 ans en cas de carrière longue ou de handicap)."
+
+  # ─────────────────────────────── Urssaf / BOSS ───────────────────────────────
+  - id: urssaf-taux-secteur-prive-2026
+    type: texte_officiel
+    editeur: "Urssaf"
+    titre: "Taux de cotisations – Secteur privé"
+    url: "https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-secteur-prive.html"
+    auteurs: []
+    date_publication: "2026-01-01"
+    consulte_le: "2026-10-13"
+    note: "Page « mise à jour le 01 janvier 2026 ». Assurance vieillesse : employeur 2,11 % sur la totalité et 8,55 % dans la limite du plafond ; salarié 0,40 % et 6,90 %. CSA 0,30 %. Assurance chômage 4,00 % dans la limite de 192 240 € en 2026."
+
+  - id: urssaf-pass-2026
+    type: texte_officiel
+    editeur: "Urssaf"
+    titre: "Plafonds de la Sécurité sociale"
+    url: "https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/plafonds-securite-sociale.html"
+    auteurs: []
+    date_publication: "2026-01-01"
+    consulte_le: "2026-10-13"
+    note: "2026 : 48 060 € par an, 4 005 € par mois, 220 € par jour (Mayotte : 36 264 € par an). Texte de référence : arrêté du 22 décembre 2025 portant fixation du plafond de la sécurité sociale pour 2026 (https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000053143451)."
+
+  - id: boss-indemnites-rupture
+    type: texte_officiel
+    editeur: "Bulletin officiel de la sécurité sociale (BOSS)"
+    titre: "Indemnités de rupture"
+    url: "https://boss.gouv.fr/portail/accueil/autres-elements-de-remuneration/indemnites-de-rupture.html"
+    auteurs: []
+    date_publication: "2026-06-01"
+    consulte_le: "2026-10-13"
+    note: "Version en vigueur au 01/06/2026. Contribution patronale spécifique de 40 % (CSS art. L137-12) sur la fraction exonérée des indemnités de rupture conventionnelle et de mise à la retraite, issue de l'article 15 de la loi n° 2025-1403 (LFSS 2026), applicable aux ruptures dont le terme est postérieur au 1er janvier 2026."
+
+  # ─────────────────────────────── SMIC ───────────────────────────────
+  - id: insee-smic-historique
+    type: statistique_publique
+    editeur: "INSEE"
+    titre: "Salaire minimum interprofessionnel de croissance (Smic)"
+    url: "https://www.insee.fr/fr/statistiques/1375188"
+    auteurs: []
+    date_publication: ""
+    consulte_le: "2026-10-13"
+    note: "Tableau du Smic horaire brut (France hors Mayotte) avec dates d'entrée en vigueur et de parution au JO, du 01/01/2020 (10,15 €) au 01/06/2026 (12,31 €). Ne cite pas les numéros des textes."
+
+  - id: jorf-arrete-smic-2026-05-22
+    type: texte_officiel
+    editeur: "Légifrance (DILA) – Journal officiel"
+    titre: "Arrêté du 22 mai 2026 relatif au relèvement du salaire minimum de croissance"
+    url: "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000054126589"
+    auteurs: []
+    date_publication: "2026-05-24"
+    consulte_le: "2026-10-13"
+    note: "URL relevée sur service-public.gouv.fr (fiche F2300). Texte non consultable automatiquement (HTTP 403) ; son contenu (12,31 € en métropole, 9,56 € à Mayotte, minimum garanti 4,35 € au 1er juin 2026) est repris par la circulaire Cnav 2026-16. Date de JO : 24/05/2026 selon la Cnav, 22/05/2026 selon l'INSEE."
+
+  # ─────────────────────────────── Cnav (Assurance retraite) ───────────────────────────────
+  - id: cnav-circ-2025-33
+    type: texte_officiel
+    editeur: "Caisse nationale d'assurance vieillesse (Cnav)"
+    titre: "Circulaire Cnav n° 2025-33 du 23 décembre 2025 – Revalorisation du Smic au 1er janvier 2026 et incidences en matière de législation vieillesse"
+    url: "https://legislation.lassuranceretraite.fr/Pdf/circulaire_cnav_2025_33_23122025.pdf"
+    auteurs: []
+    date_publication: "2025-12-23"
+    consulte_le: "2026-10-13"
+    note: "Smic 12,02 €/h et 1 823,03 €/mois (décret n° 2025-1228 du 17/12/2025, JO du 18/12/2025) ; Mayotte 9,33 € ; minimum garanti 4,25 € ; trimestre validé pour 1 803 € ; minimum contributif 756,29 € et 903,93 €/mois ; plafond 1 410,89 € ; taux cumulé vieillesse-veuvage 17,96 % (décret n° 2025-1446). Copie : system/cache/travail-retraites/circulaire_cnav_2025_33_23122025.pdf."
+
+  - id: cnav-circ-2026-16
+    type: texte_officiel
+    editeur: "Caisse nationale d'assurance vieillesse (Cnav)"
+    titre: "Circulaire Cnav n° 2026-16 du 12 juin 2026 – Revalorisation du Smic au 1er juin 2026 et incidences en matière de législation vieillesse"
+    url: "https://legislation.lassuranceretraite.fr/Pdf/circulaire_cnav_2026_16_12062026.pdf"
+    auteurs: []
+    date_publication: "2026-06-12"
+    consulte_le: "2026-10-13"
+    note: "Arrêté du 22 mai 2026 (JO du 24/05/2026) : Smic 12,31 €/h et 1 867,02 €/mois au 1er juin 2026 (+2,41 %) ; Mayotte 9,56 € ; minimum garanti 4,35 € ; plafond du minimum contributif 1 444,89 €. Copie : system/cache/travail-retraites/circulaire_cnav_2026_16_12062026.pdf."
+
+  - id: cnav-circ-2025-29
+    type: texte_officiel
+    editeur: "Caisse nationale d'assurance vieillesse (Cnav)"
+    titre: "Circulaire Cnav n° 2025-29 du 22 décembre 2025 – Revalorisation à compter du 1er janvier 2026"
+    url: "https://legislation.lassuranceretraite.fr/Pdf/circulaire_cnav_2025_29_22122025.pdf"
+    auteurs: []
+    date_publication: "2025-12-22"
+    consulte_le: "2026-10-13"
+    note: "Coefficient de revalorisation 1,009 (+0,9 %) au 1er janvier 2026 (CSS art. L161-25 ; instruction interministérielle DSS/3A/DB/6BRS/2025/174 du 15/12/2025) ; ASPA 12 523,14 €/an (1 043,59 €/mois) personne seule, 19 442,21 €/an (1 620,18 €/mois) couple. Copie : system/cache/travail-retraites/circulaire_cnav_2025_29_22122025.pdf."
+
+  - id: cnav-circ-2024-25
+    type: texte_officiel
+    editeur: "Caisse nationale d'assurance vieillesse (Cnav)"
+    titre: "Circulaire Cnav n° 2024-25 du 1er août 2024 – Âge légal de la retraite et durée d'assurance pour les assurés nés à compter du 1er septembre 1961 dont la retraite prend effet à compter du 1er septembre 2023"
+    url: "https://legislation.lassuranceretraite.fr/Pdf/circulaire_cnav_2024_25_01082024.pdf"
+    auteurs: []
+    date_publication: "2024-08-01"
+    consulte_le: "2026-10-13"
+    note: "Application de l'article 10 de la loi n° 2023-270 du 14 avril 2023 et des décrets n° 2023-435 et 2023-436 du 3 juin 2023 aux retraites prenant effet à compter du 1er septembre 2023 : âges et durées par génération (paramètres antérieurs à la suspension de 2026) ; 62 ans et 167/168 trimestres restent opposables aux générations 1955 à août 1961 ; taux plein à 67 ans. Copie : system/cache/travail-retraites/circulaire_cnav_2024_25_01082024.pdf."
+
+  - id: cnav-circ-2014-20
+    type: texte_officiel
+    editeur: "Caisse nationale d'assurance vieillesse (Cnav)"
+    titre: "Circulaire Cnav n° 2014-20 du 27 février 2014 – Évolution de la durée d'assurance pour les assurés nés à compter du 1er janvier 1958"
+    url: "https://legislation.lassuranceretraite.fr/Pdf/circulaire_cnav_2014_20_27022014.pdf"
+    auteurs: []
+    date_publication: "2014-02-27"
+    consulte_le: "2026-10-13"
+    note: "Durées issues de la loi n° 2014-40 du 20 janvier 2014 (CSS art. L161-17-3), applicables depuis le 22 janvier 2014 : 167 trimestres (1958-1960), 168 (1961-1963), 169 (1964-1966), 170 (1967-1969), 171 (1970-1972), 172 (1973 et après). Circulaire remplacée en 2023 pour les générations touchées par la réforme. Copie : system/cache/travail-retraites/circulaire_cnav_2014_20_27022014.pdf."
+
+  - id: lar-age-depart
+    type: texte_officiel
+    editeur: "L'Assurance retraite (Cnav)"
+    titre: "Mon âge de départ à la retraite"
+    url: "https://www.lassuranceretraite.fr/portail-info/home/actif/age-depart/age-depart-retraite.html"
+    auteurs: []
+    date_publication: ""
+    consulte_le: "2026-10-13"
+    note: "Deux tableaux : retraites prenant effet avant le 1er septembre 2026 (paramètres de 2023) et à partir du 1er septembre 2026 (paramètres après suspension) ; âge du taux plein automatique (67 ans à partir de la génération 1955)."
+
+  - id: lar-montant-retraite
+    type: texte_officiel
+    editeur: "L'Assurance retraite (Cnav)"
+    titre: "Calcul de la retraite de base"
+    url: "https://lassuranceretraite.fr/portail-info/home/actif/montant-retraite/montant-retraite.html"
+    auteurs: []
+    date_publication: ""
+    consulte_le: "2026-10-13"
+    note: "50 % de la moyenne des 25 meilleurs revenus annuels ; depuis le 1er septembre 2026, 24 meilleures années (parent d'un enfant) ou 23 (deux enfants ou plus), application courant 2027 avec recalcul automatique ; 4 trimestres au plus par an ; minimum contributif majoré à partir de 120 trimestres cotisés ; tableau des trimestres requis après suspension."
+
+  - id: lar-carriere-longue
+    type: texte_officiel
+    editeur: "L'Assurance retraite (Cnav)"
+    titre: "Retraite anticipée et carrière longue"
+    url: "https://www.lassuranceretraite.fr/portail-info/home/actif/je-souhaite-partir-plus-tot/carriere-longue-retraite.html"
+    auteurs: []
+    date_publication: ""
+    consulte_le: "2026-10-13"
+    note: "Début avant 16 ans : 58 ans ; avant 18 ans : 60 ans ; avant 20 ans : entre 60 et 62 ans selon la génération ; avant 21 ans : 63 ans ; 5 trimestres (4 si né au 4e trimestre) avant la fin de l'année civile de l'anniversaire. Tableau « avant 20 ans » pour les retraites prenant effet à partir du 1er septembre 2026."
+
+  # ─────────────────────────────── COR / Parlement ───────────────────────────────
+  - id: cor-ra-2026-ch2
+    type: rapport_institutionnel
+    editeur: "Conseil d'orientation des retraites (COR)"
+    titre: "Rapport annuel du COR – Juin 2026, partie 1, chapitre 2 : Les hypothèses réglementaires"
+    url: "https://www.cor-retraites.fr/sites/default/files/2026-06/RA_Part1_Chap2.pdf"
+    auteurs: []
+    date_publication: "2026-06-11"
+    consulte_le: "2026-10-13"
+    note: "Section 1.2 « La suspension de la réforme des retraites » : loi n° 2025-1403 du 30 décembre 2025 ; tableau 1.4 (âge et durée avant réforme, après réforme, après suspension, générations 1960 à 1973) ; tableau 1.5 (carrière longue, établi d'après la LFSS) ; revalorisation de +0,9 % au 1er janvier 2026. Copie : system/cache/travail-retraites/cor-ra-2026-part1-chap2.pdf."
+
+  - id: an-qe-15271
+    type: texte_officiel
+    editeur: "Assemblée nationale"
+    titre: "Question écrite n° 15271 : Décret relatif à la suspension de la réforme des retraites (réponse publiée au JO le 30 juin 2026)"
+    url: "https://questions.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE15271"
+    auteurs: []
+    date_publication: "2026-06-30"
+    consulte_le: "2026-10-13"
+    note: "Réponse ministérielle : décrets n° 2026-344 et n° 2026-345 du 7 mai 2026 (JO n° 0108 du 8 mai 2026), ce dernier portant application de l'article 105 de la loi n° 2025-1403 ; AOD et DAR réduits d'un trimestre à partir de la génération 1964 pour les pensions prenant effet à compter du 1er septembre 2026 ; 64 ans atteints pour la génération 1969, 172 trimestres pour la génération 1966."
+
+  # ─────────────────────────────── Unédic (réglementation) ───────────────────────────────
+  - id: unedic-regl-parametres-avril-2026
+    type: rapport_institutionnel
+    editeur: "Unédic"
+    titre: "Références – Assurance chômage : Paramètres utiles, avril 2026"
+    url: "https://www.unedic.org/storage/uploads/2026/05/27/unedic_parametres_utiles_avril2026_uid_6a17039e9f727.pdf"
+    auteurs: []
+    date_publication: "2026-05-27"
+    consulte_le: "2026-10-13"
+    note: "Contribution employeur 4,00 % depuis le 01/05/2025 (bonus-malus 2,95-5,00 %) ; plafond 16 020 €/mois ; ARE = max(40,4 % SJR + 13,18 € ; 57 % SJR ; 32,13 €) dans la limite de 75 % du SJR ; dégressivité 0,7 au 7e mois (< 55 ans, AJ > 92,57 €) ; affiliation 130 jours / 910 h sur 24 mois (36 mois à 55 ans et plus), 108 jours / 758 h pour primo-entrants et saisonniers ; durées 548 / 685 / 822 jours ; minimum 182 jours ; complément de fin de droits si chômage ≥ 9 % ; allocation maximale 300,21 €/jour en 2026 ; ASS 19,48 €/jour depuis le 01/04/2026. Copie : system/cache/travail-retraites/unedic_parametres_utiles_avril2026.pdf. Antérieur à la réforme rupture conventionnelle du 1er septembre 2026."
+
+  - id: unedic-regl-fiche-are
+    type: rapport_institutionnel
+    editeur: "Unédic"
+    titre: "Allocation d'aide au retour à l'emploi (ARE) – fiche thématique"
+    url: "https://www.unedic.org/la-reglementation/fiches-thematiques/allocation-d-aide-au-retour-a-l-emploi-are"
+    auteurs: []
+    date_publication: "2026-10-05"
+    consulte_le: "2026-10-13"
+    note: "Dernière mise à jour le 5 octobre 2026. Délai d'attente 7 jours ; différé congés payés ≤ 30 jours ; différé spécifique ≤ 150 jours (75 jours en cas de licenciement économique) ; dégressivité −30 % au 7e mois au-delà de 92,57 €/jour, moins de 55 ans (57 ans pour les fins de contrat avant le 1er avril 2025) ; coefficient 0,75 depuis le 1er février 2023."
+
+  - id: unedic-regl-fiche-rupture-conventionnelle
+    type: rapport_institutionnel
+    editeur: "Unédic"
+    titre: "Rupture conventionnelle – fiche thématique"
+    url: "https://www.unedic.org/la-reglementation/fiches-thematiques/rupture-conventionnelle"
+    auteurs: []
+    date_publication: "2026-10-07"
+    consulte_le: "2026-10-13"
+    note: "Mise à jour le 7 octobre 2026. Fin de contrat à compter du 1er septembre 2026 : 456 jours (15 mois) avant 55 ans, 624 jours (20,5 mois) à partir de 55 ans ; outre-mer hors Mayotte 608 / 913 jours ; prolongation possible à 55-56 ans (+61 jours) et à 57 ans et plus (+198 jours)."
+
+  - id: unedic-regl-actu-1er-septembre-2026
+    type: rapport_institutionnel
+    editeur: "Unédic"
+    titre: "Assurance chômage : ce qui change le 1er septembre 2026"
+    url: "https://www.unedic.org/actualites/assurance-chomage-ce-qui-change-le-1er-septembre-2026"
+    auteurs: []
+    date_publication: "2026-08-31"
+    consulte_le: "2026-10-13"
+    note: "Avenant n° 2 du 10 avril 2026 à la convention du 15 novembre 2024, agréé par arrêté du 19 juin 2026 ; plafonnement de la durée après rupture conventionnelle individuelle ; maintien des droits jusqu'à la retraite adapté à la suspension (article 105 de la LFSS 2026)."
+
+  - id: unedic-regl-actu-revalorisation-2026
+    type: rapport_institutionnel
+    editeur: "Unédic"
+    titre: "Allocations d'assurance chômage : pas de revalorisation au 1er juillet 2026"
+    url: "https://www.unedic.org/actualites/allocations-dassurance-chomage-pas-de-revalorisation-au-1er-juillet-2026"
+    auteurs: []
+    date_publication: "2026-06-30"
+    consulte_le: "2026-10-13"
+    note: "Aucune majorité au conseil d'administration du 30 juin 2026 : montants maintenus (allocation minimale 32,13 €, partie fixe 13,18 €, ARE-F 22,99 €, plancher de dégressivité 92,57 €)."
+
+  # ─────────────────────────────── Agirc-Arrco ───────────────────────────────
+  - id: agirc-arrco-points-retraite
+    type: rapport_institutionnel
+    editeur: "Agirc-Arrco"
+    titre: "Points de retraite : comment sont-ils obtenus ?"
+    url: "https://www.agirc-arrco.fr/particuliers/ma-retraite/comprendre-ma-retraite/points-de-retraite-comment-sont-ils-obtenus/"
+    auteurs: []
+    date_publication: ""
+    consulte_le: "2026-10-13"
+    note: "Paramètres 2026 : PASS 48 060 € ; taux T1 7,87 % (= 6,20 % × 127 %), T2 21,59 % (= 17 % × 127 %) ; CEG 2,15 % / 2,70 % ; CET 0,35 % ; prix d'achat du point 20,1877 € (2025 et 2026), 19,6321 € (2024), 18,7669 € (2023) ; valeur du point au 1er novembre 2025 : 1,4386 €. Régime de droit privé géré par les partenaires sociaux."
+
+  - id: agirc-arrco-historique-valeurs-point
+    type: rapport_institutionnel
+    editeur: "Agirc-Arrco"
+    titre: "Valeurs de service du point et salaires de référence / valeurs d'achat du point – Historique (1er novembre 2025)"
+    url: "https://www.agirc-arrco.fr/storage/2024/10/Compilation_valeurs_de_point_novembre_2025.pdf"
+    auteurs: []
+    date_publication: "2025-11-01"
+    consulte_le: "2026-10-13"
+    note: "Valeur de service : 1,2588 € (01/01/2019), 1,2714 € (01/11/2019 et 2020), 1,2841 € (2021), 1,3498 € (2022), 1,4159 € (2023), 1,4386 € (01/11/2024), 1,4386 € (01/11/2025, +0,00 %). Copie : system/cache/travail-retraites/agirc_arrco_compilation_valeurs_point_nov2025.pdf."
+
+  # ═══════════════════════════════ Sources des métriques ═══════════════════════════════
+  # --------------------------------------------------------------------------- INSEE
+  - id: insee-ir-chomage-t2-2026
+    type: statistique_publique
+    editeur: "INSEE"
+    titre: "Au deuxième trimestre 2026, le taux de chômage augmente de 0,2 point et atteint 8,3 % (Informations rapides n° 192)"
+    url: "https://www.insee.fr/fr/statistiques/9032359"
+    auteurs: []
+    date_publication: "2026-08-07"
+    consulte_le: "2026-10-13"
+    note: "Enquête Emploi, données CVS. À partir de cette publication, le champ « France » inclut Mayotte et toutes les séries sont rétropolées. Valeurs lues dans les tableaux de la page : 2 677 milliers de chômeurs, taux d'emploi 15-64 ans 69,0 % et 55-64 ans 62,1 % au T2 2026. Prochaine parution : 10/11/2026 (T3 2026)."
+
+  - id: insee-ir-chomage-t2-2026-donnees
+    type: statistique_publique
+    editeur: "INSEE"
+    titre: "Chômage au sens du Bureau international du travail (BIT) et principaux indicateurs sur le marché du travail – Résultats de l'enquête Emploi au deuxième trimestre 2026 (fichier de données Chomage2026T2.zip)"
+    url: "https://www.insee.fr/fr/statistiques/fichier/9032359/Chomage2026T2.zip"
+    auteurs: []
+    date_publication: "2026-08-07"
+    consulte_le: "2026-10-13"
+    note: "Fichier de données de l'Informations rapides n° 192 (copie dans system/cache/travail-retraites/insee_Chomage2026T2.zip). 2026T2_sl_chomage.xlsx : onglet « Tab5. TxChom France hors Mayotte » (taux de chômage France hors Mayotte), onglet « Tab2. NbChom France » (nombre de chômeurs, France y compris Mayotte). 2026T2_sl_indicateurs.xlsx : onglet « Tab1 » (taux d'emploi 15-64 ans et 55-64 ans, champ France y compris Mayotte)."
+
+  - id: insee-ir-emploi-t2-2026
+    type: statistique_publique
+    editeur: "INSEE"
+    titre: "Au deuxième trimestre 2026, l'emploi salarié est quasi stable (-0,1 %) (Informations rapides n° 214)"
+    url: "https://www.insee.fr/fr/statistiques/9039152"
+    auteurs: []
+    date_publication: "2026-08-28"
+    consulte_le: "2026-10-13"
+    note: "Estimations d'emploi (Insee, Urssaf, Dares), données CVS en fin de trimestre, France hors Mayotte. Tableau « Évolution de l'emploi total » : niveau T2 2026 = 30 626,3 milliers (salarié 27 021,1 ; non salarié 3 605,2), évolution sur 3 mois +10,0 (T2) et +37,0 (T1), sur un an +47,0 milliers. Prochaine parution : 27/11/2026."
+
+  - id: insee-ir-emploi-t2-2026-donnees
+    type: statistique_publique
+    editeur: "INSEE"
+    titre: "Estimations trimestrielles d'emploi salarié – deuxième trimestre 2026 (fichier de données IR_T2_2026.xlsx)"
+    url: "https://www.insee.fr/fr/statistiques/fichier/9039152/IR_T2_2026.xlsx"
+    auteurs: []
+    date_publication: "2026-08-28"
+    consulte_le: "2026-10-13"
+    note: "Fichier de données de l'Informations rapides n° 214 (copie dans system/cache/travail-retraites/insee_IR_T2_2026_emploi.xlsx). Onglet « NIVEAU », ligne « AZ à RU » (emploi salarié total, milliers, CVS, fin de trimestre). Champ : France (hors Mayotte), personnes de 15 ans ou plus."
+
+  - id: insee-ecrt-2026-duree-travail
+    type: statistique_publique
+    editeur: "INSEE"
+    titre: "Durée du travail (Emploi, chômage, revenus du travail – édition juillet 2026)"
+    url: "https://www.insee.fr/fr/statistiques/8733071"
+    auteurs: []
+    date_publication: "2026-07-02"
+    consulte_le: "2026-10-13"
+    note: "Figure 1 – Durée du travail par salarié à temps complet de 2003 à 2025 (durée habituelle hebdomadaire et durée annuelle effective). Source : Insee, enquêtes Emploi. Champ : France métropolitaine jusqu'en 2014, France hors Mayotte à partir de 2014, salariés à temps complet de 15 ans ou plus en logement ordinaire."
+
+  - id: insee-ip-2079-salaires-prive-2024
+    type: statistique_publique
+    editeur: "INSEE"
+    titre: "Les salaires dans le secteur privé en 2024 (Insee Première n° 2079)"
+    url: "https://www.insee.fr/fr/statistiques/8657156"
+    auteurs: []
+    date_publication: "2025-10-23"
+    consulte_le: "2026-10-13"
+    note: "Figure 1 : salaire mensuel moyen en EQTP 2024, ensemble : 3 602 euros bruts, 2 733 euros nets (+0,8 % en euros constants). Champ : France, salariés du privé y compris alternants, stagiaires et contrats aidés, hors agriculture et particuliers employeurs ; source : base Tous salariés 2024. Aucune édition portant sur 2025 trouvée au 13/10/2026."
+
+  # --------------------------------------------------------------------------- DARES / FRANCE TRAVAIL
+  - id: dares-indicateurs-inscrits-ft-t2-2026
+    type: statistique_publique
+    editeur: "DARES / France Travail"
+    titre: "Les inscrits à France Travail au 2e trimestre 2026 (Dares Indicateurs n° 33, juillet 2026)"
+    url: "https://statistiques.francetravail.org/stmt/Handlers/HTFile.ashx?MZD=Fp74L47RoCJ4ZHIPWxo8Kw%3d%3d"
+    auteurs: []
+    date_publication: "2026-07-28"
+    consulte_le: "2026-10-13"
+    note: "PDF diffusé par France Travail (copie dans system/cache/travail-retraites/france_travail_inscrits_t2_2026.pdf) ; le site de la Dares n'a pas pu être consulté (page de vérification anti-robot). Date de publication confirmée par le calendrier France Travail (mardi 28 juillet 2026). Tableau 1 : catégorie A, France hors Mayotte, CVS-CJO, moyennes trimestrielles (3 222,5 / 3 295,1 / 3 323,0 milliers aux T2 2025, T1 2026, T2 2026). Encadré 1, tableau EN 1 : inscrits A-E indemnisés par l'assurance chômage (France y compris Mayotte, Saint-Martin, Saint-Barthélemy et Saint-Pierre-et-Miquelon, CVS) 2 627,0 (T1 2025), 2 600,7 (T4 2025, p), 2 608,5 milliers (T1 2026, p)."
+
+  - id: france-travail-stmt-series-defm-cvs
+    type: statistique_publique
+    editeur: "France Travail / DARES"
+    titre: "Statistiques trimestrielles – Demandeurs d'emploi inscrits à France Travail par catégorie, données CVS-CJO, du 1er trimestre 1996 au 2e trimestre 2026"
+    url: "https://statistiques.francetravail.org/stmt/trsl?graph=2&lb=A,ABC&pp=-20262"
+    auteurs: []
+    date_publication: "2026-07-28"
+    consulte_le: "2026-10-13"
+    note: "Séries trimestrielles (moyennes trimestrielles CVS-CJO) intégrées à la page (source STMT). La page affiche le filtre « France entière », mais les valeurs coïncident exactement avec celles de la publication Dares (champ France hors Mayotte) pour les T2 2025, T1 2026 et T2 2026."
+
+  # --------------------------------------------------------------------------- DREES
+  - id: drees-panorama-retraites-2024
+    type: statistique_publique
+    editeur: "DREES"
+    titre: "Les retraités et les retraites – Édition 2024 (Panoramas de la DREES)"
+    url: "https://drees.solidarites-sante.gouv.fr/publications-communique-de-presse-documents-de-reference/panoramas-de-la-drees/241030_Retraites_2024"
+    auteurs: []
+    date_publication: "2024-10-30"
+    consulte_le: "2026-10-13"
+    note: "Données fin 2022 : 17,0 millions de retraités de droit direct des régimes français ; pension moyenne de droit direct 1 626 euros bruts, soit 1 512 euros nets des prélèvements sociaux (retraités résidant en France, y compris majoration pour trois enfants ou plus)."
+
+  - id: drees-panorama-retraites-2025
+    type: statistique_publique
+    editeur: "DREES"
+    titre: "Les retraités et les retraites – Édition 2025 (Panoramas de la DREES)"
+    url: "https://drees.solidarites-sante.gouv.fr/publications-communique-de-presse-documents-de-reference/250731_PANORAMAS-retraites"
+    auteurs: []
+    date_publication: "2025-07-31"
+    consulte_le: "2026-10-13"
+    note: "Données fin 2023 : 17,2 millions de retraités de droit direct des régimes français ; pension moyenne de droit direct 1 666 euros bruts, soit 1 541 euros nets des prélèvements sociaux (retraités résidant en France, y compris majoration pour trois enfants ou plus ; 1 607 euros bruts y compris résidents à l'étranger). L'édition 2026 (annoncée par la DREES pour septembre 2026) n'a pas été trouvée au 13/10/2026."
+
+  - id: drees-donnees-retraites-2024
+    type: statistique_publique
+    editeur: "DREES"
+    titre: "Effectifs de retraités et montants des pensions versées : mise à disposition des données 2024"
+    url: "https://drees.solidarites-sante.gouv.fr/communique-de-presse-jeux-de-donnees/jeux-de-donnees/effectifs-de-retraites-et-montants-des"
+    auteurs: []
+    date_publication: "2026-05-26"
+    consulte_le: "2026-10-13"
+    note: "Données fin 2024 (enquête annuelle auprès des caisses de retraite, modèle Ancêtre) : 17,3 millions de personnes perçoivent une pension de droit direct au 31/12/2024, dont 16,4 millions résident en France (+0,7 %) ; pension moyenne de droit direct brute « sans majoration de pension pour parents de trois enfants » : 1 705 euros pour les résidents en France (+0,8 %). Pas de montant net publié sur cette page. Données détaillées sur data.drees (jeu donnes_eacr)."
+
+  # --------------------------------------------------------------------------- COR
+  - id: cor-ra-2026-synthese
+    type: rapport_institutionnel
+    editeur: "Conseil d'orientation des retraites (COR)"
+    titre: "Rapport annuel du COR – Juin 2026 : Évolutions et perspectives des retraites en France – Synthèse"
+    url: "https://www.cor-retraites.fr/sites/default/files/2026-06/Synth%C3%A8se_RA_2026_0.pdf"
+    auteurs: []
+    date_publication: "2026-06-11"
+    consulte_le: "2026-10-13"
+    note: "Synthèse du treizième rapport annuel du COR, publié le jeudi 11 juin 2026 (page : https://www.cor-retraites.fr/rapports-du-cor/rapport-annuel-cor-juin-2026-evolutions-perspectives-retraites-france ; rapport complet RA_2026_def_1.pdf). Dépenses 2025 : 422 Md€, 14,1 % du PIB ; solde 2025 : -5,1 Md€ (-0,2 point de PIB) ; scénario de référence : -0,2 point en 2030, -0,9 en 2045, -2,4 en 2070 ; dépenses 14,1 % en 2030, 14,2 % en 2045, 15,3 % en 2070 ; âge moyen de départ 63,1 ans en 2025, 64,6 ans en 2070. Copie dans system/cache/travail-retraites/cor-ra-2026-synthese.pdf."
+
+  - id: cor-ra-2026-donnees-synthese
+    type: rapport_institutionnel
+    editeur: "Conseil d'orientation des retraites (COR)"
+    titre: "Rapport annuel du COR juin 2026 – Données de la synthèse (fichier xlsx)"
+    url: "https://www.cor-retraites.fr/sites/default/files/2026-06/Donn%C3%A9es_RA2026_synth%C3%A8se_0.xlsx"
+    auteurs: []
+    date_publication: "2026-06-11"
+    consulte_le: "2026-10-13"
+    note: "Onglets « Solde dépenses ressources » (dépenses et solde en % du PIB, observés puis projetés, scénario de référence, convention EPR) et « Âge conjoncturel » (source Drees, modèles Ancêtre et Trajectoire). Valeurs arrondies à une décimale (dépenses, solde) ou deux décimales (âge). Champ : ensemble des régimes obligatoires, y compris FSV, hors RAFP. Copie dans system/cache/travail-retraites/cor-ra-2026-donnees-synthese.xlsx."
+
+  - id: cor-ra-2026-donnees-p2
+    type: rapport_institutionnel
+    editeur: "Conseil d'orientation des retraites (COR)"
+    titre: "Rapport annuel du COR juin 2026 – Données partie 2 (fichier xlsx)"
+    url: "https://www.cor-retraites.fr/sites/default/files/2026-06/Donn%C3%A9es_RA2026_P2.xlsx"
+    auteurs: []
+    date_publication: "2026-06-11"
+    consulte_le: "2026-10-13"
+    note: "Onglet « Fig 2.3 », série 2.2b « Rapport entre le nombre de cotisants et le nombre de retraités » (cotisants / retraités de droit direct), observé jusqu'en 2024 puis scénario de référence ; valeurs arrondies à deux décimales. Sources indiquées : projections COR juin 2026, comptes nationaux Insee, rapports CCSS, Drees (modèle Ancêtre 2024). Copie dans system/cache/travail-retraites/cor-ra-2026-donnees-p2.xlsx."
+
+  # --------------------------------------------------------------------------- UNÉDIC
+  - id: unedic-previsions-juin-2026
+    type: rapport_institutionnel
+    editeur: "Unédic"
+    titre: "Situation financière de l'Assurance chômage à horizon 2028 (Prévisions financières de l'Unédic – juin 2026)"
+    url: "https://s3.eusc-de-east-1.amazonaws.eu/unedic-eks-prod-cms/2026/06/17/situation-financiere-assurance-chomage-a-horizon-2028-juin-2026_uid_6a32884bd3186.pdf"
+    auteurs: ["Laure Baquero", "Cassandre Baufle", "Boris Koehler", "Gaëtan Stéphan", "Yann Desplan"]
+    date_publication: "2026-06-17"
+    consulte_le: "2026-10-13"
+    note: "Note liée depuis la page https://www.unedic.org/publications/previsions-financieres-de-lunedic-juin-2026 (copie dans system/cache/travail-retraites/unedic-previsions-juin-2026.pdf). Dépenses d'assurance chômage : 45,3 Md€ (2025), 46,6 (2026), 47,5 (2027), 47,2 (2028) ; dépenses d'allocations et aides : 37,2 Md€ en 2025 ; tableau 3 : chômeurs indemnisés (ARE, AREF, ASP, AREP, ATI), niveau moyen annuel, France entière, CVS. Les comptes 2025 de l'Unédic ont été approuvés le 30 juin 2026 et certifiés sans réserve (communiqué du 16 juillet 2026)."

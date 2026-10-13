@@ -1,0 +1,409 @@
+# Assurance chômage (régime général, métropole et DROM hors Mayotte) : règles en vigueur au 13 octobre 2026.
+# Textes : règlement général annexé à la convention d'assurance chômage du 15 novembre 2024, modifié par
+# l'avenant n° 2 du 10 avril 2026 (agréé par arrêté du 19 juin 2026) ; loi n° 2026-470 du 11 juin 2026
+# (rupture conventionnelle). Les montants sont ceux publiés par l'Unédic.
+# Convention : quand la date d'origine d'un paramètre n'a pas pu être vérifiée, « depuis » = 1er avril 2025,
+# date d'application des principales mesures de la convention du 15 novembre 2024 (vérifiée sur unedic.org
+# pour la dégressivité) ; le paramètre lui-même peut être plus ancien. C'est alors signalé dans la note.
+# L'id travail.chomage.taux_remplacement est aussi un levier du moteur OpenFisca.
+domaine: travail
+theme: "Assurance chômage"
+regles:
+  # ───────── Conditions d'ouverture ─────────
+  - id: travail.chomage.affiliation_jours_travailles
+    titre: "Durée de travail minimale pour avoir droit au chômage (en jours)"
+    explication: "Pour toucher l'allocation chômage (ARE), il faut avoir travaillé au moins 130 jours (environ 6 mois) au cours des 24 derniers mois (36 mois à partir de 55 ans)."
+    type: nombre
+    unite: jours
+    bornes: [0, 365]
+    valeurs:
+      - depuis: "2025-04-01"
+        valeur: 130
+        sources: [unedic-regl-parametres-avril-2026, unedic-regl-fiche-rupture-conventionnelle]
+    tags: [chomage, affiliation]
+    a_verifier: false
+    note: "Ou 910 heures travaillées. Date « depuis » conventionnelle (voir en-tête) : la condition de 6 mois est antérieure à 2025."
+
+  - id: travail.chomage.affiliation_heures_travaillees
+    titre: "Durée de travail minimale pour avoir droit au chômage (en heures)"
+    explication: "Alternative à la condition en jours : avoir travaillé au moins 910 heures dans la période de référence."
+    type: nombre
+    unite: heures
+    bornes: [0, 2500]
+    valeurs:
+      - depuis: "2025-04-01"
+        valeur: 910
+        sources: [unedic-regl-parametres-avril-2026]
+    tags: [chomage, affiliation]
+    a_verifier: false
+    note: "Date « depuis » conventionnelle (voir en-tête)."
+
+  - id: travail.chomage.affiliation_primo_entrants_jours
+    titre: "Durée de travail minimale pour les primo-entrants et saisonniers (en jours)"
+    explication: "Les personnes qui n'ont jamais été indemnisées au cours des 20 dernières années, et les saisonniers, peuvent ouvrir un droit avec 108 jours travaillés (ou 758 heures)."
+    type: nombre
+    unite: jours
+    bornes: [0, 365]
+    valeurs:
+      - depuis: "2025-04-01"
+        valeur: 108
+        sources: [unedic-regl-parametres-avril-2026]
+    tags: [chomage, affiliation, jeunes]
+    a_verifier: false
+    note: "Mesure de la convention du 15 novembre 2024 ; date d'application non relue sur un texte (convention retenue en en-tête)."
+
+  - id: travail.chomage.periode_reference_moins_55_ans
+    titre: "Période sur laquelle on recherche l'activité passée (moins de 55 ans)"
+    explication: "Les jours travaillés sont recherchés dans les 24 mois qui précèdent la fin du contrat."
+    type: nombre
+    unite: mois
+    bornes: [6, 60]
+    valeurs:
+      - depuis: "2025-04-01"
+        valeur: 24
+        sources: [unedic-regl-parametres-avril-2026]
+    tags: [chomage, affiliation]
+    a_verifier: false
+
+  - id: travail.chomage.periode_reference_55_ans_et_plus
+    titre: "Période sur laquelle on recherche l'activité passée (55 ans et plus)"
+    explication: "À partir de 55 ans, les jours travaillés sont recherchés sur les 36 derniers mois, ce qui permet aussi des durées d'indemnisation plus longues."
+    type: nombre
+    unite: mois
+    bornes: [6, 60]
+    valeurs:
+      - depuis: "2025-04-01"
+        valeur: 36
+        sources: [unedic-regl-parametres-avril-2026, unedic-regl-fiche-rupture-conventionnelle]
+    tags: [chomage, affiliation, seniors]
+    a_verifier: false
+    note: "Le seuil d'âge est passé de 53 à 55 ans avec la convention du 15 novembre 2024 (date d'application 1er avril 2025, inférée de la page Unédic sur la dégressivité)."
+
+  - id: travail.chomage.demission_reconversion_jours
+    titre: "Ancienneté requise pour être indemnisé après une démission pour projet de reconversion"
+    explication: "Un salarié qui démissionne pour un projet professionnel validé peut toucher le chômage s'il a travaillé 1 300 jours au cours des 60 derniers mois (environ 5 ans)."
+    type: nombre
+    unite: jours
+    bornes: [0, 2000]
+    valeurs:
+      - depuis: "2019-11-01"
+        valeur: 1300
+        sources: [unedic-regl-parametres-avril-2026]
+    tags: [chomage, demission, reconversion]
+    a_verifier: false
+    note: "Le projet doit être attesté réel et sérieux par Transitions Pro, après un conseil en évolution professionnelle."
+
+  # ───────── Durée d'indemnisation ─────────
+  - id: travail.chomage.coefficient_reduction_duree
+    titre: "Coefficient de réduction de la durée d'indemnisation (« contracyclicité »)"
+    explication: "Quand le marché du travail va bien, la durée d'indemnisation est égale à la durée travaillée multipliée par 0,75 (soit 25 % de moins). Elle est rallongée si le chômage dépasse 9 % ou augmente fortement."
+    type: nombre
+    unite: ratio
+    bornes: [0.5, 1]
+    valeurs:
+      - depuis: "2023-02-01"
+        valeur: 0.75
+        sources: [unedic-regl-fiche-are, unedic-regl-parametres-avril-2026]
+    tags: [chomage, duree_indemnisation, contracyclicite]
+    a_verifier: false
+    note: "Applicable aux fins de contrat depuis le 1er février 2023. Coefficient toujours en vigueur au 13/10/2026 (conjoncture « verte »)."
+
+  - id: travail.chomage.seuil_chomage_complement_fin_droits
+    titre: "Taux de chômage déclenchant l'allongement des droits (complément de fin de droits)"
+    explication: "Si le taux de chômage (BIT, INSEE) atteint 9 %, ou augmente d'au moins 0,8 point en un trimestre, les allocataires en fin de droits retrouvent la durée « pleine » sans le coefficient de 0,75."
+    type: nombre
+    unite: pourcent
+    bornes: [5, 15]
+    valeurs:
+      - depuis: "2025-04-01"
+        valeur: 9
+        sources: [unedic-regl-parametres-avril-2026]
+    tags: [chomage, contracyclicite]
+    a_verifier: false
+    note: "Le dispositif a été créé en 2023 avec le coefficient 0,75 ; date « depuis » conventionnelle (voir en-tête). Le second déclencheur est une hausse trimestrielle d'au moins 0,8 point."
+
+  - id: travail.chomage.duree_minimale
+    titre: "Durée minimale d'indemnisation"
+    explication: "Quand on ouvre un droit au chômage, on est indemnisé au moins 182 jours (6 mois)."
+    type: nombre
+    unite: jours
+    bornes: [0, 365]
+    valeurs:
+      - depuis: "2025-04-01"
+        valeur: 182
+        sources: [unedic-regl-parametres-avril-2026, unedic-regl-fiche-rupture-conventionnelle]
+    tags: [chomage, duree_indemnisation]
+    a_verifier: false
+    note: "Date « depuis » conventionnelle (voir en-tête)."
+
+  - id: travail.chomage.duree_max_moins_55_ans
+    titre: "Durée maximale d'indemnisation, moins de 55 ans (cas général)"
+    explication: "Un demandeur d'emploi de moins de 55 ans peut être indemnisé au maximum 548 jours, soit 18 mois (après application du coefficient de 0,75)."
+    type: nombre
+    unite: jours
+    bornes: [180, 1100]
+    valeurs:
+      - depuis: "2025-04-01"
+        valeur: 548
+        sources: [unedic-regl-parametres-avril-2026, unedic-regl-fiche-are]
+    tags: [chomage, duree_indemnisation]
+    a_verifier: false
+    note: "730 jours avec le complément de fin de droits en cas de conjoncture dégradée. Hors rupture conventionnelle individuelle depuis le 1er septembre 2026 (voir règle dédiée). Bornes d'âge de la convention du 15/11/2024 (avant : moins de 53 ans)."
+
+  - id: travail.chomage.duree_max_55_56_ans
+    titre: "Durée maximale d'indemnisation, 55 et 56 ans (cas général)"
+    explication: "À 55 ou 56 ans à la fin du contrat, la durée maximale d'indemnisation est de 685 jours, soit 22,5 mois."
+    type: nombre
+    unite: jours
+    bornes: [180, 1100]
+    valeurs:
+      - depuis: "2025-04-01"
+        valeur: 685
+        sources: [unedic-regl-parametres-avril-2026, unedic-regl-fiche-are]
+    tags: [chomage, duree_indemnisation, seniors]
+    a_verifier: false
+    note: "913 jours avec le complément de fin de droits."
+
+  - id: travail.chomage.duree_max_57_ans_et_plus
+    titre: "Durée maximale d'indemnisation, 57 ans et plus (cas général)"
+    explication: "À partir de 57 ans à la fin du contrat, la durée maximale d'indemnisation est de 822 jours, soit 27 mois."
+    type: nombre
+    unite: jours
+    bornes: [180, 1100]
+    valeurs:
+      - depuis: "2025-04-01"
+        valeur: 822
+        sources: [unedic-regl-parametres-avril-2026, unedic-regl-fiche-are]
+    tags: [chomage, duree_indemnisation, seniors]
+    a_verifier: false
+    note: "1 095 jours avec le complément de fin de droits."
+
+  - id: travail.chomage.rupture_conventionnelle_duree_max_moins_55_ans
+    titre: "Durée maximale d'indemnisation après une rupture conventionnelle, moins de 55 ans"
+    explication: "Depuis le 1er septembre 2026, un salarié de moins de 55 ans qui quitte son emploi par rupture conventionnelle est indemnisé au maximum 15 mois (456 jours), contre 18 mois pour un licenciement."
+    type: nombre
+    unite: jours
+    bornes: [180, 1100]
+    valeurs:
+      - depuis: "2026-09-01"
+        valeur: 456
+        sources: [unedic-regl-fiche-rupture-conventionnelle, unedic-regl-actu-1er-septembre-2026, sp-actu-a18945]
+        article: "Loi n° 2026-470 du 11 juin 2026 (transposition de l'avenant n° 3 du 25 février 2026)"
+    tags: [chomage, rupture_conventionnelle, duree_indemnisation]
+    a_verifier: false
+    note: "S'applique aux contrats dont la fin, fixée par la convention de rupture, intervient à compter du 1er septembre 2026. Avant : régime général (548 jours). Outre-mer hors Mayotte : 608 jours (20 mois). Ne concerne pas la rupture conventionnelle collective."
+
+  - id: travail.chomage.rupture_conventionnelle_duree_max_55_ans_et_plus
+    titre: "Durée maximale d'indemnisation après une rupture conventionnelle, 55 ans et plus"
+    explication: "Depuis le 1er septembre 2026, après une rupture conventionnelle, les 55 ans et plus sont indemnisés au maximum 20,5 mois (624 jours), avec une prolongation possible sur demande."
+    type: nombre
+    unite: jours
+    bornes: [180, 1100]
+    valeurs:
+      - depuis: "2026-09-01"
+        valeur: 624
+        sources: [unedic-regl-fiche-rupture-conventionnelle, unedic-regl-actu-1er-septembre-2026, sp-actu-a18945]
+        article: "Loi n° 2026-470 du 11 juin 2026"
+    tags: [chomage, rupture_conventionnelle, duree_indemnisation, seniors]
+    a_verifier: false
+    note: "Prolongation possible sur demande, après examen des démarches : +61 jours à 55-56 ans (685 jours au plus), +198 jours à 57 ans et plus (822 jours au plus). Outre-mer hors Mayotte : 913 jours (30 mois)."
+
+  # ───────── Montant de l'allocation (ARE) ─────────
+  - id: travail.chomage.taux_proportionnel_avec_partie_fixe
+    titre: "Allocation chômage : pourcentage du salaire journalier de référence dans la formule avec partie fixe"
+    explication: "L'allocation journalière est le plus favorable de deux calculs : 40,4 % du salaire journalier de référence plus une partie fixe, ou 57 % de ce salaire."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2021-10-01"
+        valeur: 40.4
+        sources: [unedic-regl-parametres-avril-2026, unedic-regl-fiche-are]
+    tags: [chomage, montant_allocation]
+    a_verifier: false
+    note: "Unédic : « Modalités de calcul de l'allocation depuis le 01/10/2021 » ; le taux de 40,4 % est plus ancien."
+
+  - id: travail.chomage.taux_remplacement
+    titre: "Allocation chômage : pourcentage du salaire journalier de référence"
+    explication: "L'allocation chômage vaut le plus favorable de deux calculs : ce pourcentage du salaire journalier de référence, ou 40,4 % plus une partie fixe."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2021-10-01"
+        valeur: 57
+        sources: [unedic-regl-parametres-avril-2026, unedic-regl-fiche-are]
+    tags: [chomage, montant_allocation]
+    a_verifier: false
+    note: "Même id que le levier moteur OpenFisca (concordance attendue : 57 %). Date « depuis » = modalités de calcul actuelles (01/10/2021) ; le taux de 57 % est plus ancien."
+
+  - id: travail.chomage.partie_fixe_journaliere
+    titre: "Allocation chômage : partie fixe journalière"
+    explication: "Montant fixe ajouté chaque jour à 40,4 % du salaire journalier de référence dans le premier mode de calcul de l'allocation."
+    type: nombre
+    unite: euros
+    bornes: [0, 50]
+    valeurs:
+      - depuis: "2025-07-01"
+        valeur: 13.18
+        sources: [unedic-regl-parametres-avril-2026, unedic-regl-actu-revalorisation-2026]
+    tags: [chomage, montant_allocation]
+    a_verifier: false
+    note: "Non revalorisée au 1er juillet 2026 : aucune majorité au conseil d'administration de l'Unédic du 30 juin 2026."
+
+  - id: travail.chomage.allocation_minimale_journaliere
+    titre: "Allocation chômage minimale par jour"
+    explication: "Sauf exception, l'allocation chômage ne peut pas être inférieure à 32,13 € par jour (dans la limite de 75 % du salaire de référence)."
+    type: nombre
+    unite: euros
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2025-07-01"
+        valeur: 32.13
+        sources: [unedic-regl-parametres-avril-2026, unedic-regl-actu-revalorisation-2026]
+    tags: [chomage, montant_allocation]
+    a_verifier: false
+    note: "Non revalorisée au 1er juillet 2026. Allocation plancher en formation (ARE-F) : 22,99 €/jour."
+
+  - id: travail.chomage.plafond_pourcentage_sjr
+    titre: "Plafond de l'allocation chômage en pourcentage du salaire journalier de référence"
+    explication: "L'allocation journalière ne peut jamais dépasser 75 % de l'ancien salaire journalier de référence."
+    type: nombre
+    unite: pourcent
+    bornes: [50, 100]
+    valeurs:
+      - depuis: "2021-10-01"
+        valeur: 75
+        sources: [unedic-regl-parametres-avril-2026]
+    tags: [chomage, montant_allocation]
+    a_verifier: false
+    note: "Date « depuis » = modalités de calcul actuelles (01/10/2021) ; le plafond est plus ancien."
+
+  - id: travail.chomage.allocation_maximale_journaliere
+    titre: "Allocation chômage maximale théorique par jour (2026)"
+    explication: "Comme les cotisations sont plafonnées à 4 fois le plafond de la Sécurité sociale, l'allocation ne peut pas dépasser environ 300 € brut par jour."
+    type: nombre
+    unite: euros
+    bornes: [0, 600]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 300.21
+        sources: [unedic-regl-parametres-avril-2026]
+    tags: [chomage, montant_allocation]
+    a_verifier: false
+    note: "Valeur théorique pour l'année 2026, découlant du plafond des contributions (16 020 €/mois)."
+
+  - id: travail.chomage.degressivite_reduction
+    titre: "Dégressivité des hautes allocations : réduction appliquée à partir du 7e mois"
+    explication: "Pour les allocataires de moins de 55 ans qui touchent plus de 92,57 € par jour, l'allocation baisse de 30 % à partir du 7e mois d'indemnisation (coefficient de 0,7)."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 60]
+    valeurs:
+      - depuis: "2025-04-01"
+        valeur: 30
+        sources: [unedic-regl-fiche-are, unedic-regl-parametres-avril-2026]
+    tags: [chomage, degressivite, hauts_revenus]
+    a_verifier: false
+    note: "Concerne environ les salaires supérieurs à 4 940 € brut par mois. Date « depuis » = abaissement de l'âge limite à 55 ans (fins de contrat à compter du 1er avril 2025) ; la dégressivité elle-même est plus ancienne."
+
+  - id: travail.chomage.degressivite_seuil_journalier
+    titre: "Dégressivité : seuil et plancher de l'allocation journalière"
+    explication: "La dégressivité ne touche que les allocations supérieures à 92,57 € par jour, et ne peut pas les faire descendre en dessous de ce montant."
+    type: nombre
+    unite: euros
+    bornes: [0, 300]
+    valeurs:
+      - depuis: "2025-07-01"
+        valeur: 92.57
+        sources: [unedic-regl-fiche-are, unedic-regl-actu-revalorisation-2026]
+    tags: [chomage, degressivite, hauts_revenus]
+    a_verifier: false
+    note: "Non revalorisé au 1er juillet 2026."
+
+  - id: travail.chomage.degressivite_age_limite
+    titre: "Dégressivité : âge à partir duquel elle ne s'applique plus"
+    explication: "Les allocataires âgés de 55 ans ou plus à la fin de leur contrat ne subissent pas la dégressivité."
+    type: nombre
+    unite: ans
+    bornes: [40, 67]
+    valeurs:
+      - depuis: "2025-04-01"
+        valeur: 55
+        sources: [unedic-regl-fiche-are]
+    tags: [chomage, degressivite, seniors]
+    a_verifier: false
+    note: "Pour une fin de contrat (ou une procédure de licenciement engagée) avant le 1er avril 2025, la limite était de 57 ans (unedic.org)."
+
+  # ───────── Délais avant indemnisation ─────────
+  - id: travail.chomage.delai_attente_jours
+    titre: "Délai d'attente avant le premier jour indemnisé"
+    explication: "Après l'inscription et les éventuels différés, les 7 premiers jours ne sont pas indemnisés (sauf si ce délai a déjà été appliqué dans les 12 derniers mois)."
+    type: nombre
+    unite: jours
+    bornes: [0, 30]
+    valeurs:
+      - depuis: "2025-04-01"
+        valeur: 7
+        sources: [unedic-regl-fiche-are]
+    tags: [chomage, carence]
+    a_verifier: false
+    note: "Date « depuis » conventionnelle (voir en-tête) ; le délai de 7 jours est plus ancien."
+
+  - id: travail.chomage.differe_specifique_max_jours
+    titre: "Différé d'indemnisation maximal lié aux indemnités de rupture supra-légales"
+    explication: "Si l'on a reçu des indemnités de départ supérieures au minimum légal, le début de l'indemnisation est repoussé, au maximum de 150 jours (75 jours en cas de licenciement économique)."
+    type: nombre
+    unite: jours
+    bornes: [0, 365]
+    valeurs:
+      - depuis: "2025-04-01"
+        valeur: 150
+        sources: [unedic-regl-fiche-are]
+    tags: [chomage, carence]
+    a_verifier: false
+    note: "Différé = indemnités supra-légales ÷ 109,6 € (valeur au 1er janvier 2025). S'y ajoute un différé « congés payés » de 30 jours au plus. Date « depuis » conventionnelle (voir en-tête)."
+
+  # ───────── Financement ─────────
+  - id: travail.chomage.contribution_employeur
+    titre: "Contribution patronale d'assurance chômage (taux de droit commun)"
+    explication: "L'assurance chômage est financée par une contribution des employeurs de 4 % des salaires bruts (dans la limite de 4 plafonds de la Sécurité sociale) et par une part de CSG."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2025-05-01"
+        valeur: 4.00
+        sources: [unedic-regl-parametres-avril-2026, urssaf-taux-secteur-prive-2026]
+    tags: [chomage, cotisations, financement]
+    a_verifier: false
+    note: "Taux « ramené à 4 % depuis le 1er mai 2025 » (Unédic). Bonus-malus dans six secteurs : taux entre 2,95 % et 5,00 %. Pas de contribution salariale (sauf cas particuliers)."
+
+  - id: travail.chomage.plafond_assiette_contributions_pass
+    titre: "Plafond des salaires soumis à la contribution chômage (en nombre de plafonds de la Sécurité sociale)"
+    explication: "La contribution chômage n'est due que sur la partie du salaire inférieure à 4 fois le plafond de la Sécurité sociale, soit 16 020 € par mois en 2026."
+    type: nombre
+    unite: ratio
+    bornes: [1, 8]
+    valeurs:
+      - depuis: "2025-04-01"
+        valeur: 4
+        sources: [unedic-regl-parametres-avril-2026, urssaf-taux-secteur-prive-2026]
+    tags: [chomage, cotisations, financement]
+    a_verifier: false
+    note: "Soit 192 240 € par an en 2026 (Urssaf). Date « depuis » conventionnelle (voir en-tête)."
+
+  # ───────── Solidarité ─────────
+  - id: travail.chomage.ass_montant_journalier
+    titre: "Allocation de solidarité spécifique (ASS) : montant journalier à taux plein"
+    explication: "Les chômeurs en fin de droits qui ont suffisamment travaillé et ont de faibles ressources peuvent toucher l'ASS, financée par l'État."
+    type: nombre
+    unite: euros
+    bornes: [0, 60]
+    valeurs:
+      - depuis: "2026-04-01"
+        valeur: 19.48
+        sources: [unedic-regl-parametres-avril-2026]
+    tags: [chomage, solidarite, minima_sociaux]
+    a_verifier: false
+    note: "Soit 584,40 € pour un mois de 30 jours ; montant dégressif au-delà de 779,20 € de ressources mensuelles."

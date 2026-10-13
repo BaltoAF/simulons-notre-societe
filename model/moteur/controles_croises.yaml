@@ -1,0 +1,8 @@
+# Contrôles croisés : paires de règles qui doivent avoir la même valeur, établies par des sources indépendantes
+# (par exemple une fiche thématique sourcée par la loi de finances et un levier extrait d'OpenFisca-France).
+# Une concordance renforce la preuve ; une discordance est signalée par le Système.
+paires:
+  - [fiscalite.controle.tva_taux_normal, fiscalite.tva.taux_normal]
+  - [fiscalite.controle.tva_taux_intermediaire, fiscalite.tva.taux_intermediaire]
+  - [fiscalite.controle.tva_taux_reduit, fiscalite.tva.taux_reduit]
+  - [fiscalite.controle.pfu_taux_ir, fiscalite.capital.pfu_taux_ir]

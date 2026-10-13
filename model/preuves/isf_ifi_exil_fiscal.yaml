@@ -1,0 +1,109 @@
+question:
+  id: isf_ifi_exil_fiscal
+  titre: "Effet de l'impôt sur la fortune (ISF puis IFI) sur l'exil fiscal, le patrimoine déclaré et l'investissement"
+  definition: "Variation en % du patrimoine imposable déclaré (départs à l'étranger, sous-déclaration et réallocations de patrimoine inclus) pour une hausse de 1 point du taux marginal de l'impôt sur la fortune (semi-élasticité). Les études portant sur les départs de contribuables, l'investissement ou les recettes qui ne se convertissent pas dans cette unité figurent avec une valeur nulle et une note chiffrée."
+  unite: semi_elasticite_pourcent_par_point
+  regles_liees: [fiscalite.ifi.seuil]
+  sens_attendu: negatif
+  estimations:
+    - source: garbinti-et-al-2023
+      valeur: -0.13
+      intervalle_95: [-0.21, -0.05]
+      methode: "Regroupement (« bunching ») statique et dynamique aux seuils de tranches de l'ISF ; analyse de la réforme qui a simplifié la déclaration sous un seuil de patrimoine (2011, puis 2,57 M€ en 2013)"
+      champ: "France, ensemble des redevables de l'ISF ; seuils de tranche sur 2006-2010 (données 2006-2017)"
+      pays: FR
+      annee_donnees: 2010
+      type_etude: quasi_experimental
+      revue_par_les_pairs: false
+      note: "Élasticité du patrimoine déclaré au taux net (1 − taux de l'ISF) : 0,13 (e.t. 0,04) au 2e seuil de tranche et 0,02 (e.t. 0,10) au 3e ; les auteurs concluent à l'absence de regroupement significatif aux seuils de taux. Conversion : avec un taux d'ISF proche de 1 %, une hausse d'un point réduit (1 − taux) d'environ 1 %, d'où une semi-élasticité ≈ −0,13 % par point (IC tiré de ± 1,96 e.t.). Les auteurs utilisent la même équivalence (avec 0,13, passer de 0,7 % à 2,84 % de taux équivaut à l'effet de la réforme déclarative, soit environ −0,28 % de patrimoine). En revanche, la déclaration simplifiée a réduit la croissance du patrimoine déclaré des foyers concernés de 0,5 point par an (−20 % par rapport au groupe témoin), par fraude plutôt que par moindre épargne : les réactions aux règles de déclaration sont dix fois plus fortes qu'aux taux."
+    - source: seim-2017
+      valeur: -0.18
+      intervalle_95: null
+      methode: "Regroupement (« bunching ») au seuil d'exonération de l'impôt suédois sur la fortune, données administratives ; recoupement avec des données d'actifs inconnues du fisc ; doubles différences"
+      champ: "Suède, contribuables proches du seuil d'imposition à l'impôt sur la fortune"
+      pays: SE
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "L'auteur estime des élasticités du patrimoine imposable au taux net (1 − taux) comprises entre 0,09 et 0,27 ; environ un tiers de la réaction vient de la sous-évaluation des actifs déclarés, et les réponses traduisent fraude et évitement plutôt qu'un changement d'épargne. Conversion (même convention que Garbinti et al., qui reprennent cette méthode) : semi-élasticité ≈ −e % par point, soit −0,09 à −0,27 ; valeur retenue = milieu (−0,18). Mesure une réaction de court terme au voisinage d'un seuil, qui peut sous-estimer les effets de long terme."
+    - source: jakobsen-et-al-2020
+      valeur: -5.4
+      intervalle_95: null
+      methode: "Doubles différences autour de la réforme danoise de 1989 (doublement du seuil d'exonération pour les couples), puis modèle de cycle de vie calibré pour le long terme"
+      champ: "Danemark, ménages modérément riches (entre les 98e et 99e centiles de patrimoine), 8 ans après la réforme de 1989"
+      pays: DK
+      annee_donnees: 1997
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Effet d'environ +10 % sur le patrimoine imposable après 8 ans pour une baisse différentielle du taux de 1,84 point → semi-élasticité ≈ −10 / 1,84 ≈ −5,4 % par point (calcul de la base). Environ un dixième de l'effet est mécanique (meilleur rendement après impôt), le reste comportemental. Simulation de long terme : environ +20 % au bout de 30 ans (≈ −11 % par point ; élasticité au rendement net d'environ 0,5). Les auteurs observent peu d'évitement pour ce groupe (faible regroupement au seuil). Chiffres lus dans la version NBER de 2018."
+    - source: jakobsen-et-al-2020
+      valeur: -19.2
+      intervalle_95: null
+      methode: "Doubles différences entre contribuables très riches soumis ou non au plafonnement de l'impôt (réforme de 1989), puis modèle de cycle de vie calibré"
+      champ: "Danemark, ménages très riches (1 % des patrimoines les plus élevés), 8 ans après la réforme de 1989"
+      pays: DK
+      annee_donnees: 1997
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Hauts patrimoines. Effet d'environ +30 % après 8 ans pour une baisse moyenne du taux de 1,56 point chez les contribuables non plafonnés → semi-élasticité ≈ −30 / 1,56 ≈ −19 % par point (calcul de la base). Environ un quart de l'effet est mécanique. Long terme simulé : environ +70 % (≈ −45 % par point ; élasticité au rendement net d'environ 2). Les auteurs y voient une borne haute des réactions « réelles », une partie relevant de l'évitement et de la fraude. Chiffres lus dans la version NBER de 2018."
+    - source: brulhart-et-al-2022
+      valeur: -43.0
+      intervalle_95: null
+      methode: "Variations des taux d'impôt sur la fortune entre cantons suisses ; registres fiscaux de deux cantons aux réformes quasi aléatoires pour décomposer l'effet"
+      champ: "Suisse, cantons ; effet sur le patrimoine déclaré 6 ans après un changement de taux"
+      pays: CH
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Une baisse d'un point du taux cantonal augmente le patrimoine imposable déclaré « d'au moins 43 % » après 6 ans → semi-élasticité ≈ −43 % par point (valeur absolue minimale selon les auteurs). Environ 24 % de l'effet vient de la mobilité des contribuables et 21 % d'une hausse concomitante des prix immobiliers ; l'épargne n'explique qu'une faible part du reste, ce qui suggère une fraude importante (le patrimoine financier n'est pas déclaré par des tiers). Prudence : se déplacer entre cantons d'un même pays est plus facile que s'expatrier."
+    - source: advani-tarrant-2021
+      valeur: -12.0
+      intervalle_95: null
+      methode: "Revue de la littérature empirique et réconciliation des estimations selon la conception de l'impôt, le contexte et la méthode"
+      champ: "Littérature internationale sur les impôts annuels sur la fortune"
+      pays: INT
+      annee_donnees: null
+      type_etude: meta_analyse
+      revue_par_les_pairs: true
+      note: "Revue narrative (pas de méta-analyse statistique). Les élasticités du patrimoine imposable publiées varient d'un facteur 800 selon les études, du fait de la conception de l'impôt, du contexte et de la méthode. Les auteures concluent qu'un impôt sur la fortune « bien conçu » au taux de 1 % réduirait l'assiette de 7 à 17 % → semi-élasticité de −7 à −17 % par point ; valeur retenue = milieu (−12)."
+    - source: duran-cabre-et-al-2019
+      valeur: null
+      intervalle_95: null
+      methode: "Exploitation de l'ensemble des déclarations d'impôt sur la fortune déposées auprès de l'administration fiscale catalane après la réintroduction de l'impôt"
+      champ: "Espagne (Catalogne), 2011-2015, redevables de l'impôt sur la fortune"
+      pays: ES
+      annee_donnees: 2015
+      type_etude: quasi_experimental
+      revue_par_les_pairs: false
+      note: "Élasticité du patrimoine imposable au taux de rendement net d'impôt de 0,64 ; non convertie en semi-élasticité par point faute de connaître le rendement retenu. Les contribuables n'ont pas réduit leur épargne mais modifié la composition de leur patrimoine et de leurs revenus pour profiter surtout des exonérations liées aux biens professionnels et du plafonnement ; perte de recettes cumulée sur 4 ans égale à 2,6 fois les recettes estimées de 2011."
+    - source: france-strategie-fiscalite-capital-2023
+      valeur: null
+      intervalle_95: null
+      methode: "Suivi administratif des départs à l'étranger et des retours de redevables (note DGFiP) et évaluation ex post du remplacement de l'ISF par l'IFI"
+      champ: "France, redevables de l'ISF (2011-2017) puis de l'IFI (2018-2021)"
+      pays: FR
+      annee_donnees: 2021
+      type_etude: descriptif
+      revue_par_les_pairs: false
+      note: "Départs de redevables de l'ISF : 950 par an en moyenne en 2011-2016 contre 370 retours (solde d'environ −600 foyers par an ; les départs bruts représentent environ 0,26 % des quelque 360 000 redevables de 2017, calcul de la base). Avec l'IFI (130 000 redevables en 2018, environ 150 000 ensuite) : environ 260 départs contre 380 retours par an en 2018-2021 ; les redevables revenus en 2021 paient environ 0,3 % de l'IFI national. Aucun effet de l'ISF sur l'activité des entreprises de taille intermédiaire n'a pu être identifié ; création d'entreprises plus dynamique dans les secteurs les plus exposés aux réformes de 2018 (effet attribué surtout au PFU et à la baisse de l'IS). Perte de recettes du remplacement de l'ISF par l'IFI : 3,1 Md€ en 2018, environ 4,5 Md€ en 2022. Aucune variation de taux isolée : non convertible, valeur nulle."
+    - source: londono-velez-avila-mahecha-2021
+      valeur: null
+      intervalle_95: null
+      methode: "Programme gouvernemental de régularisation volontaire et menace de détection créée par les « Panama Papers », données administratives"
+      champ: "Colombie, contribuables les plus fortunés (0,01 % supérieur)"
+      pays: CO
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Deux cinquièmes des 0,01 % les plus riches fraudent l'impôt sur la fortune et dissimulent environ un tiers de leur patrimoine à l'étranger ; renforcer le contrôle améliore nettement le respect de l'impôt, les recettes et la progressivité. L'article ne publie pas de réaction au taux : valeur nulle."
+    - source: moretti-wilson-2023
+      valeur: null
+      intervalle_95: null
+      methode: "Doubles différences : la suppression en 2001 d'un crédit fédéral a rendu l'impôt sur les successions dépendant de l'État de résidence"
+      champ: "États-Unis, les 400 Américains les plus riches (classement Forbes)"
+      pays: US
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Après 2001, le nombre de membres du Forbes 400 résidant dans les États dotés d'un impôt sur les successions baisse de 35 % par rapport aux autres États, et la sensibilité augmente avec l'âge. Pourtant, pour la grande majorité des États, les recettes successorales dépassent les pertes d'impôt sur le revenu dues aux départs. Impôt sur les successions (et non sur la fortune) et mobilité entre États : non convertible, valeur nulle."
+  note_synthese: "Un impôt sur la fortune fait-il baisser le patrimoine déclaré ou partir les plus riches ? Tout dépend de la façon dont l'impôt est conçu et contrôlé. Juste autour des seuils de taux, les études française et suédoise trouvent des réactions minimes (de l'ordre de −0,1 à −0,3 % de patrimoine déclaré par point de taux), mais les études qui suivent le patrimoine pendant plusieurs années trouvent des effets bien plus forts : −5 % (ménages aisés) à −19 % (très riches) par point au Danemark après 8 ans, et au moins −43 % en Suisse après 6 ans, surtout par sous-déclaration, montages et déménagements plutôt que par une baisse de l'épargne ; la revue d'Advani et Tarrant estime qu'un impôt bien conçu à 1 % réduirait l'assiette de 7 à 17 %. En France, les départs de redevables de l'ISF étaient réels mais limités (environ 950 par an pour 360 000 redevables, avec 370 retours), les retours dépassent les départs depuis l'IFI, et le comité d'évaluation n'a pas trouvé d'effet de l'ISF sur l'activité des entreprises. Les données françaises montrent surtout que la sous-déclaration réagit beaucoup plus aux règles de déclaration (déclaration simplifiée) qu'aux taux eux-mêmes."

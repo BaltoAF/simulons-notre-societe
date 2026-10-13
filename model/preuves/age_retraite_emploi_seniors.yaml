@@ -1,0 +1,89 @@
+question:
+  id: age_retraite_emploi_seniors
+  titre: "Effet d'un report de l'âge légal de départ à la retraite sur l'emploi des seniors"
+  definition: "Variation, en points de pourcentage, du taux d'emploi des personnes directement concernées par le report, mesurée aux âges où elles ne peuvent plus partir (entre l'ancien et le nouvel âge). Les effets sur le chômage, l'invalidité et l'inactivité (les « vases communicants ») sont précisés dans la note de chaque estimation."
+  unite: points_de_pourcentage
+  regles_liees: []
+  sens_attendu: positif
+  estimations:
+    - source: rabate-rochut-2020-jpef
+      valeur: 21
+      intervalle_95: null
+      methode: "Différence de différences entre générations soumises à des âges légaux différents (réforme de 2010, âge légal de 60 à 62 ans), données administratives de la sécurité sociale"
+      champ: "France, générations 1951 à 1955, âges entre l'ancien et le nouvel âge légal"
+      pays: FR
+      annee_donnees: 2015
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Taux d'emploi avant réforme : 51 % ; effet : +21 points (chiffre lu dans le tableau de synthèse C.2 d'Atav, Jongen et Rabaté, CPB 2019, Rabaté étant co-auteur des deux études). Le résumé de l'article indique que la réforme a aussi « fortement » augmenté le chômage et l'invalidité ; selon la version document de travail, environ un cinquième des économies de pensions est reperdu en dépenses d'autres assurances sociales."
+    - source: staubli-zweimuller-2013-jpube
+      valeur: 9.75
+      intervalle_95: null
+      methode: "Différence de différences exploitant les réformes autrichiennes relevant l'âge de retraite anticipée (générations touchées entre 2001 et 2010)"
+      champ: "Autriche, hommes (âge de retraite anticipée relevé de 60 à 62 ans), 2001-2010"
+      pays: AT
+      annee_donnees: 2010
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Emploi +9,75 points, mais recours à l'assurance chômage +12,5 points ; effets négligeables sur l'invalidité. Les gains d'emploi se concentrent chez les salariés bien payés et en bonne santé ; les moins qualifiés passent par le chômage ou l'invalidité. Un an de report réduit tout de même la dépense publique nette d'environ 107 M€ par génération."
+    - source: staubli-zweimuller-2013-jpube
+      valeur: 11
+      intervalle_95: null
+      methode: "Différence de différences exploitant les réformes autrichiennes relevant l'âge de retraite anticipée (générations touchées entre 2001 et 2010)"
+      champ: "Autriche, femmes (âge de retraite anticipée relevé de 55 à 58,25 ans), 2001-2010"
+      pays: AT
+      annee_donnees: 2010
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Emploi +11 points, assurance chômage +11,8 points. Économie nette d'environ 122 M€ par génération pour un an de report."
+    - source: atav-jongen-rabate-2019-cpb
+      valeur: 16
+      intervalle_95: null
+      methode: "Différence de différences sur données administratives exhaustives de la population âgée néerlandaise"
+      champ: "Pays-Bas, générations 1948 à mi-1951, âge légal (AOW) relevé de 65 ans à 65 ans et 9 mois (2013-2017), mois supplémentaires avant le nouvel âge"
+      pays: NL
+      annee_donnees: 2017
+      type_etude: quasi_experimental
+      revue_par_les_pairs: false
+      note: "Part des retraités −51 points à l'ancien âge ; emploi +16 points (environ un tiers de la baisse), autres prestations +19 à 20 points (invalidité +11, chômage +3, aide sociale +3, autres +2), personnes sans revenu +15 points. Les économies budgétaires nettes atteignent environ 80 % des économies directes de pensions. Une version publiée (American Economic Journal: Economic Policy, 2024) confirme des effets « clairs et importants » sur l'emploi."
+    - source: cribb-emmerson-tetlow-2016-labeco
+      valeur: 6.3
+      intervalle_95: null
+      methode: "Différence de différences autour du relèvement de l'âge de la pension d'État des femmes (60 à 61 ans)"
+      champ: "Royaume-Uni, femmes nées entre avril 1950 et 1953, 2010-2011"
+      pays: GB
+      annee_donnees: 2011
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Emploi à l'ancien âge +6,3 points d'après le résumé (le tableau de synthèse du CPB indique 7,3 points). Les auteurs concluent qu'une grande partie de l'effet vient du « signal » envoyé par l'âge officiel, plus que des incitations financières."
+    - source: atalay-barrett-2015-restat
+      valeur: 12
+      intervalle_95: null
+      methode: "Différence de différences autour du relèvement progressif de l'âge de la pension de vieillesse des femmes (60 à 65 ans, réforme de 1993)"
+      champ: "Australie, femmes nées entre juin 1935 et 1952"
+      pays: AU
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Valeur = effet sur le taux d'activité (+12 points, d'après le tableau C.2 du CPB 2019), qui inclut les chômeurs. Le résumé indique qu'un an de report réduit la probabilité d'être retraitée de 12 à 19 points, avec une substitution importante vers d'autres prestations, en particulier la pension d'invalidité."
+    - source: geyer-welteke-2021-jhr
+      valeur: 14
+      intervalle_95: null
+      methode: "Régression sur discontinuité : suppression en 1999 de la retraite anticipée à 60 ans pour les femmes nées à partir de 1952"
+      champ: "Allemagne, femmes nées à partir de 1952, âges 60 à 63 ans"
+      pays: DE
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Taux d'emploi avant : 44 % ; effet : +14 points (tableau C.2 du CPB 2019). Le résumé indique que la réforme augmente aussi le chômage et l'inactivité des femmes de 60 ans et plus, surtout parce qu'elles restent plus longtemps dans leur situation antérieure."
+    - source: mastrobuoni-2009-jpube
+      valeur: null
+      intervalle_95: null
+      methode: "Discontinuités entre générations : relèvement de l'âge normal de la retraite de 2 mois par génération à partir de la génération 1938"
+      champ: "États-Unis, générations nées à partir de 1938"
+      pays: US
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "L'âge moyen de départ des générations concernées a augmenté d'environ la moitié du relèvement de l'âge normal. Résultat exprimé en âge de départ, non convertible en points de taux d'emploi."
+  note_synthese: "Toutes les études sérieuses trouvent qu'un report de l'âge légal augmente nettement l'emploi des seniors concernés : de +6 à +21 points de taux d'emploi selon les pays, la valeur la plus forte (+21 points) étant celle de la réforme française de 2010 (Rabaté et Rochut). Le consensus porte aussi sur le revers de la médaille : une part importante des personnes qui ne peuvent plus partir ne sont pas en emploi, mais au chômage, en invalidité ou sans revenu. Aux Pays-Bas, seul un tiers environ du recul des départs se traduit en emploi, et en Autriche la hausse du chômage est aussi forte que celle de l'emploi. Les études divergent surtout sur l'ampleur de ces vases communicants, qui dépend du taux d'emploi avant l'âge légal et de l'accès à l'invalidité ou au chômage. Les études françaises et autrichiennes, fondées sur des données administratives exhaustives et des réformes nettes, pèsent le plus. Une évaluation officielle française récente (DREES, DARES ou Cour des comptes) n'a pas pu être consultée."

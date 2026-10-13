@@ -1,0 +1,106 @@
+# FICHIER GÉNÉRÉ par system/sync_openfisca.py le 2026-10-13 à partir d'OpenFisca-France 176.1.2.
+# Ne pas modifier à la main : modifier model/moteur/openfisca_leviers.yaml puis relancer le Système.
+genere_par: system/sync_openfisca.py
+domaine: fiscalite
+theme: CSG et CRDS
+regles:
+- id: fiscalite.csg.salaires_taux
+  titre: CSG sur les revenus d'activité (taux total)
+  explication: La contribution sociale généralisée est prélevée sur les salaires (sur 98,25 % du salaire brut) pour financer
+    la Sécurité sociale.
+  type: nombre
+  unite: pourcent
+  bornes:
+  - 2.4
+  - 20
+  valeurs:
+  - depuis: '1998-01-01'
+    valeur: 7.5
+    sources:
+    - of-ref-f50e9627bb
+    - of-ref-cc0280587c
+    - openfisca-france
+  - depuis: '2018-01-01'
+    valeur: 9.2
+    sources:
+    - of-ref-037e6c7104
+    - of-ref-93817be3b0
+    - of-ref-b13907fd40
+    - openfisca-france
+  verifie_le: '2025-01-20'
+  moteur:
+    openfisca: prelevements_sociaux.contributions_sociales.csg.activite.taux_global
+  a_verifier: false
+- id: fiscalite.csg.retraites_taux_plein
+  titre: CSG sur les pensions de retraite (taux plein)
+  explication: Taux de CSG appliqué aux retraités dont le revenu fiscal dépasse un certain seuil (des taux réduits existent
+    pour les plus modestes).
+  type: nombre
+  unite: pourcent
+  bornes:
+  - 2.4
+  - 20
+  valeurs:
+  - depuis: '2005-01-01'
+    valeur: 6.6
+    sources:
+    - of-ref-ccf974406c
+    - openfisca-france
+  - depuis: '2018-01-01'
+    valeur: 8.3
+    sources:
+    - of-ref-93817be3b0
+    - of-ref-a346355f07
+    - of-ref-b13907fd40
+    - openfisca-france
+  verifie_le: '2024-07-24'
+  moteur:
+    openfisca: prelevements_sociaux.contributions_sociales.csg.remplacement.pensions_retraite_invalidite.taux_plein
+  a_verifier: false
+- id: fiscalite.crds.taux
+  titre: CRDS (taux)
+  explication: La contribution au remboursement de la dette sociale finance le remboursement de la dette de la Sécurité sociale.
+  type: nombre
+  unite: pourcent
+  bornes:
+  - 0
+  - 5
+  valeurs:
+  - depuis: '1996-02-01'
+    valeur: 0.5
+    sources:
+    - of-ref-3b7d337d3c
+    - of-ref-85c5bfe706
+    - openfisca-france
+  verifie_le: '2026-03-27'
+  moteur:
+    openfisca: prelevements_sociaux.contributions_sociales.crds
+  a_verifier: false
+- id: fiscalite.cotisations.allegement_general
+  titre: 'Réduction générale des cotisations patronales : plafond (en SMIC)'
+  explication: Les employeurs paient moins de cotisations sur les bas et moyens salaires. La réduction est maximale au SMIC
+    et s'annule à ce multiple du SMIC.
+  type: nombre
+  unite: smic
+  bornes:
+  - 1
+  - 4
+  valeurs:
+  - depuis: '2005-07-01'
+    valeur: 1.6
+    sources:
+    - of-ref-da97186ea5
+    - of-ref-6270eb2a90
+    - of-ref-87da59f56c
+    - openfisca-france
+  - depuis: '2026-01-01'
+    valeur: 3.0
+    sources:
+    - of-ref-4eb41cedbd
+    - of-ref-ebc839d89c
+    - of-ref-e3f0a7c7a1
+    - openfisca-france
+  verifie_le: '2026-10-01'
+  moteur:
+    openfisca: prelevements_sociaux.reductions_cotisations_sociales.allegement_general.ensemble_des_entreprises.plafond
+  a_verifier: false

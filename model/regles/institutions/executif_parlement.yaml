@@ -1,0 +1,480 @@
+domaine: institutions
+theme: "Président, Gouvernement et Parlement"
+regles:
+  # ---------------------------------------------------------------- Président
+  - id: institutions.president.duree_mandat
+    titre: "Président de la République : durée du mandat"
+    explication: "Le Président est élu pour cinq ans (quinquennat). Avant 2002, le mandat durait sept ans (septennat)."
+    type: nombre
+    unite: ans
+    bornes: [4, 10]
+    valeurs:
+      - depuis: "1958-10-04"
+        valeur: 7
+        sources: [elysee-president-4-questions, elysee-institutions-ve-republique]
+        article: "Constitution, art. 6 (rédaction initiale)"
+      - depuis: "2002-05-16"
+        valeur: 5
+        sources: [const-1958-conseil-constitutionnel, elysee-president-4-questions, sp-f1940, cc-presidentielle-2002-investiture]
+        article: "Constitution, art. 6"
+    tags: [president, mandat, quinquennat]
+    a_verifier: false
+    note: "Réforme adoptée par référendum le 24 septembre 2000, appliquée « à compter de l'élection présidentielle de 2002 » (elysee.fr) ; date retenue = investiture du 16 mai 2002 (Conseil constitutionnel). La date de départ du septennat (1958-10-04) correspond à la Constitution du 4 octobre 1958 ; elle n'a pas été lue sur le texte d'origine."
+
+  - id: institutions.president.mandats_consecutifs_max
+    titre: "Président de la République : nombre maximal de mandats consécutifs"
+    explication: "Une même personne ne peut pas faire plus de deux mandats présidentiels d'affilée."
+    type: nombre
+    unite: mandats
+    bornes: [1, 5]
+    valeurs:
+      - depuis: "2008-07-23"
+        valeur: 2
+        sources: [const-1958-conseil-constitutionnel, senat-revision-2008, sp-f1940]
+        article: "Constitution, art. 6, al. 2"
+    tags: [president, mandat, limitation]
+    a_verifier: false
+    note: "Limite introduite par la révision constitutionnelle du 23 juillet 2008 ; aucune limite n'existait auparavant."
+
+  - id: institutions.president.parrainages_nombre
+    titre: "Élection présidentielle : nombre de parrainages d'élus requis"
+    explication: "Pour être candidat, il faut être présenté par au moins 500 élus (maires, parlementaires, conseillers départementaux et régionaux…)."
+    type: nombre
+    unite: parrainages
+    bornes: [0, 2000]
+    valeurs:
+      - depuis: "1962-11-06"
+        valeur: 100
+        sources: [cc-historique-parrainages]
+        article: "Loi n° 62-1292 du 6 novembre 1962"
+      - depuis: "1976-06-18"
+        valeur: 500
+        sources: [cc-historique-parrainages, cc-loi-62-1292-consolidee, cc-presidentielle2022-etre-candidat, elysee-president-4-questions, legi-loi-62-1292]
+        article: "Loi n° 62-1292 du 6 novembre 1962, art. 3-I (modifiée par la loi organique n° 76-528 du 18 juin 1976)"
+    tags: [president, candidature, parrainages]
+    a_verifier: false
+    note: "Dates = dates des lois (entrée en vigueur exacte non établie) ; le seuil de 500 s'applique depuis l'élection de 1981."
+
+  - id: institutions.president.parrainages_departements_min
+    titre: "Élection présidentielle : nombre minimal de départements d'origine des parrains"
+    explication: "Les parrainages doivent venir d'élus d'au moins 30 départements ou collectivités d'outre-mer différents."
+    type: nombre
+    unite: departements
+    bornes: [1, 101]
+    valeurs:
+      - depuis: "1962-11-06"
+        valeur: 10
+        sources: [cc-historique-parrainages]
+        article: "Loi n° 62-1292 du 6 novembre 1962"
+      - depuis: "1976-06-18"
+        valeur: 30
+        sources: [cc-historique-parrainages, cc-loi-62-1292-consolidee, cc-presidentielle2022-etre-candidat, elysee-president-4-questions, legi-loi-62-1292]
+        article: "Loi n° 62-1292 du 6 novembre 1962, art. 3-I"
+    tags: [president, candidature, parrainages]
+    a_verifier: false
+    note: "Dates = dates des lois (entrée en vigueur exacte non établie)."
+
+  - id: institutions.president.parrainages_part_max_par_departement
+    titre: "Élection présidentielle : part maximale des parrains venant d'un même département"
+    explication: "Pas plus d'un dixième des parrains (soit 50 sur 500) ne peuvent être élus d'un même département ou d'une même collectivité d'outre-mer."
+    type: nombre
+    unite: pourcent
+    bornes: [1, 100]
+    valeurs:
+      - depuis: "2021-03-29"
+        valeur: 10
+        sources: [cc-loi-62-1292-consolidee, cc-presidentielle2022-etre-candidat, elysee-president-4-questions, legi-loi-62-1292]
+        article: "Loi n° 62-1292 du 6 novembre 1962, art. 3-I"
+    tags: [president, candidature, parrainages]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2021-03-29 (version consolidée de la loi reproduite par le Conseil constitutionnel)."
+
+  - id: institutions.president.seuil_election_premier_tour
+    titre: "Élection présidentielle : part des suffrages exprimés nécessaire pour être élu au 1er tour"
+    explication: "Pour être élu dès le premier tour, il faut obtenir plus de la moitié des suffrages exprimés (majorité absolue). Sinon, un second tour a lieu quatorze jours plus tard."
+    type: nombre
+    unite: pourcent
+    bornes: [30, 70]
+    valeurs:
+      - depuis: "1962-11-06"
+        valeur: 50
+        sources: [const-1958-conseil-constitutionnel, sp-f1940, elysee-president-4-questions, cc-loi-62-1292-consolidee]
+        article: "Constitution, art. 7, al. 1"
+    tags: [president, mode_de_scrutin]
+    a_verifier: false
+    note: "Il faut strictement plus de 50 %. Élection au suffrage universel direct depuis le référendum du 28 octobre 1962 (elysee.fr) ; date retenue = loi n° 62-1292 du 6 novembre 1962 qui a réécrit les articles 6 et 7."
+
+  - id: institutions.president.candidats_second_tour
+    titre: "Élection présidentielle : nombre de candidats admis au second tour"
+    explication: "Seuls les deux candidats arrivés en tête au premier tour (après d'éventuels retraits) peuvent se présenter au second tour."
+    type: nombre
+    unite: personnes
+    bornes: [2, 4]
+    valeurs:
+      - depuis: "1962-11-06"
+        valeur: 2
+        sources: [const-1958-conseil-constitutionnel, sp-f1940, cc-loi-62-1292-consolidee]
+        article: "Constitution, art. 7, al. 1"
+    tags: [president, mode_de_scrutin]
+    a_verifier: false
+    note: "Date retenue = loi n° 62-1292 du 6 novembre 1962 (élection au suffrage universel direct)."
+
+  # ---------------------------------------------------------- Assemblée nationale
+  - id: institutions.assemblee.nombre_deputes
+    titre: "Assemblée nationale : nombre de députés"
+    explication: "L'Assemblée nationale compte 577 députés, élus chacun dans une circonscription. La Constitution interdit d'en avoir plus."
+    type: nombre
+    unite: sieges
+    bornes: [300, 900]
+    valeurs:
+      - depuis: "2008-07-23"
+        valeur: 577
+        sources: [const-1958-conseil-constitutionnel, senat-revision-2008, an-fiche-3-election-deputes, elysee-institutions-ve-republique]
+        article: "Constitution, art. 24, al. 3"
+    tags: [assemblee, parlement, effectif]
+    a_verifier: false
+    note: "Plafond de 577 inscrit dans la Constitution par la révision du 23 juillet 2008 (senat.fr) ; l'effectif de 577 lui est antérieur (date d'entrée en vigueur non établie)."
+
+  - id: institutions.assemblee.duree_mandat
+    titre: "Député : durée du mandat"
+    explication: "Les députés sont élus pour cinq ans, sauf si le Président dissout l'Assemblée avant la fin."
+    type: nombre
+    unite: ans
+    bornes: [2, 8]
+    valeurs:
+      - depuis: "2023-09-30"
+        valeur: 5
+        sources: [an-fiche-3-election-deputes, sp-f1943, elysee-institutions-ve-republique]
+        article: "Code électoral, art. L.O. 121"
+    tags: [assemblee, mandat]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée en septembre 2023 (fiche AN, jour non précisé, date retenue = fin du mois). Les pouvoirs expirent « le troisième mardi de juin de la cinquième année qui suit son élection »."
+
+  - id: institutions.assemblee.seuil_election_premier_tour_inscrits
+    titre: "Législatives : voix minimales (en % des inscrits) pour être élu au 1er tour"
+    explication: "Pour être élu député dès le premier tour, il faut à la fois plus de la moitié des suffrages exprimés et des voix égales à au moins 25 % des électeurs inscrits."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 50]
+    valeurs:
+      - depuis: "2023-09-30"
+        valeur: 25
+        sources: [an-fiche-3-election-deputes, sp-f1943, legi-ce-l123]
+        article: "Code électoral, art. L. 123 à L. 126"
+    tags: [assemblee, mode_de_scrutin, legislatives]
+    a_verifier: false
+    note: "Condition cumulée avec la majorité absolue des suffrages exprimés. Date d'entrée en vigueur non établie ; valeur attestée en septembre 2023 (fiche AN). Le scrutin reste uninominal majoritaire à deux tours (service-public, vérifié le 19 juin 2026)."
+
+  - id: institutions.assemblee.seuil_maintien_second_tour_inscrits
+    titre: "Législatives : seuil (en % des inscrits) pour se maintenir au 2nd tour"
+    explication: "Seuls les candidats ayant obtenu au premier tour des voix égales à au moins 12,5 % des électeurs inscrits peuvent se présenter au second tour. Au second tour, celui qui a le plus de voix est élu."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 30]
+    valeurs:
+      - depuis: "2023-09-30"
+        valeur: 12.5
+        sources: [an-fiche-3-election-deputes, sp-f1943]
+    tags: [assemblee, mode_de_scrutin, legislatives]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée en septembre 2023 (fiche AN). En cas d'égalité au second tour, le plus âgé est élu."
+
+  # ---------------------------------------------------------------- Sénat
+  - id: institutions.senat.nombre_senateurs
+    titre: "Sénat : nombre de sénateurs"
+    explication: "Le Sénat compte 348 sénateurs, dont 12 représentent les Français de l'étranger. La Constitution interdit d'en avoir plus."
+    type: nombre
+    unite: sieges
+    bornes: [100, 600]
+    valeurs:
+      - depuis: "2008-09-21"
+        valeur: 343
+        sources: [senat-mode-election-senateurs]
+      - depuis: "2011-10-01"
+        valeur: 348
+        sources: [senat-mode-election-senateurs, an-fiche-1-caracteres-generaux-parlement, const-1958-conseil-constitutionnel, elysee-institutions-ve-republique]
+        article: "Constitution, art. 24, al. 4"
+    tags: [senat, parlement, effectif]
+    a_verifier: false
+    note: "Hausse progressive prévue par la loi organique du 30 juillet 2003 : 331 sièges en 2004, 343 au renouvellement de septembre 2008 (élections du 21 septembre 2008), 348 depuis le 1er octobre 2011."
+
+  - id: institutions.senat.duree_mandat
+    titre: "Sénateur : durée du mandat"
+    explication: "Les sénateurs sont élus pour six ans au suffrage indirect, par environ 162 000 « grands électeurs » (surtout des délégués des conseils municipaux)."
+    type: nombre
+    unite: ans
+    bornes: [3, 10]
+    valeurs:
+      - depuis: "2008-09-21"
+        valeur: 6
+        sources: [senat-mode-election-senateurs, an-fiche-1-caracteres-generaux-parlement]
+        article: "Loi organique n° 2003-696 du 30 juillet 2003"
+    tags: [senat, mandat]
+    a_verifier: false
+    note: "« Depuis 2008, les sénateurs sont élus pour un mandat de 6 ans » (senat.fr) ; date retenue = élections sénatoriales du 21 septembre 2008. La durée antérieure, plus longue, n'a pas été lue sur une source."
+
+  - id: institutions.senat.mode_renouvellement
+    titre: "Sénat : rythme de renouvellement"
+    explication: "Le Sénat n'est jamais renouvelé d'un coup : la moitié des sièges est remise en jeu tous les trois ans."
+    type: choix
+    choix: [par_tiers_tous_les_3_ans, par_moitie_tous_les_3_ans, integral]
+    valeurs:
+      - depuis: "2011-10-01"
+        valeur: par_moitie_tous_les_3_ans
+        sources: [senat-mode-election-senateurs, an-fiche-1-caracteres-generaux-parlement, elysee-institutions-ve-republique]
+    tags: [senat, renouvellement]
+    a_verifier: false
+    note: "Renouvellement par moitié « depuis 2011 » (senat.fr) ; date retenue = 1er octobre 2011. Série 1 (170 sièges) renouvelée en 2023, série 2 (178 sièges) en septembre 2026."
+
+  # ------------------------------------------------- Gouvernement / Parlement
+  - id: institutions.article_49_3.textes_hors_budget_par_session
+    titre: "Article 49.3 : nombre de textes (hors budget) par session"
+    explication: "Le Premier ministre peut faire adopter un texte sans vote en engageant la responsabilité du Gouvernement (49.3). C'est illimité pour les budgets (État et Sécurité sociale), mais limité à un seul autre texte par session."
+    type: nombre
+    unite: textes
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2009-03-01"
+        valeur: 1
+        sources: [const-1958-conseil-constitutionnel, an-fiche-64-responsabilite-gouvernement, senat-revision-2008]
+        article: "Constitution, art. 49, al. 3"
+    tags: [gouvernement, parlement, 49_3]
+    a_verifier: false
+    note: "Limite issue de la révision constitutionnelle du 23 juillet 2008 ; auparavant le recours était illimité. Date retenue = 1er mars 2009, date de la « Constitution en vigueur au 1er mars 2009 » citée par le Sénat (entrée en vigueur exacte de cet alinéa non lue). La limite vaut par session, ordinaire ou extraordinaire. Le texte est adopté sauf si une motion de censure, déposée dans les 24 heures, est votée."
+
+  - id: institutions.motion_censure.signatures_min
+    titre: "Motion de censure : part minimale des députés signataires"
+    explication: "Pour déposer une motion de censure contre le Gouvernement, il faut la signature d'au moins un dixième des députés (58 si tous les sièges sont pourvus)."
+    type: nombre
+    unite: pourcent
+    bornes: [1, 50]
+    valeurs:
+      - depuis: "2024-03-08"
+        valeur: 10
+        sources: [const-1958-conseil-constitutionnel, an-fiche-64-responsabilite-gouvernement]
+        article: "Constitution, art. 49, al. 2"
+    tags: [gouvernement, censure, parlement]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2024-03-08 (texte constitutionnel à jour de la révision du 8 mars 2024)."
+
+  - id: institutions.motion_censure.majorite_requise
+    titre: "Motion de censure : majorité nécessaire pour renverser le Gouvernement"
+    explication: "La motion n'est adoptée que si elle recueille les voix de la majorité absolue des membres de l'Assemblée (289 sur 577) : seuls les votes « pour » sont comptés, les absents comptent donc comme « contre »."
+    type: choix
+    choix: [majorite_absolue_des_membres, majorite_des_suffrages_exprimes]
+    valeurs:
+      - depuis: "2024-03-08"
+        valeur: majorite_absolue_des_membres
+        sources: [const-1958-conseil-constitutionnel, an-fiche-64-responsabilite-gouvernement]
+        article: "Constitution, art. 49, al. 2"
+    tags: [gouvernement, censure, parlement]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2024-03-08. Le vote ne peut avoir lieu que 48 heures après le dépôt. Le chiffre de 289 est un calcul (majorité de 577)."
+
+  - id: institutions.motion_censure.max_par_depute_session_ordinaire
+    titre: "Motion de censure : nombre maximal de motions signées par un député par session ordinaire"
+    explication: "Un député ne peut signer que trois motions de censure « spontanées » par session ordinaire (et une par session extraordinaire). Les motions déposées en réponse à un 49.3 ne comptent pas."
+    type: nombre
+    unite: motions
+    bornes: [1, 10]
+    valeurs:
+      - depuis: "2024-03-08"
+        valeur: 3
+        sources: [const-1958-conseil-constitutionnel, an-fiche-64-responsabilite-gouvernement]
+        article: "Constitution, art. 49, al. 2"
+    tags: [gouvernement, censure, parlement]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2024-03-08."
+
+  - id: institutions.dissolution.delai_minimal_entre_deux
+    titre: "Dissolution de l'Assemblée : délai minimal avant une nouvelle dissolution"
+    explication: "Après une dissolution, le Président ne peut pas dissoudre à nouveau l'Assemblée dans l'année qui suit les nouvelles élections. Les élections ont lieu 20 à 40 jours après la dissolution."
+    type: nombre
+    unite: ans
+    bornes: [0, 5]
+    valeurs:
+      - depuis: "2024-03-08"
+        valeur: 1
+        sources: [const-1958-conseil-constitutionnel, an-fiche-3-election-deputes]
+        article: "Constitution, art. 12, al. 4"
+    tags: [president, assemblee, dissolution]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2024-03-08 (texte constitutionnel en vigueur)."
+
+  - id: institutions.parlement.session_ordinaire_periode
+    titre: "Parlement : période de la session ordinaire"
+    explication: "Le Parlement siège de droit d'octobre à fin juin. En dehors, il peut être réuni en session extraordinaire, ouverte par décret sur un ordre du jour précis."
+    type: texte
+    valeurs:
+      - depuis: "1958-10-04"
+        valeur: "Deux sessions ordinaires : 80 jours à compter du 2 octobre et 90 jours au plus à compter du 2 avril"
+        sources: [an-fiche-39-sessions-seances, senat-sessions-seances]
+      - depuis: "1995-08-04"
+        valeur: "Session unique de neuf mois, du premier jour ouvrable d'octobre au dernier jour ouvrable de juin"
+        sources: [const-1958-conseil-constitutionnel, an-fiche-39-sessions-seances, senat-sessions-seances]
+        article: "Constitution, art. 28, al. 1"
+    tags: [parlement, sessions]
+    a_verifier: false
+    note: "Régime des deux sessions « qui prévalait depuis 1958 », remplacé par la session unique lors de la révision constitutionnelle du 4 août 1995 (fiche AN)."
+
+  - id: institutions.parlement.jours_seance_max_session
+    titre: "Parlement : nombre maximal de jours de séance par session ordinaire"
+    explication: "Chaque assemblée ne peut normalement pas siéger plus de 120 jours pendant la session ordinaire. Le Premier ministre ou la majorité des membres peuvent ajouter des jours supplémentaires."
+    type: nombre
+    unite: jours
+    bornes: [60, 270]
+    valeurs:
+      - depuis: "1995-08-04"
+        valeur: 120
+        sources: [const-1958-conseil-constitutionnel, an-fiche-39-sessions-seances, senat-sessions-seances]
+        article: "Constitution, art. 28, al. 2"
+    tags: [parlement, sessions]
+    a_verifier: false
+    note: "Plafond instauré par la révision constitutionnelle du 4 août 1995 ; franchi pour la première fois en 2008-2009 (fiche AN)."
+
+  - id: institutions.referendum_initiative_partagee.seuil_parlementaires
+    titre: "Référendum d'initiative partagée (RIP) : part des parlementaires nécessaire"
+    explication: "Un référendum peut être lancé à l'initiative d'un cinquième des membres du Parlement (députés et sénateurs), s'ils sont ensuite soutenus par un dixième des électeurs inscrits."
+    type: nombre
+    unite: pourcent
+    bornes: [1, 50]
+    valeurs:
+      - depuis: "2008-07-23"
+        valeur: 20
+        sources: [const-1958-conseil-constitutionnel, cc-dossier-rip, senat-revision-2008]
+        article: "Constitution, art. 11, al. 3"
+    tags: [referendum, democratie_directe, rip]
+    a_verifier: false
+    note: "Procédure créée par la révision du 23 juillet 2008 et rendue applicable par la loi organique n° 2013-1114 du 6 décembre 2013 (date de première application non établie ici). L'initiative ne peut viser l'abrogation d'une loi promulguée depuis moins d'un an."
+
+  - id: institutions.referendum_initiative_partagee.seuil_electeurs_inscrits
+    titre: "Référendum d'initiative partagée (RIP) : part des électeurs inscrits devant soutenir"
+    explication: "La proposition de loi des parlementaires doit être soutenue par au moins un dixième des électeurs inscrits sur les listes électorales."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 30]
+    valeurs:
+      - depuis: "2008-07-23"
+        valeur: 10
+        sources: [const-1958-conseil-constitutionnel, cc-dossier-rip, senat-revision-2008]
+        article: "Constitution, art. 11, al. 3"
+    tags: [referendum, democratie_directe, rip]
+    a_verifier: false
+    note: "Si les deux assemblées n'examinent pas la proposition dans le délai fixé par la loi organique, le Président la soumet au référendum. En cas de rejet par le peuple, pas de nouvelle proposition sur le même sujet avant deux ans."
+
+  # ------------------------------------------------- Conseil constitutionnel
+  - id: institutions.conseil_constitutionnel.membres_nommes
+    titre: "Conseil constitutionnel : nombre de membres nommés"
+    explication: "Le Conseil constitutionnel compte neuf membres nommés : trois par le Président de la République, trois par le président de l'Assemblée nationale, trois par le président du Sénat."
+    type: nombre
+    unite: personnes
+    bornes: [3, 21]
+    valeurs:
+      - depuis: "1959-03-05"
+        valeur: 9
+        sources: [const-1958-conseil-constitutionnel, cc-membres, elysee-institutions-ve-republique]
+        article: "Constitution, art. 56, al. 1"
+    tags: [conseil_constitutionnel, nominations]
+    a_verifier: false
+    note: "Premiers membres en fonction le 5 mars 1959 (liste des membres, Conseil constitutionnel). Les nominations sont soumises à l'avis des commissions parlementaires (art. 13)."
+
+  - id: institutions.conseil_constitutionnel.duree_mandat
+    titre: "Conseil constitutionnel : durée du mandat des membres nommés"
+    explication: "Les membres nommés siègent pendant neuf ans."
+    type: nombre
+    unite: ans
+    bornes: [3, 15]
+    valeurs:
+      - depuis: "1959-03-05"
+        valeur: 9
+        sources: [const-1958-conseil-constitutionnel, cc-membres]
+        article: "Constitution, art. 56, al. 1"
+    tags: [conseil_constitutionnel, mandat]
+    a_verifier: false
+    note: "Date = entrée en fonction des premiers membres (5 mars 1959)."
+
+  - id: institutions.conseil_constitutionnel.mandat_renouvelable
+    titre: "Conseil constitutionnel : le mandat est-il renouvelable ?"
+    explication: "Non : un membre nommé ne peut pas être reconduit, ce qui doit garantir son indépendance."
+    type: booleen
+    valeurs:
+      - depuis: "2024-03-08"
+        valeur: false
+        sources: [const-1958-conseil-constitutionnel, cc-membres]
+        article: "Constitution, art. 56, al. 1"
+    tags: [conseil_constitutionnel, mandat]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2024-03-08 (texte constitutionnel en vigueur)."
+
+  - id: institutions.conseil_constitutionnel.periodicite_renouvellement_tiers
+    titre: "Conseil constitutionnel : périodicité du renouvellement par tiers"
+    explication: "Tous les trois ans, un tiers des membres (trois personnes) est remplacé."
+    type: nombre
+    unite: ans
+    bornes: [1, 9]
+    valeurs:
+      - depuis: "1959-03-05"
+        valeur: 3
+        sources: [const-1958-conseil-constitutionnel, cc-membres]
+        article: "Constitution, art. 56, al. 1"
+    tags: [conseil_constitutionnel, renouvellement]
+    a_verifier: false
+    note: "Les premiers membres (en fonction le 5 mars 1959) ont quitté leurs fonctions par tiers en 1962, 1965 et 1968 (liste des membres)."
+
+  - id: institutions.conseil_constitutionnel.anciens_presidents_membres_de_droit
+    titre: "Conseil constitutionnel : les anciens Présidents de la République en sont-ils membres de droit ?"
+    explication: "Oui : en plus des neuf membres nommés, les anciens Présidents de la République font de droit partie du Conseil à vie."
+    type: booleen
+    valeurs:
+      - depuis: "1959-03-05"
+        valeur: true
+        sources: [const-1958-conseil-constitutionnel, cc-membres]
+        article: "Constitution, art. 56, al. 2"
+    tags: [conseil_constitutionnel, president]
+    a_verifier: false
+    note: "Vincent Auriol et René Coty, anciens présidents, siégeaient dès le 5 mars 1959 (liste des membres). Le président du Conseil, nommé par le Président de la République, a voix prépondérante en cas de partage."
+
+  # ------------------------------------------------- Situation des parlementaires
+  - id: institutions.parlement.indemnite_base_mensuelle_brute
+    titre: "Parlementaires : indemnité parlementaire de base (brut mensuel)"
+    explication: "Somme de base versée chaque mois à un député ou un sénateur, calée sur le salaire des plus hauts fonctionnaires de l'État."
+    type: nombre
+    unite: euros
+    bornes: [0, 15000]
+    valeurs:
+      - depuis: "2024-01-01"
+        valeur: 5931.95
+        sources: [an-fiche-7-situation-materielle-depute, senat-indemnite-parlementaire]
+        article: "Ordonnance n° 58-1210 du 13 décembre 1958"
+    tags: [parlement, remuneration, indemnite]
+    a_verifier: false
+    note: "Montant identique pour députés et sénateurs, inchangé depuis le 1er janvier 2024 (fiche AN de janvier 2026 ; page Sénat mise à jour le 30 mars 2026)."
+
+  - id: institutions.parlement.indemnite_totale_mensuelle_brute
+    titre: "Parlementaires : indemnité totale (brut mensuel)"
+    explication: "Total versé chaque mois : indemnité de base + indemnité de résidence (3 %) + indemnité de fonction (25 % des deux)."
+    type: nombre
+    unite: euros
+    bornes: [0, 20000]
+    valeurs:
+      - depuis: "2024-01-01"
+        valeur: 7637.39
+        sources: [an-fiche-7-situation-materielle-depute, senat-indemnite-parlementaire]
+    tags: [parlement, remuneration, indemnite]
+    a_verifier: false
+    note: "Soit 5 931,95 € + 177,96 € + 1 527,48 €. Net mensuel : 5 953,34 € pour un député (AN), 5 676,12 € pour un sénateur (Sénat), avant impôt. S'y ajoutent des moyens pour frais de mandat et collaborateurs."
+
+  - id: institutions.parlement.plafond_indemnites_mandats_locaux
+    titre: "Parlementaires : plafond mensuel des indemnités d'élu local cumulables"
+    explication: "Un parlementaire qui garde un mandat local ne peut pas toucher plus de 2 965,98 € par mois au titre de ce mandat : le total est plafonné à une fois et demie l'indemnité de base."
+    type: nombre
+    unite: euros
+    bornes: [0, 10000]
+    valeurs:
+      - depuis: "2024-01-01"
+        valeur: 2965.98
+        sources: [senat-indemnite-parlementaire, an-fiche-7-situation-materielle-depute]
+        article: "Loi organique n° 92-175 du 25 février 1992"
+    tags: [parlement, remuneration, cumul]
+    a_verifier: false
+    note: "Plafond global de 8 897,93 € brut au 1er janvier 2024 (1,5 fois l'indemnité de base)."

@@ -1,0 +1,377 @@
+# Registre des sources — budget de l'État, Sécurité sociale, fiscalité des entreprises et du patrimoine, finances publiques.
+# Toutes consultées le 13 octobre 2026. Les fichiers téléchargés sont conservés dans system/cache/budget/.
+sources:
+  # ---------------------------------------------------------------- Lois de finances 2026
+  - id: an-ta227-lfi-2026
+    type: texte_officiel
+    editeur: "Assemblée nationale"
+    titre: "Projet de loi de finances pour 2026 — Texte adopté n° 227 (texte définitif, considéré comme adopté en lecture définitive en application de l'article 49, alinéa 3, de la Constitution)"
+    url: "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0227_texte-adopte-seance.pdf"
+    auteurs: []
+    date_publication: "2026-02-02"
+    consulte_le: "2026-10-13"
+    note: "Texte devenu la loi n° 2026-103 du 19 février 2026 de finances pour 2026 (JO du 20 février 2026). Lu : article liminaire, art. 1 à 16, art. 147 (équilibre), art. 148 à 150, états A et B. Les articles censurés par la décision n° 2026-901 DC ne concernent ni l'article 147 ni l'état B. Copie : system/cache/budget/an-l17t0227-lfi2026-texte-definitif.pdf."
+  - id: legifrance-loi-2026-103
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Loi n° 2026-103 du 19 février 2026 de finances pour 2026"
+    url: "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000053508155"
+    auteurs: []
+    date_publication: "2026-02-20"
+    consulte_le: "2026-10-13"
+    note: "Référence officielle de la loi promulguée. URL relevée dans un résultat de recherche ; la page Légifrance a renvoyé une erreur HTTP 403 et n'a pas pu être lue directement. Les valeurs sont prouvées par le texte définitif (an-ta227-lfi-2026) et la décision du Conseil constitutionnel."
+  - id: cc-2026-901-dc
+    type: texte_officiel
+    editeur: "Conseil constitutionnel"
+    titre: "Décision n° 2026-901 DC du 19 février 2026 — Loi de finances pour 2026 (non-conformité partielle – réserve)"
+    url: "https://www.conseil-constitutionnel.fr/decision/2026/2026901DC.htm"
+    auteurs: []
+    date_publication: "2026-02-19"
+    consulte_le: "2026-10-13"
+    note: "Censures : 1° et 3° du III de l'art. 59, III de l'art. 69, I de l'art. 99, art. 124, I et II de l'art. 160, art. 170, I à III de l'art. 180, art. 200. Griefs de sincérité contre l'article liminaire et l'article 147 écartés. Art. 7 (taxe sur les holdings) déclaré conforme."
+  - id: an-ta199-lfss-2026
+    type: texte_officiel
+    editeur: "Assemblée nationale"
+    titre: "Projet de loi de financement de la sécurité sociale pour 2026 — Texte adopté n° 199 rect. (texte définitif, 16 décembre 2025)"
+    url: "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0199_texte-adopte-seance.pdf"
+    auteurs: []
+    date_publication: "2025-12-16"
+    consulte_le: "2026-10-13"
+    note: "Copie : system/cache/budget/an-l17t0199-lfss2026-texte-definitif.pdf."
+  - id: jo-loi-2025-1403-lfss-2026
+    type: texte_officiel
+    editeur: "Journal officiel de la République française (DILA) — copie PDF hébergée par l'Afpa"
+    titre: "Loi n° 2025-1403 du 30 décembre 2025 de financement de la sécurité sociale pour 2026 (JORF du 31 décembre 2025, texte 1 sur 216, NOR CPPX2521641L)"
+    url: "https://afpa.org/content/uploads/2025/12/JO_Loi-FSS-2026_2025-12-31.pdf"
+    auteurs: []
+    date_publication: "2025-12-31"
+    consulte_le: "2026-10-13"
+    note: "Reproduction du Journal officiel (Légifrance inaccessible depuis l'outil). Numérotation identique au texte adopté n° 199 (art. 47 équilibre, art. 108 à 114 objectifs de dépenses, art. 109 ONDAM, art. 12 hausse de la CSG sur les revenus du capital). Copie : system/cache/budget/jo-2025-12-31-loi-2025-1403-lfss2026-copie-afpa.pdf."
+  - id: cc-2025-899-dc
+    type: texte_officiel
+    editeur: "Conseil constitutionnel"
+    titre: "Décision n° 2025-899 DC du 30 décembre 2025 — Loi de financement de la sécurité sociale pour 2026"
+    url: "https://www.conseil-constitutionnel.fr/decision/2025/2025899DC.htm"
+    auteurs: []
+    date_publication: "2025-12-30"
+    consulte_le: "2026-10-13"
+    note: "Censures : art. 51, 57, 69, 85, 91, 92, parties des art. 60, 72, 83 et 105. Article 109 (ONDAM) déclaré conforme ; articles d'équilibre et objectifs de dépenses non concernés."
+  # ---------------------------------------------------------------- Projets de lois 2027
+  - id: an-plf-2027-n3210
+    type: texte_officiel
+    editeur: "Gouvernement — Assemblée nationale"
+    titre: "Projet de loi de finances pour 2027, n° 3210 (enregistré le 1er octobre 2026)"
+    url: "https://www.assemblee-nationale.fr/dyn/17/textes/l17b3210_projet-loi.pdf"
+    auteurs: []
+    date_publication: "2026-10-01"
+    consulte_le: "2026-10-13"
+    note: "Projet de loi en discussion, NON adopté au 13 octobre 2026 : ses chiffres sont des prévisions. Lu : exposé général (prévisions macroéconomiques, tableau du solde de l'État exécution 2025 / LFI 2026 / révisé 2026 / PLF 2027), évaluation des recettes du budget général, article liminaire (exécution 2025, prévisions 2026-2027), art. 2, 4, 15 et 57 (équilibre). Copie : system/cache/budget/an-l17b3210-plf2027-projet-loi.pdf."
+  - id: an-plfss-2027-n3211
+    type: texte_officiel
+    editeur: "Gouvernement — Assemblée nationale"
+    titre: "Projet de loi de financement de la sécurité sociale pour 2027, n° 3211 (enregistré le 1er octobre 2026)"
+    url: "https://www.assemblee-nationale.fr/dyn/17/textes/l17b3211_projet-loi.pdf"
+    auteurs: []
+    date_publication: "2026-10-01"
+    consulte_le: "2026-10-13"
+    note: "Projet NON adopté : rectifications 2026 (art. 1er et 2) et objectifs 2027 (art. 16, art. 43) sont des propositions. Annexe : exécution 2025 des régimes de base. Copie : system/cache/budget/an-l17b3211-plfss2027-projet-loi.pdf."
+  # ---------------------------------------------------------------- Insee : comptes nationaux (base 2020)
+  - id: insee-ip-2106
+    type: statistique_publique
+    editeur: "Insee"
+    titre: "Le compte des administrations publiques en 2025 — Insee Première n° 2106"
+    url: "https://www.insee.fr/fr/statistiques/8997691"
+    auteurs: ["Maurice Beaujour Bourget", "Nathan Guessé", "Khadija Jaoui", "Louise Delhaye", "Barnabé Rey", "Dehbia Salah", "Louise Sirven"]
+    date_publication: "2026-05-29"
+    consulte_le: "2026-10-13"
+    note: "Déficit 2025 : 152,5 Md€ (5,1 % du PIB) ; dette : 3 460,5 Md€ (115,7 % du PIB). Quelques chiffres 2025 diffèrent légèrement des tableaux détaillés 3.101, 3.106 et 3.201 (ex. solde ASSO -6,7 Md€ contre -5,8 Md€) ; la valeur de l'Insee Première est retenue, cohérente avec la notification Eurostat d'avril 2026."
+  - id: insee-chiffres-cles-depenses-recettes
+    type: statistique_publique
+    editeur: "Insee"
+    titre: "Dépenses et recettes publiques — Données annuelles de 1960 à 2025 (chiffres-clés)"
+    url: "https://www.insee.fr/fr/statistiques/2381414"
+    auteurs: []
+    date_publication: "2026-08-28"
+    consulte_le: "2026-10-13"
+    note: "Fichier : https://www.insee.fr/fr/statistiques/fichier/2381414/econ-fin-pub-rec-dep.xlsx (copie dans system/cache/budget/). Ratios en % du PIB : dépenses, recettes, déficit, dette brute et nette."
+  - id: insee-cn2025-t1101
+    type: statistique_publique
+    editeur: "Insee"
+    titre: "Les comptes de la Nation en 2025 — Tableaux 1.101 à 1.103 : PIB et ses composantes (valeur, volume, prix)"
+    url: "https://www.insee.fr/fr/statistiques/fichier/8988797/T_1101_1103_fr.xlsx"
+    auteurs: []
+    date_publication: "2026-05-29"
+    consulte_le: "2026-10-13"
+    note: "Page : https://www.insee.fr/fr/statistiques/8988797?sommaire=8988934. Fichier créé le 21 mai 2026, base 2020."
+  - id: insee-cn2025-t3101
+    type: statistique_publique
+    editeur: "Insee"
+    titre: "Les comptes de la Nation en 2025 — Tableau 3.101 : dette des administrations publiques au sens de Maastricht"
+    url: "https://www.insee.fr/fr/statistiques/fichier/8988843/t_3101_fr.xlsx"
+    auteurs: []
+    date_publication: "2026-05-29"
+    consulte_le: "2026-10-13"
+  - id: insee-cn2025-t3106
+    type: statistique_publique
+    editeur: "Insee"
+    titre: "Les comptes de la Nation en 2025 — Tableau 3.106 : déficit des administrations publiques au sens de Maastricht"
+    url: "https://www.insee.fr/fr/statistiques/fichier/8988843/t_3106_fr.xlsx"
+    auteurs: []
+    date_publication: "2026-05-29"
+    consulte_le: "2026-10-13"
+  - id: insee-cn2025-t3201
+    type: statistique_publique
+    editeur: "Insee"
+    titre: "Les comptes de la Nation en 2025 — Tableau 3.201 : dépenses et recettes des administrations publiques"
+    url: "https://www.insee.fr/fr/statistiques/fichier/8988845/t_3201_fr.xlsx"
+    auteurs: []
+    date_publication: "2026-05-29"
+    consulte_le: "2026-10-13"
+  - id: insee-cn2025-t3215
+    type: statistique_publique
+    editeur: "Insee"
+    titre: "Les comptes de la Nation en 2025 — Tableau 3.215 : dépenses et recettes des administrations publiques par sous-secteur"
+    url: "https://www.insee.fr/fr/statistiques/fichier/8988845/t_3215_fr.xlsx"
+    auteurs: []
+    date_publication: "2026-05-29"
+    consulte_le: "2026-10-13"
+  - id: insee-cn2025-t3216
+    type: statistique_publique
+    editeur: "Insee"
+    titre: "Les comptes de la Nation en 2025 — Tableau 3.216 : prélèvements obligatoires"
+    url: "https://www.insee.fr/fr/statistiques/fichier/8988845/t_3216_fr.xlsx"
+    auteurs: []
+    date_publication: "2026-05-29"
+    consulte_le: "2026-10-13"
+  - id: insee-cn2025-t3217
+    type: statistique_publique
+    editeur: "Insee"
+    titre: "Les comptes de la Nation en 2025 — Tableau 3.217 : principaux impôts par catégorie"
+    url: "https://www.insee.fr/fr/statistiques/fichier/8988845/t_3217_fr.xlsx"
+    auteurs: []
+    date_publication: "2026-05-29"
+    consulte_le: "2026-10-13"
+  - id: insee-bdm-ipc-001768676
+    type: statistique_publique
+    editeur: "Insee (Banque de données macroéconomiques)"
+    titre: "Indice des prix à la consommation — Base 2015 — Variations annuelles — Ensemble des ménages — France — Ensemble (série 001768676)"
+    url: "https://www.insee.fr/fr/statistiques/serie/001768676"
+    auteurs: []
+    date_publication: "2026-01-15"
+    consulte_le: "2026-10-13"
+    note: "Lu via le service SDMX de l'Insee (https://www.bdm.insee.fr/series/sdmx/data/IPC-2015/A..SO...VARIATIONS_A....BRUT..TRUE). Série arrêtée (passage de l'IPC en base 2025) ; dernière mise à jour 15 janvier 2026."
+  # ---------------------------------------------------------------- Eurostat
+  - id: eurostat-gov-10a-exp
+    type: statistique_publique
+    editeur: "Eurostat"
+    titre: "General government expenditure by function (COFOG) — gov_10a_exp, France, administrations publiques (S13)"
+    url: "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/gov_10a_exp?format=JSON&lang=EN&geo=FR&sector=S13&na_item=TE&unit=PC_GDP&unit=MIO_EUR&sinceTimePeriod=2022"
+    auteurs: []
+    date_publication: "2026-09-16"
+    consulte_le: "2026-10-13"
+    note: "Données transmises par l'Insee ; dernière année : 2024. Les ratios au PIB reposent sur un PIB antérieur à la révision Insee de mai 2026. Copie : system/cache/budget/eurostat-gov_10a_exp-FR-S13.json."
+  - id: eurostat-irt-lt-mcby-a
+    type: statistique_publique
+    editeur: "Eurostat"
+    titre: "EMU convergence criterion series (taux d'intérêt à long terme), données annuelles — irt_lt_mcby_a, France"
+    url: "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/irt_lt_mcby_a?format=JSON&lang=EN&geo=FR&sinceTimePeriod=2019"
+    auteurs: []
+    date_publication: "2026-02-25"
+    consulte_le: "2026-10-13"
+    note: "Rendement des emprunts d'État à 10 ans (OAT), moyenne annuelle."
+  - id: eurostat-irt-lt-mcby-m
+    type: statistique_publique
+    editeur: "Eurostat"
+    titre: "EMU convergence criterion series (taux d'intérêt à long terme), données mensuelles — irt_lt_mcby_m, France"
+    url: "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/irt_lt_mcby_m?format=JSON&lang=EN&geo=FR&sinceTimePeriod=2026-01"
+    auteurs: []
+    date_publication: "2026-10-13"
+    consulte_le: "2026-10-13"
+    note: "Moyennes mensuelles 2026 : janvier 3,53 % … août 4,00 %, septembre 4,44 %."
+  - id: eurostat-gov-10dd-edpt1
+    type: statistique_publique
+    editeur: "Eurostat"
+    titre: "Government deficit/surplus, debt and associated data — gov_10dd_edpt1 (notification d'avril 2026), France"
+    url: "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/gov_10dd_edpt1?format=JSON&lang=EN&geo=FR&sector=S13&na_item=B9&unit=MIO_EUR&unit=PC_GDP&sinceTimePeriod=2019"
+    auteurs: []
+    date_publication: "2026-04-22"
+    consulte_le: "2026-10-13"
+    note: "Contrôle croisé : déficit 2025 de 152 511 M€ (5,1 % du PIB), identique à l'Insee Première n° 2106."
+  # ---------------------------------------------------------------- Doctrine fiscale (BOFiP) et impots.gouv.fr
+  - id: bofip-boi-is-aut-60
+    type: texte_officiel
+    editeur: "DGFiP — Bulletin officiel des finances publiques-impôts (BOFiP)"
+    titre: "BOI-IS-AUT-60 — IS — Contribution exceptionnelle sur les bénéfices des grandes entreprises (version en vigueur à partir du 12/08/2026)"
+    url: "https://bofip.impots.gouv.fr/bofip/14607-PGP.html"
+    auteurs: []
+    date_publication: "2026-08-12"
+    consulte_le: "2026-10-13"
+    note: "Due au titre des deux premiers exercices clos à compter du 31 décembre 2025 ; seuils 1 Md€ puis 1,5 Md€ ; taux 20,6 % et 41,2 % ; assiette = moyenne de l'IS de l'exercice et de l'exercice précédent."
+  - id: bofip-actu-2026-00097
+    type: texte_officiel
+    editeur: "DGFiP — BOFiP"
+    titre: "ACTU-2026-00097 — IS — Prorogation et modification du seuil d'assujettissement de la contribution exceptionnelle sur les bénéfices des grandes entreprises (loi n° 2026-103 du 19 février 2026 de finances pour 2026, art. 12)"
+    url: "https://bofip.impots.gouv.fr/doctrine/pgp/15092-PGP"
+    auteurs: []
+    date_publication: "2026-08-12"
+    consulte_le: "2026-10-13"
+  - id: bofip-boi-tca-fin-10-30
+    type: texte_officiel
+    editeur: "DGFiP — BOFiP"
+    titre: "BOI-TCA-FIN-10-30 — Taxe sur les acquisitions de titres de capital ou assimilés — Modalités de taxation (version du 28/05/2025)"
+    url: "https://bofip.impots.gouv.fr/bofip/7575-PGP.html"
+    auteurs: []
+    date_publication: "2025-05-28"
+    consulte_le: "2026-10-13"
+    note: "« Le taux de la taxe est fixé à 0,4 % », applicable aux acquisitions à compter du 1er avril 2025."
+  - id: bofip-actu-2025-00034
+    type: texte_officiel
+    editeur: "DGFiP — BOFiP"
+    titre: "ACTU-2025-00034 — Augmentation du taux de la taxe sur les acquisitions de titres de capital prévue à l'article 235 ter ZD du CGI (loi n° 2025-127 du 14 février 2025, art. 98)"
+    url: "https://bofip.impots.gouv.fr/bofip/14605-PGP.html/ACTU-2025-00034"
+    auteurs: []
+    date_publication: "2025-05-28"
+    consulte_le: "2026-10-13"
+  - id: bofip-boi-tva-liq-20
+    type: texte_officiel
+    editeur: "DGFiP — BOFiP"
+    titre: "BOI-TVA-LIQ-20 — TVA — Liquidation — Taux — Le taux normal (version du 19/09/2014)"
+    url: "https://bofip.impots.gouv.fr/bofip/1376-PGP.html"
+    auteurs: []
+    date_publication: "2014-09-19"
+    consulte_le: "2026-10-13"
+    note: "Taux normal de 20 % en France métropolitaine et en Corse (CGI, art. 278)."
+  - id: bofip-boi-tva-geo-20-10
+    type: texte_officiel
+    editeur: "DGFiP — BOFiP"
+    titre: "BOI-TVA-GEO-20-10 — Taux applicables en Guadeloupe, en Martinique et à La Réunion (version du 05/06/2019)"
+    url: "https://bofip.impots.gouv.fr/bofip/343-PGP.html"
+    auteurs: []
+    date_publication: "2019-06-05"
+    consulte_le: "2026-10-13"
+    note: "Taux normal 8,5 % ; taux réduit 2,1 % ; taux particuliers 1,75 % et 1,05 % (CGI, art. 296 et suivants)."
+  - id: impots-brochure-ir-2026-calcul
+    type: texte_officiel
+    editeur: "DGFiP (impots.gouv.fr)"
+    titre: "Brochure pratique impôt sur le revenu 2026 (revenus 2025) — chapitre « Calcul de l'impôt » (p. 369 à 382)"
+    url: "https://www.impots.gouv.fr/www2/fichiers/documentation/brochure/ir_2026/pdf_som/21-calcul_impot_369a382.pdf"
+    auteurs: []
+    consulte_le: "2026-10-13"
+    note: "Barème : 0 % jusqu'à 11 600 €, 11 % jusqu'à 29 579 €, 30 % jusqu'à 84 577 €, 41 % jusqu'à 181 917 €, 45 % au-delà. Date de publication non relevée (brochure de la campagne déclarative 2026)."
+  - id: impots-brochure-ir-2026-divers
+    type: texte_officiel
+    editeur: "DGFiP (impots.gouv.fr)"
+    titre: "Brochure pratique impôt sur le revenu 2026 (revenus 2025) — chapitre « Divers » (p. 321 à 336), dont contribution différentielle sur les hauts revenus (CDHR)"
+    url: "https://www.impots.gouv.fr/www2/fichiers/documentation/brochure/ir_2026/pdf_som/17-divers_321a336.pdf"
+    auteurs: []
+    consulte_le: "2026-10-13"
+    note: "CDHR (CGI, art. 224 ; LF 2025, art. 10) : imposition minimale de 20 % au-delà de 250 000 € (personne seule) / 500 000 € (couple) de revenu fiscal de référence. Date de publication non relevée."
+  - id: impots-calcul-ifi
+    type: texte_officiel
+    editeur: "DGFiP (impots.gouv.fr)"
+    titre: "Calcul de l'IFI"
+    url: "https://www.impots.gouv.fr/particulier/calcul-de-lifi"
+    auteurs: []
+    date_publication: "2026-04-08"
+    consulte_le: "2026-10-13"
+    note: "Page publiée le 09/02/2018, modifiée le 08/04/2026. La formule de décote y est écrite « 17 500 – (1,25 × P) » : le pourcentage (1,25 %) est confirmé par la fiche service-public F138."
+  # ---------------------------------------------------------------- Service-public.gouv.fr (DILA)
+  - id: sp-ent-f23575-is
+    type: texte_officiel
+    editeur: "Entreprendre.Service-Public.fr (DILA, Premier ministre)"
+    titre: "Impôt sur les sociétés (IS) : taux, déclaration, paiement (fiche F23575)"
+    url: "https://entreprendre.service-public.gouv.fr/vosdroits/F23575"
+    auteurs: []
+    date_publication: "2026-02-17"
+    consulte_le: "2026-10-13"
+    note: "Fiche d'information administrative, vérifiée le 17 février 2026."
+  - id: sp-ent-f23567-tva-sante
+    type: texte_officiel
+    editeur: "Entreprendre.Service-Public.fr (DILA, Premier ministre)"
+    titre: "Taux de TVA dans le secteur de l'hygiène et de la santé (fiche F23567)"
+    url: "https://entreprendre.service-public.gouv.fr/vosdroits/F23567"
+    auteurs: []
+    date_publication: "2025-06-18"
+    consulte_le: "2026-10-13"
+    note: "Fiche vérifiée le 18 juin 2025 : taux normal 20 %, intermédiaire 10 %, réduit 5,5 %, super-réduit 2,1 % (métropole) ; 8,5 % et 2,1 % aux Antilles et à La Réunion. Aucune modification des taux dans la LFI 2026."
+  - id: sp-ent-f23546-cvae
+    type: texte_officiel
+    editeur: "Entreprendre.Service-Public.fr (DILA, Premier ministre)"
+    titre: "Cotisation sur la valeur ajoutée des entreprises (CVAE) (fiche F23546)"
+    url: "https://entreprendre.service-public.gouv.fr/vosdroits/F23546"
+    auteurs: []
+    date_publication: "2026-07-22"
+    consulte_le: "2026-10-13"
+    note: "Vérifiée le 22 juillet 2026. Tableau des taux : maximum 0,19 % pour 2025, 0,28 % pour 2026 et 2027 ; une phrase du texte mentionne encore « entre 0 % et 0,19 % pour 2026 » (incohérence interne de la fiche)."
+  - id: sp-ent-a18078-cvae
+    type: texte_officiel
+    editeur: "Entreprendre.Service-Public.fr (DILA, Premier ministre)"
+    titre: "Suppression de la CVAE en 2030 (actualité A18078)"
+    url: "https://entreprendre.service-public.gouv.fr/actualites/A18078"
+    auteurs: []
+    date_publication: "2025-02-18"
+    consulte_le: "2026-10-13"
+    note: "Mise à jour le 30 mars 2026. Calendrier : 0,19 % (2025), 0,28 % (2026 et 2027), 0,19 % (2028), 0,09 % (2029), suppression en 2030 (loi n° 2025-127, art. 62)."
+  - id: sp-f2329-prelevements-sociaux
+    type: texte_officiel
+    editeur: "Service-Public.fr (DILA, Premier ministre)"
+    titre: "Prélèvements sociaux (CSG, CRDS...) sur les revenus du patrimoine et de placements (fiche F2329)"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F2329"
+    auteurs: []
+    date_publication: "2026-06-30"
+    consulte_le: "2026-10-13"
+    note: "Vérifiée le 30 juin 2026 : CSG 10,6 %, CRDS 0,5 %, prélèvement de solidarité 7,5 %, total 18,6 % ; restent à 17,2 % l'assurance-vie, le PEL, le CEL, le PEP, les revenus fonciers et les plus-values immobilières."
+  - id: sp-f2613-revenus-epargne
+    type: texte_officiel
+    editeur: "Service-Public.fr (DILA, Premier ministre)"
+    titre: "Impôt sur le revenu - Revenus d'épargne et de placement (fiche F2613)"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F2613"
+    auteurs: []
+    date_publication: "2026-04-15"
+    consulte_le: "2026-10-13"
+    note: "Vérifiée le 15 avril 2026 : PFU = 12,8 % d'impôt sur le revenu + prélèvements sociaux passés à 18,6 % au 1er janvier 2026."
+  - id: sp-f14198-successions
+    type: texte_officiel
+    editeur: "Service-Public.fr (DILA, Premier ministre)"
+    titre: "Droits de succession - Évaluation de la succession et calcul des droits (fiche F14198)"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F14198"
+    auteurs: []
+    date_publication: "2026-02-09"
+    consulte_le: "2026-10-13"
+    note: "Vérifiée le 9 février 2026."
+  - id: sp-f14203-donations
+    type: texte_officiel
+    editeur: "Service-Public.fr (DILA, Premier ministre)"
+    titre: "Quels sont les droits à payer sur une donation selon le lien avec le donateur ? (fiche F14203)"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F14203"
+    auteurs: []
+    date_publication: "2026-05-13"
+    consulte_le: "2026-10-13"
+    note: "Vérifiée le 13 mai 2026."
+  - id: sp-f563-ifi
+    type: texte_officiel
+    editeur: "Service-Public.fr (DILA, Premier ministre)"
+    titre: "Impôt sur la fortune immobilière (IFI) : personnes et biens concernés (fiche F563)"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F563"
+    auteurs: []
+    date_publication: "2026-03-06"
+    consulte_le: "2026-10-13"
+    note: "Vérifiée le 6 mars 2026 : seuil 1 300 000 € au 1er janvier 2026 ; abattement de 30 % sur la résidence principale."
+  - id: sp-f138-calcul-ifi
+    type: texte_officiel
+    editeur: "Service-Public.fr (DILA, Premier ministre)"
+    titre: "Calcul de l'impôt sur la fortune immobilière (IFI) (fiche F138)"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F138"
+    auteurs: []
+    date_publication: "2026-03-06"
+    consulte_le: "2026-10-13"
+    note: "Vérifiée le 6 mars 2026 : barème, décote (17 500 € − 1,25 % du patrimoine, entre 1,3 et 1,4 M€), plafonnement à 75 % des revenus."
+  - id: sp-f59-taxe-fonciere
+    type: texte_officiel
+    editeur: "Service-Public.fr (DILA, Premier ministre)"
+    titre: "Taxe foncière sur les propriétés bâties (TFPB) (fiche F59)"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F59"
+    auteurs: []
+    date_publication: "2026-09-25"
+    consulte_le: "2026-10-13"
+    note: "Vérifiée le 25 septembre 2026 : « Les taux d'imposition sont votés par les collectivités territoriales » ; base = moitié de la valeur locative cadastrale."

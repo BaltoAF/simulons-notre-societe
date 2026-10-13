@@ -1,0 +1,113 @@
+question:
+  id: non_recours_prestations
+  titre: "Taux de non-recours aux prestations sociales (RSA, prime d'activité, aides au logement, complémentaire santé solidaire, minimum vieillesse)"
+  definition: "Part (en %) des foyers ou personnes éligibles à une prestation qui ne la perçoivent pas, à une date donnée. La prestation concernée est précisée dans le champ de chaque estimation. Ce n'est pas un effet causal mais un taux mesuré : il sert à corriger les simulations (une hausse de barème ne profite qu'aux recourants)."
+  unite: pourcent
+  regles_liees:
+    - prestations.rsa.montant_forfaitaire
+    - prestations.prime_activite.montant_forfaitaire
+    - prestations.aspa.montant_personne_seule
+    - prestations.aides_logement.forfait_charges
+  sens_attendu: positif
+  estimations:
+    - source: drees-er1370-non-recours-rsa-2021
+      valeur: 35
+      intervalle_95: null
+      methode: "Microsimulation de l'éligibilité sur l'appariement ERFS 2021 (Insee) – Dispositif ressources mensuelles (revenus individuels mensuels issus de sources administratives), comparée à la perception effective du RSA"
+      champ: "RSA — France métropolitaine, ménages en logement ordinaire, 4e trimestre 2021 (environ 560 000 foyers éligibles non-recourants)"
+      pays: FR
+      annee_donnees: 2021
+      type_etude: descriptif
+      revue_par_les_pairs: false
+      note: "La DREES publie une fourchette de 33 % à 37 % selon le traitement de 180 000 foyers allocataires simulés comme non éligibles ; la valeur retenue (35) est le milieu de cette fourchette, qui n'est pas un intervalle de confiance statistique. Estimation la plus récente et la plus précise (revenus observés mois par mois)."
+    - source: drees-dd92-non-recours-rsa-2018
+      valeur: 34
+      intervalle_95: null
+      methode: "Microsimulation Ines appliquée à l'enquête Revenus fiscaux et sociaux (ERFS) 2018, revenus annuels répartis par mois"
+      champ: "RSA — France métropolitaine, ménages ordinaires, moyenne trimestrielle 2018"
+      pays: FR
+      annee_donnees: 2018
+      type_etude: descriptif
+      revue_par_les_pairs: false
+      note: "Un foyer éligible sur cinq (20 %) est non-recourant de façon durable (trois trimestres consécutifs). Le montant non versé est estimé à 750 M€ par trimestre. La reconstitution mensuelle des revenus annuels rend cette estimation plus fragile que celle de 2026."
+    - source: cne-rsa-2011-non-recours
+      valeur: 36
+      intervalle_95: null
+      methode: "Enquête quantitative spécifique (Dares, 2010-2011) auprès de foyers à bas revenus, avec simulation des droits au RSA"
+      champ: "RSA socle seul (équivalent de l'actuel RSA) — France, dernier trimestre 2010"
+      pays: FR
+      annee_donnees: 2010
+      type_etude: descriptif
+      revue_par_les_pairs: false
+      note: "Fourchette de 34 % à 38 % selon les conventions retenues. Pour le RSA activité seul (ancêtre de la prime d'activité), le non-recours atteignait 68 % (63 % à 72 %) ; 50 % tous types de RSA confondus. Chiffres lus dans la synthèse DREES (Dossier n° 57, 2020), qui reprend l'annexe Cnaf (Domingo et Pucci) du rapport du Comité national d'évaluation."
+    - source: dgcs-2017-evaluation-prime-activite
+      valeur: 27
+      intervalle_95: null
+      methode: "Microsimulation Ines (DREES) : nombre de bénéficiaires rapporté au nombre de foyers éligibles simulés"
+      champ: "Prime d'activité — France métropolitaine, moyenne trimestrielle 2016 (première année du dispositif)"
+      pays: FR
+      annee_donnees: 2016
+      type_etude: descriptif
+      revue_par_les_pairs: false
+      note: "Taux de recours estimé à 73 % en effectifs (77 % en masses financières), soit 27 % de non-recours. La DREES juge ce chiffrage fragile : la méthode sous-estime les foyers éligibles une partie de l'année seulement, si bien que ce non-recours est probablement un minorant. Il est contredit par l'estimation de 2026 (48 % à 52 %). Lu dans la synthèse DREES (Dossier n° 57, 2020)."
+    - source: drees-er1379-non-recours-prime-activite-2021
+      valeur: 50
+      intervalle_95: null
+      methode: "Microsimulation de l'éligibilité sur l'appariement ERFS 2021 – Dispositif ressources mensuelles, comparée à la perception effective de la prime"
+      champ: "Prime d'activité — France métropolitaine, ménages ordinaires, 4e trimestre 2021 (3,4 millions de foyers non-recourants sur 6,6 millions d'éligibles)"
+      pays: FR
+      annee_donnees: 2021
+      type_etude: descriptif
+      revue_par_les_pairs: false
+      note: "Fourchette publiée de 48 % à 52 % selon le dénominateur retenu ; valeur = milieu de fourchette (pas un intervalle de confiance). En masses financières, le non-recours représente 43 % à 46 % des montants dus. Le plein recours réduirait le taux de pauvreté de 0,5 point."
+    - source: drees-cp-css-non-recours-2022
+      valeur: 31
+      intervalle_95: null
+      methode: "Bénéficiaires observés dans les données de l'Assurance maladie rapportés au nombre d'éligibles simulés par le modèle Ines"
+      champ: "Complémentaire santé solidaire SANS participation financière (ex-CMU-C) — France métropolitaine, ménages ordinaires, 2021"
+      pays: FR
+      annee_donnees: 2021
+      type_etude: descriptif
+      revue_par_les_pairs: false
+      note: "Taux « environ 31 % » stable entre 2019 et 2021. La DREES appelle à la prudence (imprécision de l'ERFS et de la simulation). Pour comparaison, en 2018 le non-recours à la CMU-C était estimé entre 32 % et 44 % (recours 56 % à 68 %)."
+    - source: drees-cp-css-non-recours-2022
+      valeur: 67
+      intervalle_95: null
+      methode: "Bénéficiaires observés dans les données de l'Assurance maladie rapportés au nombre d'éligibles simulés par le modèle Ines"
+      champ: "Complémentaire santé solidaire AVEC participation financière (ex-ACS) — France métropolitaine, ménages ordinaires, 2021"
+      pays: FR
+      annee_donnees: 2021
+      type_etude: descriptif
+      revue_par_les_pairs: false
+      note: "72 % en 2020, 67 % en 2021 (première baisse). Tous types de CSS confondus : 46 % en 2019-2020, 44 % en 2021. Une partie des non-recourants est déjà couverte par une complémentaire d'entreprise obligatoire."
+    - source: drees-dd97-non-recours-minimum-vieillesse
+      valeur: 50
+      intervalle_95: null
+      methode: "Échantillon interrégimes de retraités (EIR) 2016 apparié aux données fiscales ; identification des éligibles et comparaison avec les allocataires"
+      champ: "Minimum vieillesse (ASPA/ASV) — personnes seules de 65 ans ou plus résidant en France, hors liquidations de l'année et hors personnes sans pension, fin 2016"
+      pays: FR
+      annee_donnees: 2016
+      type_etude: descriptif
+      revue_par_les_pairs: false
+      note: "54 % fin 2012 avec la même méthode. Les hypothèses retenues tendent plutôt à majorer le recours, donc le non-recours réel pourrait être un peu plus élevé. Le non-recours est de 77 % quand le montant dû est inférieur à 100 €/mois. Les couples ne sont pas couverts."
+    - source: cnav-broutin-niyomwungere-2021
+      valeur: 41.5
+      intervalle_95: null
+      methode: "Ciblage par datamining de 12 000 dossiers de retraités, puis évaluation des droits à partir des ressources connues de la branche retraite"
+      champ: "ASPA (minimum vieillesse) — mono-pensionnés vivant seuls, titulaires d'un droit propre, résidant en France, 2019"
+      pays: FR
+      annee_donnees: 2019
+      type_etude: descriptif
+      revue_par_les_pairs: true
+      note: "Fourchette publiée de 34 % à 49 % ; valeur = milieu de fourchette. Échantillon ciblé (non représentatif de tous les retraités seuls) et ressources hors retraite mal connues. Chiffre lu dans la synthèse DREES (Dossier n° 97, 2022)."
+    - source: cnaf-de12-2000-non-recours-aides-logement
+      valeur: null
+      intervalle_95: null
+      methode: "Enquête téléphonique exploratoire auprès d'allocataires de la CAF du Havre (CRÉDOC pour la Cnaf), droits simulés"
+      champ: "Aides personnelles au logement (APL, ALF, ALS) — familles allocataires de la CAF du Havre ne percevant pas d'aide au logement, 2000"
+      pays: FR
+      annee_donnees: 2000
+      type_etude: descriptif
+      revue_par_les_pairs: false
+      note: "Non-recours jugé « très faible, en tout état de cause inférieur à 1 % » (borne haute présumée de 1,4 % rapportée aux bénéficiaires). Valeur laissée vide car il s'agit d'une borne, sur un champ local limité à des familles déjà connues de la CAF : non transposable au niveau national. Aucune estimation nationale récente et publiée du non-recours aux aides au logement n'a été trouvée ; le chiffre de 37-38 % qui circule dans la presse n'a pas pu être rattaché à une publication primaire."
+  note_synthese: "Les estimations officielles (DREES, Cnaf) convergent sur un constat : une part importante des personnes éligibles ne touche pas les aides auxquelles elles ont droit, environ un tiers pour le RSA (33 % à 37 % fin 2021, chiffre stable depuis 2010) et environ la moitié pour la prime d'activité (48 % à 52 % fin 2021) et le minimum vieillesse des personnes seules (50 % en 2016). Pour la complémentaire santé solidaire, le non-recours est d'environ 31 % pour la version gratuite et d'environ 67 % pour la version payante. Les chiffres les plus fiables sont ceux de 2026 pour le RSA et la prime d'activité, car ils reposent sur des revenus observés mois par mois. L'ancienne estimation de 27 % pour la prime d'activité (2016) est jugée fragile par la DREES elle-même. Toutes ces mesures restent incertaines (elles dépendent de la simulation de l'éligibilité), et les aides au logement constituent une vraie lacune : on suppose leur non-recours faible, mais aucune estimation nationale publiée n'existe."

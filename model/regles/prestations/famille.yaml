@@ -1,0 +1,233 @@
+# FICHIER GÉNÉRÉ par system/sync_openfisca.py le 2026-10-13 à partir d'OpenFisca-France 176.1.2.
+# Ne pas modifier à la main : modifier model/moteur/openfisca_leviers.yaml puis relancer le Système.
+genere_par: system/sync_openfisca.py
+domaine: prestations
+theme: Prestations familiales
+regles:
+- id: prestations.famille.bmaf
+  titre: Base mensuelle de calcul des allocations familiales (BMAF)
+  explication: 'Montant de référence : la plupart des prestations familiales sont exprimées en pourcentage de cette base.'
+  type: nombre
+  unite: euros
+  bornes:
+  - 0
+  - 1500
+  valeurs:
+  - depuis: '2009-01-01'
+    valeur: 389.2
+    sources:
+    - of-ref-83e3ab20e6
+    - openfisca-france
+  - depuis: '2011-01-01'
+    valeur: 395.04
+    sources:
+    - of-ref-724f71ffff
+    - openfisca-france
+  - depuis: '2012-04-01'
+    valeur: 399.0
+    sources:
+    - of-ref-fd6a8c05d1
+    - openfisca-france
+  - depuis: '2013-04-01'
+    valeur: 403.79
+    sources:
+    - of-ref-fd6a8c05d1
+    - openfisca-france
+  - depuis: '2014-04-01'
+    valeur: 406.21
+    sources:
+    - of-ref-ceb93abbcd
+    - openfisca-france
+  - depuis: '2016-04-01'
+    valeur: 406.62
+    sources:
+    - of-ref-c2dab40149
+    - openfisca-france
+  - depuis: '2017-04-01'
+    valeur: 407.84
+    sources:
+    - of-ref-71a88513e0
+    - openfisca-france
+  - depuis: '2018-04-01'
+    valeur: 411.92
+    sources:
+    - of-ref-42721f667a
+    - openfisca-france
+  - depuis: '2019-04-01'
+    valeur: 413.16
+    sources:
+    - of-ref-eb08014ea3
+    - openfisca-france
+  - depuis: '2020-04-01'
+    valeur: 414.4
+    sources:
+    - of-ref-fe97bae3e6
+    - openfisca-france
+  - depuis: '2021-04-01'
+    valeur: 414.81
+    sources:
+    - of-ref-6d3dfdef17
+    - openfisca-france
+  - depuis: '2022-04-01'
+    valeur: 422.28
+    sources:
+    - of-ref-f658806f52
+    - openfisca-france
+  - depuis: '2022-07-01'
+    valeur: 439.17
+    sources:
+    - of-ref-abbd9c5808
+    - of-ref-a6d1af1ab4
+    - openfisca-france
+  - depuis: '2023-04-01'
+    valeur: 445.93
+    sources:
+    - of-ref-11e02d9d0c
+    - openfisca-france
+  - depuis: '2024-04-01'
+    valeur: 466.44
+    sources:
+    - of-ref-ee52101dba
+    - openfisca-france
+  - depuis: '2025-04-01'
+    valeur: 474.37
+    sources:
+    - of-ref-e0f2fd12fd
+    - openfisca-france
+  - depuis: '2026-04-01'
+    valeur: 478.16
+    sources:
+    - of-ref-9a5d29f836
+    - openfisca-france
+  verifie_le: '2026-04-01'
+  moteur:
+    openfisca: prestations_sociales.prestations_familiales.bmaf.bmaf
+  a_verifier: false
+- id: prestations.famille.af_nombre_enfants_minimum
+  titre: 'Allocations familiales : nombre d''enfants minimum pour y avoir droit'
+  explication: Aujourd'hui, les allocations familiales ne sont versées qu'à partir du deuxième enfant à charge (hors outre-mer).
+  type: nombre
+  unite: enfants
+  bornes:
+  - 1
+  - 4
+  valeurs:
+  - depuis: '1946-09-01'
+    valeur: 2.0
+    sources:
+    - of-ref-dead2a35bd
+    - of-ref-fed4deccb2
+    - of-ref-bb9cac6286
+    - openfisca-france
+  verifie_le: '2025-02-27'
+  moteur:
+    openfisca: prestations_sociales.prestations_familiales.prestations_generales.af.af_cm.nb_enfants_min_pour_allocation
+  a_verifier: false
+- id: prestations.famille.af_taux_deux_enfants
+  titre: 'Allocations familiales : montant pour 2 enfants (en % de la BMAF)'
+  explication: Pour deux enfants à charge, les allocations familiales valent ce pourcentage de la base mensuelle (avant modulation
+    selon les revenus).
+  type: nombre
+  unite: pourcent
+  bornes:
+  - 0
+  - 100
+  valeurs:
+  - depuis: '1982-02-01'
+    valeur: 32.0
+    sources:
+    - of-ref-88fbc0d51e
+    - of-ref-85be4d1c67
+    - openfisca-france
+  verifie_le: '2025-02-27'
+  moteur:
+    openfisca: prestations_sociales.prestations_familiales.prestations_generales.af.af_cm.taux.enf2
+  a_verifier: false
+- id: prestations.famille.af_taux_enfant_supplementaire
+  titre: 'Allocations familiales : supplément par enfant à partir du 3e (en % de la BMAF)'
+  explication: Montant ajouté pour chaque enfant à partir du troisième.
+  type: nombre
+  unite: pourcent
+  bornes:
+  - 0
+  - 100
+  valeurs:
+  - depuis: '1986-01-01'
+    valeur: 41.0
+    sources:
+    - of-ref-99a46af409
+    - openfisca-france
+  verifie_le: '2025-02-20'
+  moteur:
+    openfisca: prestations_sociales.prestations_familiales.prestations_generales.af.af_cm.taux.enf3
+  a_verifier: false
+- id: prestations.famille.af_plafond_modulation
+  titre: 'Allocations familiales : plafond de revenus avant division par deux (2 enfants)'
+  explication: Au-delà de ce revenu annuel, les allocations familiales sont divisées par deux (puis par quatre au-delà d'un
+    second plafond).
+  type: nombre
+  unite: euros
+  bornes:
+  - 0
+  - 300000
+  valeurs:
+  - depuis: '2015-07-01'
+    valeur: 55950.0
+    sources:
+    - openfisca-france
+  - depuis: '2016-01-01'
+    valeur: 56174.0
+    sources:
+    - of-ref-cfbbdc1018
+    - openfisca-france
+  - depuis: '2018-01-01'
+    valeur: 56286.0
+    sources:
+    - of-ref-417117106f
+    - openfisca-france
+  - depuis: '2019-01-01'
+    valeur: 56849.0
+    sources:
+    - of-ref-ef721083c0
+    - openfisca-france
+  - depuis: '2020-01-01'
+    valeur: 57759.0
+    sources:
+    - of-ref-87dc3c08a6
+    - openfisca-france
+  - depuis: '2021-01-01'
+    valeur: 58279.0
+    sources:
+    - of-ref-ec7b39d17e
+    - openfisca-france
+  - depuis: '2022-01-01'
+    valeur: 58396.0
+    sources:
+    - of-ref-a598edec8a
+    - openfisca-france
+  - depuis: '2023-01-01'
+    valeur: 59330.0
+    sources:
+    - of-ref-a31bd2e821
+    - openfisca-france
+  - depuis: '2024-01-01'
+    valeur: 62474.0
+    sources:
+    - of-ref-383886b76b
+    - of-ref-4c9d29d536
+    - openfisca-france
+  - depuis: '2025-01-01'
+    valeur: 65473.0
+    sources:
+    - of-ref-c4fc018830
+    - of-ref-0dd25ad189
+    - openfisca-france
+  - depuis: '2026-01-01'
+    valeur: 66652.0
+    sources:
+    - of-ref-e2c1a3dc2a
+    - openfisca-france
+  verifie_le: '2026-01-06'
+  moteur:
+    openfisca: prestations_sociales.prestations_familiales.prestations_generales.af.af_cond_ress.plafond_tranche_1_base
+  a_verifier: false

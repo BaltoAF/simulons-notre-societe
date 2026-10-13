@@ -1,0 +1,792 @@
+domaine: justice_penale
+theme: "Procédure pénale et exécution des peines"
+regles:
+  # ------------------------------------------------------------------ Mineurs
+  - id: justice_penale.majorite_penale.age
+    titre: "Âge de la majorité pénale"
+    explication: "À partir de 18 ans, une personne est jugée comme un adulte. Avant cet âge, elle relève de la justice des mineurs, avec une responsabilité atténuée."
+    type: nombre
+    unite: ans
+    bornes: [13, 21]
+    valeurs:
+      - depuis: "2025-10-31"
+        valeur: 18
+        sources: [sp-f1837]
+    tags: [mineurs, responsabilite_penale, age]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-10-31 (service-public)."
+
+  - id: justice_penale.mineurs.age_presomption_non_discernement
+    titre: "Mineurs : âge en dessous duquel l'enfant est présumé ne pas comprendre ses actes"
+    explication: "Un enfant de moins de 13 ans est présumé incapable de discernement : il ne peut pas être condamné à une peine, sauf s'il est prouvé qu'il comprenait ce qu'il faisait. Des mesures éducatives restent possibles."
+    type: nombre
+    unite: ans
+    bornes: [10, 16]
+    valeurs:
+      - depuis: "2025-10-31"
+        valeur: 13
+        sources: [sp-f1837]
+    tags: [mineurs, responsabilite_penale, age, cjpm]
+    a_verifier: false
+    note: "Présomption simple prévue par le code de la justice pénale des mineurs (CJPM). Date d'entrée en vigueur du CJPM non établie sur une source lue ; valeur attestée au 2025-10-31 (service-public). Aucune peine ne peut être prononcée contre un mineur de moins de 13 ans."
+
+  - id: justice_penale.mineurs.excuse_minorite_part_peine
+    titre: "Excuse de minorité : part maximale de la peine prévue pour un adulte"
+    explication: "Grâce à « l'excuse de minorité », un mineur de 13 ans ou plus ne peut pas être condamné à plus de la moitié de la peine de prison ou d'amende prévue pour un adulte (amende plafonnée à 7 500 €)."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2025-10-31"
+        valeur: 50
+        sources: [sp-f1837]
+    tags: [mineurs, peine, excuse_minorite]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-10-31 (service-public)."
+
+  - id: justice_penale.mineurs.peine_max_si_perpetuite_encourue
+    titre: "Mineurs : peine maximale quand un adulte risquerait la perpétuité"
+    explication: "Si l'infraction est punie de la prison à vie pour un adulte, un mineur bénéficiant de l'excuse de minorité ne peut pas être condamné à plus de 20 ans de prison (30 ans si l'excuse est écartée pour un mineur de 16 ans ou plus)."
+    type: nombre
+    unite: ans
+    bornes: [0, 30]
+    valeurs:
+      - depuis: "2025-10-31"
+        valeur: 20
+        sources: [sp-f1837]
+    tags: [mineurs, peine, excuse_minorite, perpetuite]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-10-31 (service-public)."
+
+  - id: justice_penale.mineurs.age_exclusion_excuse_minorite
+    titre: "Mineurs : âge à partir duquel l'excuse de minorité peut être écartée"
+    explication: "Pour un mineur de 16 à 18 ans, le tribunal peut exceptionnellement refuser l'excuse de minorité, par une décision motivée tenant aux circonstances et à la personnalité : le mineur encourt alors les mêmes peines qu'un adulte (au maximum 30 ans au lieu de la perpétuité)."
+    type: nombre
+    unite: ans
+    bornes: [13, 18]
+    valeurs:
+      - depuis: "2025-10-31"
+        valeur: 16
+        sources: [sp-f1837]
+    tags: [mineurs, peine, excuse_minorite]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-10-31 (service-public)."
+
+  # ------------------------------------------------------------------ Garde à vue
+  - id: justice_penale.garde_a_vue.duree_initiale
+    titre: "Garde à vue : durée initiale"
+    explication: "Une personne soupçonnée peut être retenue en garde à vue pendant 24 heures, à compter du moment où elle est retenue (interpellation, test d'alcoolémie, cellule de dégrisement…)."
+    type: nombre
+    unite: heures
+    bornes: [0, 48]
+    valeurs:
+      - depuis: "2025-07-10"
+        valeur: 24
+        sources: [sp-f14837, cc-decision-2026-915-dc]
+        article: "Code de procédure pénale, art. 63"
+    tags: [garde_a_vue, procedure, libertes]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-07-10 (service-public), confirmée par le Conseil constitutionnel le 14/08/2026."
+
+  - id: justice_penale.garde_a_vue.duree_max_droit_commun
+    titre: "Garde à vue : durée maximale dans le cas général"
+    explication: "La garde à vue peut être prolongée une fois de 24 heures par le procureur ou le juge d'instruction, si l'infraction est punie d'au moins 1 an de prison : 48 heures au total."
+    type: nombre
+    unite: heures
+    bornes: [24, 96]
+    valeurs:
+      - depuis: "2025-07-10"
+        valeur: 48
+        sources: [sp-f14837, cc-decision-2026-915-dc]
+        article: "Code de procédure pénale, art. 63"
+    tags: [garde_a_vue, procedure, libertes]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-07-10 (service-public), confirmée par le Conseil constitutionnel le 14/08/2026."
+
+  - id: justice_penale.garde_a_vue.duree_max_criminalite_organisee
+    titre: "Garde à vue : durée maximale pour la criminalité organisée (trafic de drogue, meurtre en bande organisée…)"
+    explication: "Pour les infractions les plus graves de la criminalité organisée, un juge peut prolonger la garde à vue jusqu'à 96 heures (4 jours) au total."
+    type: nombre
+    unite: heures
+    bornes: [48, 144]
+    valeurs:
+      - depuis: "2025-01-22"
+        valeur: 96
+        sources: [senat-rapport-l24-253, sp-f14837, legi-cpp-706-88]
+        article: "Code de procédure pénale, art. 706-88"
+    tags: [garde_a_vue, procedure, criminalite_organisee, stupefiants]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-01-22 (rapport du Sénat n° 253), confirmée par service-public (10/07/2025). Pour les « mules » ayant ingéré de la drogue, une prolongation supplémentaire est possible jusqu'à 120 heures (service-public)."
+
+  - id: justice_penale.garde_a_vue.duree_max_terrorisme
+    titre: "Garde à vue : durée maximale en matière de terrorisme"
+    explication: "En cas de risque sérieux d'action terroriste imminente ou pour les besoins de la coopération internationale, la garde à vue peut atteindre 144 heures (6 jours)."
+    type: nombre
+    unite: heures
+    bornes: [48, 200]
+    valeurs:
+      - depuis: "2025-01-22"
+        valeur: 144
+        sources: [senat-rapport-l24-253, sp-f14837, legi-cpp-706-88]
+        article: "Code de procédure pénale, art. 706-88-1"
+    tags: [garde_a_vue, procedure, terrorisme]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-01-22 (rapport du Sénat n° 253 : « durée maximale prévue en l'état du droit français, fixée à 144 heures »), confirmée par service-public (10/07/2025). Le rapport du Sénat n° 601 (2026) mentionne « jusqu'à 120 heures » : divergence non retenue face aux deux autres sources officielles."
+
+  - id: justice_penale.garde_a_vue.duree_max_delinquance_organisee_financiere
+    titre: "Garde à vue : durée maximale pour la délinquance organisée « restreinte » (notamment économique et financière)"
+    explication: "Depuis la loi RIPOST de 2026, pour les délits relevant du régime « restreint » de la délinquance organisée (fraudes et blanchiment en bande organisée, contrebande…), un juge peut ajouter 24 heures exceptionnelles : la garde à vue peut atteindre 72 heures."
+    type: nombre
+    unite: heures
+    bornes: [48, 96]
+    valeurs:
+      - depuis: "2026-08-20"
+        valeur: 72
+        sources: [senat-tas25-164, cc-decision-2026-915-dc, senat-rapport-l25-601, legi-loi-2026-798]
+        article: "Code de procédure pénale, art. 706-88-3 (créé par la loi n° 2026-798 du 18 août 2026)"
+    tags: [garde_a_vue, procedure, criminalite_organisee, reforme_2026]
+    a_verifier: true
+    note: "Avant la réforme, la durée maximale pour ces infractions (art. 706-73-1 CPP) était de 48 heures (droit commun), selon le rapport du Sénat n° 601. Disposition déclarée conforme par la décision n° 2026-915 DC ; date du 20 août 2026 déduite de la publication de la loi au JO du 19 août 2026 (aucune entrée en vigueur différée dans le texte de la CMP), non confirmée par une fiche pratique officielle."
+
+  # ------------------------------------------------------------------ Prescription de l'action publique
+  - id: justice_penale.prescription.contraventions
+    titre: "Délai pour poursuivre une contravention (prescription)"
+    explication: "Passé 1 an après les faits, l'auteur d'une contravention ne peut plus être poursuivi."
+    type: nombre
+    unite: ans
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2025-07-29"
+        valeur: 1
+        sources: [sp-f31982, legi-cpp-9]
+        article: "Code de procédure pénale, art. 9"
+    tags: [prescription, procedure, contravention]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-07-29 (service-public). Le délai peut être interrompu (actes d'enquête, du procureur, du juge) ou suspendu."
+
+  - id: justice_penale.prescription.delits
+    titre: "Délai pour poursuivre un délit (prescription)"
+    explication: "En règle générale, l'auteur d'un délit (vol, violences, harcèlement…) ne peut plus être poursuivi 6 ans après les faits. Pour les infractions cachées, le délai part de leur découverte, sans pouvoir dépasser 12 ans après les faits."
+    type: nombre
+    unite: ans
+    bornes: [0, 30]
+    valeurs:
+      - depuis: "2025-07-29"
+        valeur: 6
+        sources: [sp-f31982, legi-cpp-8]
+        article: "Code de procédure pénale, art. 8"
+    tags: [prescription, procedure, delit]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-07-29 (service-public). Délai butoir de 12 ans pour les délits occultes ou dissimulés ; diffamation et injure : 3 mois (1 an si discriminatoires)."
+
+  - id: justice_penale.prescription.crimes
+    titre: "Délai pour poursuivre un crime (prescription, cas général)"
+    explication: "En règle générale, l'auteur d'un crime ne peut plus être poursuivi 20 ans après les faits. Pour les crimes cachés, le délai part de leur découverte, sans pouvoir dépasser 30 ans après les faits."
+    type: nombre
+    unite: ans
+    bornes: [0, 50]
+    valeurs:
+      - depuis: "2025-07-29"
+        valeur: 20
+        sources: [sp-f31982, legi-cpp-7]
+        article: "Code de procédure pénale, art. 7"
+    tags: [prescription, procedure, crime]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-07-29 (service-public). Délai butoir de 30 ans pour les crimes occultes ou dissimulés."
+
+  - id: justice_penale.prescription.crimes_graves
+    titre: "Délai pour poursuivre certains crimes graves (terrorisme, trafic de drogue en bande organisée, crimes de guerre…)"
+    explication: "Pour certains crimes particulièrement graves (terrorisme, trafic de stupéfiants en bande organisée, clonage, crimes de guerre, meurtre ou viol sur mineur…), le délai de prescription est porté à 30 ans."
+    type: nombre
+    unite: ans
+    bornes: [0, 50]
+    valeurs:
+      - depuis: "2025-07-29"
+        valeur: 30
+        sources: [sp-f31982, legi-cpp-7]
+        article: "Code de procédure pénale, art. 7"
+    tags: [prescription, procedure, crime, terrorisme, stupefiants]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-07-29 (service-public)."
+
+  - id: justice_penale.prescription.crimes_contre_humanite_imprescriptibles
+    titre: "Les crimes contre l'humanité sont-ils imprescriptibles ?"
+    explication: "Les crimes contre l'humanité peuvent être poursuivis sans limite de temps : ils ne se prescrivent jamais, et les peines prononcées non plus."
+    type: booleen
+    valeurs:
+      - depuis: "2025-07-29"
+        valeur: true
+        sources: [sp-f31982, sp-f34645]
+    tags: [prescription, procedure, crime, crimes_contre_humanite]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-07-29 (service-public)."
+
+  - id: justice_penale.prescription.crimes_sexuels_mineurs
+    titre: "Viol et autres crimes graves sur mineur : délai de prescription (compté à partir de la majorité)"
+    explication: "Pour un viol (ou un meurtre, des tortures…) commis sur un mineur, la victime peut porter plainte pendant 30 ans à partir de ses 18 ans, donc jusqu'à ses 48 ans."
+    type: nombre
+    unite: ans
+    bornes: [0, 50]
+    valeurs:
+      - depuis: "2025-07-29"
+        valeur: 30
+        sources: [sp-f31982, legi-cpp-7]
+        article: "Code de procédure pénale, art. 7"
+    tags: [prescription, mineurs, violences_sexuelles, victimes]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-07-29 (service-public). Le délai court à partir de la majorité de la victime."
+
+  - id: justice_penale.prescription.delits_sexuels_mineurs
+    titre: "Agression ou atteinte sexuelle sur mineur (délit) : délai de prescription (compté à partir de la majorité)"
+    explication: "Pour une agression ou une atteinte sexuelle sur un mineur, la victime peut porter plainte pendant 10 ans à partir de ses 18 ans, donc jusqu'à ses 28 ans."
+    type: nombre
+    unite: ans
+    bornes: [0, 30]
+    valeurs:
+      - depuis: "2025-07-29"
+        valeur: 10
+        sources: [sp-f31982, legi-cpp-8]
+        article: "Code de procédure pénale, art. 8"
+    tags: [prescription, mineurs, violences_sexuelles, victimes]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-07-29 (service-public). S'applique aussi à la corruption de mineur, la proposition sexuelle à un mineur par internet, la traite, etc."
+
+  - id: justice_penale.prescription.delits_sexuels_mineurs_aggraves
+    titre: "Délits sexuels aggravés sur mineur : délai de prescription (compté à partir de la majorité)"
+    explication: "Pour les délits les plus graves commis sur un mineur (atteinte sexuelle aggravée, agression sexuelle avec violence, contrainte, menace ou surprise, violences aggravées avec plus de 8 jours d'incapacité), le délai est de 20 ans à partir de la majorité."
+    type: nombre
+    unite: ans
+    bornes: [0, 30]
+    valeurs:
+      - depuis: "2025-07-29"
+        valeur: 20
+        sources: [sp-f31982, legi-cpp-8]
+        article: "Code de procédure pénale, art. 8"
+    tags: [prescription, mineurs, violences_sexuelles, victimes]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-07-29 (service-public)."
+
+  - id: justice_penale.prescription.glissante_mineurs
+    titre: "Prescription « glissante » pour les violences sexuelles sur mineurs"
+    explication: "Si l'auteur d'un viol, d'une agression ou d'une atteinte sexuelle sur un mineur commet un nouveau fait de ce type sur un autre mineur avant la fin du délai, le délai de prescription du premier fait est prolongé jusqu'à celui du nouveau."
+    type: booleen
+    valeurs:
+      - depuis: "2025-07-29"
+        valeur: true
+        sources: [sp-f31982]
+    tags: [prescription, mineurs, violences_sexuelles, victimes]
+    a_verifier: false
+    note: "Date d'entrée en vigueur (loi de 2021) non établie sur une source lue ; mécanisme attesté au 2025-07-29 (service-public)."
+
+  # ------------------------------------------------------------------ Prescription des peines
+  - id: justice_penale.prescription_peine.contraventions
+    titre: "Délai pour faire exécuter une peine de contravention"
+    explication: "Une peine prononcée pour une contravention (amende par exemple) ne peut plus être exécutée 3 ans après que la condamnation est devenue définitive."
+    type: nombre
+    unite: ans
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2025-11-28"
+        valeur: 3
+        sources: [sp-f32803, sp-f34645]
+    tags: [prescription, execution_des_peines, contravention]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-11-28 pour les amendes (F32803), règle générale confirmée le 09/10/2026 (F34645). Le délai peut être interrompu par un acte d'exécution."
+
+  - id: justice_penale.prescription_peine.delits
+    titre: "Délai pour faire exécuter une peine pour délit"
+    explication: "Une peine prononcée pour un délit ne peut plus être exécutée 6 ans après que la condamnation est devenue définitive (20 ans pour le terrorisme et le trafic de stupéfiants)."
+    type: nombre
+    unite: ans
+    bornes: [0, 30]
+    valeurs:
+      - depuis: "2025-11-28"
+        valeur: 6
+        sources: [sp-f32803, sp-f34645]
+    tags: [prescription, execution_des_peines, delit]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-11-28 pour les amendes (F32803), règle générale confirmée le 09/10/2026 (F34645). 20 ans pour les délits de terrorisme ou de trafic de stupéfiants."
+
+  - id: justice_penale.prescription_peine.crimes
+    titre: "Délai pour faire exécuter une peine pour crime"
+    explication: "Une peine prononcée pour un crime ne peut plus être exécutée 20 ans après que la condamnation est devenue définitive (30 ans pour le terrorisme et le trafic de stupéfiants ; jamais de limite pour les crimes contre l'humanité)."
+    type: nombre
+    unite: ans
+    bornes: [0, 50]
+    valeurs:
+      - depuis: "2025-11-28"
+        valeur: 20
+        sources: [sp-f32803, sp-f34645]
+    tags: [prescription, execution_des_peines, crime]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-11-28 pour les amendes (F32803), règle générale confirmée le 09/10/2026 (F34645). 30 ans en matière de terrorisme ou de trafic de stupéfiants."
+
+  # ------------------------------------------------------------------ Perpétuité et période de sûreté
+  - id: justice_penale.periode_surete.perpetuite_max
+    titre: "Période de sûreté maximale pour une condamnation à perpétuité (cas général)"
+    explication: "Pendant la période de sûreté, le condamné ne peut obtenir ni libération conditionnelle ni aménagement. Pour une réclusion à perpétuité, elle peut aller jusqu'à 22 ans."
+    type: nombre
+    unite: ans
+    bornes: [0, 30]
+    valeurs:
+      - depuis: "2026-09-11"
+        valeur: 22
+        sources: [sp-f35705]
+    tags: [perpetuite, periode_surete, execution_des_peines]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-09-11 (service-public). Pour les peines à temps, la période de sûreté peut aller jusqu'à la moitié de la peine (2/3 dans les cas les plus graves). Elle peut être réduite par le tribunal de l'application des peines."
+
+  - id: justice_penale.periode_surete.perpetuite_crimes_graves_max
+    titre: "Période de sûreté maximale pour les crimes les plus graves punis de perpétuité"
+    explication: "Pour les crimes les plus graves (par exemple un viol suivi de l'assassinat d'un enfant de moins de 15 ans), la période de sûreté d'une perpétuité peut être portée à 30 ans."
+    type: nombre
+    unite: ans
+    bornes: [0, 40]
+    valeurs:
+      - depuis: "2026-09-11"
+        valeur: 30
+        sources: [sp-f35705]
+    tags: [perpetuite, periode_surete, execution_des_peines]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-09-11 (service-public). La « perpétuité réelle » (période de sûreté illimitée) n'a pas été trouvée sur une source officielle lue et n'est pas modélisée ici."
+
+  # ------------------------------------------------------------------ Amendes contraventionnelles
+  - id: justice_penale.amende_contravention.classe_1_max
+    titre: "Amende maximale pour une contravention de 1re classe"
+    explication: "Les contraventions sont classées de la 1re (la moins grave) à la 5e classe. Une contravention de 1re classe est punie d'une amende de 38 € au maximum."
+    type: nombre
+    unite: euros
+    bornes: [0, 200]
+    valeurs:
+      - depuis: "2025-09-03"
+        valeur: 38
+        sources: [justicefr-infractions-penales, legi-cp-131-13]
+        article: "Code pénal, art. 131-13"
+    tags: [amende, contravention, peine]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-09-03 (justice.fr)."
+
+  - id: justice_penale.amende_contravention.classe_2_max
+    titre: "Amende maximale pour une contravention de 2e classe"
+    explication: "Une contravention de 2e classe est punie d'une amende de 150 € au maximum."
+    type: nombre
+    unite: euros
+    bornes: [0, 500]
+    valeurs:
+      - depuis: "2025-09-03"
+        valeur: 150
+        sources: [justicefr-infractions-penales, legi-cp-131-13]
+        article: "Code pénal, art. 131-13"
+    tags: [amende, contravention, peine]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-09-03 (justice.fr)."
+
+  - id: justice_penale.amende_contravention.classe_3_max
+    titre: "Amende maximale pour une contravention de 3e classe"
+    explication: "Une contravention de 3e classe (par exemple le tapage nocturne) est punie d'une amende de 450 € au maximum."
+    type: nombre
+    unite: euros
+    bornes: [0, 1000]
+    valeurs:
+      - depuis: "2025-09-03"
+        valeur: 450
+        sources: [justicefr-infractions-penales, legi-cp-131-13]
+        article: "Code pénal, art. 131-13"
+    tags: [amende, contravention, peine]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-09-03 (justice.fr)."
+
+  - id: justice_penale.amende_contravention.classe_4_max
+    titre: "Amende maximale pour une contravention de 4e classe"
+    explication: "Une contravention de 4e classe (par exemple jeter ses déchets sur la voie publique, la plupart des excès de vitesse) est punie d'une amende de 750 € au maximum."
+    type: nombre
+    unite: euros
+    bornes: [0, 1500]
+    valeurs:
+      - depuis: "2025-09-03"
+        valeur: 750
+        sources: [justicefr-infractions-penales, legi-cp-131-13]
+        article: "Code pénal, art. 131-13"
+    tags: [amende, contravention, peine]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-09-03 (justice.fr). Beaucoup de contraventions des 4 premières classes sont réglées par une amende forfaitaire plus basse (135 € en 4e classe pour le code de la route)."
+
+  - id: justice_penale.amende_contravention.classe_5_max
+    titre: "Amende maximale pour une contravention de 5e classe"
+    explication: "Une contravention de 5e classe, la plus grave, est punie d'une amende de 1 500 € au maximum."
+    type: nombre
+    unite: euros
+    bornes: [0, 3000]
+    valeurs:
+      - depuis: "2025-09-03"
+        valeur: 1500
+        sources: [justicefr-infractions-penales, legi-cp-131-13]
+        article: "Code pénal, art. 131-13"
+    tags: [amende, contravention, peine]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-09-03 (justice.fr)."
+
+  - id: justice_penale.amende_contravention.classe_5_recidive_max
+    titre: "Amende maximale pour une contravention de 5e classe en récidive"
+    explication: "En cas de récidive, l'amende maximale d'une contravention de 5e classe est doublée, à 3 000 €."
+    type: nombre
+    unite: euros
+    bornes: [0, 6000]
+    valeurs:
+      - depuis: "2025-09-03"
+        valeur: 3000
+        sources: [justicefr-infractions-penales, sp-f19460, legi-cp-131-13]
+        article: "Code pénal, art. 131-13"
+    tags: [amende, contravention, peine, recidive]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-09-03 (justice.fr)."
+
+  - id: justice_penale.personnes_morales.multiplicateur_amende
+    titre: "Entreprises et autres personnes morales : multiplicateur de l'amende maximale"
+    explication: "Quand une société, une association ou une collectivité est condamnée, l'amende maximale est 5 fois plus élevée que celle prévue pour une personne physique."
+    type: nombre
+    unite: ratio
+    bornes: [1, 10]
+    valeurs:
+      - depuis: "2025-11-28"
+        valeur: 5
+        sources: [sp-f32803, legi-cp-131-38]
+        article: "Code pénal, art. 131-38"
+    tags: [amende, personnes_morales, entreprises]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-11-28 (service-public)."
+
+  # ------------------------------------------------------------------ Libération conditionnelle
+  - id: justice_penale.liberation_conditionnelle.part_peine_executee
+    titre: "Libération conditionnelle : part de la peine à effectuer avant de pouvoir la demander"
+    explication: "Un détenu peut demander une libération conditionnelle après avoir effectué au moins la moitié de sa peine, s'il fait des efforts sérieux de réinsertion (travail, soins, indemnisation des victimes…)."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2026-08-20"
+        valeur: 50
+        sources: [sp-f32562, legi-cpp-729]
+        article: "Code de procédure pénale, art. 729 à 733"
+    tags: [liberation_conditionnelle, execution_des_peines, amenagement]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-08-20 (service-public). Le temps à effectuer est plafonné à 15 ans pour un primo-délinquant et 20 ans pour un récidiviste. Conditions assouplies après 70 ans, pour le parent d'un enfant de moins de 10 ans ou une femme enceinte (peine ≤ 4 ans)."
+
+  - id: justice_penale.liberation_conditionnelle.perpetuite_primaire
+    titre: "Libération conditionnelle d'un condamné à perpétuité (non récidiviste) : durée minimale de détention"
+    explication: "Une personne condamnée à la prison à vie peut demander une libération conditionnelle après 18 ans de détention si elle n'était pas récidiviste (hors période de sûreté plus longue)."
+    type: nombre
+    unite: ans
+    bornes: [0, 40]
+    valeurs:
+      - depuis: "2026-08-20"
+        valeur: 18
+        sources: [sp-f32562, sp-f35705, legi-cpp-729]
+        article: "Code de procédure pénale, art. 729 à 733"
+    tags: [liberation_conditionnelle, perpetuite, execution_des_peines]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-08-20 (service-public)."
+
+  - id: justice_penale.liberation_conditionnelle.perpetuite_recidive
+    titre: "Libération conditionnelle d'un condamné à perpétuité récidiviste : durée minimale de détention"
+    explication: "Un condamné à la prison à vie en état de récidive peut demander une libération conditionnelle après 22 ans de détention."
+    type: nombre
+    unite: ans
+    bornes: [0, 40]
+    valeurs:
+      - depuis: "2026-08-20"
+        valeur: 22
+        sources: [sp-f32562, sp-f35705, legi-cpp-729]
+        article: "Code de procédure pénale, art. 729 à 733"
+    tags: [liberation_conditionnelle, perpetuite, recidive, execution_des_peines]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-08-20 (service-public)."
+
+  # ------------------------------------------------------------------ Aménagement des peines
+  - id: justice_penale.amenagement_peine.seuil_obligatoire
+    titre: "Prison ferme : durée jusqu'à laquelle la peine doit être aménagée"
+    explication: "Une peine de prison ferme de 1 à 6 mois doit en principe être exécutée hors de prison (bracelet électronique, semi-liberté, placement à l'extérieur), sauf décision motivée du tribunal."
+    type: nombre
+    unite: mois
+    bornes: [0, 24]
+    valeurs:
+      - depuis: "2026-09-11"
+        valeur: 6
+        sources: [sp-f35705]
+    tags: [amenagement, prison, execution_des_peines]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-09-11 (service-public). L'interdiction des peines de prison ferme d'un mois ou moins n'a pas été retrouvée sur une source officielle lue et n'est pas modélisée."
+
+  - id: justice_penale.amenagement_peine.seuil_principe
+    titre: "Prison ferme : durée jusqu'à laquelle l'aménagement est le principe"
+    explication: "Pour une peine de prison ferme jusqu'à 1 an, le tribunal doit en principe décider d'un aménagement, sauf si la personnalité ou la situation du condamné ne le permet pas (décision motivée)."
+    type: nombre
+    unite: mois
+    bornes: [0, 36]
+    valeurs:
+      - depuis: "2026-09-11"
+        valeur: 12
+        sources: [sp-f35705]
+    tags: [amenagement, prison, execution_des_peines]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-09-11 (service-public)."
+
+  # ------------------------------------------------------------------ Réductions de peine
+  - id: justice_penale.reduction_peine.plafond_annuel
+    titre: "Réductions de peine : maximum par année de détention"
+    explication: "Le juge de l'application des peines peut réduire la peine d'un détenu qui se conduit bien et fait des efforts de réinsertion, au maximum de 6 mois par année de détention."
+    type: nombre
+    unite: mois
+    bornes: [0, 12]
+    valeurs:
+      - depuis: "2023-01-01"
+        valeur: 6
+        sources: [sp-f34157, senat-rapport-l25-601, legi-cpp-721]
+        article: "Code de procédure pénale, art. 721 à 721-3"
+    tags: [reduction_peine, execution_des_peines, prison]
+    a_verifier: false
+    note: "Régime applicable aux personnes écrouées depuis le 1er janvier 2023. Plafond réduit à 3 mois par an pour le terrorisme, certains crimes contre les forces de l'ordre, le refus de soins pour les auteurs d'infractions sexuelles et la criminalité organisée (peine ≥ 5 ans). Aucune réduction pour la perpétuité."
+
+  - id: justice_penale.reduction_peine.plafond_mensuel_courte_peine
+    titre: "Réductions de peine : maximum par mois pour une peine de moins d'un an"
+    explication: "Pour une peine de moins d'un an (ou s'il reste moins d'un an à faire), la réduction maximale est de 14 jours par mois de détention."
+    type: nombre
+    unite: jours
+    bornes: [0, 31]
+    valeurs:
+      - depuis: "2023-01-01"
+        valeur: 14
+        sources: [sp-f34157, senat-rapport-l25-601, legi-cpp-721]
+        article: "Code de procédure pénale, art. 721 à 721-3"
+    tags: [reduction_peine, execution_des_peines, prison]
+    a_verifier: false
+    note: "Régime applicable aux personnes écrouées depuis le 1er janvier 2023. 7 jours par mois dans les cas aggravés (terrorisme, criminalité organisée…)."
+
+  - id: justice_penale.reduction_peine.credit_automatique
+    titre: "Les réductions de peine sont-elles accordées automatiquement ?"
+    explication: "Pour les personnes écrouées depuis le 1er janvier 2023, il n'y a plus de « crédit de peine » automatique : chaque réduction est décidée par le juge, au moins une fois par an, selon la conduite et les efforts du détenu."
+    type: booleen
+    valeurs:
+      - depuis: "2023-01-01"
+        valeur: false
+        sources: [sp-f34157, legi-cpp-721]
+        article: "Code de procédure pénale, art. 721 à 721-3"
+    tags: [reduction_peine, execution_des_peines, prison, reforme_2023]
+    a_verifier: false
+    note: "Avant le 1er janvier 2023, un crédit de peine était accordé automatiquement, sans condition, dès que la condamnation devenait définitive (sauf terrorisme et certaines infractions contre les forces de l'ordre) ; la date de création de ce crédit n'a pas été établie sur une source lue, l'entrée antérieure n'est donc pas modélisée."
+
+  # ------------------------------------------------------------------ Libération sous contrainte
+  - id: justice_penale.liberation_sous_contrainte.plein_droit_seuil_peine
+    titre: "Libération sous contrainte automatique : durée de peine en dessous de laquelle elle s'applique"
+    explication: "Les condamnés à moins de 2 ans de prison sortent en principe automatiquement sous contrainte (bracelet, semi-liberté…) quand il leur reste 3 mois à faire, sauf exceptions (crime, terrorisme, violences conjugales, violences en détention…)."
+    type: nombre
+    unite: ans
+    bornes: [0, 5]
+    valeurs:
+      - depuis: "2026-04-27"
+        valeur: 2
+        sources: [sp-f34150, legi-cpp-720]
+        article: "Code de procédure pénale, art. 720"
+    tags: [liberation_sous_contrainte, execution_des_peines, prison]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-04-27 (service-public). Pour les peines de moins de 5 ans, une libération sous contrainte peut aussi être décidée par le juge aux 2/3 de la peine."
+
+  - id: justice_penale.liberation_sous_contrainte.plein_droit_reliquat
+    titre: "Libération sous contrainte automatique : reliquat de peine à partir duquel elle s'applique"
+    explication: "Pour les peines de moins de 2 ans, la libération sous contrainte s'applique automatiquement lorsqu'il ne reste plus que 3 mois de prison à effectuer, même si le condamné s'y oppose."
+    type: nombre
+    unite: mois
+    bornes: [0, 12]
+    valeurs:
+      - depuis: "2026-04-27"
+        valeur: 3
+        sources: [sp-f34150, legi-cpp-720]
+        article: "Code de procédure pénale, art. 720"
+    tags: [liberation_sous_contrainte, execution_des_peines, prison]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-04-27 (service-public)."
+
+  # ------------------------------------------------------------------ Travail d'intérêt général
+  - id: justice_penale.tig.duree_min
+    titre: "Travail d'intérêt général (TIG) : durée minimale"
+    explication: "Le TIG est un travail non payé au service de la collectivité, accepté par le condamné. Sa durée minimale est de 20 heures."
+    type: nombre
+    unite: heures
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2026-08-07"
+        valeur: 20
+        sources: [sp-f1407, legi-cp-131-8]
+        article: "Code pénal, art. 131-8"
+    tags: [tig, peine_alternative]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-08-07 (service-public). Le TIG doit être effectué dans un délai de 18 mois au plus."
+
+  - id: justice_penale.tig.duree_max_delit
+    titre: "Travail d'intérêt général (TIG) : durée maximale pour un délit"
+    explication: "Pour un délit, le TIG peut aller jusqu'à 400 heures (120 heures pour une contravention de 5e classe)."
+    type: nombre
+    unite: heures
+    bornes: [0, 1000]
+    valeurs:
+      - depuis: "2026-08-07"
+        valeur: 400
+        sources: [sp-f1407, sp-f33341, legi-cp-131-8]
+        article: "Code pénal, art. 131-8"
+    tags: [tig, peine_alternative]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-08-07 (service-public). Contravention de 5e classe : 20 à 120 heures."
+
+  # ------------------------------------------------------------------ Détention provisoire
+  - id: justice_penale.detention_provisoire.delit_duree_initiale
+    titre: "Détention provisoire pour un délit : durée initiale"
+    explication: "Une personne mise en examen pour un délit puni d'au moins 3 ans de prison peut être placée en détention avant son procès pour 4 mois, renouvelables (6 mois pour le terrorisme et le narcotrafic)."
+    type: nombre
+    unite: mois
+    bornes: [0, 24]
+    valeurs:
+      - depuis: "2026-07-28"
+        valeur: 4
+        sources: [sp-f1042, legi-cpp-137]
+    tags: [detention_provisoire, procedure, libertes]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-07-28 (service-public)."
+
+  - id: justice_penale.detention_provisoire.delit_duree_max
+    titre: "Détention provisoire pour un délit : durée maximale (cas général)"
+    explication: "Pour un délit, la détention provisoire ne peut en principe pas dépasser 1 an au total ; jusqu'à 2 ans pour les affaires les plus graves (trafic de stupéfiants, bande organisée, faits commis à l'étranger, terrorisme)."
+    type: nombre
+    unite: ans
+    bornes: [0, 5]
+    valeurs:
+      - depuis: "2026-07-28"
+        valeur: 1
+        sources: [sp-f1042, legi-cpp-137]
+    tags: [detention_provisoire, procedure, libertes]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-07-28 (service-public). 2 ans dans les cas aggravés (2 ans et 4 mois sur décision exceptionnelle de la chambre de l'instruction, sauf narcotrafic) ; 3 ans pour l'association de malfaiteurs terroriste."
+
+  - id: justice_penale.detention_provisoire.crime_duree_initiale
+    titre: "Détention provisoire pour un crime : durée initiale"
+    explication: "Pour un crime, la détention provisoire est d'abord ordonnée pour 1 an, puis peut être prolongée par périodes de 6 mois."
+    type: nombre
+    unite: ans
+    bornes: [0, 5]
+    valeurs:
+      - depuis: "2026-07-28"
+        valeur: 1
+        sources: [sp-f1042, legi-cpp-137]
+    tags: [detention_provisoire, procedure, libertes]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-07-28 (service-public)."
+
+  - id: justice_penale.detention_provisoire.crime_duree_max
+    titre: "Détention provisoire pour un crime puni de moins de 20 ans : durée maximale"
+    explication: "Pour un crime puni de moins de 20 ans de réclusion, la détention provisoire ne peut pas dépasser 2 ans au total (3 ans si une partie des faits a eu lieu à l'étranger)."
+    type: nombre
+    unite: ans
+    bornes: [0, 6]
+    valeurs:
+      - depuis: "2026-07-28"
+        valeur: 2
+        sources: [sp-f1042, legi-cpp-137]
+    tags: [detention_provisoire, procedure, libertes]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-07-28 (service-public). Prolongation exceptionnelle de 4 mois, une ou deux fois, par la chambre de l'instruction."
+
+  - id: justice_penale.detention_provisoire.crime_grave_duree_max
+    titre: "Détention provisoire pour les crimes les plus graves : durée maximale"
+    explication: "Pour un trafic de stupéfiants, un acte terroriste, du proxénétisme, une extorsion ou plusieurs crimes graves, la détention provisoire peut atteindre 4 ans."
+    type: nombre
+    unite: ans
+    bornes: [0, 6]
+    valeurs:
+      - depuis: "2026-07-28"
+        valeur: 4
+        sources: [sp-f1042, legi-cpp-137]
+    tags: [detention_provisoire, procedure, libertes, criminalite_organisee]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-07-28 (service-public). Prolongation exceptionnelle de 4 mois, une ou deux fois, par la chambre de l'instruction."
+
+  # ------------------------------------------------------------------ Juridictions criminelles
+  - id: justice_penale.cour_criminelle.generalisee
+    titre: "La cour criminelle départementale (sans jury) est-elle généralisée ?"
+    explication: "Depuis le 1er janvier 2023, les crimes punis de 15 à 20 ans (comme la plupart des viols) commis par des majeurs non récidivistes sont jugés en première instance par une cour criminelle composée uniquement de juges, et non plus par une cour d'assises avec jury, dans toute la France sauf Mayotte."
+    type: booleen
+    valeurs:
+      - depuis: "2023-01-01"
+        valeur: true
+        sources: [sp-f1487, sp-f2189]
+    tags: [juridictions, cour_criminelle, jury, reforme_2023]
+    a_verifier: false
+    note: "Généralisation après une expérimentation dans certains départements à partir de 2019 (arrêtés cités par service-public). Exception : Mayotte."
+
+  - id: justice_penale.cour_criminelle.peine_max_crimes_juges
+    titre: "Cour criminelle départementale : peine maximale des crimes qu'elle juge"
+    explication: "La cour criminelle juge les crimes punis de 15 à 20 ans de réclusion, commis par des majeurs hors récidive ; les crimes punis de 30 ans ou de la perpétuité restent jugés par la cour d'assises."
+    type: nombre
+    unite: ans
+    bornes: [15, 30]
+    valeurs:
+      - depuis: "2023-01-01"
+        valeur: 20
+        sources: [sp-f1487, sp-f2189, justice-juridictions-penales]
+    tags: [juridictions, cour_criminelle]
+    a_verifier: false
+    note: "En appel, l'affaire est rejugée par une cour d'assises (avec jury)."
+
+  - id: justice_penale.cour_criminelle.magistrats
+    titre: "Cour criminelle départementale : nombre de juges"
+    explication: "La cour criminelle est composée de 5 juges professionnels (1 président et 4 assesseurs), sans jurés citoyens."
+    type: nombre
+    unite: personnes
+    bornes: [1, 9]
+    valeurs:
+      - depuis: "2024-11-27"
+        valeur: 5
+        sources: [justice-juridictions-penales, sp-f2189]
+    tags: [juridictions, cour_criminelle]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2024-11-27 (ministère de la Justice)."
+
+  - id: justice_penale.cour_assises.jures_premiere_instance
+    titre: "Cour d'assises : nombre de jurés en première instance"
+    explication: "En première instance, la cour d'assises réunit 3 juges professionnels et 6 jurés, citoyens tirés au sort sur les listes électorales."
+    type: nombre
+    unite: personnes
+    bornes: [0, 12]
+    valeurs:
+      - depuis: "2024-09-30"
+        valeur: 6
+        sources: [sp-f1487, sp-f2189, justice-juridictions-penales]
+    tags: [juridictions, cour_assises, jury, citoyennete]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2024-09-30 (service-public). Des jurés supplémentaires assistent aux débats pour remplacer un juré empêché."
+
+  - id: justice_penale.cour_assises.jures_appel
+    titre: "Cour d'assises : nombre de jurés en appel"
+    explication: "En appel, la cour d'assises réunit 3 juges professionnels et 9 jurés."
+    type: nombre
+    unite: personnes
+    bornes: [0, 15]
+    valeurs:
+      - depuis: "2026-07-08"
+        valeur: 9
+        sources: [sp-f2189]
+    tags: [juridictions, cour_assises, jury, citoyennete]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-07-08 (service-public)."
+
+  - id: justice_penale.jure.age_minimum
+    titre: "Âge minimal pour être juré d'assises"
+    explication: "Pour être tiré au sort comme juré, il faut être Français, inscrit sur les listes électorales, savoir lire et écrire en français et avoir plus de 23 ans. Les personnes de plus de 70 ans peuvent être exclues de la liste."
+    type: nombre
+    unite: ans
+    bornes: [18, 30]
+    valeurs:
+      - depuis: "2026-03-27"
+        valeur: 23
+        sources: [sp-f1540, legi-cpp-255]
+    tags: [jury, cour_assises, citoyennete, age]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-03-27 (service-public)."

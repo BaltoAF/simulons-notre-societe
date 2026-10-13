@@ -1,0 +1,385 @@
+# Règles de durée du travail, repos et congés (secteur privé) en vigueur au 13 octobre 2026.
+# Convention : pour un article de code, « depuis » = date d'entrée en vigueur de la rédaction actuelle
+# de l'article telle qu'affichée par code.travail.gouv.fr (« Mis à jour le ») ; la règle elle-même
+# peut être plus ancienne (ex. 35 h depuis 2000-2002).
+domaine: travail
+theme: "Temps de travail, repos et congés"
+regles:
+  - id: travail.duree.legale_hebdomadaire
+    titre: "Durée légale du travail à temps complet (par semaine)"
+    explication: "Au-delà de 35 heures par semaine, les heures travaillées sont des heures supplémentaires, payées plus cher ou compensées par du repos."
+    type: nombre
+    unite: heures
+    bornes: [20, 48]
+    valeurs:
+      - depuis: "2016-08-10"
+        valeur: 35
+        sources: [legi-ct-l3121-27, sp-f1911]
+        article: "Code du travail, art. L3121-27"
+    tags: [duree_travail, 35_heures]
+    a_verifier: false
+    note: "Équivaut à 151,67 heures par mois et 1 607 heures par an (service-public.gouv.fr). La date « depuis » est celle de la rédaction actuelle de l'article ; la durée de 35 h est plus ancienne."
+
+  - id: travail.duree.legale_mensuelle
+    titre: "Durée légale du travail exprimée par mois"
+    explication: "Les 35 heures par semaine correspondent à 151,67 heures par mois ; c'est la base de calcul du SMIC mensuel."
+    type: nombre
+    unite: heures
+    bornes: [80, 210]
+    valeurs:
+      - depuis: "2016-08-10"
+        valeur: 151.67
+        sources: [sp-f1911]
+        article: "Code du travail, art. L3121-27 (35 h × 52 / 12)"
+    tags: [duree_travail]
+    a_verifier: false
+    note: "Valeur dérivée de la durée hebdomadaire ; à garder cohérente avec travail.duree.legale_hebdomadaire dans un fork."
+
+  - id: travail.duree.legale_annuelle
+    titre: "Durée légale du travail exprimée par an"
+    explication: "Repère annuel de la durée légale (notamment pour l'aménagement du temps de travail sur l'année)."
+    type: nombre
+    unite: heures
+    bornes: [1000, 2400]
+    valeurs:
+      - depuis: "2016-08-10"
+        valeur: 1607
+        sources: [sp-f1911]
+    tags: [duree_travail]
+    a_verifier: false
+    note: "Inclut la journée de solidarité (7 h)."
+
+  - id: travail.duree.max_quotidienne
+    titre: "Durée maximale de travail effectif par jour"
+    explication: "Un salarié ne peut pas travailler plus de 10 heures dans une journée, sauf dérogation."
+    type: nombre
+    unite: heures
+    bornes: [6, 13]
+    valeurs:
+      - depuis: "2016-08-10"
+        valeur: 10
+        sources: [legi-ct-l3121-18, sp-f1911]
+        article: "Code du travail, art. L3121-18"
+    tags: [duree_travail, sante_travail]
+    a_verifier: false
+    note: "Dérogations possibles : autorisation de l'inspecteur du travail, urgence, ou accord collectif (jusqu'à 12 h)."
+
+  - id: travail.duree.max_quotidienne_derogatoire
+    titre: "Durée maximale par jour autorisée par accord collectif"
+    explication: "Un accord d'entreprise ou de branche peut porter la limite quotidienne à 12 heures en cas d'activité accrue ou pour des raisons d'organisation."
+    type: nombre
+    unite: heures
+    bornes: [10, 13]
+    valeurs:
+      - depuis: "2016-08-10"
+        valeur: 12
+        sources: [sp-f1911]
+        article: "Code du travail, art. L3121-19"
+    tags: [duree_travail, negociation_collective]
+    a_verifier: false
+    note: "Date « depuis » = rédaction issue de la loi du 8 août 2016 (même section que L3121-18), non vérifiée article par article."
+
+  - id: travail.duree.max_hebdomadaire_absolue
+    titre: "Durée maximale de travail sur une même semaine"
+    explication: "Personne ne peut travailler plus de 48 heures au cours d'une même semaine, sauf circonstances exceptionnelles autorisées."
+    type: nombre
+    unite: heures
+    bornes: [35, 60]
+    valeurs:
+      - depuis: "2016-08-10"
+        valeur: 48
+        sources: [legi-ct-l3121-20, sp-f1911]
+        article: "Code du travail, art. L3121-20"
+    tags: [duree_travail, sante_travail]
+    a_verifier: false
+    note: "En cas de circonstances exceptionnelles et sur autorisation de l'inspection du travail, jusqu'à 60 heures (service-public.gouv.fr)."
+
+  - id: travail.duree.max_hebdomadaire_moyenne_12_semaines
+    titre: "Durée hebdomadaire moyenne maximale sur 12 semaines consécutives"
+    explication: "En moyenne sur 12 semaines d'affilée, la durée du travail ne peut pas dépasser 44 heures par semaine."
+    type: nombre
+    unite: heures
+    bornes: [35, 48]
+    valeurs:
+      - depuis: "2016-08-10"
+        valeur: 44
+        sources: [legi-ct-l3121-22, sp-f1911]
+        article: "Code du travail, art. L3121-22"
+    tags: [duree_travail, sante_travail]
+    a_verifier: false
+    note: "Un accord collectif (ou l'inspection du travail) peut porter cette moyenne à 46 heures (art. L3121-23)."
+
+  - id: travail.duree.max_hebdomadaire_moyenne_derogatoire
+    titre: "Moyenne hebdomadaire maximale sur 12 semaines autorisée par accord"
+    explication: "Par accord collectif ou autorisation administrative, la moyenne sur 12 semaines peut monter à 46 heures."
+    type: nombre
+    unite: heures
+    bornes: [44, 48]
+    valeurs:
+      - depuis: "2016-08-10"
+        valeur: 46
+        sources: [sp-f1911]
+        article: "Code du travail, art. L3121-23"
+    tags: [duree_travail, negociation_collective]
+    a_verifier: false
+    note: "Date « depuis » = rédaction issue de la loi du 8 août 2016, non vérifiée article par article."
+
+  - id: travail.duree.pause_minimale_minutes
+    titre: "Pause minimale après 6 heures de travail"
+    explication: "Dès que le temps de travail quotidien atteint 6 heures d'affilée, le salarié a droit à une pause d'au moins 20 minutes consécutives."
+    type: nombre
+    unite: minutes
+    bornes: [0, 60]
+    valeurs:
+      - depuis: "2016-08-10"
+        valeur: 20
+        sources: [sp-f1911]
+        article: "Code du travail, art. L3121-16"
+    tags: [duree_travail, sante_travail]
+    a_verifier: false
+
+  - id: travail.repos.quotidien_minimum
+    titre: "Repos quotidien minimal entre deux journées de travail"
+    explication: "Entre deux journées de travail, chaque salarié doit pouvoir se reposer au moins 11 heures d'affilée."
+    type: nombre
+    unite: heures
+    bornes: [8, 14]
+    valeurs:
+      - depuis: "2016-08-10"
+        valeur: 11
+        sources: [legi-ct-l3131-1]
+        article: "Code du travail, art. L3131-1"
+    tags: [repos, sante_travail]
+    a_verifier: false
+    note: "Des dérogations existent (accord collectif, urgence) dans des conditions fixées par décret."
+
+  - id: travail.repos.hebdomadaire_minimum
+    titre: "Repos hebdomadaire minimal (hors repos quotidien)"
+    explication: "Chaque semaine, le salarié a droit à au moins 24 heures de repos d'affilée, auxquelles s'ajoutent les 11 heures de repos quotidien, soit 35 heures."
+    type: nombre
+    unite: heures
+    bornes: [24, 48]
+    valeurs:
+      - depuis: "2008-05-01"
+        valeur: 24
+        sources: [legi-ct-l3132-2]
+        article: "Code du travail, art. L3132-2"
+    tags: [repos, sante_travail]
+    a_verifier: false
+    note: "Le repos hebdomadaire est donné en principe le dimanche (art. L3132-3)."
+
+  - id: travail.heures_sup.majoration_8_premieres
+    titre: "Majoration des 8 premières heures supplémentaires (à défaut d'accord)"
+    explication: "Sans accord collectif fixant un autre taux, chacune des 8 premières heures supplémentaires de la semaine est payée 25 % de plus."
+    type: nombre
+    unite: pourcent
+    bornes: [10, 100]
+    valeurs:
+      - depuis: "2016-08-10"
+        valeur: 25
+        sources: [legi-ct-l3121-36]
+        article: "Code du travail, art. L3121-36"
+    tags: [heures_supplementaires, salaire]
+    a_verifier: false
+    note: "Les heures 36 à 43 incluses."
+
+  - id: travail.heures_sup.majoration_au_dela
+    titre: "Majoration des heures supplémentaires au-delà de la 8e (à défaut d'accord)"
+    explication: "Sans accord collectif, les heures supplémentaires au-delà des 8 premières de la semaine sont payées 50 % de plus."
+    type: nombre
+    unite: pourcent
+    bornes: [10, 150]
+    valeurs:
+      - depuis: "2016-08-10"
+        valeur: 50
+        sources: [legi-ct-l3121-36]
+        article: "Code du travail, art. L3121-36"
+    tags: [heures_supplementaires, salaire]
+    a_verifier: false
+
+  - id: travail.heures_sup.majoration_minimale_conventionnelle
+    titre: "Taux minimal de majoration des heures supplémentaires fixé par accord"
+    explication: "Un accord d'entreprise ou de branche peut prévoir un taux de majoration plus faible que 25 %, mais jamais en dessous de 10 %."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 50]
+    valeurs:
+      - depuis: "2020-01-01"
+        valeur: 10
+        sources: [legi-ct-l3121-33]
+        article: "Code du travail, art. L3121-33, I, 1°"
+    tags: [heures_supplementaires, negociation_collective]
+    a_verifier: false
+
+  - id: travail.heures_sup.contingent_annuel_defaut
+    titre: "Contingent annuel d'heures supplémentaires par défaut"
+    explication: "En l'absence d'accord, un salarié peut faire jusqu'à 220 heures supplémentaires par an ; au-delà, il a droit à une contrepartie obligatoire en repos."
+    type: nombre
+    unite: heures
+    bornes: [0, 600]
+    valeurs:
+      - depuis: "2017-01-01"
+        valeur: 220
+        sources: [legi-ct-d3121-24]
+        article: "Code du travail, art. D3121-24"
+    tags: [heures_supplementaires]
+    a_verifier: false
+    note: "Ne s'applique pas aux salariés en forfait annuel en heures (art. L3121-56)."
+
+  - id: travail.nuit.max_quotidienne
+    titre: "Durée maximale de travail par jour pour un travailleur de nuit"
+    explication: "Un travailleur de nuit ne peut pas travailler plus de 8 heures par jour, sauf exceptions encadrées."
+    type: nombre
+    unite: heures
+    bornes: [6, 12]
+    valeurs:
+      - depuis: "2018-01-01"
+        valeur: 8
+        sources: [legi-ct-l3122-6]
+        article: "Code du travail, art. L3122-6"
+    tags: [travail_de_nuit, sante_travail]
+    a_verifier: false
+
+  - id: travail.nuit.max_hebdomadaire_moyenne
+    titre: "Durée hebdomadaire moyenne maximale d'un travailleur de nuit (12 semaines)"
+    explication: "Sur 12 semaines consécutives, un travailleur de nuit ne peut pas dépasser en moyenne 40 heures par semaine."
+    type: nombre
+    unite: heures
+    bornes: [30, 48]
+    valeurs:
+      - depuis: "2016-08-10"
+        valeur: 40
+        sources: [legi-ct-l3122-7]
+        article: "Code du travail, art. L3122-7"
+    tags: [travail_de_nuit, sante_travail]
+    a_verifier: false
+
+  - id: travail.temps_partiel.duree_minimale_hebdomadaire
+    titre: "Durée minimale d'un contrat à temps partiel (à défaut d'accord)"
+    explication: "Sauf accord de branche ou demande du salarié, un temps partiel ne peut pas être inférieur à 24 heures par semaine."
+    type: nombre
+    unite: heures
+    bornes: [0, 34]
+    valeurs:
+      - depuis: "2016-08-10"
+        valeur: 24
+        sources: [legi-ct-l3123-27]
+        article: "Code du travail, art. L3123-27"
+    tags: [temps_partiel]
+    a_verifier: false
+
+  - id: travail.conges.jours_ouvrables_par_mois
+    titre: "Congés payés acquis par mois de travail"
+    explication: "Chaque mois travaillé chez le même employeur donne droit à 2,5 jours ouvrables de congés payés."
+    type: nombre
+    unite: jours
+    bornes: [0, 5]
+    valeurs:
+      - depuis: "2016-08-10"
+        valeur: 2.5
+        sources: [legi-ct-l3141-3]
+        article: "Code du travail, art. L3141-3"
+    tags: [conges_payes]
+    a_verifier: false
+    note: "Jours ouvrables = tous les jours sauf le dimanche et les jours fériés chômés."
+
+  - id: travail.conges.jours_ouvrables_par_an
+    titre: "Durée totale des congés payés exigibles par an"
+    explication: "Le total des congés payés auxquels un salarié peut prétendre est plafonné à 30 jours ouvrables, soit 5 semaines."
+    type: nombre
+    unite: jours
+    bornes: [0, 60]
+    valeurs:
+      - depuis: "2016-08-10"
+        valeur: 30
+        sources: [legi-ct-l3141-3]
+        article: "Code du travail, art. L3141-3"
+    tags: [conges_payes]
+    a_verifier: false
+
+  - id: travail.conges.acquisition_arret_maladie_par_mois
+    titre: "Congés payés acquis par mois d'arrêt maladie non professionnel"
+    explication: "Depuis 2024, un salarié en arrêt maladie continue d'acquérir des congés payés, à raison de 2 jours ouvrables par mois, dans la limite de 24 jours par an."
+    type: nombre
+    unite: jours
+    bornes: [0, 2.5]
+    valeurs:
+      - depuis: "2024-04-24"
+        valeur: 2
+        sources: [legi-ct-l3141-5-1]
+        article: "Code du travail, art. L3141-5-1"
+    tags: [conges_payes, maladie]
+    a_verifier: false
+    note: "Plafond : 24 jours ouvrables par période de référence. L'article vise les périodes du 7° de l'art. L3141-5 (arrêt pour maladie ou accident non professionnel)."
+
+  - id: travail.jours_feries.nombre
+    titre: "Nombre de jours fériés légaux"
+    explication: "Le Code du travail fixe 11 fêtes légales : 1er janvier, lundi de Pâques, 1er mai, 8 mai, Ascension, lundi de Pentecôte, 14 juillet, 15 août, 1er novembre, 11 novembre et Noël."
+    type: nombre
+    unite: jours
+    bornes: [0, 20]
+    valeurs:
+      - depuis: "2016-08-10"
+        valeur: 11
+        sources: [legi-ct-l3133-1]
+        article: "Code du travail, art. L3133-1"
+    tags: [jours_feries]
+    a_verifier: false
+    note: "Seul le 1er mai est obligatoirement chômé pour tous (art. L3133-4). L'Alsace-Moselle compte des jours fériés supplémentaires (non modélisés ici)."
+
+  - id: travail.jours_feries.premier_mai_chome
+    titre: "Le 1er mai est obligatoirement chômé"
+    explication: "Le 1er mai est le seul jour férié où le travail est en principe interdit pour tous les salariés (sauf activités qui ne peuvent pas s'interrompre)."
+    type: booleen
+    unite: ""
+    valeurs:
+      - depuis: "2016-08-10"
+        valeur: true
+        sources: [legi-ct-l3133-4]
+        article: "Code du travail, art. L3133-4"
+    tags: [jours_feries]
+    a_verifier: false
+
+  - id: travail.solidarite.journee_heures
+    titre: "Journée de solidarité : heures travaillées non rémunérées"
+    explication: "Une fois par an, les salariés travaillent jusqu'à 7 heures sans être payés ; en contrepartie, l'employeur verse une contribution pour l'autonomie des personnes âgées et handicapées."
+    type: nombre
+    unite: heures
+    bornes: [0, 21]
+    valeurs:
+      - depuis: "2016-08-10"
+        valeur: 7
+        sources: [legi-ct-l3133-8]
+        article: "Code du travail, art. L3133-8"
+    tags: [journee_solidarite, autonomie]
+    a_verifier: false
+    note: "Limite réduite au prorata pour les temps partiels ; une journée de travail pour les salariés au forfait jours."
+
+  - id: travail.solidarite.contribution_autonomie_employeur
+    titre: "Contribution solidarité autonomie (CSA) à la charge de l'employeur"
+    explication: "Contrepartie de la journée de solidarité : l'employeur verse 0,30 % des salaires pour financer l'autonomie des personnes âgées et handicapées."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 2]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 0.30
+        sources: [urssaf-taux-secteur-prive-2026]
+    tags: [journee_solidarite, cotisations]
+    a_verifier: false
+    note: "Valeur lue sur le barème Urssaf mis à jour le 1er janvier 2026 ; le taux est plus ancien (date d'origine non vérifiée ici)."
+
+  - id: travail.forfait_jours.plafond_annuel
+    titre: "Plafond annuel de jours travaillés en forfait jours"
+    explication: "Les cadres autonomes peuvent être payés au forfait en jours plutôt qu'en heures ; le forfait ne peut pas dépasser 218 jours travaillés par an."
+    type: nombre
+    unite: jours
+    bornes: [150, 282]
+    valeurs:
+      - depuis: "2017-12-22"
+        valeur: 218
+        sources: [legi-ct-l3121-64]
+        article: "Code du travail, art. L3121-64, I, 3°"
+    tags: [forfait_jours, cadres]
+    a_verifier: false
+    note: "Un salarié peut renoncer à des jours de repos au-delà de ce forfait, dans la limite fixée par accord."

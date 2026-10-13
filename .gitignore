@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.pyc
+backend/.venv/
+backend/data/
+.pytest_cache/
+# Node
+frontend/node_modules/
+frontend/dist/
+# Cache de documents bruts téléchargés par le Système (non versionnés)
+system/cache/
+# Divers
+.DS_Store
+*.log

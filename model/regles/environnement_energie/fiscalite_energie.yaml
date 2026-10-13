@@ -1,0 +1,160 @@
+domaine: environnement_energie
+theme: "Fiscalité de l'énergie : composante carbone et accises"
+regles:
+  - id: environnement_energie.composante_carbone.taux
+    titre: "Composante carbone des accises sur les énergies fossiles"
+    explication: "Prix implicite de la tonne de CO2 intégré depuis 2014 dans les taxes sur les carburants et combustibles fossiles. Sa hausse a été gelée en 2018 après le mouvement social de l'automne 2018."
+    type: nombre
+    unite: euros_par_tco2
+    bornes: [0, 300]
+    valeurs:
+      - depuis: "2014-04-01"
+        valeur: 7
+        sources: [mte-guide-fiscalite-energies-2026]
+        article: "Loi de finances pour 2014, art. 32"
+      - depuis: "2015-01-01"
+        valeur: 14.5
+        sources: [mte-guide-fiscalite-energies-2026]
+      - depuis: "2016-01-01"
+        valeur: 22
+        sources: [mte-guide-fiscalite-energies-2026]
+      - depuis: "2017-01-01"
+        valeur: 30.5
+        sources: [mte-guide-fiscalite-energies-2026]
+      - depuis: "2018-01-01"
+        valeur: 44.6
+        sources: [mte-guide-fiscalite-energies-2026]
+        article: "Loi de finances pour 2018"
+    tags: [fiscalite_ecologique, carbone, accises]
+    a_verifier: false
+    note: "Le guide ministériel 2026 qualifie cette composante d'« informelle » : elle a servi à fixer les tarifs d'accise entre 2014 et 2018, puis « le Gouvernement a décidé de maintenir les tarifs de l'accise sur les énergies aux niveaux de 2018 ». Aucune hausse depuis. Mise en place au 1er avril 2014 selon le ministère (« 2014 (1er avril) ») ; dates des années suivantes retenues au 1er janvier par convention."
+
+  - id: environnement_energie.composante_carbone.objectif_legal_2030
+    titre: "Composante carbone : valeur cible pour 2030 fixée par la loi de transition énergétique"
+    explication: "Valeur que la loi de 2015 visait pour la tonne de CO2 en 2030. Cette trajectoire n'est plus appliquée depuis le gel de 2018."
+    type: nombre
+    unite: euros_par_tco2
+    bornes: [0, 500]
+    valeurs:
+      - depuis: "2015-08-17"
+        valeur: 100
+        sources: [mte-guide-fiscalite-energies-2026, mte-fiscalite-carbone-2017]
+        article: "Loi du 17 août 2015 relative à la transition énergétique pour la croissance verte (LTECV), art. 1er"
+    tags: [fiscalite_ecologique, carbone, objectif]
+    a_verifier: false
+    note: "Objectif programmatique, non contraignant ; le tarif effectif est resté à 44,6 €/tCO2 (niveau 2018)."
+
+  - id: environnement_energie.accise.gazole
+    titre: "Accise sur le gazole routier (métropole, hors Corse)"
+    explication: "Taxe fixe prélevée sur chaque hectolitre de gazole (ex-TICPE), avant TVA. Elle intègre depuis le 1er août 2025 l'ancienne majoration régionale."
+    type: nombre
+    unite: euros_par_hectolitre
+    bornes: [0, 150]
+    valeurs:
+      - depuis: "2022-01-01"
+        valeur: 59.40
+        sources: [mte-guide-fiscalite-energies-2026]
+        article: "Code des impositions sur les biens et services, art. L312-35"
+      - depuis: "2025-08-01"
+        valeur: 60.75
+        sources: [mte-guide-fiscalite-energies-2026]
+        article: "Code des impositions sur les biens et services, art. L312-35"
+    tags: [accises, carburants, gazole]
+    a_verifier: false
+    note: "Le CIBS exprime le tarif en €/MWh (59,40 puis 60,75 €/MWh). Pour le gazole, le coefficient de conversion est de 3,6 GJ par hectolitre, soit 1 MWh/hl : le tarif en €/hl est numériquement identique (annexe 3 du guide : « Gazole B7 … hL 60,75 »). Avant le 1er août 2025, les régions pouvaient ajouter jusqu'à 1,35 €/MWh (et Île-de-France Mobilités jusqu'à 1,89 €/MWh, supprimé depuis). Corse : 59,40 €/MWh."
+
+  - id: environnement_energie.accise.sp95_e10
+    titre: "Accise sur l'essence SP95-E10 (métropole, hors Corse)"
+    explication: "Taxe fixe prélevée sur chaque hectolitre de supercarburant SP95-E10 (contenant jusqu'à 10 % d'éthanol), avant TVA."
+    type: nombre
+    unite: euros_par_hectolitre
+    bornes: [0, 150]
+    valeurs:
+      - depuis: "2025-08-01"
+        valeur: 67.50
+        sources: [mte-guide-fiscalite-energies-2026]
+        article: "Code des impositions sur les biens et services, art. L312-83 (tarif particulier SP95-E10)"
+    tags: [accises, carburants, essence]
+    a_verifier: false
+    note: "Valeur en €/hl lue dans l'annexe 3 du guide 2026 (« situation au 1er février 2026 » et au 1er août 2026). En €/MWh : 74,576 jusqu'au 31 juillet 2025, 75,397 depuis le 1er août 2025 ; l'équivalent en €/hl avant août 2025 n'est pas publié dans le guide et n'est donc pas historisé."
+
+  - id: environnement_energie.accise.sp95_e5_sp98
+    titre: "Accise sur les supercarburants SP95-E5 et SP98 (métropole, hors Corse)"
+    explication: "Taxe fixe prélevée sur chaque hectolitre de supercarburant SP95 ou SP98 (faible teneur en éthanol), avant TVA."
+    type: nombre
+    unite: euros_par_hectolitre
+    bornes: [0, 150]
+    valeurs:
+      - depuis: "2025-08-01"
+        valeur: 69.02
+        sources: [mte-guide-fiscalite-energies-2026]
+        article: "Code des impositions sur les biens et services, art. L312-35 (catégorie des essences)"
+    tags: [accises, carburants, essence]
+    a_verifier: false
+    note: "Valeur en €/hl lue dans l'annexe 3 du guide 2026. En €/MWh : 76,826 jusqu'au 31 juillet 2025, 77,647 depuis le 1er août 2025."
+
+  - id: environnement_energie.accise.electricite_menages
+    titre: "Accise sur l'électricité : tarif pour les ménages et assimilés"
+    explication: "Taxe par mégawattheure consommé (ex-TICFE) payée sur la facture d'électricité des particuliers (puissance jusqu'à 250 kVA) et des petits professionnels (jusqu'à 36 kVA). Elle finance aussi, depuis août 2025, la péréquation tarifaire des outre-mer."
+    type: nombre
+    unite: euros_par_mwh
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2025-02-01"
+        valeur: 33.70
+        sources: [mte-guide-fiscalite-energies-2026]
+        article: "Code des impositions sur les biens et services, art. L312-37 et L312-37-1"
+      - depuis: "2025-08-01"
+        valeur: 29.98
+        sources: [mte-guide-fiscalite-energies-2026]
+      - depuis: "2026-02-01"
+        valeur: 30.85
+        sources: [mte-guide-fiscalite-energies-2026, cre-trve-comprendre]
+      - depuis: "2026-08-01"
+        valeur: 30.62
+        sources: [mte-guide-fiscalite-energies-2026]
+    tags: [accises, electricite, menages]
+    a_verifier: false
+    note: "Tarifs normaux de l'article L312-37 du CIBS (guide 2026, p. 35). Réforme au 1er août 2025 : le tarif inclut une majoration finançant les zones non interconnectées (5,66 €/MWh au 1er février 2026, 5,93 €/MWh au 1er août 2026)."
+
+  - id: environnement_energie.accise.electricite_pme
+    titre: "Accise sur l'électricité : tarif pour les petites et moyennes entreprises (36 à 250 kVA)"
+    explication: "Taxe par mégawattheure pour les consommateurs professionnels de puissance comprise entre 36 et 250 kVA."
+    type: nombre
+    unite: euros_par_mwh
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2025-02-01"
+        valeur: 26.23
+        sources: [mte-guide-fiscalite-energies-2026]
+        article: "Code des impositions sur les biens et services, art. L312-37"
+      - depuis: "2025-08-01"
+        valeur: 25.79
+        sources: [mte-guide-fiscalite-energies-2026]
+      - depuis: "2026-02-01"
+        valeur: 26.58
+        sources: [mte-guide-fiscalite-energies-2026, cre-trve-comprendre]
+      - depuis: "2026-08-01"
+        valeur: 26.35
+        sources: [mte-guide-fiscalite-energies-2026]
+    tags: [accises, electricite, entreprises]
+    a_verifier: false
+    note: "Haute puissance (> 250 kVA) : 22,50 €/MWh."
+
+  - id: environnement_energie.accise.gaz_naturel_combustible
+    titre: "Accise sur le gaz naturel utilisé comme combustible (tarif normal)"
+    explication: "Taxe par mégawattheure (pouvoir calorifique supérieur) prélevée sur le gaz naturel de chauffage (ex-TICGN)."
+    type: nombre
+    unite: euros_par_mwh
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2026-02-01"
+        valeur: 16.39
+        sources: [mte-guide-fiscalite-energies-2026]
+        article: "Code des impositions sur les biens et services, art. L312-35 et L312-37-1"
+      - depuis: "2026-08-01"
+        valeur: 16.66
+        sources: [mte-guide-fiscalite-energies-2026]
+    tags: [accises, gaz, chauffage]
+    a_verifier: false
+    note: "Valeurs de l'annexe 3 du guide 2026 (situations au 1er février et au 1er août 2026), incluant la majoration de financement des zones non interconnectées."

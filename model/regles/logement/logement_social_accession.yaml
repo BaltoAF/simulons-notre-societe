@@ -1,0 +1,134 @@
+domaine: logement
+theme: "Logement social (loi SRU) et accession à la propriété (prêt à taux zéro)"
+regles:
+  # ---------------------------------------------------------------------------
+  # LOI SRU (article 55)
+  # ---------------------------------------------------------------------------
+  - id: logement.sru.taux_logements_sociaux_cible
+    titre: "Loi SRU : part minimale de logements sociaux exigée (cas général)"
+    explication: "Part de logements sociaux, parmi les résidences principales, que doivent atteindre les communes concernées par la loi SRU. Les communes en retard paient un prélèvement annuel."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 50]
+    valeurs:
+      - depuis: "2024-09-02"
+        valeur: 25
+        sources: [mte-sru-article-55]
+        article: "Article 55 de la loi solidarité et renouvellement urbain (SRU)"
+    tags: [logement_social, sru, communes]
+    a_verifier: false
+    note: "Date « depuis » = date de mise à jour de la page ministérielle (02/09/2024) ; le passage de 20 % à 25 % est antérieur, date non vérifiée. En 2024 : 2 196 communes concernées, dont 1 276 déficitaires (58 %) ; 121 communes exemptées pour 2026-2028 ; prélèvement net de 141 M€ en 2024."
+
+  - id: logement.sru.taux_logements_sociaux_territoires_peu_tendus
+    titre: "Loi SRU : part minimale de logements sociaux dans les territoires moins tendus"
+    explication: "Taux cible réduit applicable dans les territoires où la demande de logement social est moins forte, ainsi qu'aux communes de plus de 15 000 habitants en forte croissance."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 50]
+    valeurs:
+      - depuis: "2024-09-02"
+        valeur: 20
+        sources: [mte-sru-article-55]
+    tags: [logement_social, sru, communes]
+    a_verifier: false
+    note: "Date « depuis » = date de mise à jour de la page ministérielle ; date d'origine non vérifiée."
+
+  - id: logement.sru.seuil_population_commune
+    titre: "Loi SRU : population minimale d'une commune soumise à l'obligation (hors Île-de-France)"
+    explication: "Les communes de plus de ce nombre d'habitants, situées dans une agglomération ou intercommunalité de plus de 50 000 habitants comprenant une commune de plus de 15 000 habitants, sont soumises à la loi SRU. Le seuil est de 1 500 habitants en agglomération parisienne."
+    type: nombre
+    unite: habitants
+    bornes: [0, 20000]
+    valeurs:
+      - depuis: "2024-09-02"
+        valeur: 3500
+        sources: [mte-sru-article-55]
+    tags: [logement_social, sru, communes]
+    a_verifier: false
+    note: "Seuil francilien : 1 500 habitants. Date « depuis » = date de mise à jour de la page ministérielle."
+
+  # ---------------------------------------------------------------------------
+  # PRÊT À TAUX ZÉRO (offres émises à partir d'avril 2025)
+  # ---------------------------------------------------------------------------
+  - id: logement.ptz.plafond_revenus_1_personne_zone_a
+    titre: "PTZ : plafond de revenus pour 1 personne en zone A ou A bis"
+    explication: "Revenu maximal (le plus élevé entre le revenu fiscal de référence N-2 et le coût de l'opération divisé par 9) pour qu'un ménage d'une personne en zone tendue A/A bis puisse obtenir un prêt à taux zéro."
+    type: nombre
+    unite: euros
+    bornes: [0, 200000]
+    valeurs:
+      - depuis: "2025-04-01"
+        valeur: 49000
+        sources: [sp-f10871-ptz]
+    tags: [ptz, accession, propriete]
+    a_verifier: false
+    note: "Pour 4 personnes : 102 900 € en zone A/A bis. Barème des offres de prêt émises à partir d'avril 2025 (fiche service-public vérifiée le 15/09/2026)."
+
+  - id: logement.ptz.plafond_revenus_1_personne_zone_c
+    titre: "PTZ : plafond de revenus pour 1 personne en zone C"
+    explication: "Revenu maximal pour qu'un ménage d'une personne en zone C (zone la moins tendue) puisse obtenir un prêt à taux zéro."
+    type: nombre
+    unite: euros
+    bornes: [0, 200000]
+    valeurs:
+      - depuis: "2025-04-01"
+        valeur: 28500
+        sources: [sp-f10871-ptz]
+    tags: [ptz, accession, propriete]
+    a_verifier: false
+    note: "Pour 4 personnes : 59 850 € en zone C. Zone B1 : 34 500 € ; zone B2 : 31 500 € (1 personne)."
+
+  - id: logement.ptz.quotite_max_neuf_collectif_tranche_1
+    titre: "PTZ : part maximale du coût financée, logement neuf en immeuble collectif (revenus les plus modestes)"
+    explication: "Pourcentage maximal du coût de l'opération que le PTZ peut financer pour un logement neuf en immeuble collectif, pour la tranche de revenus 1 (40 % pour les tranches 2 et 3, 20 % pour la tranche 4)."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2025-04-01"
+        valeur: 50
+        sources: [sp-f10871-ptz]
+    tags: [ptz, accession, logement_neuf]
+    a_verifier: false
+    note: "Offres émises à partir d'avril 2025."
+
+  - id: logement.ptz.quotite_max_neuf_individuel_tranche_1
+    titre: "PTZ : part maximale du coût financée, logement neuf hors immeuble collectif (maison, revenus les plus modestes)"
+    explication: "Pourcentage maximal du coût de l'opération que le PTZ peut financer pour un logement neuf hors immeuble collectif (maison individuelle), pour la tranche de revenus 1 (20 % pour les tranches 2 et 3, 10 % pour la tranche 4)."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2025-04-01"
+        valeur: 30
+        sources: [sp-f10871-ptz]
+    tags: [ptz, accession, logement_neuf, maison_individuelle]
+    a_verifier: false
+    note: "Rubrique « Autre cas » de la fiche service-public (logement neuf hors immeuble collectif), offres émises à partir d'avril 2025."
+
+  - id: logement.ptz.ancien_zones_eligibles
+    titre: "PTZ dans l'ancien : zones éligibles et condition de travaux"
+    explication: "Conditions pour obtenir un PTZ pour l'achat d'un logement ancien."
+    type: texte
+    unite: ""
+    valeurs:
+      - depuis: "2026-09-15"
+        valeur: "Zones B2 et C uniquement, avec des travaux représentant au moins 25 % du coût total de l'opération"
+        sources: [sp-f10871-ptz]
+    tags: [ptz, accession, logement_ancien, renovation]
+    a_verifier: false
+    note: "Date « depuis » = date de vérification de la fiche service-public (15/09/2026) ; date d'origine non vérifiée."
+
+  - id: logement.ptz.duree_max_remboursement
+    titre: "PTZ : durée maximale de remboursement"
+    explication: "Durée maximale du prêt à taux zéro, différé de remboursement compris (différé possible d'au moins 2 ans selon les revenus)."
+    type: nombre
+    unite: ans
+    bornes: [5, 35]
+    valeurs:
+      - depuis: "2026-09-15"
+        valeur: 25
+        sources: [sp-f10871-ptz]
+    tags: [ptz, accession]
+    a_verifier: false
+    note: "Date « depuis » = date de vérification de la fiche ; date d'origine non vérifiée. Date de fin du dispositif non indiquée sur la fiche."

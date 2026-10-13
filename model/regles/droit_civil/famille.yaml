@@ -1,0 +1,343 @@
+domaine: droit_civil
+theme: "Couple, filiation et autorité parentale"
+regles:
+  # ---------------------------------------------------------------- majorité
+  - id: droit_civil.majorite.age
+    titre: "Âge de la majorité civile"
+    explication: "À partir de cet âge, une personne est majeure : elle peut accomplir seule tous les actes de la vie civile (signer un contrat, se marier, voter…)."
+    type: nombre
+    unite: ans
+    bornes: [16, 21]
+    valeurs:
+      - depuis: "1974-07-05"
+        valeur: 18
+        sources: [cc-2018-768-qpc-dossier, sp-f930]
+        article: "Code civil, art. 388 (rédaction issue de la loi n° 74-631 du 5 juillet 1974)"
+    tags: [majorite, mineurs, capacite]
+    a_verifier: false
+    note: "Date retenue = date de la loi n° 74-631 du 5 juillet 1974 « fixant à dix-huit ans l'âge de la majorité » (reproduite par le Conseil constitutionnel) ; date exacte d'entrée en vigueur non établie. Valeur confirmée en 2026 par sp-f930 (« majeur, c'est-à-dire âgé d'au moins 18 ans »)."
+
+  - id: droit_civil.emancipation.age_minimum
+    titre: "Âge minimal pour demander l'émancipation d'un mineur"
+    explication: "Un mineur peut être émancipé (traité juridiquement comme un majeur) par décision du juge, à la demande de ses parents, seulement s'il a plus de 16 ans."
+    type: nombre
+    unite: ans
+    bornes: [14, 18]
+    valeurs:
+      - depuis: "2025-07-21"
+        valeur: 16
+        sources: [sp-f1194, legi-cc-413-1]
+        article: "Code civil, art. 413-1 à 413-8"
+    tags: [mineurs, emancipation, capacite]
+    a_verifier: false
+    note: "Il faut avoir « 16 ans passés (16 ans et 1 jour) ». Le mineur ne peut pas la demander lui-même. Le mariage d'un mineur l'émancipe automatiquement. Date d'entrée en vigueur non établie ; valeur attestée au 2025-07-21."
+
+  # ---------------------------------------------------------------- mariage
+  - id: droit_civil.mariage.age_minimum
+    titre: "Âge minimal pour se marier"
+    explication: "Il faut avoir 18 ans pour se marier, quel que soit son sexe."
+    type: nombre
+    unite: ans
+    bornes: [15, 21]
+    valeurs:
+      - depuis: "2013-05-29"
+        valeur: 18
+        sources: [justice-circ-mariage-2013, sp-f930, legi-cc-143]
+        article: "Code civil, art. 144"
+    tags: [mariage, mineurs, couple]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2013-05-29 (circulaire citant l'art. 144 : « Le mariage ne peut être contracté avant dix-huit ans révolus »). Confirmée en 2026 par sp-f930."
+
+  - id: droit_civil.mariage.dispense_age_possible
+    titre: "Mariage d'un mineur : dispense d'âge possible"
+    explication: "À titre exceptionnel, un mineur peut se marier s'il obtient une dispense du procureur de la République pour motifs graves et l'accord d'au moins un de ses parents."
+    type: booleen
+    valeurs:
+      - depuis: "2026-09-16"
+        valeur: true
+        sources: [sp-f930, legi-cc-143]
+        article: "Code civil, art. 143 à 164"
+    tags: [mariage, mineurs, derogation]
+    a_verifier: false
+    note: "Conditions : dispense du procureur « pour motifs graves » + accord d'au moins un parent. Date d'entrée en vigueur non établie ; valeur attestée au 2026-09-16."
+
+  - id: droit_civil.mariage.couples_meme_sexe
+    titre: "Mariage ouvert aux couples de même sexe"
+    explication: "Deux personnes de même sexe peuvent se marier, dans les mêmes conditions que les couples de sexe différent (et donc adopter ensemble)."
+    type: booleen
+    valeurs:
+      - depuis: "2013-05-18"
+        valeur: true
+        sources: [senat-dossier-mariage-meme-sexe-2013, justice-circ-mariage-2013, sp-f930, legi-cc-143]
+        article: "Code civil, art. 143 (loi n° 2013-404 du 17 mai 2013)"
+    tags: [mariage, egalite, couple]
+    a_verifier: false
+    note: "Loi n° 2013-404 du 17 mai 2013, parue au JO n° 114 du 18 mai 2013 (date de publication retenue) ; la circulaire du 29 mai 2013 indique une « date d'application : immédiate ». Avant cette loi, le mariage n'était pas ouvert aux couples de même sexe."
+
+  # ---------------------------------------------------------------- Pacs
+  - id: droit_civil.pacs.age_minimum
+    titre: "Pacs : âge minimal des partenaires"
+    explication: "Les deux partenaires doivent être majeurs pour conclure un pacte civil de solidarité (Pacs). Contrairement au mariage, aucune dispense n'est possible."
+    type: nombre
+    unite: ans
+    bornes: [16, 21]
+    valeurs:
+      - depuis: "2013-05-29"
+        valeur: 18
+        sources: [justice-circ-mariage-2013, sp-f1618, legi-cc-515-1]
+        article: "Code civil, art. 515-1"
+    tags: [pacs, couple, mineurs]
+    a_verifier: false
+    note: "Art. 515-1 : Pacs conclu « par deux personnes physiques majeures, de sexe différent ou de même sexe ». Autres conditions : ne pas être déjà marié ou pacsé, pas de lien familial trop proche. « Aucune dispense n'est possible » (sp-f1618). Date d'entrée en vigueur non établie ; valeur attestée au 2013-05-29."
+
+  - id: droit_civil.pacs.lieu_enregistrement
+    titre: "Pacs : autorité qui enregistre la déclaration"
+    explication: "Le Pacs est enregistré gratuitement par l'officier d'état civil de la mairie de résidence commune (ou par un notaire, payant). Avant novembre 2017, il fallait aller au tribunal d'instance."
+    type: choix
+    choix: ["tribunal_instance", "mairie"]
+    valeurs:
+      - depuis: "2017-11-01"
+        valeur: "mairie"
+        sources: [justice-pacs-mairie-2017, sp-f1618, legi-cc-515-1]
+        article: "Code civil, art. 515-1 à 515-7-1"
+    tags: [pacs, couple, etat_civil, mairie]
+    a_verifier: false
+    note: "Transfert des tribunaux d'instance aux mairies au 1er novembre 2017 (loi de modernisation de la justice du XXIe siècle du 18 novembre 2016). Les notaires restent compétents. À l'étranger : ambassade ou consulat."
+
+  # ---------------------------------------------------------------- divorce
+  - id: droit_civil.divorce.consentement_mutuel_sans_juge
+    titre: "Divorce par consentement mutuel sans juge"
+    explication: "Les époux d'accord sur tout peuvent divorcer sans passer devant un juge : chacun a son avocat, la convention est signée puis déposée chez un notaire."
+    type: booleen
+    valeurs:
+      - depuis: "2017-01-01"
+        valeur: true
+        sources: [justice-circ-divorce-2017, justice-dp-j21-2017, sp-f10567, legi-cc-229-1]
+        article: "Code civil, art. 229-1 à 229-4"
+    tags: [divorce, couple, notaire, avocat]
+    a_verifier: false
+    note: "Créé par la loi n° 2016-1547 du 18 novembre 2016 ; en vigueur le 1er janvier 2017 (décret n° 2016-1907). Exceptions : le juge reste compétent si un enfant mineur demande à être entendu, et le divorce par consentement mutuel est impossible si un époux est sous mesure de protection."
+
+  - id: droit_civil.divorce.consentement_mutuel_delai_reflexion
+    titre: "Divorce par consentement mutuel : délai de réflexion avant signature"
+    explication: "Après avoir reçu le projet de convention de divorce de son avocat, chaque époux doit attendre ce délai avant de pouvoir signer."
+    type: nombre
+    unite: jours
+    bornes: [0, 60]
+    valeurs:
+      - depuis: "2017-01-01"
+        valeur: 15
+        sources: [justice-dp-j21-2017, sp-f10567, legi-cc-229-1]
+        article: "Code civil, art. 229-1 à 229-4"
+    tags: [divorce, delai, couple]
+    a_verifier: false
+    note: "Délai de 15 jours prévu dès l'origine de la procédure, applicable aux divorces engagés à partir du 1er janvier 2017 (dossier J21 du ministère de la Justice) ; confirmé par sp-f10567. Le notaire vérifie que le délai a été respecté. La convention doit être transmise au notaire dans les 7 jours suivant la signature, qui la dépose dans les 15 jours."
+
+  - id: droit_civil.divorce.alteration_duree_separation
+    titre: "Divorce pour altération définitive du lien conjugal : durée de séparation exigée"
+    explication: "Un époux peut obtenir le divorce même si l'autre refuse, s'il prouve que le couple ne vit plus ensemble depuis au moins cette durée."
+    type: nombre
+    unite: ans
+    bornes: [0, 5]
+    valeurs:
+      - depuis: "2021-01-01"
+        valeur: 1
+        sources: [justicefr-reforme-divorce, sp-f10568, legi-cc-237]
+        article: "Code civil, art. 237 et 238"
+    tags: [divorce, delai, couple, reforme_2021]
+    a_verifier: false
+    note: "Réforme de la procédure de divorce applicable au 1er janvier 2021 : « une année de séparation au lieu de deux ans » (justice.fr). La date d'entrée en vigueur de l'ancienne durée de 2 ans n'a pas été lue, d'où l'absence d'entrée historique. Le délai s'apprécie à la demande ou au prononcé ; il ne s'applique pas si l'autre époux demande le divorce pour faute."
+
+  # ---------------------------------------------------------------- autorité parentale
+  - id: droit_civil.autorite_parentale.exercice_commun_par_defaut
+    titre: "Autorité parentale exercée en commun par les deux parents (principe)"
+    explication: "En principe, les deux parents exercent ensemble l'autorité parentale, qu'ils soient mariés ou non, et même s'ils se séparent. Seul un juge peut en décider autrement."
+    type: booleen
+    valeurs:
+      - depuis: "2025-10-06"
+        valeur: true
+        sources: [sp-f3132, legi-cc-372]
+        article: "Code civil, art. 372 à 373-1"
+    tags: [autorite_parentale, enfants, parents]
+    a_verifier: false
+    note: "« En principe, les parents exercent en commun l'autorité parentale » ; « La séparation des parents ne change pas la dévolution ». Un parent peut faire seul un acte usuel ; les actes importants demandent l'accord des deux. Date d'entrée en vigueur non établie ; valeur attestée au 2025-10-06."
+
+  - id: droit_civil.autorite_parentale.delai_reconnaissance_tardive
+    titre: "Autorité parentale : délai au-delà duquel le parent qui reconnaît l'enfant n'exerce pas automatiquement l'autorité"
+    explication: "Si la filiation avec le second parent est établie plus d'un an après la naissance, le premier parent garde seul l'exercice de l'autorité parentale (sauf déclaration conjointe ou décision du juge)."
+    type: nombre
+    unite: ans
+    bornes: [0, 5]
+    valeurs:
+      - depuis: "2025-10-06"
+        valeur: 1
+        sources: [sp-f3132, legi-cc-372]
+        article: "Code civil, art. 372 à 373-1"
+    tags: [autorite_parentale, filiation, enfants]
+    a_verifier: false
+    note: "Même règle si la filiation est établie par jugement. Date d'entrée en vigueur non établie ; valeur attestée au 2025-10-06."
+
+  # ---------------------------------------------------------------- protection des mineurs (seuils pénaux)
+  - id: droit_civil.consentement_sexuel.age_seuil
+    titre: "Âge en dessous duquel un mineur ne peut pas consentir à un acte sexuel avec un majeur"
+    explication: "Toute relation sexuelle entre un majeur et un mineur de moins de 15 ans est un viol (ou une agression sexuelle), même si le mineur se dit d'accord : la question du consentement ne se pose plus."
+    type: nombre
+    unite: ans
+    bornes: [13, 18]
+    valeurs:
+      - depuis: "2021-04-22"
+        valeur: 15
+        sources: [justice-mineurs-violences-2021, an-ta-601-2021, senat-dossier-mineurs-2021, sp-f2274, legi-cp-222-23, legi-loi-2021-478]
+        article: "Code pénal, art. 222-23-1 et 222-29-2 (loi n° 2021-478 du 21 avril 2021)"
+    tags: [mineurs, violences_sexuelles, consentement, penal, reforme_2021]
+    a_verifier: false
+    note: "Règle pénale (rangée ici à la demande du périmètre famille). Loi du 21 avril 2021 publiée au JO du 22 avril 2021 (date de publication retenue). Condition d'écart d'âge : voir droit_civil.consentement_sexuel.ecart_age_minimum. Peine encourue pour le viol : 20 ans de réclusion (justice-mineurs-violences-2021)."
+
+  - id: droit_civil.consentement_sexuel.age_seuil_inceste
+    titre: "Âge en dessous duquel un mineur ne peut pas consentir à un acte sexuel incestueux avec un majeur"
+    explication: "En cas d'inceste (parent, grand-parent, frère, sœur, oncle, tante… ayant autorité sur l'enfant), le seuil de non-consentement est porté à 18 ans : tout acte sexuel d'un majeur sur un mineur de sa famille est un viol ou une agression sexuelle incestueuse."
+    type: nombre
+    unite: ans
+    bornes: [15, 18]
+    valeurs:
+      - depuis: "2021-04-22"
+        valeur: 18
+        sources: [justice-mineurs-violences-2021, an-ta-601-2021, senat-dossier-mineurs-2021, legi-cp-222-23, legi-loi-2021-478]
+        article: "Code pénal, art. 222-23-2 et 222-29-3"
+    tags: [mineurs, violences_sexuelles, inceste, penal, reforme_2021]
+    a_verifier: false
+    note: "Le texte vise un majeur ascendant ou une autre personne mentionnée à l'art. 222-22-3 « ayant sur le mineur une autorité de droit ou de fait ». Loi publiée au JO du 22 avril 2021 (date de publication retenue)."
+
+  - id: droit_civil.consentement_sexuel.ecart_age_minimum
+    titre: "Écart d'âge minimal entre le majeur et le mineur de moins de 15 ans pour le viol ou l'agression sexuelle « sans violence »"
+    explication: "Le viol ou l'agression sexuelle automatique sur un mineur de moins de 15 ans suppose que le majeur ait au moins 5 ans de plus. Cette condition (dite « Roméo et Juliette ») ne joue pas en cas d'inceste ou de relation contre rémunération."
+    type: nombre
+    unite: ans
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2021-04-22"
+        valeur: 5
+        sources: [an-ta-601-2021, senat-dossier-mineurs-2021, sp-f21829, legi-cp-222-23, legi-loi-2021-478]
+        article: "Code pénal, art. 222-23-1 et 222-29-2"
+    tags: [mineurs, violences_sexuelles, consentement, penal, reforme_2021]
+    a_verifier: true
+    note: "Valeur lue dans le texte définitif de la loi de 2021 (site de l'Assemblée nationale) et évoquée par sp-f21829 (fiche de 2024, formulation approximative). La fiche sp-f2274 à jour (mai 2026) ne mentionne plus cet écart ; maintien en vigueur au 13/10/2026 non confirmé par une source à jour (Légifrance inaccessible)."
+
+  # ---------------------------------------------------------------- adoption
+  - id: droit_civil.adoption.age_minimum_adoptant
+    titre: "Adoption : âge minimal de l'adoptant"
+    explication: "Une personne seule doit avoir plus de 26 ans pour adopter. Un couple peut adopter si les deux ont au moins 26 ans, ou s'ils vivent ensemble depuis plus d'un an."
+    type: nombre
+    unite: ans
+    bornes: [18, 35]
+    valeurs:
+      - depuis: "2026-05-13"
+        valeur: 26
+        sources: [sp-f1385, sp-f3151, legi-cc-343]
+        article: "Code civil, art. 343 à 343-1"
+    tags: [adoption, filiation, enfants]
+    a_verifier: false
+    note: "Personne seule : « plus de 26 ans » (sp-f1385) ; couple : « au moins 26 ans » chacun, sauf vie commune de plus d'un an (sp-f3151). Pas de condition d'âge pour adopter l'enfant de son conjoint, partenaire ou concubin (sp-f1094). La valeur antérieure à la réforme de l'adoption de 2022 et la date d'entrée en vigueur n'ont pas été lues ; valeur attestée au 2026-05-13."
+
+  - id: droit_civil.adoption.duree_communaute_vie_couple
+    titre: "Adoption par un couple : durée de vie commune dispensant de la condition d'âge"
+    explication: "Un couple (marié, pacsé ou en concubinage) qui vit ensemble depuis plus d'un an peut adopter même si les deux membres n'ont pas 26 ans ; il doit prouver cette durée de vie commune."
+    type: nombre
+    unite: ans
+    bornes: [0, 5]
+    valeurs:
+      - depuis: "2026-06-08"
+        valeur: 1
+        sources: [sp-f3151, legi-cc-343]
+        article: "Code civil, art. 343 à 343-1"
+    tags: [adoption, couple, filiation]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie (réforme de l'adoption de 2022 non lue sur une source officielle) ; valeur attestée au 2026-06-08. La notice du cerfa 15736 présente la condition de vie commune d'un an de façon légèrement différente (cumulative) ; la fiche sp-f3151 la présente comme alternative à l'âge."
+
+  - id: droit_civil.adoption.ecart_age_adopte
+    titre: "Adoption : écart d'âge minimal entre adoptant et adopté"
+    explication: "L'adoptant doit avoir au moins 15 ans de plus que l'enfant adopté. Le tribunal peut accepter un écart plus faible pour de justes motifs (par exemple une fratrie)."
+    type: nombre
+    unite: ans
+    bornes: [0, 25]
+    valeurs:
+      - depuis: "2026-05-13"
+        valeur: 15
+        sources: [sp-f1385, sp-f3151, legi-cc-344]
+        article: "Code civil, art. 344 à 345-2"
+    tags: [adoption, filiation, enfants]
+    a_verifier: false
+    note: "L'écart est de 10 ans seulement pour l'adoption de l'enfant de l'époux, du partenaire de Pacs ou du concubin (voir droit_civil.adoption.ecart_age_enfant_du_conjoint). Date d'entrée en vigueur non établie ; valeur attestée au 2026-05-13."
+
+  - id: droit_civil.adoption.ecart_age_enfant_du_conjoint
+    titre: "Adoption de l'enfant du conjoint, partenaire ou concubin : écart d'âge minimal"
+    explication: "Pour adopter l'enfant de son époux, de son partenaire de Pacs ou de son concubin, il faut avoir au moins 10 ans de plus que lui (dérogation possible pour justes motifs)."
+    type: nombre
+    unite: ans
+    bornes: [0, 20]
+    valeurs:
+      - depuis: "2026-03-11"
+        valeur: 10
+        sources: [sp-f1094, legi-cc-344]
+        article: "Code civil, art. 344 à 345-2"
+    tags: [adoption, famille_recomposee, filiation]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-03-11."
+
+  - id: droit_civil.adoption.ouverte_couples_non_maries
+    titre: "Adoption ouverte aux couples pacsés et aux concubins"
+    explication: "Un couple n'a pas besoin d'être marié pour adopter ensemble un enfant : les partenaires de Pacs et les concubins le peuvent aussi."
+    type: booleen
+    valeurs:
+      - depuis: "2026-06-08"
+        valeur: true
+        sources: [sp-f3151, legi-cc-343]
+        article: "Code civil, art. 343 à 343-1"
+    tags: [adoption, couple, pacs, concubinage]
+    a_verifier: false
+    note: "sp-f3151 : peuvent adopter un « couple marié non séparé de corps », des « partenaires liés par un Pacs » ou des « concubins ». Ouverture issue de la réforme de l'adoption de 2022 : date d'entrée en vigueur non lue sur une source officielle ; valeur attestée au 2026-06-08."
+
+  # ---------------------------------------------------------------- nom et prénom
+  - id: droit_civil.nom.changement_simplifie_delai_confirmation
+    titre: "Changement de nom simplifié en mairie : délai minimal avant confirmation"
+    explication: "Un majeur peut prendre, par simple déclaration en mairie, le nom de son autre parent (ou les deux noms). Il doit revenir confirmer sa demande en personne, au plus tôt un mois après son dépôt."
+    type: nombre
+    unite: mois
+    bornes: [0, 6]
+    valeurs:
+      - depuis: "2022-07-01"
+        valeur: 1
+        sources: [justice-loi-nom-2022, justice-circ-nom-2022, sp-f36379, legi-loi-2022-301]
+        article: "Code civil, art. 60 à 61-4 (loi n° 2022-301 du 2 mars 2022)"
+    tags: [nom, etat_civil, mairie, reforme_2022]
+    a_verifier: false
+    note: "Loi n° 2022-301 du 2 mars 2022, en vigueur le 1er juillet 2022 (circulaire du 3 juin 2022, « date d'application : 1er juillet 2022 »). Procédure gratuite. La loi n° 2026-667 du 27 juillet 2026 imposera de joindre un justificatif d'inscription ou non au Fijais/Fijait (décret d'application attendu ; non encore applicable selon sp-f36379)."
+
+  - id: droit_civil.nom.changement_simplifie_nombre_max
+    titre: "Changement de nom simplifié en mairie : nombre de fois autorisé dans une vie"
+    explication: "La procédure simplifiée de changement de nom ne peut être utilisée qu'une seule fois dans sa vie ; ensuite, seul le changement de nom par décret (motif légitime) reste possible."
+    type: nombre
+    unite: fois
+    bornes: [0, 5]
+    valeurs:
+      - depuis: "2022-07-01"
+        valeur: 1
+        sources: [justice-loi-nom-2022, sp-f36379, legi-loi-2022-301]
+        article: "Code civil, art. 60 à 61-4"
+    tags: [nom, etat_civil, reforme_2022]
+    a_verifier: false
+    note: "« Ce changement n'est possible qu'une seule fois dans la vie » (ministère de la Justice, 2022) ; confirmé par sp-f36379 (2026). Choix limité aux noms figurant sur l'acte de naissance (nom du père, de la mère, ou les deux accolés)."
+
+  - id: droit_civil.prenom.autorite_competente
+    titre: "Changement de prénom : autorité qui décide"
+    explication: "On demande un changement de prénom à l'officier d'état civil de la mairie (résidence ou lieu de naissance), en justifiant d'un intérêt légitime. S'il estime la demande infondée, il saisit le procureur ; en cas de refus, recours devant le juge aux affaires familiales."
+    type: choix
+    choix: ["juge_aux_affaires_familiales", "officier_etat_civil"]
+    valeurs:
+      - depuis: "2026-10-09"
+        valeur: "officier_etat_civil"
+        sources: [sp-f885, legi-cc-60]
+        article: "Code civil, art. 60 à 61-4"
+    tags: [prenom, etat_civil, mairie]
+    a_verifier: false
+    note: "Procédure en mairie issue de la loi n° 2016-1547 du 18 novembre 2016 (circulaires de 2017 citées par sp-f885) ; date d'entrée en vigueur non établie ; valeur attestée au 2026-10-09. Accord de l'enfant requis à partir de 13 ans. La loi n° 2026-667 du 27 juillet 2026 imposera un justificatif Fijais/Fijait (décret attendu)."

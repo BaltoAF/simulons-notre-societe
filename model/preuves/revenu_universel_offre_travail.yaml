@@ -1,0 +1,109 @@
+question:
+  id: revenu_universel_offre_travail
+  titre: "Effet d'un revenu inconditionnel sur l'emploi et les heures travaillées"
+  definition: "Variation en % de l'offre de travail (taux d'emploi ou heures travaillées) des bénéficiaires d'un revenu versé sans condition (ou d'un transfert inconditionnel de grande taille), par rapport à un groupe témoin. Le montant du transfert est précisé dans la note de chaque estimation."
+  unite: pourcent
+  regles_liees: [prestations.revenu_universel.montant]
+  sens_attendu: negatif
+  estimations:
+    - source: verho-et-al-2022
+      valeur: 3.1
+      intervalle_95: [-4.7, 11.0]
+      methode: "Expérience aléatoire nationale obligatoire : 2 000 chômeurs tirés au sort reçoivent un revenu de base à la place de l'allocation chômage minimale"
+      champ: "Finlande, chômeurs percevant l'allocation chômage minimale de la Kela en novembre 2016, première année de l'expérience (2017)"
+      pays: FI
+      annee_donnees: 2017
+      type_etude: experimental
+      revue_par_les_pairs: true
+      note: "Revenu de base de 560 euros par mois, non imposable et dont le montant ne baisse pas quand on reprend un emploi, versé pendant 2 ans (2017-2018). L'étude rapporte +1,5 jour d'emploi la première année (IC 95 % : -2,3 à +5,4) pour une moyenne de 49 jours dans le groupe témoin, soit +3,1 % (IC -4,7 % à +11,0 %) ; conversion : 1,54/49,06. La deuxième année, l'effet est de +6,6 jours (IC 1,3 à 11,9), soit +8,6 %, mais il est brouillé par une réforme de l'assurance chômage de 2018. Attention : ce revenu remplaçait une allocation existante et réduisait le taux d'imposition à la reprise d'un temps plein de 23 points ; ce n'est donc pas un pur effet revenu, ce qui explique un signe plutôt positif."
+    - source: vivalt-et-al-2024
+      valeur: -6.7
+      intervalle_95: [-12.0, -1.4]
+      methode: "Expérience aléatoire : 1 000 personnes reçoivent 1 000 dollars par mois pendant 3 ans, 2 000 témoins reçoivent 50 dollars par mois ; données administratives (assurance chômage) et enquêtes"
+      champ: "États-Unis (Illinois et Texas), personnes de 21 à 40 ans à revenu modeste (moins de 300 % du seuil de pauvreté), novembre 2020 - octobre 2023"
+      pays: US
+      annee_donnees: 2023
+      type_etude: experimental
+      revue_par_les_pairs: false
+      note: "Transfert de 1 000 dollars par mois pendant 3 ans (environ 40 % du revenu du ménage). L'étude rapporte une baisse de 4,2 points (e.t. 1,7) de la probabilité d'être en emploi (mesure combinée administrative et enquête, privilégiée par les auteurs) pour un taux de 63 % chez les témoins, soit -6,7 % ; intervalle = (-4,2 ± 1,96 × 1,7)/63. Les heures travaillées baissent de 1,3 heure par semaine (e.t. 0,6) sur 30,3, soit -4,3 % ; le revenu individuel hors transfert baisse d'environ 1 900 dollars par an (-5,6 %). Par dollar reçu, le revenu du ménage hors transfert baisse d'environ 28 cents. Document de travail révisé en août 2026, non encore publié en revue."
+    - source: jones-marinescu-2022
+      valeur: 0.2
+      intervalle_95: [-4.7, 5.2]
+      methode: "Contrôle synthétique : l'Alaska comparé à une combinaison d'États similaires, avant/après la création du dividende en 1982"
+      champ: "Alaska (États-Unis), population entière, 1977-2014"
+      pays: US
+      annee_donnees: 2014
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Dividende annuel universel et permanent (récemment environ 2 000 dollars par personne et par an, soit environ 3 900 dollars par famille). L'étude estime un effet de +0,001 sur le taux d'emploi (IC 95 % : -0,030 à +0,033) pour un taux d'emploi avant 1982 de 0,639, soit environ +0,2 % (IC -4,7 % à +5,2 %). Le travail à temps partiel augmente de 1,8 point (+17 %) et les heures hebdomadaires baissent de 0,8 heure (non significatif). Les auteurs interprètent l'absence d'effet sur l'emploi comme la compensation de l'effet revenu par la hausse de la demande locale liée aux dépenses. Chiffres de la version NBER de 2020."
+    - source: egger-et-al-2022
+      valeur: 2.2
+      intervalle_95: [-9.2, 13.7]
+      methode: "Expérience aléatoire à deux niveaux (villages et sous-localités) avec mesure des effets d'équilibre général, transferts de l'ONG GiveDirectly"
+      champ: "Kenya rural (comté de Siaya), plus de 10 500 ménages pauvres bénéficiaires"
+      pays: KE
+      annee_donnees: null
+      type_etude: experimental
+      revue_par_les_pairs: true
+      note: "Transfert ponctuel d'environ 1 000 dollars par ménage (choc équivalent à plus de 15 % du PIB local). Effet total estimé (IV) sur les heures travaillées du ménage sur 7 jours : +1,41 heure (e.t. 3,69) pour une moyenne de 63,2 heures, soit +2,2 % ; intervalle = (1,41 ± 1,96 × 3,69)/63,2. Les auteurs concluent que les ménages bénéficiaires n'ont pas travaillé moins. Contexte d'un pays à faible revenu, transfert unique et non mensuel. Chiffres de la version NBER w26600."
+    - source: cesarini-et-al-2017
+      valeur: -5.0
+      intervalle_95: null
+      methode: "Gains de loterie attribués aléatoirement (comptes d'épargne à lots et loteries), données administratives suédoises"
+      champ: "Suède, gagnants de loterie adultes, revenus du travail suivis jusqu'à 10 ans après le gain, 1991-2010"
+      pays: SE
+      annee_donnees: 2010
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Gain ponctuel d'un million de couronnes (environ 140 000 dollars). L'étude rapporte qu'un tel gain réduit les revenus du travail du gagnant d'environ 80 000 couronnes sur 10 ans, « soit environ la moitié du revenu annuel moyen » ; conversion : 0,5 revenu annuel / 10 ans = baisse d'environ 5 % des revenus du travail chaque année. La baisse des heures explique la majorité de l'effet. Propension marginale à gagner sur la vie entière : -0,11 par couronne reçue. Mesure en revenus du travail (proxy de l'offre de travail), pour un capital et non un revenu mensuel."
+    - source: golosov-et-al-2024
+      valeur: null
+      intervalle_95: null
+      methode: "Étude d'événement sur les gagnants de loteries américaines, comparés à des gagnants plus tardifs, données fiscales exhaustives"
+      champ: "États-Unis, gagnants de loteries d'au moins 30 000 dollars, 1999-2016"
+      pays: US
+      annee_donnees: 2016
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Un dollar de revenu non salarial supplémentaire réduit les revenus du travail avant impôt d'environ 50 cents (propension marginale à gagner de -0,5) ; pour 100 dollars de richesse en plus, les ménages réduisent leurs revenus du travail annuels d'environ 2,3 dollars (1,3 dans le quartile le plus pauvre, 3,1 dans le plus riche). Gain moyen équivalent à une rente d'environ 7 500 dollars par an. L'étude ne donne pas l'effet directement en % de l'emploi ou des heures : valeur null."
+    - source: imbens-et-al-2001
+      valeur: null
+      intervalle_95: null
+      methode: "Enquête auprès de joueurs de loterie : comparaison des gagnants de gros et de petits lots, montant du lot supposé aléatoire"
+      champ: "États-Unis (Massachusetts), joueurs de loterie du milieu des années 1980"
+      pays: US
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Lots versés en annuités pendant 20 ans. L'étude rapporte une propension marginale à « consommer du loisir » d'environ 11 % : chaque dollar annuel de lot réduit les revenus du travail d'environ 11 cents, avec des effets plus forts entre 55 et 65 ans. Selon la version document de travail, un lot modeste (15 000 dollars par an) ne change pas sensiblement l'offre de travail, alors qu'un gros lot (80 000 dollars par an) réduit les heures et la participation. Pas de conversion en % publiée : valeur null."
+    - source: marinescu-2018
+      valeur: -1.0
+      intervalle_95: null
+      methode: "Revue de littérature : expériences d'impôt négatif des années 1970 (États-Unis, Mincome au Canada), dividende de l'Alaska, loteries, transferts de casinos"
+      champ: "Pays développés, principalement États-Unis et Canada, années 1970 à 2010"
+      pays: INT
+      annee_donnees: null
+      type_etude: meta_analyse
+      revue_par_les_pairs: false
+      note: "Conclusion de la revue : beaucoup d'études ne trouvent pas d'effet significatif sur la probabilité de travailler ; quand un effet existe, il est faible : un transfert inconditionnel qui augmente le revenu de 10 % réduit l'offre de travail d'environ 1 %. Valeur retenue : -1 % pour un transfert égal à 10 % du revenu. Pour les expériences d'impôt négatif, la baisse d'offre de travail était de 2 à 4 semaines de travail à temps plein par an (synthèse de Robins 1985), probablement surestimée à cause de la sous-déclaration des revenus et de l'attrition."
+    - source: hum-simpson-1993
+      valeur: null
+      intervalle_95: null
+      methode: "Expérience de revenu annuel garanti (impôt négatif) avec groupes de traitement et témoins, et estimation de modèles structurels d'offre de travail"
+      champ: "Canada (Manitoba, expérience Mincome 1974-1979) et comparaison avec les expériences américaines"
+      pays: CA
+      annee_donnees: 1979
+      type_etude: experimental
+      revue_par_les_pairs: true
+      note: "Article non consulté en texte intégral. Selon la synthèse de Marinescu (2018), Hum et Simpson estiment pour Mincome des effets revenu et substitution non significatifs, avec un effet revenu estimé nul, et des effets plus faibles que dans les études non expérimentales. Mincome garantissait 60 % du seuil de pauvreté. Pas de chiffre en % vérifié : valeur null."
+    - source: bohmann-et-al-2025
+      valeur: null
+      intervalle_95: null
+      methode: "Expérience aléatoire : 122 personnes reçoivent 1 200 euros par mois pendant 3 ans, 1 580 personnes forment le groupe témoin ; enquêtes répétées"
+      champ: "Allemagne, personnes seules de 21 à 40 ans au revenu net de 1 100 à 2 600 euros par mois, 2021-2024"
+      pays: DE
+      annee_donnees: 2024
+      type_etude: experimental
+      revue_par_les_pairs: false
+      note: "Transfert de 1 200 euros par mois pendant 3 ans. Le rapport indique que les versements n'ont entraîné ni sortie de l'emploi ni réduction significative des heures : dans les deux groupes, environ 90 % des participants travaillaient en moyenne 40 heures par semaine. Les bénéficiaires ont gagné 127 euros bruts de moins par mois que les témoins (différence non significative). Les estimations ponctuelles d'heures ne sont données que sous forme de graphique : valeur null. Petit échantillon traité (122 personnes) et public déjà très majoritairement en emploi."
+  note_synthese: "Recevoir un revenu sans condition réduit un peu le travail, mais beaucoup moins que ce que l'on craint souvent. L'expérience américaine la plus grande et la plus récente (1 000 dollars par mois pendant 3 ans) trouve environ 4 % d'heures en moins et une baisse de l'emploi de 4 points (-7 %), et les études de gagnants de loterie trouvent aussi une baisse modeste, de l'ordre de 5 % des revenus du travail. À l'inverse, le dividende universel de l'Alaska, les transferts au Kenya, l'expérience allemande et l'expérience finlandaise ne montrent pas de baisse de l'emploi, soit parce que l'argent dépensé crée des emplois localement, soit parce que le revenu remplaçait une aide qui pénalisait la reprise d'emploi. La revue de Marinescu résume la littérature ainsi : un transfert égal à 10 % du revenu réduit le travail d'environ 1 %. L'effet dépend beaucoup du montant, de la durée du versement et de la façon dont le revenu remplace ou s'ajoute aux aides existantes."

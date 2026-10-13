@@ -1,0 +1,2605 @@
+# Registre des sources — domaines justice_penale, droit_civil, institutions, nationalite_immigration
+# + métriques justice_institutions. Consultées le 2026-10-13.
+# NB : Légifrance n'est pas consultable par les outils automatisés (protection anti-bot) ; les URL Légifrance
+# listées ont été relevées dans les liens de pages officielles lues (service-public.gouv.fr, etc.), cf. champ note.
+sources:
+- id: sp-f1523
+  type: texte_officiel
+  editeur: Service-Public.fr (DILA)
+  titre: Vol, cambriolage
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F1523
+  auteurs: []
+  date_publication: '2026-06-19'
+  consulte_le: '2026-10-13'
+  note: Date « Vérifié le » de la fiche.
+- id: sp-f1526
+  type: texte_officiel
+  editeur: Service-Public.fr (DILA)
+  titre: Viol commis sur une personne majeure
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F1526
+  auteurs: []
+  date_publication: '2026-08-20'
+  consulte_le: '2026-10-13'
+  note: Date « Vérifié le » de la fiche. Présente la définition du viol fondée sur le non-consentement.
+- id: sp-f33891
+  type: texte_officiel
+  editeur: Service-Public.fr (DILA)
+  titre: Agression sexuelle commise sur une personne majeure
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F33891
+  auteurs: []
+  date_publication: '2026-08-20'
+  consulte_le: '2026-10-13'
+  note: Date « Vérifié le » de la fiche.
+- id: sp-f1524
+  type: texte_officiel
+  editeur: Service-Public.fr (DILA)
+  titre: Violences physiques ou psychologiques (violences volontaires)
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F1524
+  auteurs: []
+  date_publication: '2026-08-07'
+  consulte_le: '2026-10-13'
+  note: Date « Vérifié le » de la fiche. Tableau des peines selon l'ITT, liste des circonstances aggravantes (dont conjoint).
+- id: sp-f2354
+  type: texte_officiel
+  editeur: Service-Public.fr (DILA)
+  titre: Harcèlement moral
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F2354
+  auteurs: []
+  date_publication: '2025-10-31'
+  consulte_le: '2026-10-13'
+  note: Date « Vérifié le » de la fiche.
+- id: sp-f1043
+  type: texte_officiel
+  editeur: Service-Public.fr (DILA)
+  titre: Harcèlement sexuel ou sexiste
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F1043
+  auteurs: []
+  date_publication: '2025-10-31'
+  consulte_le: '2026-10-13'
+  note: Date « Vérifié le » de la fiche.
+- id: sp-f31985
+  type: texte_officiel
+  editeur: Service-Public.fr (DILA)
+  titre: Harcèlement scolaire au collège et au lycée
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F31985
+  auteurs: []
+  date_publication: '2025-11-04'
+  consulte_le: '2026-10-13'
+  note: Date « Vérifié le » de la fiche.
+- id: sp-f35148
+  type: texte_officiel
+  editeur: Service-Public.fr (DILA)
+  titre: 'Atteintes involontaires à une personne : homicide ou blessures non intentionnels'
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F35148
+  auteurs: []
+  date_publication: '2025-10-20'
+  consulte_le: '2026-10-13'
+  note: Date « Vérifié le » de la fiche.
+- id: sp-f39230
+  type: texte_officiel
+  editeur: Service-Public.fr (DILA)
+  titre: En quoi consistent les délits d'homicide routier et de blessures routières ?
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F39230
+  auteurs: []
+  date_publication: '2025-11-14'
+  consulte_le: '2026-10-13'
+  note: Date « Vérifié le » de la fiche.
+- id: sp-f34550
+  type: texte_officiel
+  editeur: Service-Public.fr (DILA)
+  titre: Outrage sexiste ou sexuel
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F34550
+  auteurs: []
+  date_publication: '2026-08-19'
+  consulte_le: '2026-10-13'
+  note: Date « Vérifié le » de la fiche.
+- id: sp-f1487
+  type: texte_officiel
+  editeur: Service-Public.fr (DILA)
+  titre: Procès devant la cour d'assises ou la cour criminelle
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F1487
+  auteurs: []
+  date_publication: '2024-09-30'
+  consulte_le: '2026-10-13'
+  note: Date « Vérifié le » de la fiche. Cite l'assassinat comme crime puni de la réclusion criminelle à perpétuité.
+- id: sp-f1520
+  type: texte_officiel
+  editeur: Service-Public.fr (DILA)
+  titre: Escroquerie
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F1520
+  auteurs: []
+  date_publication: '2025-05-28'
+  consulte_le: '2026-10-13'
+  note: Date « Vérifié le » de la fiche.
+- id: sp-f1515
+  type: texte_officiel
+  editeur: Service-Public.fr (DILA)
+  titre: Abus de confiance
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F1515
+  auteurs: []
+  date_publication: '2026-04-10'
+  consulte_le: '2026-10-13'
+  note: Date « Vérifié le » de la fiche.
+- id: sp-f33023
+  type: texte_officiel
+  editeur: Service-Public.fr (DILA)
+  titre: Qu'est-ce que le recel de vol ?
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F33023
+  auteurs: []
+  date_publication: '2026-03-20'
+  consulte_le: '2026-10-13'
+  note: Date « Vérifié le » de la fiche.
+- id: sp-f1514
+  type: texte_officiel
+  editeur: Service-Public.fr (DILA)
+  titre: Vandalisme
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F1514
+  auteurs: []
+  date_publication: '2025-06-06'
+  consulte_le: '2026-10-13'
+  note: Date « Vérifié le » de la fiche (destruction, dégradation, détérioration d'un bien ; tags).
+- id: sp-f35254
+  type: texte_officiel
+  editeur: Service-Public.fr (DILA)
+  titre: Que faire quand des squatteurs occupent un logement ?
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F35254
+  auteurs: []
+  date_publication: '2026-08-20'
+  consulte_le: '2026-10-13'
+  note: Date « Vérifié le » de la fiche.
+- id: sp-f31451
+  type: texte_officiel
+  editeur: Service-Public.fr (DILA)
+  titre: Quelles sanctions en cas de fraude fiscale ?
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F31451
+  auteurs: []
+  date_publication: '2026-07-02'
+  consulte_le: '2026-10-13'
+  note: Date « Vérifié le » de la fiche.
+- id: justice-circulaire-afd-vol-2023
+  type: texte_officiel
+  editeur: Ministère de la Justice (DACG)
+  titre: Circulaire relative à la verbalisation du vol et de la vente à la sauvette par amende forfaitaire (JUSD2318687C)
+  url: https://www.justice.gouv.fr/sites/default/files/2023-07/JUSD2318687C.pdf
+  auteurs: []
+  date_publication: '2023-07-06'
+  consulte_le: '2026-10-13'
+  note: Généralisation de l'AFD vol (chose ≤ 300 €) sur tout le territoire à compter du 11 juillet 2023, après expérimentation à compter du 1er mars 2023.
+- id: justice-circulaire-afd-vol-2023-annexe
+  type: texte_officiel
+  editeur: Ministère de la Justice (DACG)
+  titre: AFD vol d'une chose dont la valeur n'excède pas 300 euros et vente à la sauvette – Doctrine d'emploi (annexe JUSD2318687C)
+  url: https://www.justice.gouv.fr/sites/default/files/2023-07/JUSD2318687C-annexe.pdf
+  auteurs: []
+  date_publication: '2023-07-05'
+  consulte_le: '2026-10-13'
+  note: 'Cite l''art. 311-3 (vol : 3 ans et 45 000 €) et l''art. 311-3-1 (AFD de 300 €, minorée 250 €, majorée 600 €, chose ≤ 300 €).'
+- id: justice-cjip-ressources
+  type: texte_officiel
+  editeur: Ministère de la Justice
+  titre: Conventions judiciaires d'intérêt public
+  url: https://www.justice.gouv.fr/documentation/ressources/conventions-judiciaires-dinteret-public
+  auteurs: []
+  date_publication: '2026-09-17'
+  consulte_le: '2026-10-13'
+  note: Page publiée le 11 août 2026, mise à jour le 17 septembre 2026. Amende d'intérêt public jusqu'à 30 % du chiffre d'affaires annuel.
+- id: afa-lexique
+  type: texte_officiel
+  editeur: Agence française anticorruption (AFA)
+  titre: Lexique des atteintes à la probité
+  url: https://www.agence-francaise-anticorruption.gouv.fr/lexique
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: 'Site inaccessible à curl (échec de connexion) : lu via WebFetch avec demande de citations mot pour mot, deux lectures concordantes. Date de mise à jour non indiquée sur la page.'
+- id: bofip-boi-cf-inf-40-10-10-50
+  type: texte_officiel
+  editeur: DGFiP – Bulletin officiel des finances publiques (BOFiP-Impôts)
+  titre: CF - Infractions et sanctions pénales - Poursuites correctionnelles - Délit général de fraude fiscale - Les peines (BOI-CF-INF-40-10-10-50)
+  url: https://bofip.impots.gouv.fr/bofip/4402-PGP.html/identifiant=BOI-CF-INF-40-10-10-50-20190627
+  auteurs: []
+  date_publication: '2019-06-27'
+  consulte_le: '2026-10-13'
+  note: Version en vigueur depuis le 27/06/2019. Historique des peines de fraude fiscale aggravée (lois 2013-1117, 2017-1837, 2018-898).
+- id: arretonslesviolences-outrages
+  type: texte_officiel
+  editeur: Gouvernement – arretonslesviolences.gouv.fr
+  titre: Outrages sexistes et sexuels
+  url: https://arretonslesviolences.gouv.fr/besoin-d-aide/outrages-sexistes-et-sexuels
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: 'Outrage sexiste et sexuel : amende jusqu''à 1 500 € (contravention de 5e classe) ; aggravé : 3 750 € d''amende (délit). Page non datée.'
+- id: lemondedudroit-viol-application-temps-2026
+  type: presse
+  editeur: Le Monde du Droit
+  titre: 'Viol et agressions sexuelles : application dans le temps de la loi de 2025'
+  url: https://www.lemondedudroit.fr/judiciaire/326-droit-penal/104958-viol-et-agressions-sexuelles-application-dans-le-temps-de-la-loi-de-2025.html
+  auteurs: []
+  date_publication: '2026-07-02'
+  consulte_le: '2026-10-13'
+  note: 'Rend compte de Cass. crim., 1er juillet 2026, n° 26-82.275 : la loi n° 2025-1057 du 6 novembre 2025 (définition fondée sur le non-consentement) ne s''applique qu''aux faits commis à partir du 8
+    novembre 2025.'
+- id: banquedesterritoires-homicide-routier-2025
+  type: presse
+  editeur: Banque des Territoires (Caisse des Dépôts) – Localtis
+  titre: 'Création de l''homicide routier : la loi entre en vigueur'
+  url: https://www.banquedesterritoires.fr/creation-de-lhomicide-routier-la-loi-entre-en-vigueur
+  auteurs:
+  - Philie Marcangelo-Leos
+  date_publication: '2025-07-15'
+  consulte_le: '2026-10-13'
+  note: 'Référence : loi n° 2025-622 du 9 juillet 2025 créant l''homicide routier, JO du 10 juillet 2025. Quantums maintenus (7 ans / 100 000 €), 10 ans / 150 000 € en cas de pluralité de circonstances.'
+- id: wikipedia-meurtre
+  type: presse
+  editeur: Wikipédia
+  titre: Meurtre
+  url: https://fr.wikipedia.org/wiki/Meurtre
+  auteurs: []
+  date_publication: '2026-10-10'
+  consulte_le: '2026-10-13'
+  note: 'Source d''appoint non officielle (dernière modification 2026-10-10). Meurtre : 30 ans (art. 221-1) ; perpétuité si circonstances de l''art. 221-4 ; assassinat : perpétuité (art. 221-3).'
+- id: wikipedia-vol-droit-penal-francais
+  type: presse
+  editeur: Wikipédia
+  titre: Vol en droit pénal français
+  url: https://fr.wikipedia.org/wiki/Vol_en_droit_p%C3%A9nal_fran%C3%A7ais
+  auteurs: []
+  date_publication: '2026-08-11'
+  consulte_le: '2026-10-13'
+  note: Source d'appoint non officielle (dernière modification 2026-08-11).
+- id: wikipedia-abus-de-biens-sociaux
+  type: presse
+  editeur: Wikipédia
+  titre: Abus de biens sociaux
+  url: https://fr.wikipedia.org/wiki/Abus_de_biens_sociaux
+  auteurs: []
+  date_publication: '2026-06-14'
+  consulte_le: '2026-10-13'
+  note: Source d'appoint non officielle (dernière modification 2026-06-14).
+- id: wikipedia-blanchiment-argent
+  type: presse
+  editeur: Wikipédia
+  titre: Blanchiment d'argent
+  url: https://fr.wikipedia.org/wiki/Blanchiment_d%27argent
+  auteurs: []
+  date_publication: '2026-10-03'
+  consulte_le: '2026-10-13'
+  note: Source d'appoint non officielle (dernière modification 2026-10-03).
+- id: legi-cp-311-1
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code pénal : articles 311-1 à 311-11'
+  url: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000006418127
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f1523 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source. Le lien pointe vers un seul article.
+- id: legi-cp-222-22
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code pénal : article 222-22'
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043409030
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f1526 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cp-222-23
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code pénal : articles 222-23 à 222-26-2'
+  url: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000043409028
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f2274 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source et via an-ta-601-2021.
+- id: legi-cp-222-27
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code pénal : articles 222-27 à 222-31'
+  url: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006181754
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f33891 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cp-222-7
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code pénal : articles 222-7 à 222-16-3'
+  url: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006070719/LEGISCTA000006181751/
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f1524 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cp-r625-1
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code pénal : article R625-1'
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006419511/
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f1524 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cp-222-33-2
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code pénal : articles 222-33-2 à 222-33-2-2'
+  url: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006070719/LEGISCTA000006165282
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f2354 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cp-222-32
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code pénal : articles 222-32 et 222-33'
+  url: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006070719/LEGISCTA000021796051
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f1043 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-loi-2022-299
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Loi n°2022-299 du 2 mars 2022 visant à combattre le harcèlement scolaire
+  url: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000045287658
+  auteurs: []
+  date_publication: '2022-03-02'
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f31985 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cp-221-6
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code pénal : articles 221-6 à 221-7'
+  url: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006070719/LEGISCTA000006165277/#LEGISCTA000006165277
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f35148 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cp-221-18
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code pénal : articles 221-18 à 221-20'
+  url: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006070719/LEGISCTA000051872738
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f39230 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cp-222-33-1-1
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code pénal : article 222-33-1-1'
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047049134/2023-08-18
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f34550 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cp-r625-8-3
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code pénal : article R625-8-3'
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047380081
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f34550 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cp-313-1
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code pénal : articles 313-1 à 313-3'
+  url: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006165331/
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f1520 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cp-314-1
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code pénal : articles 314-1 à 314-4'
+  url: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006070719/LEGISCTA000006165334?etatTexte=VIGUEUR&etatTexte=VIGUEUR_DIFF#LEGISCTA000006165334
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f1515 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cp-321-1
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code pénal : articles 321-1 à 321-5'
+  url: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006165338/
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f33023 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cp-322-1
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code pénal : articles 322-1 à 322-4-1'
+  url: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006165341
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f1514 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cp-226-4
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code pénal : article 226-4'
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000030776820/
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f35254 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cgi-1741
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: article 1741 du CGI
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037526294/2018-10-25
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur bofip-boi-cf-inf-40-10-10-50 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-lpf-l227
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Livre des procédures fiscales : articles L227 à L233'
+  url: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006180074/
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f31451 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: sp-f31982
+  type: texte_officiel
+  editeur: Service Public (DILA, Premier ministre)
+  titre: 'Justice pénale : quels sont les délais de prescription ?'
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F31982
+  auteurs: []
+  date_publication: '2025-07-29'
+  consulte_le: '2026-10-13'
+  note: date_publication = date « Vérifié le » de la fiche.
+- id: sp-f34645
+  type: texte_officiel
+  editeur: Service Public (DILA, Premier ministre)
+  titre: 'Amende ou peine d''emprisonnement : quel délai pour exécuter la peine ?'
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F34645
+  auteurs: []
+  date_publication: '2026-10-09'
+  consulte_le: '2026-10-13'
+  note: date_publication = date « Vérifié le » de la fiche.
+- id: sp-f32803
+  type: texte_officiel
+  editeur: Service Public (DILA, Premier ministre)
+  titre: Amende prononcée par une juridiction pénale (amende non forfaitaire)
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F32803
+  auteurs: []
+  date_publication: '2025-11-28'
+  consulte_le: '2026-10-13'
+  note: date_publication = date « Vérifié le » de la fiche.
+- id: sp-f14837
+  type: texte_officiel
+  editeur: Service Public (DILA, Premier ministre)
+  titre: Garde à vue
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F14837
+  auteurs: []
+  date_publication: '2025-07-10'
+  consulte_le: '2026-10-13'
+  note: date_publication = date « Vérifié le » de la fiche.
+- id: sp-f1837
+  type: texte_officiel
+  editeur: Service Public (DILA, Premier ministre)
+  titre: 'Justice pénale des mineurs : mesures et peines encourues'
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F1837
+  auteurs: []
+  date_publication: '2025-10-31'
+  consulte_le: '2026-10-13'
+  note: date_publication = date « Vérifié le » de la fiche.
+- id: sp-f35705
+  type: texte_officiel
+  editeur: Service Public (DILA, Premier ministre)
+  titre: Peine de prison ferme
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F35705
+  auteurs: []
+  date_publication: '2026-09-11'
+  consulte_le: '2026-10-13'
+  note: date_publication = date « Vérifié le » de la fiche.
+- id: sp-f34157
+  type: texte_officiel
+  editeur: Service Public (DILA, Premier ministre)
+  titre: Réductions de peines
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F34157
+  auteurs: []
+  date_publication: '2026-08-19'
+  consulte_le: '2026-10-13'
+  note: date_publication = date « Vérifié le » de la fiche.
+- id: sp-f32562
+  type: texte_officiel
+  editeur: Service Public (DILA, Premier ministre)
+  titre: Libération conditionnelle
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F32562
+  auteurs: []
+  date_publication: '2026-08-20'
+  consulte_le: '2026-10-13'
+  note: date_publication = date « Vérifié le » de la fiche.
+- id: sp-f34150
+  type: texte_officiel
+  editeur: Service Public (DILA, Premier ministre)
+  titre: Libération sous contrainte
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F34150
+  auteurs: []
+  date_publication: '2026-04-27'
+  consulte_le: '2026-10-13'
+  note: date_publication = date « Vérifié le » de la fiche.
+- id: sp-f1407
+  type: texte_officiel
+  editeur: Service Public (DILA, Premier ministre)
+  titre: Travail d'intérêt général (TIG)
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F1407
+  auteurs: []
+  date_publication: '2026-08-07'
+  consulte_le: '2026-10-13'
+  note: date_publication = date « Vérifié le » de la fiche.
+- id: sp-f1042
+  type: texte_officiel
+  editeur: Service Public (DILA, Premier ministre)
+  titre: Détention provisoire
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F1042
+  auteurs: []
+  date_publication: '2026-07-28'
+  consulte_le: '2026-10-13'
+  note: date_publication = date « Vérifié le » de la fiche.
+- id: sp-f2189
+  type: texte_officiel
+  editeur: Service Public (DILA, Premier ministre)
+  titre: Juridictions pénales
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F2189
+  auteurs: []
+  date_publication: '2026-07-08'
+  consulte_le: '2026-10-13'
+  note: date_publication = date « Vérifié le » de la fiche.
+- id: sp-f1540
+  type: texte_officiel
+  editeur: Service Public (DILA, Premier ministre)
+  titre: Juré d'assises
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F1540
+  auteurs: []
+  date_publication: '2026-03-27'
+  consulte_le: '2026-10-13'
+  note: date_publication = date « Vérifié le » de la fiche.
+- id: sp-f2881
+  type: texte_officiel
+  editeur: Service Public (DILA, Premier ministre)
+  titre: Alcool au volant
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F2881
+  auteurs: []
+  date_publication: '2026-08-27'
+  consulte_le: '2026-10-13'
+  note: date_publication = date « Vérifié le » de la fiche.
+- id: sp-f2886
+  type: texte_officiel
+  editeur: Service Public (DILA, Premier ministre)
+  titre: Drogue au volant
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F2886
+  auteurs: []
+  date_publication: '2026-08-27'
+  consulte_le: '2026-10-13'
+  note: date_publication = date « Vérifié le » de la fiche.
+- id: sp-f33341
+  type: texte_officiel
+  editeur: Service Public (DILA, Premier ministre)
+  titre: Que risque-t-on pour usage de drogues ?
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F33341
+  auteurs: []
+  date_publication: '2026-08-21'
+  consulte_le: '2026-10-13'
+  note: date_publication = date « Vérifié le » de la fiche (mise à jour après la loi n° 2026-798 du 18 août 2026).
+- id: sp-f19460
+  type: texte_officiel
+  editeur: Service Public (DILA, Premier ministre)
+  titre: Vitesse au volant
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F19460
+  auteurs: []
+  date_publication: '2025-12-29'
+  consulte_le: '2026-10-13'
+  note: date_publication = date « Vérifié le » de la fiche.
+- id: sp-a18723
+  type: texte_officiel
+  editeur: Service Public (DILA, Premier ministre)
+  titre: Violences routières - Le grand excès de vitesse est désormais un délit
+  url: https://www.service-public.gouv.fr/particuliers/actualites/A18723
+  auteurs: []
+  date_publication: '2025-12-24'
+  consulte_le: '2026-10-13'
+  note: Actualité publiée le 24 décembre 2025, mise à jour le 7 janvier 2026.
+- id: sp-f2390
+  type: texte_officiel
+  editeur: Service Public (DILA, Premier ministre)
+  titre: Qu'est-ce que le permis de conduire probatoire ?
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F2390
+  auteurs: []
+  date_publication: '2026-01-15'
+  consulte_le: '2026-10-13'
+  note: date_publication = date « Vérifié le » de la fiche.
+- id: sp-f31551
+  type: texte_officiel
+  editeur: Service Public (DILA, Premier ministre)
+  titre: 'Permis de conduire : barème des points retirés par infraction'
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F31551
+  auteurs: []
+  date_publication: '2026-02-27'
+  consulte_le: '2026-10-13'
+  note: date_publication = date « Vérifié le » de la fiche.
+- id: sp-f18509
+  type: texte_officiel
+  editeur: Service Public (DILA, Premier ministre)
+  titre: Amende forfaitaire en cas de contravention au code de la route
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F18509
+  auteurs: []
+  date_publication: '2025-01-11'
+  consulte_le: '2026-10-13'
+  note: date_publication = date « Vérifié le » de la fiche.
+- id: justicefr-alcool-volant
+  type: texte_officiel
+  editeur: Justice.fr (ministère de la Justice)
+  titre: Alcool au volant
+  url: https://www.justice.fr/fiche/alcool-volant
+  auteurs: []
+  date_publication: '2025-07-11'
+  consulte_le: '2026-10-13'
+  note: Date « Mis à jour le 11 juillet 2025 » ; la page intègre déjà l'homicide routier (loi n° 2025-622 du 9 juillet 2025).
+- id: justicefr-drogue-volant
+  type: texte_officiel
+  editeur: Justice.fr (ministère de la Justice)
+  titre: Drogue au volant
+  url: https://www.justice.fr/fiche/drogue-volant
+  auteurs: []
+  date_publication: '2025-07-11'
+  consulte_le: '2026-10-13'
+  note: 'Date « Mis à jour le 11 juillet 2025 » (antérieure à la loi n° 2026-798 : le refus de vérification y figure encore à 2 ans / 4 500 €).'
+- id: justicefr-usage-drogues
+  type: texte_officiel
+  editeur: Justice.fr (ministère de la Justice)
+  titre: Que risque-t-on pour usage de drogues ?
+  url: https://www.justice.fr/fiche/risque-on-usage-drogues
+  auteurs: []
+  date_publication: '2024-11-28'
+  consulte_le: '2026-10-13'
+  note: 'Date « Mis à jour le 28 novembre 2024 » : montants de l''amende forfaitaire antérieurs à la loi n° 2026-798 (200 / 150 / 450 €).'
+- id: justicefr-infractions-penales
+  type: texte_officiel
+  editeur: Justice.fr (DILA et ministère de la Justice)
+  titre: 'Infractions pénales : comment distinguer une contravention, un délit et un crime ?'
+  url: https://www.justice.fr/fiche/infractions-penales-distinguer-contravention-delit-crime
+  auteurs: []
+  date_publication: '2025-09-03'
+  consulte_le: '2026-10-13'
+  note: Date « Mis à jour le 03 septembre 2025 ».
+- id: justice-juridictions-penales
+  type: texte_officiel
+  editeur: Ministère de la Justice
+  titre: Les juridictions pénales
+  url: https://www.justice.gouv.fr/justice-france/lorganisation-cours-tribunaux/lordre-judiciaire/juridictions-penales
+  auteurs: []
+  date_publication: '2024-11-27'
+  consulte_le: '2026-10-13'
+  note: Date de modification indiquée dans les métadonnées de la page.
+- id: mildeca-reglementation-stupefiants
+  type: texte_officiel
+  editeur: MILDECA (Mission interministérielle de lutte contre les drogues et les conduites addictives, Premier ministre)
+  titre: En matière de stupéfiants
+  url: https://www.drogues.gouv.fr/en-matiere-de-stupefiants
+  auteurs: []
+  date_publication: '2024-01-23'
+  consulte_le: '2026-10-13'
+  note: Publié le 07/12/2021, mis à jour le 23/01/2024. Les montants d'amende forfaitaire (200 €) y sont antérieurs à la loi n° 2026-798.
+- id: senat-rapport-l25-601
+  type: rapport_institutionnel
+  editeur: Sénat (commission des lois)
+  titre: Rapport n° 601 (2025-2026) sur le projet de loi visant à offrir des réponses immédiates aux phénomènes troublant l'ordre public, la sécurité et la tranquillité de nos concitoyens
+  url: https://www.senat.fr/rap/l25-601/l25-601_mono.html
+  auteurs:
+  - Lauriane Josende
+  - Isabelle Florennes
+  date_publication: '2026-05-06'
+  consulte_le: '2026-10-13'
+  note: Décrit le droit en vigueur avant la loi RIPOST (refus d'obtempérer, réductions de peine, garde à vue).
+- id: senat-rapport-l24-253
+  type: rapport_institutionnel
+  editeur: Sénat (commission des lois)
+  titre: Rapport n° 253 (2024-2025) sur la proposition de loi visant à sortir la France du piège du narcotrafic
+  url: https://www.senat.fr/rap/l24-253/l24-253_mono.html
+  auteurs:
+  - Muriel Jourda
+  - Jérôme Durain
+  date_publication: '2025-01-22'
+  consulte_le: '2026-10-13'
+  note: Auteurs et date tels que cités dans le rapport n° 601 (2025-2026) du Sénat.
+- id: senat-dosleg-pjl25-472
+  type: texte_officiel
+  editeur: Sénat
+  titre: Réponses immédiates aux phénomènes troublant l'ordre public – dossier législatif (loi n° 2026-798 du 18 août 2026)
+  url: https://www.senat.fr/dossier-legislatif/pjl25-472.html
+  auteurs: []
+  date_publication: '2026-10-02'
+  consulte_le: '2026-10-13'
+  note: 'Page mise à jour le 2 octobre 2026 : loi promulguée le 18 août 2026, parue au JO n° 192 du 19 août 2026 ; décision du Conseil constitutionnel n° 2026-915 DC du 14 août 2026.'
+- id: senat-tas25-164
+  type: texte_officiel
+  editeur: Sénat
+  titre: Texte adopté n° 164 (2025-2026) – Réponses immédiates aux phénomènes troublant l'ordre public (texte de la commission mixte paritaire)
+  url: https://www.senat.fr/leg/tas25-164.html
+  auteurs: []
+  date_publication: '2026-07-21'
+  consulte_le: '2026-10-13'
+  note: Texte définitif avant contrôle du Conseil constitutionnel (numérotation des articles antérieure à la promulgation). Les dispositions citées ici (amende forfaitaire stupéfiants, garde à vue de 72
+    h) n'ont pas été censurées et ne comportent pas de date d'entrée en vigueur différée.
+- id: cc-decision-2026-915-dc
+  type: texte_officiel
+  editeur: Conseil constitutionnel
+  titre: Décision n° 2026-915 DC du 14 août 2026 – Loi visant à offrir des réponses immédiates aux phénomènes troublant l'ordre public, la sécurité et la tranquillité de nos concitoyens
+  url: https://www.conseil-constitutionnel.fr/decision/2026/2026915DC.htm
+  auteurs: []
+  date_publication: '2026-08-14'
+  consulte_le: '2026-10-13'
+  note: Valide la prolongation supplémentaire de 24 h de la garde à vue (art. 706-88-3 CPP) ; rappelle le régime de droit commun (24 h + 24 h).
+- id: legi-cpp-7
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code de procédure pénale : article 7'
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043409351
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f31982 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cpp-8
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code de procédure pénale : article 8'
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049531911
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f31982 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cpp-9
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code de procédure pénale : article 9'
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000034099775/
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f31982 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cpp-706-88
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code de procédure pénale : articles 706-88 à 706-88-1'
+  url: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006167521/
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f14837 (lien vers la section) ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cp-131-13
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code pénal : article 131-13'
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006417259/
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f32803 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via justicefr-infractions-penales.
+- id: legi-cp-131-38
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code pénal : article 131-38'
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006417334
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f32803 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cp-131-8
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code pénal : article 131-8'
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048442205
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f1407 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cpp-720
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code de procédure pénale : article 720'
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038313821
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f34150 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cpp-721
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code de procédure pénale : articles 721 à 721-3'
+  url: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006167533
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f34157 (lien vers la section) ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cpp-729
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code de procédure pénale : articles 729 à 733'
+  url: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006138144
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f32562 (lien vers la section) ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cpp-137
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code de procédure pénale : articles 137 à 150'
+  url: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006071154/LEGISCTA000006167427/
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f1042 (lien vers la section) ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cpp-255
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code de procédure pénale : articles 255 à 258-2'
+  url: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000044569488
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f1540 (lien vers la section) ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-csp-l3421-1
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code de la santé publique : article L3421-1'
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043343299
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f33341 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source. La version de l'article vers laquelle pointe le lien n'a pas pu
+    être vérifiée.
+- id: legi-cr-l234-1
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code de la route : articles L234-1 à L234-18'
+  url: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006074228/LEGISCTA000006159521
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f2881 (lien vers la section) ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cr-l235-1
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code de la route : articles L235-1 à L235-5'
+  url: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006074228/LEGISCTA000006159522
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f2886 (lien vers la section) ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cr-l233-1
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code de la route : articles L233-1 à L233-2'
+  url: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006074228/LEGISCTA000006159520
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f31551 (lien vers la section) ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via senat-rapport-l25-601.
+- id: legi-cr-l223-1
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code de la route : articles L223-1 à L223-9'
+  url: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006074228/LEGISCTA000006159515
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f2390 (lien vers la section) ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cr-l413-1
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code de la route : articles L413-1 à L413-5'
+  url: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006074228/LEGISCTA000006159544
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f19460 (lien vers la section) ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cr-r413-1
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code de la route : articles R413-1 à R413-16'
+  url: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006074228/LEGISCTA000006177128
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f19460 (lien vers la section) ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-decret-2025-1269
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Décret n° 2025-1269 du 22 décembre 2025 pris pour la mise en œuvre du délit d'excès de vitesse en application de la loi n° 2025-622 du 9 juillet 2025 portant création de l'homicide routier et visant
+    à lutter contre la violence routière
+  url: https://www.legifrance.gouv.fr/eli/decret/2025/12/22/INTS2530160D/jo/texte
+  auteurs: []
+  date_publication: '2025-12-22'
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-a18723 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-loi-2025-622
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Loi n° 2025-622 du 9 juillet 2025 créant l'homicide routier et visant à lutter contre la violence routière
+  url: https://www.legifrance.gouv.fr/eli/loi/2025/7/9/JUSX2403140L/jo/texte
+  auteurs: []
+  date_publication: '2025-07-09'
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-a18723 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-loi-2026-798
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: JO n°192 du 19 août 2026
+  url: http://www.legifrance.gouv.fr/UnTexteDeJorf.do?numjo=INTD2604047L
+  auteurs: []
+  date_publication: '2026-08-19'
+  consulte_le: '2026-10-13'
+  note: URL relevée sur senat-dosleg-pjl25-472 (publication au JO de la loi n° 2026-798 du 18 août 2026, dite RIPOST) ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé
+    via senat-tas25-164 et cc-decision-2026-915-dc.
+- id: sp-f930
+  type: texte_officiel
+  editeur: Service-Public.fr (DILA)
+  titre: Mariage en France
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F930
+  auteurs: []
+  date_publication: '2026-09-16'
+  consulte_le: '2026-10-13'
+  note: Date = « Vérifié le » de la fiche.
+- id: sp-f1618
+  type: texte_officiel
+  editeur: Service-Public.fr (DILA)
+  titre: Se pacser
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F1618
+  auteurs: []
+  date_publication: '2026-09-25'
+  consulte_le: '2026-10-13'
+  note: Date = « Vérifié le » de la fiche.
+- id: sp-f1194
+  type: texte_officiel
+  editeur: Service-Public.fr (DILA)
+  titre: Émancipation d'un mineur
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F1194
+  auteurs: []
+  date_publication: '2025-07-21'
+  consulte_le: '2026-10-13'
+  note: Date = « Vérifié le » de la fiche.
+- id: sp-f10567
+  type: texte_officiel
+  editeur: Service-Public.fr (DILA)
+  titre: Divorce par consentement mutuel
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F10567
+  auteurs: []
+  date_publication: '2025-02-04'
+  consulte_le: '2026-10-13'
+  note: Date = « Vérifié le » de la fiche.
+- id: sp-f10568
+  type: texte_officiel
+  editeur: Service-Public.fr (DILA)
+  titre: Divorce pour altération définitive du lien conjugal
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F10568
+  auteurs: []
+  date_publication: '2026-03-01'
+  consulte_le: '2026-10-13'
+  note: Date = « Vérifié le » de la fiche.
+- id: sp-f3132
+  type: texte_officiel
+  editeur: Service-Public.fr (DILA)
+  titre: Exercice de l'autorité parentale
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F3132
+  auteurs: []
+  date_publication: '2025-10-06'
+  consulte_le: '2026-10-13'
+  note: Date = « Vérifié le » de la fiche.
+- id: sp-f2274
+  type: texte_officiel
+  editeur: Service-Public.fr (DILA)
+  titre: Mineur victime d'infraction sexuelle
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F2274
+  auteurs: []
+  date_publication: '2026-05-20'
+  consulte_le: '2026-10-13'
+  note: Date = « Vérifié le » de la fiche.
+- id: sp-f21829
+  type: texte_officiel
+  editeur: Service-Public.fr (DILA)
+  titre: Que peut faire un jeune avant 18 ans ?
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F21829
+  auteurs: []
+  date_publication: '2024-01-26'
+  consulte_le: '2026-10-13'
+  note: Date = « Vérifié le » de la fiche.
+- id: sp-f3151
+  type: texte_officiel
+  editeur: Service-Public.fr (DILA)
+  titre: Adoption d'un mineur par un couple
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F3151
+  auteurs: []
+  date_publication: '2026-06-08'
+  consulte_le: '2026-10-13'
+  note: Date = « Vérifié le » de la fiche.
+- id: sp-f1385
+  type: texte_officiel
+  editeur: Service-Public.fr (DILA)
+  titre: Adoption d'un mineur par une personne seule
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F1385
+  auteurs: []
+  date_publication: '2026-05-13'
+  consulte_le: '2026-10-13'
+  note: Date = « Vérifié le » de la fiche.
+- id: sp-f1094
+  type: texte_officiel
+  editeur: Service-Public.fr (DILA)
+  titre: Adoption de l'enfant mineur de l'époux, du partenaire de Pacs ou du concubin
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F1094
+  auteurs: []
+  date_publication: '2026-03-11'
+  consulte_le: '2026-10-13'
+  note: Date = « Vérifié le » de la fiche.
+- id: sp-f36379
+  type: texte_officiel
+  editeur: Service-Public.fr (DILA)
+  titre: Procédure simplifiée de changement de nom de famille
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F36379
+  auteurs: []
+  date_publication: '2026-08-25'
+  consulte_le: '2026-10-13'
+  note: Date = « Vérifié le » de la fiche. Signale la loi n° 2026-667 du 27 juillet 2026 (justificatif Fijais/Fijait à joindre, décret attendu).
+- id: sp-f885
+  type: texte_officiel
+  editeur: Service-Public.fr (DILA)
+  titre: Changement de prénom
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F885
+  auteurs: []
+  date_publication: '2026-10-09'
+  consulte_le: '2026-10-13'
+  note: Date = « Vérifié le » de la fiche. Signale la loi n° 2026-667 du 27 juillet 2026 (décret attendu).
+- id: sp-f606
+  type: texte_officiel
+  editeur: Service-Public.fr (DILA)
+  titre: Peut-on déshériter ses enfants ?
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F606
+  auteurs: []
+  date_publication: '2026-09-15'
+  consulte_le: '2026-10-13'
+  note: Date = « Vérifié le » de la fiche. Contient le tableau « Réserve héréditaire et quotité disponible ».
+- id: sp-f1270
+  type: texte_officiel
+  editeur: Service-Public.fr (DILA)
+  titre: 'Règles en matière d''héritage : défunt ayant eu des enfants'
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F1270
+  auteurs: []
+  date_publication: '2026-10-05'
+  consulte_le: '2026-10-13'
+  note: Date = « Vérifié le » de la fiche.
+- id: sp-f770
+  type: texte_officiel
+  editeur: Service-Public.fr (DILA)
+  titre: Faire un testament
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F770
+  auteurs: []
+  date_publication: '2026-10-05'
+  consulte_le: '2026-10-13'
+  note: Date = « Vérifié le » de la fiche.
+- id: sp-f19134
+  type: texte_officiel
+  editeur: Service-Public.fr (DILA)
+  titre: Durée de conservation des papiers
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F19134
+  auteurs: []
+  date_publication: '2026-04-03'
+  consulte_le: '2026-10-13'
+  note: Date = « Vérifié le » de la fiche.
+- id: sp-f10485
+  type: texte_officiel
+  editeur: Service-Public.fr (DILA) / DGCCRF
+  titre: 'Achat à distance : droit de rétractation du consommateur'
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F10485
+  auteurs: []
+  date_publication: '2026-01-01'
+  consulte_le: '2026-10-13'
+  note: Date = « Vérifié le » de la fiche. Signale l'ordonnance du 5 janvier 2026 (services financiers à distance, en vigueur à partir du 19 juin 2026).
+- id: sp-f2435
+  type: texte_officiel
+  editeur: Service-Public.fr (DILA)
+  titre: 'Crédit à la consommation : prêt personnel'
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F2435
+  auteurs: []
+  date_publication: '2025-05-20'
+  consulte_le: '2026-10-13'
+  note: Date = « Vérifié le » de la fiche (encart sur les taux d'usure au 1er avril 2026).
+- id: sp-f2965
+  type: texte_officiel
+  editeur: Service-Public.fr (DILA)
+  titre: 'Promesse de vente d''un logement existant : promesse unilatérale ou compromis'
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F2965
+  auteurs: []
+  date_publication: '2026-04-10'
+  consulte_le: '2026-10-13'
+  note: Date = « Vérifié le » de la fiche.
+- id: sp-f15268
+  type: texte_officiel
+  editeur: Service-Public.fr (DILA)
+  titre: 'Contrat d''assurance-vie : souscription'
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F15268
+  auteurs: []
+  date_publication: '2026-10-08'
+  consulte_le: '2026-10-13'
+  note: Date = « Vérifié le » de la fiche.
+- id: sp-f11094
+  type: texte_officiel
+  editeur: Service-Public.fr (DILA)
+  titre: 'Achat d''un produit : garantie légale de conformité'
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F11094
+  auteurs: []
+  date_publication: '2026-08-17'
+  consulte_le: '2026-10-13'
+  note: Date = « Vérifié le » de la fiche.
+- id: sp-f783
+  type: texte_officiel
+  editeur: Service-Public.fr (DILA)
+  titre: Calcul de l'intérêt légal
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F783
+  auteurs: []
+  date_publication: '2026-07-01'
+  consulte_le: '2026-10-13'
+  note: Date = « Vérifié le » de la fiche. Tableau des taux de l'intérêt légal par semestre (2015 à 2e semestre 2026).
+- id: justicefr-reforme-divorce
+  type: texte_officiel
+  editeur: Justice.fr (ministère de la Justice)
+  titre: 'Réforme du divorce – Divorce contentieux : une procédure plus simple et plus rapide'
+  url: https://www.justice.fr/actu/reforme-divorce
+  auteurs: []
+  date_publication: '2021-01-17'
+  consulte_le: '2026-10-13'
+  note: Date de dernière mise à jour indiquée sur la page.
+- id: justice-pacs-mairie-2017
+  type: texte_officiel
+  editeur: Ministère de la Justice
+  titre: Le Pacs se conclut bientôt en Mairie !
+  url: https://www.justice.gouv.fr/actualites/actualite/pacs-se-conclut-bientot-mairie
+  auteurs: []
+  date_publication: '2017-10-13'
+  consulte_le: '2026-10-13'
+  note: ''
+- id: justice-circ-divorce-2017
+  type: texte_officiel
+  editeur: Ministère de la Justice (BOMJ n° 2017-02)
+  titre: Circulaire du 20 janvier 2017 relative à l'aide juridictionnelle dans le cadre de la réforme du divorce par consentement mutuel par acte sous signature privée contresigné par avocats, déposé au
+    rang des minutes d'un notaire (NOR JUST1701987C), avec en annexe le décret n° 2016-1907 du 28 décembre 2016
+  url: https://www.justice.gouv.fr/sites/default/files/migrations/textes/art_pix/JUST1701987C.pdf
+  auteurs: []
+  date_publication: '2017-02-28'
+  consulte_le: '2026-10-13'
+  note: Date = date du BOMJ.
+- id: justice-dp-j21-2017
+  type: texte_officiel
+  editeur: Ministère de la Justice
+  titre: 'Dossier de présentation #J21 – Réforme de modernisation de la justice du 21e siècle'
+  url: https://www.justice.gouv.fr/sites/default/files/migrations/presse/art_pix/J21_DP_10022017_V10.pdf
+  auteurs: []
+  date_publication: '2017-02-10'
+  consulte_le: '2026-10-13'
+  note: 'Date déduite du nom du fichier (DP_10022017). Divorce par consentement mutuel : temps de réflexion de 15 jours, procédure applicable aux divorces engagés à partir du 1er janvier 2017 ; transfert
+    de l''enregistrement des Pacs aux officiers d''état civil.'
+- id: justice-circ-mariage-2013
+  type: texte_officiel
+  editeur: Ministère de la Justice (BOMJ n° 2013-05)
+  titre: Circulaire du 29 mai 2013 de présentation de la loi ouvrant le mariage aux couples de personnes de même sexe (dispositions du Code civil) – NOR JUSC1312445C
+  url: https://www.justice.gouv.fr/sites/default/files/migrations/textes/art_pix/JUSC1312445C.pdf
+  auteurs: []
+  date_publication: '2013-05-31'
+  consulte_le: '2026-10-13'
+  note: Date = date du BOMJ.
+- id: justice-loi-nom-2022
+  type: texte_officiel
+  editeur: Ministère de la Justice
+  titre: Entrée en vigueur de la loi relative au choix du nom
+  url: https://www.justice.gouv.fr/actualites/espace-presse/entree-vigueur-loi-relative-au-choix-du-nom
+  auteurs: []
+  date_publication: '2022-07-01'
+  consulte_le: '2026-10-13'
+  note: Publié le 1er juillet 2022, mis à jour le 17 février 2023.
+- id: justice-circ-nom-2022
+  type: texte_officiel
+  editeur: Ministère de la Justice
+  titre: Circulaire du 3 juin 2022 de présentation de la loi n° 2022-301 du 2 mars 2022 relative au choix du nom issu de la filiation (NOR JUSC2215808C)
+  url: https://www.justice.gouv.fr/sites/default/files/migrations/portail/bo/2022/20220630/JUSC2215808C.pdf
+  auteurs: []
+  date_publication: '2022-06-03'
+  consulte_le: '2026-10-13'
+  note: 'PDF scanné ; « Date d''application : 1er juillet 2022 » ; confirmation de la demande après un délai d''un mois (point 1.3).'
+- id: justice-mineurs-violences-2021
+  type: texte_officiel
+  editeur: Ministère de la Justice
+  titre: 'Délits et crimes sexuels, inceste : les mineurs mieux protégés'
+  url: https://www.justice.gouv.fr/actualites/actualite/delits-crimes-sexuels-inceste-mineurs-mieux-proteges
+  auteurs: []
+  date_publication: '2021-06-28'
+  consulte_le: '2026-10-13'
+  note: ''
+- id: senat-dossier-mariage-meme-sexe-2013
+  type: texte_officiel
+  editeur: Sénat
+  titre: Dossier législatif – Mariage pour couples de personnes de même sexe (loi n° 2013-404 du 17 mai 2013)
+  url: https://www.senat.fr/dossier-legislatif/pjl12-349.html
+  auteurs: []
+  date_publication: '2024-07-01'
+  consulte_le: '2026-10-13'
+  note: 'Indique : loi promulguée le 17 mai 2013, parue au JO n° 114 du 18 mai 2013. Date = mise à jour de la page.'
+- id: senat-dossier-mineurs-2021
+  type: texte_officiel
+  editeur: Sénat
+  titre: Dossier législatif – Protéger les mineurs des crimes et délits sexuels et de l'inceste (loi n° 2021-478 du 21 avril 2021)
+  url: https://www.senat.fr/dossier-legislatif/ppl20-158.html
+  auteurs: []
+  date_publication: ''
+  consulte_le: '2026-10-13'
+  note: 'Indique : promulgation le 21 avril 2021, JO n° 95 du 22 avril 2021.'
+- id: an-ta-601-2021
+  type: texte_officiel
+  editeur: Assemblée nationale
+  titre: Proposition de loi visant à protéger les mineurs des crimes et délits sexuels et de l'inceste, adoptée sans modification en deuxième lecture le 15 avril 2021 (T.A. n° 601)
+  url: https://www.assemblee-nationale.fr/dyn/opendata/PIONANR5L15BTA0601.html
+  auteurs: []
+  date_publication: '2021-04-15'
+  consulte_le: '2026-10-13'
+  note: Texte définitif devenu la loi n° 2021-478 du 21 avril 2021 (art. 222-23-1, 222-23-2, 222-29-2 du code pénal).
+- id: senat-dossier-prescription-2008
+  type: texte_officiel
+  editeur: Sénat
+  titre: Dossier législatif – Prescription (loi n° 2008-561 du 17 juin 2008 portant réforme de la prescription en matière civile)
+  url: https://www.senat.fr/dossier-legislatif/ppl06-432.html
+  auteurs: []
+  date_publication: ''
+  consulte_le: '2026-10-13'
+  note: 'Indique : deuxième lecture au Sénat le 9 mai 2008, promulgation le 17 juin 2008, JO n° 141 du 18 juin 2008.'
+- id: an-ta-138-2007
+  type: texte_officiel
+  editeur: Assemblée nationale
+  titre: Texte adopté n° 138 – Proposition de loi portant réforme de la prescription en matière civile (adoptée avec modifications par l'Assemblée nationale, 21 novembre 2007)
+  url: https://www.assemblee-nationale.fr/13/ta/ta0138.asp
+  auteurs: []
+  date_publication: '2007-11-21'
+  consulte_le: '2026-10-13'
+  note: Texte ensuite adopté sans modification par le Sénat en deuxième lecture (rapport Sénat n° 358 2007-2008), devenu la loi n° 2008-561 ; contient les nouveaux art. 2224 et 2232 du code civil.
+- id: cc-2018-768-qpc-dossier
+  type: texte_officiel
+  editeur: Conseil constitutionnel
+  titre: Décision n° 2018-768 QPC – Article 388 du code civil – Dossier documentaire
+  url: https://www.conseil-constitutionnel.fr/sites/default/files/as/root/bank_mm/decisions/2018768qpc/2018768qpc_doc.pdf
+  auteurs: []
+  date_publication: ''
+  consulte_le: '2026-10-13'
+  note: Document daté « Services du Conseil constitutionnel - 2019 » (jour non précisé). Reproduit l'article 388 issu de la loi n° 74-631 du 5 juillet 1974 fixant à dix-huit ans l'âge de la majorité.
+- id: legi-cc-143
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code civil : articles 143 à 164'
+  url: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006070721/LEGISCTA000006136117
+  auteurs: []
+  date_publication: ''
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f930 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cc-515-1
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code civil : articles 515-1 à 515-7-1'
+  url: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006136536/
+  auteurs: []
+  date_publication: ''
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f1618 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cc-413-1
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code civil : article 413-1 à 413-8'
+  url: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000031345336
+  auteurs: []
+  date_publication: ''
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f1194 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cc-229-1
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code civil : articles 229-1 à 229-4'
+  url: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006070721/LEGISCTA000033427998/
+  auteurs: []
+  date_publication: ''
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f10567 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cc-237
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code civil : articles 237 et 238'
+  url: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006070721/LEGISCTA000006150519/
+  auteurs: []
+  date_publication: ''
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f10568 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cc-372
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code civil : articles 372 à 373-1'
+  url: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006165785/
+  auteurs: []
+  date_publication: ''
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f3132 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-loi-2021-478
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Loi n°2021-478 du 21 avril 2021 visant à protéger les mineurs des crimes et délits sexuels et de l'inceste
+  url: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043403203
+  auteurs: []
+  date_publication: '2021-04-22'
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f2274 (et justice-mineurs-violences-2021) ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via ces sources et an-ta-601-2021. Date = publication
+    au JO (senat-dossier-mineurs-2021).
+- id: legi-cc-343
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code civil : articles 343 à 343-1'
+  url: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006070721/LEGISCTA000006150070/
+  auteurs: []
+  date_publication: ''
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f3151 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cc-344
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code civil : articles 344 à 345-2'
+  url: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006070721/LEGISCTA000006150071/
+  auteurs: []
+  date_publication: ''
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f3151 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-loi-2022-301
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Loi n°2022-301 du 2 mars 2022 relative au choix du nom issu de la filiation
+  url: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000045287682
+  auteurs: []
+  date_publication: ''
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f36379 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cc-60
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code civil : articles 60 à 61-4'
+  url: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006070721/LEGISCTA000006149971/#LEGISCTA000006149971
+  auteurs: []
+  date_publication: ''
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f36379 et sp-f885 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via ces sources.
+- id: legi-cc-912
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code civil : articles 912 à 917'
+  url: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006150544/
+  auteurs: []
+  date_publication: ''
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f606 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cc-756
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code civil : articles 756 à 758-6'
+  url: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006165517
+  auteurs: []
+  date_publication: ''
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f1270 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cc-901
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code civil : articles 901 à 911'
+  url: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006136540/
+  auteurs: []
+  date_publication: ''
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f770 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cc-2224
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code civil : article 2224'
+  url: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006070721/LEGISCTA000019016471
+  auteurs: []
+  date_publication: ''
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f19134 (lien vers la section contenant l'article) ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via an-ta-138-2007.
+- id: legi-cconso-l221-18
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code de la consommation : articles L221-18 à L221-28'
+  url: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000032226844/
+  auteurs: []
+  date_publication: ''
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f10485 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cconso-l312-18
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code de la consommation : articles L312-18 à L312-27'
+  url: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000032226164
+  auteurs: []
+  date_publication: ''
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f2435 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cch-l271-1
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code de la construction et de l''habitation : articles L271-1 à L271-3'
+  url: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006074096/LEGISCTA000006176357/
+  auteurs: []
+  date_publication: ''
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f2965 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cassur-l132-1
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code des assurances : articles L132-1 à L132-27-2'
+  url: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006174038
+  auteurs: []
+  date_publication: ''
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f15268 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cconso-l217-3
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code de la consommation : articles L217-3 à L217-20'
+  url: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006069565/LEGISCTA000032221271
+  auteurs: []
+  date_publication: ''
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f11094 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cmf-l313-2
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code monétaire et financier : articles L313-2 et L313-3'
+  url: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006072026/LEGISCTA000006193925/
+  auteurs: []
+  date_publication: ''
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f783 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: const-1958-conseil-constitutionnel
+  type: texte_officiel
+  editeur: Conseil constitutionnel
+  titre: Texte intégral de la Constitution du 4 octobre 1958 en vigueur
+  url: https://www.conseil-constitutionnel.fr/le-bloc-de-constitutionnalite/texte-integral-de-la-constitution-du-4-octobre-1958-en-vigueur
+  auteurs: []
+  date_publication: '2024-03-08'
+  consulte_le: '2026-10-13'
+  note: 'Texte « à jour de la révision constitutionnelle du 8 mars 2024 » (date indiquée sur la page). Articles lus : 3, 6, 7, 11, 12, 24, 25, 28, 49, 56.'
+- id: cc-presidentielle2022-etre-candidat
+  type: texte_officiel
+  editeur: Conseil constitutionnel
+  titre: Qui peut être candidat à l'élection présidentielle ? (site présidentielle 2022)
+  url: https://presidentielle2022.conseil-constitutionnel.fr/les-candidats/etre-candidat/etre-candidat-e-a-lelection-presidentielle.html
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: Page rédigée pour l'élection de 2022 (500 parrainages, 30 départements, 10 % soit 50 par département).
+- id: cc-loi-62-1292-consolidee
+  type: texte_officiel
+  editeur: Conseil constitutionnel
+  titre: Loi n° 62-1292 du 6 novembre 1962 relative à l'élection du Président de la République au suffrage universel (version consolidée au 29 mars 2021)
+  url: https://presidentielle2022.conseil-constitutionnel.fr/textes-de-references-et-textes-applicables/textes-de-reference/loi-n-62-1292.html
+  auteurs: []
+  date_publication: '2021-03-29'
+  consulte_le: '2026-10-13'
+  note: Texte reproduit sur le site présidentielle 2022 du Conseil constitutionnel, version consolidée au 29 mars 2021 (parrainages, plafond de dépenses, avance de 200 000 €, remboursement de 4,75 % / 47,5
+    % du plafond).
+- id: cc-historique-parrainages
+  type: texte_officiel
+  editeur: Conseil constitutionnel
+  titre: Historique de la publication des parrainages (site présidentielle 2022)
+  url: https://presidentielle2022.conseil-constitutionnel.fr/historique/historique-publication-des-parrainages.html
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: 100 parrainages / 10 départements (loi du 6 novembre 1962) ; 500 parrainages / 30 départements (loi organique n° 76-528 du 18 juin 1976).
+- id: cc-membres
+  type: texte_officiel
+  editeur: Conseil constitutionnel
+  titre: Les membres du Conseil constitutionnel
+  url: https://www.conseil-constitutionnel.fr/le-conseil-constitutionnel/les-membres
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: Liste des membres depuis 1959 (premiers membres en fonction le 5 mars 1959, dont les anciens présidents Vincent Auriol et René Coty, membres de droit).
+- id: cc-dossier-rip
+  type: texte_officiel
+  editeur: Conseil constitutionnel
+  titre: 'Dossier : Référendum d''initiative partagée (RIP)'
+  url: https://www.conseil-constitutionnel.fr/dossier-referendum-d-initiative-partagee-rip
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: ''
+- id: cc-decision-2025-883-dc
+  type: texte_officiel
+  editeur: Conseil constitutionnel
+  titre: Décision n° 2025-883 DC du 15 mai 2025 – Loi visant à harmoniser le mode de scrutin aux élections municipales afin de garantir la vitalité démocratique, la cohésion municipale et la parité
+  url: https://www.conseil-constitutionnel.fr/decision/2025/2025883DC.htm
+  auteurs: []
+  date_publication: '2025-05-15'
+  consulte_le: '2026-10-13'
+  note: Extension aux communes de moins de 1 000 habitants du scrutin de liste paritaire à deux tours (articles L. 252 et L. 255-2 du code électoral).
+- id: cc-commentaire-2025-883-dc
+  type: texte_officiel
+  editeur: Conseil constitutionnel
+  titre: Commentaire de la décision n° 2025-883 DC du 15 mai 2025
+  url: https://www.conseil-constitutionnel.fr/sites/default/files/as/root/bank_mm/decisions/2025883dc/2025883dc_ccc.pdf
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: Historique des modes de scrutin municipaux (3 500 habitants en 1982, 1 000 habitants par la loi n° 2013-403 du 17 mai 2013) et règles de l'article L. 262 (prime de la moitié des sièges, seuil de
+    5 % pour la répartition).
+- id: cc-decision-2025-889-dc
+  type: texte_officiel
+  editeur: Conseil constitutionnel
+  titre: Décision n° 2025-889 DC du 17 juillet 2025 – Loi relative au droit de vote par correspondance des personnes détenues
+  url: https://www.conseil-constitutionnel.fr/decision/2025/2025889DC.htm
+  auteurs: []
+  date_publication: '2025-07-17'
+  consulte_le: '2026-10-13'
+  note: ''
+- id: cc-presidentielle-2002-investiture
+  type: texte_officiel
+  editeur: Conseil constitutionnel
+  titre: Élection présidentielle 2002 – Investiture du Président
+  url: https://www.conseil-constitutionnel.fr/election-presidentielle-2002/investiture-du-president
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: Élection des 21 avril et 5 mai 2002 ; investiture le jeudi 16 mai 2002.
+- id: sp-f1940
+  type: texte_officiel
+  editeur: Service-public.gouv.fr (DILA)
+  titre: Élection présidentielle
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F1940
+  auteurs: []
+  date_publication: '2026-07-01'
+  consulte_le: '2026-10-13'
+  note: Date = « Vérifié le 01 juillet 2026 ».
+- id: sp-f1943
+  type: texte_officiel
+  editeur: Service-public.gouv.fr (DILA)
+  titre: Élections législatives
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F1943
+  auteurs: []
+  date_publication: '2026-06-19'
+  consulte_le: '2026-10-13'
+  note: Date = « Vérifié le 19 juin 2026 ».
+- id: sp-f1952
+  type: texte_officiel
+  editeur: Service-public.gouv.fr (DILA)
+  titre: Élections municipales
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F1952
+  auteurs: []
+  date_publication: '2026-04-08'
+  consulte_le: '2026-10-13'
+  note: Date = « Vérifié le 08 avril 2026 ».
+- id: sp-f1367
+  type: texte_officiel
+  editeur: Service-public.gouv.fr (DILA)
+  titre: 'Listes électorales : en cas de première inscription'
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F1367
+  auteurs: []
+  date_publication: '2026-03-03'
+  consulte_le: '2026-10-13'
+  note: Date = « Vérifié le 03 mars 2026 ».
+- id: sp-f16828
+  type: texte_officiel
+  editeur: Service-public.gouv.fr (DILA)
+  titre: 'Élections politiques : déroulement du scrutin'
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F16828
+  auteurs: []
+  date_publication: '2025-10-13'
+  consulte_le: '2026-10-13'
+  note: Date = « Vérifié le 13 octobre 2025 ».
+- id: sp-f1604
+  type: texte_officiel
+  editeur: Service-public.gouv.fr (DILA)
+  titre: Vote par procuration
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F1604
+  auteurs: []
+  date_publication: '2026-02-02'
+  consulte_le: '2026-10-13'
+  note: Date = « Vérifié le 02 février 2026 ».
+- id: sp-f427
+  type: texte_officiel
+  editeur: Service-public.gouv.fr (DILA)
+  titre: Impôt sur le revenu - Don à un parti politique (réduction d'impôt)
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F427
+  auteurs: []
+  date_publication: '2026-04-15'
+  consulte_le: '2026-10-13'
+  note: Date = « Vérifié le 15 avril 2026 ».
+- id: sp-f1227
+  type: texte_officiel
+  editeur: Service-public.gouv.fr (DILA)
+  titre: Une personne détenue en prison a-t-elle le droit de voter ?
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F1227
+  auteurs: []
+  date_publication: '2026-03-12'
+  consulte_le: '2026-10-13'
+  note: Date = « Vérifié le 12 mars 2026 ».
+- id: an-fiche-1-caracteres-generaux-parlement
+  type: texte_officiel
+  editeur: Assemblée nationale
+  titre: 'Fiche de synthèse n° 1 : L''Assemblée nationale et le Sénat – Caractères généraux du Parlement'
+  url: https://www.assemblee-nationale.fr/dyn/synthese/assemblee-nationale-generalites/l-assemblee-nationale-et-le-senat-caracteres-generaux-du-parlement
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: Fiche datée de septembre 2023 (jour non précisé).
+- id: an-fiche-3-election-deputes
+  type: texte_officiel
+  editeur: Assemblée nationale
+  titre: 'Fiche de synthèse n° 3 : L''élection des députés'
+  url: https://www.assemblee-nationale.fr/dyn/synthese/deputes-groupes-parlementaires/l-election-des-deputes
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: Fiche datée de septembre 2023 (jour non précisé).
+- id: an-fiche-4-financement-vie-politique
+  type: texte_officiel
+  editeur: Assemblée nationale
+  titre: 'Fiche de synthèse n° 4 : Le financement de la vie politique : partis et campagnes électorales'
+  url: https://www.assemblee-nationale.fr/dyn/synthese/deputes-groupes-parlementaires/le-financement-de-la-vie-politique-partis-et-campagnes-electorales
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: Fiche datée de septembre 2023 (jour non précisé).
+- id: an-fiche-5-statut-depute
+  type: texte_officiel
+  editeur: Assemblée nationale
+  titre: 'Fiche de synthèse n° 5 : Le statut du député'
+  url: https://www.assemblee-nationale.fr/dyn/synthese/deputes-groupes-parlementaires/le-statut-du-depute
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: Fiche datée de septembre 2023 (jour non précisé).
+- id: an-fiche-7-situation-materielle-depute
+  type: texte_officiel
+  editeur: Assemblée nationale
+  titre: 'Fiche de synthèse n° 7 : La situation matérielle du député'
+  url: https://www.assemblee-nationale.fr/dyn/synthese/deputes-groupes-parlementaires/la-situation-materielle-du-depute
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: Fiche datée de janvier 2026 (jour non précisé). Indemnités en vigueur « depuis le 1er janvier 2024 ».
+- id: an-fiche-39-sessions-seances
+  type: texte_officiel
+  editeur: Assemblée nationale
+  titre: 'Fiche de synthèse n° 39 : Le régime des sessions et des séances'
+  url: https://www.assemblee-nationale.fr/dyn/synthese/fonctionnement-assemblee-nationale/le-regime-des-sessions-et-des-seances
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: Fiche datée de septembre 2023 (jour non précisé).
+- id: an-fiche-64-responsabilite-gouvernement
+  type: texte_officiel
+  editeur: Assemblée nationale
+  titre: 'Fiche de synthèse n° 64 : La mise en cause de la responsabilité du Gouvernement'
+  url: https://www.assemblee-nationale.fr/dyn/synthese/fonctionnement-assemblee-nationale/evaluation-politiques-publiques-controle-gouvernement/la-mise-en-cause-de-la-responsabilite-du-gouvernement
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: Fiche datée de juillet 2024 mais mentionnant la censure du 4 décembre 2024.
+- id: senat-mode-election-senateurs
+  type: texte_officiel
+  editeur: Sénat
+  titre: Mode d'élection des sénateurs
+  url: https://www.senat.fr/connaitre-le-senat/role-et-fonctionnement/mode-delection-des-senateurs.html
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: 348 sénateurs depuis le 1er octobre 2011 ; mandat de 6 ans depuis 2008 ; renouvellement par moitié tous les 3 ans depuis 2011 ; âge d'éligibilité 24 ans (loi n° 2011-410 du 14 avril 2011).
+- id: senat-indemnite-parlementaire
+  type: texte_officiel
+  editeur: Sénat
+  titre: L'indemnité parlementaire
+  url: https://www.senat.fr/connaitre-le-senat/role-et-fonctionnement/lindemnite-parlementaire.html
+  auteurs: []
+  date_publication: '2026-03-30'
+  consulte_le: '2026-10-13'
+  note: Page mise à jour le 30 mars 2026 ; montants « au 1er janvier 2024 ».
+- id: senat-statut-senateur
+  type: texte_officiel
+  editeur: Sénat
+  titre: Le statut des sénateurs – données juridiques
+  url: https://www.senat.fr/connaitre-le-senat/role-et-fonctionnement/le-statut-du-senateur-donnees-juridiques.html
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: 'Incompatibilités : un seul mandat local ; interdiction des fonctions exécutives locales « depuis octobre 2017 ».'
+- id: senat-sessions-seances
+  type: texte_officiel
+  editeur: Sénat
+  titre: Les sessions et séances
+  url: https://www.senat.fr/connaitre-le-senat/role-et-fonctionnement/le-regime-des-sessions-et-des-seances.html
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: ''
+- id: senat-revision-2008
+  type: texte_officiel
+  editeur: Sénat
+  titre: La révision constitutionnelle du 23 juillet 2008
+  url: https://www.senat.fr/connaitre-le-senat/role-et-fonctionnement/la-revision-constitutionnelle-du-23-juillet-2008.html
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: Limite à deux mandats présidentiels consécutifs, RIP, plafonds de 577 députés et 348 sénateurs, restriction de l'article 49 al. 3 ; tableau comparatif « Constitution en vigueur au 1er mars 2009
+    ».
+- id: senat-financement-vie-politique
+  type: texte_officiel
+  editeur: Sénat
+  titre: Le régime de financement de la vie politique
+  url: https://www.senat.fr/connaitre-le-senat/role-et-fonctionnement/le-financement-de-la-vie-politique.html
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: ''
+- id: elysee-president-4-questions
+  type: texte_officiel
+  editeur: Présidence de la République (elysee.fr)
+  titre: Le Président en 4 questions
+  url: https://www.elysee.fr/la-presidence/le-president-en-4-questions
+  auteurs: []
+  date_publication: '2022-12-15'
+  consulte_le: '2026-10-13'
+  note: Mis à jour le 15 décembre 2022.
+- id: elysee-institutions-ve-republique
+  type: texte_officiel
+  editeur: Présidence de la République (elysee.fr)
+  titre: Les institutions de la Ve République
+  url: https://www.elysee.fr/la-presidence/les-institutions-de-la-cinquieme-republique
+  auteurs: []
+  date_publication: '2022-12-14'
+  consulte_le: '2026-10-13'
+  note: « Mis à jour le 14 décembre 2022 » mais le contenu mentionne les législatives de juillet 2024.
+- id: cnccfp-presidentielle-2027
+  type: texte_officiel
+  editeur: Commission nationale des comptes de campagne et des financements politiques (CNCCFP)
+  titre: Élection du Président de la République 2027
+  url: https://cnccfp.fr/elections/election-du-president-de-la-republique-2027/
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: Plafonds arrondis (16,9 M€ / 22,5 M€), dons de 4 600 €, interdiction des dons des personnes morales, avance de 200 000 €.
+- id: cnccfp-guide-presidentielle-2027
+  type: texte_officiel
+  editeur: Commission nationale des comptes de campagne et des financements politiques (CNCCFP)
+  titre: Guide à l'usage des candidats à l'élection du Président de la République et de leur mandataire – édition 2026-2027
+  url: https://cnccfp.fr/wp-content/uploads/2026/04/Guide-a-lusage-des-candidats-a-lelection-du-President-de-la-Republique-2027.pdf
+  auteurs: []
+  date_publication: '2026-06-11'
+  consulte_le: '2026-10-13'
+  note: 'Adopté en séance le 26 mars 2026 après avis du Conseil constitutionnel du 19 mars 2026 ; version corrigée et mise à jour au 11 juin 2026. Plafonds exacts : 16,851 M€ et 22,509 M€ (décret n° 2009-1730
+    du 30 décembre 2009).'
+- id: cnccfp-partis-politiques-dons
+  type: texte_officiel
+  editeur: Commission nationale des comptes de campagne et des financements politiques (CNCCFP)
+  titre: Si vous représentez un parti politique
+  url: https://cnccfp.fr/partis-politiques/vous-etes-un-parti-politique/
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: Plafond annuel de 7 500 € de dons et cotisations par personne physique (article 11-4 de la loi du 11 mars 1988).
+- id: cnccfp-municipales-2026
+  type: texte_officiel
+  editeur: Commission nationale des comptes de campagne et des financements politiques (CNCCFP)
+  titre: Élections municipales, métropolitaines de Lyon et d'arrondissement de Paris, Lyon et Marseille de 2026
+  url: https://cnccfp.fr/elections/elections-municipales/
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: Mandat de 6 ans ; premier tour le 15 mars 2026, second tour le 22 mars 2026.
+- id: dgcl-election-executifs-locaux-2026
+  type: texte_officiel
+  editeur: Direction générale des collectivités locales (collectivites-locales.gouv.fr)
+  titre: Élection des exécutifs locaux et des conseils municipaux et communautaires
+  url: https://www.collectivites-locales.gouv.fr/connaitre-les-acteurs-et-les-institutions/democratie-locale/les-elections-municipales/election-des-executifs-locaux-et-des-conseils-municipaux-et-communautaires
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: Mentionne la loi du 21 mai 2025 (n° 2025-444) et la loi du 11 août 2025 (Paris, Lyon, Marseille). Page lue via Python (certificat non reconnu par curl), sans contournement d'une protection.
+- id: dgcl-guide-executifs-locaux-2026
+  type: texte_officiel
+  editeur: Direction générale des collectivités locales
+  titre: Guide relatif à l'élection des exécutifs locaux des conseils municipaux et communautaires et au fonctionnement des organes délibérants (annexe à la circulaire du 4 mars 2026)
+  url: https://www.collectivites-locales.gouv.fr/files/files/1.%20Connaitre%20les%20acteurs%20et%20les%20institutions/D%C3%A9mocratie%20locale/Elections%20municipales/Guide%20des%20ex%C3%A9cutifs%20locaux.pdf
+  auteurs: []
+  date_publication: '2026-03-04'
+  consulte_le: '2026-10-13'
+  note: « L'extension du scrutin de liste paritaire aux communes de moins de 1 000 habitants par la loi n° 2025-444 du 21 mai 2025 ».
+- id: dgcl-guide-maire-2026
+  type: texte_officiel
+  editeur: Direction générale des collectivités locales / La Documentation française
+  titre: Guide du maire 2026
+  url: https://www.collectivites-locales.gouv.fr/files/files/1.%20Connaitre%20les%20acteurs%20et%20les%20institutions/3.%20Elus%20locaux/guide%20du%20maire%202026/782111743885_DGCL_Guide-du-Maire_2026_PDFweb_accessible.pdf
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: Édition 2026 (avant-propos daté de mars 2026).
+- id: legi-ce-l2
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Code électoral (article L. 2)
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006353016
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur cc-presidentielle2022-etre-candidat ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via sp-f1367 (18 ans).
+- id: legi-ce-lo127
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Code électoral (article L.O. 127)
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000023882645
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur cc-presidentielle2022-etre-candidat ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source et an-fiche-3-election-deputes.
+- id: legi-loi-62-1292
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Loi n° 62-1292 du 6 novembre 1962 relative à l'élection du Président de la République au suffrage universel – version en vigueur sur le site Légifrance
+  url: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000684037
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur cc-loi-62-1292-consolidee (ancre « Version en vigueur sur le site Légifrance ») ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-loi-88-227
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Loi n°88-227 du 11 mars 1988 relative à la transparence financière de la vie politique
+  url: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000321646/
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f427 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-loi-88-227-art9
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: article 9 de la loi n° 88-227 du 11 mars 1988
+  url: http://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000036432501
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur senat-financement-vie-politique ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-ce-l52-3-1
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code électoral : articles L52-3-1 à L52-17'
+  url: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006148459
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f427 (lien vers la section du code) ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-ce-l123
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code électoral : articles L123 à L126'
+  url: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006070239/LEGISCTA000006148464/#LEGISCTA000006148464
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f1943 (lien vers la section du code) ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-ce-l252
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code électoral : articles L252 à L255-1'
+  url: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006164070/
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f1952 (lien vers la section du code) ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cc-decision-2025-883-dc.
+- id: legi-ce-l260
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code électoral : articles L260 à L262'
+  url: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006164073/
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f1952 (lien vers la section du code) ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cc-commentaire-2025-883-dc.
+- id: legi-ce-l54
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code électoral : articles L54 à L70'
+  url: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006070239/LEGISCTA000006164058/
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f16828 (lien vers la section du code) ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-ce-l71
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code électoral : articles L71 à L78'
+  url: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006070239/LEGISCTA000006164059/
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f1604 (lien vers la section du code) ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-loi-2025-658
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Loi n° 2025-658 du 18 juillet 2025 relative au droit de vote par correspondance des personnes détenues
+  url: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000051919380/
+  auteurs: []
+  date_publication: '2025-07-18'
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f1227 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source et cc-decision-2025-889-dc.
+- id: sp-f2213
+  type: texte_officiel
+  editeur: Service-public.gouv.fr (DILA)
+  titre: Naturalisation française par décret
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F2213
+  auteurs: []
+  date_publication: '2026-07-16'
+  consulte_le: '2026-10-13'
+  note: Date de publication = date « Vérifié le 16 juillet 2026 » de la fiche.
+- id: sp-f11926
+  type: texte_officiel
+  editeur: Service-public.gouv.fr (DILA)
+  titre: 'Nationalité française : comment justifier de son niveau en français ?'
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F11926
+  auteurs: []
+  date_publication: '2026-01-01'
+  consulte_le: '2026-10-13'
+  note: Date de publication = date « Vérifié le 01 janvier 2026 » de la fiche.
+- id: sp-a18713
+  type: texte_officiel
+  editeur: Service-public.gouv.fr (DILA)
+  titre: Un nouvel examen civique pour les étrangers souhaitant s'installer en France (actualité)
+  url: https://www.service-public.gouv.fr/particuliers/actualites/A18713
+  auteurs: []
+  date_publication: '2025-12-18'
+  consulte_le: '2026-10-13'
+  note: 'Actualité publiée le 18 décembre 2025 : examen civique obligatoire à compter du 1er janvier 2026 (40 questions, 32 bonnes réponses requises soit 80 %).'
+- id: sp-f2726
+  type: texte_officiel
+  editeur: Service-public.gouv.fr (DILA)
+  titre: Déclaration de nationalité française par mariage
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F2726
+  auteurs: []
+  date_publication: '2026-05-01'
+  consulte_le: '2026-10-13'
+  note: Date de publication = date « Vérifié le 01 mai 2026 » de la fiche.
+- id: sp-f295
+  type: texte_officiel
+  editeur: Service-public.gouv.fr (DILA)
+  titre: Nationalité française d'un enfant né en France de parents étrangers
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F295
+  auteurs: []
+  date_publication: '2025-08-19'
+  consulte_le: '2026-10-13'
+  note: Date de publication = date « Vérifié le 19 août 2025 » de la fiche. La fiche renvoie, pour Mayotte, à des règles spécifiques sans les détailler.
+- id: sp-f32827
+  type: texte_officiel
+  editeur: Service-public.gouv.fr (DILA)
+  titre: Annulation, retrait ou déchéance de nationalité française
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F32827
+  auteurs: []
+  date_publication: '2025-05-27'
+  consulte_le: '2026-10-13'
+  note: Date de publication = date « Vérifié le 27 mai 2025 » de la fiche.
+- id: sp-f11166
+  type: texte_officiel
+  editeur: Service-public.gouv.fr (DILA)
+  titre: Regroupement familial
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F11166
+  auteurs: []
+  date_publication: '2026-06-01'
+  consulte_le: '2026-10-13'
+  note: Date de publication = date « Vérifié le 01 juin 2026 » de la fiche.
+- id: sp-f2209
+  type: texte_officiel
+  editeur: Service-public.gouv.fr (DILA)
+  titre: Carte de séjour « vie privée et familiale » d'un étranger en France
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F2209
+  auteurs: []
+  date_publication: '2026-05-01'
+  consulte_le: '2026-10-13'
+  note: Date de publication = date « Vérifié le 01 mai 2026 » de la fiche.
+- id: sp-f35799
+  type: texte_officiel
+  editeur: Service-public.gouv.fr (DILA)
+  titre: Carte de séjour pluriannuelle
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F35799
+  auteurs: []
+  date_publication: '2026-05-01'
+  consulte_le: '2026-10-13'
+  note: Date de publication = date « Vérifié le 01 mai 2026 » de la fiche.
+- id: sp-f2208
+  type: texte_officiel
+  editeur: Service-public.gouv.fr (DILA)
+  titre: Carte de résident de 10 ans d'un étranger en France
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F2208
+  auteurs: []
+  date_publication: '2026-07-01'
+  consulte_le: '2026-10-13'
+  note: Date de publication = date « Vérifié le 01 juillet 2026 » de la fiche.
+- id: sp-f34501
+  type: texte_officiel
+  editeur: Service-public.gouv.fr (DILA)
+  titre: 'Carte de résident et carte de séjour pluriannuelle : comment justifier de votre connaissance du français ?'
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F34501
+  auteurs: []
+  date_publication: '2026-02-10'
+  consulte_le: '2026-10-13'
+  note: Date de publication = date « Vérifié le 10 février 2026 » de la fiche.
+- id: sp-f2780
+  type: texte_officiel
+  editeur: Service-public.gouv.fr (DILA)
+  titre: Centre de rétention administrative (CRA)
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F2780
+  auteurs: []
+  date_publication: '2024-12-03'
+  consulte_le: '2026-10-13'
+  note: 'Date de publication = date « Vérifié le 03 décembre 2024 ». Bandeau au 13/10/2026 : fiche en cours de mise à jour suite à la loi n° 2026-667 du 27 juillet 2026 (articles 8 à 11, rétention administrative).'
+- id: sp-f18362
+  type: texte_officiel
+  editeur: Service-public.gouv.fr (DILA)
+  titre: Obligation de quitter le territoire français (OQTF)
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F18362
+  auteurs: []
+  date_publication: '2024-11-13'
+  consulte_le: '2026-10-13'
+  note: 'Date de publication = date « Vérifié le 13 novembre 2024 ». Bandeau au 13/10/2026 : page en cours de mise à jour suite aux décrets de juin à octobre 2026 de mise en conformité avec le pacte européen
+    sur la migration et l''asile (notamment « délais de recours contre certaines décisions d''éloignement »).'
+- id: sp-f2782
+  type: texte_officiel
+  editeur: Service-public.gouv.fr (DILA)
+  titre: Interdiction de retour sur le territoire français (IRTF)
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F2782
+  auteurs: []
+  date_publication: '2025-10-21'
+  consulte_le: '2026-10-13'
+  note: Date de publication = date « Vérifié le 21 octobre 2025 » de la fiche.
+- id: sp-f2675
+  type: texte_officiel
+  editeur: Service-public.gouv.fr (DILA)
+  titre: Quel recours en cas de rejet d'une demande d'asile par l'Ofpra ?
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F2675
+  auteurs: []
+  date_publication: '2025-11-18'
+  consulte_le: '2026-10-13'
+  note: 'Date de publication = date « Vérifié le 18 novembre 2025 ». Bandeau au 13/10/2026 : page en cours de mise à jour (pacte européen, dont le délai de recours devant la CNDA).'
+- id: sp-f33314
+  type: texte_officiel
+  editeur: Service-public.gouv.fr (DILA)
+  titre: En quoi consiste l'allocation pour demandeur d'asile (Ada) ?
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F33314
+  auteurs: []
+  date_publication: '2026-04-01'
+  consulte_le: '2026-10-13'
+  note: 'Date de publication = date « Vérifié le 01 avril 2026 ». Bandeau au 13/10/2026 : page en cours de mise à jour (pacte européen, dont les conditions matérielles d''accueil).'
+- id: cc-2023-863-dc
+  type: texte_officiel
+  editeur: Conseil constitutionnel
+  titre: Décision n° 2023-863 DC du 25 janvier 2024 – Loi pour contrôler l'immigration, améliorer l'intégration
+  url: https://www.conseil-constitutionnel.fr/decision/2024/2023863DC.htm
+  auteurs: []
+  date_publication: '2024-01-25'
+  consulte_le: '2026-10-13'
+  note: Censure notamment, comme « cavaliers législatifs », l'article 3 (conditions du regroupement familial) et les articles 24 et 25 (déchéance de nationalité, acquisition de la nationalité par le droit
+    du sol, art. 21-7 du code civil).
+- id: cc-2025-881-dc
+  type: texte_officiel
+  editeur: Conseil constitutionnel
+  titre: Décision n° 2025-881 DC du 7 mai 2025 – Loi visant à renforcer les conditions d'accès à la nationalité française à Mayotte
+  url: https://www.conseil-constitutionnel.fr/decision/2025/2025881DC.htm
+  auteurs: []
+  date_publication: '2025-05-07'
+  consulte_le: '2026-10-13'
+  note: Conformité sous réserve (passeport biométrique). Le paragraphe 15 rappelle les conditions des articles 21-7 et 21-11 du code civil (droit du sol).
+- id: cc-2025-895-dc
+  type: texte_officiel
+  editeur: Conseil constitutionnel
+  titre: Décision n° 2025-895 DC du 7 août 2025 – Loi visant à faciliter le maintien en rétention des personnes condamnées pour des faits d'une particulière gravité et présentant de forts risques de récidive
+  url: https://www.conseil-constitutionnel.fr/decision/2025/2025895DC.htm
+  auteurs: []
+  date_publication: '2025-08-07'
+  consulte_le: '2026-10-13'
+  note: Censure l'article 1er (extension des cas de rétention jusqu'à 180 ou 210 jours) ; valide la nouvelle prolongation de 30 jours portant la durée maximale de droit commun à 90 jours.
+- id: cc-2026-906-dc
+  type: texte_officiel
+  editeur: Conseil constitutionnel
+  titre: Décision n° 2026-906 DC du 23 juillet 2026 – Loi visant à renforcer la sécurité, la rétention administrative et la prévention des risques d'attentat
+  url: https://www.conseil-constitutionnel.fr/decision/2026/2026906DC.htm
+  auteurs: []
+  date_publication: '2026-07-23'
+  consulte_le: '2026-10-13'
+  note: Valide l'article 9 (extension des cas de rétention jusqu'à 180/210 jours aux étrangers condamnés pour certains crimes ou délits graves) et l'article 10 (réitération de la rétention, durée cumulée
+    de 360 jours, 540 jours dans les cas les plus graves).
+- id: justice-circ-2026-05-05-nationalite-mayotte
+  type: texte_officiel
+  editeur: Ministère de la Justice – Direction des affaires civiles et du sceau
+  titre: Circulaire du 5 mai 2026 de présentation des dispositions issues de la loi n° 2025-412 du 12 mai 2025 visant à renforcer les conditions d'accès à la nationalité française à Mayotte (NOR JUSC2611765C)
+  url: https://www.justice.gouv.fr/sites/default/files/2026-05/JUSC2611765C.pdf
+  auteurs: []
+  date_publication: '2026-05-05'
+  consulte_le: '2026-10-13'
+  note: Indique que la loi du 12 mai 2025 est entrée en vigueur le 14 mai 2025 et que le régime de la loi du 10 septembre 2018 (3 mois, un seul parent) s'appliquait aux déclarations souscrites du 1er mars
+    2019 au 13 mai 2025.
+- id: interieur-circ-2024-07-14-contentieux-etrangers
+  type: texte_officiel
+  editeur: Ministère de l'Intérieur et des Outre-mer
+  titre: Circulaire du 14 juillet 2024 – Simplification des règles du contentieux relatif à l'entrée, au séjour et à l'éloignement des étrangers (NOR IOMV2419202J)
+  url: https://media.interieur.gouv.fr/bomi/BOMI2024-7-2/textes/I00_20240714_IOMV2419202J.pdf
+  auteurs: []
+  date_publication: '2024-07-14'
+  consulte_le: '2026-10-13'
+  note: 'Lien relevé sur sp-f18362. Entrée en vigueur de la réforme du contentieux de la loi n° 2024-42 au 15 juillet 2024 : recours d''un mois contre l''OQTF (procédure ordinaire), 7 jours en cas d''assignation
+    à résidence, 48 heures en rétention ; placement initial en rétention porté de 48 heures à 4 jours.'
+- id: an-qe-17-7202
+  type: texte_officiel
+  editeur: Assemblée nationale
+  titre: Question écrite n° 7202 (17e législature) – Apprentissage du français langue étrangère, et réponse du ministre de l'Intérieur
+  url: https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE7202
+  auteurs: []
+  date_publication: '2025-07-15'
+  consulte_le: '2026-10-13'
+  note: 'Réponse ministérielle publiée le 15 juillet 2025 : carte de résident alors soumise au niveau A2 ; à compter de 2026, A2 pour la carte de séjour pluriannuelle et B1 pour la carte de résident.'
+- id: cnda-procedure-normale
+  type: texte_officiel
+  editeur: Cour nationale du droit d'asile
+  titre: Procédure normale – Comment déposer votre recours ?
+  url: https://www.cnda.fr/vos-demarches/je-suis-un-demandeur/procedure-normale
+  auteurs: []
+  date_publication: ''
+  consulte_le: '2026-10-13'
+  note: Délai de recours d'un mois à compter de la notification de la décision de l'OFPRA.
+- id: cnda-procedure-acceleree
+  type: texte_officiel
+  editeur: Cour nationale du droit d'asile
+  titre: Procédure accélérée et décision d'irrecevabilité – Comment déposer votre recours ?
+  url: https://www.cnda.fr/vos-demarches/je-suis-un-demandeur/procedure-acceleree-et-decision-d-irrecevabilite
+  auteurs: []
+  date_publication: ''
+  consulte_le: '2026-10-13'
+  note: Délai de recours de dix jours à compter de la notification de la décision de l'OFPRA.
+- id: cnda-pacte-2026
+  type: texte_officiel
+  editeur: Cour nationale du droit d'asile
+  titre: 'Application du Pacte européen pour l''asile et la migration : quels changements pour les recours à la Cour nationale du droit d''asile ?'
+  url: https://www.cnda.fr/qui-sommes-nous/vie-de-la-cour/application-du-pacte-europeen-pour-l-asile-et-la-migration-quels-changements-pour-les-recours-a-la-cour-nationale-du-droit-d-asile
+  auteurs: []
+  date_publication: '2026-06-12'
+  consulte_le: '2026-10-13'
+  note: Le pacte s'applique aux demandes d'asile introduites à compter du 12 juin 2026 ; délai de recours de dix jours en procédure accélérée, contre les décisions d'irrecevabilité et en procédure d'asile
+    à la frontière.
+- id: gisti-addendum-guide-nationalite-2025
+  type: document_de_travail
+  editeur: GISTI (Groupe d'information et de soutien des immigré·es)
+  titre: Addendum du 27 octobre 2025 à l'édition de juin 2024 du Guide de la nationalité française
+  url: https://gisti.org/IMG/pdf/add_guide-nationalite.pdf
+  auteurs: []
+  date_publication: '2025-10-27'
+  consulte_le: '2026-10-13'
+  note: Association (source non officielle). Indique que le décret n° 2025-648 du 15 juillet 2025 porte le niveau de français exigé pour l'acquisition de la nationalité à B2 « et non plus B1 », et l'examen
+    civique à partir du 1er janvier 2026.
+- id: legi-cc-21-14-1-a-21-25-1
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code civil : articles 21-14-1 à 21-25-1'
+  url: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006070721/LEGISCTA000006165459
+  auteurs: []
+  date_publication: ''
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f2213 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cc-21-1-a-21-6
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code civil : articles 21-1 à 21-6'
+  url: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006070721/LEGISCTA000006165440
+  auteurs: []
+  date_publication: ''
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f2726 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cc-21-7-a-21-11
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code civil : articles 21-7 à 21-11'
+  url: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006070721/LEGISCTA000006165743
+  auteurs: []
+  date_publication: ''
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f295 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-cc-25-a-25-1
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code civil : articles 25 à 25-1'
+  url: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006070721/LEGISCTA000006150513
+  auteurs: []
+  date_publication: ''
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f32827 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-decret-2025-648
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Décret n° 2025-648 du 15 juillet 2025 modifiant le décret n° 93-1362 du 30 décembre 1993 - déclarations de nationalité, décisions de naturalisation, de réintégration, de perte, de déchéance et
+    de retrait de la nationalité française
+  url: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000051900519/2026-01-02
+  auteurs: []
+  date_publication: '2025-07-15'
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f11926 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-arrete-2025-10-10-examen-civique
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Arrêté du 10 octobre 2025 relatif au programme, aux épreuves et aux modalités d'organisation de l'examen civique
+  url: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000052381620
+  auteurs: []
+  date_publication: '2025-10-10'
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f2213 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source et sp-a18713.
+- id: legi-ceseda-l434-1-a-l434-12
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code de l''entrée et du séjour des étrangers et du droit d''asile : articles L434-1 à L434-12'
+  url: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006070158/LEGISCTA000042771996/
+  auteurs: []
+  date_publication: ''
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f11166 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-ceseda-l433-1-a-l433-7
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code de l''entrée et du séjour des étrangers et du droit d''asile : articles L433-1 à L433-7'
+  url: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006070158/LEGISCTA000042771972/
+  auteurs: []
+  date_publication: ''
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f35799 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-ceseda-r413-15
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code de l''entrée et du séjour des étrangers et du droit d''asile : article R413-15'
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049998833
+  auteurs: []
+  date_publication: ''
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f2208 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via sp-f34501.
+- id: legi-arrete-2025-12-22-francais-titres-sejour
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Arrêté du 22 décembre 2025 relatif à la justification de la maîtrise du français au niveau requis pour l'obtention d'une carte de séjour pluriannuelle, d'une carte de résident, d'une carte de résident
+    permanent ou d'une carte de résident portant la mention « résident de longue durée-UE »
+  url: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000053164506
+  auteurs: []
+  date_publication: '2025-12-22'
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f34501 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-ceseda-l741-1-a-l741-9
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code de l''entrée et du séjour des étrangers et du droit d''asile : articles L741-1 à L741-9'
+  url: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006070158/LEGISCTA000042773234/
+  auteurs: []
+  date_publication: ''
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f2780 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-ceseda-l742-4-a-l742-7
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code de l''entrée et du séjour des étrangers et du droit d''asile : articles L742-4 à L742-7'
+  url: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006070158/LEGISCTA000042773272/
+  auteurs: []
+  date_publication: ''
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f2780 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source et les décisions cc-2025-895-dc et cc-2026-906-dc.
+- id: legi-loi-2026-667
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: loi 2026-667 du 27 juillet 2026
+  url: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000054496919
+  auteurs: []
+  date_publication: '2026-07-27'
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f2780 ; page Légifrance non consultable directement (protection anti-bot) ; contenu (articles 9 et 10) connu via cc-2026-906-dc.
+- id: legi-ceseda-l611-1-a-l611-3
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code de l''entrée et du séjour des étrangers et du droit d''asile : articles L611-1 à L611-3'
+  url: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006070158/LEGISCTA000042772748/#LEGISCTA000042775580
+  auteurs: []
+  date_publication: ''
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f18362 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-ceseda-l900-1-a-l931-4
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code de l''entrée et du séjour des étrangers et du droit d''asile : L900-1 à L931-4'
+  url: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006070158/LEGISCTA000049077897/
+  auteurs: []
+  date_publication: ''
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f18362 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source et interieur-circ-2024-07-14-contentieux-etrangers.
+- id: legi-ceseda-l612-6-a-l612-11
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code de l''entrée et du séjour des étrangers et du droit d''asile : articles L612-6 à L612-11'
+  url: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006070158/LEGISCTA000042772770/
+  auteurs: []
+  date_publication: ''
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f2782 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: legi-ceseda-l532-1-a-l532-15
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: 'Code de l''entrée et du séjour des étrangers et du droit d''asile : Articles L532-1 à L532-15'
+  url: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006070158/LEGISCTA000042772360/
+  auteurs: []
+  date_publication: ''
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f2675 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source et les pages de la CNDA.
+- id: legi-ceseda-l553-1-a-l553-3
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Code de l'entrée et du séjour des étrangers et du droit d'asile L553-1 à L553-3
+  url: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006070158/LEGISCTA000042772518/
+  auteurs: []
+  date_publication: ''
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f33314 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source.
+- id: justice-stat-mensuelle-2026-09
+  type: statistique_publique
+  editeur: Ministère de la Justice – DGAP / SSER
+  titre: Mesure de l'incarcération – Indicateurs clés au 1er septembre 2026
+  url: https://www.justice.gouv.fr/sites/default/files/2026-10/mesure_mensuelle_01092026.pdf
+  auteurs: []
+  date_publication: '2026-10-02'
+  consulte_le: '2026-10-13'
+  note: 'Lien depuis la page « Statistiques mensuelles de la population détenue et écrouée – pour l''année 2026 » (https://www.justice.gouv.fr/documentation/etudes-et-statistiques/statistiques-mensuelles-population-detenue-ecrouee-11,
+    mise à jour du 02/10/2026). Contient le tableau « Evolution des effectifs » au 1er septembre de 2016 à 2026. Champ : métropole et outre-mer.'
+- id: justice-stat-mensuelle-2024-09
+  type: statistique_publique
+  editeur: Ministère de la Justice – DGAP / SSER
+  titre: Mesure de l'incarcération – Indicateurs clés au 1er septembre 2024
+  url: https://www.justice.gouv.fr/sites/default/files/2024-09/mesure_mensuelle_01092024.pdf
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: Lien depuis la page « Statistiques mensuelles de la population détenue et écrouée – pour l'année 2024 » (justice.gouv.fr). Donne aussi les valeurs au 1er septembre 2023.
+- id: justice-stat-mensuelle-2023-09
+  type: statistique_publique
+  editeur: Ministère de la Justice – DGAP / SSER
+  titre: Mesure de l'incarcération – Indicateurs clés au 1er septembre 2023
+  url: https://www.justice.gouv.fr/sites/default/files/2023-09/mesure_mensuelle_01092023.pdf
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: Lien depuis la page « Statistiques mensuelles de la population détenue et écrouée – pour l'année 2023 » (justice.gouv.fr). Donne aussi les valeurs au 1er septembre 2022.
+- id: justice-irj37-recidive-sortants-2021
+  type: statistique_publique
+  editeur: Ministère de la Justice – SSER
+  titre: 'Infos Rapides Justice n°37 – Sortants de prison en 2021 : stabilité de la récidive un an après la libération (données Excel)'
+  url: https://www.justice.gouv.fr/sites/default/files/2026-04/Infos_Rapides_Justice_n37.xlsx
+  auteurs:
+  - Guillaume Grosbois
+  - Evan Le Bihan
+  date_publication: '2026-04-02'
+  consulte_le: '2026-10-13'
+  note: 'Tableur associé à la publication https://www.justice.gouv.fr/documentation/etudes-et-statistiques/sortants-prison-2021-stabilite-recidive-apres-liberation (PDF : https://www.justice.gouv.fr/sites/default/files/2026-04/Infos_Rapides_Justice_n37.pdf).
+    Figure 1 : taux de récidive des sortants de prison 2016-2021 à 6 mois, 1, 2, 3, 4 et 5 ans.'
+- id: justice-condamnations-1990-2023
+  type: statistique_publique
+  editeur: Ministère de la Justice – SSER
+  titre: Condamnations inscrites au Casier judiciaire national, 1990-2023 (tableur)
+  url: https://www.justice.gouv.fr/sites/default/files/2025-05/Stat_condamnations_1990_2023_vf.xlsx
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: 'Lien depuis la page « Les condamnations » (https://www.justice.gouv.fr/documentation/etudes-et-statistiques/condamnations, publiée le 23/04/2026), rubrique données antérieures. 2022 = données semi-définitives,
+    2023 = provisoires. Champ : France hors COM depuis 2018.'
+- id: justice-condamnations-peine-1990-2023
+  type: statistique_publique
+  editeur: Ministère de la Justice – SSER
+  titre: Condamnations selon la nature de la peine principale, 1990-2023 (tableur)
+  url: https://www.justice.gouv.fr/sites/default/files/2025-05/Stat_condamnations_peine_1990_2023_vf.xlsx
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: Lien depuis la page « Les condamnations » (justice.gouv.fr, 23/04/2026). 2022 semi-définitif, 2023 provisoire.
+- id: justice-condamnations-2024
+  type: statistique_publique
+  editeur: Ministère de la Justice – SSER
+  titre: Les condamnations en France en 2024 (tableur)
+  url: https://www.justice.gouv.fr/sites/default/files/2026-04/Condamnations_en_2024_en_ligne.xlsx
+  auteurs: []
+  date_publication: '2026-04-16'
+  consulte_le: '2026-10-13'
+  note: Lien depuis https://www.justice.gouv.fr/documentation/etudes-et-statistiques/condamnations-france-2024. Données provisoires (22 % estimées). Tableau 1 (total 559 444) et Tableau 6 (nature de la
+    peine).
+- id: justice-rsj2025-fiche-11-7
+  type: statistique_publique
+  editeur: Ministère de la Justice – SSER
+  titre: 'Références statistiques justice 2025 – Fiche 11.7 : la récidive légale et la réitération des condamnés (tableur)'
+  url: https://www.justice.gouv.fr/sites/default/files/2026-03/Stat_RSJ_P%C3%A9nal%2011_7%202024.ods
+  auteurs: []
+  date_publication: '2026-04-23'
+  consulte_le: '2026-10-13'
+  note: 'Lien depuis la page « Les condamnations » (justice.gouv.fr, publiée le 23/04/2026). Tableau 2 : taux de récidivistes légaux et de réitérants 2022-2024 selon la nature d''infraction (unité : % des
+    condamnés).'
+- id: justice-rsj2025-fiche-1-1
+  type: statistique_publique
+  editeur: Ministère de la Justice – SSER
+  titre: 'Références statistiques justice 2025 – Fiche 1.1 : budget et effectifs de la justice (tableur)'
+  url: https://www.justice.gouv.fr/sites/default/files/2026-01/Stat_RSJ_Autres_1_1%202024.ods
+  auteurs: []
+  date_publication: '2026-04-29'
+  consulte_le: '2026-10-13'
+  note: 'Lien depuis https://www.justice.gouv.fr/documentation/etudes-et-statistiques/references-statistiques-justice-2025 (publiée le 29/04/2026). Source primaire : Rapport annuel de performance. Crédits
+    consommés 2020-2024 ; effectifs réels en ETP 2024.'
+- id: justice-rsj2024-fiche-1-1
+  type: statistique_publique
+  editeur: Ministère de la Justice – SSER
+  titre: 'Références statistiques justice 2024 – Fiche 1.1 : budget et effectifs de la justice en 2023 (tableur)'
+  url: https://www.justice.gouv.fr/sites/default/files/2024-12/Stat_RSJ_Autres_1_1%202023.ods
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: Lien depuis https://www.justice.gouv.fr/documentation/etudes-et-statistiques/references-statistiques-justice-2024. Effectifs réels en ETP 2023.
+- id: justice-rsj2023-fiche-1-1
+  type: statistique_publique
+  editeur: Ministère de la Justice – SSER
+  titre: 'Références statistiques justice 2023 – Fiche 1.1 : budget et effectifs de la justice en 2022 (tableur)'
+  url: https://www.justice.gouv.fr/sites/default/files/2023-12/Stat_RSJ_autres_1_1%202022_1.ods
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: Lien depuis https://www.justice.gouv.fr/documentation/etudes-et-statistiques/references-statistiques-justice-2023. Effectifs réels en ETP 2022.
+- id: ofpra-rapport-activite-2025
+  type: statistique_publique
+  editeur: Office français de protection des réfugiés et apatrides (OFPRA)
+  titre: Rapport d'activité 2025 de l'Ofpra
+  url: https://www.ofpra.gouv.fr/sites/default/files/2026-07/Rapport%20d%27activit%C3%A9%202025%20Ofpra.pdf
+  auteurs: []
+  date_publication: '2026-07-27'
+  consulte_le: '2026-10-13'
+  note: 'Annoncé dans le communiqué https://www.ofpra.gouv.fr/actualites/lofpra-publie-son-rapport-dactivite-2025-a-loccasion-des-75-ans-de-la-convention-de (27/07/2026). Chiffres : 153 715 demandes en
+    2024, 145 270 en 2025 ; premières demandes 130 029 (2024) et 111 343 (2025) ; taux de protection Ofpra 41,2 % en 2025 (le communiqué donne 38,8 % pour 2024).'
+- id: ofpra-rapport-activite-2024
+  type: statistique_publique
+  editeur: Office français de protection des réfugiés et apatrides (OFPRA)
+  titre: Rapport d'activité 2024 de l'Ofpra
+  url: https://www.ofpra.gouv.fr/sites/default/files/2025-06/OFPRA_RA_2024_BD_PaP.pdf
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: 'Lien depuis https://www.ofpra.gouv.fr/actualites/rapport-dactivite-2024. Taux de protection 2024 : 38,9 %.'
+- id: ofpra-rapport-activite-2023
+  type: statistique_publique
+  editeur: Office français de protection des réfugiés et apatrides (OFPRA)
+  titre: Rapport d'activité 2023 de l'Ofpra
+  url: https://www.ofpra.gouv.fr/sites/default/files/2024-07/Rapport%20d%27activit%C3%A9%202023%20de%20l%27Ofpra_0.pdf
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: 'Lien depuis https://www.ofpra.gouv.fr/actualites/rapport-dactivite-2023. Taux de protection 2023 : 32,9 %.'
+- id: eurostat-migr-resfirst-fr
+  type: statistique_publique
+  editeur: Eurostat
+  titre: Permis délivrés pour la première fois par raison, durée de validité et nationalité (migr_resfirst) – France, total
+  url: https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/migr_resfirst?geo=FR&citizen=TOTAL&reason=TOTAL&duration=TOTAL&sinceTimePeriod=2019&lang=fr
+  auteurs: []
+  date_publication: '2026-09-28'
+  consulte_le: '2026-10-13'
+  note: 'Requête API Eurostat (JSON) ; date = champ « updated » du jeu de données. Le site de la DGEF (immigration.interieur.gouv.fr) renvoie 403 (protection Cloudflare) : chiffres nationaux DGEF non consultés.'
+- id: eurostat-migr-acq-fr
+  type: statistique_publique
+  editeur: Eurostat
+  titre: Acquisition de nationalité par classe d'âge, sexe et nationalité précédente (migr_acq) – France, total
+  url: https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/migr_acq?geo=FR&citizen=TOTAL&agedef=COMPLET&age=TOTAL&sex=T&sinceTimePeriod=2019&lang=fr
+  auteurs: []
+  date_publication: '2026-03-27'
+  consulte_le: '2026-10-13'
+  note: Requête API Eurostat (JSON) ; date = champ « updated ».
+- id: eurostat-migr-eirtn-fr
+  type: statistique_publique
+  editeur: Eurostat
+  titre: Ressortissants de pays tiers ayant quitté le territoire suite à une obligation de quitter – données annuelles arrondies (migr_eirtn) – France
+  url: https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/migr_eirtn?geo=FR&citizen=TOTAL&sex=T&age=TOTAL&sinceTimePeriod=2019&lang=fr
+  auteurs: []
+  date_publication: '2026-09-25'
+  consulte_le: '2026-10-13'
+  note: 'Requête API Eurostat (JSON) ; valeur retenue : toutes destinations (c_dest = TOTAL). Rupture de série signalée (b) en 2021. Valeurs arrondies par Eurostat.'
+- id: eurostat-migr-eiord-fr
+  type: statistique_publique
+  editeur: Eurostat
+  titre: Ressortissants de pays tiers faisant l'objet d'une obligation de quitter le territoire – données annuelles arrondies (migr_eiord) – France
+  url: https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/migr_eiord?geo=FR&citizen=TOTAL&sex=T&age=TOTAL&sinceTimePeriod=2019&lang=fr
+  auteurs: []
+  date_publication: '2026-09-30'
+  consulte_le: '2026-10-13'
+  note: Requête API Eurostat (JSON). Valeurs arrondies par Eurostat.
+- id: insee-cog-2026
+  type: statistique_publique
+  editeur: INSEE
+  titre: Code officiel géographique au 1er janvier 2026 – liste des communes (v_commune_2026.csv)
+  url: https://www.insee.fr/fr/statistiques/fichier/8740222/v_commune_2026.csv
+  auteurs: []
+  date_publication: '2026-02-24'
+  consulte_le: '2026-10-13'
+  note: Fichier lié depuis https://www.insee.fr/fr/information/8740222 (dernière mise à jour 24/02/2026), qui précise qu'aucune commune nouvelle n'a été créée entre le 2 janvier 2025 et le 1er janvier 2026.
+    Comptage des lignes TYPECOM = COM effectué par le Système.
+- id: insee-cog-2025
+  type: statistique_publique
+  editeur: INSEE
+  titre: Code officiel géographique au 1er janvier 2025 – liste des communes (v_commune_2025.csv)
+  url: https://www.insee.fr/fr/statistiques/fichier/8377162/v_commune_2025.csv
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: Fichier lié depuis https://www.insee.fr/fr/information/8377162. Comptage des lignes TYPECOM = COM effectué par le Système.
+- id: insee-cog-2024
+  type: statistique_publique
+  editeur: INSEE
+  titre: Code officiel géographique au 1er janvier 2024 – liste des communes (v_commune_2024.csv)
+  url: https://www.insee.fr/fr/statistiques/fichier/7766585/v_commune_2024.csv
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: Fichier lié depuis https://www.insee.fr/fr/information/7766585. Comptage des lignes TYPECOM = COM effectué par le Système.
+- id: insee-cog-2023
+  type: statistique_publique
+  editeur: INSEE
+  titre: Code officiel géographique au 1er janvier 2023 – liste des communes (v_commune_2023.csv)
+  url: https://www.insee.fr/fr/statistiques/fichier/6800675/v_commune_2023.csv
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: Fichier lié depuis https://www.insee.fr/fr/information/6800675. Comptage des lignes TYPECOM = COM effectué par le Système.
+- id: insee-cog-2022
+  type: statistique_publique
+  editeur: INSEE
+  titre: Code officiel géographique au 1er janvier 2022 – liste des communes (commune_2022.csv)
+  url: https://www.insee.fr/fr/statistiques/fichier/6051727/commune_2022.csv
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: Fichier lié depuis https://www.insee.fr/fr/information/6051727. Comptage des lignes TYPECOM = COM effectué par le Système.
+- id: interieur-rne-maires-2026-08
+  type: statistique_publique
+  editeur: Ministère de l'Intérieur (via data.gouv.fr)
+  titre: Répertoire national des élus – fichier des maires (mise à jour du 11/08/2026)
+  url: https://static.data.gouv.fr/resources/repertoire-national-des-elus-1/20260811-155100/elus-maire-mai.csv
+  auteurs: []
+  date_publication: '2026-08-11'
+  consulte_le: '2026-10-13'
+  note: Jeu de données https://www.data.gouv.fr/datasets/repertoire-national-des-elus-1 ; la description indique une actualisation après les municipales des 15 et 22 mars 2026 et que « certaines mises à
+    jour sont encore en cours ». Comptage des lignes effectué par le Système.
+- id: interieur-rne-conseillers-municipaux-2026-08
+  type: statistique_publique
+  editeur: Ministère de l'Intérieur (via data.gouv.fr)
+  titre: Répertoire national des élus – fichier des conseillers municipaux (mise à jour du 11/08/2026)
+  url: https://static.data.gouv.fr/resources/repertoire-national-des-elus-1/20260811-154802/elus-conseiller-municipal-cm.csv
+  auteurs: []
+  date_publication: '2026-08-11'
+  consulte_le: '2026-10-13'
+  note: 'Jeu de données https://www.data.gouv.fr/datasets/repertoire-national-des-elus-1. Un élu ayant plusieurs fonctions apparaît plusieurs fois : 511 225 lignes, 510 704 personnes distinctes (commune,
+    nom, prénom, date de naissance) selon le comptage de l''agent.'
+- id: interieur-presidentielle-2022-t1-fe
+  type: statistique_publique
+  editeur: Ministère de l'Intérieur (via data.gouv.fr)
+  titre: Élection présidentielle des 10 et 24 avril 2022 – Résultats définitifs du 1er tour, France entière
+  url: https://static.data.gouv.fr/resources/election-presidentielle-des-10-et-24-avril-2022-resultats-definitifs-du-1er-tour/20220414-152200/resultats-par-niveau-fe-t1-france-entiere.txt
+  auteurs: []
+  date_publication: '2022-04-14'
+  consulte_le: '2026-10-13'
+  note: Jeu de données https://www.data.gouv.fr/datasets/election-presidentielle-des-10-et-24-avril-2022-resultats-definitifs-du-1er-tour. Colonne « % Vot/Ins ».
+- id: interieur-presidentielle-2017-t1
+  type: statistique_publique
+  editeur: Ministère de l'Intérieur (via data.gouv.fr)
+  titre: Élection présidentielle des 23 avril et 7 mai 2017 – Résultats définitifs du 1er tour
+  url: https://static.data.gouv.fr/resources/election-presidentielle-des-23-avril-et-7-mai-2017-resultats-definitifs-du-1er-tour-1/20170427-100131/Presidentielle_2017_Resultats_Tour_1_c.xls
+  auteurs: []
+  date_publication: '2017-04-27'
+  consulte_le: '2026-10-13'
+  note: Feuille « FE Metro OM Tour 1 », ligne Votants, colonne %ins (France entière).
+- id: interieur-legislatives-2024-t1-fe
+  type: statistique_publique
+  editeur: Ministère de l'Intérieur (via data.gouv.fr)
+  titre: Élections législatives des 30 juin et 7 juillet 2024 – Résultats définitifs du 1er tour, France entière
+  url: https://static.data.gouv.fr/resources/elections-legislatives-des-30-juin-et-7-juillet-2024-resultats-definitifs-du-1er-tour/20240710-171253/resultats-definitifs-france-entiere.xlsx
+  auteurs: []
+  date_publication: '2024-07-10'
+  consulte_le: '2026-10-13'
+  note: Jeu de données https://www.data.gouv.fr/datasets/elections-legislatives-des-30-juin-et-7-juillet-2024-resultats-definitifs-du-1er-tour. Colonne « % Votants ».
+- id: interieur-legislatives-2022-t1-fe
+  type: statistique_publique
+  editeur: Ministère de l'Intérieur (via data.gouv.fr)
+  titre: Élections législatives des 12 et 19 juin 2022 – Résultats définitifs du premier tour, France entière
+  url: https://static.data.gouv.fr/resources/elections-legislatives-des-12-et-19-juin-2022-resultats-definitifs-du-premier-tour/20220614-192550/resultats-par-niveau-fe-t1-france-entiere.txt
+  auteurs: []
+  date_publication: '2022-06-14'
+  consulte_le: '2026-10-13'
+  note: Colonne « % Vot/Ins ».
+- id: pe-resultats-europeennes-france
+  type: statistique_publique
+  editeur: Parlement européen
+  titre: 'Résultats des élections européennes 2024 – France : participation nationale par année'
+  url: https://results.elections.europa.eu/fr/resultats-nationaux/france/2024-2029/
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: 'Graphique « Participation nationale et européenne par année » (source indiquée : Verian, pour le Parlement européen, à partir des résultats officiels). Le fichier du ministère de l''Intérieur sur
+    data.gouv.fr ne donne que des niveaux régionaux, et le site des résultats du ministère renvoie 403.'
+- id: interieur-municipales-2026-t1-communes
+  type: statistique_publique
+  editeur: Ministère de l'Intérieur (via data.gouv.fr)
+  titre: Élections municipales 2026 – Résultats du premier tour à l'échelle des communes (fichier du 20/03/2026)
+  url: https://static.data.gouv.fr/resources/elections-municipales-2026-resultats-du-premier-tour/20260320-164339/municipales-2026-resultats-communes-2026-03-20.csv
+  auteurs: []
+  date_publication: '2026-03-20'
+  consulte_le: '2026-10-13'
+  note: Jeu de données https://www.data.gouv.fr/datasets/elections-municipales-2026-resultats-du-premier-tour (publié sous réserve des recours et rectifications). 34 836 communes (hors Polynésie française,
+    fichier séparé) ; somme des inscrits 48 474 213 et des votants 27 678 488 calculée par le Système.
+- id: sp-f1944
+  type: texte_officiel
+  editeur: Service-public.gouv.fr (DILA)
+  titre: Élections européennes
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F1944
+  auteurs: []
+  date_publication: '2026-08-14'
+  consulte_le: '2026-10-13'
+  note: Date = « Vérifié le 14 août 2026 ». Indique un seul tour, dernière élection les 8 et 9 juin 2024, prochaine en 2029.
+- id: legi-loi-77-729
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Loi n° 77-729 du 7 juillet 1977 relative à l'élection des représentants au Parlement européen
+  url: https://www.legifrance.gouv.fr/loda/id/LEGITEXT000006068600/
+  auteurs: []
+  date_publication: '1977-07-07'
+  consulte_le: '2026-10-13'
+  note: URL relevée sur sp-f1944 ; page Légifrance non consultable directement (protection anti-bot) ; contenu confirmé via cette source et via cnccfp-europeennes-2024.
+- id: cnccfp-europeennes-2024
+  type: texte_officiel
+  editeur: Commission nationale des comptes de campagne et des financements politiques (CNCCFP)
+  titre: Élections européennes de 2024 (page archive)
+  url: https://cnccfp.fr/elections/representants-parlement-europeen-2024-archives/
+  auteurs: []
+  consulte_le: '2026-10-13'
+  note: « Les députés européens sont élus tous les cinq ans au suffrage universel direct. En France, la loi du 25 juin 2018 a rétabli une circonscription électorale unique. Il s'agit d'un scrutin de listes
+    à un tour. » ; listes ayant obtenu au moins 3 % des voix admises au remboursement.
+- id: cnccfp-guide-europeennes-2024
+  type: texte_officiel
+  editeur: Commission nationale des comptes de campagne et des financements politiques (CNCCFP)
+  titre: Guide du candidat et du mandataire – édition 2024 (spécificités des élections européennes 2024)
+  url: https://cnccfp.fr/wp-content/uploads/2023/11/cnccfp-guide_du_candidat_et_du_mandataire-edition_2024-4.pdf
+  auteurs: []
+  date_publication: '2023-11-28'
+  consulte_le: '2026-10-13'
+  note: Adopté le 28 novembre 2023, mis à jour le 4 mars 2024. Remboursement forfaitaire dans la limite de 47,5 % du plafond pour les candidats ayant obtenu au moins 5 % des suffrages exprimés (3 % pour
+    les européennes).
+- id: cc-2018-766-dc
+  type: texte_officiel
+  editeur: Conseil constitutionnel
+  titre: Décision n° 2018-766 DC du 21 juin 2018 – Loi relative à l'élection des représentants au Parlement européen
+  url: https://www.conseil-constitutionnel.fr/decision/2018/2018766DC.htm
+  auteurs: []
+  date_publication: '2018-06-21'
+  consulte_le: '2026-10-13'
+  note: '§ 2 : la loi entre en vigueur au lendemain de sa publication au Journal officiel.'

@@ -1,0 +1,163 @@
+question:
+  id: multiplicateur_budgetaire
+  titre: "Multiplicateur budgétaire : effet des dépenses publiques et des impôts sur le PIB"
+  definition: "Variation du PIB (en euros) pour 1 euro de hausse des dépenses publiques ou de baisse des prélèvements obligatoires, cumulée à un horizon de 1 à 2 ans. Le type d'instrument (dépense ou prélèvement) est précisé dans le champ et la note de chaque estimation."
+  unite: ratio
+  regles_liees: []
+  sens_attendu: positif
+  estimations:
+    - source: ramey-2019
+      valeur: 0.8
+      intervalle_95: null
+      methode: "Synthèse de la littérature empirique récente (chocs narratifs, VAR, données régionales)"
+      champ: "DÉPENSES publiques ; principalement États-Unis, études publiées après la crise de 2008"
+      pays: INT
+      annee_donnees: null
+      type_etude: meta_analyse
+      revue_par_les_pairs: true
+      note: "Résumé : la plupart des estimations des multiplicateurs moyens se situent entre « 0.6 to 1 for spending multipliers ». Valeur retenue : milieu de la fourchette (0,8) ; la fourchette 0,6-1 n'est pas un intervalle de confiance. Synthèse narrative (non une méta-régression formelle) ; l'autrice identifie des circonstances où les multiplicateurs sortent de ces fourchettes. Horizon : multiplicateurs moyens sur plusieurs années, pas spécifiquement 1-2 ans."
+
+    - source: ramey-2019
+      valeur: 2.5
+      intervalle_95: null
+      methode: "Synthèse de la littérature empirique récente (principalement chocs fiscaux narratifs)"
+      champ: "PRÉLÈVEMENTS (variations d'impôts) ; principalement États-Unis"
+      pays: INT
+      annee_donnees: null
+      type_etude: meta_analyse
+      revue_par_les_pairs: true
+      note: "Résumé : multiplicateurs de « -2 to -3 for tax change multipliers » (une HAUSSE d'impôt de 1 réduit le PIB de 2 à 3). Converti au sens de la question (une BAISSE d'impôt de 1 euro augmente le PIB de 2 à 3 euros) : valeur centrale 2,5. Horizon pluriannuel (souvent pic après 2-3 ans), donc plus long que 1-2 ans."
+
+    - source: gechert-2015
+      valeur: 1.0
+      intervalle_95: null
+      methode: "Méta-régression sur un large ensemble d'estimations publiées de multiplicateurs"
+      champ: "DÉPENSES publiques ; multi-pays, toutes méthodes"
+      pays: INT
+      annee_donnees: null
+      type_etude: meta_analyse
+      revue_par_les_pairs: true
+      note: "Résumé : « Public spending multipliers are close to 1 » ; les multiplicateurs de l'investissement public sont plus élevés d'environ 0,5 (soit environ 1,5). Valeur retenue : 1,0."
+
+    - source: gechert-2015
+      valeur: 0.65
+      intervalle_95: null
+      methode: "Méta-régression sur un large ensemble d'estimations publiées de multiplicateurs"
+      champ: "PRÉLÈVEMENTS et TRANSFERTS (baisses d'impôts, hausses de prestations) ; multi-pays"
+      pays: INT
+      annee_donnees: null
+      type_etude: meta_analyse
+      revue_par_les_pairs: true
+      note: "Résumé : les multiplicateurs de dépense sont « about 0.3 to 0.4 units larger than tax and transfer multipliers ». Conversion : 1 − 0,3 à 0,4 = 0,6 à 0,7, valeur centrale 0,65 (dérivée, pas publiée telle quelle)."
+
+    - source: auerbach-gorodnichenko-2012
+      valeur: 1.25
+      intervalle_95: null
+      methode: "VAR structurel à changement de régime (récession / expansion), chocs de dépense corrigés des prévisions"
+      champ: "DÉPENSES publiques (achats de l'État), États-Unis après-guerre, économie en RÉCESSION"
+      pays: US
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Document de travail NBER w16311 : « our preferred estimates of the government spending multiplier are between 0 and 0.5 in expansions and between 1 and 1.5 in recessions ». Valeur retenue : 1,25 (milieu de 1-1,5). Multiplicateur cumulé sur 20 trimestres (5 ans), donc horizon plus long que 1-2 ans. Tableau 1 (multiplicateur maximal, dépenses totales) : linéaire 0,87 (e.t. 0,29), expansion 0,49, récession 2,12 (e.t. 0,18) ; les auteurs présentent ces valeurs extrêmes comme des bornes."
+
+    - source: auerbach-gorodnichenko-2012
+      valeur: 0.25
+      intervalle_95: null
+      methode: "VAR structurel à changement de régime (récession / expansion)"
+      champ: "DÉPENSES publiques (achats de l'État), États-Unis après-guerre, économie en EXPANSION"
+      pays: US
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Même source : multiplicateur préféré « between 0 and 0.5 in expansions ». Valeur retenue : 0,25 (milieu de la fourchette). Horizon 20 trimestres."
+
+    - source: romer-romer-2010
+      valeur: 3.0
+      intervalle_95: [1.3, 4.7]
+      methode: "Chocs fiscaux « narratifs » identifiés à partir des documents législatifs (hausses d'impôts non motivées par la conjoncture), régression du PIB sur ces chocs"
+      champ: "PRÉLÈVEMENTS (impôts fédéraux), États-Unis, après-guerre"
+      pays: US
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Document de travail NBER w13264 : pour une hausse d'impôt exogène de 1 % du PIB, « The estimated maximum impact is a fall in output of 3.0 percent » (t = 3,5), atteint après environ 10 trimestres. Converti : une baisse d'impôt de 1 euro augmente le PIB de 3 euros au pic. Intervalle = 3,0 ± 1,96 × (3,0/3,5). ATTENTION : valeur au pic (2,5 ans), l'effet à 1 an est plus faible (premiers coefficients petits et non significatifs) ; robustesse 2,2 à 3,6 selon les variantes."
+
+    - source: blanchard-leigh-2013
+      valeur: 1.6
+      intervalle_95: [1.1, 2.1]
+      methode: "Régression des erreurs de prévision de croissance du FMI sur la consolidation budgétaire prévue (prévisions d'avril 2010)"
+      champ: "Consolidation budgétaire (baisses de DÉPENSES et hausses de PRÉLÈVEMENTS) dans 26 économies européennes, croissance 2010-2011"
+      pays: INT
+      annee_donnees: 2011
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Document de travail NBER w18779 : coefficient de −1,095 (t = −4,294) : chaque point de PIB de consolidation supplémentaire a coûté environ 1 % de PIB de plus que prévu, sur 2010-2011. Les auteurs estiment que les multiplicateurs supposés par les prévisionnistes étaient d'environ 0,5, donc que les multiplicateurs réels étaient « substantially above 1 early in the crisis ». Conversion : 0,5 + 1,095 ≈ 1,6 ; intervalle = 0,5 + (1,095 ± 1,96 × 0,255). Coefficients séparés : dépense 1,244, recettes −0,865 (différence non significative). Effet plus faible (coefficients 0,3 à 0,5) pour les prévisions faites en 2011-2012."
+
+    - source: ilzetzki-et-al-2013
+      valeur: 0.66
+      intervalle_95: null
+      methode: "VAR structurel sur données trimestrielles de consommation publique (44 pays), multiplicateurs cumulés en valeur actualisée"
+      champ: "DÉPENSES (consommation publique), pays à haut revenu, jusqu'en 2007"
+      pays: INT
+      annee_donnees: 2007
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Document de travail NBER w16479 révisé (2012) : multiplicateur d'impact de 0,39 et multiplicateur cumulé de long terme de 0,66 pour les pays à haut revenu (négatif et non significatif pour les pays en développement). Valeur retenue : 0,66 (long terme, horizon de plusieurs années). Le même article trouve un multiplicateur de long terme de −3 dans les pays très endettés et négatif en changes flexibles."
+
+    - source: ilzetzki-et-al-2013
+      valeur: 1.4
+      intervalle_95: null
+      methode: "VAR structurel sur données trimestrielles, sous-échantillon des régimes de change prédéterminés (fixes)"
+      champ: "DÉPENSES (consommation publique), pays en régime de change fixe (situation comparable à un pays membre de la zone euro)"
+      pays: INT
+      annee_donnees: 2007
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Document de travail NBER w16479 révisé : en change prédéterminé, « the impact multiplier is 0.15 » et monte à 1,4 à long terme ; en change flexible le multiplicateur est négatif à tous les horizons (long terme −0,69). Valeur retenue : 1,4 (long terme)."
+
+    - source: biau-girard-2005
+      valeur: 1.4
+      intervalle_95: null
+      methode: "VAR structurel inspiré de Blanchard et Perotti (2002)"
+      champ: "DÉPENSES publiques (hausse structurelle), France, court terme"
+      pays: FR
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Résumé : efficacité à court terme d'une hausse structurelle des dépenses publiques, « multiplier close to 1.4 », qui stimule aussi la consommation et l'investissement privés. Horizon exact (1re ou 2e année) non lu dans le résumé."
+
+    - source: biau-girard-2005
+      valeur: 0.1
+      intervalle_95: null
+      methode: "VAR structurel inspiré de Blanchard et Perotti (2002)"
+      champ: "PRÉLÈVEMENTS (hausse structurelle des impôts), France, très court terme"
+      pays: FR
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Résumé : l'effet d'une hausse d'impôts sur le PIB est négatif mais faible (multiplicateur proche de −0,1), significatif seulement à très court terme et dépendant de l'impôt considéré. Converti au sens de la question (baisse d'impôt) : +0,1."
+
+    - source: lemoine-et-al-2019
+      valeur: 1.2
+      intervalle_95: null
+      methode: "Simulation du modèle macroéconométrique semi-structurel FR-BDF de la Banque de France"
+      champ: "DÉPENSES (consommation publique), France ; choc de +1 % du PIB, persistance 0,9 par trimestre"
+      pays: FR
+      annee_donnees: null
+      type_etude: simulation_institutionnelle
+      revue_par_les_pairs: false
+      note: "Section 5.2.4 : « real GDP increases by around +1.2% on impact » pour un choc de 1 % du PIB sur la consommation publique, puis l'effet revient progressivement vers zéro et devient négatif après 18 trimestres. Multiplicateur d'impact (1er trimestre), le cumul à 1-2 ans n'est pas donné en chiffres dans le texte. Les auteurs jugent ce multiplicateur « above 1 at impact » cohérent avec la littérature."
+
+    - source: alesina-et-al-2015
+      valeur: null
+      intervalle_95: null
+      methode: "Simulation de plans de consolidation budgétaire pluriannuels identifiés par l'approche narrative, 16 pays de l'OCDE sur 30 ans"
+      champ: "Consolidations fondées sur les DÉPENSES contre consolidations fondées sur les PRÉLÈVEMENTS, pays de l'OCDE"
+      pays: INT
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Valeur non convertible : les ampleurs sont présentées dans des graphiques non lus. Résumé : les ajustements fondés sur des baisses de dépenses sont « much less costly, in terms of output losses, than tax-based ones », en raison surtout des réactions de la confiance des entreprises et de l'investissement privé. Cette étude soutient donc des multiplicateurs de dépense faibles et des multiplicateurs fiscaux élevés, à l'inverse de la méta-analyse de Gechert."
+
+  note_synthese: "Pour 1 euro de dépense publique en plus, le PIB augmente en général de 0,6 à 1 euro selon la synthèse de Ramey (2019) et la méta-analyse de Gechert (2015) ; l'effet est plus fort (1 à 2) en récession, quand les taux d'intérêt ne montent pas ou dans un pays à change fixe comme un membre de la zone euro, et plus faible (proche de 0, voire négatif) en période de croissance ou quand la dette est très élevée. Les estimations françaises (VAR de Biau et Girard, modèle FR-BDF de la Banque de France) donnent environ 1,2 à 1,4 pour la dépense à court terme, et les erreurs de prévision du FMI pendant la crise européenne suggèrent environ 1,6 en 2010-2011. Pour les impôts, le désaccord est fort : les études américaines fondées sur des chocs fiscaux « narratifs » trouvent qu'une baisse d'impôt de 1 euro augmente le PIB de 2 à 3 euros après deux ou trois ans, alors que la méta-analyse de Gechert et l'étude française de Biau et Girard trouvent des effets plus faibles que pour la dépense (0,1 à 0,7). Ces chiffres dépendent beaucoup de l'horizon retenu, de la méthode et de la conjoncture : ce sont des ordres de grandeur, pas des constantes."

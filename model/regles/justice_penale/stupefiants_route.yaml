@@ -1,0 +1,542 @@
+domaine: justice_penale
+theme: "Stupéfiants et sécurité routière"
+regles:
+  # ------------------------------------------------------------------ Trafic de stupéfiants
+  - id: justice_penale.trafic_stupefiants.direction_reseau_peine
+    titre: "Diriger un réseau de trafic de stupéfiants : peine maximale"
+    explication: "Diriger ou organiser un groupe qui produit, importe ou vend de la drogue est un crime puni de la prison à vie (réclusion criminelle à perpétuité) et de 7,5 millions d'euros d'amende."
+    type: choix
+    choix: ["perpetuite", "30_ans", "20_ans"]
+    valeurs:
+      - depuis: "2024-01-23"
+        valeur: "perpetuite"
+        sources: [mildeca-reglementation-stupefiants]
+        article: "Code pénal, art. 222-34"
+    tags: [stupefiants, trafic, peine, crime, criminalite_organisee]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2024-01-23 (page MILDECA). Amende associée : 7 500 000 €. Ces affaires sont jugées par une cour d'assises spécialement composée. Numéro d'article d'après le rapport du Sénat n° 253 (2024-2025)."
+
+  - id: justice_penale.trafic_stupefiants.production_reclusion_max
+    titre: "Production ou fabrication de stupéfiants : réclusion maximale"
+    explication: "Produire ou fabriquer de la drogue est un crime puni de 20 ans de prison (réclusion criminelle) au maximum."
+    type: nombre
+    unite: ans
+    bornes: [0, 30]
+    valeurs:
+      - depuis: "2024-01-23"
+        valeur: 20
+        sources: [mildeca-reglementation-stupefiants, sp-f32803]
+        article: "Code pénal, art. 222-35"
+    tags: [stupefiants, trafic, peine, crime]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2024-01-23 (MILDECA), confirmée par service-public (F32803, vérifiée le 28/11/2025). Portée à 30 ans de réclusion si les faits sont commis en bande organisée. Numéro d'article d'après le rapport du Sénat n° 253 (2024-2025)."
+
+  - id: justice_penale.trafic_stupefiants.import_export_prison_max
+    titre: "Importation ou exportation de stupéfiants : prison maximale"
+    explication: "Importer ou exporter de la drogue est puni de 10 ans de prison au maximum ; la peine peut monter à 30 ans de réclusion si les faits sont commis par une bande organisée."
+    type: nombre
+    unite: ans
+    bornes: [0, 30]
+    valeurs:
+      - depuis: "2024-01-23"
+        valeur: 10
+        sources: [mildeca-reglementation-stupefiants]
+        article: "Code pénal, art. 222-36"
+    tags: [stupefiants, trafic, peine]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2024-01-23 (MILDECA). En bande organisée : 30 ans de réclusion criminelle. Numéro d'article d'après le rapport du Sénat n° 253 (2024-2025)."
+
+  - id: justice_penale.trafic_stupefiants.transport_detention_cession_prison_max
+    titre: "Transport, détention, vente ou achat de stupéfiants (trafic) : prison maximale"
+    explication: "Transporter, détenir, proposer, vendre ou acheter de la drogue dans le cadre d'un trafic est puni de 10 ans de prison au maximum."
+    type: nombre
+    unite: ans
+    bornes: [0, 30]
+    valeurs:
+      - depuis: "2024-01-23"
+        valeur: 10
+        sources: [mildeca-reglementation-stupefiants, senat-rapport-l24-253]
+        article: "Code pénal, art. 222-37"
+    tags: [stupefiants, trafic, peine]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2024-01-23 (MILDECA), confirmée par le rapport du Sénat n° 253 (22/01/2025) pour le transport (« mules »)."
+
+  - id: justice_penale.trafic_stupefiants.amende_max
+    titre: "Trafic de stupéfiants : amende maximale"
+    explication: "Les principaux crimes et délits de trafic (production, importation, transport, détention, vente) sont punis d'une amende pouvant atteindre 7,5 millions d'euros, en plus de la prison."
+    type: nombre
+    unite: euros
+    bornes: [0, 15000000]
+    valeurs:
+      - depuis: "2024-01-23"
+        valeur: 7500000
+        sources: [mildeca-reglementation-stupefiants, sp-f32803]
+        article: "Code pénal, art. 222-34 et suivants"
+    tags: [stupefiants, trafic, amende]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2024-01-23 (MILDECA). S'y ajoute la confiscation possible de tout ou partie des biens du condamné."
+
+  - id: justice_penale.trafic_stupefiants.cession_consommation_personnelle_prison_max
+    titre: "Vente ou don de drogue à une personne pour sa consommation : prison maximale"
+    explication: "Céder ou offrir de la drogue à quelqu'un pour sa propre consommation est puni de 5 ans de prison et 75 000 € d'amende ; 10 ans de prison si c'est à un mineur."
+    type: nombre
+    unite: ans
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2024-01-23"
+        valeur: 5
+        sources: [mildeca-reglementation-stupefiants]
+        article: "Code pénal, art. 222-34 et suivants"
+    tags: [stupefiants, trafic, peine, mineurs]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2024-01-23 (MILDECA). Amende : 75 000 €. Peine de prison portée à 10 ans notamment en cas de vente à des mineurs."
+
+  # ------------------------------------------------------------------ Usage de stupéfiants
+  - id: justice_penale.usage_stupefiants.prison_max
+    titre: "Usage (consommation) de stupéfiants : prison maximale"
+    explication: "Consommer de la drogue est un délit puni au maximum d'1 an de prison. En pratique, la plupart des cas simples sont traités par une amende forfaitaire."
+    type: nombre
+    unite: ans
+    bornes: [0, 5]
+    valeurs:
+      - depuis: "2024-01-23"
+        valeur: 1
+        sources: [mildeca-reglementation-stupefiants, sp-f33341, legi-csp-l3421-1]
+        article: "Code de la santé publique, art. L3421-1"
+    tags: [stupefiants, usage, peine]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2024-01-23 (MILDECA), confirmée par service-public le 21/08/2026. Portée à 5 ans et 75 000 € pour une personne dépositaire de l'autorité publique ou un salarié d'une entreprise de transport dans ses fonctions."
+
+  - id: justice_penale.usage_stupefiants.amende_max
+    titre: "Usage (consommation) de stupéfiants : amende maximale devant le tribunal"
+    explication: "Si l'affaire va devant le tribunal correctionnel, la consommation de drogue peut être punie d'une amende allant jusqu'à 3 750 €."
+    type: nombre
+    unite: euros
+    bornes: [0, 75000]
+    valeurs:
+      - depuis: "2024-01-23"
+        valeur: 3750
+        sources: [mildeca-reglementation-stupefiants, sp-f33341, legi-csp-l3421-1]
+        article: "Code de la santé publique, art. L3421-1"
+    tags: [stupefiants, usage, amende]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2024-01-23 (MILDECA)."
+
+  - id: justice_penale.usage_stupefiants.afd_montant
+    titre: "Usage de stupéfiants : montant de l'amende forfaitaire délictuelle"
+    explication: "Une personne majeure contrôlée en train de consommer de la drogue (ou avec une petite quantité) peut recevoir directement des policiers ou gendarmes une amende forfaitaire, sans procès. Payer l'amende met fin aux poursuites."
+    type: nombre
+    unite: euros
+    bornes: [0, 1500]
+    valeurs:
+      - depuis: "2024-01-23"
+        valeur: 200
+        sources: [mildeca-reglementation-stupefiants, justicefr-usage-drogues]
+        article: "Code de la santé publique, art. L3421-1"
+      - depuis: "2026-08-20"
+        valeur: 500
+        sources: [sp-f33341, senat-tas25-164, senat-dosleg-pjl25-472, legi-loi-2026-798]
+        article: "Code de la santé publique, art. L3421-1 (modifié par la loi n° 2026-798 du 18 août 2026)"
+    tags: [stupefiants, usage, amende_forfaitaire, reforme_2026]
+    a_verifier: false
+    note: "Ancien montant (200 €) : date d'entrée en vigueur non établie, valeur attestée au 2024-01-23 (la MILDECA indique « depuis 2019 »). Nouveau montant (500 €) : loi RIPOST n° 2026-798 du 18 août 2026, publiée au JO du 19 août 2026, sans date d'entrée en vigueur différée pour cet article (non censuré par la décision n° 2026-915 DC) ; date du 20 août 2026 déduite de la publication au JO (lendemain), fiche service-public mise à jour le 21 août 2026."
+
+  - id: justice_penale.usage_stupefiants.afd_minoree
+    titre: "Usage de stupéfiants : amende forfaitaire minorée (paiement rapide)"
+    explication: "Si l'amende forfaitaire pour usage de drogue est payée dans les 15 jours, son montant est réduit."
+    type: nombre
+    unite: euros
+    bornes: [0, 1500]
+    valeurs:
+      - depuis: "2024-01-23"
+        valeur: 150
+        sources: [mildeca-reglementation-stupefiants, justicefr-usage-drogues]
+      - depuis: "2026-08-20"
+        valeur: 400
+        sources: [sp-f33341, senat-tas25-164, legi-loi-2026-798]
+        article: "Code de la santé publique, art. L3421-1 (modifié par la loi n° 2026-798 du 18 août 2026)"
+    tags: [stupefiants, usage, amende_forfaitaire, reforme_2026]
+    a_verifier: false
+    note: "Ancien montant : date d'entrée en vigueur non établie, valeur attestée au 2024-01-23. Nouveau montant : loi n° 2026-798 (JO du 19 août 2026), date du 20 août 2026 déduite de la publication."
+
+  - id: justice_penale.usage_stupefiants.afd_majoree
+    titre: "Usage de stupéfiants : amende forfaitaire majorée (paiement tardif)"
+    explication: "Si l'amende forfaitaire pour usage de drogue n'est pas payée dans les 45 jours, son montant est augmenté."
+    type: nombre
+    unite: euros
+    bornes: [0, 3000]
+    valeurs:
+      - depuis: "2024-01-23"
+        valeur: 450
+        sources: [mildeca-reglementation-stupefiants, justicefr-usage-drogues]
+      - depuis: "2026-08-20"
+        valeur: 1000
+        sources: [sp-f33341, senat-tas25-164, legi-loi-2026-798]
+        article: "Code de la santé publique, art. L3421-1 (modifié par la loi n° 2026-798 du 18 août 2026)"
+    tags: [stupefiants, usage, amende_forfaitaire, reforme_2026]
+    a_verifier: false
+    note: "Ancien montant : date d'entrée en vigueur non établie, valeur attestée au 2024-01-23. Nouveau montant : loi n° 2026-798 (JO du 19 août 2026), date du 20 août 2026 déduite de la publication."
+
+  # ------------------------------------------------------------------ Alcool au volant
+  - id: justice_penale.alcool_volant.seuil_contravention_sang
+    titre: "Alcool au volant : taux maximal autorisé (cas général), dans le sang"
+    explication: "Il est interdit de conduire avec 0,5 gramme d'alcool ou plus par litre de sang (soit 0,25 mg par litre d'air expiré). Au-delà, c'est une contravention ; à partir de 0,8 g/l, c'est un délit."
+    type: nombre
+    unite: g_par_litre
+    bornes: [0, 1]
+    valeurs:
+      - depuis: "2025-07-11"
+        valeur: 0.5
+        sources: [justicefr-alcool-volant, sp-f2881]
+    tags: [route, alcool, seuil]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-07-11 (justice.fr), confirmée par service-public le 27/08/2026."
+
+  - id: justice_penale.alcool_volant.seuil_contravention_air
+    titre: "Alcool au volant : taux maximal autorisé (cas général), dans l'air expiré"
+    explication: "Mesuré à l'éthylomètre, le taux à ne pas atteindre est de 0,25 milligramme d'alcool par litre d'air expiré (équivalent de 0,5 g/l de sang)."
+    type: nombre
+    unite: mg_par_litre
+    bornes: [0, 0.5]
+    valeurs:
+      - depuis: "2025-07-11"
+        valeur: 0.25
+        sources: [justicefr-alcool-volant, sp-f2881]
+    tags: [route, alcool, seuil]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-07-11 (justice.fr)."
+
+  - id: justice_penale.alcool_volant.seuil_probatoire_sang
+    titre: "Alcool au volant : taux maximal pour les jeunes conducteurs (permis probatoire)"
+    explication: "Avec un permis probatoire, en conduite accompagnée ou avec un éthylotest anti-démarrage imposé, il est interdit de conduire avec 0,2 g d'alcool ou plus par litre de sang (0,10 mg par litre d'air expiré), ce qui revient à zéro verre."
+    type: nombre
+    unite: g_par_litre
+    bornes: [0, 1]
+    valeurs:
+      - depuis: "2025-07-11"
+        valeur: 0.2
+        sources: [justicefr-alcool-volant, sp-f2881]
+    tags: [route, alcool, seuil, jeunes_conducteurs]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-07-11 (justice.fr). Équivalent air expiré : 0,10 mg/l."
+
+  - id: justice_penale.alcool_volant.seuil_delit_sang
+    titre: "Alcool au volant : taux à partir duquel c'est un délit, dans le sang"
+    explication: "Conduire avec 0,8 g d'alcool ou plus par litre de sang n'est plus une simple contravention mais un délit, jugé par le tribunal correctionnel, avec prison possible."
+    type: nombre
+    unite: g_par_litre
+    bornes: [0, 2]
+    valeurs:
+      - depuis: "2025-07-11"
+        valeur: 0.8
+        sources: [justicefr-alcool-volant, sp-f2881, legi-cr-l234-1]
+        article: "Code de la route, art. L234-1"
+    tags: [route, alcool, seuil, delit]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-07-11 (justice.fr)."
+
+  - id: justice_penale.alcool_volant.seuil_delit_air
+    titre: "Alcool au volant : taux à partir duquel c'est un délit, dans l'air expiré"
+    explication: "À l'éthylomètre, le délit commence à 0,40 milligramme d'alcool par litre d'air expiré (équivalent de 0,8 g/l de sang)."
+    type: nombre
+    unite: mg_par_litre
+    bornes: [0, 1]
+    valeurs:
+      - depuis: "2025-07-11"
+        valeur: 0.4
+        sources: [justicefr-alcool-volant, sp-f2881, legi-cr-l234-1]
+        article: "Code de la route, art. L234-1"
+    tags: [route, alcool, seuil, delit]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-07-11 (justice.fr)."
+
+  - id: justice_penale.alcool_volant.contravention_amende_forfaitaire
+    titre: "Alcool au volant (entre 0,5 et 0,8 g/l) : amende forfaitaire"
+    explication: "Entre 0,5 et 0,8 g/l de sang (0,2 et 0,8 g/l pour un jeune conducteur), l'amende est en général forfaitaire, de 135 € ; le juge peut aller jusqu'à 750 €."
+    type: nombre
+    unite: euros
+    bornes: [0, 750]
+    valeurs:
+      - depuis: "2025-07-11"
+        valeur: 135
+        sources: [justicefr-alcool-volant, sp-f2881]
+    tags: [route, alcool, amende, contravention]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-07-11 (justice.fr). Amende maximale si l'affaire est jugée : 750 € (contravention de 4e classe)."
+
+  - id: justice_penale.alcool_volant.retrait_points
+    titre: "Alcool au volant : points retirés du permis"
+    explication: "Conduire au-dessus du taux autorisé fait perdre 6 points sur le permis, que ce soit une contravention ou un délit."
+    type: nombre
+    unite: points
+    bornes: [0, 12]
+    valeurs:
+      - depuis: "2025-07-11"
+        valeur: 6
+        sources: [justicefr-alcool-volant, sp-f2881]
+    tags: [route, alcool, permis_a_points]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-07-11 (justice.fr)."
+
+  - id: justice_penale.alcool_volant.delit_prison_max
+    titre: "Conduite avec 0,8 g/l d'alcool ou plus : prison maximale"
+    explication: "Le délit de conduite avec un taux d'alcool d'au moins 0,8 g/l de sang est puni de 3 ans de prison au maximum, en plus de la perte de 6 points et d'éventuelles peines complémentaires (suspension ou annulation du permis, confiscation du véhicule…)."
+    type: nombre
+    unite: ans
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2025-07-11"
+        valeur: 3
+        sources: [justicefr-alcool-volant, sp-f2881, legi-cr-l234-1]
+        article: "Code de la route, art. L234-1"
+    tags: [route, alcool, peine, delit]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-07-11 par justice.fr (page mise à jour à la suite de la loi n° 2025-622 du 9 juillet 2025 créant l'homicide routier). L'ancienne peine n'a pas été relevée sur une source officielle lue."
+
+  - id: justice_penale.alcool_volant.delit_amende_max
+    titre: "Conduite avec 0,8 g/l d'alcool ou plus : amende maximale"
+    explication: "Le délit de conduite avec au moins 0,8 g/l d'alcool dans le sang est puni d'une amende pouvant aller jusqu'à 9 000 €."
+    type: nombre
+    unite: euros
+    bornes: [0, 30000]
+    valeurs:
+      - depuis: "2025-07-11"
+        valeur: 9000
+        sources: [justicefr-alcool-volant, sp-f2881, legi-cr-l234-1]
+        article: "Code de la route, art. L234-1"
+    tags: [route, alcool, amende, delit]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-07-11 par justice.fr (page mise à jour à la suite de la loi n° 2025-622 du 9 juillet 2025)."
+
+  # ------------------------------------------------------------------ Stupéfiants au volant
+  - id: justice_penale.stupefiants_volant.prison_max
+    titre: "Conduite après usage de stupéfiants : prison maximale"
+    explication: "Conduire après avoir consommé de la drogue (établi par un test) est puni de 3 ans de prison au maximum ; 5 ans si le conducteur a aussi bu de l'alcool. Le permis perd 6 points (9 avec l'alcool)."
+    type: nombre
+    unite: ans
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2025-07-11"
+        valeur: 3
+        sources: [justicefr-drogue-volant, sp-f2886, legi-cr-l235-1]
+        article: "Code de la route, art. L235-1"
+    tags: [route, stupefiants, peine, delit]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-07-11 (justice.fr), confirmée par service-public le 27/08/2026. Depuis la loi n° 2026-798 (RIPOST), conduire « en ayant manifestement fait usage de stupéfiants » (sans test) est aussi puni de 3 ans et 9 000 € (code de la route, art. L237-1), et le refus de vérification est passé de 2 ans / 4 500 € à 3 ans / 9 000 €."
+
+  - id: justice_penale.stupefiants_volant.amende_max
+    titre: "Conduite après usage de stupéfiants : amende maximale"
+    explication: "Conduire après avoir consommé de la drogue est puni d'une amende allant jusqu'à 9 000 € (15 000 € si le conducteur a aussi bu de l'alcool)."
+    type: nombre
+    unite: euros
+    bornes: [0, 30000]
+    valeurs:
+      - depuis: "2025-07-11"
+        valeur: 9000
+        sources: [justicefr-drogue-volant, sp-f2886, legi-cr-l235-1]
+        article: "Code de la route, art. L235-1"
+    tags: [route, stupefiants, amende, delit]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-07-11 (justice.fr)."
+
+  # ------------------------------------------------------------------ Grand excès de vitesse (≥ 50 km/h)
+  - id: justice_penale.exces_vitesse_50.qualification
+    titre: "Excès de vitesse de 50 km/h ou plus : nature de l'infraction"
+    explication: "Rouler à 50 km/h ou plus au-dessus de la limite est désormais un délit dès la première fois (jugé par le tribunal correctionnel, inscrit au casier judiciaire), et non plus une contravention."
+    type: choix
+    choix: ["contravention_5e_classe", "delit"]
+    valeurs:
+      - depuis: "2025-12-24"
+        valeur: "contravention_5e_classe"
+        sources: [sp-a18723]
+      - depuis: "2025-12-29"
+        valeur: "delit"
+        sources: [sp-a18723, sp-f19460, legi-decret-2025-1269, legi-loi-2025-622]
+        article: "Code de la route, art. L413-1 à L413-5 ; décret n° 2025-1269 du 22 décembre 2025"
+    tags: [route, vitesse, delit, reforme_2025]
+    a_verifier: false
+    note: "Ancien régime (contravention de 5e classe, délit seulement en cas de récidive) : date d'entrée en vigueur non établie, attesté au 2025-12-24 par l'actualité service-public (« jusqu'à présent »). Délit dès la 1re fois depuis le 29 décembre 2025 (décret n° 2025-1269 pris pour l'application de la loi n° 2025-622 du 9 juillet 2025)."
+
+  - id: justice_penale.exces_vitesse_50.prison_max
+    titre: "Excès de vitesse de 50 km/h ou plus : prison maximale"
+    explication: "Depuis que le grand excès de vitesse est un délit, il est puni de 3 mois de prison au maximum, avec retrait de 6 points et des peines complémentaires possibles (confiscation du véhicule, suspension ou annulation du permis)."
+    type: nombre
+    unite: mois
+    bornes: [0, 24]
+    valeurs:
+      - depuis: "2025-12-29"
+        valeur: 3
+        sources: [sp-f19460, sp-a18723, legi-cr-l413-1]
+        article: "Code de la route, art. L413-1 à L413-5"
+    tags: [route, vitesse, peine, reforme_2025]
+    a_verifier: false
+    note: "6 points retirés. Confiscation du véhicule obligatoire en cas de récidive, sauf décision motivée du juge."
+
+  - id: justice_penale.exces_vitesse_50.amende_max
+    titre: "Excès de vitesse de 50 km/h ou plus : amende maximale"
+    explication: "Le grand excès de vitesse est puni d'une amende pouvant aller jusqu'à 3 750 €, contre 1 500 € au maximum quand c'était une contravention."
+    type: nombre
+    unite: euros
+    bornes: [0, 15000]
+    valeurs:
+      - depuis: "2025-12-24"
+        valeur: 1500
+        sources: [sp-a18723]
+      - depuis: "2025-12-29"
+        valeur: 3750
+        sources: [sp-f19460, sp-a18723, legi-cr-l413-1]
+        article: "Code de la route, art. L413-1 à L413-5"
+    tags: [route, vitesse, amende, reforme_2025]
+    a_verifier: false
+    note: "Ancien plafond (1 500 €, contravention de 5e classe) : date d'entrée en vigueur non établie, attesté au 2025-12-24. Nouveau plafond depuis le 29 décembre 2025."
+
+  - id: justice_penale.exces_vitesse_50.amende_forfaitaire_delictuelle
+    titre: "Excès de vitesse de 50 km/h ou plus : amende forfaitaire délictuelle"
+    explication: "En pratique, les forces de l'ordre peuvent proposer une amende forfaitaire de 300 € (250 € si payée sous 15 jours, 600 € en cas de retard) ; si elle est payée, il n'y a pas de procès."
+    type: nombre
+    unite: euros
+    bornes: [0, 1500]
+    valeurs:
+      - depuis: "2025-12-29"
+        valeur: 300
+        sources: [sp-a18723]
+    tags: [route, vitesse, amende_forfaitaire, reforme_2025]
+    a_verifier: true
+    note: "Montant lu uniquement dans l'actualité service-public A18723 (« une amende forfaitaire délictuelle est désormais proposée… 300 €, minorée à 250 €… majorée à 600 € ») ; la fiche « Vitesse au volant » (F19460) ne la mentionne pas et le texte légal n'a pas pu être consulté. Date alignée sur l'entrée en vigueur du délit (29/12/2025), à confirmer."
+
+  # ------------------------------------------------------------------ Refus d'obtempérer
+  - id: justice_penale.refus_obtemperer.prison_max
+    titre: "Refus d'obtempérer : prison maximale"
+    explication: "Ne pas s'arrêter quand un policier ou un gendarme l'ordonne est un délit puni de 2 ans de prison au maximum (davantage si cela met d'autres personnes en danger). Le permis perd 6 points."
+    type: nombre
+    unite: ans
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2026-05-06"
+        valeur: 2
+        sources: [senat-rapport-l25-601, sp-f31551, legi-cr-l233-1]
+        article: "Code de la route, art. L233-1"
+    tags: [route, refus_obtemperer, peine, delit]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-05-06 (rapport du Sénat n° 601). La loi n° 2026-798 (RIPOST) n'a pas modifié ce quantum mais a rendu obligatoire la confiscation du véhicule (sauf décision motivée). Le refus d'obtempérer aggravé (mise en danger d'autrui) est puni plus sévèrement (non chiffré ici)."
+
+  - id: justice_penale.refus_obtemperer.amende_max
+    titre: "Refus d'obtempérer : amende maximale"
+    explication: "Le refus d'obtempérer simple est puni d'une amende pouvant aller jusqu'à 15 000 €."
+    type: nombre
+    unite: euros
+    bornes: [0, 75000]
+    valeurs:
+      - depuis: "2026-05-06"
+        valeur: 15000
+        sources: [senat-rapport-l25-601, legi-cr-l233-1]
+        article: "Code de la route, art. L233-1"
+    tags: [route, refus_obtemperer, amende, delit]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-05-06 (rapport du Sénat n° 601)."
+
+  # ------------------------------------------------------------------ Téléphone au volant
+  - id: justice_penale.telephone_volant.amende_forfaitaire
+    titre: "Téléphone tenu en main au volant : amende forfaitaire"
+    explication: "Utiliser un téléphone tenu en main ou porter des écouteurs en conduisant est une contravention de 4e classe : l'amende forfaitaire est de 135 €."
+    type: nombre
+    unite: euros
+    bornes: [0, 750]
+    valeurs:
+      - depuis: "2026-02-27"
+        valeur: 135
+        sources: [sp-f31551, sp-f18509]
+    tags: [route, telephone, amende, contravention]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-02-27 : la classe (4e) est donnée par F31551 et le montant forfaitaire de la 4e classe (135 €) par F18509."
+
+  - id: justice_penale.telephone_volant.retrait_points
+    titre: "Téléphone tenu en main au volant : points retirés"
+    explication: "Téléphoner avec l'appareil en main ou porter une oreillette ou des écouteurs en conduisant fait perdre 3 points sur le permis."
+    type: nombre
+    unite: points
+    bornes: [0, 12]
+    valeurs:
+      - depuis: "2026-02-27"
+        valeur: 3
+        sources: [sp-f31551]
+    tags: [route, telephone, permis_a_points]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-02-27 (service-public)."
+
+  # ------------------------------------------------------------------ Permis à points
+  - id: justice_penale.permis_points.capital_maximum
+    titre: "Permis de conduire : nombre maximal de points"
+    explication: "Le permis de conduire compte au maximum 12 points. Les infractions en retirent ; à zéro, le permis n'est plus valable."
+    type: nombre
+    unite: points
+    bornes: [0, 20]
+    valeurs:
+      - depuis: "2026-01-15"
+        valeur: 12
+        sources: [sp-f2390, sp-f31551, legi-cr-l223-1]
+        article: "Code de la route, art. L223-1 à L223-9"
+    tags: [route, permis_a_points]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-01-15 (service-public)."
+
+  - id: justice_penale.permis_points.capital_initial_probatoire
+    titre: "Permis probatoire : nombre de points au départ"
+    explication: "Un nouveau conducteur (ou après une annulation) commence avec 6 points ; le solde monte progressivement jusqu'à 12 points en l'absence d'infraction (en 2 ou 3 ans selon la formation suivie)."
+    type: nombre
+    unite: points
+    bornes: [0, 12]
+    valeurs:
+      - depuis: "2026-01-15"
+        valeur: 6
+        sources: [sp-f2390, legi-cr-l223-1]
+        article: "Code de la route, art. L223-1 à L223-9"
+    tags: [route, permis_a_points, jeunes_conducteurs]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-01-15 (service-public)."
+
+  # ------------------------------------------------------------------ Vitesses maximales autorisées
+  - id: justice_penale.vitesse_max.autoroute
+    titre: "Vitesse maximale sur autoroute"
+    explication: "Sur autoroute, la vitesse est limitée à 130 km/h ; 110 km/h par temps de pluie et pour les jeunes conducteurs."
+    type: nombre
+    unite: km_h
+    bornes: [50, 200]
+    valeurs:
+      - depuis: "2025-12-29"
+        valeur: 130
+        sources: [sp-f19460, legi-cr-r413-1]
+        article: "Code de la route, art. R413-1 à R413-16"
+    tags: [route, vitesse, limitation]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-12-29 (service-public). 110 km/h par temps de pluie et en permis probatoire (100 km/h sur les sections limitées à moins de 130)."
+
+  - id: justice_penale.vitesse_max.route_double_sens
+    titre: "Vitesse maximale sur route à double sens sans séparateur central"
+    explication: "Sur les routes hors agglomération à double sens sans séparateur central, la limite est de 80 km/h. Le département, la commune ou le préfet peut la relever à 90 km/h sur les routes qu'il gère."
+    type: nombre
+    unite: km_h
+    bornes: [50, 130]
+    valeurs:
+      - depuis: "2025-12-29"
+        valeur: 80
+        sources: [sp-f19460, legi-cr-r413-1]
+        article: "Code de la route, art. R413-1 à R413-16"
+    tags: [route, vitesse, limitation]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-12-29 (service-public). L'autorité locale chargée de la circulation peut fixer 90 km/h sur ses routes (code général des collectivités territoriales)."
+
+  - id: justice_penale.vitesse_max.agglomeration
+    titre: "Vitesse maximale en agglomération"
+    explication: "En ville et dans les villages (agglomération), la vitesse est limitée à 50 km/h, sauf limitation plus basse décidée localement."
+    type: nombre
+    unite: km_h
+    bornes: [20, 90]
+    valeurs:
+      - depuis: "2025-12-29"
+        valeur: 50
+        sources: [sp-f19460, legi-cr-r413-1]
+        article: "Code de la route, art. R413-1 à R413-16"
+    tags: [route, vitesse, limitation]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-12-29 (service-public). Le maire peut fixer une vitesse plus basse (30 km/h par exemple)."

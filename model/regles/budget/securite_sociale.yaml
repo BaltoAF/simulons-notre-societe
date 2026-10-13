@@ -1,0 +1,463 @@
+# Budget de la Sécurité sociale — loi de financement de la sécurité sociale (LFSS) pour 2026.
+# Loi n° 2025-1403 du 30 décembre 2025 (JO du 31 décembre 2025), après la décision n° 2025-899 DC
+# du 30 décembre 2025 (censure partielle, sans effet sur les articles d'équilibre, l'ONDAM et les objectifs de dépenses).
+# Champ : ensemble des régimes obligatoires de base de sécurité sociale (ROBSS). Unité : milliards d'euros.
+# Les rectifications proposées par le PLFSS 2027 (projet n° 3211 déposé le 1er octobre 2026, non voté) sont indiquées en note.
+domaine: budget
+theme: "Sécurité sociale (LFSS 2026)"
+regles:
+  # ---------------------------------------------------------------- Objectifs de dépenses par branche
+  - id: budget.secu.objectif_depenses.maladie
+    titre: "Branche maladie : objectif de dépenses 2026 (tous régimes de base)"
+    explication: "Plafond de dépenses voté pour l'assurance maladie, maternité, invalidité et décès en 2026."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 400]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 271.4
+        sources: [jo-loi-2025-1403-lfss-2026, an-ta199-lfss-2026, an-plfss-2027-n3211]
+        article: "Loi n° 2025-1403 du 30 décembre 2025, art. 108"
+    tags: [budget, securite_sociale, maladie]
+    a_verifier: false
+    note: "Le tableau d'équilibre de l'article 47 de la même loi indique 271,3 Md€ de dépenses pour la branche maladie (écart d'arrondi entre deux articles de la loi). Le PLFSS 2027 propose de rectifier les dépenses 2026 à 271,0 Md€ et prévoit 277,1 Md€ en 2027."
+  - id: budget.secu.objectif_depenses.at_mp
+    titre: "Branche accidents du travail et maladies professionnelles : objectif de dépenses 2026"
+    explication: "Plafond de dépenses voté pour l'indemnisation des accidents du travail et maladies professionnelles en 2026."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 40]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 18.0
+        sources: [jo-loi-2025-1403-lfss-2026, an-ta199-lfss-2026, an-plfss-2027-n3211]
+        article: "Loi n° 2025-1403, art. 111"
+    tags: [budget, securite_sociale, at_mp]
+    a_verifier: false
+    note: "PLFSS 2027 : rectification à 18,1 Md€ pour 2026 ; 19,5 Md€ prévus en 2027."
+  - id: budget.secu.objectif_depenses.vieillesse
+    titre: "Branche vieillesse (retraites de base) : objectif de dépenses 2026"
+    explication: "Plafond de dépenses voté pour les retraites des régimes de base en 2026."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 500]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 310.4
+        sources: [jo-loi-2025-1403-lfss-2026, an-ta199-lfss-2026, an-plfss-2027-n3211]
+        article: "Loi n° 2025-1403, art. 112"
+    tags: [budget, securite_sociale, retraites]
+    a_verifier: false
+    note: "PLFSS 2027 : rectification à 310,5 Md€ pour 2026 ; 316,2 Md€ prévus en 2027."
+  - id: budget.secu.objectif_depenses.famille
+    titre: "Branche famille : objectif de dépenses 2026"
+    explication: "Plafond de dépenses voté pour les prestations familiales (allocations familiales, accueil du jeune enfant…) en 2026."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 59.7
+        sources: [jo-loi-2025-1403-lfss-2026, an-ta199-lfss-2026, an-plfss-2027-n3211]
+        article: "Loi n° 2025-1403, art. 113"
+    tags: [budget, securite_sociale, famille]
+    a_verifier: false
+    note: "PLFSS 2027 : rectification à 59,1 Md€ pour 2026 ; 60,2 Md€ prévus en 2027."
+  - id: budget.secu.objectif_depenses.autonomie
+    titre: "Branche autonomie : objectif de dépenses 2026"
+    explication: "Plafond de dépenses voté pour l'accompagnement des personnes âgées dépendantes et des personnes handicapées en 2026."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 80]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 43.6
+        sources: [jo-loi-2025-1403-lfss-2026, an-ta199-lfss-2026, an-plfss-2027-n3211]
+        article: "Loi n° 2025-1403, art. 114"
+    tags: [budget, securite_sociale, autonomie]
+    a_verifier: false
+    note: "PLFSS 2027 : rectification à 43,3 Md€ pour 2026 ; 44,4 Md€ prévus en 2027."
+  - id: budget.secu.depenses.toutes_branches
+    titre: "Dépenses de l'ensemble des régimes de base de la Sécurité sociale prévues en 2026"
+    explication: "Total des dépenses des cinq branches, hors transferts entre branches."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 1000]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 684.2
+        sources: [jo-loi-2025-1403-lfss-2026, an-ta199-lfss-2026, an-plfss-2027-n3211]
+        article: "Loi n° 2025-1403, art. 47 (tableau d'équilibre)"
+    tags: [budget, securite_sociale, total]
+    a_verifier: false
+    note: "Exécution 2025 (annexe du PLFSS 2027) : 665,7 Md€. PLFSS 2027 : rectification à 683,1 Md€ pour 2026 ; 696,4 Md€ prévus en 2027."
+  # ---------------------------------------------------------------- Recettes par branche
+  - id: budget.secu.recettes.maladie
+    titre: "Branche maladie : recettes prévues en 2026"
+    explication: "Cotisations, CSG, TVA affectée et autres recettes prévues pour l'assurance maladie en 2026."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 400]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 257.5
+        sources: [jo-loi-2025-1403-lfss-2026, an-plfss-2027-n3211]
+        article: "Loi n° 2025-1403, art. 47"
+    tags: [budget, securite_sociale, maladie, recettes]
+    a_verifier: false
+    note: "PLFSS 2027 : rectification à 258,5 Md€ pour 2026."
+  - id: budget.secu.recettes.at_mp
+    titre: "Branche AT-MP : recettes prévues en 2026"
+    explication: "Recettes (essentiellement cotisations des employeurs) prévues pour la branche accidents du travail et maladies professionnelles."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 40]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 17.1
+        sources: [jo-loi-2025-1403-lfss-2026, an-plfss-2027-n3211]
+        article: "Loi n° 2025-1403, art. 47"
+    tags: [budget, securite_sociale, at_mp, recettes]
+    a_verifier: false
+    note: "PLFSS 2027 : rectification à 16,8 Md€ pour 2026."
+  - id: budget.secu.recettes.vieillesse
+    titre: "Branche vieillesse : recettes prévues en 2026"
+    explication: "Recettes prévues pour les retraites de base en 2026."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 500]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 305.8
+        sources: [jo-loi-2025-1403-lfss-2026, an-plfss-2027-n3211]
+        article: "Loi n° 2025-1403, art. 47"
+    tags: [budget, securite_sociale, retraites, recettes]
+    a_verifier: false
+    note: "PLFSS 2027 : rectification à 302,5 Md€ pour 2026."
+  - id: budget.secu.recettes.famille
+    titre: "Branche famille : recettes prévues en 2026"
+    explication: "Recettes prévues pour la branche famille en 2026."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 60.1
+        sources: [jo-loi-2025-1403-lfss-2026, an-plfss-2027-n3211]
+        article: "Loi n° 2025-1403, art. 47"
+    tags: [budget, securite_sociale, famille, recettes]
+    a_verifier: false
+    note: "PLFSS 2027 : rectification à 59,4 Md€ pour 2026."
+  - id: budget.secu.recettes.autonomie
+    titre: "Branche autonomie : recettes prévues en 2026"
+    explication: "Recettes prévues pour la branche autonomie en 2026 (dont une part de la hausse de CSG sur les revenus du capital)."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 80]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 43.3
+        sources: [jo-loi-2025-1403-lfss-2026, an-plfss-2027-n3211]
+        article: "Loi n° 2025-1403, art. 47"
+    tags: [budget, securite_sociale, autonomie, recettes]
+    a_verifier: false
+    note: "PLFSS 2027 : rectification à 43,0 Md€ pour 2026."
+  - id: budget.secu.recettes.toutes_branches
+    titre: "Recettes de l'ensemble des régimes de base de la Sécurité sociale prévues en 2026"
+    explication: "Total des recettes des cinq branches, hors transferts entre branches."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 1000]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 664.8
+        sources: [jo-loi-2025-1403-lfss-2026, an-plfss-2027-n3211]
+        article: "Loi n° 2025-1403, art. 47"
+    tags: [budget, securite_sociale, recettes, total]
+    a_verifier: false
+    note: "Exécution 2025 (annexe du PLFSS 2027) : 643,8 Md€. PLFSS 2027 : rectification à 661,3 Md€ pour 2026 ; 683,7 Md€ prévus en 2027."
+  # ---------------------------------------------------------------- Soldes par branche
+  - id: budget.secu.solde.maladie
+    titre: "Branche maladie : solde prévu en 2026"
+    explication: "Recettes moins dépenses de l'assurance maladie (négatif = déficit)."
+    type: nombre
+    unite: milliards_euros
+    bornes: [-50, 20]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: -13.8
+        sources: [jo-loi-2025-1403-lfss-2026, an-ta199-lfss-2026, an-plfss-2027-n3211]
+        article: "Loi n° 2025-1403, art. 47"
+    tags: [budget, securite_sociale, maladie, solde]
+    a_verifier: false
+    note: "Exécution 2025 : -15,9 Md€ ; PLFSS 2027 : -12,5 Md€ révisé pour 2026 et -7,8 Md€ prévu en 2027."
+  - id: budget.secu.solde.at_mp
+    titre: "Branche AT-MP : solde prévu en 2026"
+    explication: "Recettes moins dépenses de la branche accidents du travail et maladies professionnelles."
+    type: nombre
+    unite: milliards_euros
+    bornes: [-10, 10]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: -1.0
+        sources: [jo-loi-2025-1403-lfss-2026, an-ta199-lfss-2026, an-plfss-2027-n3211]
+        article: "Loi n° 2025-1403, art. 47"
+    tags: [budget, securite_sociale, at_mp, solde]
+    a_verifier: false
+    note: "Exécution 2025 : -0,2 Md€ ; PLFSS 2027 : -1,3 Md€ révisé pour 2026 et -1,5 Md€ prévu en 2027."
+  - id: budget.secu.solde.vieillesse
+    titre: "Branche vieillesse : solde prévu en 2026"
+    explication: "Recettes moins dépenses des retraites de base."
+    type: nombre
+    unite: milliards_euros
+    bornes: [-50, 20]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: -4.6
+        sources: [jo-loi-2025-1403-lfss-2026, an-ta199-lfss-2026, an-plfss-2027-n3211]
+        article: "Loi n° 2025-1403, art. 47"
+    tags: [budget, securite_sociale, retraites, solde]
+    a_verifier: false
+    note: "Exécution 2025 : -7,1 Md€ ; PLFSS 2027 : -8,0 Md€ révisé pour 2026 et -4,8 Md€ prévu en 2027."
+  - id: budget.secu.solde.famille
+    titre: "Branche famille : solde prévu en 2026"
+    explication: "Recettes moins dépenses de la branche famille (positif = excédent)."
+    type: nombre
+    unite: milliards_euros
+    bornes: [-10, 10]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 0.4
+        sources: [jo-loi-2025-1403-lfss-2026, an-ta199-lfss-2026, an-plfss-2027-n3211]
+        article: "Loi n° 2025-1403, art. 47"
+    tags: [budget, securite_sociale, famille, solde]
+    a_verifier: false
+    note: "Exécution 2025 : +1,2 Md€ ; PLFSS 2027 : +0,3 Md€ révisé pour 2026 et +1,6 Md€ prévu en 2027."
+  - id: budget.secu.solde.autonomie
+    titre: "Branche autonomie : solde prévu en 2026"
+    explication: "Recettes moins dépenses de la branche autonomie."
+    type: nombre
+    unite: milliards_euros
+    bornes: [-10, 10]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: -0.4
+        sources: [jo-loi-2025-1403-lfss-2026, an-ta199-lfss-2026, an-plfss-2027-n3211]
+        article: "Loi n° 2025-1403, art. 47"
+    tags: [budget, securite_sociale, autonomie, solde]
+    a_verifier: false
+    note: "Exécution 2025 : +0,1 Md€ ; PLFSS 2027 : -0,3 Md€ révisé pour 2026 et -0,2 Md€ prévu en 2027."
+  - id: budget.secu.solde.toutes_branches
+    titre: "Solde de l'ensemble des régimes de base de la Sécurité sociale prévu en 2026"
+    explication: "Déficit total prévu des régimes obligatoires de base (hors transferts entre branches) : le « trou de la Sécu »."
+    type: nombre
+    unite: milliards_euros
+    bornes: [-80, 20]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: -19.4
+        sources: [jo-loi-2025-1403-lfss-2026, an-ta199-lfss-2026, an-plfss-2027-n3211]
+        article: "Loi n° 2025-1403, art. 47"
+    tags: [budget, securite_sociale, solde, deficit, total]
+    a_verifier: false
+    note: "Le Fonds de solidarité vieillesse n'a plus de recettes ni de dépenses à partir de 2026 (annexe de la LFSS). Exécution 2025 (régimes de base + FSV, annexe du PLFSS 2027) : -21,6 Md€. Le PLFSS 2027 révise le solde 2026 à -21,8 Md€ et prévoit -12,7 Md€ en 2027."
+  # ---------------------------------------------------------------- ONDAM
+  - id: budget.secu.ondam.total
+    titre: "Objectif national de dépenses d'assurance maladie (ONDAM) 2026"
+    explication: "Enveloppe de dépenses de santé remboursées (soins de ville, hôpital, établissements médico-sociaux) votée pour l'année."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 400]
+    valeurs:
+      - depuis: "2025-01-01"
+        valeur: 265.9
+        sources: [jo-loi-2025-1403-lfss-2026]
+        article: "Loi n° 2025-1403, art. 2 (ONDAM 2025 « demeure inchangé », sous-objectifs rectifiés)"
+      - depuis: "2026-01-01"
+        valeur: 274.4
+        sources: [jo-loi-2025-1403-lfss-2026, an-ta199-lfss-2026, cc-2025-899-dc, an-plfss-2027-n3211]
+        article: "Loi n° 2025-1403, art. 109 (déclaré conforme par la décision n° 2025-899 DC)"
+    tags: [budget, securite_sociale, sante, ondam]
+    a_verifier: false
+    note: "Le PLFSS 2027 propose de rectifier l'ONDAM 2026 à 273,3 Md€ (-1,1 Md€, évolution ramenée de 3,1 % à 2,8 %) et fixe 278,7 Md€ pour 2027 (+2,0 % à champ constant)."
+  - id: budget.secu.ondam.evolution
+    titre: "Progression de l'ONDAM en 2026 par rapport à 2025"
+    explication: "Taux de hausse de l'enveloppe des dépenses d'assurance maladie votée pour 2026."
+    type: nombre
+    unite: pourcent
+    bornes: [-5, 10]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 3.1
+        sources: [jo-loi-2025-1403-lfss-2026]
+        article: "Loi n° 2025-1403, annexe (rapport sur les prévisions 2026-2029)"
+    tags: [budget, securite_sociale, sante, ondam]
+    a_verifier: false
+    note: "L'ONDAM 2026 a été relevé de 3,9 Md€ par rapport au projet initial. Hypothèses de l'annexe : 3,6 % en 2025, 2,9 % par an de 2027 à 2029."
+  - id: budget.secu.ondam.soins_de_ville
+    titre: "ONDAM 2026 : sous-objectif soins de ville"
+    explication: "Remboursements des consultations, médicaments, analyses, indemnités journalières… hors hôpital."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 200]
+    valeurs:
+      - depuis: "2025-01-01"
+        valeur: 113.9
+        sources: [jo-loi-2025-1403-lfss-2026]
+        article: "Loi n° 2025-1403, art. 2"
+      - depuis: "2026-01-01"
+        valeur: 117.5
+        sources: [jo-loi-2025-1403-lfss-2026, an-plfss-2027-n3211]
+        article: "Loi n° 2025-1403, art. 109"
+    tags: [budget, securite_sociale, sante, ondam]
+    a_verifier: false
+    note: "PLFSS 2027 : 117,4 Md€ rectifiés pour 2026 ; 118,3 Md€ pour 2027."
+  - id: budget.secu.ondam.etablissements_sante
+    titre: "ONDAM 2026 : sous-objectif établissements de santé"
+    explication: "Financement des hôpitaux et cliniques par l'assurance maladie."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 200]
+    valeurs:
+      - depuis: "2025-01-01"
+        valeur: 109.7
+        sources: [jo-loi-2025-1403-lfss-2026]
+        article: "Loi n° 2025-1403, art. 2"
+      - depuis: "2026-01-01"
+        valeur: 112.8
+        sources: [jo-loi-2025-1403-lfss-2026, an-plfss-2027-n3211]
+        article: "Loi n° 2025-1403, art. 109"
+    tags: [budget, securite_sociale, sante, hopital, ondam]
+    a_verifier: false
+    note: "PLFSS 2027 : 112,6 Md€ rectifiés pour 2026 ; 116,0 Md€ pour 2027."
+  - id: budget.secu.ondam.etablissements_personnes_agees
+    titre: "ONDAM 2026 : sous-objectif établissements et services pour personnes âgées"
+    explication: "Part soins des EHPAD et services pour personnes âgées financée par l'assurance maladie."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 50]
+    valeurs:
+      - depuis: "2025-01-01"
+        valeur: 17.4
+        sources: [jo-loi-2025-1403-lfss-2026]
+        article: "Loi n° 2025-1403, art. 2"
+      - depuis: "2026-01-01"
+        valeur: 18.3
+        sources: [jo-loi-2025-1403-lfss-2026, an-plfss-2027-n3211]
+        article: "Loi n° 2025-1403, art. 109"
+    tags: [budget, securite_sociale, sante, autonomie, ondam]
+    a_verifier: false
+    note: "PLFSS 2027 : 18,2 Md€ rectifiés pour 2026 ; 18,8 Md€ pour 2027."
+  - id: budget.secu.ondam.etablissements_personnes_handicapees
+    titre: "ONDAM 2026 : sous-objectif établissements et services pour personnes handicapées"
+    explication: "Financement par l'assurance maladie des établissements et services accueillant des personnes handicapées."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 50]
+    valeurs:
+      - depuis: "2025-01-01"
+        valeur: 15.6
+        sources: [jo-loi-2025-1403-lfss-2026]
+        article: "Loi n° 2025-1403, art. 2"
+      - depuis: "2026-01-01"
+        valeur: 16.0
+        sources: [jo-loi-2025-1403-lfss-2026, an-plfss-2027-n3211]
+        article: "Loi n° 2025-1403, art. 109"
+    tags: [budget, securite_sociale, sante, handicap, ondam]
+    a_verifier: false
+    note: "PLFSS 2027 : 16,0 Md€ pour 2026 ; 16,3 Md€ pour 2027."
+  - id: budget.secu.ondam.fonds_intervention_regional
+    titre: "ONDAM 2026 : sous-objectif fonds d'intervention régional et soutien à l'investissement"
+    explication: "Crédits gérés par les agences régionales de santé et aides à l'investissement en santé."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 20]
+    valeurs:
+      - depuis: "2025-01-01"
+        valeur: 6.1
+        sources: [jo-loi-2025-1403-lfss-2026]
+        article: "Loi n° 2025-1403, art. 2"
+      - depuis: "2026-01-01"
+        valeur: 6.4
+        sources: [jo-loi-2025-1403-lfss-2026, an-plfss-2027-n3211]
+        article: "Loi n° 2025-1403, art. 109"
+    tags: [budget, securite_sociale, sante, ondam]
+    a_verifier: false
+    note: "PLFSS 2027 : 6,0 Md€ rectifiés pour 2026 ; 5,9 Md€ pour 2027."
+  - id: budget.secu.ondam.autres_prises_en_charge
+    titre: "ONDAM 2026 : sous-objectif autres prises en charge"
+    explication: "Autres dépenses de l'assurance maladie incluses dans l'ONDAM (soins des Français à l'étranger, dotations à divers organismes…)."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 20]
+    valeurs:
+      - depuis: "2025-01-01"
+        valeur: 3.1
+        sources: [jo-loi-2025-1403-lfss-2026]
+        article: "Loi n° 2025-1403, art. 2"
+      - depuis: "2026-01-01"
+        valeur: 3.3
+        sources: [jo-loi-2025-1403-lfss-2026, an-plfss-2027-n3211]
+        article: "Loi n° 2025-1403, art. 109"
+    tags: [budget, securite_sociale, sante, ondam]
+    a_verifier: false
+    note: "PLFSS 2027 : 3,3 Md€ pour 2026 ; 3,4 Md€ pour 2027."
+  # ---------------------------------------------------------------- Dette sociale, trésorerie, compensation
+  - id: budget.secu.cades.objectif_amortissement
+    titre: "Dette sociale : objectif de remboursement par la CADES en 2026"
+    explication: "Montant de dette sociale que la Caisse d'amortissement de la dette sociale doit rembourser dans l'année."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 40]
+    valeurs:
+      - depuis: "2025-01-01"
+        valeur: 16.2
+        sources: [jo-loi-2025-1403-lfss-2026]
+        article: "Loi n° 2025-1403, art. 1er, 4° (objectif 2025 rectifié)"
+      - depuis: "2026-01-01"
+        valeur: 16.4
+        sources: [jo-loi-2025-1403-lfss-2026, an-plfss-2027-n3211]
+        article: "Loi n° 2025-1403, art. 48, I"
+    tags: [budget, securite_sociale, dette]
+    a_verifier: false
+    note: "L'article 48 prévoit aussi le transfert par la CADES à l'ACOSS de 15 Md€ au plus, avant le 31 décembre 2026, pour couvrir des déficits passés. Le PLFSS 2027 rectifie l'objectif 2026 à 16 Md€."
+  - id: budget.secu.acoss.plafond_emprunt
+    titre: "Plafond d'emprunt à court terme de l'ACOSS (Urssaf Caisse nationale) en 2026"
+    explication: "Encours maximal que la caisse de trésorerie de la Sécurité sociale peut emprunter pour payer les prestations en attendant les recettes."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 150]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 83.0
+        sources: [jo-loi-2025-1403-lfss-2026]
+        article: "Loi n° 2025-1403, art. 49 (83 000 M€)"
+    tags: [budget, securite_sociale, tresorerie, dette]
+    a_verifier: false
+  - id: budget.secu.compensation_exonerations
+    titre: "Compensation par l'État des exonérations de cotisations sociales en 2026"
+    explication: "Montant que l'État rembourse à la Sécurité sociale au titre des exonérations et réductions de cotisations qu'il décide."
+    type: nombre
+    unite: milliards_euros
+    bornes: [0, 50]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 9.1
+        sources: [jo-loi-2025-1403-lfss-2026]
+        article: "Loi n° 2025-1403, art. 46"
+    tags: [budget, securite_sociale, exonerations]
+    a_verifier: false
+  - id: budget.secu.asso.solde_pct_pib
+    titre: "Solde des administrations de sécurité sociale prévu pour 2026 (% du PIB, comptabilité nationale)"
+    explication: "Excédent ou déficit de l'ensemble des organismes de sécurité sociale (y compris CADES, assurance chômage, retraites complémentaires) selon la comptabilité nationale."
+    type: nombre
+    unite: pourcent_pib
+    bornes: [-5, 5]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 0.1
+        sources: [jo-loi-2025-1403-lfss-2026, an-plfss-2027-n3211]
+        article: "Loi n° 2025-1403, article liminaire (recettes 26,9 % du PIB, dépenses 26,8 %)"
+    tags: [budget, securite_sociale, apu, solde]
+    a_verifier: false
+    note: "Champ plus large que les régimes de base (d'où un signe différent du « trou de la Sécu »). Le PLFSS 2027 révise ce solde à -0,1 % du PIB pour 2026 et prévoit +0,2 % en 2027."

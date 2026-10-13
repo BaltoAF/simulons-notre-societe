@@ -1,0 +1,129 @@
+domaine: environnement_energie
+theme: "Objectifs climatiques et programmation énergétique"
+regles:
+  - id: environnement_energie.climat.annee_neutralite_carbone
+    titre: "Année d'atteinte de la neutralité carbone inscrite dans la loi"
+    explication: "Année à laquelle la France doit atteindre la neutralité carbone, c'est-à-dire ne pas émettre plus de gaz à effet de serre que ce que ses puits (forêts, sols, technologies) absorbent."
+    type: nombre
+    unite: annee
+    bornes: [2040, 2070]
+    valeurs:
+      - depuis: "2019-11-08"
+        valeur: 2050
+        sources: [vp-loi-energie-climat-2019, mte-snbc]
+        article: "Code de l'énergie, art. L100-4 (rédaction issue de la loi du 8 novembre 2019 relative à l'énergie et au climat)"
+    tags: [climat, neutralite_carbone, objectif]
+    a_verifier: false
+    note: "La loi énergie-climat inscrit dans le code de l'énergie « l'objectif d'une neutralité carbone en 2050, en divisant les émissions de gaz à effet de serre par six au moins » (vie-publique). Engagement politique pris dès 2017 (ministère)."
+
+  - id: environnement_energie.climat.objectif_legal_reduction_ges_2030
+    titre: "Objectif légal de réduction des émissions de gaz à effet de serre en 2030 (par rapport à 1990)"
+    explication: "Baisse des émissions nationales de gaz à effet de serre entre 1990 et 2030 fixée par la loi de transition énergétique de 2015."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2015-08-17"
+        valeur: 40
+        sources: [mte-ltecv]
+        article: "Code de l'énergie, art. L100-4 (loi du 17 août 2015 relative à la transition énergétique pour la croissance verte)"
+    tags: [climat, objectif, emissions]
+    a_verifier: true
+    note: "Objectif lu sur la page ministérielle de la LTECV (mise à jour le 26/06/2025). La rédaction en vigueur de l'article L100-4 n'a pas pu être consultée (Légifrance inaccessible) : un relèvement législatif postérieur n'est pas exclu. La SNBC 3 vise, elle, -50 % en 2030 (voir règle dédiée)."
+
+  - id: environnement_energie.climat.objectif_snbc3_reduction_emissions_2030
+    titre: "Objectif de la 3e stratégie nationale bas-carbone : baisse des émissions territoriales en 2030 (par rapport à 1990)"
+    explication: "La SNBC 3 vise à réduire de moitié les émissions territoriales brutes (hors puits de carbone) entre 1990 et 2030."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2026-07-01"
+        valeur: 50
+        sources: [mte-snbc, mte-suivi-snbc-secten-2026]
+    tags: [climat, snbc, objectif, emissions]
+    a_verifier: false
+    note: "Objectif stratégique n° 1 de la SNBC 3 (page ministérielle publiée le 01/07/2026, mise à jour le 15/09/2026) ; trajectoire projetée : 276 Mt CO2e hors puits en 2030. Le texte d'adoption de la SNBC 3 (décret) n'a pas été consulté ; date « depuis » = date de publication de la page."
+
+  - id: environnement_energie.energie.objectif_reduction_consommation_fossiles_2030
+    titre: "Objectif légal de baisse de la consommation d'énergies fossiles en 2030 (par rapport à 2012)"
+    explication: "Réduction de la consommation primaire d'énergies fossiles visée par la loi énergie-climat de 2019 (contre 30 % auparavant)."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2015-08-17"
+        valeur: 30
+        sources: [mte-ltecv]
+        article: "Code de l'énergie, art. L100-4 (LTECV 2015)"
+      - depuis: "2019-11-08"
+        valeur: 40
+        sources: [vp-loi-energie-climat-2019]
+        article: "Code de l'énergie, art. L100-4 (loi du 8 novembre 2019 relative à l'énergie et au climat)"
+    tags: [energie, fossiles, objectif]
+    a_verifier: false
+    note: "« la réduction de 40 % de la consommation d'énergies fossiles - par rapport à 2012 - d'ici 2030 (contre 30 % précédemment) » (vie-publique)."
+
+  - id: environnement_energie.nucleaire.objectif_reduction_part_a_50_pourcent
+    titre: "Objectif légal de réduire à 50 % la part du nucléaire dans la production d'électricité"
+    explication: "Indique si la loi impose encore de ramener la part du nucléaire à 50 % de la production d'électricité. Cet objectif (2025 puis 2035) a été supprimé en 2023."
+    type: booleen
+    unite: ""
+    valeurs:
+      - depuis: "2015-08-17"
+        valeur: true
+        sources: [mte-ltecv, vp-loi-acceleration-nucleaire-2023]
+        article: "Code de l'énergie, art. L100-4 (LTECV : 50 % à l'horizon 2025)"
+      - depuis: "2019-11-08"
+        valeur: true
+        sources: [vp-loi-acceleration-nucleaire-2023]
+        article: "Loi du 8 novembre 2019 relative à l'énergie et au climat (échéance reportée à 2035)"
+      - depuis: "2023-06-22"
+        valeur: false
+        sources: [vp-loi-acceleration-nucleaire-2023]
+        article: "Loi n° 2023-491 du 22 juin 2023 relative à l'accélération des procédures liées à la construction de nouvelles installations nucléaires"
+    tags: [nucleaire, mix_electrique, objectif]
+    a_verifier: false
+    note: "La loi du 22 juin 2023 supprime « l'objectif de réduction à 50 % de la part du nucléaire dans le mix électrique à l'horizon 2035, de même que le plafonnement de la capacité de production nucléaire à 63,2 gigawatts » (vie-publique). Date « depuis » = date de la loi (date d'entrée en vigueur exacte non vérifiée)."
+
+  - id: environnement_energie.nucleaire.plafond_capacite_installee
+    titre: "Plafond légal de capacité de production nucléaire"
+    explication: "Puissance nucléaire installée maximale autorisée par la loi. Le plafond de 63,2 GW a été supprimé en 2023."
+    type: booleen
+    unite: ""
+    valeurs:
+      - depuis: "2023-06-22"
+        valeur: false
+        sources: [vp-loi-acceleration-nucleaire-2023]
+        article: "Loi n° 2023-491 du 22 juin 2023"
+    tags: [nucleaire, objectif]
+    a_verifier: false
+    note: "Valeur false = aucun plafond en vigueur (l'ancien plafond était de 63,2 GW, date d'instauration non vérifiée)."
+
+  - id: environnement_energie.ppe3.production_nucleaire_visee
+    titre: "PPE 3 : niveau de production nucléaire visé"
+    explication: "Production annuelle d'électricité nucléaire visée par la 3e programmation pluriannuelle de l'énergie (2026-2035), grâce au redressement du parc existant et au programme de nouveaux réacteurs EPR2."
+    type: nombre
+    unite: twh_par_an
+    bornes: [200, 500]
+    valeurs:
+      - depuis: "2026-02-13"
+        valeur: 380
+        sources: [minefi-ppe3, mte-ppe]
+    tags: [nucleaire, ppe, programmation]
+    a_verifier: false
+    note: "PPE 3 publiée par le Gouvernement le 13 février 2026, couvrant 2026-2035 (pas de loi de programmation : le texte réglementaire d'adoption n'a pas été consulté)."
+
+  - id: environnement_energie.ppe3.eolien_en_mer_2035
+    titre: "PPE 3 : puissance éolienne en mer visée en 2035"
+    explication: "Puissance d'éoliennes en mer à mettre en service d'ici 2035 selon la PPE 3."
+    type: nombre
+    unite: gw
+    bornes: [0, 60]
+    valeurs:
+      - depuis: "2026-02-13"
+        valeur: 15
+        sources: [minefi-ppe3]
+    tags: [renouvelables, eolien, ppe, programmation]
+    a_verifier: false
+    note: "Autres orientations PPE 3 : éolien terrestre +1,3 GW/an, photovoltaïque multiplié par 3 d'ici 2035, hydroélectricité +2,8 GW, jusqu'à 8 GW d'électrolyseurs en 2035 (economie.gouv.fr)."

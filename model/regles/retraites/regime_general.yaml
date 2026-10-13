@@ -1,0 +1,940 @@
+# Retraite des salariés du privé (régime général de base + Agirc-Arrco) : règles en vigueur au 13 octobre 2026.
+#
+# ÉTAT DE LA RÉFORME DE 2023 AU 13/10/2026
+# - La réforme de 2023 (loi n° 2023-270 du 14 avril 2023, art. 10) relève l'âge légal de 62 à 64 ans et accélère
+#   la hausse de la durée d'assurance (172 trimestres), pour les pensions prenant effet depuis le 1er septembre 2023.
+# - La LFSS 2026 (loi n° 2025-1403 du 30 décembre 2025, art. 105) « suspend » sa montée en charge : la génération 1964
+#   et les assurés nés du 1er janvier au 31 mars 1965 restent à 62 ans et 9 mois / 170 trimestres, puis la hausse reprend
+#   (3 mois par génération) avec un trimestre de décalage. L'âge de 64 ans est atteint pour la génération 1969 (au lieu
+#   de 1968) et la durée de 172 trimestres pour la génération 1966 (au lieu de 1965).
+# - Applicable aux pensions prenant effet à compter du 1er septembre 2026 (décrets n° 2026-344 et 2026-345 du 7 mai 2026,
+#   JO du 8 mai 2026). Les pensions liquidées avant cette date restent aux paramètres de 2023.
+# - Les âges sont exprimés en années décimales : 62,25 = 62 ans et 3 mois ; 62,75 = 62 ans et 9 mois.
+#
+# Convention : pour les générations dont les paramètres n'ont pas changé en 2023, « depuis » = 1er septembre 2023
+# lorsque la seule source lue est la circulaire Cnav 2024-25 (qui confirme la valeur pour les pensions prenant effet
+# depuis cette date) ; la règle est plus ancienne (réformes de 2010 et 2014). C'est signalé dans la note.
+domaine: retraites
+theme: "Régime général et retraite complémentaire des salariés"
+regles:
+  # ───────── Réforme 2023 : état de la suspension ─────────
+  - id: retraites.reforme_2023.suspension_en_vigueur
+    titre: "Suspension de la montée en charge de la réforme des retraites de 2023"
+    explication: "Depuis le 1er septembre 2026, la hausse de l'âge légal et de la durée de cotisation prévue en 2023 est décalée d'un trimestre : les personnes nées en 1964 et début 1965 peuvent partir à 62 ans et 9 mois avec 170 trimestres."
+    type: booleen
+    unite: ""
+    valeurs:
+      - depuis: "2026-09-01"
+        valeur: true
+        sources: [cor-ra-2026-ch2, an-qe-15271, sp-f35063, lar-age-depart]
+        article: "Loi n° 2025-1403 du 30 décembre 2025 (LFSS 2026), art. 105 ; décrets n° 2026-344 et 2026-345 du 7 mai 2026"
+    tags: [reforme_2023, age_legal, duree_assurance]
+    a_verifier: false
+    note: "La suspension ne supprime pas la réforme : elle décale son calendrier. Elle concerne aussi les fonctionnaires (catégories sédentaires et actives) et les départs anticipés pour incapacité permanente, et aménage la carrière longue. Selon la Cnav (circulaire de mars 2026 citée par la presse), un nouveau texte doit fixer les règles applicables après 2027 ; non vérifié ici."
+
+  # ───────── Âge légal d'ouverture des droits, par génération ─────────
+  - id: retraites.age_legal.generation_1955_aout_1961
+    titre: "Âge légal de départ : nés du 1er janvier 1955 au 31 août 1961"
+    explication: "Âge minimum à partir duquel on peut demander sa retraite (hors départs anticipés) pour les personnes nées entre 1955 et août 1961."
+    type: nombre
+    unite: ans
+    bornes: [55, 70]
+    valeurs:
+      - depuis: "2023-09-01"
+        valeur: 62
+        sources: [cnav-circ-2024-25, cor-ra-2026-ch2, sp-f35063]
+        article: "Code de la sécurité sociale, art. L161-17-2"
+    tags: [age_legal, generation]
+    a_verifier: false
+    note: "La réforme de 2023 ne s'applique pas à ces générations : « L'âge légal de 62 ans reste opposable aux assurés nés entre le 1er janvier 1955 et le 31 août 1961 » (Cnav). Les 62 ans datent de la réforme de 2010."
+
+  - id: retraites.age_legal.generation_sept_dec_1961
+    titre: "Âge légal de départ : nés du 1er septembre au 31 décembre 1961"
+    explication: "Première génération concernée par la réforme de 2023 : âge minimum de 62 ans et 3 mois."
+    type: nombre
+    unite: ans
+    bornes: [55, 70]
+    valeurs:
+      - depuis: "2023-09-01"
+        valeur: 62.25
+        sources: [cnav-circ-2024-25, cor-ra-2026-ch2, sp-f35063]
+        article: "CSS, art. L161-17-2 ; loi n° 2023-270 du 14 avril 2023, art. 10"
+    tags: [age_legal, generation, reforme_2023]
+    a_verifier: false
+    note: "Avant la réforme de 2023 : 62 ans (COR, tableau 1.4). Non modifié par la suspension."
+
+  - id: retraites.age_legal.generation_1962
+    titre: "Âge légal de départ : nés en 1962"
+    explication: "Âge minimum de départ à la retraite pour les personnes nées en 1962 : 62 ans et 6 mois."
+    type: nombre
+    unite: ans
+    bornes: [55, 70]
+    valeurs:
+      - depuis: "2023-09-01"
+        valeur: 62.5
+        sources: [cnav-circ-2024-25, cor-ra-2026-ch2, sp-f35063]
+        article: "CSS, art. L161-17-2 ; loi n° 2023-270, art. 10"
+    tags: [age_legal, generation, reforme_2023]
+    a_verifier: false
+    note: "Avant la réforme de 2023 : 62 ans. Non modifié par la suspension."
+
+  - id: retraites.age_legal.generation_1963
+    titre: "Âge légal de départ : nés en 1963"
+    explication: "Âge minimum de départ à la retraite pour les personnes nées en 1963 : 62 ans et 9 mois."
+    type: nombre
+    unite: ans
+    bornes: [55, 70]
+    valeurs:
+      - depuis: "2023-09-01"
+        valeur: 62.75
+        sources: [cnav-circ-2024-25, cor-ra-2026-ch2, sp-f14043]
+        article: "CSS, art. L161-17-2 ; loi n° 2023-270, art. 10"
+    tags: [age_legal, generation, reforme_2023]
+    a_verifier: false
+    note: "Avant la réforme de 2023 : 62 ans. Non modifié par la suspension."
+
+  - id: retraites.age_legal.generation_1964
+    titre: "Âge légal de départ : nés en 1964"
+    explication: "Grâce à la suspension de la réforme, les personnes nées en 1964 peuvent partir dès 62 ans et 9 mois (au lieu de 63 ans), pour une retraite prenant effet à partir du 1er septembre 2026."
+    type: nombre
+    unite: ans
+    bornes: [55, 70]
+    valeurs:
+      - depuis: "2023-09-01"
+        valeur: 63
+        sources: [cnav-circ-2024-25, cor-ra-2026-ch2, lar-age-depart]
+        article: "CSS, art. L161-17-2 ; loi n° 2023-270, art. 10"
+      - depuis: "2026-09-01"
+        valeur: 62.75
+        sources: [cor-ra-2026-ch2, sp-f14043, sp-f35063, lar-age-depart, unedic-regl-actu-1er-septembre-2026]
+        article: "Loi n° 2025-1403 (LFSS 2026), art. 105 ; décret n° 2026-345 du 7 mai 2026"
+    tags: [age_legal, generation, reforme_2023, suspension]
+    a_verifier: false
+    note: "Avant la réforme de 2023 : 62 ans."
+
+  - id: retraites.age_legal.generation_janv_mars_1965
+    titre: "Âge légal de départ : nés du 1er janvier au 31 mars 1965"
+    explication: "Les personnes nées au 1er trimestre 1965 peuvent partir à 62 ans et 9 mois (au lieu de 63 ans et 3 mois) pour une retraite prenant effet à partir du 1er septembre 2026."
+    type: nombre
+    unite: ans
+    bornes: [55, 70]
+    valeurs:
+      - depuis: "2023-09-01"
+        valeur: 63.25
+        sources: [cnav-circ-2024-25, cor-ra-2026-ch2, lar-age-depart]
+        article: "CSS, art. L161-17-2 ; loi n° 2023-270, art. 10"
+      - depuis: "2026-09-01"
+        valeur: 62.75
+        sources: [cor-ra-2026-ch2, sp-f14043, sp-f35063, lar-age-depart]
+        article: "Loi n° 2025-1403 (LFSS 2026), art. 105 ; décret n° 2026-345 du 7 mai 2026"
+    tags: [age_legal, generation, reforme_2023, suspension]
+    a_verifier: false
+    note: "Avant la réforme de 2023 : 62 ans."
+
+  - id: retraites.age_legal.generation_avril_dec_1965
+    titre: "Âge légal de départ : nés du 1er avril au 31 décembre 1965"
+    explication: "Pour les personnes nées d'avril à décembre 1965, l'âge minimum est de 63 ans (au lieu de 63 ans et 3 mois) pour une retraite prenant effet à partir du 1er septembre 2026."
+    type: nombre
+    unite: ans
+    bornes: [55, 70]
+    valeurs:
+      - depuis: "2023-09-01"
+        valeur: 63.25
+        sources: [cnav-circ-2024-25, cor-ra-2026-ch2, lar-age-depart]
+        article: "CSS, art. L161-17-2 ; loi n° 2023-270, art. 10"
+      - depuis: "2026-09-01"
+        valeur: 63
+        sources: [cor-ra-2026-ch2, sp-f14043, sp-f35063, lar-age-depart]
+        article: "Loi n° 2025-1403 (LFSS 2026), art. 105 ; décret n° 2026-345 du 7 mai 2026"
+    tags: [age_legal, generation, reforme_2023, suspension]
+    a_verifier: false
+    note: "Avant la réforme de 2023 : 62 ans."
+
+  - id: retraites.age_legal.generation_1966
+    titre: "Âge légal de départ : nés en 1966"
+    explication: "Âge minimum de départ pour les personnes nées en 1966 : 63 ans et 3 mois (au lieu de 63 ans et 6 mois avant la suspension)."
+    type: nombre
+    unite: ans
+    bornes: [55, 70]
+    valeurs:
+      - depuis: "2023-09-01"
+        valeur: 63.5
+        sources: [cnav-circ-2024-25, cor-ra-2026-ch2, lar-age-depart]
+        article: "CSS, art. L161-17-2 ; loi n° 2023-270, art. 10"
+      - depuis: "2026-09-01"
+        valeur: 63.25
+        sources: [cor-ra-2026-ch2, sp-f14043, sp-f35063, lar-age-depart]
+        article: "Loi n° 2025-1403 (LFSS 2026), art. 105"
+    tags: [age_legal, generation, reforme_2023, suspension]
+    a_verifier: false
+    note: "Avant la réforme de 2023 : 62 ans."
+
+  - id: retraites.age_legal.generation_1967
+    titre: "Âge légal de départ : nés en 1967"
+    explication: "Âge minimum de départ pour les personnes nées en 1967 : 63 ans et 6 mois (au lieu de 63 ans et 9 mois avant la suspension)."
+    type: nombre
+    unite: ans
+    bornes: [55, 70]
+    valeurs:
+      - depuis: "2023-09-01"
+        valeur: 63.75
+        sources: [cnav-circ-2024-25, cor-ra-2026-ch2, lar-age-depart]
+        article: "CSS, art. L161-17-2 ; loi n° 2023-270, art. 10"
+      - depuis: "2026-09-01"
+        valeur: 63.5
+        sources: [cor-ra-2026-ch2, sp-f14043, sp-f35063, lar-age-depart]
+        article: "Loi n° 2025-1403 (LFSS 2026), art. 105"
+    tags: [age_legal, generation, reforme_2023, suspension]
+    a_verifier: false
+    note: "Avant la réforme de 2023 : 62 ans."
+
+  - id: retraites.age_legal.generation_1968
+    titre: "Âge légal de départ : nés en 1968"
+    explication: "Âge minimum de départ pour les personnes nées en 1968 : 63 ans et 9 mois (au lieu de 64 ans avant la suspension)."
+    type: nombre
+    unite: ans
+    bornes: [55, 70]
+    valeurs:
+      - depuis: "2023-09-01"
+        valeur: 64
+        sources: [cnav-circ-2024-25, cor-ra-2026-ch2, lar-age-depart]
+        article: "CSS, art. L161-17-2 ; loi n° 2023-270, art. 10"
+      - depuis: "2026-09-01"
+        valeur: 63.75
+        sources: [cor-ra-2026-ch2, sp-f14043, sp-f35063, lar-age-depart]
+        article: "Loi n° 2025-1403 (LFSS 2026), art. 105"
+    tags: [age_legal, generation, reforme_2023, suspension]
+    a_verifier: false
+    note: "Avant la réforme de 2023 : 62 ans."
+
+  - id: retraites.age_legal.generation_1969_et_apres
+    titre: "Âge légal de départ : nés à partir de 1969"
+    explication: "À partir de la génération 1969, l'âge minimum de départ à la retraite est de 64 ans."
+    type: nombre
+    unite: ans
+    bornes: [55, 70]
+    valeurs:
+      - depuis: "2023-09-01"
+        valeur: 64
+        sources: [cnav-circ-2024-25, cor-ra-2026-ch2, sp-f14043, sp-f35063]
+        article: "CSS, art. L161-17-2 ; loi n° 2023-270, art. 10"
+    tags: [age_legal, generation, reforme_2023]
+    a_verifier: false
+    note: "Avant la réforme de 2023 : 62 ans. Inchangé par la suspension (qui reporte seulement d'une génération l'arrivée à 64 ans, désormais atteinte en 1969)."
+
+  # ───────── Durée d'assurance requise pour le taux plein, par génération ─────────
+  - id: retraites.duree_assurance.generation_1955_1957
+    titre: "Trimestres requis pour le taux plein : nés de 1955 à 1957"
+    explication: "Nombre de trimestres de cotisation (ou assimilés) nécessaires pour une retraite sans décote avant 67 ans, pour les personnes nées entre 1955 et 1957."
+    type: nombre
+    unite: trimestres
+    bornes: [120, 200]
+    valeurs:
+      - depuis: "2014-01-22"
+        valeur: 166
+        sources: [cnav-circ-2014-20]
+        article: "Durées fixées par décrets annuels (loi n° 2010-1330, art. 17)"
+    tags: [duree_assurance, generation]
+    a_verifier: true
+    note: "Valeur de 166 trimestres NON lue sur une source : la circulaire Cnav 2014-20 indique seulement que les durées des générations 1953-1957 ont été fixées chaque année par décret (circulaires Cnav 2011-20, 2011-66, 2013-14, 2013-57). Date « depuis » indicative."
+
+  - id: retraites.duree_assurance.generation_1958_1960
+    titre: "Trimestres requis pour le taux plein : nés de 1958 à 1960"
+    explication: "167 trimestres (41 ans et 9 mois) sont nécessaires pour une retraite sans décote avant 67 ans."
+    type: nombre
+    unite: trimestres
+    bornes: [120, 200]
+    valeurs:
+      - depuis: "2014-01-22"
+        valeur: 167
+        sources: [cnav-circ-2014-20, cnav-circ-2024-25, sp-f35063]
+        article: "CSS, art. L161-17-3 (loi n° 2014-40 du 20 janvier 2014, art. 2)"
+    tags: [duree_assurance, generation]
+    a_verifier: false
+    note: "Non modifié par la réforme de 2023 ni par la suspension."
+
+  - id: retraites.duree_assurance.generation_janv_aout_1961
+    titre: "Trimestres requis pour le taux plein : nés du 1er janvier au 31 août 1961"
+    explication: "168 trimestres (42 ans) sont nécessaires pour une retraite sans décote avant 67 ans."
+    type: nombre
+    unite: trimestres
+    bornes: [120, 200]
+    valeurs:
+      - depuis: "2014-01-22"
+        valeur: 168
+        sources: [cnav-circ-2014-20, cnav-circ-2024-25, sp-f35063]
+        article: "CSS, art. L161-17-3"
+    tags: [duree_assurance, generation]
+    a_verifier: false
+
+  - id: retraites.duree_assurance.generation_sept_dec_1961
+    titre: "Trimestres requis pour le taux plein : nés du 1er septembre au 31 décembre 1961"
+    explication: "169 trimestres (42 ans et 3 mois) sont nécessaires pour une retraite sans décote avant 67 ans."
+    type: nombre
+    unite: trimestres
+    bornes: [120, 200]
+    valeurs:
+      - depuis: "2014-01-22"
+        valeur: 168
+        sources: [cnav-circ-2014-20]
+        article: "CSS, art. L161-17-3 (loi n° 2014-40)"
+      - depuis: "2023-09-01"
+        valeur: 169
+        sources: [cnav-circ-2024-25, cor-ra-2026-ch2, sp-f35063]
+        article: "CSS, art. L161-17-3 ; loi n° 2023-270, art. 10"
+    tags: [duree_assurance, generation, reforme_2023]
+    a_verifier: false
+
+  - id: retraites.duree_assurance.generation_1962
+    titre: "Trimestres requis pour le taux plein : nés en 1962"
+    explication: "169 trimestres (42 ans et 3 mois) sont nécessaires pour une retraite sans décote avant 67 ans."
+    type: nombre
+    unite: trimestres
+    bornes: [120, 200]
+    valeurs:
+      - depuis: "2014-01-22"
+        valeur: 168
+        sources: [cnav-circ-2014-20]
+        article: "CSS, art. L161-17-3 (loi n° 2014-40)"
+      - depuis: "2023-09-01"
+        valeur: 169
+        sources: [cnav-circ-2024-25, cor-ra-2026-ch2, sp-f35063]
+        article: "CSS, art. L161-17-3 ; loi n° 2023-270, art. 10"
+    tags: [duree_assurance, generation, reforme_2023]
+    a_verifier: false
+
+  - id: retraites.duree_assurance.generation_1963
+    titre: "Trimestres requis pour le taux plein : nés en 1963"
+    explication: "170 trimestres (42 ans et 6 mois) sont nécessaires pour une retraite sans décote avant 67 ans."
+    type: nombre
+    unite: trimestres
+    bornes: [120, 200]
+    valeurs:
+      - depuis: "2014-01-22"
+        valeur: 168
+        sources: [cnav-circ-2014-20]
+        article: "CSS, art. L161-17-3 (loi n° 2014-40)"
+      - depuis: "2023-09-01"
+        valeur: 170
+        sources: [cnav-circ-2024-25, cor-ra-2026-ch2, sp-f35063]
+        article: "CSS, art. L161-17-3 ; loi n° 2023-270, art. 10"
+    tags: [duree_assurance, generation, reforme_2023]
+    a_verifier: false
+
+  - id: retraites.duree_assurance.generation_1964
+    titre: "Trimestres requis pour le taux plein : nés en 1964"
+    explication: "Avec la suspension de la réforme, il faut 170 trimestres (au lieu de 171) pour une retraite prenant effet à partir du 1er septembre 2026."
+    type: nombre
+    unite: trimestres
+    bornes: [120, 200]
+    valeurs:
+      - depuis: "2014-01-22"
+        valeur: 169
+        sources: [cnav-circ-2014-20]
+        article: "CSS, art. L161-17-3 (loi n° 2014-40)"
+      - depuis: "2023-09-01"
+        valeur: 171
+        sources: [cnav-circ-2024-25, cor-ra-2026-ch2, lar-age-depart]
+        article: "CSS, art. L161-17-3 ; loi n° 2023-270, art. 10"
+      - depuis: "2026-09-01"
+        valeur: 170
+        sources: [cor-ra-2026-ch2, sp-f35063, lar-age-depart, lar-montant-retraite]
+        article: "Loi n° 2025-1403 (LFSS 2026), art. 105 ; décret n° 2026-345 du 7 mai 2026"
+    tags: [duree_assurance, generation, reforme_2023, suspension]
+    a_verifier: false
+
+  - id: retraites.duree_assurance.generation_janv_mars_1965
+    titre: "Trimestres requis pour le taux plein : nés du 1er janvier au 31 mars 1965"
+    explication: "Avec la suspension, il faut 170 trimestres (au lieu de 172) pour une retraite prenant effet à partir du 1er septembre 2026."
+    type: nombre
+    unite: trimestres
+    bornes: [120, 200]
+    valeurs:
+      - depuis: "2014-01-22"
+        valeur: 169
+        sources: [cnav-circ-2014-20]
+        article: "CSS, art. L161-17-3 (loi n° 2014-40)"
+      - depuis: "2023-09-01"
+        valeur: 172
+        sources: [cnav-circ-2024-25, cor-ra-2026-ch2, lar-age-depart]
+        article: "CSS, art. L161-17-3 ; loi n° 2023-270, art. 10"
+      - depuis: "2026-09-01"
+        valeur: 170
+        sources: [cor-ra-2026-ch2, sp-f35063, lar-age-depart, lar-montant-retraite]
+        article: "Loi n° 2025-1403 (LFSS 2026), art. 105"
+    tags: [duree_assurance, generation, reforme_2023, suspension]
+    a_verifier: false
+
+  - id: retraites.duree_assurance.generation_avril_dec_1965
+    titre: "Trimestres requis pour le taux plein : nés du 1er avril au 31 décembre 1965"
+    explication: "Avec la suspension, il faut 171 trimestres (au lieu de 172) pour une retraite prenant effet à partir du 1er septembre 2026."
+    type: nombre
+    unite: trimestres
+    bornes: [120, 200]
+    valeurs:
+      - depuis: "2014-01-22"
+        valeur: 169
+        sources: [cnav-circ-2014-20]
+        article: "CSS, art. L161-17-3 (loi n° 2014-40)"
+      - depuis: "2023-09-01"
+        valeur: 172
+        sources: [cnav-circ-2024-25, cor-ra-2026-ch2, lar-age-depart]
+        article: "CSS, art. L161-17-3 ; loi n° 2023-270, art. 10"
+      - depuis: "2026-09-01"
+        valeur: 171
+        sources: [cor-ra-2026-ch2, sp-f35063, lar-age-depart, lar-montant-retraite]
+        article: "Loi n° 2025-1403 (LFSS 2026), art. 105"
+    tags: [duree_assurance, generation, reforme_2023, suspension]
+    a_verifier: false
+
+  - id: retraites.duree_assurance.generation_1966_et_apres
+    titre: "Trimestres requis pour le taux plein : nés à partir de 1966"
+    explication: "À partir de la génération 1966, il faut 172 trimestres (43 ans) pour une retraite sans décote avant 67 ans."
+    type: nombre
+    unite: trimestres
+    bornes: [120, 200]
+    valeurs:
+      - depuis: "2023-09-01"
+        valeur: 172
+        sources: [cnav-circ-2024-25, cor-ra-2026-ch2, sp-f35063, lar-age-depart]
+        article: "CSS, art. L161-17-3 ; loi n° 2023-270, art. 10"
+    tags: [duree_assurance, generation, reforme_2023]
+    a_verifier: false
+    note: "Avant la réforme de 2023 (loi de 2014) : 169 pour 1966, 170 pour 1967-1969, 171 pour 1970-1972, 172 à partir de 1973 (circulaire Cnav 2014-20). La suspension n'a pas modifié ces générations."
+
+  # ───────── Taux plein, décote, surcote ─────────
+  - id: retraites.taux_plein.age_automatique
+    titre: "Âge du taux plein automatique (annulation de la décote)"
+    explication: "À partir de 67 ans, on a droit à une retraite sans décote, quel que soit le nombre de trimestres (générations nées à partir de 1955)."
+    type: nombre
+    unite: ans
+    bornes: [60, 72]
+    valeurs:
+      - depuis: "2023-09-01"
+        valeur: 67
+        sources: [cnav-circ-2024-25, lar-age-depart, sp-f35063]
+        article: "Code de la sécurité sociale, art. L351-8, 1°"
+    tags: [taux_plein, decote]
+    a_verifier: false
+    note: "67 ans depuis la génération 1955 (réforme de 2010), maintenu par la réforme de 2023 et non modifié par la suspension. Date « depuis » conventionnelle (voir en-tête)."
+
+  - id: retraites.taux_plein.taux
+    titre: "Taux plein de la retraite de base du régime général"
+    explication: "Avec tous ses trimestres (ou à 67 ans), la retraite de base vaut 50 % du salaire annuel moyen, avant proratisation."
+    type: nombre
+    unite: pourcent
+    bornes: [30, 75]
+    valeurs:
+      - depuis: "2023-09-01"
+        valeur: 50
+        sources: [sp-f21552, sp-f19666, lar-montant-retraite]
+        article: "Code de la sécurité sociale, art. L351-1 et R351-27"
+    tags: [taux_plein, calcul_pension]
+    a_verifier: false
+    note: "Date « depuis » conventionnelle ; le taux de 50 % est bien plus ancien."
+
+  - id: retraites.decote.points_par_trimestre_manquant
+    titre: "Décote : baisse du taux par trimestre manquant"
+    explication: "Si l'on part avant 67 ans sans tous ses trimestres, le taux de 50 % est diminué de 0,625 point par trimestre manquant (soit 1,25 % de la pension)."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 3]
+    valeurs:
+      - depuis: "2023-09-01"
+        valeur: 0.625
+        sources: [sp-f19666, sp-f21552]
+        article: "Code de la sécurité sociale, art. R351-27"
+    tags: [decote]
+    a_verifier: false
+    note: "En points de taux : 1 trimestre manquant fait passer le taux de 50 % à 49,375 % (service-public.gouv.fr). Date « depuis » conventionnelle (valeur plus ancienne)."
+
+  - id: retraites.decote.trimestres_maximum
+    titre: "Décote : nombre maximal de trimestres pris en compte"
+    explication: "La décote est plafonnée à 20 trimestres manquants : le taux de la retraite de base ne descend jamais sous 37,5 %."
+    type: nombre
+    unite: trimestres
+    bornes: [0, 40]
+    valeurs:
+      - depuis: "2023-09-01"
+        valeur: 20
+        sources: [sp-f19666, sp-f21552]
+        article: "Code de la sécurité sociale, art. R351-27"
+    tags: [decote]
+    a_verifier: false
+    note: "Date « depuis » conventionnelle (valeur plus ancienne)."
+
+  - id: retraites.surcote.pourcentage_par_trimestre
+    titre: "Surcote : majoration de la pension par trimestre supplémentaire"
+    explication: "Chaque trimestre entier travaillé après l'âge légal et au-delà de la durée requise augmente la retraite de base de 1,25 %."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 5]
+    valeurs:
+      - depuis: "2023-09-01"
+        valeur: 1.25
+        sources: [sp-f19643]
+        article: "Code de la sécurité sociale, art. L351-1-2 et D351-1-4"
+    tags: [surcote]
+    a_verifier: false
+    note: "Date « depuis » conventionnelle (valeur plus ancienne)."
+
+  # ───────── Calcul de la pension ─────────
+  - id: retraites.salaire_annuel_moyen.nombre_annees
+    titre: "Nombre de meilleures années retenues pour le salaire annuel moyen"
+    explication: "La retraite de base est calculée sur la moyenne des 25 meilleures années de salaire (revalorisées et plafonnées au plafond de la Sécurité sociale)."
+    type: nombre
+    unite: ans
+    bornes: [10, 45]
+    valeurs:
+      - depuis: "2023-09-01"
+        valeur: 25
+        sources: [sp-f21552, lar-montant-retraite]
+        article: "Code de la sécurité sociale, art. R351-29"
+    tags: [calcul_pension, salaire_annuel_moyen]
+    a_verifier: false
+    note: "25 ans pour les générations nées depuis 1948 (réforme de 1993). Date « depuis » conventionnelle. Exception pour les parents depuis le 1er septembre 2026 (voir règles suivantes)."
+
+  - id: retraites.salaire_annuel_moyen.nombre_annees_parent_1_enfant
+    titre: "Nombre de meilleures années retenues pour un parent d'un enfant"
+    explication: "Depuis le 1er septembre 2026, le salaire annuel moyen d'un parent bénéficiant d'une majoration de durée d'assurance pour un enfant est calculé sur ses 24 meilleures années."
+    type: nombre
+    unite: ans
+    bornes: [10, 45]
+    valeurs:
+      - depuis: "2026-09-01"
+        valeur: 24
+        sources: [lar-montant-retraite, sp-f21552]
+        article: "Loi n° 2025-1403 (LFSS 2026), art. 104 ; décret d'application de juillet 2026"
+    tags: [calcul_pension, salaire_annuel_moyen, parents]
+    a_verifier: false
+    note: "L'Assurance retraite indique une application effective « courant 2027 » avec recalcul automatique des pensions déjà liquidées depuis le 1er septembre 2026. Le numéro du décret (2026-699 du 29 juillet 2026, selon la presse) n'a pas été relu sur un texte officiel."
+
+  - id: retraites.salaire_annuel_moyen.nombre_annees_parent_2_enfants
+    titre: "Nombre de meilleures années retenues pour un parent de deux enfants ou plus"
+    explication: "Depuis le 1er septembre 2026, le salaire annuel moyen d'un parent de deux enfants ou plus (avec majoration de durée d'assurance) est calculé sur ses 23 meilleures années."
+    type: nombre
+    unite: ans
+    bornes: [10, 45]
+    valeurs:
+      - depuis: "2026-09-01"
+        valeur: 23
+        sources: [lar-montant-retraite, sp-f21552]
+        article: "Loi n° 2025-1403 (LFSS 2026), art. 104"
+    tags: [calcul_pension, salaire_annuel_moyen, parents]
+    a_verifier: false
+    note: "Mise en œuvre « courant 2027 » avec recalcul automatique (Assurance retraite)."
+
+  - id: retraites.pension_base.plafond_pourcentage_pass
+    titre: "Montant maximal de la retraite de base (en % du plafond de la Sécurité sociale)"
+    explication: "Hors surcote, la retraite de base du régime général ne peut pas dépasser 50 % du plafond de la Sécurité sociale, soit 2 002,50 € brut par mois pour un départ en 2026."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 50
+        sources: [sp-f21552]
+        article: "Arrêté du 9 octobre 1986 ; CSS, art. R351-29"
+    tags: [calcul_pension, plafond]
+    a_verifier: false
+    note: "Valeur lue pour un départ en 2026 ; le plafond de 50 % du PASS est plus ancien."
+
+  - id: retraites.trimestres.maximum_par_an
+    titre: "Nombre maximal de trimestres validables par année civile"
+    explication: "Quel que soit le salaire, on ne peut pas valider plus de 4 trimestres de retraite par an."
+    type: nombre
+    unite: trimestres
+    bornes: [1, 8]
+    valeurs:
+      - depuis: "2023-09-01"
+        valeur: 4
+        sources: [lar-montant-retraite]
+        article: "Code de la sécurité sociale, art. R351-9"
+    tags: [trimestres]
+    a_verifier: false
+    note: "Date « depuis » conventionnelle (règle plus ancienne)."
+
+  - id: retraites.trimestres.salaire_validation_un_trimestre
+    titre: "Salaire brut annuel permettant de valider un trimestre (2026)"
+    explication: "Un trimestre de retraite est validé pour chaque tranche de salaire égale à 150 heures payées au SMIC, soit 1 803 € brut en 2026 (7 212 € pour 4 trimestres)."
+    type: nombre
+    unite: euros
+    bornes: [0, 5000]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 1803
+        sources: [cnav-circ-2025-33]
+        article: "Code de la sécurité sociale, art. R351-9 (150 × SMIC horaire au 1er janvier)"
+    tags: [trimestres, smic]
+    a_verifier: false
+    note: "Calculé sur le SMIC au 1er janvier 2026 (12,02 €) ; non modifié par la hausse du SMIC du 1er juin 2026 (circulaire Cnav 2026-16)."
+
+  - id: retraites.pass.annuel
+    titre: "Plafond annuel de la Sécurité sociale (PASS)"
+    explication: "Montant de référence fixé chaque année : il plafonne les salaires pris en compte pour la retraite de base et sert de seuil pour de nombreuses cotisations et prestations."
+    type: nombre
+    unite: euros
+    bornes: [20000, 100000]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 48060
+        sources: [urssaf-pass-2026, agirc-arrco-points-retraite]
+        article: "Arrêté du 22 décembre 2025 portant fixation du plafond de la sécurité sociale pour 2026"
+    tags: [plafond_securite_sociale, cotisations]
+    a_verifier: false
+    note: "Plafond mensuel 2026 : 4 005 € (Mayotte : 36 264 € par an)."
+
+  - id: retraites.pass.mensuel
+    titre: "Plafond mensuel de la Sécurité sociale (PMSS)"
+    explication: "Version mensuelle du plafond de la Sécurité sociale, utilisée pour calculer les cotisations sur les bulletins de paie."
+    type: nombre
+    unite: euros
+    bornes: [1500, 9000]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 4005
+        sources: [urssaf-pass-2026, unedic-regl-parametres-avril-2026]
+        article: "Arrêté du 22 décembre 2025"
+    tags: [plafond_securite_sociale, cotisations]
+    a_verifier: false
+
+  # ───────── Minimum contributif ─────────
+  - id: retraites.minimum_contributif.montant_mensuel
+    titre: "Minimum contributif (montant entier, mensuel brut)"
+    explication: "Retraite de base minimale versée à une personne partant au taux plein dont la pension calculée est faible, avant proratisation selon sa durée de carrière."
+    type: nombre
+    unite: euros
+    bornes: [0, 2000]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 756.29
+        sources: [cnav-circ-2025-33, sp-f21552]
+        article: "Code de la sécurité sociale, art. L351-10"
+    tags: [minimum_contributif, minimum_pension]
+    a_verifier: false
+    note: "Soit 9 075,50 € par an. Revalorisé au 1er janvier 2026 de 1,18 % (évolution du SMIC), conformément à la réforme de 2023."
+
+  - id: retraites.minimum_contributif.montant_majore_mensuel
+    titre: "Minimum contributif majoré (périodes cotisées, mensuel brut)"
+    explication: "Version majorée du minimum contributif, pour les trimestres réellement cotisés, réservée aux assurés ayant au moins 120 trimestres cotisés."
+    type: nombre
+    unite: euros
+    bornes: [0, 2000]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 903.93
+        sources: [cnav-circ-2025-33]
+        article: "Code de la sécurité sociale, art. L351-10"
+    tags: [minimum_contributif, minimum_pension]
+    a_verifier: false
+    note: "Soit 10 847,22 € par an (Cnav). service-public.gouv.fr affiche 903,94 € par mois (écart d'arrondi) ; la circulaire Cnav fait référence."
+
+  - id: retraites.minimum_contributif.trimestres_cotises_requis_majoration
+    titre: "Trimestres cotisés requis pour le minimum contributif majoré"
+    explication: "Le minimum contributif majoré n'est accessible qu'aux assurés ayant au moins 120 trimestres cotisés, tous régimes de base confondus."
+    type: nombre
+    unite: trimestres
+    bornes: [0, 172]
+    valeurs:
+      - depuis: "2023-09-01"
+        valeur: 120
+        sources: [lar-montant-retraite, sp-f21552]
+        article: "Code de la sécurité sociale, art. L351-10"
+    tags: [minimum_contributif]
+    a_verifier: false
+    note: "Date « depuis » = réforme de 2023 (date retenue par convention, non relue)."
+
+  - id: retraites.minimum_contributif.plafond_total_pensions
+    titre: "Plafond de retraites personnelles pour bénéficier du minimum contributif (mensuel brut)"
+    explication: "Le minimum contributif est réduit si le total des retraites (base et complémentaires) dépasse ce plafond."
+    type: nombre
+    unite: euros
+    bornes: [0, 3000]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 1410.89
+        sources: [cnav-circ-2025-33, sp-f21552]
+        article: "Code de la sécurité sociale, art. L173-2"
+      - depuis: "2026-06-01"
+        valeur: 1444.89
+        sources: [cnav-circ-2026-16]
+        article: "Code de la sécurité sociale, art. L173-2 (revalorisé comme le SMIC)"
+    tags: [minimum_contributif]
+    a_verifier: false
+
+  # ───────── Carrières longues ─────────
+  - id: retraites.carriere_longue.age_depart_debut_avant_16_ans
+    titre: "Carrière longue : âge de départ si l'on a commencé avant 16 ans"
+    explication: "Une personne ayant commencé à travailler avant 16 ans (5 trimestres avant la fin de l'année de ses 16 ans) et ayant tous ses trimestres peut partir dès 58 ans."
+    type: nombre
+    unite: ans
+    bornes: [55, 64]
+    valeurs:
+      - depuis: "2023-09-01"
+        valeur: 58
+        sources: [lar-carriere-longue]
+        article: "Code de la sécurité sociale, art. L351-1-1 et D351-1-1"
+    tags: [carriere_longue, depart_anticipe]
+    a_verifier: false
+    note: "Durée cotisée exigée = durée requise pour le taux plein de la génération. Inchangé au 1er septembre 2026. Date « depuis » = réforme de 2023 (non relue)."
+
+  - id: retraites.carriere_longue.age_depart_debut_avant_18_ans
+    titre: "Carrière longue : âge de départ si l'on a commencé avant 18 ans"
+    explication: "Une personne ayant commencé à travailler avant 18 ans et ayant tous ses trimestres cotisés peut partir dès 60 ans."
+    type: nombre
+    unite: ans
+    bornes: [55, 64]
+    valeurs:
+      - depuis: "2023-09-01"
+        valeur: 60
+        sources: [lar-carriere-longue]
+        article: "CSS, art. L351-1-1 et D351-1-1"
+    tags: [carriere_longue, depart_anticipe]
+    a_verifier: false
+
+  - id: retraites.carriere_longue.age_depart_debut_avant_21_ans
+    titre: "Carrière longue : âge de départ si l'on a commencé avant 21 ans"
+    explication: "Une personne ayant commencé à travailler avant 21 ans et ayant tous ses trimestres cotisés peut partir dès 63 ans."
+    type: nombre
+    unite: ans
+    bornes: [55, 64]
+    valeurs:
+      - depuis: "2023-09-01"
+        valeur: 63
+        sources: [lar-carriere-longue]
+        article: "CSS, art. L351-1-1 et D351-1-1"
+    tags: [carriere_longue, depart_anticipe]
+    a_verifier: false
+
+  - id: retraites.carriere_longue.trimestres_debut_carriere
+    titre: "Carrière longue : trimestres à valider avant l'âge de début de carrière"
+    explication: "Pour prouver un début de carrière précoce, il faut 5 trimestres avant la fin de l'année de ses 16, 18, 20 ou 21 ans (4 si l'on est né au dernier trimestre)."
+    type: nombre
+    unite: trimestres
+    bornes: [1, 8]
+    valeurs:
+      - depuis: "2023-09-01"
+        valeur: 5
+        sources: [lar-carriere-longue, sp-f13845]
+        article: "CSS, art. D351-1-1"
+    tags: [carriere_longue, depart_anticipe]
+    a_verifier: false
+
+  - id: retraites.carriere_longue.bareme_debut_avant_20_ans
+    titre: "Carrière longue : âges de départ si l'on a commencé avant 20 ans (depuis le 1er septembre 2026)"
+    explication: "Pour ceux qui ont commencé avant 20 ans, l'âge de départ anticipé dépend de l'année de naissance ; il a été avancé pour les générations de fin 1965 à 1970."
+    type: texte
+    unite: ""
+    valeurs:
+      - depuis: "2026-09-01"
+        valeur: "1964 : 60 ans 6 mois (170 trim.) ; 1er janv.-31 mars 1965 : 60 ans 9 mois (170) ; 1er avril-30 nov. 1965 : 60 ans 9 mois (171) ; déc. 1965 : 60 ans 8 mois (171) ; 1966 : 60 ans 9 mois (172) ; 1967 : 61 ans (172) ; 1968 : 61 ans 3 mois (172) ; 1969 : 61 ans 6 mois (172) ; 1970 : 61 ans 9 mois (172)"
+        sources: [lar-carriere-longue]
+        article: "CSS, art. D351-1-1 ; décret n° 2026-345 du 7 mai 2026"
+    tags: [carriere_longue, depart_anticipe, suspension]
+    a_verifier: true
+    note: "Tableau de l'Assurance retraite (page consultée le 13/10/2026). Il diffère du tableau 1.5 du rapport du COR de juin 2026 (établi d'après la LFSS, avant le décret : ex. 1964 à 60 ans 3 mois, 1970 à 62 ans). Ambiguïté sur la page elle-même (titre « à partir du 1er septembre 2026 », texte « à partir du 1er janvier 2026 »). À confirmer sur le décret n° 2026-345."
+
+  # ───────── Revalorisation et cotisations ─────────
+  - id: retraites.revalorisation.pensions_base
+    titre: "Revalorisation annuelle des retraites de base au 1er janvier"
+    explication: "Chaque 1er janvier, les retraites de base sont augmentées selon l'inflation moyenne (hors tabac) des 12 derniers mois connus : +0,9 % au 1er janvier 2026."
+    type: nombre
+    unite: pourcent
+    bornes: [-5, 10]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 0.9
+        sources: [cnav-circ-2025-29, cor-ra-2026-ch2]
+        article: "Code de la sécurité sociale, art. L161-25 ; instruction DSS/3A/DB/6BRS/2025/174 du 15 décembre 2025"
+    tags: [revalorisation, indexation]
+    a_verifier: false
+    note: "Coefficient 1,009. Le taux applicable au 1er janvier 2027 n'était pas fixé au 13/10/2026. Le minimum contributif suit, lui, l'évolution du SMIC (+1,18 % au 1er janvier 2026)."
+
+  - id: retraites.cotisations.vieillesse_salarie_plafonnee
+    titre: "Cotisation vieillesse salariale plafonnée"
+    explication: "Part du salaire, jusqu'au plafond de la Sécurité sociale, prélevée sur le salarié pour financer la retraite de base."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 20]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 6.90
+        sources: [urssaf-taux-secteur-prive-2026]
+    tags: [cotisations, financement]
+    a_verifier: false
+    note: "Barème Urssaf mis à jour le 1er janvier 2026 ; taux plus ancien (date d'origine non vérifiée)."
+
+  - id: retraites.cotisations.vieillesse_salarie_deplafonnee
+    titre: "Cotisation vieillesse salariale déplafonnée"
+    explication: "Part de la totalité du salaire prélevée sur le salarié pour financer la retraite de base."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 0.40
+        sources: [urssaf-taux-secteur-prive-2026]
+    tags: [cotisations, financement]
+    a_verifier: false
+
+  - id: retraites.cotisations.vieillesse_employeur_plafonnee
+    titre: "Cotisation vieillesse patronale plafonnée"
+    explication: "Part du salaire, jusqu'au plafond de la Sécurité sociale, payée par l'employeur pour financer la retraite de base."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 20]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 8.55
+        sources: [urssaf-taux-secteur-prive-2026]
+    tags: [cotisations, financement]
+    a_verifier: false
+
+  - id: retraites.cotisations.vieillesse_employeur_deplafonnee
+    titre: "Cotisation vieillesse patronale déplafonnée"
+    explication: "Part de la totalité du salaire payée par l'employeur pour financer la retraite de base."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 2.11
+        sources: [urssaf-taux-secteur-prive-2026, cnav-circ-2025-33]
+        article: "Décret n° 2025-1446 du 31 décembre 2025"
+    tags: [cotisations, financement]
+    a_verifier: false
+    note: "Le taux cumulé vieillesse-veuvage (salarié + employeur) est de 17,96 % au 1er janvier 2026 selon la circulaire Cnav 2025-33 (6,90 + 0,40 + 8,55 + 2,11)."
+
+  # ───────── Retraite complémentaire Agirc-Arrco ─────────
+  - id: retraites.agirc_arrco.valeur_service_point
+    titre: "Agirc-Arrco : valeur de service du point"
+    explication: "Montant annuel brut versé pour chaque point de retraite complémentaire acquis : la pension complémentaire = nombre de points × cette valeur."
+    type: nombre
+    unite: euros
+    bornes: [0.5, 3]
+    valeurs:
+      - depuis: "2022-11-01"
+        valeur: 1.3498
+        sources: [agirc-arrco-historique-valeurs-point]
+      - depuis: "2023-11-01"
+        valeur: 1.4159
+        sources: [agirc-arrco-historique-valeurs-point]
+      - depuis: "2024-11-01"
+        valeur: 1.4386
+        sources: [agirc-arrco-historique-valeurs-point]
+      - depuis: "2025-11-01"
+        valeur: 1.4386
+        sources: [agirc-arrco-historique-valeurs-point, agirc-arrco-points-retraite, sp-f15396]
+    tags: [retraite_complementaire, agirc_arrco]
+    a_verifier: false
+    note: "Gelée au 1er novembre 2025 (0 %). La valeur applicable au 1er novembre 2026 n'était pas publiée sur le site Agirc-Arrco consulté le 13/10/2026."
+
+  - id: retraites.agirc_arrco.prix_achat_point
+    titre: "Agirc-Arrco : prix d'achat du point (salaire de référence)"
+    explication: "Montant de cotisations (au taux de calcul) nécessaire pour acquérir un point de retraite complémentaire."
+    type: nombre
+    unite: euros
+    bornes: [5, 40]
+    valeurs:
+      - depuis: "2023-01-01"
+        valeur: 18.7669
+        sources: [agirc-arrco-points-retraite]
+      - depuis: "2024-01-01"
+        valeur: 19.6321
+        sources: [agirc-arrco-points-retraite]
+      - depuis: "2025-01-01"
+        valeur: 20.1877
+        sources: [agirc-arrco-points-retraite]
+      - depuis: "2026-01-01"
+        valeur: 20.1877
+        sources: [agirc-arrco-points-retraite, sp-f15396]
+    tags: [retraite_complementaire, agirc_arrco]
+    a_verifier: false
+    note: "Inchangé en 2026. L'accord national interprofessionnel du 5 octobre 2023 prévoit une évolution comme le salaire moyen des actifs du régime de 2024 à 2026."
+
+  - id: retraites.agirc_arrco.taux_cotisation_tranche_1
+    titre: "Agirc-Arrco : taux de cotisation sur la tranche 1 (jusqu'au plafond de la Sécurité sociale)"
+    explication: "Cotisation de retraite complémentaire sur la partie du salaire inférieure au plafond (48 060 €/an en 2026), partagée 60 % employeur / 40 % salarié."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 30]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 7.87
+        sources: [agirc-arrco-points-retraite, sp-f15396]
+    tags: [retraite_complementaire, agirc_arrco, cotisations]
+    a_verifier: false
+    note: "= taux de calcul des points 6,20 % × taux d'appel 127 % (seul le taux de calcul génère des points). S'y ajoute la contribution d'équilibre général (CEG) de 2,15 %. Valeur lue sur les paramètres 2026 ; taux plus ancien."
+
+  - id: retraites.agirc_arrco.taux_cotisation_tranche_2
+    titre: "Agirc-Arrco : taux de cotisation sur la tranche 2 (de 1 à 8 plafonds)"
+    explication: "Cotisation de retraite complémentaire sur la partie du salaire comprise entre 1 et 8 plafonds de la Sécurité sociale."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 40]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 21.59
+        sources: [agirc-arrco-points-retraite, sp-f15396]
+    tags: [retraite_complementaire, agirc_arrco, cotisations]
+    a_verifier: false
+    note: "= taux de calcul 17 % × taux d'appel 127 %. CEG : 2,70 %. Contribution d'équilibre technique (CET) de 0,35 % sur T1 + T2 au-delà du plafond."
+
+  - id: retraites.agirc_arrco.taux_appel
+    titre: "Agirc-Arrco : taux d'appel des cotisations"
+    explication: "Les cotisations sont appelées à 127 % du taux qui sert à calculer les points : les 27 % supplémentaires financent le régime sans donner de points."
+    type: nombre
+    unite: pourcent
+    bornes: [100, 150]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 127
+        sources: [agirc-arrco-points-retraite]
+    tags: [retraite_complementaire, agirc_arrco, cotisations]
+    a_verifier: false
+
+  # ───────── Minimum vieillesse ─────────
+  - id: retraites.aspa.montant_mensuel_personne_seule
+    titre: "Allocation de solidarité aux personnes âgées (ASPA, minimum vieillesse) : personne seule"
+    explication: "Montant maximal mensuel garanti à une personne âgée seule aux faibles ressources ; l'ASPA complète ses revenus jusqu'à ce niveau."
+    type: nombre
+    unite: euros
+    bornes: [0, 2500]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 1043.59
+        sources: [cnav-circ-2025-29, sp-f16871]
+        article: "Code de la sécurité sociale, art. D815-1"
+    tags: [aspa, minimum_vieillesse, minima_sociaux]
+    a_verifier: false
+    note: "Soit 12 523,14 € par an. Récupérable sur la succession au-delà d'un certain seuil."
+
+  - id: retraites.aspa.montant_mensuel_couple
+    titre: "ASPA : montant maximal pour un couple dont les deux membres la perçoivent"
+    explication: "Montant mensuel total maximal garanti à un couple de bénéficiaires du minimum vieillesse."
+    type: nombre
+    unite: euros
+    bornes: [0, 4000]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 1620.18
+        sources: [cnav-circ-2025-29, sp-f16871]
+        article: "Code de la sécurité sociale, art. D815-1"
+    tags: [aspa, minimum_vieillesse, minima_sociaux]
+    a_verifier: false
+    note: "Soit 19 442,21 € par an."
+
+  - id: retraites.aspa.age_minimum
+    titre: "ASPA : âge minimum (cas général)"
+    explication: "Le minimum vieillesse est accessible à partir de 65 ans (plus tôt en cas d'inaptitude, de handicap ou de carrière longue)."
+    type: nombre
+    unite: ans
+    bornes: [55, 70]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 65
+        sources: [sp-f16871]
+        article: "Code de la sécurité sociale, art. L815-1"
+    tags: [aspa, minimum_vieillesse]
+    a_verifier: false
+    note: "62 ans en cas de retraite anticipée pour carrière longue ou handicap (service-public.gouv.fr). Date « depuis » = fiche consultée ; règle plus ancienne."

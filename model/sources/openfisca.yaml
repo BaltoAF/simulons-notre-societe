@@ -1,0 +1,1636 @@
+# FICHIER GÉNÉRÉ par system/sync_openfisca.py le 2026-10-13 à partir d'OpenFisca-France 176.1.2.
+# Ne pas modifier à la main : modifier model/moteur/openfisca_leviers.yaml puis relancer le Système.
+sources:
+- id: openfisca-france
+  type: modele_public
+  editeur: OpenFisca (communauté, DINUM/Etalab, IPP, LexImpact)
+  titre: OpenFisca-France 176.1.2 — modèle de microsimulation du système socio-fiscal français
+  url: https://github.com/openfisca/openfisca-france
+  consulte_le: '2026-10-13'
+  note: Moteur de calcul open source (AGPL) utilisé notamment par LexImpact (Assemblée nationale) et mes-aides. Chaque paramètre
+    y est relié à ses textes de référence.
+- id: of-ref-00762f08c6
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: LOI nÂ° 2022-1158 du 16/08/2022, art. 9, I
+  url: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046186723
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-037e6c7104
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Loi 2017-1837 du 30/12/2017, art. 67 (LF pour 2018)
+  url: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377512&cidTexte=JORFTEXT000036339197
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-039f927bf0
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2018-227 du 30/04/2018
+  url: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036756121
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-05c661ca37
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret nÂ° 2026-220 du 30 mars 2026, art. 1
+  url: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000053733826
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-093418a201
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: LOI nÂ° 2022-1158 du 16/08/2022, art 9.
+  url: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046186723
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-0a1508c179
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Loi 2025-127, art. 2 du 14/02/2025 de finances (LF pour 2025)
+  url: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000051168019
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-0b1778a4bb
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2017-740 du 04/05/2017, art. 1
+  url: https://www.legifrance.gouv.fr/eli/decret/2017/5/4/AFSA1710709D/jo/article_1
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-0b648a1897
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2018-323 du 03/05/2018, art. 1
+  url: https://www.legifrance.gouv.fr/eli/decret/2018/5/3/SSAA1805962D/jo/texte
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-0d7704716c
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2009-473 du 28/04/2009, art. 1
+  url: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000020561597&cidTexte=JORFTEXT000020560553
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-0dd25ad189
+  type: rapport_institutionnel
+  editeur: Référence citée par OpenFisca-France
+  titre: Bulletin officiel SantÃ© - Protection sociale - SolidaritÃ© nÂ° 2024/34 du 31/12/2024
+  url: https://sante.gouv.fr/fichiers/bo/2024/2024.34.sante.pdf
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-101b4f0a98
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: ArrÃªtÃ© du 27/09/2024, art. 1, 3Â°
+  url: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000050278404
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-1033fd52f0
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Loi 2016-1917 du 29/12/2016 (LF pour 2017)
+  url: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000033734169&categorieLien=id
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-1041f62ff2
+  type: texte_officiel
+  editeur: Référence citée par OpenFisca-France
+  titre: Circulaire Cnav 2025-29 du 22/12/2025 (page 8)
+  url: https://legislation.lassuranceretraite.fr/Pdf/circulaire_cnav_2025_29_22122025.pdf
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-10c7b9451b
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Loi 2013-1278 du 29/12/2013 (LF pour 2014)
+  url: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000028399511
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-10da12e792
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2014-1589 du 23/12/2014
+  url: https://www.legifrance.gouv.fr/eli/decret/2014/12/23/2014-1589/jo/texte
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-11e02d9d0c
+  type: rapport_institutionnel
+  editeur: Référence citée par OpenFisca-France
+  titre: Instruction interministÃ©rielle DSS/2B/2023/41 du 24 mars 2023
+  url: https://sante.gouv.fr/fichiers/bo/2023/2023.6.sante.pdf
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-11e0ca4111
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2017-710 du 03/05/2017 - art. 1
+  url: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000034576389&cidTexte=JORFTEXT000034567036
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-1310ba544c
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2015-1710 du 21/12/2015, art. 1
+  url: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000031665102
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-134c052b9f
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: ArrÃªtÃ© du 27/09/2019, art. 9
+  url: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000042378438/2020-10-01
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-15bb82451b
+  type: rapport_institutionnel
+  editeur: Référence citée par OpenFisca-France
+  titre: ArrÃªtÃ© du 30/12/2010, art. 4
+  url: ''
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-16a660b65b
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article 158, 5.a. du Code gÃ©nÃ©ral des impÃ´ts
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042909707/
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-1753828442
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article D843-2 du Code de la sÃ©curitÃ© sociale
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031673887/2016-01-01/
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-178d72b90a
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article L821-3-1 du Code de la sÃ©curitÃ© sociale
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031781089
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-182140bcbf
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2011-230 du 01/03/2011
+  url: https://www.legifrance.gouv.fr/eli/decret/2011/3/1/2011-230/jo/texte
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-197a3b2006
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article D815-1 du Code de la sÃ©curitÃ© sociale (pour 2018, 2019 et 2020)
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036760292/2018-04-01
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-1981d07dab
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article 2, c) de la Loi nÂ° 2022-1726 du 30/12/2022 (LF pour 2023)
+  url: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000046845640
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-1aecfe11f4
+  type: texte_officiel
+  editeur: Référence citée par OpenFisca-France
+  titre: LF pour 2011
+  url: ''
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-1d794cabd9
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2015-1233 du 6/10/2015 - art. 1 (V)
+  url: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000031277466&cidTexte=JORFTEXT000031276443
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-1e764ce546
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Art. 2 de la loi no 2020-1721 du 29 dÃ©cembre 2020 de finances pour 2021
+  url: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000042753593
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-1f556b62cd
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Loi 2018-1317, art. 2 du 28/12/2018 (LF pour 2019)
+  url: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000037935215&cidTexte=JORFTEXT000037882341
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-223d63e51c
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Loi 2019-1479, art. 2 du 28/12/2019 (LF pour 2020)
+  url: https://www.legifrance.gouv.fr/eli/loi/2019/12/28/CPAX1925229L/jo/texte
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-227e074c5c
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Loi 2014-1654 du 29/12/2014 (LF pour 2015)
+  url: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000029988857
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-242ac4a1ee
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article 197, I.2.Â§1 du Code gÃ©nÃ©ral des impÃ´ts
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046860759
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-2499318769
+  type: texte_officiel
+  editeur: Référence citée par OpenFisca-France
+  titre: Circulaire CNAV 2011/30 du 14/04/2011
+  url: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=CR_CN_2011030_14042011
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-27040758ef
+  type: texte_officiel
+  editeur: Référence citée par OpenFisca-France
+  titre: Circulaire CNAV 2010/43 du 23/04/2010
+  url: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=CR_CN_2010043_23042010
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-2a7ea8b788
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Loi 2019-1479, 3Â° du I. de l'art. 2 du 28/12/2019 (LF pour 2020)
+  url: https://www.legifrance.gouv.fr/eli/loi/2019/12/28/CPAX1925229L/jo/texte
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-30ca97e41c
+  type: texte_officiel
+  editeur: Référence citée par OpenFisca-France
+  titre: Circulaire Cnav 2024-39 du 23/12/2024 (page 9)
+  url: https://legislation.lassuranceretraite.fr/Pdf/circulaire_cnav_2024_39_23122024.pdf
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-33723793f1
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2016-538 du 27/04/2016
+  url: https://www.legifrance.gouv.fr/eli/decret/2016/4/27/2016-538/jo/texte
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-3408bb7867
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2010-307 du 22/03/2010 - art. 1 (V)
+  url: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000022012740&cidTexte=JORFTEXT000022009472
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-35df0b00a6
+  type: rapport_institutionnel
+  editeur: Référence citée par OpenFisca-France
+  titre: BOI-IR-LIQ-20-20-30 du 26/01/2018
+  url: ''
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-361e46e797
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: ArrÃªtÃ© du 05/09/2025 relatif au calcul des aides personnelles au logement et de l'aide Ã  l'accession sociale et
+    Ã  la sortie de l'insalubritÃ© spÃ©cifique Ã  l'outre-mer
+  url: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000052212770
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-37b9dee8f8
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article D843-3 du code de la sÃ©curitÃ© sociale
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037462909
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-383886b76b
+  type: rapport_institutionnel
+  editeur: Référence citée par OpenFisca-France
+  titre: Bulletin officiel SantÃ© - Protection sociale - SolidaritÃ© nÂ°2023/24 29/12/2023 p.75
+  url: https://sante.gouv.fr/fichiers/bo/2023/2023.24.sante.pdf
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-38e3ccce69
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article 83, 3. du Code gÃ©nÃ©ral des impÃ´ts
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032701943
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-3b31f99baf
+  type: rapport_institutionnel
+  editeur: Référence citée par OpenFisca-France
+  titre: BOI-IR-LIQ-20 du 13/06/2013
+  url: ''
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-3b7d337d3c
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article 19 de l'Ordonnance nÂ° 96-50 du 24 janvier 1996
+  url: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000041466982/
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-3bc67f7a4c
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2021-528 du 29/04/2021, art. 1
+  url: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043459542
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-3f28e179c0
+  type: texte_officiel
+  editeur: Référence citée par OpenFisca-France
+  titre: LF pour 2010
+  url: ''
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-4001b8f71e
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: ArrÃªtÃ© du 27/09/2019, art. 16
+  url: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000039160757/2019-10-08
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-400b02d5df
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret nÂ° 2023-343 du 4 mai 2023, article 1
+  url: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000047521600
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-41029a5b16
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2016-535 du 27/04/2016 - art. 1 (V)
+  url: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000032483498&cidTexte=JORFTEXT000032482318
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-417117106f
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: ArrÃªtÃ© du 27/12/2017, art. 1
+  url: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000036299563
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-42721f667a
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Circulaire DSS/SD2B/2018/81 du 22/03/2018
+  url: http://circulaires.legifrance.gouv.fr/pdf/2018/03/cir_43190.pdf
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-435188b769
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2017-739 du 04/05/2017, art. 1
+  url: https://www.legifrance.gouv.fr/eli/decret/2017/5/4/2017-739/jo/texte
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-45b9b23890
+  type: rapport_institutionnel
+  editeur: Référence citée par OpenFisca-France
+  titre: Revalorisation comme prevue dans l'article 83 de la Loi 2020-1721 du 29/12/2020 (LF pour 2021)
+  url: ''
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-46963d1989
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2021-530 du 29/04/2021, art. 1
+  url: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043459557
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-46f03c7f08
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2022-701 du 26/04/2022, art. 1
+  url: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000045668709
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-4c9d29d536
+  type: rapport_institutionnel
+  editeur: Référence citée par OpenFisca-France
+  titre: Instruction interministerielle DSS/2B/2023/205 du 21/12/2023
+  url: ''
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-4eb41cedbd
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret nÂ° 2026-509 du 12 juin 2026
+  url: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000054248488
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-50e8ea4a7f
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Loi 2020-1721 du 29/12/2020 (LF pour 2021)
+  url: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000042753580/2021-01-22/
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-516a7870ca
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Loi 2012-1509 du 29/12/2012 (LF pour 2013)
+  url: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000026856853
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-52c09d1657
+  type: rapport_institutionnel
+  editeur: Référence citée par OpenFisca-France
+  titre: BOI 5 B-7-11 ; nÂ°26 du 28/03/2011
+  url: ''
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-559468d25f
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article 197, I.4.a. du Code gÃ©nÃ©ral des impÃ´ts
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042907517/2022-01-01
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-55dd4545c8
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article 83, 3. du Code gÃ©nÃ©ral des impÃ´ts
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047622408
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-5698e285da
+  type: rapport_institutionnel
+  editeur: Référence citée par OpenFisca-France
+  titre: ArrÃªtÃ© du 30/12/2011, art. 4
+  url: ''
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-5859285a97
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: ArrÃªtÃ© du 22/09/2023, art. 1
+  url: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000048107807
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-59baba6da2
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article 197, I.1. du Code gÃ©nÃ©ral des impÃ´ts
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042907517/2022-01-01/
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-5a7d7fd204
+  type: rapport_institutionnel
+  editeur: Référence citée par OpenFisca-France
+  titre: BOI 5 B-13-10;nÂ°22 du 16/02/2010
+  url: ''
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-5b099b361b
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Loi 2011-1978 du 28/12/2011
+  url: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000025045613
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-5bfebf00ba
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2013-1263 du 27/12/2013
+  url: https://www.legifrance.gouv.fr/eli/decret/2013/12/27/2013-1263/jo/texte
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-5c133443d5
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article 194, I. du Code gÃ©nÃ©ral des impÃ´ts
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006308279/1996-05-12/
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-60da4893d8
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2026-222 du 30 mars 2026, art. 1
+  url: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000053733855
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-611b188510
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article 197, I.4.a) du Code gÃ©nÃ©ral des impÃ´ts
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046860759/2024-01-01/
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-61eef05987
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2022-700 du 26/04/2022 - art. 1
+  url: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000045668702
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-6270eb2a90
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article L241-13, III.Â§3. du Code de la sÃ©curitÃ© sociale
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042912368/2021-01-01/
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-6391d7a5cc
+  type: texte_officiel
+  editeur: Référence citée par OpenFisca-France
+  titre: http://bofip.impots.gouv.fr/bofip/2495-PGP
+  url: http://bofip.impots.gouv.fr/bofip/2495-PGP
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-63cc4570bf
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2019-559, art. 1 du 06/06/2019
+  url: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000038559363&categorieLien=id
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-659b27b176
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Loi 2021-1900, art. 2 du 30/12/2021 (LF pour 2022)
+  url: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044637640
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-66c665eab5
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Loi 2018-1317, art. 30 du 28/12/2018 (LF pour 2019)
+  url: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000037882341&categorieLien=id#JORFARTI000037882381
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-66f3fd08d8
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article 197, I.4.a) du Code gÃ©nÃ©ral des impÃ´ts
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046860759/2025-01-01/
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-676ad80177
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article 117 quater du Code gÃ©nÃ©ral des impÃ´ts
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036428175/2018-01-01
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-677e5e6ae8
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article 83 du Code gÃ©nÃ©ral des impÃ´ts
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036429189
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-67ba57328d
+  type: texte_officiel
+  editeur: Référence citée par OpenFisca-France
+  titre: Circulaire Cnav 2023/3 du 09/01/2023
+  url: https://legislation.lassuranceretraite.fr/Pdf/circulaire_cnav_2023_03_09012023.pdf
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-67d55e2092
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Loi 2009-1673 du 30/12/2009 (LF pour 2010)
+  url: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000021557902
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-6a5a526de9
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2019-400 du 02/05/2019, art. 1
+  url: https://www.legifrance.gouv.fr/eli/decret/2019/5/2/SSAA1907609D/jo/texte
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-6b9f0418a4
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: ArrÃªtÃ© du 27/09/2019, art. 9
+  url: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000050286639/2024-09-29
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-6cb4d59cad
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2013-793 du 30/08/2013
+  url: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000027914449
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-6d3dfdef17
+  type: texte_officiel
+  editeur: Référence citée par OpenFisca-France
+  titre: Circulaire DSS/2B/2021/65 du 19/03/2021
+  url: https://solidarites-sante.gouv.fr/fichiers/bo/2021/2021.5.sante.pdf#page=140
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-6d680fbec7
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article 197, I.4.a) du Code gÃ©nÃ©ral des impÃ´ts
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046860759/2023-01-01/
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-6d987072f4
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article 1 du DÃ©cret 2021-530 du 29/04/2021
+  url: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000043459562
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-71a88513e0
+  type: texte_officiel
+  editeur: Référence citée par OpenFisca-France
+  titre: Circulaire DSS/SD2B/2017/97 du 21/03/2017, Circulaire DSS/SD2B/2017/97 du 21/03/2017
+  url: ''
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-724f71ffff
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2010-1766 du 30/12/2010
+  url: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000023335483
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-7351d16806
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2019-1047 du 11/10/2019 - art. 1 et 2
+  url: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000039207638&dateTexte=20191219
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-7421d2bf56
+  type: rapport_institutionnel
+  editeur: Référence citée par OpenFisca-France
+  titre: BOI 5 B-7-11 nÂ°26 du 28/03/2011
+  url: ''
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-75e74ffffb
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Loi 2017-1837 du 30/12/2017 - art. 28 (modif art 125 A, 125-0 A, 200 A et art 117 quater du CGI)
+  url: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377422&cidTexte=JORFTEXT000036339197
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-7981bed4f7
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Loi 82-540 du 28/06/1982
+  url: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000691740
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-7a25612bf5
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article 2, b) de la Loi nÂ° 2022-1726 du 30/12/2022 (LF pour 2023)
+  url: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000046845640
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-7a9a3c1cc0
+  type: rapport_institutionnel
+  editeur: Référence citée par OpenFisca-France
+  titre: BOI-IR-LIQ-20-20-30 du 06/04/2017
+  url: ''
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-7ba82f65c6
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2012-486 du 13/04/2012 - art. 1 (V)
+  url: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000025693677&cidTexte=JORFTEXT000025688737
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-7d2f87c171
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret nÂ° 2025-297 du 29 mars 2025, art. 1
+  url: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000051393142
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-7d6912ed2b
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret nÂ° 2023-328 du 29 avril 2023
+  url: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000047511476
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-80e8f94bc8
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2015-1710 du 21/12/2015, art. 2 (crÃ©e art. D843-1 du CSS)
+  url: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000031665104
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-823c59ead8
+  type: texte_officiel
+  editeur: Référence citée par OpenFisca-France
+  titre: Circulaire CNAV 2017/13 du 04/04/2017
+  url: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2017_13_04042017.pdf
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-825bf7e94c
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret nÂ° 2025-293 du 29 mars 2025, art. 1
+  url: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000051393086
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-83e3ab20e6
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2008-1559 du 31/12/2008
+  url: https://www.legifrance.gouv.fr/eli/decret/2008/12/31/2008-1559/jo/texte
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-85be4d1c67
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2015-611 du 03/06/2015
+  url: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000030674064
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-85c5bfe706
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article 1600-0 J du Code gÃ©nÃ©ral des impÃ´ts
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006306523
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-87da59f56c
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article D241-7 du Code de la SÃ©curitÃ© Sociale
+  url: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006185779/
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-87dc3c08a6
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: ArrÃªtÃ© du 20/12/2019, art. 1
+  url: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000039663224
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-88e45b6d67
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2020-897, art 1. du 22/07/2020
+  url: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000042143210
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-88fbc0d51e
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article D521-1 1) du Code de la sÃ©curitÃ© sociale
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000030680318/
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-8ca907da81
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret nÂ° 2026-562 du 29/06/2026, art. 2
+  url: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000054341109
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-8d2208d11c
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret nÂ° 2024-496 du 30/05/2024, art. 1
+  url: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000049629765
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-8f09e9cf19
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret nÂ° 2022-699 du 26/042022, art. 1
+  url: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000045668694
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-8f68c716a4
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: ArrÃªtÃ© du 27/09/2019, art. 9
+  url: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046206205/2021-10-01/
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-92bbf74fbb
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Loi 2000-656 du 13/07/2000
+  url: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000400546
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-92c23fecf2
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article 197, 4.a. du Code gÃ©nÃ©ral des impÃ´ts
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042907517/2022-01-01
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-93817be3b0
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Loi 2017-1836 du 30/12/2017, art. 8 (LFSS pour 2018)
+  url: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036358456&cidTexte=JORFTEXT000036339090
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-93ca7d772c
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article 194, I. du Code gÃ©nÃ©ral des impÃ´ts
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049371120/1951-12-19/
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-93cae7e76d
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Loi 2023-1322, art. 2 du 29/12/2023 (LF pour 2024)
+  url: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000048727355
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-957bb04c5a
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2016-536 du 27/04/2016, art. 1
+  url: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000032482324&categorieLien=id
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-97aa59560f
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret nÂ° 2024-403 du 1er mai 2024, article 1
+  url: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000049490767
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-99333b9d0c
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret nÂ° 2024-396 du 29/04/2024, article 1
+  url: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000049486518
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-99a46af409
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article D521-1, b) du Code de la sÃ©curitÃ© sociale
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000030680318/
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-9a0714702a
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret nÂ° 2026-222 du 30 mars 2026, art. 2
+  url: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000053733855
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-9a5d29f836
+  type: rapport_institutionnel
+  editeur: Référence citée par OpenFisca-France
+  titre: Instruction interministÃ©rielle nÂ° DSS/2A/2026/36 du 26 mars 2026
+  url: https://bulletins-officiels.social.gouv.fr/instruction-interministerielle-ndeg-dss2b202646-du-20-mars-2026-relative-la-revalorisation-au-1er-avril-2026-des-prestations-familiales-servies-en-metropole-en-guadeloupe-en-guyane-en-martinique-la-reunion-saint-barthelemy-saint-martin-et
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-9ce63877b8
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article 158, 5.a. du Code gÃ©nÃ©ral des impÃ´ts
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047622551
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-9ecbaa739c
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article 197, I.1. du Code gÃ©nÃ©ral des impÃ´ts
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046860759/2026-02-21/
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-9f7049e171
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article 197, I.4. a) du Code gÃ©nÃ©ral des impÃ´ts
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046860759/2025-01-01/
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-9fe845ad59
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article 197, I.4.a) du Code gÃ©nÃ©ral des impÃ´ts
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046860759/2026-02-21/
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-a090141244
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: LOI nÂ° 2022-1726, art. 2 du 30/12/2022 (LF pour 2023)
+  url: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000046845640
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-a20d7ae5af
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: ArrÃªtÃ© du 27/09/2019, article 9
+  url: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046206205/2022-07-01
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-a31bd2e821
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: ArrÃªtÃ© du 21 dÃ©cembre 2022 relatif aux plafonds de ressources de certaines prestations familialess
+  url: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046794210
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-a346355f07
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article 154 quinquies du CGI
+  url: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000036431149/2018-01-01/
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-a3a7b8c031
+  type: rapport_institutionnel
+  editeur: Référence citée par OpenFisca-France
+  titre: ArrÃªtÃ© du 27/10/2014, art. 4
+  url: ''
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-a439ccedc7
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2018-836 du 03/10/2018, art. 2
+  url: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000037460547
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-a598edec8a
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: ArrÃªtÃ© du 16 dÃ©cembre 2021 relatif aux plafonds de ressources de certaines prestations familiales
+  url: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044572366
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-a67e599a8d
+  type: rapport_institutionnel
+  editeur: Référence citée par OpenFisca-France
+  titre: ArrÃªtÃ© du 28/12/2012, art. 7
+  url: ''
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-a6d1af1ab4
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article L551-1 du Code de la sÃ©curitÃ© sociale
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046809143
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-a8a529b631
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret nÂ° 2023-340 du 4 mai 2023, article 1
+  url: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000047521567
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-a8d2da8442
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article D843-3 du code de la sÃ©curitÃ© sociale
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031673883/2016-01-01/
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-a92ffba18e
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2018-324 du 03/05/2018, art. 1
+  url: https://www.legifrance.gouv.fr/eli/decret/2018/5/3/2018-324/jo/texte
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-aa12168487
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article 197, I.4. a) du Code gÃ©nÃ©ral des impÃ´ts
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046860759/2026-02-21/
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-aa58be771a
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article L821-3-1 du Code de la sÃ©curitÃ© sociale
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031781089/2016-01-01/
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-aa8d40a125
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret nÂ° 2024-397 du 29 avril 2024
+  url: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000049486529
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-abbd9c5808
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: LOI nÂ° 2022-1158 du 16/08/2022, art. 9
+  url: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046186723
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-ac46bd9840
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Loi 2019-1479 du 28/12/2019 (LF pour 2020)
+  url: https://www.legifrance.gouv.fr/eli/loi/2019/12/28/CPAX1925229L/jo/texte
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-ad8e141d3c
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2016-1276 du 29/09/2016
+  url: https://www.legifrance.gouv.fr/eli/decret/2016/9/29/2016-1276/jo/texte
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-ad922c98ad
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2013-831 du 17/09/2013 - art. 1 (V)
+  url: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000027973506&cidTexte=JORFTEXT000027972698
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-add56660e2
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article 197, I.1. du Code gÃ©nÃ©ral des impÃ´ts
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046860759/2025-02-16/
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-af4cce448d
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret nÂ° 2023-422 du 31/05/2023, art. 1
+  url: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000047618675
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-af5010b410
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article 197, I.1. du Code gÃ©nÃ©ral des impÃ´ts
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046860759/2024-01-01/
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-b13907fd40
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article L136-8 du Code de la sÃ©curitÃ© sociale
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042683546
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-b182dd254e
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article 197, I.2. du Code gÃ©nÃ©ral des impÃ´ts
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046860759/2025-01-01/
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-b28dc1d44d
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2018-948 du 31/10/2018 - art. 1 et 2
+  url: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000037552841&dateTexte=20190513
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-b36e43c4e6
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article 197, I.1. du Code gÃ©nÃ©ral des impÃ´ts
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046860759/2023-01-01/
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-b3d4a85956
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2018-836 du 03/10/2018, art. 1 et 2
+  url: https://www.legifrance.gouv.fr/eli/decret/2018/10/3/SSAA1822062D/jo/texte
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-b3ecdb84d6
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2021-527 du 29/04/2021 - art. 1
+  url: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043459535#:~:text=Le%20montant%20mensuel%20de%20l,du%20mois%20d'avril%202021.
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-b5d36b43e3
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret nÂ° 2025-294 du 29 mars 2025, art. 1
+  url: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000051393100
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-b5e3f2214a
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Loi 2012-1510 du 29/12/2012
+  url: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000026857857
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-b7243152da
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Loi 2017-1837, art. 2 du 31/12/2017 (LF pour 2018)
+  url: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036377702&cidTexte=JORFTEXT000036339197
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-bb9cac6286
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Loi du 22 aout 1946
+  url: https://www.legifrance.gouv.fr/loda/id/LEGISCTA000006106589
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-bbf07fa814
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret nÂº2018-1197 du 21/12/2018
+  url: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000037846000
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-bc62673749
+  type: texte_officiel
+  editeur: Référence citée par OpenFisca-France
+  titre: Circulaire Cnav 2023-34 du 29/12/2023 (page 10).
+  url: https://legislation.lassuranceretraite.fr/Pdf/circulaire_cnav_2023_34_29122023.pdf
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-bcddfac820
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article D843-2 du Code de la sÃ©curitÃ© sociale
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037873473
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-bcfa54f3f3
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Loi 2019-1479, art. 50 et art. 157 du 28/12/2019 (LF pour 2020)
+  url: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000039683923&categorieLien=id
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-bd15186378
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2020-491 du 29/04/2020, art. 1
+  url: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000041835204
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-bf5a1a766c
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: ArrÃªtÃ© du 28/09/2026, art. 1, 3Â°
+  url: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000054913928
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-c04b7c779e
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret nÂ° 2026-229 du 30 mars 2026, art. 1
+  url: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000053734356
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-c0795390ba
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2014-1129 du 3/10/2014 - art. 1 (V)
+  url: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029537057&cidTexte=JORFTEXT000029535265
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-c1b0e67f3b
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article 197, I.4.a. du Code gÃ©nÃ©ral des impÃ´ts
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042907517/2021-01-01
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-c29e3bc468
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2018-328 du 04/05/2017 - art. 1
+  url: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000036880058&cidTexte=JORFTEXT000036876078
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-c2dab40149
+  type: texte_officiel
+  editeur: Référence citée par OpenFisca-France
+  titre: Circulaire DSS/SD2B/2016/77 du 15/03/2016
+  url: ''
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-c39ac63a09
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2017-739 du 04/05/2017
+  url: https://www.legifrance.gouv.fr/eli/decret/2017/5/4/2017-739/jo/texte
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-c4fc018830
+  type: rapport_institutionnel
+  editeur: Référence citée par OpenFisca-France
+  titre: instruction interministÃ©rielle nÂ° DSS/2B/2024/181 20/12/2024
+  url: ''
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-c72d8092f5
+  type: texte_officiel
+  editeur: Référence citée par OpenFisca-France
+  titre: Circulaire CNAV 2012/35 du 17/04/2012
+  url: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=circulaire_cnav_2012_35_17042012
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-cb87d7f099
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article L842-3 du code de la sÃ©curitÃ© sociale
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037994814
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-cc0280587c
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Loi 97-1164 du 19/12/1997, art. 5 (LFSS pour 1998)
+  url: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006757359&cidTexte=JORFTEXT000000569121
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-cc3812c9a1
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Loi 2010-1657 du 29/12/2010 (LF pour 2011)
+  url: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000023314376
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-ccf974406c
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Loi 2004-810 du 13/08/2004, art. 72
+  url: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000006759004&cidTexte=JORFTEXT000000625158
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-ceb93abbcd
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Loi 2013-1203 du 23/12/2013
+  url: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000028372809
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-cfbbdc1018
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: ArrÃªtÃ© du 08/12/2015, art. 1
+  url: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000031634884/#LEGIARTI000031634884
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-d082fd80ff
+  type: texte_officiel
+  editeur: Référence citée par OpenFisca-France
+  titre: Circulaire Cnav 2014/28 du 09/04/2014
+  url: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=circulaire_cnav_2014_028_09042014
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-d22028434c
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article 197, I.2. du Code gÃ©nÃ©ral des impÃ´ts
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042907517/2022-01-01
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-d302627898
+  type: rapport_institutionnel
+  editeur: Référence citée par OpenFisca-France
+  titre: ArrÃªtÃ© du 31/12/2008, art. 4
+  url: ''
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-d4e11c5c6e
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2015-1231 du 06/10/2015
+  url: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000031276427
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-d626caaf3c
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Loi 2026-103, art. 4 du 19/02/2026 de finances (LF pour 2026)
+  url: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000053508182
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-d7afb60604
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2009-404 du 15/04/2009
+  url: https://www.legifrance.gouv.fr/eli/decret/2009/4/15/2009-404/jo/texte
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-da97186ea5
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2005-88 du 04/02/2005
+  url: https://www.legifrance.gouv.fr/eli/decret/2005/2/4/2005-88/jo/texte
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-ddbf337878
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2018-836 du 03/10/2018, art. 1
+  url: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000051393074/
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-dead2a35bd
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article L521-1 du code de la sÃ©curitÃ© sociale
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000029963006/
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-e008812ad7
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2020-490 du 29/04/2020, art. 1
+  url: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000041835196/
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-e0add4d796
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2012-1488 du 28/12/2012
+  url: https://www.legifrance.gouv.fr/eli/decret/2012/12/28/2012-1488/jo/texte
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-e0f2fd12fd
+  type: rapport_institutionnel
+  editeur: Référence citée par OpenFisca-France
+  titre: Instruction interministÃ©rielle NÂ° DSS/2A/2C/2025/32 du 7 mars 2025
+  url: https://sante.gouv.fr/fichiers/bo/2025/2025.6.sante.pdf#page=9
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-e0f913978c
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article 197, I.4. a) du Code gÃ©nÃ©ral des impÃ´ts
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046860759/2023-01-01/
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-e1cc8253e5
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Loi 2015-1785 du 29/12/2015 (LF pour 2016)
+  url: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000031732865
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-e2639ddb9c
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Loi 2020-1721, art. 2 du 29/12/2020 (LF pour 2021)
+  url: https://www.legifrance.gouv.fr/jorf/id/JORFARTI000042753593
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-e27c5c87aa
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2020-492 du 29/04/2020 - art. 1 et 2
+  url: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000041835211
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-e2c1a3dc2a
+  type: rapport_institutionnel
+  editeur: Référence citée par OpenFisca-France
+  titre: Instruction interministÃ©rielle nÂ° DSS/2B/2025/177 du 18/12/2025
+  url: https://bulletins-officiels.social.gouv.fr/sites/textes-officiels/files/2025-12/SFHS2535630J_0.pdf
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-e3381ad387
+  type: rapport_institutionnel
+  editeur: Référence citée par OpenFisca-France
+  titre: ArrÃªtÃ© du 30/12/2009, art. 4
+  url: ''
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-e3f0a7c7a1
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article L241-13 du Code de la SÃ©curitÃ© sociale
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051285243
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-e5505a5c46
+  type: texte_officiel
+  editeur: Référence citée par OpenFisca-France
+  titre: Circulaire CNAV 2021/1 du 11/01/2021
+  url: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2021_01_11012021.pdf
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-e6b3336dd0
+  type: rapport_institutionnel
+  editeur: Référence citée par OpenFisca-France
+  titre: BOI 5 B-13-10 nÂ°22 du 16/02/2010
+  url: ''
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-e85c4700a8
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Loi 2017-1837 du 31/12/2017 (LF pour 2018)
+  url: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036339197&categorieLien=id
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-e9036818d6
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Art. 2 de la loi no 2021-1900 du 30 dÃ©cembre 2021 de finances pour 2022
+  url: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000044637653
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-e93dfeb78b
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2015-1710 du 21/12/2015, art. 2 (crÃ©e art. D843-1 du CSS)
+  url: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000031665094
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-ea9ac8b18f
+  type: texte_officiel
+  editeur: Référence citée par OpenFisca-France
+  titre: Circulaire CNAV 2022/3 du 11/01/2022, page 8
+  url: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2022_03_11012022.pdf
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-eb08014ea3
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Circulaire DSS/SD2B/2019/65 du 25/03/2019
+  url: http://circulaires.legifrance.gouv.fr/pdf/2019/03/cir_44472.pdf
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-eb386b913f
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2011-658 du 10/06/2011 - art. 1 (V)
+  url: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000024167671&cidTexte=JORFTEXT000024153713
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-eb69b6c7b1
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2010-54 du 15/01/2010
+  url: https://www.legifrance.gouv.fr/eli/decret/2010/1/15/2010-54/jo/texte
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-ebc839d89c
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article D241-7 du Code de la SÃ©curitÃ© sociale
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000054252241
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-ec7b39d17e
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: ArrÃªtÃ© du 14/12/2020, art. 1
+  url: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000042694985
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-ede6a85620
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2011-2040 du 28/12/2011
+  url: https://www.legifrance.gouv.fr/eli/decret/2011/12/28/2011-2040/jo/texte
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-ee52101dba
+  type: rapport_institutionnel
+  editeur: Référence citée par OpenFisca-France
+  titre: Instruction interministÃ©rielle nÂ° DSS/2B/2024/43 du 20 mars 2024 (p. 84)
+  url: https://sante.gouv.fr/fichiers/bo/2024/2024.6.sante.pdf#page=84
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-ee87a06848
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Loi 2016-1917, art. 2 du 29/12/2016 (LF pour 2017)
+  url: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000033760564&cidTexte=JORFTEXT000033734169
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-ef721083c0
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: ArrÃªtÃ© du 21/12/2018, art. 1
+  url: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000037864990
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-ef9a86de03
+  type: texte_officiel
+  editeur: Référence citée par OpenFisca-France
+  titre: Circulaire CNAV 2013/29 du 18/04/2013
+  url: https://www.legislation.cnav.fr/Pages/texte.aspx?Nom=circulaire_cnav_2013_29_18042013
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-f20ecf77a7
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2014-1127 du 03/10/2014
+  url: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000029535258
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-f50e9627bb
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000006740335/1997-12-23/
+  url: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000006740335/1997-12-23/
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-f548a9102e
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: LOI nÂ° 2022-1158 du 16/08/2022, art. 9
+  url: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000046186749
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-f658806f52
+  type: texte_officiel
+  editeur: Référence citée par OpenFisca-France
+  titre: Circulaire DSS/2B/2022/82 du 28/03/2022 page 404
+  url: https://solidarites-sante.gouv.fr/fichiers/bo/2022/2022.8.sante.pdf#page=404
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-f695198afd
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article 197, I.2. du Code gÃ©nÃ©ral des impÃ´ts
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046860759/2026-02-21/
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-f6f3b8fb51
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2014-1215 du 20/10/2014
+  url: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000029616738
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-f851647f71
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: ArrÃªtÃ© du 28/09/2017, art. 5
+  url: https://www.legifrance.gouv.fr/eli/arrete/2017/9/28/TERL1725443A/jo/article_5
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-fba7384837
+  type: texte_officiel
+  editeur: Référence citée par OpenFisca-France
+  titre: Circulaire CNAV 2016/18 du 29/03/2016
+  url: https://www.legislation.cnav.fr/Documents/circulaire_cnav_2016_18_29032016.pdf
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-fd6a8c05d1
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Loi 2011-1906 du 21/12/2011, art. 104 (modif art. L551-1 du CSS)
+  url: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000025007754&cidTexte=JORFTEXT000025005833
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-fdb6132899
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article 197, I.4. a) du Code gÃ©nÃ©ral des impÃ´ts
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046860759/2024-01-01/
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-fe97bae3e6
+  type: texte_officiel
+  editeur: Référence citée par OpenFisca-France
+  titre: Circulaire DSS/SD2B/2020/33 du 18/02/2020
+  url: https://solidarites-sante.gouv.fr/fichiers/bo/2020/20-02/ste_20200002_0000_0046.pdf
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-fed4deccb2
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 46-2880 du 10/12/1946
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000029963006/
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-ff0c6ca01c
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: Article 197, I.2.Â§1 du Code gÃ©nÃ©ral des impÃ´ts
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046860759/2023-01-01/
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-ff31521afd
+  type: rapport_institutionnel
+  editeur: Référence citée par OpenFisca-France
+  titre: ArrÃªtÃ© du 16/10/2015, art. 1
+  url: ''
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.
+- id: of-ref-fff48a9a49
+  type: texte_officiel
+  editeur: Légifrance (DILA)
+  titre: DÃ©cret 2009-353 du 31/03/2009 - art. 1 (V)
+  url: https://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000020468895&cidTexte=JORFTEXT000020467482
+  consulte_le: '2026-10-13'
+  note: Référence extraite automatiquement des métadonnées d'OpenFisca-France.

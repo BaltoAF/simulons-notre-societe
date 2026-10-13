@@ -1,0 +1,471 @@
+# Contrat de travail : période d'essai, rupture, CDD, seuils d'effectifs (règles en vigueur au 13 octobre 2026).
+# Convention : pour un article de code, « depuis » = date d'entrée en vigueur de la rédaction actuelle
+# de l'article telle qu'affichée par code.travail.gouv.fr ; la règle elle-même peut être plus ancienne.
+domaine: travail
+theme: "Contrat de travail : embauche, rupture, seuils"
+regles:
+  # ───────── Période d'essai ─────────
+  - id: travail.periode_essai.cdi_ouvriers_employes
+    titre: "Période d'essai maximale d'un CDI : ouvriers et employés"
+    explication: "Au début d'un CDI, l'employeur et le salarié peuvent rompre librement le contrat pendant la période d'essai, limitée à 2 mois pour les ouvriers et employés."
+    type: nombre
+    unite: mois
+    bornes: [0, 6]
+    valeurs:
+      - depuis: "2008-06-27"
+        valeur: 2
+        sources: [legi-ct-l1221-19]
+        article: "Code du travail, art. L1221-19"
+    tags: [periode_essai, cdi]
+    a_verifier: false
+
+  - id: travail.periode_essai.cdi_agents_maitrise_techniciens
+    titre: "Période d'essai maximale d'un CDI : agents de maîtrise et techniciens"
+    explication: "Pour les agents de maîtrise et techniciens, la période d'essai initiale ne peut pas dépasser 3 mois."
+    type: nombre
+    unite: mois
+    bornes: [0, 6]
+    valeurs:
+      - depuis: "2008-06-27"
+        valeur: 3
+        sources: [legi-ct-l1221-19]
+        article: "Code du travail, art. L1221-19"
+    tags: [periode_essai, cdi]
+    a_verifier: false
+
+  - id: travail.periode_essai.cdi_cadres
+    titre: "Période d'essai maximale d'un CDI : cadres"
+    explication: "Pour les cadres, la période d'essai initiale ne peut pas dépasser 4 mois."
+    type: nombre
+    unite: mois
+    bornes: [0, 8]
+    valeurs:
+      - depuis: "2008-06-27"
+        valeur: 4
+        sources: [legi-ct-l1221-19]
+        article: "Code du travail, art. L1221-19"
+    tags: [periode_essai, cdi]
+    a_verifier: false
+
+  - id: travail.periode_essai.cdi_ouvriers_employes_renouvellement_inclus
+    titre: "Période d'essai maximale renouvellement compris : ouvriers et employés"
+    explication: "Si un accord de branche le prévoit, la période d'essai peut être renouvelée une fois, sans dépasser 4 mois au total pour les ouvriers et employés."
+    type: nombre
+    unite: mois
+    bornes: [0, 12]
+    valeurs:
+      - depuis: "2008-06-27"
+        valeur: 4
+        sources: [legi-ct-l1221-21]
+        article: "Code du travail, art. L1221-21"
+    tags: [periode_essai, cdi]
+    a_verifier: false
+
+  - id: travail.periode_essai.cdi_agents_maitrise_techniciens_renouvellement_inclus
+    titre: "Période d'essai maximale renouvellement compris : agents de maîtrise et techniciens"
+    explication: "Renouvellement compris, la période d'essai des agents de maîtrise et techniciens ne peut pas dépasser 6 mois."
+    type: nombre
+    unite: mois
+    bornes: [0, 12]
+    valeurs:
+      - depuis: "2008-06-27"
+        valeur: 6
+        sources: [legi-ct-l1221-21]
+        article: "Code du travail, art. L1221-21"
+    tags: [periode_essai, cdi]
+    a_verifier: false
+
+  - id: travail.periode_essai.cdi_cadres_renouvellement_inclus
+    titre: "Période d'essai maximale renouvellement compris : cadres"
+    explication: "Renouvellement compris, la période d'essai des cadres ne peut pas dépasser 8 mois."
+    type: nombre
+    unite: mois
+    bornes: [0, 12]
+    valeurs:
+      - depuis: "2008-06-27"
+        valeur: 8
+        sources: [legi-ct-l1221-21]
+        article: "Code du travail, art. L1221-21"
+    tags: [periode_essai, cdi]
+    a_verifier: false
+
+  - id: travail.periode_essai.cdd_jours_par_semaine
+    titre: "Période d'essai d'un CDD : jours par semaine de contrat"
+    explication: "La période d'essai d'un CDD se calcule à raison d'un jour par semaine de contrat, plafonnée à 2 semaines pour un contrat de 6 mois ou moins et à 1 mois au-delà."
+    type: nombre
+    unite: jours
+    bornes: [0, 7]
+    valeurs:
+      - depuis: "2008-05-01"
+        valeur: 1
+        sources: [legi-ct-l1242-10]
+        article: "Code du travail, art. L1242-10"
+    tags: [periode_essai, cdd]
+    a_verifier: false
+    note: "Sauf usages ou stipulations conventionnelles prévoyant des durées moindres."
+
+  - id: travail.periode_essai.cdd_plafond_6_mois_ou_moins
+    titre: "Période d'essai maximale d'un CDD de 6 mois ou moins"
+    explication: "Pour un CDD de 6 mois au plus, la période d'essai ne peut pas dépasser 2 semaines."
+    type: nombre
+    unite: semaines
+    bornes: [0, 8]
+    valeurs:
+      - depuis: "2008-05-01"
+        valeur: 2
+        sources: [legi-ct-l1242-10]
+        article: "Code du travail, art. L1242-10"
+    tags: [periode_essai, cdd]
+    a_verifier: false
+
+  - id: travail.periode_essai.cdd_plafond_plus_6_mois
+    titre: "Période d'essai maximale d'un CDD de plus de 6 mois"
+    explication: "Pour un CDD de plus de 6 mois, la période d'essai ne peut pas dépasser 1 mois."
+    type: nombre
+    unite: mois
+    bornes: [0, 3]
+    valeurs:
+      - depuis: "2008-05-01"
+        valeur: 1
+        sources: [legi-ct-l1242-10]
+        article: "Code du travail, art. L1242-10"
+    tags: [periode_essai, cdd]
+    a_verifier: false
+
+  # ───────── Licenciement ─────────
+  - id: travail.licenciement.preavis_6_mois_2_ans
+    titre: "Préavis légal de licenciement (ancienneté de 6 mois à moins de 2 ans)"
+    explication: "Sauf faute grave, un salarié licencié qui a entre 6 mois et 2 ans d'ancienneté a droit à un préavis d'au moins 1 mois."
+    type: nombre
+    unite: mois
+    bornes: [0, 6]
+    valeurs:
+      - depuis: "2008-05-01"
+        valeur: 1
+        sources: [legi-ct-l1234-1]
+        article: "Code du travail, art. L1234-1, 2°"
+    tags: [licenciement, preavis]
+    a_verifier: false
+    note: "Sous 6 mois d'ancienneté, le préavis est fixé par la convention collective ou les usages. Un contrat ou une convention plus favorable s'applique."
+
+  - id: travail.licenciement.preavis_2_ans_et_plus
+    titre: "Préavis légal de licenciement (ancienneté de 2 ans ou plus)"
+    explication: "Sauf faute grave, un salarié licencié qui a au moins 2 ans d'ancienneté a droit à un préavis d'au moins 2 mois."
+    type: nombre
+    unite: mois
+    bornes: [0, 6]
+    valeurs:
+      - depuis: "2008-05-01"
+        valeur: 2
+        sources: [legi-ct-l1234-1]
+        article: "Code du travail, art. L1234-1, 3°"
+    tags: [licenciement, preavis]
+    a_verifier: false
+
+  - id: travail.licenciement.indemnite_anciennete_minimale
+    titre: "Ancienneté minimale pour toucher l'indemnité légale de licenciement"
+    explication: "Un salarié en CDI licencié (hors faute grave) a droit à une indemnité s'il a au moins 8 mois d'ancienneté ininterrompue chez le même employeur."
+    type: nombre
+    unite: mois
+    bornes: [0, 24]
+    valeurs:
+      - depuis: "2017-09-24"
+        valeur: 8
+        sources: [legi-ct-l1234-9]
+        article: "Code du travail, art. L1234-9"
+    tags: [licenciement, indemnite]
+    a_verifier: false
+    note: "Rédaction en vigueur depuis le 24 septembre 2017 (ordonnances de septembre 2017)."
+
+  - id: travail.licenciement.indemnite_fraction_jusqu_10_ans
+    titre: "Indemnité légale de licenciement : mois de salaire par année d'ancienneté (jusqu'à 10 ans)"
+    explication: "Pour chacune des 10 premières années d'ancienneté, l'indemnité légale vaut au moins un quart de mois de salaire."
+    type: nombre
+    unite: ratio
+    bornes: [0, 1]
+    valeurs:
+      - depuis: "2017-09-27"
+        valeur: 0.25
+        sources: [legi-ct-r1234-2]
+        article: "Code du travail, art. R1234-2, 1°"
+    tags: [licenciement, indemnite]
+    a_verifier: false
+    note: "Exprimé en mois de salaire de référence par année d'ancienneté (1/4)."
+
+  - id: travail.licenciement.indemnite_fraction_au_dela_10_ans
+    titre: "Indemnité légale de licenciement : mois de salaire par année d'ancienneté (au-delà de 10 ans)"
+    explication: "À partir de la 11e année d'ancienneté, chaque année ouvre droit à un tiers de mois de salaire."
+    type: nombre
+    unite: ratio
+    bornes: [0, 1]
+    valeurs:
+      - depuis: "2017-09-27"
+        valeur: 0.3333
+        sources: [legi-ct-r1234-2]
+        article: "Code du travail, art. R1234-2, 2°"
+    tags: [licenciement, indemnite]
+    a_verifier: false
+    note: "1/3 de mois de salaire par année (arrondi à 0,3333)."
+
+  - id: travail.prudhommes.bareme_plafond_maximal
+    titre: "Barème prud'homal : indemnité maximale (licenciement sans cause réelle et sérieuse)"
+    explication: "Si un licenciement est jugé injustifié, le juge accorde une indemnité encadrée par un barème ; le maximum absolu est de 20 mois de salaire brut, atteint à 29 ans d'ancienneté."
+    type: nombre
+    unite: mois
+    bornes: [0, 40]
+    valeurs:
+      - depuis: "2018-04-01"
+        valeur: 20
+        sources: [legi-ct-l1235-3]
+        article: "Code du travail, art. L1235-3"
+    tags: [licenciement, prudhommes, bareme_macron]
+    a_verifier: false
+    note: "Plafond croissant avec l'ancienneté : 1 mois (moins d'1 an), 2 mois (1 an)… 10 mois (10 ans), 15 mois (19 ans), 20 mois (29 ans et plus)."
+
+  - id: travail.prudhommes.bareme_plancher_11_salaries_et_plus
+    titre: "Barème prud'homal : indemnité minimale maximale (entreprises d'au moins 11 salariés)"
+    explication: "Dans les entreprises d'au moins 11 salariés, le plancher du barème est de 1 mois de salaire brut à 1 an d'ancienneté, puis de 3 mois à partir de 2 ans d'ancienneté."
+    type: nombre
+    unite: mois
+    bornes: [0, 12]
+    valeurs:
+      - depuis: "2018-04-01"
+        valeur: 3
+        sources: [legi-ct-l1235-3]
+        article: "Code du travail, art. L1235-3"
+    tags: [licenciement, prudhommes, bareme_macron]
+    a_verifier: false
+    note: "Planchers : sans objet avant 1 an, 1 mois à 1 an d'ancienneté, 3 mois de 2 ans à 30 ans et plus (texte relu sur code.travail.gouv.fr)."
+
+  - id: travail.prudhommes.bareme_plancher_moins_11_salaries
+    titre: "Barème prud'homal : indemnité minimale maximale (entreprises de moins de 11 salariés)"
+    explication: "Dans les très petites entreprises, les planchers sont plus bas : de 0,5 mois (1 an d'ancienneté) jusqu'à 2,5 mois (9-10 ans)."
+    type: nombre
+    unite: mois
+    bornes: [0, 12]
+    valeurs:
+      - depuis: "2018-04-01"
+        valeur: 2.5
+        sources: [legi-ct-l1235-3]
+        article: "Code du travail, art. L1235-3"
+    tags: [licenciement, prudhommes, bareme_macron, tpe]
+    a_verifier: false
+    note: "Le tableau dérogatoire s'arrête à 10 ans d'ancienneté ; les plafonds restent ceux du barème général."
+
+  - id: travail.prudhommes.indemnite_minimale_licenciement_nul
+    titre: "Indemnité minimale en cas de licenciement nul"
+    explication: "Si le licenciement est nul (harcèlement, discrimination, atteinte à une liberté fondamentale…), le barème ne s'applique pas et l'indemnité est d'au moins 6 mois de salaire."
+    type: nombre
+    unite: mois
+    bornes: [0, 24]
+    valeurs:
+      - depuis: "2018-04-01"
+        valeur: 6
+        sources: [legi-ct-l1235-3-1]
+        article: "Code du travail, art. L1235-3-1"
+    tags: [licenciement, prudhommes]
+    a_verifier: false
+
+  # ───────── CDD ─────────
+  - id: travail.cdd.duree_maximale
+    titre: "Durée maximale d'un CDD, renouvellements compris (cas général)"
+    explication: "Sauf accord de branche contraire, un contrat à durée déterminée ne peut pas dépasser 18 mois au total."
+    type: nombre
+    unite: mois
+    bornes: [0, 60]
+    valeurs:
+      - depuis: "2017-09-24"
+        valeur: 18
+        sources: [legi-ct-l1242-8-1]
+        article: "Code du travail, art. L1242-8-1"
+    tags: [cdd, precarite]
+    a_verifier: false
+    note: "9 mois dans certains cas (attente d'un salarié en CDI, travaux urgents de sécurité), 24 mois dans d'autres (mission à l'étranger, commande exceptionnelle à l'export…)."
+
+  - id: travail.cdd.nombre_renouvellements
+    titre: "Nombre maximal de renouvellements d'un CDD (à défaut d'accord)"
+    explication: "Sauf accord de branche, un CDD peut être renouvelé deux fois, dans la limite de la durée maximale."
+    type: nombre
+    unite: renouvellements
+    bornes: [0, 5]
+    valeurs:
+      - depuis: "2017-09-24"
+        valeur: 2
+        sources: [legi-ct-l1243-13-1]
+        article: "Code du travail, art. L1243-13-1"
+    tags: [cdd, precarite]
+    a_verifier: false
+
+  - id: travail.cdd.delai_carence_fraction_14_jours_et_plus
+    titre: "Délai de carence entre deux CDD : fraction de la durée du contrat (contrat de 14 jours ou plus)"
+    explication: "Avant de réembaucher en CDD sur le même poste, l'employeur doit attendre un délai égal au tiers de la durée du contrat précédent (si celui-ci a duré au moins 14 jours)."
+    type: nombre
+    unite: ratio
+    bornes: [0, 1]
+    valeurs:
+      - depuis: "2017-09-24"
+        valeur: 0.3333
+        sources: [legi-ct-l1244-3-1]
+        article: "Code du travail, art. L1244-3-1"
+    tags: [cdd, precarite]
+    a_verifier: false
+    note: "Pour un contrat de moins de 14 jours : la moitié de sa durée. Seuls les jours d'ouverture de l'entreprise sont comptés. Règle supplétive (un accord de branche peut en décider autrement)."
+
+  - id: travail.cdd.indemnite_fin_contrat
+    titre: "Indemnité de fin de CDD (prime de précarité)"
+    explication: "À la fin d'un CDD qui n'est pas suivi d'un CDI, le salarié touche une indemnité égale à 10 % de sa rémunération brute totale."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 30]
+    valeurs:
+      - depuis: "2008-05-01"
+        valeur: 10
+        sources: [legi-ct-l1243-8]
+        article: "Code du travail, art. L1243-8"
+    tags: [cdd, precarite, indemnite]
+    a_verifier: false
+
+  # ───────── Rupture conventionnelle et retraite ─────────
+  - id: travail.rupture_conventionnelle.delai_retractation
+    titre: "Rupture conventionnelle : délai de rétractation"
+    explication: "Après avoir signé une rupture conventionnelle, l'employeur et le salarié ont chacun 15 jours calendaires pour changer d'avis."
+    type: nombre
+    unite: jours
+    bornes: [0, 30]
+    valeurs:
+      - depuis: "2008-06-27"
+        valeur: 15
+        sources: [legi-ct-l1237-13, sp-f19030]
+        article: "Code du travail, art. L1237-13"
+    tags: [rupture_conventionnelle]
+    a_verifier: false
+
+  - id: travail.rupture_conventionnelle.delai_homologation
+    titre: "Rupture conventionnelle : délai d'homologation par l'administration"
+    explication: "L'administration du travail a 15 jours ouvrables pour valider la rupture conventionnelle ; sans réponse, elle est réputée acceptée."
+    type: nombre
+    unite: jours
+    bornes: [0, 30]
+    valeurs:
+      - depuis: "2008-06-27"
+        valeur: 15
+        sources: [legi-ct-l1237-14, sp-f19030]
+        article: "Code du travail, art. L1237-14"
+    tags: [rupture_conventionnelle]
+    a_verifier: false
+    note: "Jours ouvrables."
+
+  - id: travail.rupture_conventionnelle.contribution_patronale
+    titre: "Contribution patronale spécifique sur l'indemnité de rupture conventionnelle"
+    explication: "L'employeur paie une contribution de 40 % sur la partie de l'indemnité de rupture conventionnelle (ou de mise à la retraite) exonérée de cotisations sociales, au profit de l'assurance vieillesse."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 40
+        sources: [boss-indemnites-rupture]
+        article: "Code de la sécurité sociale, art. L137-12 ; loi n° 2025-1403 du 30 décembre 2025 (LFSS 2026), art. 15"
+    tags: [rupture_conventionnelle, cotisations]
+    a_verifier: false
+    note: "Applicable aux indemnités versées pour une rupture dont le terme est postérieur au 1er janvier 2026 (BOSS). Le forfait social n'est pas dû sur ces indemnités."
+
+  - id: travail.retraite.mise_a_la_retraite_office_age
+    titre: "Âge à partir duquel l'employeur peut mettre un salarié à la retraite sans son accord"
+    explication: "Un employeur ne peut imposer la retraite à un salarié qu'à partir de 70 ans ; entre 67 et 69 ans, il doit obtenir son accord."
+    type: nombre
+    unite: ans
+    bornes: [60, 75]
+    valeurs:
+      - depuis: "2009-01-01"
+        valeur: 70
+        sources: [sp-f13966]
+        article: "Code du travail, art. L1237-5"
+    tags: [retraite, rupture]
+    a_verifier: false
+    note: "Valeur (70 ans) lue sur service-public.gouv.fr (fiche vérifiée le 17/11/2025). La date « depuis » (réforme de 2009) est indicative : elle n'a pas été relue sur un texte officiel."
+
+  # ───────── Seuils d'effectifs ─────────
+  - id: travail.seuils.cse_mise_en_place
+    titre: "Effectif à partir duquel un comité social et économique (CSE) est obligatoire"
+    explication: "Une entreprise doit organiser l'élection d'un CSE (représentants du personnel) dès qu'elle atteint 11 salariés pendant 12 mois consécutifs."
+    type: nombre
+    unite: personnes
+    bornes: [1, 100]
+    valeurs:
+      - depuis: "2018-01-01"
+        valeur: 11
+        sources: [legi-ct-l2311-2]
+        article: "Code du travail, art. L2311-2"
+    tags: [seuils_effectifs, representation_personnel]
+    a_verifier: false
+
+  - id: travail.seuils.cse_attributions_elargies
+    titre: "Effectif à partir duquel le CSE a des attributions élargies"
+    explication: "À partir de 50 salariés, le CSE est consulté sur la marche de l'entreprise et gère les activités sociales et culturelles, avec un budget dédié."
+    type: nombre
+    unite: personnes
+    bornes: [11, 300]
+    valeurs:
+      - depuis: "2018-01-01"
+        valeur: 50
+        sources: [legi-ct-l2312-1]
+        article: "Code du travail, art. L2312-1"
+    tags: [seuils_effectifs, representation_personnel]
+    a_verifier: false
+
+  - id: travail.seuils.reglement_interieur
+    titre: "Effectif à partir duquel un règlement intérieur est obligatoire"
+    explication: "Une entreprise ou un établissement d'au moins 50 salariés doit avoir un règlement intérieur, au plus tard 12 mois après avoir franchi le seuil."
+    type: nombre
+    unite: personnes
+    bornes: [1, 300]
+    valeurs:
+      - depuis: "2020-01-01"
+        valeur: 50
+        sources: [legi-ct-l1311-2]
+        article: "Code du travail, art. L1311-2"
+    tags: [seuils_effectifs]
+    a_verifier: false
+
+  - id: travail.seuils.participation_obligatoire
+    titre: "Effectif à partir duquel la participation aux résultats est obligatoire"
+    explication: "Les entreprises d'au moins 50 salariés doivent reverser une partie de leurs bénéfices à leurs salariés (participation)."
+    type: nombre
+    unite: personnes
+    bornes: [1, 300]
+    valeurs:
+      - depuis: "2019-01-01"
+        valeur: 50
+        sources: [legi-ct-l3322-2]
+        article: "Code du travail, art. L3322-2"
+    tags: [seuils_effectifs, partage_valeur]
+    a_verifier: false
+
+  - id: travail.seuils.obligation_emploi_handicap
+    titre: "Effectif à partir duquel l'obligation d'emploi de travailleurs handicapés s'applique"
+    explication: "Tout employeur d'au moins 20 salariés doit employer des travailleurs handicapés à hauteur de 6 % de son effectif, ou payer une contribution."
+    type: nombre
+    unite: personnes
+    bornes: [1, 300]
+    valeurs:
+      - depuis: "2022-01-01"
+        valeur: 20
+        sources: [legi-ct-l5212-1]
+        article: "Code du travail, art. L5212-1"
+    tags: [seuils_effectifs, handicap]
+    a_verifier: false
+
+  - id: travail.handicap.taux_obligation_emploi
+    titre: "Proportion obligatoire de travailleurs handicapés dans l'effectif"
+    explication: "Les employeurs concernés doivent compter au moins 6 % de bénéficiaires de l'obligation d'emploi (travailleurs handicapés…) dans leur effectif."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 20]
+    valeurs:
+      - depuis: "2020-01-01"
+        valeur: 6
+        sources: [legi-ct-l5212-2]
+        article: "Code du travail, art. L5212-2"
+    tags: [handicap, seuils_effectifs]
+    a_verifier: false

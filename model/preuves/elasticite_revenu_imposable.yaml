@@ -1,0 +1,149 @@
+question:
+  id: elasticite_revenu_imposable
+  titre: "Élasticité du revenu imposable au taux marginal d'imposition"
+  definition: "Variation en % du revenu imposable déclaré pour une hausse de 1 % du taux net d'impôt (1 − taux marginal d'imposition) : mesure à quel point les contribuables modifient leurs revenus déclarés (travail, optimisation, évasion) quand l'impôt marginal change."
+  unite: elasticite
+  regles_liees: [fiscalite.impot_revenu.bareme]
+  sens_attendu: positif
+  estimations:
+    - source: saez-et-al-2012
+      valeur: 0.26
+      intervalle_95: null
+      methode: "Revue critique de la littérature fondée sur les données de déclarations fiscales (réformes américaines des années 1980-1990 et études étrangères)"
+      champ: "Littérature internationale, majoritairement États-Unis ; ensemble des contribuables"
+      pays: INT
+      annee_donnees: null
+      type_etude: meta_analyse
+      revue_par_les_pairs: true
+      note: "Revue narrative (pas de méta-analyse statistique). Les auteurs jugent que les estimations de moyen-long terme les plus fiables vont de 0,12 à 0,4 et que les autres pays se situent pour l'essentiel dans la même fourchette ; valeur retenue = milieu de la fourchette (0,26), sans intervalle de confiance publié. Ils soulignent que l'élasticité est plus forte pour les hauts revenus, qui disposent de plus de moyens d'optimisation, qu'elle dépend de la largeur de l'assiette (déductions) et qu'il n'existe pas d'estimation convaincante de très long terme."
+    - source: neisser-2018
+      valeur: 0.39
+      intervalle_95: null
+      methode: "Méta-régression de 1 448 estimations issues de 51 études (doubles différences et variables instrumentales), avec tests de biais de publication"
+      champ: "Littérature internationale (États-Unis majoritaires, Scandinavie, Allemagne, Pays-Bas, France…) ; élasticités du revenu imposable après déductions"
+      pays: INT
+      annee_donnees: null
+      type_etude: meta_analyse
+      revue_par_les_pairs: false
+      note: "Version document de travail 2018 : moyenne des élasticités « après déductions » (revenu imposable) de 0,389 (médiane 0,343, 596 estimations) ; pour les revenus « avant déductions » (revenu brut, salaires…), moyenne 0,300 et médiane 0,203. Valeur retenue : la moyenne après déductions (0,39), non corrigée du biais de publication que l'auteure met en évidence (les résultats significatifs et compris entre 0 et 0,4 sont plus souvent publiés). Une version révisée (61 études, 1 720 estimations) est parue dans l'Economic Journal en 2021 ; ses chiffres n'ont pas pu être lus."
+    - source: gruber-saez-2002
+      valeur: 0.40
+      intervalle_95: [0.12, 0.68]
+      methode: "Panel de déclarations fiscales, doubles moindres carrés : variation du taux net d'impôt instrumentée par les réformes des années 1980 (1981 et 1986), contrôles flexibles du revenu initial"
+      champ: "États-Unis, 1979-1990, contribuables déclarant plus de 10 000 $ ; ensemble des revenus"
+      pays: US
+      annee_donnees: 1990
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Tableau 4 (col. 6) : élasticité du revenu imposable 0,400 (e.t. 0,144) ; IC = 0,40 ± 1,96 × 0,144. L'élasticité du revenu « large » (avant déductions) n'est que de 0,120 (e.t. 0,106) : une bonne partie de la réaction passe par les déductions plutôt que par le revenu réellement gagné. Effets revenu faibles."
+    - source: gruber-saez-2002
+      valeur: 0.57
+      intervalle_95: [-0.02, 1.15]
+      methode: "Même méthode, estimation séparée par tranche de revenu initial"
+      champ: "États-Unis, 1979-1990, hauts revenus : contribuables déclarant plus de 100 000 $ de revenu"
+      pays: US
+      annee_donnees: 1990
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Tableau 8 : 0,567 (e.t. 0,298) pour les revenus supérieurs à 100 000 $ (IC = ± 1,96 e.t.), contre 0,180 (10 000-50 000 $) et 0,106 (50 000-100 000 $). Selon Saez, Slemrod et Giertz (2012), ces écarts entre groupes ne sont pas statistiquement significatifs. Les contribuables qui détaillent leurs déductions réagissent beaucoup plus (0,647)."
+    - source: feldstein-1995
+      valeur: 1.0
+      intervalle_95: null
+      methode: "Doubles différences par groupes de taux marginal, panel de déclarations avant et après la réforme fiscale américaine de 1986"
+      champ: "États-Unis, couples mariés de moins de 65 ans, déclarations 1985 et 1988 (quelques milliers d'observations)"
+      pays: US
+      annee_donnees: 1988
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "L'auteur conclut à une élasticité au moins égale à 1 et peut-être nettement plus élevée ; Saez, Slemrod et Giertz (2012) rapportent des estimations de 1 à 3 selon les spécifications. Valeur retenue : 1 (borne basse). Résultat historique mais très contesté : très petit échantillon au sommet (57 déclarations dans le groupe le plus haut) ; avec un panel bien plus grand et la même méthode, Auten et Carroll obtiennent environ 0,6 (selon la revue de 2012)."
+    - source: kleven-schultz-2014
+      valeur: 0.082
+      intervalle_95: [0.070, 0.094]
+      methode: "Panel administratif exhaustif, doubles moindres carrés : variations de taux créées par les réformes danoises de 1987, 1994, 1999 et 2004 ; contrôles du revenu passé"
+      champ: "Danemark, 1984-2005, contribuables de 15 à 70 ans pleinement imposables au Danemark (hors personnes vivant surtout de prestations sociales) ; revenu imposable total"
+      pays: DK
+      annee_donnees: 2005
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Tableau 8, panneau B : élasticité du revenu imposable à une hausse conjointe des taux nets sur les revenus du travail et du capital = 0,082 (e.t. 0,006) sur l'ensemble des réformes (IC = ± 1,96 e.t.) ; 0,189 (e.t. 0,006) en n'utilisant que la grande réforme de 1987. Élasticités du revenu du travail d'environ 0,05 (salariés) et 0,10 (indépendants) ; revenus du capital 2 à 3 fois plus élastiques. Les grandes réformes donnent des élasticités plus fortes que les petites (frictions d'ajustement)."
+    - source: piketty-et-al-2014
+      valeur: 0.5
+      intervalle_95: null
+      methode: "Séries longues de parts de revenu du 1 % supérieur rapprochées des taux marginaux supérieurs (régressions en séries temporelles et comparaison entre pays)"
+      champ: "1 % des revenus les plus élevés ; États-Unis 1913-2008 et 18 pays de l'OCDE 1960-2010"
+      pays: INT
+      annee_donnees: 2010
+      type_etude: descriptif
+      revue_par_les_pairs: true
+      note: "Hauts revenus. Les auteurs retiennent une élasticité totale de long terme d'environ 0,5 (États-Unis, comparaison 1960-1964 / 2004-2008 : 0,52) ; les régressions donnent 0,25-0,30 (États-Unis 1913-2008, tableau 1) et 0,31-0,38 (18 pays, 1960-2010, tableau 2, e.t. 0,025 à 0,042). Selon eux, la part due à une vraie hausse de l'activité ne dépasse pas 0,2 : le reste viendrait surtout de la négociation des rémunérations au sommet, car les baisses de taux ne sont pas associées à une croissance plus forte du PIB par habitant."
+    - source: piketty-1999
+      valeur: 0.15
+      intervalle_95: null
+      methode: "Coupes répétées de données fiscales, triple différence autour des réformes de l'impôt sur le revenu (expériences naturelles)"
+      champ: "France, 1970-1996, très hauts revenus (au-delà du dernier centile selon la description de Cabannes et al., 2014)"
+      pays: FR
+      annee_donnees: 1996
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Hauts revenus. Le résumé indique des élasticités maximales de l'ordre de 0,1-0,2, trop faibles pour que des baisses des taux supérieurs s'autofinancent ; valeur retenue = milieu (0,15). Cabannes et al. (2014) situent cette estimation sur 1985-1995 (baisse du taux supérieur de 65 % à 58 % en 1986) ; Saez, Slemrod et Giertz (2012) résument : réactions faibles, de court terme, qui ne semblent pas persister."
+    - source: cabannes-et-al-2014
+      valeur: 0.02
+      intervalle_95: null
+      methode: "Panel de déclarations (échantillons « 500 000 déclarations » de la DGFiP), doubles moindres carrés à la Gruber-Saez : baisses des taux du barème et du plafond du quotient familial"
+      champ: "France, revenus 1998-2004, foyers fiscaux au-dessus du 10e centile de revenu imposable"
+      pays: FR
+      annee_donnees: 2004
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Élasticité compensée (égale à l'élasticité totale, l'effet revenu étant nul) d'environ 0,02 sur l'ensemble des foyers (modèle 6), très significative (p < 0,0001) ; erreur-type non publiée. Les auteurs expliquent l'écart avec les États-Unis par des baisses de taux bien plus modestes en France sur la période et par un revenu imposable moins manipulable (peu de dépenses déductibles du revenu, la plupart des avantages fiscaux prenant la forme de réductions d'impôt)."
+    - source: cabannes-et-al-2014
+      valeur: 0.31
+      intervalle_95: null
+      methode: "Même méthode, estimation séparée par tranche de revenu"
+      champ: "France, revenus 1998-2004, 10 % des foyers aux revenus imposables les plus élevés (P90-P100)"
+      pays: FR
+      annee_donnees: 2004
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Hauts revenus. Tableau 4, modèle 6 : 0,31 (p < 0,0001) pour P90-P100, contre 0,00 pour P60-P90 et 0,01 pour P10-P60 : une hausse de 1 % du taux de rétention (1 − taux marginal) accroît d'environ 0,3 % le revenu imposable des foyers aisés. Les auteurs jugent l'identification « un peu fragile » au-delà du dernier décile, les baisses de taux ayant été identiques pour presque tous ces foyers."
+    - source: lehmann-et-al-2013
+      valeur: 0.2
+      intervalle_95: null
+      methode: "Panel individuel, exploitation des réformes du barème de l'impôt sur le revenu et des cotisations sociales touchant les bas salaires"
+      champ: "France, 2003-2006, personnes gagnant moins de deux fois le salaire minimum ; revenu salarial brut"
+      pays: FR
+      annee_donnees: 2006
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Élasticité du revenu salarial brut au taux marginal net d'impôt sur le revenu « autour de 0,2 » ; aucune réaction au taux marginal net de cotisations sociales. Ne porte que sur le revenu du travail de salariés modestes (pas sur tout le revenu imposable) ; l'effet semble surtout venir des décisions de participation au marché du travail, en particulier des femmes mariées."
+    - source: sicsic-2022
+      valeur: 0.25
+      intervalle_95: null
+      methode: "Panel avec données fiscales et socio-démographiques ; variables instrumentales exploitant les réformes de l'impôt sur le revenu et des prestations sous condition de ressources"
+      champ: "France, 2006-2015, revenus du travail, marge intensive"
+      pays: FR
+      annee_donnees: 2015
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Élasticité compensée à la marge intensive « autour de 0,2-0,3 » face aux réformes de l'impôt sur le revenu (valeur retenue : 0,25, milieu de la fourchette) ; environ 0,1 face aux réformes des prestations liées à l'emploi ; pas de réaction significative aux réformes des allocations familiales. Porte sur le revenu du travail, pas sur l'ensemble du revenu imposable."
+    - source: lefebvre-et-al-2025
+      valeur: 0.77
+      intervalle_95: [0.75, 0.79]
+      methode: "Panel exhaustif des déclarations (fichier POTE), variables instrumentales (variation mécanique des taux due aux réformes) ; réformes 2008-2017 du prélèvement forfaitaire libératoire et barémisation de 2013"
+      champ: "France, 2008-2017, revenus du capital (dividendes, intérêts) des foyers fiscaux"
+      pays: FR
+      annee_donnees: 2017
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Revenus du capital seulement. Élasticité « directe » des revenus du capital à leur propre taux net marginal : 0,767 (e.t. 0,011), tableau 2 de la version IZA de 2023 (résumé : « autour de 0,76 ») ; IC = ± 1,96 e.t. Le résumé de la version publiée (2025) indique un taux de Laffer d'environ 57 % hors effet croisé, cohérent avec cette valeur (1/(1 + 0,77) ≈ 0,57). Les élasticités croisées du revenu du travail au taux net sur le capital sont positives mais faibles (0,04 à 0,08) : pas de signe de transfert de revenus du travail vers le capital."
+    - source: france-strategie-fiscalite-capital-2023
+      valeur: null
+      intervalle_95: null
+      methode: "Évaluation institutionnelle sur données fiscales (DGFiP) : comparaison avant/après la création du prélèvement forfaitaire unique (PFU) en 2018, travaux de deux équipes de recherche"
+      champ: "France, dividendes déclarés par les ménages, 2013-2022"
+      pays: FR
+      annee_donnees: 2022
+      type_etude: descriptif
+      revue_par_les_pairs: false
+      note: "Les dividendes déclarés par les ménages passent d'environ 14 Md€ par an (2013-2017) à environ 23 Md€ (2018-2020) après la baisse de leur taxation par le PFU, symétrique de la chute de 2013 lors de leur passage au barème. Le comité juge que la majorité de la hausse est due au PFU, mais les équipes de recherche n'ont pas pu en chiffrer l'ampleur au niveau macroéconomique : aucune élasticité publiée, d'où une valeur nulle. Pas de signe de requalification de revenus d'activité en dividendes, pas d'effet détecté sur l'investissement des entreprises."
+  note_synthese: "Quand l'impôt prélevé sur le dernier euro gagné baisse, les revenus déclarés augmentent un peu : la grande revue de Saez, Slemrod et Giertz (2012) situe cette réaction entre 0,12 et 0,4, et la méta-analyse de Neisser trouve une moyenne d'environ 0,3-0,4 dans les études publiées, en signalant un biais de publication. En France, les études sur données fiscales trouvent une réaction très faible pour l'ensemble des contribuables (environ 0,02 sur 1998-2004) et modérée pour les revenus du travail (0,2 à 0,3), mais nettement plus forte pour les 10 % les plus aisés (0,31) et surtout pour les revenus du capital (environ 0,77), qu'il est facile de verser ou de différer. Les chiffres très élevés des années 1990 (Feldstein, 1 ou plus) ont été revus à la baisse avec de meilleures données, et les études récentes (Danemark, France) indiquent que la réaction passe surtout par l'optimisation et le calendrier des revenus des plus aisés plutôt que par le travail. Pour le barème français, les études sur données exhaustives françaises (Cabannes et al., Lefebvre et al.) sont les plus pertinentes ; l'effet dépend fortement de la population et du type de revenu touchés par la réforme."

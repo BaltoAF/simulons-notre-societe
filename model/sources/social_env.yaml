@@ -1,0 +1,827 @@
+# Registre des sources des domaines éducation, santé, logement, environnement-énergie.
+# Les fiches service-public.gouv.fr (DILA), ameli.fr (CNAM) et les pages des ministères et de la CRE
+# sont classées « texte_officiel » : ce sont des informations administratives officielles, pas le texte
+# juridique lui-même. Les pages Légifrance n'ont pas pu être lues (vérification anti-robot) : leurs URL
+# proviennent de liens figurant sur des pages officielles et sont signalées comme telles.
+sources:
+  # ---------------------------------------------------------------------------
+  # ÉDUCATION
+  # ---------------------------------------------------------------------------
+  - id: men-loi-ecole-confiance-2019
+    type: texte_officiel
+    editeur: "Ministère de l'Éducation nationale"
+    titre: "La loi pour une École de la confiance"
+    url: "https://www.education.gouv.fr/la-loi-pour-une-ecole-de-la-confiance-454371"
+    auteurs: []
+    date_publication: ""
+    consulte_le: "2026-10-13"
+    note: "Présentation officielle de la loi n° 2019-791 du 26 juillet 2019 (JO du 28 juillet 2019) : instruction obligatoire à 3 ans dès la rentrée 2019 (art. 11), obligation de formation de 16 à 18 ans à la rentrée 2020 (art. 15)."
+
+  - id: jorf-loi-2019-791-ecole-confiance
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Loi n° 2019-791 du 26 juillet 2019 pour une école de la confiance"
+    url: "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000038829065"
+    auteurs: []
+    date_publication: "2019-07-28"
+    consulte_le: "2026-10-13"
+    note: "URL obtenue par redirection depuis education.gouv.fr ; contenu non consulté par l'agent (Légifrance protégé par une vérification anti-robot). Les valeurs ont été lues sur les pages education.gouv.fr et service-public citées en parallèle."
+
+  - id: sp-f1898-instruction-obligatoire
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Instruction obligatoire"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F1898"
+    auteurs: []
+    date_publication: "2025-11-06"
+    consulte_le: "2026-10-13"
+    note: "Date = « vérifié le ». Références : Code de l'éducation, art. L131-1 à L131-13, L114-1, R114-1 à R114-7."
+
+  - id: sp-f23429-instruction-famille
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Instruction dans la famille"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F23429"
+    auteurs: []
+    date_publication: "2026-01-30"
+    consulte_le: "2026-10-13"
+    note: "Date = « vérifié le ». Motifs, calendrier de dépôt (1er mars - 31 mai), durée d'autorisation, contrôles, sanctions."
+
+  - id: men-instruction-famille
+    type: texte_officiel
+    editeur: "Ministère de l'Éducation nationale"
+    titre: "L'instruction dans la famille"
+    url: "https://www.education.gouv.fr/l-instruction-dans-la-famille-340514"
+    auteurs: []
+    date_publication: "2022-03-11"
+    consulte_le: "2026-10-13"
+    note: "« Depuis la rentrée 2022, le régime de déclaration d'instruction dans la famille est remplacé par un régime d'autorisation préalable »."
+
+  - id: men-temps-scolaire-elementaire
+    type: texte_officiel
+    editeur: "Ministère de l'Éducation nationale"
+    titre: "L'organisation du temps scolaire à l'école élémentaire"
+    url: "https://www.education.gouv.fr/l-organisation-du-temps-scolaire-l-ecole-elementaire-2267"
+    auteurs: []
+    date_publication: "2014-03-06"
+    consulte_le: "2026-10-13"
+    note: "Page ancienne : semaine de 24 heures depuis la rentrée 2008, 6 heures maximum par jour."
+
+  - id: bo-2015-44-horaires-ecole
+    type: texte_officiel
+    editeur: "Bulletin officiel de l'Éducation nationale"
+    titre: "Arrêté du 9 novembre 2015 fixant les horaires d'enseignement des écoles maternelles et élémentaires (BO n° 44 du 26 novembre 2015, NOR MENE1526553A)"
+    url: "https://www.education.gouv.fr/bo/15/Hebdo44/MENE1526553A.htm?cid_bo=95203"
+    auteurs: []
+    date_publication: "2015-11-26"
+    consulte_le: "2026-10-13"
+    note: "JO du 24 novembre 2015 ; application à la rentrée 2016. Modifications ultérieures non vérifiées."
+
+  - id: men-horaires-college
+    type: texte_officiel
+    editeur: "Ministère de l'Éducation nationale"
+    titre: "Les horaires par cycle au collège"
+    url: "https://www.education.gouv.fr/les-horaires-par-cycle-au-college-9884"
+    auteurs: []
+    date_publication: "2019-10-28"
+    consulte_le: "2026-10-13"
+    note: "26 heures hebdomadaires par niveau ; arrêtés du 19 mai 2015 et du 16 juin 2017."
+
+  - id: bo-2020-28-circulaire-rentree
+    type: texte_officiel
+    editeur: "Bulletin officiel de l'Éducation nationale"
+    titre: "Circulaire de rentrée 2020 (BO n° 28 du 10 juillet 2020, NOR MENE2018068C)"
+    url: "https://www.education.gouv.fr/bo/20/Hebdo28/MENE2018068C.htm"
+    auteurs: []
+    date_publication: "2020-07-10"
+    consulte_le: "2026-10-13"
+    note: "Classes de GS, CP, CE1 limitées à 24 élèves « partout où cela est possible » ; CP et CE1 en éducation prioritaire à 12 élèves maximum."
+
+  - id: men-education-prioritaire
+    type: texte_officiel
+    editeur: "Ministère de l'Éducation nationale"
+    titre: "L'éducation prioritaire"
+    url: "https://www.education.gouv.fr/l-education-prioritaire-3140"
+    auteurs: []
+    date_publication: "2025-12-29"
+    consulte_le: "2026-10-13"
+    note: "Calendrier du dédoublement (2017, 2019, 2024 pour la grande section) ; 1 093 réseaux à la rentrée 2023."
+
+  - id: sp-f36520-droits-inscription
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Coût d'une inscription dans l'enseignement supérieur - Cas général"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F36520/2"
+    auteurs: []
+    date_publication: "2026-08-20"
+    consulte_le: "2026-10-13"
+    note: "Date = « vérifié le ». Tarifs 2026-2027 (licence 178 €, master 255 €, doctorat 398 €, taux réduits) et CVEC 105 €. Référence : arrêté du 19 avril 2019."
+
+  - id: sp-actu-a17481-frais-universite-2026
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Enseignement supérieur - Université : quels sont les frais en 2026 ? (actualité ; titre traduit de la version anglaise de la page)"
+    url: "https://www.service-public.gouv.fr/particuliers/actualites/A17481"
+    auteurs: []
+    date_publication: "2026-08-21"
+    consulte_le: "2026-10-13"
+    note: "Droits différenciés extra-européens 2 902 € (licence) et 3 950 € (master) ; « Les droits d'inscriptions différenciés ne s'appliquent pas aux doctorats »."
+
+  - id: sp-actu-a18927-droits-differencies
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Droits d'inscription - Université : certains étudiants étrangers non européens paieront plus à partir de la rentrée 2026 (actualité ; titre traduit de la version anglaise)"
+    url: "https://www.service-public.gouv.fr/particuliers/actualites/A18927"
+    auteurs: []
+    date_publication: "2026-05-26"
+    consulte_le: "2026-10-13"
+    note: "Décret n° 2026-385 du 19 mai 2026 (en vigueur le 21 mai 2026) : plafond d'exonération des étudiants étrangers à 30 % en 2026-2027, 25 % en 2027-2028, 20 % à terme. Mise à jour du 20/08/2026."
+
+  - id: sp-f12214-bourse-criteres-sociaux
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Bourse sur critères sociaux de l'enseignement supérieur"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F12214"
+    auteurs: []
+    date_publication: "2026-04-10"
+    consulte_le: "2026-10-13"
+    note: "Date = « vérifié le ». Montants 2026-2027 par échelon (0 bis à 7), 10 mensualités ; arrêté du 26 mars 2026 fixant les taux des bourses d'enseignement supérieur."
+
+  - id: sp-f984-bourse-college
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Bourse de collège"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F984"
+    auteurs: []
+    date_publication: "2026-04-30"
+    consulte_le: "2026-10-13"
+    note: "Date = « vérifié le ». Montants trimestriels 2026-2027 : 40 €, 112 €, 175 € ; plafonds de ressources 2025."
+
+  - id: sp-f616-bourse-lycee
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Bourse de lycée"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F616"
+    auteurs: []
+    date_publication: "2026-04-30"
+    consulte_le: "2026-10-13"
+    note: "Date = « vérifié le ». Montants trimestriels 2026-2027 des échelons 1 à 6 (168 € à 357 €)."
+
+  - id: depp-enc-2026
+    type: statistique_publique
+    editeur: "DEPP - Ministère de l'Éducation nationale"
+    titre: "L'éducation nationale en chiffres, édition 2026"
+    url: "https://www.education.gouv.fr/depp/l-education-nationale-en-chiffres-edition-2026-505326"
+    auteurs: []
+    date_publication: "2026-08-25"
+    consulte_le: "2026-10-13"
+    note: "Chiffres lus dans les transcriptions de la page (élèves et enseignants rentrée 2025, DIE 2023, baccalauréat 2026 provisoire)."
+
+  - id: depp-ni-26-42-die-2025
+    type: statistique_publique
+    editeur: "DEPP - Ministère de l'Éducation nationale"
+    titre: "En 2025, 199,2 milliards d'euros consacrés à l'éducation, soit 6,7 % du PIB (Note d'Information n° 26.42)"
+    url: "https://www.education.gouv.fr/depp/en-2025-1992-milliards-d-euros-consacres-l-education-soit-67-du-pib-506005"
+    auteurs: ["L. Bagot", "C. Dutey", "C. de Fornel", "V. Liogier", "S. Rousseau"]
+    date_publication: "2026-09-29"
+    consulte_le: "2026-10-13"
+    note: "DOI 10.48464/ni-26-42. Données 2025 provisoires."
+
+  - id: depp-ni-23-48-pisa-maths
+    type: statistique_publique
+    editeur: "DEPP - Ministère de l'Éducation nationale"
+    titre: "PISA 2022 : la France ne fait pas exception à la baisse généralisée des performances en culture mathématique dans l'OCDE (Note d'Information n° 23.48)"
+    url: "https://archives-statistiques-depp.education.gouv.fr/digitalCollection/DigitalCollectionAttachmentDownloadHandler.ashx?parentDocumentId=54605&documentId=54606&skipWatermark=true&skipCopyright=true"
+    auteurs: ["V. Bernigole", "A. Fernandez", "M. Loi", "F. Salles"]
+    date_publication: "2023-12-05"
+    consulte_le: "2026-10-13"
+    note: "PDF de la note (portail des archives DEPP), p. 1 : « Avec un score moyen de 474 points en 2022 » (moyenne OCDE 472). Copie locale : system/cache/social-env/depp-ni-23-48-pisa-2022-maths.pdf. Page de présentation : https://www.education.gouv.fr/depp/pisa-2022-la-france-ne-fait-pas-exception-la-baisse-generalisee-des-performances-en-culture-380205"
+
+  - id: depp-ni-23-49-pisa-sciences-ecrit
+    type: statistique_publique
+    editeur: "DEPP - Ministère de l'Éducation nationale"
+    titre: "PISA 2022 : culture scientifique, compréhension de l'écrit et vie de l'élève (Note d'Information n° 23.49)"
+    url: "https://www.education.gouv.fr/depp/pisa-2022-culture-scientifique-comprehension-de-l-ecrit-et-vie-de-l-eleve-380208"
+    auteurs: ["A. Bret", "H. Durand de Monestrol", "M. Hick", "F. Salles", "A. Fernandez", "M. Loi"]
+    date_publication: "2023-12-05"
+    consulte_le: "2026-10-13"
+    note: "Culture scientifique 487 ; compréhension de l'écrit en baisse de 493 (2018) à 474 (2022)."
+
+  # ---------------------------------------------------------------------------
+  # SANTÉ
+  # ---------------------------------------------------------------------------
+  - id: cnam-cp-2024-12-05-convention-medicale
+    type: texte_officiel
+    editeur: "Assurance Maladie (CNAM)"
+    titre: "Convention médicale 2024-2029 : un déploiement des mesures dès le 22 décembre (communiqué de presse)"
+    url: "https://www.assurance-maladie.ameli.fr/presse/2024-12-05-cp-deploiement-convention-medicale"
+    auteurs: []
+    date_publication: "2024-12-05"
+    consulte_le: "2026-10-13"
+    note: "Consultation de référence des généralistes revalorisée à 30 € « à compter du 22 décembre 2024 »."
+
+  - id: ameli-consultations-metropole
+    type: texte_officiel
+    editeur: "ameli.fr (Assurance Maladie)"
+    titre: "Consultations en métropole : vos remboursements"
+    url: "https://www.ameli.fr/assure/remboursements/rembourse/consultations-telemedecine/metropole"
+    auteurs: []
+    date_publication: "2026-10-02"
+    consulte_le: "2026-10-13"
+    note: "Généraliste secteur 1 : tarif 30 €, taux 70 %, 19 € remboursés (tarifs au 1er janvier 2026)."
+
+  - id: ameli-taux-remboursement
+    type: texte_officiel
+    editeur: "ameli.fr (Assurance Maladie)"
+    titre: "Tableaux récapitulatifs des taux de remboursement"
+    url: "https://www.ameli.fr/assure/remboursements/rembourse/tableau-recapitulatif-taux-remboursement"
+    auteurs: []
+    date_publication: "2026-09-30"
+    consulte_le: "2026-10-13"
+    note: "Date = mise à jour de la page. Aucune modification récente du taux des consultations n'y est mentionnée."
+
+  - id: ameli-participation-forfaitaire-2-euros
+    type: texte_officiel
+    editeur: "ameli.fr (Assurance Maladie)"
+    titre: "La participation forfaitaire de 2 €"
+    url: "https://www.ameli.fr/assure/remboursements/reste-charge/participation-forfaitaire-2-euros"
+    auteurs: []
+    date_publication: "2026-09-29"
+    consulte_le: "2026-10-13"
+    note: "2 € par acte, 8 € par jour pour un même professionnel, plafond annuel 70 €, exonérations."
+
+  - id: ameli-franchise-medicale
+    type: texte_officiel
+    editeur: "ameli.fr (Assurance Maladie)"
+    titre: "La franchise médicale"
+    url: "https://www.ameli.fr/assure/remboursements/reste-charge/franchise-medicale"
+    auteurs: []
+    date_publication: "2026-09-29"
+    consulte_le: "2026-10-13"
+    note: "1 € par boîte ou acte paramédical (4 €/jour max), 4 € par transport (8 €/jour max), plafond annuel 70 €."
+
+  - id: sp-actu-a17166-plafonds-franchises-2026
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Frais médicaux (actualité)"
+    url: "https://www.service-public.gouv.fr/particuliers/actualites/A17166?lang=fr"
+    auteurs: []
+    date_publication: "2026-09-16"
+    consulte_le: "2026-10-13"
+    note: "Décret n° 2026-858 du 11 septembre 2026 (JO du 12/09/2026) : plafonds annuels portés de 50 € à 70 € chacun au 1er octobre 2026 (140 € cumulés contre 100 €) ; montants unitaires inchangés."
+
+  - id: ameli-protheses-auditives
+    type: texte_officiel
+    editeur: "ameli.fr (Assurance Maladie)"
+    titre: "Aides auditives : quelle prise en charge ?"
+    url: "https://www.ameli.fr/lille-douai/assure/remboursements/rembourse/soins-protheses-dentaires-optique-audition/protheses-auditives"
+    auteurs: []
+    date_publication: "2026-02-20"
+    consulte_le: "2026-10-13"
+    note: "Classe I (100 % Santé, 20 ans et plus) : prix plafonné à 950 € par oreille, base de remboursement 400 €, taux 60 %, renouvellement après 4 ans."
+
+  - id: ameli-lunettes-lentilles
+    type: texte_officiel
+    editeur: "ameli.fr (Assurance Maladie)"
+    titre: "Lunettes et lentilles : quelle prise en charge ?"
+    url: "https://www.ameli.fr/assure/remboursements/rembourse/soins-protheses-dentaires-optique-audition/lunettes-lentilles"
+    auteurs: []
+    date_publication: "2026-01-13"
+    consulte_le: "2026-10-13"
+    note: "Monture 100 % Santé jusqu'à 30 € ; renouvellement tous les 2 ans à partir de 16 ans."
+
+  - id: jorf-arrete-2026-02-27-forfait-journalier
+    type: texte_officiel
+    editeur: "Journal officiel de la République française"
+    titre: "Arrêté du 27 février 2026 relatif aux montants du forfait journalier hospitalier prévu à l'article L. 174-4 du code de la sécurité sociale et du forfait patient urgences prévu à l'article L. 160-13 du code de la sécurité sociale (NOR SFHS2605626A)"
+    url: "https://www.fhf.fr/sites/default/files/2026-03/joe_20260228_0051_0037_1.pdf"
+    auteurs: []
+    date_publication: "2026-02-28"
+    consulte_le: "2026-10-13"
+    note: "Extrait du JO n° 51 du 28 février 2026, copie PDF hébergée par la Fédération hospitalière de France, lue intégralement (copie locale : system/cache/social-env/jorf-2026-02-28-arrete-forfait-journalier.pdf). Entrée en vigueur au 1er mars 2026."
+
+  - id: fhf-forfait-journalier-mars-2026
+    type: rapport_institutionnel
+    editeur: "Fédération hospitalière de France (FHF)"
+    titre: "Forfait journalier hospitalier : MCO, SMR et PSY au 1er mars 2026"
+    url: "https://www.fhf.fr/expertises/finances/budget-eprd/forfait-journalier-hospitalier-mco-smr-et-psy-au-1er-mars-2026"
+    auteurs: []
+    date_publication: "2026-03-02"
+    consulte_le: "2026-10-13"
+    note: "Fédération professionnelle des établissements publics ; reprend l'arrêté du 27 février 2026 (23 € MCO/SMR, 17 € psychiatrie)."
+
+  - id: an-plfss-2027-exposemotifs-ondam
+    type: texte_officiel
+    editeur: "Assemblée nationale"
+    titre: "Projet de loi de financement de la sécurité sociale pour 2027 (n° 3211, XVIIe législature) - exposé des motifs des articles 1er et 2"
+    url: "https://www.assemblee-nationale.fr/dyn/docs/PRJLANR5L17B3211.raw"
+    auteurs: []
+    date_publication: "2026-10-01"
+    consulte_le: "2026-10-13"
+    note: "Projet de loi déposé, non adopté au 13/10/2026. Art. 2 : rectifie l'ONDAM 2026 de 1,1 Md€ « par rapport à celui inscrit dans la loi de financement de la sécurité sociale pour 2026, à 274,4 milliards d'euros » (tableau : total 273,3 Md€). Art. 1er : « croîtrait donc de 2,8 %, contre une évolution de 3,1 % inscrite en loi de financement initiale »."
+
+  - id: bdt-localtis-lfss-2026
+    type: presse
+    editeur: "Banque des Territoires (Caisse des dépôts) - Localtis"
+    titre: "Loi de financement de la sécurité sociale pour 2026 : quels crédits ? quelles nouveautés ?"
+    url: "https://www.banquedesterritoires.fr/loi-de-financement-de-la-securite-sociale-pour-2026-quels-credits-quelles-nouveautes"
+    auteurs: ["Caroline Megglé"]
+    date_publication: "2026-01-06"
+    consulte_le: "2026-10-13"
+    note: "Loi n° 2025-1403 du 30 décembre 2025 (JO du 31/12/2025) ; ONDAM 2026 +3,1 % (montant indiqué : 271,3 Md€, en contradiction avec les 274,4 Md€ du PLFSS 2027) ; congé de naissance au 1er juillet 2026 ; vaccination antigrippale obligatoire en Ehpad (art. 55)."
+
+  - id: ameli-vaccins-obligatoires
+    type: texte_officiel
+    editeur: "ameli.fr (Assurance Maladie)"
+    titre: "Les vaccins obligatoires"
+    url: "https://www.ameli.fr/paris/assure/sante/themes/vaccination/vaccins-obligatoires"
+    auteurs: []
+    date_publication: "2026-05-21"
+    consulte_le: "2026-10-13"
+    note: "« Jusqu'à fin 2024, 11 vaccins étaient obligatoires chez les nourrissons » ; méningocoques ACWY (remplace C) et B obligatoires depuis 2025."
+
+  - id: sp-f724-vaccinations
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Vaccinations"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F724"
+    auteurs: []
+    date_publication: "2026-04-29"
+    consulte_le: "2026-10-13"
+    note: "Date = « vérifié le ». Utilisée pour la référence : Code de la santé publique, art. L3111-1 à L3111-11 (vaccinations obligatoires). La liste des vaccins n'y figure pas (renvoi au calendrier vaccinal)."
+
+  - id: sp-f2265-conge-maternite
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Congé de maternité d'une salariée du secteur privé"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F2265"
+    auteurs: []
+    date_publication: "2026-06-01"
+    consulte_le: "2026-10-13"
+    note: "Date = « vérifié le ». Durées : 16, 26, 34 et 46 semaines selon le rang et le nombre d'enfants."
+
+  - id: sp-f3156-conge-paternite
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Congé de paternité et d'accueil de l'enfant d'un salarié du secteur privé"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F3156"
+    auteurs: []
+    date_publication: "2026-06-01"
+    consulte_le: "2026-10-13"
+    note: "Date = « vérifié le ». 25 jours calendaires (32 en cas de naissances multiples) ; Code du travail, art. L1225-35 et L1225-36."
+
+  - id: ameli-conge-supplementaire-naissance
+    type: texte_officiel
+    editeur: "ameli.fr (Assurance Maladie)"
+    titre: "Congé supplémentaire de naissance"
+    url: "https://www.ameli.fr/assure/droits-demarches/famille/maternite-paternite-adoption/conge-supplementaire-naissance"
+    auteurs: []
+    date_publication: "2026-08-27"
+    consulte_le: "2026-10-13"
+    note: "1 ou 2 mois par parent, indemnisés à 70 % puis 60 % du salaire net (IJ max 72,81 € puis 62,41 €), effectif depuis le 1er juillet 2026 pour les enfants nés ou arrivés depuis le 1er janvier 2026."
+
+  - id: insee-ip2087-esperance-vie-2025
+    type: statistique_publique
+    editeur: "Insee"
+    titre: "Bilan démographique 2025 - Insee Première n° 2087 (espérance de vie)"
+    url: "https://www.insee.fr/fr/statistiques/8719824"
+    auteurs: []
+    date_publication: "2026-01-13"
+    consulte_le: "2026-10-13"
+    note: "Espérance de vie à la naissance 2025 : 85,9 ans (femmes), 80,3 ans (hommes) ; 2024 : 85,8 et 80,2. Données provisoires. Même publication que l'id insee-ip2087-bilan-demographique-2025 du registre population."
+
+  - id: drees-cns-2025-depenses-sante-2024
+    type: statistique_publique
+    editeur: "DREES"
+    titre: "Les dépenses de santé en 2024 - Résultats des comptes de la santé - Édition 2025"
+    url: "https://drees.solidarites-sante.gouv.fr/publications-communique-de-presse-infographie-documents-de-reference/250930-Panorama-d%C3%A9penses-de-sant%C3%A9"
+    auteurs: []
+    date_publication: "2025-09-30"
+    consulte_le: "2026-10-13"
+    note: "CSBM 255 Md€, DCSi 333 Md€ (11,4 % du PIB, stable), reste à charge 292 €/habitant. Correction du 22/12/2025, mise à jour du 18/05/2026. L'édition 2026 (dépenses 2025) n'a pas été trouvée."
+
+  - id: drees-projections-medecins-2026
+    type: statistique_publique
+    editeur: "DREES"
+    titre: "L'effectif de médecins en activité et d'étudiants en 3e cycle augmenterait d'au moins 30 % d'ici 2040"
+    url: "https://drees.solidarites-sante.gouv.fr/communique-de-presse-jeux-de-donnees/jeux-de-donnees/261006-projections-effectifs-m%C3%A9decins-moins-70-ans-activite-horizon-2070"
+    auteurs: []
+    date_publication: "2026-10-06"
+    consulte_le: "2026-10-13"
+    note: "261 800 médecins en activité et internes en 2025 ; 351 300 projetés en 2040 (scénario tendanciel), dont 140 000 généralistes en activité."
+
+  # ---------------------------------------------------------------------------
+  # LOGEMENT
+  # ---------------------------------------------------------------------------
+  - id: sp-f1165-vide-meuble
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Bail d'habitation : quelles différences entre logement vide et logement meublé ?"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F1165"
+    auteurs: []
+    date_publication: "2026-03-06"
+    consulte_le: "2026-10-13"
+    note: "Date = « vérifié le ». Durée du bail, dépôt de garantie, préavis."
+
+  - id: sp-f31269-depot-garantie
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Dépôt de garantie d'un logement loué"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F31269"
+    auteurs: []
+    date_publication: "2026-06-09"
+    consulte_le: "2026-10-13"
+    note: "Date = « vérifié le ». Loi n° 89-462 du 6 juillet 1989, art. 22, 25-6 notamment."
+
+  - id: sp-f1168-preavis-locataire
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Préavis et formalités du congé donné par le locataire (bail d'habitation)"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F1168"
+    auteurs: []
+    date_publication: "2026-04-16"
+    consulte_le: "2026-10-13"
+    note: "Date = « vérifié le ». Loi du 6 juillet 1989, art. 15 (vide) et 25-8 (meublé) ; décret n° 2013-392 (zones tendues)."
+
+  - id: sp-f31272-expulsion-treve
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Loyers impayés et expulsion du locataire"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F31272"
+    auteurs: []
+    date_publication: "2026-08-06"
+    consulte_le: "2026-10-13"
+    note: "Date = « vérifié le ». Trêve hivernale « du 1er novembre au 31 mars (inclus) de l'année suivante »."
+
+  - id: legi-cpce-l412-1-a-l412-8
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Code des procédures civiles d'exécution - articles L412-1 à L412-8"
+    url: "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000025024948/LEGISCTA000025026032"
+    auteurs: []
+    date_publication: ""
+    consulte_le: "2026-10-13"
+    note: "URL relevée sur la fiche service-public F31272 ; contenu non consulté par l'agent (vérification anti-robot). Valeurs lues sur la fiche F31272."
+
+  - id: sp-f13723-irl
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Indice de référence des loyers (IRL)"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F13723"
+    auteurs: []
+    date_publication: "2026-07-12"
+    consulte_le: "2026-10-13"
+    note: "Date = « vérifié le ». Valeurs trimestrielles publiées par l'Insee, dernière valeur T2 2026 (148,37, +1,15 %)."
+
+  - id: sp-f1314-encadrement-loyers
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "En quoi consiste l'encadrement des loyers à respecter en zone tendue ?"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F1314"
+    auteurs: []
+    date_publication: "2026-08-01"
+    consulte_le: "2026-10-13"
+    note: "Date = « vérifié le ». Liste des territoires encadrés."
+
+  - id: mte-encadrement-loyers
+    type: texte_officiel
+    editeur: "Ministère de la Transition écologique (ecologie.gouv.fr)"
+    titre: "Encadrement des loyers"
+    url: "https://www.ecologie.gouv.fr/politiques-publiques/encadrement-loyers"
+    auteurs: []
+    date_publication: "2025-10-28"
+    consulte_le: "2026-10-13"
+    note: "Date = mise à jour de la page. Expérimentation (art. 140 loi ELAN) prolongée par la loi 3DS « jusqu'en 2026 » ; loyer de référence majoré (+20 %) et minoré (-30 %) ; gel des loyers F et G depuis le 24 août 2022 ; loi Bélim du 13 juin 2025 pour l'outre-mer."
+
+  - id: mte-decence-energetique-passoires
+    type: texte_officiel
+    editeur: "Ministère de la Transition écologique (ecologie.gouv.fr)"
+    titre: "Location et gel des loyers des passoires énergétiques (FAQ décence énergétique)"
+    url: "https://www.ecologie.gouv.fr/politiques-publiques/location-gel-loyers-passoires-energetiques"
+    auteurs: []
+    date_publication: "2025-12-19"
+    consulte_le: "2026-10-13"
+    note: "Date = mise à jour de la page. Échéances : 450 kWhEF/m²/an (2023), classe F (2025), E (2028), D (2034) ; textes : loi n° 2019-1147, décret n° 2021-19, art. 160 de la loi n° 2021-1104."
+
+  - id: sp-f2042-logement-decent
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Logement à louer décent"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F2042"
+    auteurs: []
+    date_publication: "2025-03-21"
+    consulte_le: "2026-10-13"
+    note: "Date = « vérifié le » (fiche relativement ancienne). Classes DPE autorisées à la location par période."
+
+  - id: legi-loi89-art6
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Loi n° 89-462 du 6 juillet 1989 tendant à améliorer les rapports locatifs - article 6"
+    url: "https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000037670751/"
+    auteurs: []
+    date_publication: ""
+    consulte_le: "2026-10-13"
+    note: "URL relevée sur la fiche service-public F2042 ; contenu non consulté par l'agent (vérification anti-robot)."
+
+  - id: sp-f16096-dpe
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Diagnostic de performance énergétique (DPE)"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F16096"
+    auteurs: []
+    date_publication: "2026-01-01"
+    consulte_le: "2026-10-13"
+    note: "Date = « vérifié le ». Coefficient électricité 2,3 → 1,9 au 1er janvier 2026 ; validité 10 ans. Mentionne aussi des arrêtés de juin et août 2026 (coefficient 1,7 au 1er janvier 2027), non recoupés."
+
+  - id: mte-sru-article-55
+    type: texte_officiel
+    editeur: "Ministère de la Transition écologique (ecologie.gouv.fr)"
+    titre: "L'article 55 de la loi solidarité et renouvellement urbain (SRU)"
+    url: "https://www.ecologie.gouv.fr/politiques-publiques/larticle-55-loi-solidarite-renouvellement-urbain-sru"
+    auteurs: []
+    date_publication: "2024-09-02"
+    consulte_le: "2026-10-13"
+    note: "Date = mise à jour de la page (qui cite néanmoins les exemptions 2026-2028 et le décret n° 2026-38 du 29 janvier 2026)."
+
+  - id: sp-f10871-ptz
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Prêt à taux zéro (PTZ ou PTZ+)"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F10871"
+    auteurs: []
+    date_publication: "2026-09-15"
+    consulte_le: "2026-10-13"
+    note: "Date = « vérifié le ». Barème des offres émises à partir d'avril 2025 (plafonds de revenus, quotités, durée)."
+
+  - id: sdes-parc-social-2025
+    type: statistique_publique
+    editeur: "SDES - Ministère de la Transition écologique"
+    titre: "5,4 millions de logements locatifs sociaux en France au 1er janvier 2025"
+    url: "https://www.statistiques.developpement-durable.gouv.fr/54-millions-de-logements-locatifs-sociaux-en-france-au-1er-janvier-2025"
+    auteurs: []
+    date_publication: "2026-01-20"
+    consulte_le: "2026-10-13"
+    note: "Répertoire RPLS. Valeur arrondie ; +0,5 % sur un an ; vacance 2,1 % ; 71 300 premières mises en location en 2024."
+
+  - id: sdes-compte-logement-2025
+    type: statistique_publique
+    editeur: "SDES - Ministère de la Transition écologique"
+    titre: "Rapport du compte du logement 2025"
+    url: "https://www.statistiques.developpement-durable.gouv.fr/rapport-du-compte-du-logement-2025"
+    auteurs: []
+    date_publication: "2026-09-14"
+    consulte_le: "2026-10-13"
+    note: "38,5 millions de logements ordinaires au 1er juillet 2025 ; dépense de logement 621 Md€ (21,2 % du PIB) en 2025."
+
+  - id: sdes-residences-principales-statuts
+    type: statistique_publique
+    editeur: "SDES - Ministère de la Transition écologique"
+    titre: "Résidences principales en France : quelles sont les caractéristiques des logements et de leurs occupants ?"
+    url: "https://www.statistiques.developpement-durable.gouv.fr/residences-principales-en-france-quelles-sont-les-caracteristiques-des-logements-et-de-leurs"
+    auteurs: []
+    date_publication: "2026-03-04"
+    consulte_le: "2026-10-13"
+    note: "Année de référence 2022 : 57,1 % de propriétaires, 24,8 % de locataires du privé, 18,0 % de locataires du social."
+
+  - id: insee-ipla-010567059
+    type: statistique_publique
+    editeur: "Insee"
+    titre: "Indice des prix des logements anciens - France métropolitaine - Ensemble - Base 100 en moyenne annuelle 2015 - Série CVS (identifiant 010567059)"
+    url: "https://www.insee.fr/fr/statistiques/serie/010567059"
+    auteurs: []
+    date_publication: "2026-09-08"
+    consulte_le: "2026-10-13"
+    note: "T2 2026 provisoire : 125,7."
+
+  # ---------------------------------------------------------------------------
+  # ENVIRONNEMENT - ÉNERGIE
+  # ---------------------------------------------------------------------------
+  - id: mte-guide-fiscalite-energies-2026
+    type: rapport_institutionnel
+    editeur: "Ministère de la Transition écologique (DGEC)"
+    titre: "Guide 2026 sur la fiscalité des énergies"
+    url: "https://www.ecologie.gouv.fr/sites/default/files/documents/Guide%202026%20sur%20fiscalit%C3%A9%20des%20%C3%A9nergies.pdf"
+    auteurs: []
+    date_publication: "2026-07-22"
+    consulte_le: "2026-10-13"
+    note: "Guide « sans valeur juridique », à jour de la loi du 19 février 2026 de finances pour 2026. Lu via extraction du texte (copie locale : system/cache/social-env/mte-guide-2026-fiscalite-energies.pdf). Composante carbone p. 8-9 ; tarifs carburants p. 22-25 ; électricité p. 12 et 35 ; annexe 3 (€/hl) p. 37. Date = mise à jour de la page de téléchargement https://www.ecologie.gouv.fr/politiques-publiques/fiscalite-energies"
+
+  - id: mte-fiscalite-carbone-2017
+    type: texte_officiel
+    editeur: "Ministère de la Transition écologique (ecologie.gouv.fr)"
+    titre: "Fiscalité carbone"
+    url: "https://www.ecologie.gouv.fr/politiques-publiques/fiscalite-carbone"
+    auteurs: []
+    date_publication: "2017-09-21"
+    consulte_le: "2026-10-13"
+    note: "Page ancienne : trajectoire LTECV (art. 1er) de la composante carbone jusqu'à 100 € en 2030 ; composante de 7 €/t introduite en 2014."
+
+  - id: mte-tarification-effective-carbone
+    type: statistique_publique
+    editeur: "Ministère de la Transition écologique (ecologie.gouv.fr)"
+    titre: "La tarification effective du carbone"
+    url: "https://www.ecologie.gouv.fr/politiques-publiques/tarification-effective-du-carbone"
+    auteurs: []
+    date_publication: ""
+    consulte_le: "2026-10-13"
+    note: "Niveau moyen de 91 €/tCO2eq en 2024 ; 71 % des émissions tarifées à moins de 100 €/tCO2eq. Date de la page non affichée."
+
+  - id: cre-trve-comprendre
+    type: texte_officiel
+    editeur: "Commission de régulation de l'énergie (CRE)"
+    titre: "Comprendre les tarifs réglementés de vente d'électricité (TRVE)"
+    url: "https://www.cre.fr/consommateurs/comprendre-les-tarifs-reglementes-de-vente-delectricite-trve.html"
+    auteurs: []
+    date_publication: "2026-01-20"
+    consulte_le: "2026-10-13"
+    note: "Grilles TTC du mouvement du 1er février 2026 (délibération n° 2026-06 du 14 janvier 2026) ; accise électricité 30,85 €/MWh (ménages) et 26,58 €/MWh (entreprises) au 1er février 2026. Page non mise à jour du mouvement d'août 2026."
+
+  - id: mne-energie-info-hausse-prix-2026
+    type: rapport_institutionnel
+    editeur: "Médiateur national de l'énergie (energie-info.fr)"
+    titre: "Hausse des prix de l'énergie : comparez les offres disponibles"
+    url: "https://www.energie-info.fr/hausse-des-prix-de-lenergie-comparez-les-offres-disponibles/"
+    auteurs: []
+    date_publication: "2026-09-24"
+    consulte_le: "2026-10-13"
+    note: "Mentionne « la hausse des tarifs réglementés de vente de l'électricité au 1er août » 2026, sans en donner le montant. Citée dans la note des règles TRVE (a_verifier)."
+
+  - id: sp-f35947-malus-co2
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Malus CO2 (taxe sur les émissions de CO2 des véhicules de tourisme)"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F35947"
+    auteurs: []
+    date_publication: "2026-02-21"
+    consulte_le: "2026-10-13"
+    note: "Date = « vérifié le ». Barème 2026 : 108 g/km (50 €) à 191 g/km et plus (80 000 €) ; barèmes 2021 à 2025 dans la section véhicules immatriculés à l'étranger. CIBS, art. L421-58 à L421-70."
+
+  - id: sp-f35950-malus-masse
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Malus masse (taxe sur la masse en ordre de marche des véhicules de tourisme)"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F35950"
+    auteurs: []
+    date_publication: "2026-03-01"
+    consulte_le: "2026-10-13"
+    note: "Date = « vérifié le ». Seuil 1 500 kg, 10 à 30 €/kg, plafond cumulé 80 000 € en 2026. CIBS, art. L421-71 à L421-81."
+
+  - id: sp-f33371-critair
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Vignette Crit'Air (certificat qualité de l'air)"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F33371"
+    auteurs: []
+    date_publication: "2026-01-01"
+    consulte_le: "2026-10-13"
+    note: "Date = « vérifié le ». Présente les ZFE-m comme en vigueur (vignette obligatoire pour y circuler)."
+
+  - id: vp-zfe-questions-reponses
+    type: rapport_institutionnel
+    editeur: "Vie-publique.fr (DILA)"
+    titre: "Que sont les zones à faibles émissions (ZFE) et sont-elles efficaces pour réduire la pollution de l'air ?"
+    url: "https://www.vie-publique.fr/questions-reponses/297933-zfe-pollution-de-lair-les-zones-faibles-emissions-en-questions"
+    auteurs: []
+    date_publication: "2026-10-05"
+    consulte_le: "2026-10-13"
+    note: "Date = dernière modification. Suppression des ZFE (loi de simplification de la vie économique) annulée par le Conseil constitutionnel, décision n° 2026-903 DC du 21 mai 2026 (cavalier législatif)."
+
+  - id: eurlex-reg-2023-851
+    type: texte_officiel
+    editeur: "EUR-Lex (Office des publications de l'Union européenne)"
+    titre: "Règlement (UE) 2023/851 du Parlement européen et du Conseil du 19 avril 2023 modifiant le règlement (UE) 2019/631 en ce qui concerne le renforcement des normes de performance en matière d'émissions de CO2 pour les voitures particulières neuves et les véhicules utilitaires légers neufs"
+    url: "https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX:32023R0851"
+    auteurs: []
+    date_publication: "2023-04-25"
+    consulte_le: "2026-10-13"
+    note: "Insère l'art. 1er § 5 bis (réduction de 100 % à partir du 1er janvier 2035) et remplace 37,5 % par 55 % pour 2030. Date de publication au JOUE (L 110) indiquée par EUR-Lex, prise d'effet des modifications le 15/05/2023."
+
+  - id: eurlex-reg-2019-631-historique
+    type: texte_officiel
+    editeur: "EUR-Lex (Office des publications de l'Union européenne)"
+    titre: "Règlement (UE) 2019/631 - informations sur le document et actes modificatifs"
+    url: "https://eur-lex.europa.eu/legal-content/FR/ALL/?uri=CELEX:32019R0631"
+    auteurs: []
+    date_publication: ""
+    consulte_le: "2026-10-13"
+    note: "En vigueur ; version consolidée du 09/07/2025 ; modifié notamment par les règlements 2023/851, 2025/371 et 2025/1214 (liste lue le 13/10/2026)."
+
+  - id: vp-loi-energie-climat-2019
+    type: rapport_institutionnel
+    editeur: "Vie-publique.fr (DILA)"
+    titre: "Loi du 8 novembre 2019 relative à l'énergie et au climat"
+    url: "https://www.vie-publique.fr/loi/23814-loi-energie-et-climat-du-8-novembre-2019"
+    auteurs: []
+    date_publication: ""
+    consulte_le: "2026-10-13"
+    note: "Neutralité carbone en 2050 inscrite dans le code de l'énergie ; baisse de 40 % de la consommation d'énergies fossiles d'ici 2030 (contre 30 %)."
+
+  - id: vp-loi-acceleration-nucleaire-2023
+    type: rapport_institutionnel
+    editeur: "Vie-publique.fr (DILA)"
+    titre: "Loi du 22 juin 2023 relative à l'accélération des procédures liées à la construction de nouvelles installations nucléaires"
+    url: "https://www.vie-publique.fr/loi/286979-acceleration-du-nucleaire-loi-du-22-juin-2023-epr2"
+    auteurs: []
+    date_publication: ""
+    consulte_le: "2026-10-13"
+    note: "Suppression de l'objectif de 50 % de nucléaire en 2035 et du plafond de 63,2 GW (initiative du Sénat). Numéro de loi (2023-491) relevé sur une autre page vie-publique."
+
+  - id: mte-ltecv
+    type: texte_officiel
+    editeur: "Ministère de la Transition écologique (ecologie.gouv.fr)"
+    titre: "Loi de transition énergétique pour la croissance verte"
+    url: "https://www.ecologie.gouv.fr/politiques-publiques/loi-transition-energetique-croissance-verte"
+    auteurs: []
+    date_publication: "2025-06-26"
+    consulte_le: "2026-10-13"
+    note: "Date = mise à jour de la page. Objectifs de la loi de 2015 : -40 % de GES entre 1990 et 2030, -30 % d'énergies fossiles en 2030, 50 % de nucléaire en 2025 (objectifs tels qu'adoptés en 2015)."
+
+  - id: mte-snbc
+    type: texte_officiel
+    editeur: "Ministère de la Transition écologique (ecologie.gouv.fr)"
+    titre: "La stratégie nationale bas-carbone"
+    url: "https://www.ecologie.gouv.fr/strategie-nationale-bas-carbone"
+    auteurs: []
+    date_publication: "2026-09-15"
+    consulte_le: "2026-10-13"
+    note: "Date = mise à jour (publication le 01/07/2026). SNBC 3 : réduire de 50 % les émissions en 2030 par rapport à 1990, neutralité carbone en 2050."
+
+  - id: mte-suivi-snbc-secten-2026
+    type: statistique_publique
+    editeur: "Ministère de la Transition écologique (données Citepa, Secten 2026)"
+    titre: "Suivi des objectifs de la stratégie nationale bas-carbone"
+    url: "https://www.ecologie.gouv.fr/strategie-nationale-bas-carbone/suivi-des-objectifs"
+    auteurs: []
+    date_publication: "2026-07-28"
+    consulte_le: "2026-10-13"
+    note: "Tableaux de données des graphiques (vue tableau) : émissions hors UTCATF et avec puits 1990-2024 (Citepa, Secten 2026), projections DGEC (AMS run 3, 30 juin 2026), empreinte carbone. URL d'origine https://www.ecologie.gouv.fr/politiques-publiques/suivi-emissions-gaz-effet-serre (redirection)."
+
+  - id: mte-ppe
+    type: texte_officiel
+    editeur: "Ministère de la Transition écologique (ecologie.gouv.fr)"
+    titre: "Programmations pluriannuelles de l'énergie (PPE)"
+    url: "https://www.ecologie.gouv.fr/politiques-publiques/programmations-pluriannuelles-lenergie-ppe"
+    auteurs: []
+    date_publication: "2026-02-13"
+    consulte_le: "2026-10-13"
+    note: "PPE 3 (2026-2035) publiée le 13 février 2026."
+
+  - id: minefi-ppe3
+    type: texte_officiel
+    editeur: "Ministère de l'Économie (economie.gouv.fr)"
+    titre: "PPE 3 : programmation pluriannuelle de l'énergie"
+    url: "https://www.economie.gouv.fr/ppe-3-programmation-pluriannuelle-de-lenergie"
+    auteurs: []
+    date_publication: "2026-02-13"
+    consulte_le: "2026-10-13"
+    note: "Objectifs : 380 TWh/an de production nucléaire, 15 GW d'éolien en mer en 2035, photovoltaïque x3, etc. Date = date de publication de la PPE 3 indiquée sur la page."
+
+  - id: sdes-empreinte-carbone-1990-2024
+    type: statistique_publique
+    editeur: "SDES - Ministère de la Transition écologique"
+    titre: "L'empreinte carbone de la France de 1990 à 2024"
+    url: "https://www.statistiques.developpement-durable.gouv.fr/lempreinte-carbone-de-la-france-de-1990-2024"
+    auteurs: []
+    date_publication: "2025-10-16"
+    consulte_le: "2026-10-13"
+    note: "2024 : 563 Mt CO2e (8,2 t/hab, provisoire) ; 2023 révisé à 583 Mt (8,5 t/hab) ; 1990 : 12,1 t/hab ; importations 50 %."
+
+  - id: sdes-ges-empreinte-2024
+    type: statistique_publique
+    editeur: "SDES - Ministère de la Transition écologique"
+    titre: "Émissions de gaz à effet de serre et empreinte carbone de la France en 2024 : une baisse plus faible qu'en 2023"
+    url: "https://www.statistiques.developpement-durable.gouv.fr/emissions-de-gaz-effet-de-serre-et-empreinte-carbone-de-la-france-en-2024-une-baisse-plus-faible"
+    auteurs: []
+    date_publication: "2025-10-16"
+    consulte_le: "2026-10-13"
+    note: "Émissions des unités résidentes : 404 Mt CO2e (5,9 t/hab) en 2024 ; empreinte 563 Mt (8,2 t/hab)."
+
+  - id: rte-bilan-2025-synthese
+    type: statistique_publique
+    editeur: "RTE"
+    titre: "Bilan électrique 2025 - Synthèse"
+    url: "https://analysesetdonnees.rte-france.com/bilan-electrique-2025/synthese"
+    auteurs: []
+    date_publication: ""
+    consulte_le: "2026-10-13"
+    note: "Production 547,5 TWh ; nucléaire 373,0 TWh ; bas-carbone 521,1 TWh (95,2 %) ; solde exportateur 92,3 TWh ; consommation corrigée 451 TWh. Date de publication non affichée (documents datés de mars 2026)."
+
+  - id: rte-bilan-2025-production
+    type: statistique_publique
+    editeur: "RTE"
+    titre: "Bilan électrique 2025 - Production"
+    url: "https://analysesetdonnees.rte-france.com/bilan-electrique-2025/production"
+    auteurs: []
+    date_publication: ""
+    consulte_le: "2026-10-13"
+    note: "Part du nucléaire 68,1 % ; renouvelables 27 % ; hydraulique 62,4 TWh, éolien 49,6 TWh, solaire 32,9 TWh, fossile 18,7 TWh."
+
+  - id: sdes-prix-electricite-2025
+    type: statistique_publique
+    editeur: "SDES - Ministère de la Transition écologique"
+    titre: "Prix de l'électricité en France et dans l'Union européenne en 2025"
+    url: "https://www.statistiques.developpement-durable.gouv.fr/prix-de-lelectricite-en-france-et-dans-lunion-europeenne-en-2025"
+    auteurs: []
+    date_publication: "2026-07-23"
+    consulte_le: "2026-10-13"
+    note: "Ménages : 254,6 €/MWh TTC (-9,0 %), 13 % sous la moyenne UE ; entreprises : 148,8 €/MWh hors TVA."

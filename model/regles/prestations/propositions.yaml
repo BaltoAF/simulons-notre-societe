@@ -1,0 +1,43 @@
+# Dispositifs qui N'EXISTENT PAS dans la loi actuelle (valeur neutre), exposés comme leviers
+# pour que les forks puissent les créer et en mesurer l'effet. Marqués `virtuel: true`.
+domaine: prestations
+theme: Dispositifs proposés (inexistants aujourd'hui)
+regles:
+  - id: prestations.revenu_universel.montant
+    titre: "Revenu universel : montant mensuel par personne"
+    explication: "Somme versée chaque mois à chaque personne, sans condition de ressources ni contrepartie. Ce dispositif n'existe pas aujourd'hui en France (montant 0 €)."
+    type: nombre
+    unite: euros
+    bornes: [0, 2000]
+    virtuel: true
+    valeurs:
+      - depuis: "1945-01-01"
+        valeur: 0
+        sources: []
+    tags: [proposition, minima_sociaux]
+    note: "Aucun texte ne prévoit de revenu universel ; plusieurs départements ont demandé à l'expérimenter (proposition de loi rejetée en 2019)."
+
+  - id: prestations.revenu_universel.age_minimum
+    titre: "Revenu universel : âge à partir duquel il est versé"
+    explication: "Âge minimal pour recevoir le revenu universel, s'il est créé."
+    type: nombre
+    unite: ans
+    bornes: [0, 30]
+    virtuel: true
+    valeurs:
+      - depuis: "1945-01-01"
+        valeur: 18
+        sources: []
+    tags: [proposition]
+
+  - id: prestations.revenu_universel.remplace_rsa_prime_activite
+    titre: "Revenu universel : remplace le RSA et la prime d'activité"
+    explication: "Si oui, le revenu universel se substitue au RSA et à la prime d'activité ; si non, il s'y ajoute."
+    type: booleen
+    unite: ""
+    virtuel: true
+    valeurs:
+      - depuis: "1945-01-01"
+        valeur: false
+        sources: []
+    tags: [proposition]

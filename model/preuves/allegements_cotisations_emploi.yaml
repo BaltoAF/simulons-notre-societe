@@ -1,0 +1,89 @@
+question:
+  id: allegements_cotisations_emploi
+  titre: "Effet des allègements de cotisations patronales (bas salaires, CICE) sur l'emploi"
+  definition: "Nombre d'emplois créés ou sauvegardés pour 1 milliard d'euros par an d'allègement de cotisations patronales ou de crédit d'impôt équivalent (CICE), à moyen terme."
+  unite: emplois_par_milliard_euros
+  regles_liees: [fiscalite.cotisations.allegement_general]
+  sens_attendu: positif
+  estimations:
+    - source: crepon-desplatz-2001
+      valeur: null
+      intervalle_95: null
+      methode: "Évaluation ex post sur données d'entreprises : comparaison, entre 1994 et 1997, d'entreprises inégalement exposées aux allègements selon leur part de bas salaires"
+      champ: "France, 1994-1997, entreprises privées ; allègements Balladur-Juppé ciblés sur les salaires inférieurs à 1,3 SMIC (proches du SMIC)"
+      pays: FR
+      annee_donnees: 1997
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Résumé : « 460 000 emplois auraient été ainsi créés ou sauvegardés dans l'économie, entre 1994 et 1997, grâce à ces mesures », dont la moitié non qualifiés ; hausse des effectifs imputable de 2,6 % dans l'industrie et 3,4 % dans le tertiaire. Conversion impossible ici : le coût budgétaire annuel des allègements de l'époque n'a pas pu être lu dans une source vérifiée (texte intégral inaccessible), d'où valeur vide. Le CAE (2019) rappelle que ces travaux estiment une élasticité de l'emploi au coût du travail d'environ -1,5 au niveau des bas salaires : c'est la référence de forte efficacité des allègements proches du SMIC. L'étude ne tient pas compte du financement des mesures."
+    - source: lhorty-et-al-2019
+      valeur: 40000
+      intervalle_95: null
+      methode: "Chiffrage ex ante à partir des élasticités emploi-coût du travail estimées ex post sur données d'entreprises (-0,5 à -1,25)"
+      champ: "France, allègement supplémentaire de 4 points de cotisations au niveau du SMIC, dégressif jusqu'à 1,6 SMIC, à partir d'octobre 2019 (allègement proche du SMIC)"
+      pays: FR
+      annee_donnees: 2019
+      type_etude: simulation_institutionnelle
+      revue_par_les_pairs: false
+      note: "La note chiffre l'effet de cette mesure à « entre 80 000 et 200 000 emplois créés ou sauvegardés selon l'élasticité retenue » (80 000 avec une élasticité de -0,5, plus de 200 000 avec -1,25), pour un coût en année pleine de 3,5 milliards d'euros. Conversion : 80 000 / 3,5 = 22 900 et 200 000 / 3,5 = 57 100 emplois par milliard ; valeur retenue = milieu de la fourchette (40 000). La fourchette traduit des hypothèses, ce n'est pas un intervalle de confiance. La même note juge l'effet du CICE (100 000 emplois) obtenu pour un coût « près de six fois supérieur », et conclut que l'efficacité est forte jusqu'à 1,6 SMIC et devient très faible et peu significative au seuil de 2,5 SMIC ; elle rapporte aussi une élasticité proche de -2,5 pour le Pacte de responsabilité 2015 (jusqu'à 1,6 SMIC, évaluation IPP) et un effet nul de la LIEPP pour le CICE."
+    - source: france-strategie-cice-2020
+      valeur: 5556
+      intervalle_95: null
+      methode: "Micro-économétrie (équipe TEPP) : comparaison d'entreprises selon l'intensité du CICE reçu, variables instrumentales, groupes consolidés"
+      champ: "France, 2013-2016, entreprises bénéficiaires du CICE (crédit d'impôt sur les salaires jusqu'à 2,5 SMIC), effet direct hors bouclage macroéconomique"
+      pays: FR
+      annee_donnees: 2016
+      type_etude: quasi_experimental
+      revue_par_les_pairs: false
+      note: "Rapport (p. 6) : « L'effet total reste estimé à 100 000 emplois environ, ce qui est faible, rapporté au coût du CICE – de l'ordre de 18 milliards d'euros en 2016. » Conversion : 100 000 / 18 = 5 556 emplois par milliard. L'effet n'est significatif que pour le quart des entreprises les plus bénéficiaires (un huitième des effectifs) et pour les entreprises indépendantes ; une partie du CICE est passée en hausses de salaires. Allègement large (jusqu'à 2,5 SMIC), donc peu ciblé."
+    - source: france-strategie-cice-2020
+      valeur: 8889
+      intervalle_95: null
+      methode: "Estimation macro-sectorielle (OFCE) de l'effet du CICE par secteur, puis simulation dans un modèle macroéconomique avec financement de la mesure"
+      champ: "France, CICE, élasticités estimées sur 2013-2016 (services), effet simulé en 2017 avec financement total (hausses d'impôts et baisses de dépenses)"
+      pays: FR
+      annee_donnees: 2017
+      type_etude: simulation_institutionnelle
+      revue_par_les_pairs: false
+      note: "Rapport : effet direct dans les services « près de 200 000 » emplois ; avec bouclage macroéconomique non financé, 400 000 (jugé élevé) ; « La prise en compte du financement de la mesure [...] conduit à un effet emploi qui resterait positif, de l'ordre de 160 000. » Conversion : 160 000 / 18 milliards (coût 2016 cité par le rapport) = 8 889 emplois par milliard ; le taux du CICE ayant été relevé à 7 % en 2017, le coût de cette année-là était plus élevé et le ratio est donc un peu surestimé. Le rapport prévient que ces estimations macroéconomiques « ne sont pas à prendre au pied de la lettre » (grande incertitude statistique)."
+    - source: aldama-et-al-2020
+      valeur: 9333
+      intervalle_95: null
+      methode: "Simulations contrefactuelles avec le modèle macroéconométrique FR-BDF (élasticité emploi-coût du travail de -0,53, portée à -0,65 pour tenir compte du ciblage sur les bas salaires), mesures supposées entièrement financées"
+      champ: "France, secteur marchand, CICE et Pacte de responsabilité (allègements jusqu'à 1,6 puis 3,5 SMIC), effet cumulé fin 2012 - fin 2019"
+      pays: FR
+      annee_donnees: 2019
+      type_etude: simulation_institutionnelle
+      revue_par_les_pairs: false
+      note: "Le bulletin estime environ 280 000 emplois salariés marchands créés depuis 2012 (dont environ 240 000 entre fin 2015 et fin 2019, ciblage sur les bas salaires compris : environ 20 000), en supposant les mesures financées ; sans financement : 390 000. Le coût n'est pas donné dans le bulletin ; conversion faite avec les coûts 2019 publiés par le CAE (note n° 49) : CICE transformé en baisse de 6 points de cotisations 22 milliards + Pacte 2015 4 milliards + Pacte 2016 4 milliards = 30 milliards. 280 000 / 30 = 9 333 emplois par milliard (ordre de grandeur). Les auteurs expliquent l'écart avec France Stratégie par la période plus longue (effets montant en charge jusqu'en 2019)."
+    - source: cahuc-et-al-2014
+      valeur: 119000
+      intervalle_95: null
+      methode: "Différence de différences sur données administratives couvrant toutes les entreprises (DADS) : entreprises éligibles comparées à des entreprises non éligibles"
+      champ: "France, décembre 2008 - décembre 2009, aide temporaire « zéro charges » pour les embauches payées moins de 1,6 SMIC dans les entreprises de moins de 10 salariés, en pleine récession"
+      pays: FR
+      annee_donnees: 2009
+      type_etude: quasi_experimental
+      revue_par_les_pairs: false
+      note: "Section 5.1 : l'aide a versé 3,6 millions d'euros en novembre 2009 et créé environ 5 200 emplois, soit un coût brut de 700 euros par mois et par emploi créé (environ 25 % du coût d'un emploi) ; les économies de prestations sociales (environ 700 euros par mois) rendent le coût net quasi nul. Conversion : 700 × 12 = 8 400 euros par emploi et par an, soit 1 milliard / 8 400 = 119 000 emplois par milliard (coût brut). Cas très favorable et peu transposable : mesure temporaire et inattendue, petites entreprises, récession, salaires rigides au voisinage du SMIC ; la version publiée (Review of Economic Studies, 2019) souligne qu'une aide permanente, avec des salaires flexibles, coûterait beaucoup plus cher par emploi. 84 % des embauches aidées auraient eu lieu sans l'aide."
+    - source: bunel-lhorty-2012
+      valeur: null
+      intervalle_95: null
+      methode: "Panel cylindré d'entreprises de plus de 5 salariés, exploitation des variations de coût du travail induites par la réforme Fillon"
+      champ: "France, 2000-2005, réforme Fillon de 2003 (unification des allègements jusqu'à 1,6 SMIC, redistribution entre entreprises à 35 heures et à 39 heures)"
+      pays: FR
+      annee_donnees: 2005
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Résumé : une hausse de 1 % du coût moyen du travail réduit l'emploi de 0,4 % ; la réforme, qui a redistribué les allègements (gagnants à 39 heures, perdants à 35 heures), n'a pas eu d'effet clair sur l'emploi total. Pas de chiffre d'emplois par milliard publié dans le résumé : valeur vide. Illustre une efficacité plus faible que les allègements des années 1990."
+    - source: huttunen-et-al-2013
+      valeur: 0
+      intervalle_95: null
+      methode: "Comparaison des groupes éligibles et non éligibles à une subvention salariale (différence de différences selon l'âge et le salaire)"
+      champ: "Finlande, subvention versée aux employeurs de salariés âgés, à temps plein et à bas salaire"
+      pays: FI
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Résumé : la subvention « had no effect on the employment rate or wages of the eligible groups », avec seulement une légère hausse des heures des personnes déjà en emploi. Valeur 0 = codage de cette absence d'effet (aucun coefficient lu, pas d'intervalle). Contrepoint international : un allègement peut ne créer aucun emploi selon le contexte et la population ciblée."
+  note_synthese: "Toutes les évaluations concluent que les baisses de cotisations patronales créent des emplois, mais leur efficacité dépend surtout du niveau de salaire visé. Près du SMIC, l'effet est fort : les travaux français des années 1990 attribuent environ 460 000 emplois aux allègements Balladur-Juppé, et le CAE estime qu'un allègement supplémentaire jusqu'à 1,6 SMIC crée de l'ordre de 23 000 à 57 000 emplois par milliard d'euros. Pour des allègements larges allant jusqu'à 2,5 SMIC comme le CICE, l'effet est bien plus faible : environ 5 600 emplois par milliard selon l'évaluation sur données d'entreprises, et 9 000 environ selon les modèles macroéconomiques (France Stratégie, Banque de France), car une partie de l'aide est passée en hausses de salaires et en marges. Une aide temporaire à l'embauche dans les très petites entreprises en 2009 a été exceptionnellement efficace, alors qu'une subvention finlandaise n'a rien créé. Les chiffres les plus solides sont ceux des évaluations ex post ; les chiffrages par modèles dépendent fortement des hypothèses retenues."

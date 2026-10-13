@@ -1,0 +1,308 @@
+domaine: logement
+theme: "Location d'un logement : bail, dépôt de garantie, préavis, loyers et expulsions"
+regles:
+  # ---------------------------------------------------------------------------
+  # DURÉE DU BAIL
+  # ---------------------------------------------------------------------------
+  - id: logement.bail.duree_minimale_location_vide
+    titre: "Durée minimale du bail d'un logement loué vide"
+    explication: "Durée minimale du contrat de location d'un logement non meublé (résidence principale), renouvelable, sauf cas particuliers."
+    type: nombre
+    unite: ans
+    bornes: [1, 9]
+    valeurs:
+      - depuis: "2026-03-06"
+        valeur: 3
+        sources: [sp-f1165-vide-meuble]
+        article: "Loi n° 89-462 du 6 juillet 1989"
+    tags: [location, bail, locataire]
+    a_verifier: false
+    note: "Date « depuis » = date de vérification de la fiche service-public (06/03/2026) ; règle ancienne, date d'origine non vérifiée. La fiche ne distingue pas bailleur personne physique / personne morale."
+
+  - id: logement.bail.duree_minimale_location_meublee
+    titre: "Durée minimale du bail d'un logement loué meublé"
+    explication: "Durée minimale du contrat de location d'un logement meublé loué comme résidence principale (hors étudiant et bail mobilité)."
+    type: nombre
+    unite: mois
+    bornes: [1, 36]
+    valeurs:
+      - depuis: "2026-03-06"
+        valeur: 12
+        sources: [sp-f1165-vide-meuble]
+        article: "Loi n° 89-462 du 6 juillet 1989"
+    tags: [location, bail, meuble]
+    a_verifier: false
+    note: "1 an minimum. Date « depuis » = date de vérification de la fiche ; date d'origine non vérifiée."
+
+  - id: logement.bail.duree_minimale_meuble_etudiant
+    titre: "Durée minimale du bail meublé pour un étudiant"
+    explication: "Durée possible d'un bail meublé conclu avec un étudiant, non reconductible tacitement."
+    type: nombre
+    unite: mois
+    bornes: [1, 12]
+    valeurs:
+      - depuis: "2026-03-06"
+        valeur: 9
+        sources: [sp-f1165-vide-meuble]
+        article: "Loi n° 89-462 du 6 juillet 1989"
+    tags: [location, bail, meuble, etudiants]
+    a_verifier: false
+    note: "Date « depuis » = date de vérification de la fiche ; date d'origine non vérifiée."
+
+  # ---------------------------------------------------------------------------
+  # DÉPÔT DE GARANTIE
+  # ---------------------------------------------------------------------------
+  - id: logement.depot_garantie.max_location_vide
+    titre: "Dépôt de garantie maximal pour un logement vide"
+    explication: "Montant maximal que le propriétaire peut demander en garantie à l'entrée dans les lieux, exprimé en mois de loyer hors charges."
+    type: nombre
+    unite: mois_de_loyer
+    bornes: [0, 6]
+    valeurs:
+      - depuis: "2026-06-09"
+        valeur: 1
+        sources: [sp-f31269-depot-garantie, sp-f1165-vide-meuble]
+        article: "Loi n° 89-462 du 6 juillet 1989, art. 22"
+    tags: [location, depot_garantie, locataire]
+    a_verifier: false
+    note: "Interdit si le loyer est payé par trimestre d'avance. Date « depuis » = date de vérification de la fiche service-public (09/06/2026) ; date d'origine non vérifiée."
+
+  - id: logement.depot_garantie.max_location_meublee
+    titre: "Dépôt de garantie maximal pour un logement meublé"
+    explication: "Montant maximal du dépôt de garantie pour une location meublée, en mois de loyer hors charges. Interdit pour un bail mobilité."
+    type: nombre
+    unite: mois_de_loyer
+    bornes: [0, 6]
+    valeurs:
+      - depuis: "2026-06-09"
+        valeur: 2
+        sources: [sp-f31269-depot-garantie, sp-f1165-vide-meuble]
+        article: "Loi n° 89-462 du 6 juillet 1989, art. 25-6"
+    tags: [location, depot_garantie, meuble]
+    a_verifier: false
+    note: "Date « depuis » = date de vérification de la fiche ; date d'origine non vérifiée."
+
+  - id: logement.depot_garantie.delai_restitution_etat_lieux_conforme
+    titre: "Délai maximal de restitution du dépôt de garantie (état des lieux de sortie conforme)"
+    explication: "Délai dont dispose le propriétaire pour rendre le dépôt de garantie quand l'état des lieux de sortie est conforme à celui d'entrée. Il passe à 2 mois en cas de différences."
+    type: nombre
+    unite: mois
+    bornes: [0, 6]
+    valeurs:
+      - depuis: "2026-06-09"
+        valeur: 1
+        sources: [sp-f31269-depot-garantie]
+        article: "Loi n° 89-462 du 6 juillet 1989, art. 22"
+    tags: [location, depot_garantie]
+    a_verifier: false
+    note: "2 mois si l'état des lieux de sortie diffère de celui d'entrée. Date « depuis » = date de vérification de la fiche."
+
+  - id: logement.depot_garantie.penalite_retard_restitution
+    titre: "Pénalité de retard de restitution du dépôt de garantie"
+    explication: "Majoration due au locataire par mois de retard commencé, exprimée en pourcentage du loyer mensuel hors charges."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 50]
+    valeurs:
+      - depuis: "2026-06-09"
+        valeur: 10
+        sources: [sp-f31269-depot-garantie]
+        article: "Loi n° 89-462 du 6 juillet 1989, art. 22"
+    tags: [location, depot_garantie, sanction]
+    a_verifier: false
+    note: "Date « depuis » = date de vérification de la fiche ; date d'origine non vérifiée."
+
+  # ---------------------------------------------------------------------------
+  # PRÉAVIS DU LOCATAIRE
+  # ---------------------------------------------------------------------------
+  - id: logement.preavis_locataire.location_vide
+    titre: "Préavis du locataire d'un logement vide (cas général)"
+    explication: "Délai que le locataire d'un logement non meublé doit respecter entre l'envoi de son congé et son départ, hors cas de préavis réduit."
+    type: nombre
+    unite: mois
+    bornes: [0, 6]
+    valeurs:
+      - depuis: "2026-04-16"
+        valeur: 3
+        sources: [sp-f1168-preavis-locataire, sp-f1165-vide-meuble]
+        article: "Loi n° 89-462 du 6 juillet 1989, art. 15"
+    tags: [location, preavis, locataire]
+    a_verifier: false
+    note: "Date « depuis » = date de vérification de la fiche service-public (16/04/2026) ; date d'origine non vérifiée."
+
+  - id: logement.preavis_locataire.location_vide_zone_tendue
+    titre: "Préavis du locataire d'un logement vide situé en zone tendue"
+    explication: "En zone tendue (communes listées par décret), le préavis du locataire d'un logement vide est réduit à 1 mois, à condition de le mentionner dans la lettre de congé. D'autres situations (premier emploi, perte d'emploi, RSA, AAH, logement social…) y donnent aussi droit."
+    type: nombre
+    unite: mois
+    bornes: [0, 6]
+    valeurs:
+      - depuis: "2026-04-16"
+        valeur: 1
+        sources: [sp-f1168-preavis-locataire]
+        article: "Loi n° 89-462 du 6 juillet 1989, art. 15 ; décret n° 2013-392 (liste des communes en zone tendue)"
+    tags: [location, preavis, zone_tendue]
+    a_verifier: false
+    note: "Date « depuis » = date de vérification de la fiche ; date d'origine non vérifiée."
+
+  - id: logement.preavis_locataire.location_meublee
+    titre: "Préavis du locataire d'un logement meublé"
+    explication: "Délai de préavis du locataire d'un meublé, sans justification à fournir."
+    type: nombre
+    unite: mois
+    bornes: [0, 6]
+    valeurs:
+      - depuis: "2026-04-16"
+        valeur: 1
+        sources: [sp-f1168-preavis-locataire, sp-f1165-vide-meuble]
+        article: "Loi n° 89-462 du 6 juillet 1989, art. 25-8"
+    tags: [location, preavis, meuble]
+    a_verifier: false
+    note: "Date « depuis » = date de vérification de la fiche ; date d'origine non vérifiée."
+
+  # ---------------------------------------------------------------------------
+  # TRÊVE HIVERNALE
+  # ---------------------------------------------------------------------------
+  - id: logement.treve_hivernale.debut
+    titre: "Trêve hivernale des expulsions : date de début"
+    explication: "Date à partir de laquelle un locataire sans solution de relogement ne peut plus être expulsé, jusqu'à la fin de la trêve."
+    type: texte
+    unite: ""
+    valeurs:
+      - depuis: "2026-08-06"
+        valeur: "1er novembre"
+        sources: [sp-f31272-expulsion-treve, legi-cpce-l412-1-a-l412-8]
+        article: "Code des procédures civiles d'exécution, art. L412-6"
+    tags: [expulsion, treve_hivernale, locataire]
+    a_verifier: false
+    note: "Date « depuis » = date de vérification de la fiche service-public (06/08/2026). L'expulsion reste possible si un relogement adapté est assuré. En outre-mer, une trêve cyclonique peut s'appliquer."
+
+  - id: logement.treve_hivernale.fin
+    titre: "Trêve hivernale des expulsions : date de fin"
+    explication: "Dernier jour (inclus) de la trêve hivernale, de l'année suivant son début."
+    type: texte
+    unite: ""
+    valeurs:
+      - depuis: "2026-08-06"
+        valeur: "31 mars (inclus)"
+        sources: [sp-f31272-expulsion-treve, legi-cpce-l412-1-a-l412-8]
+        article: "Code des procédures civiles d'exécution, art. L412-6"
+    tags: [expulsion, treve_hivernale, locataire]
+    a_verifier: false
+    note: "Date « depuis » = date de vérification de la fiche service-public."
+
+  # ---------------------------------------------------------------------------
+  # LOYERS : RÉVISION (IRL), ENCADREMENT, GEL DES PASSOIRES
+  # ---------------------------------------------------------------------------
+  - id: logement.irl.valeur
+    titre: "Indice de référence des loyers (IRL), métropole : dernière valeur publiée"
+    explication: "Indice publié chaque trimestre par l'Insee qui plafonne la révision annuelle des loyers en cours de bail. On compare l'IRL du trimestre de référence du bail avec celui de l'année précédente."
+    type: nombre
+    unite: indice
+    bornes: [100, 200]
+    valeurs:
+      - depuis: "2025-07-11"
+        valeur: 146.68
+        sources: [sp-f13723-irl]
+        article: "Loi n° 89-462 du 6 juillet 1989, art. 17-1 (IRL du 2e trimestre 2025)"
+      - depuis: "2025-10-15"
+        valeur: 145.77
+        sources: [sp-f13723-irl]
+        article: "IRL du 3e trimestre 2025"
+      - depuis: "2026-01-15"
+        valeur: 145.78
+        sources: [sp-f13723-irl]
+        article: "IRL du 4e trimestre 2025"
+      - depuis: "2026-04-15"
+        valeur: 146.60
+        sources: [sp-f13723-irl]
+        article: "IRL du 1er trimestre 2026"
+      - depuis: "2026-07-10"
+        valeur: 148.37
+        sources: [sp-f13723-irl]
+        article: "IRL du 2e trimestre 2026"
+    tags: [loyer, irl, indexation]
+    a_verifier: false
+    note: "Date « depuis » = date de publication par l'Insee. Variation annuelle au 2e trimestre 2026 : +1,15 %. Corse : 146,22 ; DOM : 146,94 (T2 2026). La révision est interdite pour les logements classés F ou G dans certains cas."
+
+  - id: logement.irl.variation_annuelle
+    titre: "Indice de référence des loyers : variation annuelle (hausse maximale de loyer à la révision)"
+    explication: "Hausse maximale, en pourcentage, que le propriétaire peut appliquer lors de la révision annuelle du loyer, selon le dernier IRL publié."
+    type: nombre
+    unite: pourcent
+    bornes: [-5, 10]
+    valeurs:
+      - depuis: "2025-07-11"
+        valeur: 1.04
+        sources: [sp-f13723-irl]
+      - depuis: "2025-10-15"
+        valeur: 0.87
+        sources: [sp-f13723-irl]
+      - depuis: "2026-01-15"
+        valeur: 0.79
+        sources: [sp-f13723-irl]
+      - depuis: "2026-04-15"
+        valeur: 0.78
+        sources: [sp-f13723-irl]
+      - depuis: "2026-07-10"
+        valeur: 1.15
+        sources: [sp-f13723-irl]
+    tags: [loyer, irl, indexation]
+    a_verifier: false
+    note: "Variation sur un an de l'IRL (métropole). Date « depuis » = date de publication Insee."
+
+  - id: logement.encadrement_loyers.dispositif_en_vigueur
+    titre: "Encadrement du niveau des loyers (dispositif expérimental de la loi ELAN) en vigueur"
+    explication: "Dans certaines villes volontaires en zone tendue, le loyer d'un nouveau bail ne peut pas dépasser un loyer de référence majoré fixé chaque année par le préfet (sauf complément de loyer justifié)."
+    type: booleen
+    unite: ""
+    valeurs:
+      - depuis: "2019-07-01"
+        valeur: true
+        sources: [mte-encadrement-loyers, sp-f1314-encadrement-loyers]
+        article: "Loi n° 2018-1021 du 23 novembre 2018 (ELAN), art. 140 ; loi n° 89-462 du 6 juillet 1989, art. 17-1"
+    tags: [loyer, encadrement, zone_tendue]
+    a_verifier: true
+    note: "Paris depuis le 1er juillet 2019 (premier territoire). Expérimentation de 5 ans prolongée de 3 ans par la loi 3DS du 21 février 2022 « jusqu'en 2026 » (ministère, page du 28/10/2025) : une éventuelle prolongation ou pérennisation au-delà de novembre 2026 n'a pas été vérifiée. Service-public (01/08/2026) liste encore les territoires encadrés. Expérimentation distincte en outre-mer depuis la loi Bélim du 13 juin 2025."
+
+  - id: logement.encadrement_loyers.territoires
+    titre: "Encadrement des loyers : territoires concernés"
+    explication: "Liste des villes ou intercommunalités qui appliquent l'encadrement du niveau des loyers."
+    type: texte
+    unite: ""
+    valeurs:
+      - depuis: "2026-08-01"
+        valeur: "Paris ; Est Ensemble (9 communes) ; Plaine Commune (9 communes) ; Lille, Hellemmes et Lomme ; Lyon et Villeurbanne ; Bordeaux ; Montpellier ; une partie de Grenoble-Alpes Métropole ; communauté d'agglomération Pays Basque (24 communes)"
+        sources: [sp-f1314-encadrement-loyers, mte-encadrement-loyers]
+    tags: [loyer, encadrement, zone_tendue]
+    a_verifier: false
+    note: "Date « depuis » = date de vérification de la fiche service-public (01/08/2026). Dates d'entrée : Paris juillet 2019, Lille mars 2020, Plaine Commune juin 2021, Lyon-Villeurbanne novembre 2021, Est Ensemble décembre 2021, Montpellier juillet 2022, Bordeaux juillet 2022 (ministère)."
+
+  - id: logement.encadrement_loyers.majoration_loyer_reference
+    titre: "Encadrement des loyers : écart entre loyer de référence majoré et loyer de référence"
+    explication: "Le loyer plafond (loyer de référence majoré) est égal au loyer médian de référence augmenté de ce pourcentage. Le loyer minoré est le loyer de référence diminué de 30 %."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 50]
+    valeurs:
+      - depuis: "2025-10-28"
+        valeur: 20
+        sources: [mte-encadrement-loyers]
+        article: "Loi n° 2018-1021 du 23 novembre 2018 (ELAN), art. 140"
+    tags: [loyer, encadrement]
+    a_verifier: false
+    note: "Date « depuis » = date de mise à jour de la page ministérielle (28/10/2025) ; date d'origine non vérifiée."
+
+  - id: logement.loyer.gel_passoires_energetiques
+    titre: "Interdiction d'augmenter le loyer des logements classés F ou G au DPE"
+    explication: "Pour les logements les plus énergivores (étiquettes F et G), aucune hausse de loyer n'est possible, ni à la relocation, ni au renouvellement, ni à la révision annuelle."
+    type: booleen
+    unite: ""
+    valeurs:
+      - depuis: "2022-08-24"
+        valeur: true
+        sources: [mte-encadrement-loyers, mte-decence-energetique-passoires]
+        article: "Code de la construction et de l'habitation, art. L173-1-1"
+    tags: [loyer, dpe, passoires_thermiques]
+    a_verifier: false
+    note: "« aucune hausse de loyers n'est possible pour les logements de classe F ou G […] pour les baux conclus, renouvelés ou tacitement reconduits à compter du 24 août 2022 » (ministère). En métropole."

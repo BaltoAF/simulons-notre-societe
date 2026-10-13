@@ -1,0 +1,2025 @@
+# Agrégats de calage de la population synthétique de ménages (voir docs/CALAGE-POPULATION.md).
+# Convention de date : un stock est daté du jour d'observation (ex. "2026-01-01") ;
+# une grandeur annuelle (flux, moyenne annuelle, revenus d'une année) est datée du 31 décembre de l'année de référence.
+metriques:
+  # ---------------------------------------------------------------------------
+  # DEMOGRAPHIE
+  # ---------------------------------------------------------------------------
+  - id: demographie.population_totale
+    titre: "Population totale (France y compris Mayotte, au 1er janvier)"
+    explication: "Nombre d'habitants résidant en France au 1er janvier, estimé par l'Insee à partir du recensement et de l'état civil. Valeur provisoire pour 2026."
+    unite: personnes
+    serie:
+      - date: "2026-01-01"
+        valeur: 69081996
+        source: insee-pop3-population-age-detaille-2026
+        statut: provisoire
+
+  - id: demographie.population_metropole
+    titre: "Population de la France métropolitaine (au 1er janvier)"
+    explication: "Habitants de la France métropolitaine. C'est le champ des statistiques de niveau de vie de l'Insee (enquête ERFS), alors que la population totale inclut les départements d'outre-mer."
+    unite: personnes
+    serie:
+      - date: "2026-01-01"
+        valeur: 66792845
+        source: insee-pop3-population-age-detaille-2026
+        statut: provisoire
+
+  - id: demographie.population_0_17
+    titre: "Population âgée de 0 à 17 ans (France, au 1er janvier)"
+    explication: "Nombre de mineurs résidant en France. Somme des effectifs par âge détaillé (0 à 17 ans révolus) du tableau POP3 de l'Insee, calculée par le Système."
+    unite: personnes
+    serie:
+      - date: "2026-01-01"
+        valeur: 13852666
+        source: insee-pop3-population-age-detaille-2026
+        statut: provisoire
+
+  - id: demographie.population_18_24
+    titre: "Population âgée de 18 à 24 ans (France, au 1er janvier)"
+    explication: "Jeunes adultes de 18 à 24 ans révolus. Somme des âges détaillés du tableau POP3 de l'Insee, calculée par le Système."
+    unite: personnes
+    serie:
+      - date: "2026-01-01"
+        valeur: 5610159
+        source: insee-pop3-population-age-detaille-2026
+        statut: provisoire
+
+  - id: demographie.population_25_39
+    titre: "Population âgée de 25 à 39 ans (France, au 1er janvier)"
+    explication: "Adultes de 25 à 39 ans révolus. Somme des âges détaillés du tableau POP3 de l'Insee, calculée par le Système."
+    unite: personnes
+    serie:
+      - date: "2026-01-01"
+        valeur: 12420424
+        source: insee-pop3-population-age-detaille-2026
+        statut: provisoire
+
+  - id: demographie.population_40_54
+    titre: "Population âgée de 40 à 54 ans (France, au 1er janvier)"
+    explication: "Adultes de 40 à 54 ans révolus. Somme des âges détaillés du tableau POP3 de l'Insee, calculée par le Système."
+    unite: personnes
+    serie:
+      - date: "2026-01-01"
+        valeur: 13081328
+        source: insee-pop3-population-age-detaille-2026
+        statut: provisoire
+
+  - id: demographie.population_55_64
+    titre: "Population âgée de 55 à 64 ans (France, au 1er janvier)"
+    explication: "Adultes de 55 à 64 ans révolus, tranche où se situent la plupart des départs à la retraite. Somme des âges détaillés du tableau POP3 de l'Insee, calculée par le Système."
+    unite: personnes
+    serie:
+      - date: "2026-01-01"
+        valeur: 8778167
+        source: insee-pop3-population-age-detaille-2026
+        statut: provisoire
+
+  - id: demographie.population_65_74
+    titre: "Population âgée de 65 à 74 ans (France, au 1er janvier)"
+    explication: "Personnes de 65 à 74 ans révolus. Somme des âges détaillés du tableau POP3 de l'Insee, calculée par le Système."
+    unite: personnes
+    serie:
+      - date: "2026-01-01"
+        valeur: 7653170
+        source: insee-pop3-population-age-detaille-2026
+        statut: provisoire
+
+  - id: demographie.population_75_plus
+    titre: "Population âgée de 75 ans ou plus (France, au 1er janvier)"
+    explication: "Personnes de 75 ans ou plus. Somme des âges détaillés (75 à 105 ans ou plus) du tableau POP3 de l'Insee, calculée par le Système. Inclut les personnes vivant en institution (Ehpad), hors champ des enquêtes ménages."
+    unite: personnes
+    serie:
+      - date: "2026-01-01"
+        valeur: 7686082
+        source: insee-pop3-population-age-detaille-2026
+        statut: provisoire
+
+  - id: demographie.part_65_ans_ou_plus
+    titre: "Part des 65 ans ou plus dans la population (France, au 1er janvier)"
+    explication: "Proportion de la population âgée de 65 ans ou plus. Les 65 ans ou plus sont presque aussi nombreux que les moins de 20 ans (22,5 %)."
+    unite: pourcent
+    serie:
+      - date: "2026-01-01"
+        valeur: 22.2
+        source: insee-ip2087-bilan-demographique-2025
+        statut: provisoire
+
+  # ---------------------------------------------------------------------------
+  # MENAGES ET FAMILLES (recensement 2023)
+  # ---------------------------------------------------------------------------
+  - id: menages.nombre_total
+    titre: "Nombre de ménages (France hors Mayotte, recensement 2023)"
+    explication: "Un ménage regroupe les personnes qui partagent la même résidence principale. Le recensement 2023 en compte un peu plus de 31,27 millions."
+    unite: menages
+    serie:
+      - date: "2023-01-01"
+        valeur: 31274700
+        source: insee-rp2023-menages-structure-familiale
+        statut: definitif
+
+  - id: menages.taille_moyenne
+    titre: "Taille moyenne des ménages (personnes par résidence principale, recensement 2023)"
+    explication: "Nombre moyen d'occupants par résidence principale. Il baisse depuis cinquante ans (3,08 en 1968) avec le vieillissement et les séparations."
+    unite: personnes
+    serie:
+      - date: "2023-01-01"
+        valeur: 2.14
+        source: insee-rp2023-taille-menages
+        statut: definitif
+
+  - id: menages.type.personne_seule
+    titre: "Ménages d'une personne seule (recensement 2023)"
+    explication: "Ménages composés d'une seule personne. Somme, calculée par le Système, des hommes seuls (5 440 000) et des femmes seules (6 784 900) publiés par l'Insee ; ils représentent 39,1 % des ménages."
+    unite: menages
+    serie:
+      - date: "2023-01-01"
+        valeur: 12224900
+        source: insee-rp2023-menages-structure-familiale
+        statut: definitif
+
+  - id: menages.type.homme_seul
+    titre: "Ménages composés d'un homme seul (recensement 2023)"
+    explication: "Ménages d'une seule personne, de sexe masculin."
+    unite: menages
+    serie:
+      - date: "2023-01-01"
+        valeur: 5440000
+        source: insee-rp2023-menages-structure-familiale
+        statut: definitif
+
+  - id: menages.type.femme_seule
+    titre: "Ménages composés d'une femme seule (recensement 2023)"
+    explication: "Ménages d'une seule personne, de sexe féminin."
+    unite: menages
+    serie:
+      - date: "2023-01-01"
+        valeur: 6784900
+        source: insee-rp2023-menages-structure-familiale
+        statut: definitif
+
+  - id: menages.type.couple_sans_enfant
+    titre: "Ménages composés uniquement d'un couple sans enfant (recensement 2023)"
+    explication: "Couples vivant sans enfant à leur domicile, y compris les couples dont les enfants sont partis."
+    unite: menages
+    serie:
+      - date: "2023-01-01"
+        valeur: 7799600
+        source: insee-rp2023-menages-structure-familiale
+        statut: definitif
+
+  - id: menages.type.couple_avec_enfants
+    titre: "Ménages composés uniquement d'un couple avec enfant(s) (recensement 2023)"
+    explication: "Couples vivant avec au moins un de leurs enfants, sans limite d'âge des enfants. Dont 5 732 200 avec au moins un enfant de moins de 18 ans."
+    unite: menages
+    serie:
+      - date: "2023-01-01"
+        valeur: 7162500
+        source: insee-rp2023-menages-structure-familiale
+        statut: definitif
+
+  - id: menages.type.couple_avec_enfants_mineurs
+    titre: "Ménages composés d'un couple avec au moins un enfant de moins de 18 ans (recensement 2023)"
+    explication: "Sous-ensemble des couples avec enfants : ceux qui ont au moins un enfant mineur au domicile."
+    unite: menages
+    serie:
+      - date: "2023-01-01"
+        valeur: 5732200
+        source: insee-rp2023-menages-structure-familiale
+        statut: definitif
+
+  - id: menages.type.famille_monoparentale
+    titre: "Ménages composés uniquement d'une famille monoparentale (recensement 2023)"
+    explication: "Un parent vivant seul avec au moins un de ses enfants, sans limite d'âge des enfants. Dont 1 785 400 avec au moins un enfant de moins de 18 ans."
+    unite: menages
+    serie:
+      - date: "2023-01-01"
+        valeur: 2965000
+        source: insee-rp2023-menages-structure-familiale
+        statut: definitif
+
+  - id: menages.type.famille_monoparentale_enfants_mineurs
+    titre: "Ménages composés d'une famille monoparentale avec au moins un enfant de moins de 18 ans (recensement 2023)"
+    explication: "Sous-ensemble des familles monoparentales : celles qui ont au moins un enfant mineur au domicile."
+    unite: menages
+    serie:
+      - date: "2023-01-01"
+        valeur: 1785400
+        source: insee-rp2023-menages-structure-familiale
+        statut: definitif
+
+  - id: menages.type.menage_complexe
+    titre: "Ménages complexes (recensement 2023)"
+    explication: "Ménages qui ne sont ni une personne seule ni une seule famille : colocations, plusieurs générations, famille hébergeant un tiers, etc."
+    unite: menages
+    serie:
+      - date: "2023-01-01"
+        valeur: 1122700
+        source: insee-rp2023-menages-structure-familiale
+        statut: definitif
+
+  - id: menages.taille.part_1_personne
+    titre: "Part des résidences principales occupées par 1 personne (recensement 2023)"
+    explication: "Répartition des ménages selon le nombre d'occupants : une personne."
+    unite: pourcent
+    serie:
+      - date: "2023-01-01"
+        valeur: 38.9
+        source: insee-rp2023-taille-menages
+        statut: definitif
+
+  - id: menages.taille.part_2_personnes
+    titre: "Part des résidences principales occupées par 2 personnes (recensement 2023)"
+    explication: "Répartition des ménages selon le nombre d'occupants : deux personnes."
+    unite: pourcent
+    serie:
+      - date: "2023-01-01"
+        valeur: 32.3
+        source: insee-rp2023-taille-menages
+        statut: definitif
+
+  - id: menages.taille.part_3_personnes
+    titre: "Part des résidences principales occupées par 3 personnes (recensement 2023)"
+    explication: "Répartition des ménages selon le nombre d'occupants : trois personnes."
+    unite: pourcent
+    serie:
+      - date: "2023-01-01"
+        valeur: 12.9
+        source: insee-rp2023-taille-menages
+        statut: definitif
+
+  - id: menages.taille.part_4_personnes
+    titre: "Part des résidences principales occupées par 4 personnes (recensement 2023)"
+    explication: "Répartition des ménages selon le nombre d'occupants : quatre personnes."
+    unite: pourcent
+    serie:
+      - date: "2023-01-01"
+        valeur: 10.6
+        source: insee-rp2023-taille-menages
+        statut: definitif
+
+  - id: menages.taille.part_5_personnes
+    titre: "Part des résidences principales occupées par 5 personnes (recensement 2023)"
+    explication: "Répartition des ménages selon le nombre d'occupants : cinq personnes."
+    unite: pourcent
+    serie:
+      - date: "2023-01-01"
+        valeur: 3.8
+        source: insee-rp2023-taille-menages
+        statut: definitif
+
+  - id: menages.taille.part_6_personnes_ou_plus
+    titre: "Part des résidences principales occupées par 6 personnes ou plus (recensement 2023)"
+    explication: "Répartition des ménages selon le nombre d'occupants : six personnes ou plus."
+    unite: pourcent
+    serie:
+      - date: "2023-01-01"
+        valeur: 1.6
+        source: insee-rp2023-taille-menages
+        statut: definitif
+
+  - id: menages.familles.avec_enfant_mineur_total
+    titre: "Familles avec au moins un enfant de moins de 18 ans (recensement 2023)"
+    explication: "Couples ou parents isolés vivant avec au moins un enfant mineur, y compris les familles vivant au sein d'un ménage complexe."
+    unite: familles
+    serie:
+      - date: "2023-01-01"
+        valeur: 7881900
+        source: insee-rp2023-familles-enfants-mineurs
+        statut: definitif
+
+  - id: menages.familles.1_enfant_mineur
+    titre: "Familles avec un seul enfant de moins de 18 ans (recensement 2023)"
+    explication: "Familles résidant avec exactement un enfant mineur (et éventuellement des enfants plus âgés). 45,4 % des familles avec enfant mineur."
+    unite: familles
+    serie:
+      - date: "2023-01-01"
+        valeur: 3578300
+        source: insee-rp2023-familles-enfants-mineurs
+        statut: definitif
+
+  - id: menages.familles.2_enfants_mineurs
+    titre: "Familles avec deux enfants de moins de 18 ans (recensement 2023)"
+    explication: "Familles résidant avec exactement deux enfants mineurs. 38,6 % des familles avec enfant mineur."
+    unite: familles
+    serie:
+      - date: "2023-01-01"
+        valeur: 3039000
+        source: insee-rp2023-familles-enfants-mineurs
+        statut: definitif
+
+  - id: menages.familles.3_enfants_mineurs_ou_plus
+    titre: "Familles avec trois enfants de moins de 18 ans ou plus (recensement 2023)"
+    explication: "Familles nombreuses. Somme, calculée par le Système, des familles avec 3 enfants mineurs (956 200, soit 12,1 %) et avec 4 ou plus (308 400, soit 3,9 %)."
+    unite: familles
+    serie:
+      - date: "2023-01-01"
+        valeur: 1264600
+        source: insee-rp2023-familles-enfants-mineurs
+        statut: definitif
+
+  - id: menages.familles.4_enfants_mineurs_ou_plus
+    titre: "Familles avec quatre enfants de moins de 18 ans ou plus (recensement 2023)"
+    explication: "Sous-ensemble des familles nombreuses : quatre enfants mineurs ou plus."
+    unite: familles
+    serie:
+      - date: "2023-01-01"
+        valeur: 308400
+        source: insee-rp2023-familles-enfants-mineurs
+        statut: definitif
+
+  # ---------------------------------------------------------------------------
+  # REVENUS - NIVEAU DE VIE (ERFS 2024, France métropolitaine)
+  # ---------------------------------------------------------------------------
+  - id: revenus.niveau_vie.mediane_annuelle
+    titre: "Niveau de vie médian annuel (2024, euros par unité de consommation)"
+    explication: "La moitié des personnes vit avec moins que ce montant. Le niveau de vie est le revenu disponible du ménage (après impôts et prestations) divisé par le nombre d'unités de consommation. Champ : France métropolitaine, logements ordinaires."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 26740
+        source: insee-distribution-niveaux-vie-2024
+        statut: definitif
+
+  - id: revenus.niveau_vie.mediane_mensuelle
+    titre: "Niveau de vie médian mensuel (2024, euros par unité de consommation)"
+    explication: "Le niveau de vie médian ramené au mois : la moitié des personnes dispose de moins de 2 228 euros par mois et par unité de consommation."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 2228
+        source: insee-ip2117-niveau-vie-pauvrete-2024
+        statut: definitif
+
+  - id: revenus.niveau_vie.moyenne_annuelle
+    titre: "Niveau de vie moyen annuel (2024, euros par unité de consommation)"
+    explication: "Moyenne des niveaux de vie individuels. Elle dépasse la médiane car les hauts revenus tirent la moyenne vers le haut."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 30900
+        source: insee-niveau-vie-moyen-decile-2024
+        statut: definitif
+
+  - id: revenus.niveau_vie.d1
+    titre: "1er décile de niveau de vie annuel (D1, 2024)"
+    explication: "Les 10 % de personnes les plus modestes ont un niveau de vie inférieur à ce seuil (euros par an et par unité de consommation)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 13970
+        source: insee-distribution-niveaux-vie-2024
+        statut: definitif
+
+  - id: revenus.niveau_vie.d2
+    titre: "2e décile de niveau de vie annuel (D2, 2024)"
+    explication: "20 % des personnes ont un niveau de vie inférieur à ce seuil (euros par an et par unité de consommation)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 17700
+        source: insee-distribution-niveaux-vie-2024
+        statut: definitif
+
+  - id: revenus.niveau_vie.d3
+    titre: "3e décile de niveau de vie annuel (D3, 2024)"
+    explication: "30 % des personnes ont un niveau de vie inférieur à ce seuil (euros par an et par unité de consommation)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 20980
+        source: insee-distribution-niveaux-vie-2024
+        statut: definitif
+
+  - id: revenus.niveau_vie.d4
+    titre: "4e décile de niveau de vie annuel (D4, 2024)"
+    explication: "40 % des personnes ont un niveau de vie inférieur à ce seuil (euros par an et par unité de consommation)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 23880
+        source: insee-distribution-niveaux-vie-2024
+        statut: definitif
+
+  - id: revenus.niveau_vie.d5
+    titre: "5e décile de niveau de vie annuel (D5 = médiane, 2024)"
+    explication: "Seuil qui partage la population en deux moitiés égales (euros par an et par unité de consommation)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 26740
+        source: insee-distribution-niveaux-vie-2024
+        statut: definitif
+
+  - id: revenus.niveau_vie.d6
+    titre: "6e décile de niveau de vie annuel (D6, 2024)"
+    explication: "60 % des personnes ont un niveau de vie inférieur à ce seuil (euros par an et par unité de consommation)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 29880
+        source: insee-distribution-niveaux-vie-2024
+        statut: definitif
+
+  - id: revenus.niveau_vie.d7
+    titre: "7e décile de niveau de vie annuel (D7, 2024)"
+    explication: "70 % des personnes ont un niveau de vie inférieur à ce seuil (euros par an et par unité de consommation)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 33680
+        source: insee-distribution-niveaux-vie-2024
+        statut: definitif
+
+  - id: revenus.niveau_vie.d8
+    titre: "8e décile de niveau de vie annuel (D8, 2024)"
+    explication: "80 % des personnes ont un niveau de vie inférieur à ce seuil (euros par an et par unité de consommation)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 38780
+        source: insee-distribution-niveaux-vie-2024
+        statut: definitif
+
+  - id: revenus.niveau_vie.d9
+    titre: "9e décile de niveau de vie annuel (D9, 2024)"
+    explication: "Les 10 % de personnes les plus aisées ont un niveau de vie supérieur à ce seuil (euros par an et par unité de consommation)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 48580
+        source: insee-distribution-niveaux-vie-2024
+        statut: definitif
+
+  - id: revenus.niveau_vie.rapport_interdecile_d9_d1
+    titre: "Rapport interdécile du niveau de vie D9/D1 (2024)"
+    explication: "Le seuil d'entrée des 10 % les plus aisés est 3,48 fois plus élevé que le plafond des 10 % les plus modestes."
+    unite: ratio
+    serie:
+      - date: "2024-12-31"
+        valeur: 3.48
+        source: insee-ip2117-niveau-vie-pauvrete-2024
+        statut: definitif
+
+  - id: revenus.niveau_vie.indice_gini
+    titre: "Indice de Gini du niveau de vie (2024)"
+    explication: "Mesure des inégalités entre 0 (égalité parfaite) et 1 (une seule personne a tout). 0,302 en 2024, son plus haut niveau depuis le début de la série en 1996."
+    unite: indice
+    serie:
+      - date: "2024-12-31"
+        valeur: 0.302
+        source: insee-ip2117-niveau-vie-pauvrete-2024
+        statut: definitif
+
+  - id: revenus.niveau_vie.rapport_s80_s20
+    titre: "Rapport (100-S80)/S20 des masses de niveau de vie (2024)"
+    explication: "Les 20 % les plus aisés perçoivent 4,62 fois plus de la somme des niveaux de vie que les 20 % les plus modestes (38,8 % contre 8,4 %)."
+    unite: ratio
+    serie:
+      - date: "2024-12-31"
+        valeur: 4.62
+        source: insee-ip2117-niveau-vie-pauvrete-2024
+        statut: definitif
+
+  - id: revenus.niveau_vie.part_masse_s20
+    titre: "Part de la masse des niveaux de vie détenue par les 20 % les plus modestes (S20, 2024)"
+    explication: "Part cumulée de la somme des niveaux de vie perçue par les 20 % de personnes les plus modestes."
+    unite: pourcent
+    serie:
+      - date: "2024-12-31"
+        valeur: 8.4
+        source: insee-ip2117-niveau-vie-pauvrete-2024
+        statut: definitif
+
+  - id: revenus.niveau_vie.part_masse_s40
+    titre: "Part de la masse des niveaux de vie détenue par les 40 % les plus modestes (S40, 2024)"
+    explication: "Part cumulée de la somme des niveaux de vie perçue par les 40 % de personnes les plus modestes."
+    unite: pourcent
+    serie:
+      - date: "2024-12-31"
+        valeur: 21.9
+        source: insee-ip2117-niveau-vie-pauvrete-2024
+        statut: definitif
+
+  - id: revenus.niveau_vie.part_masse_s50
+    titre: "Part de la masse des niveaux de vie détenue par les 50 % les plus modestes (S50, 2024)"
+    explication: "Part cumulée de la somme des niveaux de vie perçue par la moitié la plus modeste de la population."
+    unite: pourcent
+    serie:
+      - date: "2024-12-31"
+        valeur: 30.1
+        source: insee-ip2117-niveau-vie-pauvrete-2024
+        statut: definitif
+
+  - id: revenus.niveau_vie.part_masse_s80
+    titre: "Part de la masse des niveaux de vie détenue par les 80 % les plus modestes (S80, 2024)"
+    explication: "Part cumulée de la somme des niveaux de vie perçue par les 80 % les plus modestes ; son complément (38,8 %) revient aux 20 % les plus aisés."
+    unite: pourcent
+    serie:
+      - date: "2024-12-31"
+        valeur: 61.2
+        source: insee-ip2117-niveau-vie-pauvrete-2024
+        statut: definitif
+
+  - id: revenus.niveau_vie.part_masse_s90
+    titre: "Part de la masse des niveaux de vie détenue par les 90 % les plus modestes (S90, 2024)"
+    explication: "Part cumulée de la somme des niveaux de vie perçue par les 90 % les plus modestes ; son complément (24,9 %) revient aux 10 % les plus aisés."
+    unite: pourcent
+    serie:
+      - date: "2024-12-31"
+        valeur: 75.1
+        source: insee-ip2117-niveau-vie-pauvrete-2024
+        statut: definitif
+
+  - id: revenus.niveau_vie_moyen.decile_1
+    titre: "Niveau de vie moyen des 10 % les plus modestes (sous D1, 2024)"
+    explication: "Niveau de vie annuel moyen des personnes situées sous le 1er décile (euros par unité de consommation)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 9960
+        source: insee-niveau-vie-moyen-decile-2024
+        statut: definitif
+
+  - id: revenus.niveau_vie_moyen.decile_2
+    titre: "Niveau de vie moyen entre le 1er et le 2e décile (2024)"
+    explication: "Niveau de vie annuel moyen du 2e dixième de la population (euros par unité de consommation)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 15890
+        source: insee-niveau-vie-moyen-decile-2024
+        statut: definitif
+
+  - id: revenus.niveau_vie_moyen.decile_3
+    titre: "Niveau de vie moyen entre le 2e et le 3e décile (2024)"
+    explication: "Niveau de vie annuel moyen du 3e dixième de la population (euros par unité de consommation)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 19400
+        source: insee-niveau-vie-moyen-decile-2024
+        statut: definitif
+
+  - id: revenus.niveau_vie_moyen.decile_4
+    titre: "Niveau de vie moyen entre le 3e et le 4e décile (2024)"
+    explication: "Niveau de vie annuel moyen du 4e dixième de la population (euros par unité de consommation)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 22430
+        source: insee-niveau-vie-moyen-decile-2024
+        statut: definitif
+
+  - id: revenus.niveau_vie_moyen.decile_5
+    titre: "Niveau de vie moyen entre le 4e et le 5e décile (2024)"
+    explication: "Niveau de vie annuel moyen du 5e dixième de la population (euros par unité de consommation)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 25310
+        source: insee-niveau-vie-moyen-decile-2024
+        statut: definitif
+
+  - id: revenus.niveau_vie_moyen.decile_6
+    titre: "Niveau de vie moyen entre le 5e et le 6e décile (2024)"
+    explication: "Niveau de vie annuel moyen du 6e dixième de la population (euros par unité de consommation)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 28290
+        source: insee-niveau-vie-moyen-decile-2024
+        statut: definitif
+
+  - id: revenus.niveau_vie_moyen.decile_7
+    titre: "Niveau de vie moyen entre le 6e et le 7e décile (2024)"
+    explication: "Niveau de vie annuel moyen du 7e dixième de la population (euros par unité de consommation)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 31670
+        source: insee-niveau-vie-moyen-decile-2024
+        statut: definitif
+
+  - id: revenus.niveau_vie_moyen.decile_8
+    titre: "Niveau de vie moyen entre le 7e et le 8e décile (2024)"
+    explication: "Niveau de vie annuel moyen du 8e dixième de la population (euros par unité de consommation)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 36040
+        source: insee-niveau-vie-moyen-decile-2024
+        statut: definitif
+
+  - id: revenus.niveau_vie_moyen.decile_9
+    titre: "Niveau de vie moyen entre le 8e et le 9e décile (2024)"
+    explication: "Niveau de vie annuel moyen du 9e dixième de la population (euros par unité de consommation)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 43010
+        source: insee-niveau-vie-moyen-decile-2024
+        statut: definitif
+
+  - id: revenus.niveau_vie_moyen.decile_10
+    titre: "Niveau de vie moyen des 10 % les plus aisés (au-dessus de D9, 2024)"
+    explication: "Niveau de vie annuel moyen des personnes situées au-dessus du 9e décile, 7,7 fois celui des 10 % les plus modestes (euros par unité de consommation)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 76970
+        source: insee-niveau-vie-moyen-decile-2024
+        statut: definitif
+
+  - id: revenus.pauvrete.taux_seuil_60
+    titre: "Taux de pauvreté monétaire au seuil de 60 % du niveau de vie médian (2024)"
+    explication: "Part des personnes dont le niveau de vie est inférieur à 60 % du niveau de vie médian. Stable en 2024 à son plus haut niveau depuis 1996."
+    unite: pourcent
+    serie:
+      - date: "2024-12-31"
+        valeur: 15.4
+        source: insee-ip2117-niveau-vie-pauvrete-2024
+        statut: definitif
+
+  - id: revenus.pauvrete.seuil_60_mensuel
+    titre: "Seuil de pauvreté à 60 % du niveau de vie médian, mensuel (2024)"
+    explication: "Niveau de vie mensuel par unité de consommation en dessous duquel une personne est considérée comme pauvre."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 1337
+        source: insee-ip2117-niveau-vie-pauvrete-2024
+        statut: definitif
+
+  - id: revenus.pauvrete.nombre_personnes_seuil_60
+    titre: "Nombre de personnes pauvres au seuil de 60 % (2024)"
+    explication: "Nombre de personnes vivant sous le seuil de pauvreté monétaire, en France métropolitaine (logements ordinaires)."
+    unite: personnes
+    serie:
+      - date: "2024-12-31"
+        valeur: 9817000
+        source: insee-ip2117-niveau-vie-pauvrete-2024
+        statut: definitif
+
+  - id: revenus.pauvrete.taux_seuil_50
+    titre: "Taux de pauvreté monétaire au seuil de 50 % du niveau de vie médian (2024)"
+    explication: "Part des personnes dont le niveau de vie est inférieur à 50 % du médian (seuil de 1 114 euros par mois), soit 5,6 millions de personnes."
+    unite: pourcent
+    serie:
+      - date: "2024-12-31"
+        valeur: 8.8
+        source: insee-ip2117-niveau-vie-pauvrete-2024
+        statut: definitif
+
+  # ---------------------------------------------------------------------------
+  # REVENUS - SALAIRES ET REVENUS D'ACTIVITE
+  # ---------------------------------------------------------------------------
+  - id: revenus.salaires.net_mensuel_moyen_eqtp_prive
+    titre: "Salaire net mensuel moyen en équivalent temps plein dans le secteur privé (2024)"
+    explication: "Salaire net moyen d'un salarié du privé ramené à un temps plein sur toute l'année (EQTP), apprentis et stagiaires compris."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 2733
+        source: insee-ip2079-salaires-prive-2024
+        statut: definitif
+
+  - id: revenus.salaires.brut_mensuel_moyen_eqtp_prive
+    titre: "Salaire brut mensuel moyen en équivalent temps plein dans le secteur privé (2024)"
+    explication: "Salaire brut moyen (avant cotisations salariales, CSG et CRDS) d'un salarié du privé en EQTP."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 3602
+        source: insee-ip2079-salaires-prive-2024
+        statut: definitif
+
+  - id: revenus.salaires.net_mensuel_median_eqtp_prive
+    titre: "Salaire net mensuel médian en équivalent temps plein dans le secteur privé (2024)"
+    explication: "La moitié des salariés du privé gagne moins que ce montant net par mois en EQTP."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 2190
+        source: insee-ip2079-salaires-prive-2024
+        statut: definitif
+
+  - id: revenus.salaires.net_mensuel_d1_eqtp_prive
+    titre: "1er décile du salaire net mensuel en EQTP dans le secteur privé (2024)"
+    explication: "10 % des salariés du privé gagnent moins que ce montant net par mois en EQTP."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 1492
+        source: insee-ip2079-salaires-prive-2024
+        statut: definitif
+
+  - id: revenus.salaires.net_mensuel_d9_eqtp_prive
+    titre: "9e décile du salaire net mensuel en EQTP dans le secteur privé (2024)"
+    explication: "10 % des salariés du privé gagnent plus que ce montant net par mois en EQTP."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 4334
+        source: insee-ip2079-salaires-prive-2024
+        statut: definitif
+
+  - id: revenus.salaires.masse_salariale_brute_prive
+    titre: "Masse salariale brute annuelle du secteur privé (régime général, France entière)"
+    explication: "Somme des rémunérations brutes soumises à cotisations (assiette déplafonnée) versées par les employeurs privés. Total annuel calculé par le Système comme la somme des quatre trimestres bruts publiés par l'Urssaf."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 726447053196
+        source: urssaf-masse-salariale-prive-trimestrielle
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 740035331860
+        source: urssaf-masse-salariale-prive-trimestrielle
+        statut: provisoire
+
+  - id: revenus.non_salaries.revenu_mensuel_moyen_ensemble
+    titre: "Revenu d'activité mensuel moyen des non-salariés, y compris micro-entrepreneurs (2024, hors agriculture)"
+    explication: "Revenu moyen tiré de leur activité indépendante par l'ensemble des non-salariés hors agriculture, micro-entrepreneurs économiquement actifs compris (déficits comptés à zéro)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 2350
+        source: insee-ip2114-non-salaries-2024
+        statut: definitif
+
+  - id: revenus.non_salaries.revenu_mensuel_moyen_classiques
+    titre: "Revenu d'activité mensuel moyen des non-salariés « classiques » (hors micro-entrepreneurs, 2024, hors agriculture)"
+    explication: "Revenu moyen des entrepreneurs individuels et gérants majoritaires hors micro-entreprise (déficits comptés à zéro) ; 9,6 % ont un revenu nul ou déficitaire."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 4150
+        source: insee-ip2114-non-salaries-2024
+        statut: definitif
+
+  - id: revenus.non_salaries.revenu_mensuel_moyen_micro_entrepreneurs
+    titre: "Revenu d'activité mensuel moyen des micro-entrepreneurs économiquement actifs (2024, hors agriculture)"
+    explication: "Revenu moyen tiré de la micro-entreprise ; la moitié des micro-entrepreneurs à revenu non nul gagne moins de 330 euros par mois."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 680
+        source: insee-ip2114-non-salaries-2024
+        statut: definitif
+
+  # ---------------------------------------------------------------------------
+  # EMPLOI
+  # ---------------------------------------------------------------------------
+  - id: emploi.salaries.total
+    titre: "Emploi salarié total (France hors Mayotte, fin de trimestre, CVS)"
+    explication: "Nombre d'emplois salariés, privés et publics, estimé par l'Insee à partir des sources administratives."
+    unite: personnes
+    serie:
+      - date: "2026-06-30"
+        valeur: 27021100
+        source: insee-ir214-emploi-salarie-t2-2026
+        statut: provisoire
+
+  - id: emploi.salaries.secteur_prive
+    titre: "Emploi salarié du secteur privé (France hors Mayotte, fin de trimestre, CVS)"
+    explication: "Nombre d'emplois salariés dans les entreprises et associations (hors fonction publique)."
+    unite: personnes
+    serie:
+      - date: "2026-06-30"
+        valeur: 20957000
+        source: insee-ir214-emploi-salarie-t2-2026
+        statut: provisoire
+
+  - id: emploi.salaries.fonction_publique
+    titre: "Emploi salarié de la fonction publique (France hors Mayotte, fin de trimestre, CVS)"
+    explication: "Nombre d'emplois salariés dans les trois versants de la fonction publique (État, territoriale, hospitalière)."
+    unite: personnes
+    serie:
+      - date: "2026-06-30"
+        valeur: 6064100
+        source: insee-ir214-emploi-salarie-t2-2026
+        statut: provisoire
+
+  - id: emploi.non_salaries.emploi_principal
+    titre: "Emploi non salarié (activité principale, France hors Mayotte, fin de trimestre, CVS)"
+    explication: "Personnes dont l'emploi principal est non salarié dans les estimations trimestrielles d'emploi de l'Insee ; estimation expérimentale pour le dernier trimestre."
+    unite: personnes
+    serie:
+      - date: "2026-06-30"
+        valeur: 3605200
+        source: insee-ir214-emploi-salarie-t2-2026
+        statut: estimation
+
+  - id: emploi.non_salaries.nombre_total
+    titre: "Nombre de non-salariés, à titre principal ou secondaire (France, fin 2024)"
+    explication: "Personnes exerçant une activité non salariée, y compris en complément d'un emploi salarié, agriculture et micro-entrepreneurs compris. Valeur arrondie au dixième de million par l'Insee."
+    unite: personnes
+    serie:
+      - date: "2024-12-31"
+        valeur: 4300000
+        source: insee-ip2114-non-salaries-2024
+        statut: definitif
+
+  - id: emploi.non_salaries.classiques_hors_agriculture
+    titre: "Non-salariés « classiques » hors agriculture (hors micro-entrepreneurs, fin 2024)"
+    explication: "Entrepreneurs individuels (924 000) et gérants majoritaires de sociétés (940 000) hors micro-entreprise et hors agriculture."
+    unite: personnes
+    serie:
+      - date: "2024-12-31"
+        valeur: 1864000
+        source: insee-ip2114-non-salaries-2024
+        statut: definitif
+
+  - id: emploi.non_salaries.micro_entrepreneurs_actifs
+    titre: "Micro-entrepreneurs économiquement actifs hors agriculture (fin 2024)"
+    explication: "Micro-entrepreneurs ayant déclaré un chiffre d'affaires positif ; leur nombre a augmenté de 8,2 % en 2024."
+    unite: personnes
+    serie:
+      - date: "2024-12-31"
+        valeur: 2047000
+        source: insee-ip2114-non-salaries-2024
+        statut: definitif
+
+  - id: emploi.non_salaries.agriculture
+    titre: "Non-salariés de l'agriculture (fin 2024)"
+    explication: "Exploitants agricoles au régime réel (302 000) et micro-bénéfices agricoles économiquement actifs (101 000)."
+    unite: personnes
+    serie:
+      - date: "2024-12-31"
+        valeur: 403000
+        source: insee-ip2114-non-salaries-2024
+        statut: definitif
+
+  - id: emploi.actifs_occupes
+    titre: "Personnes en emploi au sens du BIT, 15 ans ou plus (France, moyenne annuelle 2025)"
+    explication: "Personnes ayant travaillé au moins une heure dans la semaine de référence (ou absentes pour congé, maladie...), d'après l'enquête Emploi. Champ : logements ordinaires."
+    unite: personnes
+    serie:
+      - date: "2025-12-31"
+        valeur: 29382900
+        source: insee-eec-2025-statut-activite-ptot01
+        statut: definitif
+
+  - id: emploi.chomeurs_bit
+    titre: "Chômeurs au sens du BIT, 15 ans ou plus (France, moyenne annuelle 2025)"
+    explication: "Personnes sans emploi, disponibles et cherchant activement un emploi, d'après l'enquête Emploi. À ne pas confondre avec les demandeurs d'emploi inscrits à France Travail."
+    unite: personnes
+    serie:
+      - date: "2025-12-31"
+        valeur: 2451200
+        source: insee-eec-2025-statut-activite-ptot01
+        statut: definitif
+
+  - id: emploi.inactifs_15_64
+    titre: "Inactifs au sens du BIT âgés de 15 à 64 ans (France, moyenne annuelle 2025)"
+    explication: "Personnes de 15 à 64 ans ni en emploi ni au chômage (étudiants, retraités précoces, personnes au foyer, etc.). Calculé par le Système : inactifs de 15 ans ou plus (24 057 200) moins inactifs de 65 ans ou plus (13 708 200)."
+    unite: personnes
+    serie:
+      - date: "2025-12-31"
+        valeur: 10349000
+        source: insee-eec-2025-statut-activite-ptot01
+        statut: definitif
+
+  - id: emploi.taux_chomage_bit
+    titre: "Taux de chômage au sens du BIT (France, moyenne annuelle 2025)"
+    explication: "Part des chômeurs parmi les actifs (personnes en emploi ou au chômage)."
+    unite: pourcent
+    serie:
+      - date: "2025-12-31"
+        valeur: 7.7
+        source: insee-ip2096-marche-travail-2025
+        statut: definitif
+
+  - id: emploi.part_temps_partiel
+    titre: "Part des personnes en emploi à temps partiel (France, 2025)"
+    explication: "Proportion des personnes en emploi travaillant à temps partiel : 26,6 % des femmes et 9,2 % des hommes."
+    unite: pourcent
+    serie:
+      - date: "2025-12-31"
+        valeur: 17.7
+        source: insee-ip2096-marche-travail-2025
+        statut: definitif
+
+  - id: emploi.retraites_droit_direct
+    titre: "Retraités percevant une pension de droit direct, tous régimes français (fin 2024)"
+    explication: "Personnes percevant une retraite de droit propre d'au moins un régime français, y compris résidant à l'étranger. S'y ajoutent environ 900 000 personnes ne percevant qu'une pension de réversion."
+    unite: personnes
+    serie:
+      - date: "2024-12-31"
+        valeur: 17300000
+        source: drees-effectifs-retraites-2024
+        statut: definitif
+
+  - id: emploi.retraites_droit_direct_residant_france
+    titre: "Retraités de droit direct résidant en France (fin 2024)"
+    explication: "Sous-ensemble des retraités de droit direct qui résident en France, champ pertinent pour une population synthétique de ménages résidents."
+    unite: personnes
+    serie:
+      - date: "2024-12-31"
+        valeur: 16400000
+        source: drees-effectifs-retraites-2024
+        statut: definitif
+
+  # ---------------------------------------------------------------------------
+  # LOGEMENT
+  # ---------------------------------------------------------------------------
+  - id: logement.residences_principales
+    titre: "Nombre de résidences principales (France hors Mayotte, au 1er janvier)"
+    explication: "Logements occupés à titre de résidence habituelle, soit autant que de ménages. Estimation annuelle Insee-SDES, provisoire."
+    unite: logements
+    serie:
+      - date: "2026-01-01"
+        valeur: 31930000
+        source: insee-sdes-statut-occupation-2026
+        statut: provisoire
+
+  - id: logement.statut.proprietaires
+    titre: "Part des ménages propriétaires de leur résidence principale (au 1er janvier)"
+    explication: "Part des résidences principales occupées par leur propriétaire, qu'il rembourse encore un emprunt (accédant) ou non."
+    unite: pourcent
+    serie:
+      - date: "2026-01-01"
+        valeur: 57.3
+        source: insee-sdes-statut-occupation-2026
+        statut: provisoire
+
+  - id: logement.statut.proprietaires_accedants
+    titre: "Part des ménages propriétaires accédants (remboursant un emprunt, au 1er janvier)"
+    explication: "Propriétaires qui ont encore un prêt immobilier en cours pour leur résidence principale."
+    unite: pourcent
+    serie:
+      - date: "2026-01-01"
+        valeur: 19.8
+        source: insee-sdes-statut-occupation-2026
+        statut: provisoire
+
+  - id: logement.statut.proprietaires_sans_emprunt
+    titre: "Part des ménages propriétaires sans charge de remboursement (au 1er janvier)"
+    explication: "Propriétaires qui ont fini de rembourser (ou n'ont jamais emprunté pour) leur résidence principale."
+    unite: pourcent
+    serie:
+      - date: "2026-01-01"
+        valeur: 37.6
+        source: insee-sdes-statut-occupation-2026
+        statut: provisoire
+
+  - id: logement.statut.locataires_parc_social
+    titre: "Part des ménages locataires d'un bailleur public (parc social, au 1er janvier)"
+    explication: "Locataires d'organismes HLM, de sociétés d'économie mixte, de l'État ou des collectivités. Légèrement plus large que le seul parc HLM."
+    unite: pourcent
+    serie:
+      - date: "2026-01-01"
+        valeur: 17.3
+        source: insee-sdes-statut-occupation-2026
+        statut: provisoire
+
+  - id: logement.statut.locataires_parc_prive
+    titre: "Part des ménages locataires d'un bailleur privé (au 1er janvier)"
+    explication: "Locataires de particuliers propriétaires bailleurs ou de personnes morales privées."
+    unite: pourcent
+    serie:
+      - date: "2026-01-01"
+        valeur: 23.2
+        source: insee-sdes-statut-occupation-2026
+        statut: provisoire
+
+  - id: logement.statut.loges_gratuitement
+    titre: "Part des ménages logés gratuitement (au 1er janvier)"
+    explication: "Ménages occupant leur résidence principale sans payer de loyer (logement prêté, de fonction...)."
+    unite: pourcent
+    serie:
+      - date: "2026-01-01"
+        valeur: 2.3
+        source: insee-sdes-statut-occupation-2026
+        statut: provisoire
+
+  - id: logement.loyer_mensuel_moyen_parc_prive
+    titre: "Loyer mensuel moyen dans le parc locatif privé (2020, France métropolitaine, hors charges)"
+    explication: "Loyer principal moyen payé par les locataires du privé selon la dernière enquête nationale logement (2020), hors charges. Valeur ancienne : à revaloriser (les loyers privés ont progressé depuis)."
+    unite: euros
+    serie:
+      - date: "2020-12-31"
+        valeur: 594
+        source: sdes-datalab-loyers-parc-social-apl-2026
+        statut: definitif
+
+  - id: logement.loyer_mensuel_moyen_parc_social
+    titre: "Loyer mensuel moyen dans le parc social (2020, France métropolitaine, hors charges)"
+    explication: "Loyer principal moyen des logements sociaux selon l'enquête nationale logement 2020. Selon le SDES, les loyers du parc social ont augmenté de 10 % entre 2020 et 2024."
+    unite: euros
+    serie:
+      - date: "2020-12-31"
+        valeur: 403
+        source: sdes-datalab-loyers-parc-social-apl-2026
+        statut: definitif
+
+  - id: logement.loyer_m2_moyen_parc_social
+    titre: "Loyer moyen au m² du parc locatif social (au 1er janvier, euros par m² et par mois)"
+    explication: "Loyer moyen par mètre carré de surface habitable des logements sociaux conventionnés (répertoire RPLS), hors charges."
+    unite: euros
+    serie:
+      - date: "2025-01-01"
+        valeur: 6.76
+        source: sdes-rpls-2025
+        statut: definitif
+
+  - id: logement.parc_social_nombre_logements
+    titre: "Nombre de logements locatifs sociaux (France, au 1er janvier)"
+    explication: "Logements du parc locatif des bailleurs sociaux recensés dans le répertoire RPLS. Valeur arrondie au dixième de million."
+    unite: logements
+    serie:
+      - date: "2025-01-01"
+        valeur: 5400000
+        source: sdes-rpls-2025
+        statut: definitif
+
+  # ---------------------------------------------------------------------------
+  # IMPOT SUR LE REVENU (revenus 2024, impôt établi en 2025)
+  # ---------------------------------------------------------------------------
+  - id: impot.ir.nombre_foyers_fiscaux
+    titre: "Nombre de foyers fiscaux (revenus 2024, impôt 2025)"
+    explication: "Nombre de déclarations de revenus traitées par la DGFiP, y compris non-résidents. Un foyer fiscal ne correspond pas à un ménage (un couple non marié = deux foyers)."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 41635259
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+
+  - id: impot.ir.nombre_foyers_imposes
+    titre: "Nombre de foyers fiscaux imposés (revenus 2024, impôt 2025)"
+    explication: "Foyers redevables d'un impôt net positif, soit environ 47 % des foyers (calcul du Système). Le rapport d'activité DGFiP retient une autre définition (19 040 297 foyers « imposés ») ; la valeur IRCOM est retenue car elle est ventilée par tranche."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 19681757
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+
+  - id: impot.ir.impot_net_total
+    titre: "Impôt sur le revenu net total (revenus 2024, impôt 2025)"
+    explication: "Montant total de l'impôt sur le revenu émis par voie de rôle après réductions et crédits d'impôt, hors prélèvement forfaitaire obligatoire, prélèvements libératoires et plus-values immobilières."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 91718994482
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+
+  - id: impot.ir.rfr_total
+    titre: "Revenu fiscal de référence total des foyers fiscaux (revenus 2024)"
+    explication: "Somme des revenus fiscaux de référence de tous les foyers. Le RFR sert de condition de ressources à de nombreux dispositifs."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 1375058914454
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+
+  # --- Répartition par tranche de revenu fiscal de référence (IRCOM, national)
+  - id: impot.ir.tranche_rfr_0_10000.nombre_foyers
+    titre: "Foyers fiscaux dont le RFR est compris entre 0 et 10 000 euros (revenus 2024)"
+    explication: "Nombre de foyers fiscaux dans la tranche de revenu fiscal de référence 0 à 10 000 euros."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 8065610
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+
+  - id: impot.ir.tranche_rfr_0_10000.nombre_foyers_imposes
+    titre: "Foyers fiscaux imposés dont le RFR est compris entre 0 et 10 000 euros (revenus 2024)"
+    explication: "Foyers de la tranche 0 à 10 000 euros redevables d'un impôt net positif."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 180169
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+
+  - id: impot.ir.tranche_rfr_0_10000.impot_net
+    titre: "Impôt net total des foyers dont le RFR est compris entre 0 et 10 000 euros (revenus 2024)"
+    explication: "Somme des impôts nets de la tranche ; négative car les crédits d'impôt remboursés dépassent l'impôt dû."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: -326469114
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+
+  - id: impot.ir.tranche_rfr_0_10000.rfr_total
+    titre: "RFR total des foyers dont le RFR est compris entre 0 et 10 000 euros (revenus 2024)"
+    explication: "Somme des revenus fiscaux de référence des foyers de la tranche."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 27887151855
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+
+  - id: impot.ir.tranche_rfr_10001_12000.nombre_foyers
+    titre: "Foyers fiscaux dont le RFR est compris entre 10 001 et 12 000 euros (revenus 2024)"
+    explication: "Nombre de foyers fiscaux dans la tranche de revenu fiscal de référence 10 001 à 12 000 euros."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 1583513
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+
+  - id: impot.ir.tranche_rfr_10001_12000.nombre_foyers_imposes
+    titre: "Foyers fiscaux imposés dont le RFR est compris entre 10 001 et 12 000 euros (revenus 2024)"
+    explication: "Foyers de la tranche 10 001 à 12 000 euros redevables d'un impôt net positif."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 49924
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+
+  - id: impot.ir.tranche_rfr_10001_12000.impot_net
+    titre: "Impôt net total des foyers dont le RFR est compris entre 10 001 et 12 000 euros (revenus 2024)"
+    explication: "Somme des impôts nets de la tranche (négative : crédits d'impôt supérieurs à l'impôt dû)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: -117055230
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+
+  - id: impot.ir.tranche_rfr_10001_12000.rfr_total
+    titre: "RFR total des foyers dont le RFR est compris entre 10 001 et 12 000 euros (revenus 2024)"
+    explication: "Somme des revenus fiscaux de référence des foyers de la tranche."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 17449595087
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+
+  - id: impot.ir.tranche_rfr_12001_15000.nombre_foyers
+    titre: "Foyers fiscaux dont le RFR est compris entre 12 001 et 15 000 euros (revenus 2024)"
+    explication: "Nombre de foyers fiscaux dans la tranche de revenu fiscal de référence 12 001 à 15 000 euros."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 2599052
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+
+  - id: impot.ir.tranche_rfr_12001_15000.nombre_foyers_imposes
+    titre: "Foyers fiscaux imposés dont le RFR est compris entre 12 001 et 15 000 euros (revenus 2024)"
+    explication: "Foyers de la tranche 12 001 à 15 000 euros redevables d'un impôt net positif."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 91957
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+
+  - id: impot.ir.tranche_rfr_12001_15000.impot_net
+    titre: "Impôt net total des foyers dont le RFR est compris entre 12 001 et 15 000 euros (revenus 2024)"
+    explication: "Somme des impôts nets de la tranche (négative : crédits d'impôt supérieurs à l'impôt dû)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: -216356147
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+
+  - id: impot.ir.tranche_rfr_12001_15000.rfr_total
+    titre: "RFR total des foyers dont le RFR est compris entre 12 001 et 15 000 euros (revenus 2024)"
+    explication: "Somme des revenus fiscaux de référence des foyers de la tranche."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 35098503507
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+
+  - id: impot.ir.tranche_rfr_15001_20000.nombre_foyers
+    titre: "Foyers fiscaux dont le RFR est compris entre 15 001 et 20 000 euros (revenus 2024)"
+    explication: "Nombre de foyers fiscaux dans la tranche de revenu fiscal de référence 15 001 à 20 000 euros."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 5221953
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+
+  - id: impot.ir.tranche_rfr_15001_20000.nombre_foyers_imposes
+    titre: "Foyers fiscaux imposés dont le RFR est compris entre 15 001 et 20 000 euros (revenus 2024)"
+    explication: "Foyers de la tranche 15 001 à 20 000 euros redevables d'un impôt net positif."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 1489534
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+
+  - id: impot.ir.tranche_rfr_15001_20000.impot_net
+    titre: "Impôt net total des foyers dont le RFR est compris entre 15 001 et 20 000 euros (revenus 2024)"
+    explication: "Somme des impôts nets de la tranche (encore légèrement négative)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: -65461336
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+
+  - id: impot.ir.tranche_rfr_15001_20000.rfr_total
+    titre: "RFR total des foyers dont le RFR est compris entre 15 001 et 20 000 euros (revenus 2024)"
+    explication: "Somme des revenus fiscaux de référence des foyers de la tranche."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 92408184137
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+
+  - id: impot.ir.tranche_rfr_20001_30000.nombre_foyers
+    titre: "Foyers fiscaux dont le RFR est compris entre 20 001 et 30 000 euros (revenus 2024)"
+    explication: "Nombre de foyers fiscaux dans la tranche de revenu fiscal de référence 20 001 à 30 000 euros."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 8720534
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+
+  - id: impot.ir.tranche_rfr_20001_30000.nombre_foyers_imposes
+    titre: "Foyers fiscaux imposés dont le RFR est compris entre 20 001 et 30 000 euros (revenus 2024)"
+    explication: "Foyers de la tranche 20 001 à 30 000 euros redevables d'un impôt net positif."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 5340632
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+
+  - id: impot.ir.tranche_rfr_20001_30000.impot_net
+    titre: "Impôt net total des foyers dont le RFR est compris entre 20 001 et 30 000 euros (revenus 2024)"
+    explication: "Somme des impôts nets de la tranche."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 3984310093
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+
+  - id: impot.ir.tranche_rfr_20001_30000.rfr_total
+    titre: "RFR total des foyers dont le RFR est compris entre 20 001 et 30 000 euros (revenus 2024)"
+    explication: "Somme des revenus fiscaux de référence des foyers de la tranche."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 212415842399
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+
+  - id: impot.ir.tranche_rfr_30001_50000.nombre_foyers
+    titre: "Foyers fiscaux dont le RFR est compris entre 30 001 et 50 000 euros (revenus 2024)"
+    explication: "Nombre de foyers fiscaux dans la tranche de revenu fiscal de référence 30 001 à 50 000 euros."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 8543902
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+
+  - id: impot.ir.tranche_rfr_30001_50000.nombre_foyers_imposes
+    titre: "Foyers fiscaux imposés dont le RFR est compris entre 30 001 et 50 000 euros (revenus 2024)"
+    explication: "Foyers de la tranche 30 001 à 50 000 euros redevables d'un impôt net positif."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 6157744
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+
+  - id: impot.ir.tranche_rfr_30001_50000.impot_net
+    titre: "Impôt net total des foyers dont le RFR est compris entre 30 001 et 50 000 euros (revenus 2024)"
+    explication: "Somme des impôts nets de la tranche."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 12841048876
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+
+  - id: impot.ir.tranche_rfr_30001_50000.rfr_total
+    titre: "RFR total des foyers dont le RFR est compris entre 30 001 et 50 000 euros (revenus 2024)"
+    explication: "Somme des revenus fiscaux de référence des foyers de la tranche."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 329025984476
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+
+  - id: impot.ir.tranche_rfr_50001_100000.nombre_foyers
+    titre: "Foyers fiscaux dont le RFR est compris entre 50 001 et 100 000 euros (revenus 2024)"
+    explication: "Nombre de foyers fiscaux dans la tranche de revenu fiscal de référence 50 001 à 100 000 euros."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 5486353
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+
+  - id: impot.ir.tranche_rfr_50001_100000.nombre_foyers_imposes
+    titre: "Foyers fiscaux imposés dont le RFR est compris entre 50 001 et 100 000 euros (revenus 2024)"
+    explication: "Foyers de la tranche 50 001 à 100 000 euros redevables d'un impôt net positif."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 5000420
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+
+  - id: impot.ir.tranche_rfr_50001_100000.impot_net
+    titre: "Impôt net total des foyers dont le RFR est compris entre 50 001 et 100 000 euros (revenus 2024)"
+    explication: "Somme des impôts nets de la tranche."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 26606265949
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+
+  - id: impot.ir.tranche_rfr_50001_100000.rfr_total
+    titre: "RFR total des foyers dont le RFR est compris entre 50 001 et 100 000 euros (revenus 2024)"
+    explication: "Somme des revenus fiscaux de référence des foyers de la tranche."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 366614220695
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+
+  - id: impot.ir.tranche_rfr_plus_100000.nombre_foyers
+    titre: "Foyers fiscaux dont le RFR dépasse 100 000 euros (revenus 2024)"
+    explication: "Nombre de foyers fiscaux dont le revenu fiscal de référence est supérieur à 100 000 euros. Le fichier IRCOM détaille aussi les tranches supérieures jusqu'à plus de 9 millions d'euros."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 1414342
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+
+  - id: impot.ir.tranche_rfr_plus_100000.nombre_foyers_imposes
+    titre: "Foyers fiscaux imposés dont le RFR dépasse 100 000 euros (revenus 2024)"
+    explication: "Foyers de la tranche supérieure à 100 000 euros redevables d'un impôt net positif."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 1371377
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+
+  - id: impot.ir.tranche_rfr_plus_100000.impot_net
+    titre: "Impôt net total des foyers dont le RFR dépasse 100 000 euros (revenus 2024)"
+    explication: "Somme des impôts nets de la tranche : ces 3,4 % des foyers acquittent environ 53 % de l'impôt sur le revenu (calcul du Système)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 49012711391
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+
+  - id: impot.ir.tranche_rfr_plus_100000.rfr_total
+    titre: "RFR total des foyers dont le RFR dépasse 100 000 euros (revenus 2024)"
+    explication: "Somme des revenus fiscaux de référence des foyers de la tranche."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 294159432298
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+
+  # --- Déciles de RFR par part (DGFiP)
+  - id: impot.ir.rfr_par_part.d1
+    titre: "1er décile du revenu fiscal de référence par part (revenus 2024)"
+    explication: "10 % des foyers fiscaux ont un RFR par part de quotient familial inférieur à ce seuil (arrondi à la dizaine d'euros)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 1970
+        source: dgfip-ir-deciles-rfr-par-part-2024
+        statut: definitif
+
+  - id: impot.ir.rfr_par_part.d2
+    titre: "2e décile du revenu fiscal de référence par part (revenus 2024)"
+    explication: "20 % des foyers fiscaux ont un RFR par part inférieur à ce seuil."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 7640
+        source: dgfip-ir-deciles-rfr-par-part-2024
+        statut: definitif
+
+  - id: impot.ir.rfr_par_part.d3
+    titre: "3e décile du revenu fiscal de référence par part (revenus 2024)"
+    explication: "30 % des foyers fiscaux ont un RFR par part inférieur à ce seuil."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 11250
+        source: dgfip-ir-deciles-rfr-par-part-2024
+        statut: definitif
+
+  - id: impot.ir.rfr_par_part.d4
+    titre: "4e décile du revenu fiscal de référence par part (revenus 2024)"
+    explication: "40 % des foyers fiscaux ont un RFR par part inférieur à ce seuil."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 14130
+        source: dgfip-ir-deciles-rfr-par-part-2024
+        statut: definitif
+
+  - id: impot.ir.rfr_par_part.d5
+    titre: "Médiane du revenu fiscal de référence par part (revenus 2024)"
+    explication: "La moitié des foyers fiscaux a un RFR par part inférieur à ce seuil."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 16880
+        source: dgfip-ir-deciles-rfr-par-part-2024
+        statut: definitif
+
+  - id: impot.ir.rfr_par_part.d6
+    titre: "6e décile du revenu fiscal de référence par part (revenus 2024)"
+    explication: "60 % des foyers fiscaux ont un RFR par part inférieur à ce seuil."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 19600
+        source: dgfip-ir-deciles-rfr-par-part-2024
+        statut: definitif
+
+  - id: impot.ir.rfr_par_part.d7
+    titre: "7e décile du revenu fiscal de référence par part (revenus 2024)"
+    explication: "70 % des foyers fiscaux ont un RFR par part inférieur à ce seuil."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 22770
+        source: dgfip-ir-deciles-rfr-par-part-2024
+        statut: definitif
+
+  - id: impot.ir.rfr_par_part.d8
+    titre: "8e décile du revenu fiscal de référence par part (revenus 2024)"
+    explication: "80 % des foyers fiscaux ont un RFR par part inférieur à ce seuil."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 27310
+        source: dgfip-ir-deciles-rfr-par-part-2024
+        statut: definitif
+
+  - id: impot.ir.rfr_par_part.d9
+    titre: "9e décile du revenu fiscal de référence par part (revenus 2024)"
+    explication: "10 % des foyers fiscaux ont un RFR par part supérieur à ce seuil."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 35880
+        source: dgfip-ir-deciles-rfr-par-part-2024
+        statut: definitif
+
+  - id: impot.ir.rfr_moyen_par_part.dixieme_1
+    titre: "RFR moyen par part du 1er dixième de foyers (revenus 2024)"
+    explication: "Revenu fiscal de référence moyen par part des 10 % de foyers au RFR par part le plus faible (arrondi à la dizaine d'euros)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 310
+        source: dgfip-ir-deciles-rfr-par-part-2024
+        statut: definitif
+
+  - id: impot.ir.rfr_moyen_par_part.dixieme_2
+    titre: "RFR moyen par part du 2e dixième de foyers (revenus 2024)"
+    explication: "Revenu fiscal de référence moyen par part des foyers du 2e dixième."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 5030
+        source: dgfip-ir-deciles-rfr-par-part-2024
+        statut: definitif
+
+  - id: impot.ir.rfr_moyen_par_part.dixieme_3
+    titre: "RFR moyen par part du 3e dixième de foyers (revenus 2024)"
+    explication: "Revenu fiscal de référence moyen par part des foyers du 3e dixième."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 9510
+        source: dgfip-ir-deciles-rfr-par-part-2024
+        statut: definitif
+
+  - id: impot.ir.rfr_moyen_par_part.dixieme_4
+    titre: "RFR moyen par part du 4e dixième de foyers (revenus 2024)"
+    explication: "Revenu fiscal de référence moyen par part des foyers du 4e dixième."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 12680
+        source: dgfip-ir-deciles-rfr-par-part-2024
+        statut: definitif
+
+  - id: impot.ir.rfr_moyen_par_part.dixieme_5
+    titre: "RFR moyen par part du 5e dixième de foyers (revenus 2024)"
+    explication: "Revenu fiscal de référence moyen par part des foyers du 5e dixième."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 15510
+        source: dgfip-ir-deciles-rfr-par-part-2024
+        statut: definitif
+
+  - id: impot.ir.rfr_moyen_par_part.dixieme_6
+    titre: "RFR moyen par part du 6e dixième de foyers (revenus 2024)"
+    explication: "Revenu fiscal de référence moyen par part des foyers du 6e dixième."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 18210
+        source: dgfip-ir-deciles-rfr-par-part-2024
+        statut: definitif
+
+  - id: impot.ir.rfr_moyen_par_part.dixieme_7
+    titre: "RFR moyen par part du 7e dixième de foyers (revenus 2024)"
+    explication: "Revenu fiscal de référence moyen par part des foyers du 7e dixième."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 21110
+        source: dgfip-ir-deciles-rfr-par-part-2024
+        statut: definitif
+
+  - id: impot.ir.rfr_moyen_par_part.dixieme_8
+    titre: "RFR moyen par part du 8e dixième de foyers (revenus 2024)"
+    explication: "Revenu fiscal de référence moyen par part des foyers du 8e dixième."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 24860
+        source: dgfip-ir-deciles-rfr-par-part-2024
+        statut: definitif
+
+  - id: impot.ir.rfr_moyen_par_part.dixieme_9
+    titre: "RFR moyen par part du 9e dixième de foyers (revenus 2024)"
+    explication: "Revenu fiscal de référence moyen par part des foyers du 9e dixième."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 31020
+        source: dgfip-ir-deciles-rfr-par-part-2024
+        statut: definitif
+
+  - id: impot.ir.rfr_moyen_par_part.dixieme_10
+    titre: "RFR moyen par part du 10e dixième de foyers (revenus 2024)"
+    explication: "Revenu fiscal de référence moyen par part des 10 % de foyers au RFR par part le plus élevé (216 350 euros pour le dernier centième)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 67310
+        source: dgfip-ir-deciles-rfr-par-part-2024
+        statut: definitif
+
+  - id: impot.ir.impot_net_moyen_par_part.dixieme_1
+    titre: "Impôt sur le revenu net moyen par part du 1er dixième de foyers (revenus 2024)"
+    explication: "Impôt net moyen par part après réductions et crédits d'impôt ; négatif (restitution nette)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: -20
+        source: dgfip-ir-deciles-rfr-par-part-2024
+        statut: definitif
+
+  - id: impot.ir.impot_net_moyen_par_part.dixieme_2
+    titre: "Impôt sur le revenu net moyen par part du 2e dixième de foyers (revenus 2024)"
+    explication: "Impôt net moyen par part après réductions et crédits d'impôt ; négatif (restitution nette)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: -40
+        source: dgfip-ir-deciles-rfr-par-part-2024
+        statut: definitif
+
+  - id: impot.ir.impot_net_moyen_par_part.dixieme_3
+    titre: "Impôt sur le revenu net moyen par part du 3e dixième de foyers (revenus 2024)"
+    explication: "Impôt net moyen par part après réductions et crédits d'impôt ; négatif (restitution nette)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: -60
+        source: dgfip-ir-deciles-rfr-par-part-2024
+        statut: definitif
+
+  - id: impot.ir.impot_net_moyen_par_part.dixieme_4
+    titre: "Impôt sur le revenu net moyen par part du 4e dixième de foyers (revenus 2024)"
+    explication: "Impôt net moyen par part après réductions et crédits d'impôt ; négatif (restitution nette)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: -80
+        source: dgfip-ir-deciles-rfr-par-part-2024
+        statut: definitif
+
+  - id: impot.ir.impot_net_moyen_par_part.dixieme_5
+    titre: "Impôt sur le revenu net moyen par part du 5e dixième de foyers (revenus 2024)"
+    explication: "Impôt net moyen par part après réductions et crédits d'impôt ; encore négatif en moyenne."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: -40
+        source: dgfip-ir-deciles-rfr-par-part-2024
+        statut: definitif
+
+  - id: impot.ir.impot_net_moyen_par_part.dixieme_6
+    titre: "Impôt sur le revenu net moyen par part du 6e dixième de foyers (revenus 2024)"
+    explication: "Impôt net moyen par part après réductions et crédits d'impôt."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 180
+        source: dgfip-ir-deciles-rfr-par-part-2024
+        statut: definitif
+
+  - id: impot.ir.impot_net_moyen_par_part.dixieme_7
+    titre: "Impôt sur le revenu net moyen par part du 7e dixième de foyers (revenus 2024)"
+    explication: "Impôt net moyen par part après réductions et crédits d'impôt."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 540
+        source: dgfip-ir-deciles-rfr-par-part-2024
+        statut: definitif
+
+  - id: impot.ir.impot_net_moyen_par_part.dixieme_8
+    titre: "Impôt sur le revenu net moyen par part du 8e dixième de foyers (revenus 2024)"
+    explication: "Impôt net moyen par part après réductions et crédits d'impôt."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 1060
+        source: dgfip-ir-deciles-rfr-par-part-2024
+        statut: definitif
+
+  - id: impot.ir.impot_net_moyen_par_part.dixieme_9
+    titre: "Impôt sur le revenu net moyen par part du 9e dixième de foyers (revenus 2024)"
+    explication: "Impôt net moyen par part après réductions et crédits d'impôt."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 2140
+        source: dgfip-ir-deciles-rfr-par-part-2024
+        statut: definitif
+
+  - id: impot.ir.impot_net_moyen_par_part.dixieme_10
+    titre: "Impôt sur le revenu net moyen par part du 10e dixième de foyers (revenus 2024)"
+    explication: "Impôt net moyen par part des 10 % de foyers au RFR par part le plus élevé, y compris contribution exceptionnelle sur les hauts revenus."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 10210
+        source: dgfip-ir-deciles-rfr-par-part-2024
+        statut: definitif
+
+  # --- Répartition par taux marginal du barème (foyers au barème progressif)
+  - id: impot.ir.taux_marginal_0.nombre_foyers
+    titre: "Foyers fiscaux au taux marginal d'imposition de 0 % (revenus 2024)"
+    explication: "Foyers dont le revenu imposable par part ne dépasse pas 11 497 euros (première tranche du barème)."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 13132148
+        source: dgfip-ir-taux-marginal-2024
+        statut: definitif
+
+  - id: impot.ir.taux_marginal_11.nombre_foyers
+    titre: "Foyers fiscaux au taux marginal d'imposition de 11 % (revenus 2024)"
+    explication: "Foyers dont le revenu imposable par part est compris entre 11 497 et 29 315 euros ; la moitié des foyers."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 20930797
+        source: dgfip-ir-taux-marginal-2024
+        statut: definitif
+
+  - id: impot.ir.taux_marginal_30.nombre_foyers
+    titre: "Foyers fiscaux au taux marginal d'imposition de 30 % (revenus 2024)"
+    explication: "Foyers dont le revenu imposable par part est compris entre 29 315 et 83 823 euros."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 6868031
+        source: dgfip-ir-taux-marginal-2024
+        statut: definitif
+
+  - id: impot.ir.taux_marginal_41.nombre_foyers
+    titre: "Foyers fiscaux au taux marginal d'imposition de 41 % (revenus 2024)"
+    explication: "Foyers dont le revenu imposable par part est compris entre 83 823 et 180 294 euros."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 434112
+        source: dgfip-ir-taux-marginal-2024
+        statut: definitif
+
+  - id: impot.ir.taux_marginal_45.nombre_foyers
+    titre: "Foyers fiscaux au taux marginal d'imposition de 45 % (revenus 2024)"
+    explication: "Foyers dont le revenu imposable par part dépasse 180 294 euros."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 61476
+        source: dgfip-ir-taux-marginal-2024
+        statut: definitif
+
+  - id: impot.ir.taux_marginal_0.impot_net
+    titre: "Impôt net total des foyers au taux marginal de 0 % (revenus 2024)"
+    explication: "Somme des impôts nets des foyers non imposables au barème ; négative du fait des crédits d'impôt remboursés."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: -597149896
+        source: dgfip-ir-taux-marginal-2024
+        statut: definitif
+
+  - id: impot.ir.taux_marginal_11.impot_net
+    titre: "Impôt net total des foyers au taux marginal de 11 % (revenus 2024)"
+    explication: "Somme des impôts nets des foyers dont la tranche marginale est 11 %."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 12657756318
+        source: dgfip-ir-taux-marginal-2024
+        statut: definitif
+
+  - id: impot.ir.taux_marginal_30.impot_net
+    titre: "Impôt net total des foyers au taux marginal de 30 % (revenus 2024)"
+    explication: "Somme des impôts nets des foyers dont la tranche marginale est 30 % ; plus de la moitié de l'impôt."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 48857865978
+        source: dgfip-ir-taux-marginal-2024
+        statut: definitif
+
+  - id: impot.ir.taux_marginal_41.impot_net
+    titre: "Impôt net total des foyers au taux marginal de 41 % (revenus 2024)"
+    explication: "Somme des impôts nets des foyers dont la tranche marginale est 41 %."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 17791422895
+        source: dgfip-ir-taux-marginal-2024
+        statut: definitif
+
+  - id: impot.ir.taux_marginal_45.impot_net
+    titre: "Impôt net total des foyers au taux marginal de 45 % (revenus 2024)"
+    explication: "Somme des impôts nets des foyers dont la tranche marginale est 45 %."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 12541043306
+        source: dgfip-ir-taux-marginal-2024
+        statut: definitif
+
+  # ---------------------------------------------------------------------------
+  # AGREGATS DE PRELEVEMENTS SOCIAUX
+  # ---------------------------------------------------------------------------
+  - id: impot.csg.recettes_brutes_totales
+    titre: "Recettes de CSG, tous attributaires (brut, annuel)"
+    explication: "Produit total de la contribution sociale généralisée avant non-recouvrement, pour tous ses bénéficiaires (Sécurité sociale, FSV, Cades, Unédic). Assise surtout sur les revenus d'activité et les pensions."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 153800000000
+        source: ccss-octobre-2026
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 157207000000
+        source: ccss-octobre-2026
+        statut: definitif
+      - date: "2026-12-31"
+        valeur: 156087000000
+        source: ccss-octobre-2026
+        statut: prevision
+
+  - id: impot.crds.recettes_nettes
+    titre: "Recettes de CRDS (net, annuel)"
+    explication: "Produit de la contribution au remboursement de la dette sociale (taux de 0,5 %), affectée à la Cades. Seule la prévision 2026 a été lue dans le rapport de la Commission des comptes."
+    unite: euros
+    serie:
+      - date: "2026-12-31"
+        valeur: 9220000000
+        source: ccss-octobre-2026
+        statut: prevision
+
+  - id: impot.cotisations_sociales.recettes_regimes_base_fsv
+    titre: "Cotisations sociales perçues par les régimes obligatoires de base et le FSV (annuel)"
+    explication: "Cotisations sociales (hors cotisations d'équilibre de l'employeur et hors cotisations prises en charge par l'État) des régimes de base de Sécurité sociale. N'inclut pas les retraites complémentaires (Agirc-Arrco...) ni l'assurance chômage."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 304243000000
+        source: ccss-octobre-2026
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 315654000000
+        source: ccss-octobre-2026
+        statut: definitif
+      - date: "2026-12-31"
+        valeur: 333312000000
+        source: ccss-octobre-2026
+        statut: prevision
+
+  # ---------------------------------------------------------------------------
+  # PRESTATIONS SOCIALES
+  # ---------------------------------------------------------------------------
+  - id: prestations.rsa.foyers_allocataires
+    titre: "Foyers allocataires du RSA (France, au 31 décembre)"
+    explication: "Nombre de foyers percevant le revenu de solidarité active (Caf et MSA), y compris ceux qui perçoivent aussi la prime d'activité."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 1840200
+        source: drees-minima-sociaux-rsa-prime-activite-2024
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 1856500
+        source: drees-suivi-mensuel-prestations-solidarite-aout-2026
+        statut: definitif
+
+  - id: prestations.rsa.montant_annuel
+    titre: "Montant annuel de RSA versé, tous régimes (France)"
+    explication: "Dépenses de RSA versées par les Caf et la MSA, prime de Noël, indus et rappels compris, hors départements où le RSA est recentralisé par l'État (Guyane, Mayotte, La Réunion, Seine-Saint-Denis, Pyrénées-Orientales)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 12357656770
+        source: cnaf-depenses-tous-regimes-national
+        statut: definitif
+
+  - id: prestations.prime_activite.foyers_allocataires
+    titre: "Foyers allocataires de la prime d'activité (France, au 31 décembre)"
+    explication: "Nombre de foyers percevant la prime d'activité, complément de revenu des travailleurs modestes (Caf et MSA)."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 4812900
+        source: drees-minima-sociaux-rsa-prime-activite-2024
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 4726100
+        source: drees-suivi-mensuel-prestations-solidarite-aout-2026
+        statut: definitif
+
+  - id: prestations.prime_activite.montant_annuel
+    titre: "Montant annuel de prime d'activité versé, tous régimes (France)"
+    explication: "Dépenses de prime d'activité versées par la branche Famille (Caf et MSA)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 10650540520
+        source: cnaf-depenses-tous-regimes-national
+        statut: definitif
+
+  - id: prestations.aides_logement.foyers_allocataires
+    titre: "Foyers allocataires d'une aide au logement - APL, ALF ou ALS (France, tous régimes, au 31 décembre)"
+    explication: "Foyers percevant une aide personnelle au logement (APL : 2 674 132 ; ALS : 2 300 511 ; ALF : 834 751). Données définitives de la Cnaf et de la MSA."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 5809394
+        source: drees-panorama-minima-sociaux-2025
+        statut: definitif
+
+  - id: prestations.aides_logement.montant_annuel
+    titre: "Montant annuel des aides personnelles au logement versées - APL, ALF, ALS (France, tous régimes)"
+    explication: "Dépenses totales d'aides au logement de la branche Famille : ligne « Total prestation logement » de la Cnaf, dont APL 7,11 milliards, ALS 5,53 milliards et ALF 3,32 milliards d'euros."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 15992777480
+        source: cnaf-depenses-tous-regimes-national
+        statut: definitif
+
+  - id: prestations.allocations_familiales.foyers_allocataires
+    titre: "Foyers allocataires des allocations familiales (Caf, France, en décembre)"
+    explication: "Familles percevant les allocations familiales (versées dès le 2e enfant en métropole). Champ Caf (régime général), hors MSA."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 4752311
+        source: cnaf-allocataires-par-prestation-national
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 4692774
+        source: cnaf-allocataires-par-prestation-national
+        statut: definitif
+
+  - id: prestations.allocations_familiales.montant_annuel
+    titre: "Montant annuel des allocations familiales versées, tous régimes (France)"
+    explication: "Dépenses d'allocations familiales (hors complément familial, allocation de rentrée scolaire et autres prestations familiales)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 13765903710
+        source: cnaf-depenses-tous-regimes-national
+        statut: definitif
+
+  - id: prestations.aah.allocataires
+    titre: "Allocataires de l'allocation aux adultes handicapés - AAH (France, au 31 décembre)"
+    explication: "Personnes percevant l'AAH, minimum social des personnes handicapées aux revenus modestes, tous régimes."
+    unite: personnes
+    serie:
+      - date: "2024-12-31"
+        valeur: 1397800
+        source: drees-minima-sociaux-rsa-prime-activite-2024
+        statut: definitif
+
+  - id: prestations.aah.montant_annuel
+    titre: "Montant annuel d'AAH versé, tous régimes (France)"
+    explication: "Dépenses d'AAH, y compris compléments (majoration pour la vie autonome, complément de ressources)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 13839387410
+        source: cnaf-depenses-tous-regimes-national
+        statut: definitif
+
+  - id: prestations.minimum_vieillesse.allocataires
+    titre: "Allocataires du minimum vieillesse - ASPA et ASV (France, au 31 décembre)"
+    explication: "Personnes âgées percevant l'allocation de solidarité aux personnes âgées (ASPA) ou l'ancienne allocation supplémentaire vieillesse (ASV)."
+    unite: personnes
+    serie:
+      - date: "2024-12-31"
+        valeur: 754500
+        source: drees-minima-sociaux-rsa-prime-activite-2024
+        statut: definitif
+
+  - id: prestations.minimum_vieillesse.montant_annuel
+    titre: "Montant annuel des allocations du minimum vieillesse versées (France)"
+    explication: "Dépenses d'ASPA et d'ASV (hors allocations de premier étage de l'ASV)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 4586252028
+        source: drees-minima-sociaux-rsa-prime-activite-2024
+        statut: definitif
+
+  - id: prestations.c2s.beneficiaires_total
+    titre: "Bénéficiaires de la complémentaire santé solidaire - C2S (France, fin d'année)"
+    explication: "Personnes couvertes par la C2S, gratuite ou avec participation financière. Somme, calculée par le Système, des 6 050 000 bénéficiaires de la C2S gratuite et des 1 740 000 de la C2S participative (7,71 millions hors Mayotte selon la DREES)."
+    unite: personnes
+    serie:
+      - date: "2024-12-31"
+        valeur: 7790000
+        source: drees-panorama-minima-sociaux-2025
+        statut: definitif
+
+  - id: prestations.c2s.beneficiaires_gratuite
+    titre: "Bénéficiaires de la complémentaire santé solidaire gratuite - C2SG (France, fin d'année)"
+    explication: "Personnes couvertes par la C2S sans participation financière (ex-CMU-C), réservée aux plus faibles revenus."
+    unite: personnes
+    serie:
+      - date: "2024-12-31"
+        valeur: 6050000
+        source: drees-panorama-minima-sociaux-2025
+        statut: definitif
+
+  - id: prestations.c2s.beneficiaires_participative
+    titre: "Bénéficiaires de la complémentaire santé solidaire participative - C2SP (France, fin d'année)"
+    explication: "Personnes couvertes par la C2S moyennant une participation financière (ex-aide à la complémentaire santé, ACS)."
+    unite: personnes
+    serie:
+      - date: "2024-12-31"
+        valeur: 1740000
+        source: drees-panorama-minima-sociaux-2025
+        statut: definitif
+
+  - id: prestations.caf.foyers_allocataires_total
+    titre: "Foyers allocataires d'au moins une prestation légale des Caf (France, en décembre)"
+    explication: "Foyers percevant au moins une prestation versée par les Caf (hors ARS, ADE et AVVC) ; marge utile pour vérifier la part de ménages bénéficiaires dans la population synthétique."
+    unite: foyers
+    serie:
+      - date: "2025-12-31"
+        valeur: 13516781
+        source: cnaf-allocataires-par-prestation-national
+        statut: definitif
+
+  - id: prestations.caf.personnes_couvertes_total
+    titre: "Personnes couvertes par au moins une prestation légale des Caf (France, en décembre)"
+    explication: "Allocataires, conjoints, enfants et autres personnes à charge des foyers allocataires des Caf."
+    unite: personnes
+    serie:
+      - date: "2025-12-31"
+        valeur: 31400230
+        source: cnaf-allocataires-par-prestation-national
+        statut: definitif

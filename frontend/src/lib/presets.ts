@@ -1,0 +1,94 @@
+// Idées de réformes prêtes à tester : chacune est un ensemble de valeurs de règles.
+// Elles illustrent des propositions qui circulent dans le débat public, sans prendre parti.
+import type { Valeur } from './api'
+
+export type Preset = {
+  id: string
+  titre: string
+  description: string
+  overrides: Record<string, Valeur | ((v: any) => Valeur)>
+  tags: string[]
+}
+
+const IR_BAREME = 'fiscalite.impot_revenu.bareme'
+
+export const PRESETS: Preset[] = [
+  {
+    id: 'rsa-800',
+    titre: 'Porter le RSA à 800 € par mois',
+    description: 'Hausse du montant forfaitaire du RSA pour une personne seule.',
+    overrides: { 'prestations.rsa.montant_forfaitaire': 800 },
+    tags: ['pauvreté', 'minima sociaux'],
+  },
+  {
+    id: 'af-premier-enfant',
+    titre: 'Allocations familiales dès le premier enfant',
+    description: "Aujourd'hui, elles ne sont versées qu'à partir du deuxième enfant.",
+    overrides: { 'prestations.famille.af_nombre_enfants_minimum': 1 },
+    tags: ['famille'],
+  },
+  {
+    id: 'tranche-50',
+    titre: 'Nouvelle tranche d\'impôt à 50 % au-delà de 250 000 €',
+    description: 'Ajout d\'une sixième tranche au barème de l\'impôt sur le revenu, par part.',
+    overrides: {
+      [IR_BAREME]: (b: { seuil: number; taux: number }[]) => [...b.filter((t) => t.seuil < 250000), { seuil: 250000, taux: 50 }],
+    },
+    tags: ['impôt', 'hauts revenus'],
+  },
+  {
+    id: 'baisse-ir-premiere-tranche',
+    titre: 'Baisser la première tranche d\'impôt de 11 % à 9 %',
+    description: 'Allègement ciblé sur les classes moyennes imposables.',
+    overrides: {
+      [IR_BAREME]: (b: { seuil: number; taux: number }[]) => b.map((t) => (t.taux === 11 ? { ...t, taux: 9 } : t)),
+    },
+    tags: ['impôt', 'classes moyennes'],
+  },
+  {
+    id: 'tva-21',
+    titre: 'Relever la TVA normale de 20 % à 21 %',
+    description: 'Une piste souvent citée pour financer la protection sociale (« TVA sociale »).',
+    overrides: { 'fiscalite.tva.taux_normal': 21 },
+    tags: ['TVA', 'consommation'],
+  },
+  {
+    id: 'revenu-universel',
+    titre: 'Revenu universel de 600 € remplaçant RSA et prime d\'activité',
+    description: 'Versé à chaque adulte, sans condition de ressources.',
+    overrides: {
+      'prestations.revenu_universel.montant': 600,
+      'prestations.revenu_universel.remplace_rsa_prime_activite': true,
+    },
+    tags: ['proposition', 'revenu universel'],
+  },
+  {
+    id: 'prime-activite-plus',
+    titre: 'Prime d\'activité plus généreuse (+100 €)',
+    description: 'Hausse du montant forfaitaire de la prime d\'activité.',
+    overrides: { 'prestations.prime_activite.montant_forfaitaire': (v: number) => Math.round((v + 100) * 100) / 100 },
+    tags: ['travail', 'pouvoir d\'achat'],
+  },
+  {
+    id: 'csg-salaires-moins-1',
+    titre: 'Baisser la CSG sur les salaires d\'un point',
+    description: 'De 9,2 % à 8,2 % sur les revenus d\'activité.',
+    overrides: { 'fiscalite.csg.salaires_taux': (v: number) => Math.round((v - 1) * 100) / 100 },
+    tags: ['pouvoir d\'achat', 'Sécurité sociale'],
+  },
+  {
+    id: 'flat-tax-30',
+    titre: 'Relever la « flat tax » sur le capital (part IR de 12,8 % à 17,8 %)',
+    description: 'Hausse de 5 points de la part impôt sur le revenu du prélèvement forfaitaire unique.',
+    overrides: { 'fiscalite.capital.pfu_taux_ir': 17.8 },
+    tags: ['capital', 'hauts revenus'],
+  },
+]
+
+export function resoudrePreset(p: Preset, valeursActuelles: Record<string, Valeur>): Record<string, Valeur> {
+  const out: Record<string, Valeur> = {}
+  for (const [k, v] of Object.entries(p.overrides)) {
+    out[k] = typeof v === 'function' ? (v as (x: any) => Valeur)(valeursActuelles[k]) : v
+  }
+  return out
+}

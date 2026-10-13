@@ -1,0 +1,194 @@
+# Registre des sources des métriques complémentaires pour les modèles d'impact (model/metriques/complements_impacts.yaml).
+# Consultées le 13 octobre 2026. Les ids sont préfixés « cpl- » pour éviter les collisions avec les autres registres.
+# Les fichiers téléchargés sont copiés dans system/cache/complements/ (jamais exécutés ; lus avec des scripts stdlib).
+# Sites inaccessibles en lecture automatisée ce jour : dares.travail-emploi.gouv.fr et drees.solidarites-sante.gouv.fr
+# (protection anti-robot), education.gouv.fr (Cloudflare), budget.gouv.fr (Incapsula) ; des sources officielles de
+# substitution ont été utilisées quand elles existaient (rapport du Groupe d'experts Smic, open data DREES, etc.).
+sources:
+  # ─────────────────────────────── Comptes nationaux (Insee) ───────────────────────────────
+  - id: cpl-insee-cn2025-t7101
+    type: statistique_publique
+    editeur: "Insee"
+    titre: "Les comptes de la Nation en 2025 — Tableau 7.101 : compte des sociétés non financières (S11)"
+    url: "https://www.insee.fr/fr/statistiques/fichier/8988829/T_7101_fr.xlsx"
+    auteurs: []
+    date_publication: "2026-05-29"
+    consulte_le: "2026-10-13"
+    note: "Fichier lié depuis la page « Entreprises non financières en 2025 » (https://www.insee.fr/fr/statistiques/8988829?sommaire=8988934). Unité : milliard d'euros courants ; base 2020. Lignes lues : P51G (FBCF) = 337,605 (2023), 342,532 (2024), 348,222 (2025) ; B2G (EBE) = 487,141 (2023), 500,51 (2024), 497,541 (2025). Copie : system/cache/complements/insee-8988829-T_7101_fr.xlsx."
+
+  - id: cpl-insee-cn2025-t3217
+    type: statistique_publique
+    editeur: "Insee"
+    titre: "Les comptes de la Nation en 2025 — Tableau 3.217 : principaux impôts par catégorie"
+    url: "https://www.insee.fr/fr/statistiques/fichier/8988845/t_3217_fr.xlsx"
+    auteurs: []
+    date_publication: "2026-05-29"
+    consulte_le: "2026-10-13"
+    note: "Milliards d'euros, toutes administrations publiques. Lignes lues : « Taxe sur la valeur ajoutée (TVA) (D211) » = 206,312 (2023), 207,753 (2024), 208,821 (2025) ; « Accises sur les tabacs » = 14,24 (2023), 13,662 (2024), 13,598 (2025). Même fichier que la source insee-cn2025-t3217 du registre budget. Copie : system/cache/complements/insee-8988845-t_3217_fr.xlsx."
+
+  # ─────────────────────────────── TVA ───────────────────────────────
+  - id: cpl-dgfip-tva-secteurs-taux-2025
+    type: statistique_publique
+    editeur: "DGFiP – Département des études et statistiques fiscales"
+    titre: "Taxe sur la valeur ajoutée (TVA) : répartition sectorielle du nombre de déclarants, de l'assiette et du montant de la taxe, ventilée selon les taux de taxation (onglet a2025)"
+    url: "https://www.impots.gouv.fr/sites/default/files/media/9_statistiques/0_etudes_et_stats/1_statistiques/2_impots_professionnels/tva/nid_25487_tva_secteurs_taux.xls"
+    auteurs: []
+    date_publication: "2026-09-15"
+    consulte_le: "2026-10-13"
+    note: "Fichier lié depuis https://www.impots.gouv.fr/taxe-sur-la-valeur-ajoutee-et-taxe-sur-les-salaires (mis à jour le 15/09/2026). Montants en millions d'euros, hors franchisés en base, situation connue au 30/06/2026. TVA brute collectée 2025 : total tous taux 943 322 ; 20 % France métropolitaine 798 841 ; 20 % produits pétroliers (France continentale) 13 431,2 ; 20 % importations 30 311,5 ; 10 % 32 417,4 ; 10 % importations 131,5 ; 5,5 % 48 201,1 ; 5,5 % importations 840,5 ; 13 % produits pétroliers Corse 103,9 ; DOM 8,5 % 3 112,1 ; DOM 2,1 % 442,7 ; 8,5 % importations 502,2 ; 2,1 % importations 124,5 ; « autres taux » (anciens taux, taux particuliers et 2,1 % en France continentale) 3 419. Le taux de 2,1 % applicable en France continentale n'est pas isolé. Copie : system/cache/complements/dgfip-nid_25487_tva_secteurs_taux.xls."
+
+  - id: cpl-dgfip-stat-50-tva-2025
+    type: statistique_publique
+    editeur: "DGFiP – Département des études et statistiques fiscales"
+    titre: "La TVA économique augmente de 1,0 % en 2025 (DGFiP Statistiques n° 50)"
+    url: "https://www.impots.gouv.fr/sites/default/files/media/9_statistiques/0_etudes_et_stats/0_publications/dgfip_statistiques/2026/num50_09/dgfip_stat_50_tva-2026.pdf"
+    auteurs: ["Olivier Arnal", "Fabienne Doranges"]
+    date_publication: "2026-09-15"
+    consulte_le: "2026-10-13"
+    note: "Page de présentation : https://www.impots.gouv.fr/node/28483. TVA économique 2025 : 211 Md€ (209 Md€ en 2024) ; TVA collectée (dispositif ordinaire) 943 Md€ ; « la TVA budgétaire collectée par la DGFiP en 2025 s'élève à 212 Md€ ». La base taxée à 20 % représente « près de trois quarts de la base imposable ». Copie : system/cache/complements/dgfip_stat_50_tva-2026.pdf (+ .xlsx)."
+
+  - id: cpl-tresor-eco-371
+    type: rapport_institutionnel
+    editeur: "Direction générale du Trésor"
+    titre: "Analyse de la composition des recettes de TVA (Trésor-Éco n° 371)"
+    url: "https://www.tresor.economie.gouv.fr/Articles/2025/09/25/analyse-de-la-composition-des-recettes-de-tva"
+    auteurs: ["Maxime Gesta"]
+    date_publication: "2025-09-25"
+    consulte_le: "2026-10-13"
+    note: "PDF : https://www.tresor.economie.gouv.fr/Articles/c462ac7f-76db-4c33-9bb3-dcc6886ed898/files/f4d0d1ac-fc61-4cf3-ab3f-094385b218bd (copie : system/cache/complements/tresor-eco-371-composition-recettes-tva.pdf). Tableau 1 : rendement brut d'un point de TVA en 2025 = 13,7 Md€ (2,1 % : 0,4 ; 5,5 % : 2,4 ; 10 % : 1,9 ; 20 % : 8,9). Tableau 2 : rendement net = 11,4 Md€ (0,4 ; 2,0 ; 1,6 ; 7,5). En 2022, 65,1 % des recettes de TVA nette émanaient des ménages, 14,1 % des APU, 19,4 % des entreprises, 1,5 % des associations. Une hausse uniforme d'un point réduirait le pouvoir d'achat de 0,7 % pour le premier cinquième de niveau de vie contre 0,4 % pour le dernier (0,5 % en moyenne)."
+
+  - id: cpl-cpo-2023-tva-rp5
+    type: rapport_institutionnel
+    editeur: "Conseil des prélèvements obligatoires (Cour des comptes)"
+    titre: "La TVA, une taxe à recentrer sur son objectif de rendement pour les finances publiques — Rapport particulier n° 5 : la TVA face aux défis socioéconomiques"
+    url: "https://www.ccomptes.fr/sites/default/files/2023-10/20230209-TVA-rapport-particulier-5.pdf"
+    auteurs: []
+    date_publication: "2023-02-09"
+    consulte_le: "2026-10-13"
+    note: "Page : https://www.ccomptes.fr/fr/publications/la-tva-une-taxe-recentrer-sur-son-objectif-de-rendement-pour-les-finances-publiques. Section 1.2.1 (p. 9) : « elle représente 12,5 % du revenu disponible du premier décile contre 4,7 % pour le dernier décile » ; « Entre le deuxième décile et le neuvième décile, les écarts sont moins marqués et le taux d'effort décroit de 9,5 % à 7,5 % ». Estimation reprise du rapport particulier CPO de 2015 (B. Boutchenik), modèle Ines, enquête Budget de famille 2011, législation 2014. Les déciles 3 à 8 ne figurent que sur un graphique sans valeurs. Copie : system/cache/complements/cpo-20230209-TVA-rapport-particulier-5.pdf."
+
+  - id: cpl-cpo-2023-tva-rp2
+    type: rapport_institutionnel
+    editeur: "Conseil des prélèvements obligatoires (Cour des comptes)"
+    titre: "La TVA, une taxe à recentrer sur son objectif de rendement pour les finances publiques — Rapport particulier n° 2 : la place de la TVA dans les finances publiques"
+    url: "https://www.ccomptes.fr/sites/default/files/2023-10/20230209-TVA-rapport-particulier-2.pdf"
+    auteurs: []
+    date_publication: "2023-02-09"
+    consulte_le: "2026-10-13"
+    note: "p. 16 : les données fiscales « ne permettent pas de distinguer les recettes en fonction des produits, donc en fonction des taux », les entreprises ne distinguant pas les taux dans la TVA déductible ; seule la modélisation de la DG Trésor permet une répartition de la TVA nette par taux. Copie : system/cache/complements/cpo-20230209-TVA-rapport-particulier-2.pdf."
+
+  # ─────────────────────────────── Énergie, émissions ───────────────────────────────
+  - id: cpl-sdes-cce-2026
+    type: statistique_publique
+    editeur: "SDES – Ministère de la Transition écologique"
+    titre: "Chiffres clés de l'énergie – Édition 2026 (données associées, onglets P3-61 et P3-62)"
+    url: "https://www.statistiques.developpement-durable.gouv.fr/media/9748/download?inline"
+    auteurs: []
+    date_publication: "2026-09-30"
+    consulte_le: "2026-10-13"
+    note: "Page : https://www.statistiques.developpement-durable.gouv.fr/chiffres-cles-de-lenergie-edition-2026. Onglet P3-61 « Consommation de produits pétroliers raffinés par type de produit », en Mtep, hors biocarburants, données corrigées des variations climatiques, France métropolitaine + DROM : gazole routier 27,6586 (2023), 26,7539 (2024), 26,1074 (2025 p) ; supercarburants routiers 9,61759 (2023), 10,432 (2024), 10,7992 (2025 p). Onglet P3-62 (biocarburants inclus, Mtep, 2025 p) : gazole yc bio 28,1996 ; SP95 hors E10 (yc E85) 2,5717 ; SP95-E10 6,91617 ; SP98 2,32948. Source primaire : SDES, Bilan énergétique de la France. Copie : system/cache/complements/sdes-chiffres-cles-energie-2026-donnees.xlsx."
+
+  - id: cpl-citepa-secten-2026
+    type: statistique_publique
+    editeur: "Citepa"
+    titre: "Rapport Secten 2026 – Synthèse et messages clés"
+    url: "https://www.citepa.org/wp-content/uploads/2026/06/Synthese-et-messages-cles-Secten-2026.pdf"
+    auteurs: []
+    date_publication: "2026-06-16"
+    consulte_le: "2026-10-13"
+    note: "Page : https://www.citepa.org/donnees-air-climat/donnees-gaz-a-effet-de-serre/secten/. p. 5 : « Le transport routier est le premier émetteur de GES en France, avec 117 Mt CO2e en 2024 » ; baisse estimée de 2,1 % entre 2024 et 2025, « amenant le niveau d'émissions à hauteur de 115 Mt CO2e en cette fin d'année 2025 ». Périmètre France hexagonale + Outre-mer inclus dans l'UE. Données d'inventaire reconnues statistiques d'intérêt général. Copies : system/cache/complements/citepa-secten-2026-synthese.pdf et citepa-secten-2026-serie-longue.xlsx (détail par sous-secteur)."
+
+  # ─────────────────────────────── Retraites ───────────────────────────────
+  - id: cpl-drees-eacr-2026
+    type: statistique_publique
+    editeur: "DREES"
+    titre: "Données de l'enquête annuelle auprès des caisses de retraite (EACR), enrichies avec le modèle Ancêtre – version du 26 mai 2026"
+    url: "https://data.drees.solidarites-sante.gouv.fr/explore/dataset/donnes_eacr/information/"
+    auteurs: []
+    date_publication: "2026-05-26"
+    consulte_le: "2026-10-13"
+    note: "Fichier « 62 EACR diffusée Part 1 - version du 26 mai 2026.xlsx », onglet A-Cadrage, lignes Caisse = Tous régimes (Ancêtre), Sexe = Ensemble, Resid = Ensemble, Champ = nl_ddir (« Nouveaux retraités de droit direct, vivants au 31/12 » selon la documentation EACR de mai 2026) : 934 079 (2022), 899 735 (2023), 857 880 (2024). Résidents en France seulement : 830 503 (2024). Primoliquidants (nlp_ddir) : 717 587 (2024). Copies : system/cache/complements/drees-eacr-part1-2026-05-26.xlsx et drees-eacr-documentation-mai2026.pdf."
+
+  - id: cpl-cnav-abrege-2025
+    type: statistique_publique
+    editeur: "Caisse nationale d'assurance vieillesse (Cnav)"
+    titre: "Abrégé statistique de la branche retraite – édition 2025 (données 2024)"
+    url: "https://www.statistiques-recherche.lassuranceretraite.fr/app/uploads/2025/11/abrege-statistique-2025.pdf"
+    auteurs: []
+    date_publication: "2025-11-01"
+    consulte_le: "2026-10-13"
+    note: "Page : https://www.statistiques-recherche.lassuranceretraite.fr/abreges-statistiques/ (édition de novembre 2025 ; jour exact non indiqué). p. 28, tableau « Nouveaux retraités de droit direct de 2024 selon le taux de pension » (régime général, données arrêtées à fin juin 2025) : total 658 481 ; taux plein avant l'âge légal 229 658 (34,9 %) ; « 2 - à l'âge légal de départ » 79 825 (12,1 %) ; après l'âge légal hors âge du taux plein 159 206 (24,2 %) ; à partir de l'âge du taux plein 101 025 (15,3 %) ; taux réduit (décote) 88 767 (13,5 %). Note : « les départs à l'âge légal sont ceux qui ont lieu exactement le mois de l'atteinte de cet âge légal ». Copie : system/cache/complements/cnav-abrege-statistique-2025.pdf."
+
+  # ─────────────────────────────── Justice ───────────────────────────────
+  - id: cpl-senat-avis-145-t6-plf2026
+    type: rapport_institutionnel
+    editeur: "Sénat – Commission des lois"
+    titre: "Avis n° 145 (2025-2026), tome VI : Projet de loi de finances pour 2026 – Administration pénitentiaire (rapporteur Louis Vogel)"
+    url: "https://www.senat.fr/rap/a25-145-6/a25-145-6.html"
+    auteurs: ["Louis Vogel"]
+    date_publication: "2025-11-24"
+    consulte_le: "2026-10-13"
+    note: "PDF : https://www.senat.fr/rap/a25-145-6/a25-145-61.pdf (copie : system/cache/complements/senat-a25-145-6-avis-penitentiaire-plf2026.pdf). « En 2024, le coût global moyen de chaque journée de détention dans un établissement pénitentiaire était en effet évalué à 128 euros. » (repris dans l'intervention du rapporteur en commission : « a été évalué en 2024 à 128 euros »)."
+
+  # ─────────────────────────────── Fiscalité du patrimoine ───────────────────────────────
+  - id: cpl-dgfip-stat-45-ifi-2025
+    type: statistique_publique
+    editeur: "DGFiP – Département des études et statistiques fiscales"
+    titre: "L'impôt sur la fortune immobilière en 2025 (DGFiP Statistiques n° 45)"
+    url: "https://www.impots.gouv.fr/dgfip-statistiques-limpot-sur-la-fortune-immobiliere-en-2025"
+    auteurs: []
+    date_publication: "2026-04-14"
+    consulte_le: "2026-10-13"
+    note: "PDF : https://www.impots.gouv.fr/sites/default/files/media/9_statistiques/0_etudes_et_stats/0_publications/dgfip_statistiques/2026/num45_04/dgfip_stat_45_ifi_2025.pdf ; données : .../num45_04/dgfip_stat_45.xlsx (copies dans system/cache/complements/). Tableau 1 (au 1er janvier) : effectif 186 100 (2024), 193 600 (2025) ; IFI payé 2 158,8 M€ (2024), 2 331,9 M€ (2025) ; patrimoine net total 493 Md€ (2025). Champ exact : 193 625 foyers déclarants en 2025."
+
+  # ─────────────────────────────── Travail ───────────────────────────────
+  - id: cpl-groupe-experts-smic-2025
+    type: rapport_institutionnel
+    editeur: "Groupe d'experts sur le Smic (publié par la DG Trésor)"
+    titre: "Salaire minimum interprofessionnel de croissance – Rapport du Groupe d'experts, 25 novembre 2025"
+    url: "https://www.tresor.economie.gouv.fr/Articles/284b121f-b187-4280-b327-05f18064c3fa/files/1d1d1848-48bb-40a9-a14f-585b8072e716"
+    auteurs: ["Stéphane Carcillo", "Erwan Gautier", "Maria Guadalupe", "Claire Lelarge", "Franck Malherbet"]
+    date_publication: "2025-11-25"
+    consulte_le: "2026-10-13"
+    note: "Lien depuis https://www.tresor.economie.gouv.fr/Articles/2018/12/21/rapport-annuel-du-groupe-d-experts-smic (copie : system/cache/complements/groupe-experts-smic-rapport-2025.pdf). Chapitre 1, analyse Dares (enquête Acemo) : « Au 1er novembre 2024, 2,2 millions de salariés des entreprises du secteur privé hors agriculture ont été directement concernés par la revalorisation du Smic horaire anticipée sur celle du 1er janvier 2025 [...], soit 12,4 % des salariés sur ce champ ». Champ : ensemble des salariés sauf apprentis, stagiaires, intérimaires ; secteurs hors agriculture, administration, particuliers employeurs, activités extraterritoriales ; France hors Mayotte. Le site de la Dares (source primaire) refusait l'accès automatisé le 13/10/2026."
+
+  - id: cpl-unedic-montant-t1-2026
+    type: rapport_institutionnel
+    editeur: "Unédic"
+    titre: "Le montant d'indemnisation chômage au 1er trimestre 2026 (Indicateurs de l'Assurance chômage, chiffres clés)"
+    url: "https://www.unedic.org/publications/le-montant-dindemnisation-chomage-au-1er-trimestre-2026"
+    auteurs: []
+    date_publication: "2026-09-24"
+    consulte_le: "2026-10-13"
+    note: "PDF : https://s3.eusc-de-east-1.amazonaws.eu/unedic-eks-prod-cms/2026/09/23/le-montant-d-indemnisation-chomage-au-t1-2026_uid_6ab3e10cb12cd.pdf (copie : system/cache/complements/unedic-montant-indemnisation-t1-2026.pdf). « Au 1er trimestre 2026, le montant moyen d'allocation mensuelle nette versée aux allocataires de l'Assurance chômage est de 1 055 € » ; 2,6 millions de personnes indemnisées. Source FNA, données brutes ; montant net tenant compte des périodes réellement indemnisées (différent du montant brut théorique publié par France Travail)."
+
+  - id: cpl-unedic-durees-indemnisation-2025
+    type: rapport_institutionnel
+    editeur: "Unédic"
+    titre: "Le point sur les durées d'indemnisation et la consommation des droits"
+    url: "https://www.unedic.org/publications/le-point-sur-les-durees-d-indemnisation-et-la-consommation-des-droits"
+    auteurs: ["Odile Muller"]
+    date_publication: "2025-06-13"
+    consulte_le: "2026-10-13"
+    note: "PDF : https://s3.eusc-de-east-1.amazonaws.eu/unedic-eks-prod-cms/2025/06/13/Le-point-sur-les-durees-d-indemnisation-et-la-consommation-des-droits_uid_684c15c5b6ed7.pdf (copie : system/cache/complements/unedic-durees-indemnisation-2025-06.pdf). « En 2023, 2,6 millions de droits ont été interrompus. [...] En moyenne, 327 allocations journalières ont été versées au cours de ces droits, ce qui correspond à 11 mois d'indemnisation. » Durée potentielle moyenne : 564 jours (19 mois) ; taux de consommation moyen 60 %. Champ des graphiques : droits ARE ou ASP interrompus au moins 6 mois en 2023. Publication la plus récente sur ce sujet trouvée au 13/10/2026."
+
+  # ─────────────────────────────── Sécurité routière, tabac ───────────────────────────────
+  - id: cpl-onisr-bilan-2025
+    type: statistique_publique
+    editeur: "Observatoire national interministériel de la sécurité routière (ONISR)"
+    titre: "Bilan 2025 de la sécurité routière"
+    url: "https://www.onisr.securite-routiere.gouv.fr/etat-de-linsecurite-routiere/bilans-annuels-de-la-securite-routiere/bilan-2025-de-la-securite-routiere"
+    auteurs: []
+    date_publication: "2026-05-29"
+    consulte_le: "2026-10-13"
+    note: "Page publiée le 29/05/2026, mise à jour le 02/10/2026 (rapport complet du 15/09/2026). « En France métropolitaine, 3 263 personnes sont décédées en 2025, soit 70 tués de plus qu'en 2024 (+ 2,2 %). » ; 252 décès outre-mer ; « 3 515 personnes sont décédées en 2025 sur les routes de France métropolitaine ou d'outre-mer ». Chiffres définitifs (fiche « Chiffres clés 2025 définitifs », copie : system/cache/complements/onisr-chiffres-cles-2025-definitifs.pdf)."
+
+  - id: cpl-ofdt-tabac-2025
+    type: statistique_publique
+    editeur: "Observatoire français des drogues et des tendances addictives (OFDT)"
+    titre: "Tabagisme et arrêt du tabac en 2025 (Notes, bilan annuel)"
+    url: "https://www.ofdt.fr/publication/2026/tabagisme-et-arret-du-tabac-en-2025-2681"
+    auteurs: []
+    date_publication: "2026-05-27"
+    consulte_le: "2026-10-13"
+    note: "PDF : https://www.ofdt.fr/sites/ofdt/files/2026-05/note-bilan-tabac-2026.pdf (copie : system/cache/complements/ofdt-note-bilan-tabac-2026.pdf). « Les ventes de cigarettes sont de 23 326 tonnes en 2025 et celles de tabac à rouler de 4 438 tonnes » (- 8,7 % pour les cigarettes entre 2024 et 2025) ; ventes totales de tabac dans le réseau des buralistes de France continentale : 30 165 tonnes ; chiffre d'affaires global du tabac : 18,4 Md€ en 2025 (19,3 Md€ en 2024). L'OFDT retient un poids moyen de 1 g de tabac par cigarette."

@@ -1,0 +1,921 @@
+# Registre des sources de la base de preuves économiques (études citées dans model/preuves/).
+# Produit par le Système (agents de recherche) - consulté le 2026-10-13.
+sources:
+  - id: abowd-et-al-1999
+    type: document_de_travail
+    editeur: "National Bureau of Economic Research (NBER)"
+    titre: "Minimum Wages and Employment in France and the United States"
+    url: "https://www.nber.org/papers/w6996"
+    auteurs: ["John M. Abowd", "Francis Kramarz", "David N. Margolis"]
+    date_publication: "1999-03"
+    consulte_le: "2026-10-13"
+    note: "NBER Working Paper 6996. Version voisine : IZA DP 203 (2000) « The Tail of Two Countries », avec Thomas Philippon."
+  - id: advani-tarrant-2021
+    type: etude_academique
+    editeur: "Fiscal Studies"
+    titre: "Behavioural responses to a wealth tax"
+    url: "https://doi.org/10.1111/1475-5890.12283"
+    auteurs: ["Arun Advani", "Hannah Tarrant"]
+    date_publication: "2021-09"
+    consulte_le: "2026-10-13"
+    note: "Vol. 42, n° 3-4, p. 509-537. Revue de littérature ; résumé lu sur https://ideas.repec.org/a/wly/fistud/v42y2021i3-4p509-537.html."
+  - id: aldama-et-al-2020
+    type: rapport_institutionnel
+    editeur: "Banque de France (Bulletin de la Banque de France n° 231/6)"
+    titre: "Economic policies contributed to strong job creation in France from 2016 to 2019"
+    url: "https://publications.banque-france.fr/en/economic-policies-contributed-strong-job-creation-france-2016-2019"
+    auteurs: ["Pierre Aldama", "Marion Cochard", "Jean-François Ouvrard"]
+    date_publication: "2020-12"
+    consulte_le: "2026-10-13"
+    note: "Mis en ligne le 18/12/2020 (numéro daté septembre-octobre 2020). Simulations avec le modèle FR-BDF."
+  - id: alesina-et-al-2015
+    type: etude_academique
+    editeur: "Journal of International Economics"
+    titre: "The output effect of fiscal consolidation plans"
+    url: "https://doi.org/10.1016/j.jinteco.2014.11.003"
+    auteurs: ["Alberto Alesina", "Carlo Favero", "Francesco Giavazzi"]
+    date_publication: "2015"
+    consulte_le: "2026-10-13"
+    note: "Vol. 96, suppl. 1, p. S19-S42 (métadonnées lues sur IDEAS/RePEc). Version NBER w18336 (2012, révisée mars 2014) consultée : https://www.nber.org/papers/w18336."
+  - id: auerbach-gorodnichenko-2012
+    type: etude_academique
+    editeur: "American Economic Journal: Economic Policy"
+    titre: "Measuring the Output Responses to Fiscal Policy"
+    url: "https://doi.org/10.1257/pol.4.2.1"
+    auteurs: ["Alan J. Auerbach", "Yuriy Gorodnichenko"]
+    date_publication: "2012-05"
+    consulte_le: "2026-10-13"
+    note: "Vol. 4, n° 2, p. 1-27. Le résumé publié ne donne pas de chiffres ; chiffres lus dans la version NBER w16311 (2010) : https://www.nber.org/papers/w16311."
+  - id: bargain-doorley-2011
+    type: etude_academique
+    editeur: "Journal of Public Economics"
+    titre: "Caught in the trap? Welfare's disincentive and the labor supply of single men"
+    url: "https://doi.org/10.1016/j.jpubeco.2011.05.007"
+    auteurs: ["Olivier Bargain", "Karina Doorley"]
+    date_publication: "2011-10"
+    consulte_le: "2026-10-13"
+    note: "JPubE 95(9-10), p. 1096-1110. Version document de travail lue : IZA DP 4291 (2009), https://docs.iza.org/dp4291.pdf."
+  - id: bargain-et-al-2014
+    type: etude_academique
+    editeur: "Journal of Human Resources"
+    titre: "Comparing Labor Supply Elasticities in Europe and the United States: New Results"
+    url: "https://doi.org/10.3368/jhr.49.3.723"
+    auteurs: ["Olivier Bargain", "Kristian Orsini", "Andreas Peichl"]
+    date_publication: "2014"
+    consulte_le: "2026-10-13"
+    note: "JHR 49(3), p. 723-838. Chiffres lus dans la version IZA DP 6735 (juillet 2012), https://docs.iza.org/dp6735.pdf, tableaux F.1 à F.8."
+  - id: benedek-et-al-2020
+    type: etude_academique
+    editeur: "International Tax and Public Finance"
+    titre: "Varieties of VAT pass through"
+    url: "https://doi.org/10.1007/s10797-019-09566-5"
+    auteurs: ["Dora Benedek", "Ruud A. de Mooij", "Michael Keen", "Philippe Wingender"]
+    date_publication: "2020-08"
+    consulte_le: "2026-10-13"
+    note: "Vol. 27, n° 4, p. 890-930 (résumé publié lu sur IDEAS/RePEc : l'hypothèse de répercussion intégrale est « broadly confirmed » pour le taux normal ; répercussion nettement plus faible pour les taux réduits). Chiffres lus dans le résumé de la version document de travail « Estimating VAT Pass Through », CESifo Working Paper 5531 (2015) : https://www.ifo.de/en/cesifo/publications/2015/working-paper/estimating-vat-pass-through (aussi IMF WP 15/214)."
+  - id: benzarti-carloni-2018
+    type: rapport_institutionnel
+    editeur: "Institut des politiques publiques (IPP)"
+    titre: "Qui a bénéficié de la baisse de la TVA dans la restauration en 2009 ?"
+    url: "https://www.ipp.eu/wp-content/uploads/2018/05/n32-notesIPP-mai2018.pdf"
+    auteurs: ["Youssef Benzarti", "Dorian Carloni"]
+    date_publication: "2018-05"
+    consulte_le: "2026-10-13"
+    note: "Les notes de l'IPP n° 32. Résume l'article AEJ: Economic Policy et analyse les hausses de TVA dans la restauration de janvier 2012 et janvier 2014."
+  - id: benzarti-carloni-2019
+    type: etude_academique
+    editeur: "American Economic Journal: Economic Policy"
+    titre: "Who Really Benefits from Consumption Tax Cuts? Evidence from a Large VAT Reform in France"
+    url: "https://doi.org/10.1257/pol.20170504"
+    auteurs: ["Youssef Benzarti", "Dorian Carloni"]
+    date_publication: "2019-02"
+    consulte_le: "2026-10-13"
+    note: "Vol. 11, n° 1, p. 38-63. Chiffres de prix lus dans la version document de travail NBER w23848 (sept. 2017) : https://www.nber.org/papers/w23848 ; page de synthèse AEA (Research Highlights) également lue."
+  - id: benzarti-et-al-2020
+    type: etude_academique
+    editeur: "Journal of Political Economy"
+    titre: "What Goes Up May Not Come Down: Asymmetric Incidence of Value-Added Taxes"
+    url: "https://doi.org/10.1086/710558"
+    auteurs: ["Youssef Benzarti", "Dorian Carloni", "Jarkko Harju", "Tuomas Kosonen"]
+    date_publication: "2020"
+    consulte_le: "2026-10-13"
+    note: "Vol. 128, n° 12, p. 4438-4474 (métadonnées et résumé lus sur IDEAS/RePEc). Chiffres détaillés lus dans la version NBER w23849 (sept. 2017, révisée nov. 2018) : https://www.nber.org/papers/w23849 ; la page de l'éditeur n'était pas accessible."
+  - id: biau-girard-2005
+    type: etude_academique
+    editeur: "Revue économique"
+    titre: "Politique budgétaire et dynamique économique en France. L'approche VAR structurel"
+    url: "https://ideas.repec.org/a/cai/recosp/reco_563_0755.html"
+    auteurs: ["Olivier Biau", "Élie Girard"]
+    date_publication: "2005"
+    consulte_le: "2026-10-13"
+    note: "Vol. 56, n° 3, p. 755-764 (Presses de Sciences Po). Résumé lu sur IDEAS/RePEc ; le texte intégral (Cairn) n'était pas accessible à l'outil."
+  - id: blanchard-leigh-2013
+    type: etude_academique
+    editeur: "American Economic Review (Papers and Proceedings)"
+    titre: "Growth Forecast Errors and Fiscal Multipliers"
+    url: "https://doi.org/10.1257/aer.103.3.117"
+    auteurs: ["Olivier J. Blanchard", "Daniel Leigh"]
+    date_publication: "2013-05"
+    consulte_le: "2026-10-13"
+    note: "Vol. 103, n° 3, p. 117-120. Chiffres lus dans la version longue NBER w18779 (février 2013) : https://www.nber.org/papers/w18779 ; prolonge l'encadré des Perspectives de l'économie mondiale du FMI d'octobre 2012."
+  - id: bohmann-et-al-2025
+    type: rapport_institutionnel
+    editeur: "DIW Berlin (DIW Wochenbericht)"
+    titre: "Pilotprojekt Grundeinkommen: kein Rückzug vom Arbeitsmarkt, aber bessere mentale Gesundheit"
+    url: "https://www.diw.de/de/diw_01.c.945347.de/publikationen/wochenberichte/2025_15_1/pilotprojekt_grundeinkommen__kein_rueckzug_vom_arbeitsmarkt__aber_bessere_mentale_gesundheit.html"
+    auteurs: ["Sandra Bohmann", "Susann Fiedler", "Max Kasy", "Jürgen Schupp", "Frederik Schwerter"]
+    date_publication: "2025"
+    consulte_le: "2026-10-13"
+    note: "DIW Wochenbericht 15/2025, p. 221-229 ; PDF : https://www.diw.de/documents/publikationen/73/diw_01.c.945392.de/25-15-1.pdf. Expérimentation « Pilotprojekt Grundeinkommen » (association Mein Grundeinkommen, DIW, WU Wien, IAB)."
+  - id: brulhart-et-al-2022
+    type: etude_academique
+    editeur: "American Economic Journal: Economic Policy"
+    titre: "Behavioral Responses to Wealth Taxes: Evidence from Switzerland"
+    url: "https://doi.org/10.1257/pol.20200258"
+    auteurs: ["Marius Brülhart", "Jonathan Gruber", "Matthias Krapf", "Kurt Schmidheiny"]
+    date_publication: "2022-11"
+    consulte_le: "2026-10-13"
+    note: "Vol. 14, n° 4, p. 111-150. Versions document de travail : CEPR DP 14054 (2019), CESifo WP 7908 (2019)."
+  - id: bunel-lhorty-2012
+    type: etude_academique
+    editeur: "Fiscal Studies"
+    titre: "The Effects of Reduced Social Security Contributions on Employment: An Evaluation of the 2003 French Reform"
+    url: "https://doi.org/10.1111/j.1475-5890.2012.00165.x"
+    auteurs: ["Mathieu Bunel", "Yannick L'Horty"]
+    date_publication: "2012-09"
+    consulte_le: "2026-10-13"
+    note: "Vol. 33, n° 3, p. 371-398. Résumé lu sur IDEAS/RePEc."
+  - id: cabannes-et-al-2014
+    type: etude_academique
+    editeur: "Économie et Statistique (Insee), n° 467-468"
+    titre: "Comment le revenu imposable des ménages aisés réagit-il à sa taxation ? Une estimation sur la période 1997-2004"
+    url: "https://www.insee.fr/fr/statistiques/fichier/2122577/ES467F.pdf"
+    auteurs: ["Pierre-Yves Cabannes", "Cédric Houdré", "Camille Landais"]
+    date_publication: "2014"
+    consulte_le: "2026-10-13"
+    note: "p. 141-162. Résumé, tableau 4 et texte p. 155-157 lus."
+  - id: cahuc-et-al-2014
+    type: document_de_travail
+    editeur: "IZA Institute of Labor Economics"
+    titre: "Do Hiring Credits Work in Recessions? Evidence from France"
+    url: "https://www.iza.org/publications/dp/8330"
+    auteurs: ["Pierre Cahuc", "Stéphane Carcillo", "Thomas Le Barbanchon"]
+    date_publication: "2014-07"
+    consulte_le: "2026-10-13"
+    note: "IZA DP 8330. Version remaniée publiée : « The Effectiveness of Hiring Credits », Review of Economic Studies, 2019, vol. 86, n° 2, p. 593-626 (https://ideas.repec.org/a/oup/restud/v86y2019i2p593-626..html). Le chiffre de coût par emploi retenu est celui du DP de 2014 (section 5.1)."
+  - id: carare-danninger-2008
+    type: document_de_travail
+    editeur: "Fonds monétaire international (IMF Working Paper 08/175)"
+    titre: "Inflation Smoothing and the Modest Effect of VAT in Germany"
+    url: "https://ideas.repec.org/p/imf/imfwpa/2008-175.html"
+    auteurs: ["Alina Carare", "Stephan Danninger"]
+    date_publication: "2008"
+    consulte_le: "2026-10-13"
+    note: "Résumé lu sur IDEAS/RePEc ; le site du FMI refusait l'accès à l'outil."
+  - id: carbonnier-2007
+    type: etude_academique
+    editeur: "Journal of Public Economics"
+    titre: "Who pays sales taxes? Evidence from French VAT reforms, 1987-1999"
+    url: "https://doi.org/10.1016/j.jpubeco.2006.12.004"
+    auteurs: ["Clément Carbonnier"]
+    date_publication: "2007-06"
+    consulte_le: "2026-10-13"
+    note: "Vol. 91, n° 5-6, p. 1219-1229. Résumé lu sur IDEAS/RePEc (https://ideas.repec.org/p/hal/pseptp/hal-00813579.html)."
+  - id: card-et-al-2007
+    type: etude_academique
+    editeur: "Quarterly Journal of Economics"
+    titre: "Cash-on-Hand and Competing Models of Intertemporal Behavior: New Evidence from the Labor Market"
+    url: "https://doi.org/10.1162/qjec.2007.122.4.1511"
+    auteurs: ["David Card", "Raj Chetty", "Andrea Weber"]
+    date_publication: "2007-11"
+    consulte_le: "2026-10-13"
+    note: "QJE 122(4), p. 1511-1560 (article du QJE, à ne pas confondre avec Card, Chetty et Weber 2007 AER P&P). Valeur dD/dP lue dans Schmieder et von Wachter (2016), tableau 1."
+  - id: card-hyslop-2005
+    type: etude_academique
+    editeur: "Econometrica"
+    titre: "Estimating the Effects of a Time-Limited Earnings Subsidy for Welfare-Leavers"
+    url: "https://doi.org/10.1111/j.1468-0262.2005.00637.x"
+    auteurs: ["David Card", "Dean R. Hyslop"]
+    date_publication: "2005-11"
+    consulte_le: "2026-10-13"
+    note: "Econometrica 73(6), p. 1723-1770. Version document de travail : NBER w10647 (2004). Élasticité calculée par Chetty et al. (2013), tableau 1."
+  - id: cengiz-et-al-2019
+    type: etude_academique
+    editeur: "Quarterly Journal of Economics"
+    titre: "The Effect of Minimum Wages on Low-Wage Jobs"
+    url: "https://doi.org/10.1093/qje/qjz014"
+    auteurs: ["Doruk Cengiz", "Arindrajit Dube", "Attila Lindner", "Ben Zipperer"]
+    date_publication: "2019"
+    consulte_le: "2026-10-13"
+    note: "Vol. 134, n° 3, p. 1405-1454. Chiffres lus dans la version NBER WP 25434 (janvier 2019), tableau 1 et p. 16-17."
+  - id: cesarini-et-al-2017
+    type: etude_academique
+    editeur: "American Economic Review"
+    titre: "The Effect of Wealth on Individual and Household Labor Supply: Evidence from Swedish Lotteries"
+    url: "https://doi.org/10.1257/aer.20151589"
+    auteurs: ["David Cesarini", "Erik Lindqvist", "Matthew J. Notowidigdo", "Robert Östling"]
+    date_publication: "2017-12"
+    consulte_le: "2026-10-13"
+    note: "AER 107(12), p. 3917-3946. Chiffres lus dans la version NBER w21762 (novembre 2015), résumé et introduction."
+  - id: chemin-wasmer-2009
+    type: etude_academique
+    editeur: "Journal of Labor Economics"
+    titre: "Using Alsace-Moselle Local Laws to Build a Difference-in-Differences Estimation Strategy of the Employment Effects of the 35-Hour Workweek Regulation in France"
+    url: "https://doi.org/10.1086/605426"
+    auteurs: ["Matthieu Chemin", "Etienne Wasmer"]
+    date_publication: "2009-10"
+    consulte_le: "2026-10-13"
+    note: "Vol. 27, n° 4, p. 487-524. Texte publié lu dans le dépôt HAL Sciences Po (https://sciencespo.hal.science/hal-03461753), section VI.A. Un erratum est paru dans le même journal en 2017 (p. 1149-1152, DOI 10.1086/693983) ; son contenu n'a pas pu être lu."
+  - id: chetty-et-al-2013
+    type: etude_academique
+    editeur: "NBER Macroeconomics Annual (University of Chicago Press)"
+    titre: "Does Indivisible Labor Explain the Difference between Micro and Macro Elasticities? A Meta-Analysis of Extensive Margin Elasticities"
+    url: "https://doi.org/10.1086/669170"
+    auteurs: ["Raj Chetty", "Adam Guren", "Day Manoli", "Andrea Weber"]
+    date_publication: "2013-01"
+    consulte_le: "2026-10-13"
+    note: "NBER Macroeconomics Annual 2012, vol. 27, p. 1-56. Chiffres lus dans la version document de travail NBER w16729 (révision de juin 2012), https://www.nber.org/papers/w16729 (résumé, texte p. 16-18, tableau 1, annexe B). Volume annuel avec discutants (revue à comité éditorial)."
+  - id: chodorow-reich-et-al-2024
+    type: document_de_travail
+    editeur: "National Bureau of Economic Research (NBER Working Paper 32180)"
+    titre: "Tax Policy and Investment in a Global Economy"
+    url: "https://www.nber.org/papers/w32180"
+    auteurs: ["Gabriel Chodorow-Reich", "Matthew Smith", "Owen M. Zidar", "Eric Zwick"]
+    date_publication: "2024-03"
+    consulte_le: "2026-10-13"
+    note: "Évaluation de la réforme américaine TCJA de 2017. Synthèse grand public des mêmes auteurs (sans M. Smith) : « Lessons from the Biggest Business Tax Cut in US History », Journal of Economic Perspectives 38(3), 2024, https://doi.org/10.1257/jep.38.3.61 (résumé lu)."
+  - id: cohen-ganong-2026
+    type: etude_academique
+    editeur: "American Economic Review: Insights"
+    titre: "Disemployment Effects of Unemployment Insurance: A Meta-analysis"
+    url: "https://doi.org/10.1257/aeri.20240441"
+    auteurs: ["Jonathan P. Cohen", "Peter Ganong"]
+    date_publication: "2026-03"
+    consulte_le: "2026-10-13"
+    note: "AER: Insights 8(1), p. 1-18. Chiffres lus dans la version NBER w32832 (révisée en janvier 2025), introduction, section 2 et tableau 1."
+  - id: cpo-impot-societes-2017
+    type: rapport_institutionnel
+    editeur: "Conseil des prélèvements obligatoires (Cour des comptes)"
+    titre: "Adapter l'impôt sur les sociétés à une économie ouverte — Rapport particulier n° 2 : Comment l'impôt sur les sociétés affecte-t-il les comportements ?"
+    url: "https://www.ccomptes.fr/sites/default/files/EzPublish/20170112-rapport-particulier-2-comportements-entreprises.pdf"
+    auteurs: ["Pierre-Alain Sarthou", "Claire Lelarge"]
+    date_publication: "2017-01"
+    consulte_le: "2026-10-13"
+    note: "Rapport particulier établi sous la responsabilité de ses auteurs (n'engage pas le CPO), annexé au rapport du CPO du 12 janvier 2017 : https://www.ccomptes.fr/fr/publications/adapter-limpot-sur-les-societes-une-economie-ouverte (page lue)."
+  - id: crepon-desplatz-2001
+    type: etude_academique
+    editeur: "Économie et Statistique (INSEE)"
+    titre: "Une nouvelle évaluation des effets des allégements de charges sociales sur les bas salaires"
+    url: "https://www.persee.fr/doc/estat_0336-1454_2001_num_348_1_7420"
+    auteurs: ["Bruno Crépon", "Rozenn Desplatz"]
+    date_publication: "2001"
+    consulte_le: "2026-10-13"
+    note: "N° 348, p. 3-34 (suivi de commentaires de Yannick L'Horty et Guy Lacroix). DOI 10.3406/estat.2001.7420. Seul le résumé a pu être lu (page Résumés du numéro sur Persée)."
+  - id: crepon-et-al-2004
+    type: etude_academique
+    editeur: "Économie et Statistique (INSEE)"
+    titre: "RTT, productivité et emploi : nouvelles estimations sur données d'entreprises"
+    url: "https://www.persee.fr/doc/estat_0336-1454_2004_num_376_1_7234"
+    auteurs: ["Bruno Crépon", "Marie Leclair", "Sébastien Roux"]
+    date_publication: "2004"
+    consulte_le: "2026-10-13"
+    note: "N° 376-377, p. 55-89. Résumés français et anglais lus sur Persée."
+  - id: crepon-kramarz-2002
+    type: etude_academique
+    editeur: "Journal of Political Economy"
+    titre: "Employed 40 Hours or Not Employed 39: Lessons from the 1982 Mandatory Reduction of the Workweek"
+    url: "https://doi.org/10.1086/342807"
+    auteurs: ["Bruno Crépon", "Francis Kramarz"]
+    date_publication: "2002-12"
+    consulte_le: "2026-10-13"
+    note: "Vol. 110, n° 6, p. 1355-1389. Versions document de travail : CEPR DP 2358, IZA DP 416."
+  - id: djankov-et-al-2010
+    type: etude_academique
+    editeur: "American Economic Journal: Macroeconomics"
+    titre: "The Effect of Corporate Taxes on Investment and Entrepreneurship"
+    url: "https://doi.org/10.1257/mac.2.3.31"
+    auteurs: ["Simeon Djankov", "Tim Ganser", "Caralee McLiesh", "Rita Ramalho", "Andrei Shleifer"]
+    date_publication: "2010-07"
+    consulte_le: "2026-10-13"
+    note: "Vol. 2, n° 3, p. 31-64. Le résumé publié ne donne pas de chiffres ; chiffres lus dans la version NBER w13756 (janv. 2008, révisée avril 2009) : https://www.nber.org/papers/w13756."
+  - id: dobbins-jacob-2016
+    type: etude_academique
+    editeur: "Accounting and Business Research"
+    titre: "Do corporate tax cuts increase investments?"
+    url: "https://doi.org/10.1080/00014788.2016.1192985"
+    auteurs: ["Laura Dobbins", "Martin Jacob"]
+    date_publication: "2016-11"
+    consulte_le: "2026-10-13"
+    note: "Vol. 46, n° 7, p. 731-759. Résumé lu sur IDEAS/RePEc (https://ideas.repec.org/a/taf/acctbr/v46y2016i7p731-759.html)."
+  - id: doucouliagos-stanley-2009
+    type: etude_academique
+    editeur: "British Journal of Industrial Relations"
+    titre: "Publication Selection Bias in Minimum-Wage Research? A Meta-Regression Analysis"
+    url: "https://doi.org/10.1111/j.1467-8543.2009.00723.x"
+    auteurs: ["Hristos Doucouliagos", "T. D. Stanley"]
+    date_publication: "2009-06"
+    consulte_le: "2026-10-13"
+    note: "Vol. 47, n° 2, p. 406-428. Seul le résumé a pu être lu (texte intégral inaccessible)."
+  - id: dube-2019
+    type: rapport_institutionnel
+    editeur: "HM Treasury (Royaume-Uni)"
+    titre: "Impacts of minimum wages: review of the international evidence"
+    url: "https://www.gov.uk/government/publications/impacts-of-minimum-wages-review-of-the-international-evidence"
+    auteurs: ["Arindrajit Dube"]
+    date_publication: "2019-11-04"
+    consulte_le: "2026-10-13"
+    note: "Revue indépendante commandée par le gouvernement britannique (HM Treasury, BEIS). Chiffres lus dans le PDF, § 4.17 et 4.69."
+  - id: dube-zipperer-2024
+    type: document_de_travail
+    editeur: "National Bureau of Economic Research (NBER)"
+    titre: "Own-Wage Elasticity: Quantifying the Impact of Minimum Wages on Employment"
+    url: "https://www.nber.org/papers/w32925"
+    auteurs: ["Arindrajit Dube", "Ben Zipperer"]
+    date_publication: "2024-09"
+    consulte_le: "2026-10-13"
+    note: "NBER Working Paper 32925 ; dépôt associé des estimations : https://economic.github.io/owe/ . Publication en revue non vérifiée."
+  - id: duran-cabre-et-al-2019
+    type: document_de_travail
+    editeur: "Institut d'Economia de Barcelona (IEB Working Paper 2019/04)"
+    titre: "Behavioural responses to the (re)introduction of wealth taxes. Evidence from Spain"
+    url: "https://ideas.repec.org/p/ieb/wpaper/doc2019-04.html"
+    auteurs: ["José María Durán-Cabré", "Alejandro Esteller-Moré", "Mariona Mas-Montserrat"]
+    date_publication: "2019"
+    consulte_le: "2026-10-13"
+    note: "IDEAS signale un article apparenté des mêmes auteurs (« Avoidance Responses to the Wealth Tax », Journal of Public Economics, vol. 246, 2025) sans confirmer qu'il s'agit de la version publiée ; non consulté."
+  - id: dustmann-et-al-2022
+    type: etude_academique
+    editeur: "Quarterly Journal of Economics"
+    titre: "Reallocation Effects of the Minimum Wage"
+    url: "https://doi.org/10.1093/qje/qjab028"
+    auteurs: ["Christian Dustmann", "Attila Lindner", "Uta Schönberg", "Matthias Umkehrer", "Philipp vom Berge"]
+    date_publication: "2022-02"
+    consulte_le: "2026-10-13"
+    note: "Vol. 137, n° 1, p. 267-328."
+  - id: egger-et-al-2022
+    type: etude_academique
+    editeur: "Econometrica"
+    titre: "General Equilibrium Effects of Cash Transfers: Experimental Evidence From Kenya"
+    url: "https://doi.org/10.3982/ECTA17945"
+    auteurs: ["Dennis Egger", "Johannes Haushofer", "Edward Miguel", "Paul Niehaus", "Michael Walker"]
+    date_publication: "2022"
+    consulte_le: "2026-10-13"
+    note: "Econometrica 90(6), p. 2603-2643. Chiffres lus dans la version NBER w26600 (tableau 2, p. 19)."
+  - id: eissa-hoynes-2004
+    type: etude_academique
+    editeur: "Journal of Public Economics"
+    titre: "Taxes and the labor market participation of married couples: the earned income tax credit"
+    url: "https://doi.org/10.1016/j.jpubeco.2003.09.005"
+    auteurs: ["Nada Eissa", "Hilary Williamson Hoynes"]
+    date_publication: "2004-08"
+    consulte_le: "2026-10-13"
+    note: "JPubE 88(9-10), p. 1931-1958. Élasticité lue dans Chetty et al. (2013), tableau 1 ; effet sur les femmes mariées résumé par Nichols et Rothstein (2015)."
+  - id: eissa-liebman-1996
+    type: etude_academique
+    editeur: "Quarterly Journal of Economics"
+    titre: "Labor Supply Response to the Earned Income Tax Credit"
+    url: "https://doi.org/10.2307/2946689"
+    auteurs: ["Nada Eissa", "Jeffrey B. Liebman"]
+    date_publication: "1996-05"
+    consulte_le: "2026-10-13"
+    note: "QJE 111(2), p. 605-637. Version document de travail : NBER w5158 (1995). Conversion en élasticité reprise de Chetty et al. (2013), tableau 1 et annexe B."
+  - id: estevao-sa-2008
+    type: etude_academique
+    editeur: "Economic Policy"
+    titre: "The 35-hour workweek in France: Straightjacket or welfare improvement?"
+    url: "https://doi.org/10.1111/j.1468-0327.2008.00204.x"
+    auteurs: ["Marcello Estevão", "Filipa Sá"]
+    date_publication: "2008-07"
+    consulte_le: "2026-10-13"
+    note: "Vol. 23, n° 55, p. 418-463. Résumé de la version publiée lu sur Oxford Academic ; résultats chiffrés lus dans la version document de travail IZA DP 2459 (novembre 2006, « Are the French Happy with the 35-Hour Workweek? », https://docs.iza.org/dp2459.pdf), tableau 9."
+  - id: feldstein-1995
+    type: etude_academique
+    editeur: "Journal of Political Economy"
+    titre: "The Effect of Marginal Tax Rates on Taxable Income: A Panel Study of the 1986 Tax Reform Act"
+    url: "https://doi.org/10.1086/261994"
+    auteurs: ["Martin Feldstein"]
+    date_publication: "1995-06"
+    consulte_le: "2026-10-13"
+    note: "Vol. 103, n° 3, p. 551-572. Version document de travail : NBER w4496 (1993). Résumé lu sur https://www.nber.org/papers/w4496 et https://ideas.repec.org/a/ucp/jpolec/v103y1995i3p551-72.html."
+  - id: france-strategie-cice-2020
+    type: rapport_institutionnel
+    editeur: "France Stratégie"
+    titre: "Évaluation du Crédit d'impôt pour la compétitivité et l'emploi : synthèse des travaux d'approfondissement"
+    url: "https://www.strategie-plan.gouv.fr/publications/evaluation-credit-dimpot-competitivite-lemploi-synthese-travaux-dapprofondissement"
+    auteurs: []
+    date_publication: "2020-09-17"
+    consulte_le: "2026-10-13"
+    note: "Rapport du comité de suivi / d'évaluation du CICE, intégrant les travaux de TEPP (micro-économétrie) et de l'OFCE (macro-sectoriel). PDF : https://www.strategie-plan.gouv.fr/files/files/Publications/2020/CICE/fs-2020-rapport-cice2020-16septembre-final18h.pdf"
+  - id: france-strategie-fiscalite-capital-2023
+    type: rapport_institutionnel
+    editeur: "France Stratégie – Comité d'évaluation des réformes de la fiscalité du capital"
+    titre: "Comité d'évaluation des réformes de la fiscalité du capital – Rapport final (quatrième rapport)"
+    url: "https://www.strategie-plan.gouv.fr/publications/comite-devaluation-reformes-de-fiscalite-capital-rapport-final"
+    auteurs: ["Cédric Audenis", "Ruben Fotso"]
+    date_publication: "2023-10-16"
+    consulte_le: "2026-10-13"
+    note: "Rapport complet (PDF, 316 p.) : https://www.strategie-plan.gouv.fr/files/files/Publications/Rapport/fs-2023-rapport-isf-quatrieme_rapport_complet_17octobre_2.pdf — avis du comité p. 13-23, départs et retours p. 200-202, note DGFiP en annexe 9 (p. 293-297)."
+  - id: fuest-et-al-2018
+    type: etude_academique
+    editeur: "American Economic Review"
+    titre: "Do Higher Corporate Taxes Reduce Wages? Micro Evidence from Germany"
+    url: "https://doi.org/10.1257/aer.20130570"
+    auteurs: ["Clemens Fuest", "Andreas Peichl", "Sebastian Siegloch"]
+    date_publication: "2018-02"
+    consulte_le: "2026-10-13"
+    note: "Vol. 108, n° 2, p. 393-418. Résumé lu sur la page AEA."
+  - id: gaarder-2019
+    type: etude_academique
+    editeur: "The Economic Journal"
+    titre: "Incidence and Distributional Effects of Value Added Taxes"
+    url: "https://doi.org/10.1111/ecoj.12576"
+    auteurs: ["Ingvil Gaarder"]
+    date_publication: "2019"
+    consulte_le: "2026-10-13"
+    note: "Vol. 129, n° 618, p. 853-876. Résumé lu sur IDEAS/RePEc (https://ideas.repec.org/a/oup/econjl/v129y2019i618p853-876..html)."
+  - id: garbinti-et-al-2023
+    type: document_de_travail
+    editeur: "National Bureau of Economic Research (Working Paper n° 31333)"
+    titre: "Tax Design, Information, and Elasticities: Evidence From the French Wealth Tax"
+    url: "https://www.nber.org/papers/w31333"
+    auteurs: ["Bertrand Garbinti", "Jonathan Goupille-Lebret", "Mathilde Muñoz", "Stefanie Stantcheva", "Gabriel Zucman"]
+    date_publication: "2023-06"
+    consulte_le: "2026-10-13"
+    note: "Version lue : révisée en mai 2026 (PDF NBER), figure 1, sections 3.1 et 5.2."
+  - id: gechert-2015
+    type: etude_academique
+    editeur: "Oxford Economic Papers"
+    titre: "What fiscal policy is most effective? A meta-regression analysis"
+    url: "https://doi.org/10.1093/oep/gpv027"
+    auteurs: ["Sebastian Gechert"]
+    date_publication: "2015"
+    consulte_le: "2026-10-13"
+    note: "Vol. 67, n° 3, p. 553-580. Résumé lu sur IDEAS/RePEc (https://ideas.repec.org/a/oup/oxecpp/v67y2015i3p553-580..html)."
+  - id: giroud-rauh-2019
+    type: etude_academique
+    editeur: "Journal of Political Economy"
+    titre: "State Taxation and the Reallocation of Business Activity: Evidence from Establishment-Level Data"
+    url: "https://doi.org/10.1086/701357"
+    auteurs: ["Xavier Giroud", "Joshua Rauh"]
+    date_publication: "2019"
+    consulte_le: "2026-10-13"
+    note: "Vol. 127, n° 3, p. 1262-1316. Résumé lu sur IDEAS/RePEc."
+  - id: golosov-et-al-2024
+    type: etude_academique
+    editeur: "Quarterly Journal of Economics"
+    titre: "How Americans Respond to Idiosyncratic and Exogenous Changes in Household Wealth and Unearned Income"
+    url: "https://doi.org/10.1093/qje/qjad053"
+    auteurs: ["Mikhail Golosov", "Michael Graber", "Magne Mogstad", "David Novgorodsky"]
+    date_publication: "2024"
+    consulte_le: "2026-10-13"
+    note: "QJE 139(2), p. 1321-1395 (mise en ligne en octobre 2023). Chiffres lus dans la version NBER w29000 (juillet 2021), résumé et introduction."
+  - id: gruber-saez-2002
+    type: etude_academique
+    editeur: "Journal of Public Economics"
+    titre: "The elasticity of taxable income: evidence and implications"
+    url: "https://doi.org/10.1016/S0047-2727(01)00085-8"
+    auteurs: ["Jon Gruber", "Emmanuel Saez"]
+    date_publication: "2002-04"
+    consulte_le: "2026-10-13"
+    note: "Vol. 84, n° 1, p. 1-32. Version document de travail : NBER w7512 (janvier 2000), dont les tableaux 4 et 8 ont été lus (https://www.nber.org/papers/w7512)."
+  - id: gubian-et-al-2004
+    type: etude_academique
+    editeur: "Économie et Statistique (INSEE)"
+    titre: "Les effets de la RTT sur l'emploi : des estimations ex ante aux évaluations ex post"
+    url: "https://www.persee.fr/doc/estat_0336-1454_2004_num_376_1_7233"
+    auteurs: ["Alain Gubian", "Stéphane Jugnot", "Frédéric Lerais", "Vladimir Passeron"]
+    date_publication: "2004"
+    consulte_le: "2026-10-13"
+    note: "N° 376-377 (numéro spécial « La réduction du temps de travail »), p. 25-54. Résumés français et anglais lus sur Persée."
+  - id: gurgand-margolis-2008
+    type: etude_academique
+    editeur: "Journal of Public Economics"
+    titre: "Does work pay in France? Monetary incentives, hours constraints, and the guaranteed minimum income"
+    url: "https://doi.org/10.1016/j.jpubeco.2007.10.008"
+    auteurs: ["Marc Gurgand", "David N. Margolis"]
+    date_publication: "2008-07"
+    consulte_le: "2026-10-13"
+    note: "JPubE 92(7), p. 1669-1697. Seul le résumé a pu être lu (page IDEAS/RePEc) ; texte intégral non accessible."
+  - id: harasztosi-lindner-2019
+    type: etude_academique
+    editeur: "American Economic Review"
+    titre: "Who Pays for the Minimum Wage?"
+    url: "https://doi.org/10.1257/aer.20171445"
+    auteurs: ["Peter Harasztosi", "Attila Lindner"]
+    date_publication: "2019-08"
+    consulte_le: "2026-10-13"
+    note: "Vol. 109, n° 8, p. 2693-2727. Élasticité « own-wage » lue dans l'annexe de Dube & Zipperer (2024) et dans Dube (2019)."
+  - id: hum-simpson-1993
+    type: etude_academique
+    editeur: "Journal of Labor Economics"
+    titre: "Economic Response to a Guaranteed Annual Income: Experience from Canada and the United States"
+    url: "https://doi.org/10.1086/298335"
+    auteurs: ["Derek Hum", "Wayne Simpson"]
+    date_publication: "1993-01"
+    consulte_le: "2026-10-13"
+    note: "JOLE 11(1, partie 2), p. S263-S296. Article payant non consulté ; résumé lu sur IDEAS et résultats lus dans la synthèse de Marinescu (2018)."
+  - id: hunt-1999
+    type: etude_academique
+    editeur: "Quarterly Journal of Economics"
+    titre: "Has Work-Sharing Worked in Germany?"
+    url: "https://doi.org/10.1162/003355399555963"
+    auteurs: ["Jennifer Hunt"]
+    date_publication: "1999-02"
+    consulte_le: "2026-10-13"
+    note: "Vol. 114, n° 1, p. 117-148. Version document de travail : NBER WP 5724 (1996), aux conclusions plus favorables que la version publiée."
+  - id: huttunen-et-al-2013
+    type: etude_academique
+    editeur: "Journal of Public Economics"
+    titre: "The employment effects of low-wage subsidies"
+    url: "https://doi.org/10.1016/j.jpubeco.2012.09.007"
+    auteurs: ["Kristiina Huttunen", "Jukka Pirttilä", "Roope Uusitalo"]
+    date_publication: "2013"
+    consulte_le: "2026-10-13"
+    note: "Vol. 97, p. 49-60. Résumé lu sur IDEAS/RePEc."
+  - id: ilzetzki-et-al-2013
+    type: etude_academique
+    editeur: "Journal of Monetary Economics"
+    titre: "How big (small?) are fiscal multipliers?"
+    url: "https://doi.org/10.1016/j.jmoneco.2012.10.011"
+    auteurs: ["Ethan Ilzetzki", "Enrique G. Mendoza", "Carlos A. Végh"]
+    date_publication: "2013"
+    consulte_le: "2026-10-13"
+    note: "Vol. 60, n° 2, p. 239-254 (métadonnées lues sur IDEAS/RePEc). Chiffres lus dans la version NBER w16479 (oct. 2010, révisée sept. 2012) : https://www.nber.org/papers/w16479."
+  - id: imbens-et-al-2001
+    type: etude_academique
+    editeur: "American Economic Review"
+    titre: "Estimating the Effect of Unearned Income on Labor Earnings, Savings, and Consumption: Evidence from a Survey of Lottery Players"
+    url: "https://doi.org/10.1257/aer.91.4.778"
+    auteurs: ["Guido W. Imbens", "Donald B. Rubin", "Bruce I. Sacerdote"]
+    date_publication: "2001-09"
+    consulte_le: "2026-10-13"
+    note: "AER 91(4), p. 778-794. Résumé lu sur la page de l'AEA ; résumé de la version NBER w7001 également consulté."
+  - id: jakobsen-et-al-2020
+    type: etude_academique
+    editeur: "Quarterly Journal of Economics"
+    titre: "Wealth Taxation and Wealth Accumulation: Theory and Evidence From Denmark"
+    url: "https://doi.org/10.1093/qje/qjz032"
+    auteurs: ["Katrine Jakobsen", "Kristian Jakobsen", "Henrik Kleven", "Gabriel Zucman"]
+    date_publication: "2020-02"
+    consulte_le: "2026-10-13"
+    note: "Vol. 135, n° 1, p. 329-388 (en ligne le 9 octobre 2019). Les chiffres repris ont été lus dans la version document de travail NBER w24371, mars 2018 (https://www.nber.org/papers/w24371) ; le texte intégral publié n'a pas pu être consulté (accès payant)."
+  - id: jardim-et-al-2022
+    type: etude_academique
+    editeur: "American Economic Journal: Economic Policy"
+    titre: "Minimum-Wage Increases and Low-Wage Employment: Evidence from Seattle"
+    url: "https://doi.org/10.1257/pol.20180578"
+    auteurs: ["Ekaterina Jardim", "Mark C. Long", "Robert Plotnick", "Emma van Inwegen", "Jacob Vigdor", "Hilary Wething"]
+    date_publication: "2022-05"
+    consulte_le: "2026-10-13"
+    note: "Vol. 14, n° 2, p. 263-314."
+  - id: johnston-mas-2018
+    type: etude_academique
+    editeur: "Journal of Political Economy"
+    titre: "Potential Unemployment Insurance Duration and Labor Supply: The Individual and Market-Level Response to a Benefit Cut"
+    url: "https://doi.org/10.1086/699973"
+    auteurs: ["Andrew C. Johnston", "Alexandre Mas"]
+    date_publication: "2018-12"
+    consulte_le: "2026-10-13"
+    note: "JPE 126(6), p. 2480-2522. Résumé publié lu sur IDEAS (0,45 et 0,25) ; la version NBER w22411 (2016) donnait 0,5 et 0,3."
+  - id: jones-marinescu-2022
+    type: etude_academique
+    editeur: "American Economic Journal: Economic Policy"
+    titre: "The Labor Market Impacts of Universal and Permanent Cash Transfers: Evidence from the Alaska Permanent Fund"
+    url: "https://doi.org/10.1257/pol.20190299"
+    auteurs: ["Damon Jones", "Ioana Marinescu"]
+    date_publication: "2022-05"
+    consulte_le: "2026-10-13"
+    note: "AEJ: Economic Policy 14(2), p. 315-340. Chiffres lus dans la version NBER w24312 révisée en janvier 2020 (tableaux 1 et 2)."
+  - id: katz-meyer-1990
+    type: etude_academique
+    editeur: "Journal of Public Economics"
+    titre: "The impact of the potential duration of unemployment benefits on the duration of unemployment"
+    url: "https://doi.org/10.1016/0047-2727(92)90056-L"
+    auteurs: ["Lawrence F. Katz", "Bruce D. Meyer"]
+    date_publication: "1990-02"
+    consulte_le: "2026-10-13"
+    note: "JPubE 41(1), p. 45-72. Résumé lu sur IDEAS/RePEc."
+  - id: kleven-2024
+    type: etude_academique
+    editeur: "Journal of Public Economics"
+    titre: "The EITC and the extensive margin: A reappraisal"
+    url: "https://doi.org/10.1016/j.jpubeco.2024.105135"
+    auteurs: ["Henrik Kleven"]
+    date_publication: "2024-08"
+    consulte_le: "2026-10-13"
+    note: "JPubE vol. 236, article 105135. Chiffres lus dans la version NBER w26405 révisée en mai 2024 (résumé, introduction, section 5.4)."
+  - id: kleven-schultz-2014
+    type: etude_academique
+    editeur: "American Economic Journal: Economic Policy"
+    titre: "Estimating Taxable Income Responses Using Danish Tax Reforms"
+    url: "https://doi.org/10.1257/pol.6.4.271"
+    auteurs: ["Henrik Jacobsen Kleven", "Esben Anton Schultz"]
+    date_publication: "2014-11"
+    consulte_le: "2026-10-13"
+    note: "Vol. 6, n° 4, p. 271-301. Version publiée lue sur LSE Research Online (https://researchonline.lse.ac.uk/id/eprint/66122), tableau 8."
+  - id: kosonen-2015
+    type: etude_academique
+    editeur: "Journal of Public Economics"
+    titre: "More and cheaper haircuts after VAT cut? On the efficiency and incidence of service sector consumption taxes"
+    url: "https://doi.org/10.1016/j.jpubeco.2015.09.006"
+    auteurs: ["Tuomas Kosonen"]
+    date_publication: "2015"
+    consulte_le: "2026-10-13"
+    note: "Vol. 131, p. 87-100. Résumé lu sur IDEAS/RePEc (https://ideas.repec.org/a/eee/pubeco/v131y2015icp87-100.html)."
+  - id: kramarz-philippon-2001
+    type: etude_academique
+    editeur: "Journal of Public Economics"
+    titre: "The impact of differential payroll tax subsidies on minimum wage employment"
+    url: "https://doi.org/10.1016/S0047-2727(00)00137-7"
+    auteurs: ["Francis Kramarz", "Thomas Philippon"]
+    date_publication: "2001-10"
+    consulte_le: "2026-10-13"
+    note: "Vol. 82, n° 1, p. 115-146. Version document de travail : IZA DP 219 (2000), dont le résumé a été lu."
+  - id: lalive-2008
+    type: etude_academique
+    editeur: "Journal of Econometrics"
+    titre: "How do extended benefits affect unemployment duration? A regression discontinuity approach"
+    url: "https://ideas.repec.org/a/eee/econom/v142y2008i2p785-806.html"
+    auteurs: ["Rafael Lalive"]
+    date_publication: "2008-02"
+    consulte_le: "2026-10-13"
+    note: "Journal of Econometrics 142(2), p. 785-806 (ScienceDirect PII S0304-4076(07)00117-0). Résumé lu sur IDEAS/RePEc."
+  - id: le-barbanchon-2016
+    type: etude_academique
+    editeur: "Labour Economics"
+    titre: "The effect of the potential duration of unemployment benefits on unemployment exits to work and match quality in France"
+    url: "https://doi.org/10.1016/j.labeco.2016.06.003"
+    auteurs: ["Thomas Le Barbanchon"]
+    date_publication: "2016-10"
+    consulte_le: "2026-10-13"
+    note: "Labour Economics 42, p. 16-29. Chiffres lus dans la version document de travail CREST 2012-21 (septembre 2012), p. 2 et 14-16 ; l'ordre de grandeur (2,5 mois) est repris par Schmieder et von Wachter (2016), tableau 1."
+  - id: lefebvre-et-al-2025
+    type: etude_academique
+    editeur: "Scandinavian Journal of Economics"
+    titre: "Estimating the Laffer tax rate on capital income: cross-base responses matter!"
+    url: "https://doi.org/10.1111/sjoe.12578"
+    auteurs: ["Marie-Noëlle Lefebvre", "Etienne Lehmann", "Michaël Sicsic"]
+    date_publication: "2025-04"
+    consulte_le: "2026-10-13"
+    note: "Vol. 127, n° 2, p. 460-489 (résumé lu sur https://ideas.repec.org/a/bla/scandj/v127y2025i2p460-489.html). Les élasticités chiffrées ont été lues dans la version document de travail IZA DP 16112, mai 2023 (https://docs.iza.org/dp16112.pdf), tableau 2."
+  - id: lehmann-et-al-2013
+    type: etude_academique
+    editeur: "Journal of Public Economics"
+    titre: "Labor income responds differently to income-tax and payroll-tax reforms"
+    url: "https://doi.org/10.1016/j.jpubeco.2013.01.004"
+    auteurs: ["Etienne Lehmann", "François Marical", "Laurence Rioux"]
+    date_publication: "2013"
+    consulte_le: "2026-10-13"
+    note: "Vol. 99, p. 66-84. Résumé lu sur https://ideas.repec.org/a/eee/pubeco/v99y2013icp66-84.html. Versions document de travail : IZA DP 6108 (2011), CESifo WP 3974 (2012)."
+  - id: lemoine-et-al-2019
+    type: document_de_travail
+    editeur: "Banque de France (Document de travail n° 736)"
+    titre: "The FR-BDF Model and an Assessment of Monetary Policy Transmission in France"
+    url: "https://publications.banque-france.fr/sites/default/files/medias/documents/wp736.pdf"
+    auteurs: ["Matthieu Lemoine", "Harri Turunen", "Mohammed Chahad", "Antoine Lepetit", "Anastasia Zhutova", "Pierre Aldama", "Pierrick Clerc", "Jean-Pierre Laffargue"]
+    date_publication: "2019-10"
+    consulte_le: "2026-10-13"
+    note: "Présentation du modèle macroéconomique FR-BDF de la Banque de France ; variante de dépense publique en section 5.2.4."
+  - id: lhorty-et-al-2019
+    type: rapport_institutionnel
+    editeur: "Conseil d'analyse économique (CAE)"
+    titre: "Baisses de charges : stop ou encore ?"
+    url: "https://www.cae-eco.fr/baisses-de-charges-stop-ou-encore"
+    auteurs: ["Yannick L'Horty", "Philippe Martin", "Thierry Mayer"]
+    date_publication: "2019-01-15"
+    consulte_le: "2026-10-13"
+    note: "Les notes du CAE n° 49. PDF lu : https://www.cae-eco.fr/static/pdf/cae-note049v4.pdf"
+  - id: ljungqvist-smolyansky-2018
+    type: document_de_travail
+    editeur: "National Bureau of Economic Research (NBER Working Paper 20753)"
+    titre: "To Cut or Not to Cut? On the Impact of Corporate Taxes on Employment and Income"
+    url: "https://www.nber.org/papers/w20753"
+    auteurs: ["Alexander Ljungqvist", "Michael Smolyansky"]
+    date_publication: "2018-10"
+    consulte_le: "2026-10-13"
+    note: "Première version décembre 2014, révisée octobre 2018 ; résumé lu sur la page NBER (aucune publication en revue mentionnée)."
+  - id: londono-velez-avila-mahecha-2021
+    type: etude_academique
+    editeur: "American Economic Review: Insights"
+    titre: "Enforcing Wealth Taxes in the Developing World: Quasi-experimental Evidence from Colombia"
+    url: "https://doi.org/10.1257/aeri.20200319"
+    auteurs: ["Juliana Londoño-Vélez", "Javier Ávila-Mahecha"]
+    date_publication: "2021-06"
+    consulte_le: "2026-10-13"
+    note: "Vol. 3, n° 2, p. 131-148. Résumé lu sur la page de l'AEA."
+  - id: marinescu-2018
+    type: document_de_travail
+    editeur: "National Bureau of Economic Research"
+    titre: "No Strings Attached: The Behavioral Effects of U.S. Unconditional Cash Transfer Programs"
+    url: "https://www.nber.org/papers/w24337"
+    auteurs: ["Ioana Marinescu"]
+    date_publication: "2018-02"
+    consulte_le: "2026-10-13"
+    note: "NBER Working Paper 24337 (revue de littérature : expériences d'impôt négatif, Mincome, Alaska, loteries)."
+  - id: meyer-rosenbaum-2001
+    type: etude_academique
+    editeur: "Quarterly Journal of Economics"
+    titre: "Welfare, the Earned Income Tax Credit, and the Labor Supply of Single Mothers"
+    url: "https://doi.org/10.1162/00335530152466313"
+    auteurs: ["Bruce D. Meyer", "Dan T. Rosenbaum"]
+    date_publication: "2001-08"
+    consulte_le: "2026-10-13"
+    note: "QJE 116(3), p. 1063-1114. Élasticité publiée (1,07) et élasticité corrigée (0,43) lues dans Chetty et al. (2013), annexe B."
+  - id: moretti-wilson-2023
+    type: etude_academique
+    editeur: "American Economic Journal: Economic Policy"
+    titre: "Taxing Billionaires: Estate Taxes and the Geographical Location of the Ultra-Wealthy"
+    url: "https://doi.org/10.1257/pol.20200685"
+    auteurs: ["Enrico Moretti", "Daniel J. Wilson"]
+    date_publication: "2023"
+    consulte_le: "2026-10-13"
+    note: "Vol. 15, n° 2, p. 424-466. Résumé lu sur la page NBER du document de travail w26387 (https://www.nber.org/papers/w26387)."
+  - id: neisser-2018
+    type: document_de_travail
+    editeur: "IZA Institute of Labor Economics (Discussion Paper n° 11958)"
+    titre: "The Elasticity of Taxable Income: A Meta-Regression Analysis"
+    url: "https://docs.iza.org/dp11958.pdf"
+    auteurs: ["Carina Neisser"]
+    date_publication: "2018-11"
+    consulte_le: "2026-10-13"
+    note: "Version révisée publiée : The Economic Journal, vol. 131, n° 640, 2021, p. 3365-3391 (https://doi.org/10.1093/ej/ueab038), élargie à 61 études et 1 720 estimations. Les chiffres repris dans la base viennent de la version 2018 (51 études, 1 448 estimations) ; la version publiée n'a pas pu être lue (accès payant)."
+  - id: nekoei-weber-2017
+    type: etude_academique
+    editeur: "American Economic Review"
+    titre: "Does Extending Unemployment Benefits Improve Job Quality?"
+    url: "https://doi.org/10.1257/aer.20150528"
+    auteurs: ["Arash Nekoei", "Andrea Weber"]
+    date_publication: "2017-02"
+    consulte_le: "2026-10-13"
+    note: "AER 107(2), p. 527-561. Chiffres lus dans la version IZA DP 9034 (2015), https://docs.iza.org/dp9034.pdf, texte p. 9 et tableau 2."
+  - id: neumark-shirley-2022
+    type: etude_academique
+    editeur: "Industrial Relations: A Journal of Economy and Society"
+    titre: "Myth or Measurement: What Does the New Minimum Wage Research Say about Minimum Wages and Job Loss in the United States?"
+    url: "https://doi.org/10.1111/irel.12306"
+    auteurs: ["David Neumark", "Peter Shirley"]
+    date_publication: "2022"
+    consulte_le: "2026-10-13"
+    note: "Vol. 61, n° 4, p. 384-417. Chiffres lus dans la version NBER WP 28388 (révisée en mars 2022)."
+  - id: nichols-rothstein-2015
+    type: document_de_travail
+    editeur: "National Bureau of Economic Research"
+    titre: "The Earned Income Tax Credit (EITC)"
+    url: "https://www.nber.org/papers/w21211"
+    auteurs: ["Austin Nichols", "Jesse Rothstein"]
+    date_publication: "2015-05"
+    consulte_le: "2026-10-13"
+    note: "NBER Working Paper 21211. Publié ensuite comme chapitre de l'ouvrage collectif « Economics of Means-Tested Transfer Programs in the United States, Volume 1 » (R. Moffitt, dir., 2016)."
+  - id: ohrn-2018
+    type: etude_academique
+    editeur: "American Economic Journal: Economic Policy"
+    titre: "The Effect of Corporate Taxation on Investment and Financial Policy: Evidence from the DPAD"
+    url: "https://doi.org/10.1257/pol.20150378"
+    auteurs: ["Eric Ohrn"]
+    date_publication: "2018-05"
+    consulte_le: "2026-10-13"
+    note: "Vol. 10, n° 2, p. 272-301. Résumé lu sur la page AEA et IDEAS ; annexe en ligne (pièce jointe AEA en accès libre) consultée."
+  - id: piketty-1999
+    type: etude_academique
+    editeur: "Économie & Prévision (n° 138-139)"
+    titre: "Les hauts revenus face aux modifications des taux marginaux supérieurs de l'impôt sur le revenu en France, 1970-1996"
+    url: "https://www.persee.fr/doc/ecop_0249-4744_1999_num_138_2_5958"
+    auteurs: ["Thomas Piketty"]
+    date_publication: "1999"
+    consulte_le: "2026-10-13"
+    note: "p. 25-60, DOI 10.3406/ecop.1999.5958. Résumé lu sur Persée (page « Résumés - Summaries » du numéro : https://www.persee.fr/doc/ecop_0249-4744_1999_num_138_2_5968) ; résultat également décrit par Cabannes, Houdré et Landais (2014)."
+  - id: piketty-et-al-2014
+    type: etude_academique
+    editeur: "American Economic Journal: Economic Policy"
+    titre: "Optimal Taxation of Top Labor Incomes: A Tale of Three Elasticities"
+    url: "https://doi.org/10.1257/pol.6.1.230"
+    auteurs: ["Thomas Piketty", "Emmanuel Saez", "Stefanie Stantcheva"]
+    date_publication: "2014-02"
+    consulte_le: "2026-10-13"
+    note: "Vol. 6, n° 1, p. 230-271. Texte lu dans la version NBER w17616 (révisée mars 2013), tableaux 1 et 2."
+  - id: ramey-2019
+    type: etude_academique
+    editeur: "Journal of Economic Perspectives"
+    titre: "Ten Years after the Financial Crisis: What Have We Learned from the Renaissance in Fiscal Research?"
+    url: "https://doi.org/10.1257/jep.33.2.89"
+    auteurs: ["Valerie A. Ramey"]
+    date_publication: "2019"
+    consulte_le: "2026-10-13"
+    note: "Vol. 33, n° 2, p. 89-114. Résumé lu sur la page AEA."
+  - id: romer-romer-2010
+    type: etude_academique
+    editeur: "American Economic Review"
+    titre: "The Macroeconomic Effects of Tax Changes: Estimates Based on a New Measure of Fiscal Shocks"
+    url: "https://doi.org/10.1257/aer.100.3.763"
+    auteurs: ["Christina D. Romer", "David H. Romer"]
+    date_publication: "2010-06"
+    consulte_le: "2026-10-13"
+    note: "Vol. 100, n° 3, p. 763-801. Chiffres lus dans la version NBER w13264 (juillet 2007) : https://www.nber.org/papers/w13264."
+  - id: rothstein-2011
+    type: etude_academique
+    editeur: "Brookings Papers on Economic Activity"
+    titre: "Unemployment Insurance and Job Search in the Great Recession"
+    url: "https://doi.org/10.1353/eca.2011.0018"
+    auteurs: ["Jesse Rothstein"]
+    date_publication: "2011"
+    consulte_le: "2026-10-13"
+    note: "BPEA, automne 2011, p. 143-213. Version document de travail : NBER w17534 (résumé lu)."
+  - id: saez-et-al-2012
+    type: etude_academique
+    editeur: "Journal of Economic Literature"
+    titre: "The Elasticity of Taxable Income with Respect to Marginal Tax Rates: A Critical Review"
+    url: "https://doi.org/10.1257/jel.50.1.3"
+    auteurs: ["Emmanuel Saez", "Joel Slemrod", "Seth H. Giertz"]
+    date_publication: "2012-03"
+    consulte_le: "2026-10-13"
+    note: "Vol. 50, n° 1, p. 3-50. Texte lu dans la version document de travail NBER w15012 (https://www.nber.org/system/files/working_papers/w15012/w15012.pdf), conclusion section 5.1."
+  - id: schmieder-et-al-2012
+    type: etude_academique
+    editeur: "Quarterly Journal of Economics"
+    titre: "The Effects of Extended Unemployment Insurance Over the Business Cycle: Evidence from Regression Discontinuity Estimates Over 20 Years"
+    url: "https://doi.org/10.1093/qje/qjs010"
+    auteurs: ["Johannes F. Schmieder", "Till von Wachter", "Stefan Bender"]
+    date_publication: "2012"
+    consulte_le: "2026-10-13"
+    note: "QJE 127(2), p. 701-752. Phrase-clé lue dans la version NBER w17813 (introduction) ; valeurs par discontinuité lues dans Schmieder et von Wachter (2016), tableau 1."
+  - id: schmieder-von-wachter-2016
+    type: etude_academique
+    editeur: "Annual Review of Economics"
+    titre: "The Effects of Unemployment Insurance Benefits: New Evidence and Interpretation"
+    url: "https://doi.org/10.1146/annurev-economics-080614-115758"
+    auteurs: ["Johannes F. Schmieder", "Till von Wachter"]
+    date_publication: "2016-10"
+    consulte_le: "2026-10-13"
+    note: "Annual Review of Economics 8, p. 547-581. Chiffres lus dans la version NBER w22564 (août 2016), section 4.1 et tableau 1 (valeurs dD/dP par étude)."
+  - id: seim-2017
+    type: etude_academique
+    editeur: "American Economic Journal: Economic Policy"
+    titre: "Behavioral Responses to Wealth Taxes: Evidence from Sweden"
+    url: "https://doi.org/10.1257/pol.20150290"
+    auteurs: ["David Seim"]
+    date_publication: "2017-11"
+    consulte_le: "2026-10-13"
+    note: "Vol. 9, n° 4, p. 395-421. Résumé lu sur la page de l'AEA et sur IDEAS/RePEc."
+  - id: sicsic-2022
+    type: etude_academique
+    editeur: "Fiscal Studies"
+    titre: "Does labour income react more to income tax or means-tested benefits reforms?"
+    url: "https://doi.org/10.1111/1475-5890.12306"
+    auteurs: ["Michaël Sicsic"]
+    date_publication: "2022-09"
+    consulte_le: "2026-10-13"
+    note: "Vol. 43, n° 3, p. 291-319. Résumé lu sur https://ideas.repec.org/a/wly/fistud/v43y2022i3p291-319.html."
+  - id: simonnet-danzin-2014
+    type: etude_academique
+    editeur: "Économie et Statistique (Insee)"
+    titre: "L'effet du RSA sur le taux de retour à l'emploi des allocataires. Une analyse en double différence selon le nombre et l'âge des enfants"
+    url: "https://www.insee.fr/fr/statistiques/1377948"
+    auteurs: ["Véronique Simonnet", "Élisabeth Danzin"]
+    date_publication: "2014-04-24"
+    consulte_le: "2026-10-13"
+    note: "Économie et Statistique n° 467-468, p. 91-116 (revue à rapporteurs). Étude réalisée pour le Comité national d'évaluation du RSA."
+  - id: stancanelli-2008
+    type: etude_academique
+    editeur: "Journal of Public Economics"
+    titre: "Evaluating the impact of the French tax credit on the employment rate of women"
+    url: "https://doi.org/10.1016/j.jpubeco.2008.02.007"
+    auteurs: ["Elena G. F. Stancanelli"]
+    date_publication: "2008-10"
+    consulte_le: "2026-10-13"
+    note: "JPubE 92(10-11), p. 2036-2047 (et non Labour Economics). Texte lu dans la copie auteur hébergée par PSE."
+  - id: verho-et-al-2022
+    type: etude_academique
+    editeur: "American Economic Journal: Economic Policy"
+    titre: "Removing Welfare Traps: Employment Responses in the Finnish Basic Income Experiment"
+    url: "https://doi.org/10.1257/pol.20200143"
+    auteurs: ["Jouko Verho", "Kari Hämäläinen", "Ohto Kanninen"]
+    date_publication: "2022-02"
+    consulte_le: "2026-10-13"
+    note: "AEJ: Economic Policy 14(1), p. 501-522. Chiffres lus dans la version EconPol Working Paper 61 (2021, aussi VATT Working Paper 142), p. 2-3 et 18-19 ; le résumé publié confirme l'absence d'effet significatif la première année."
+  - id: vivalt-et-al-2024
+    type: document_de_travail
+    editeur: "National Bureau of Economic Research"
+    titre: "The Employment Effects of a Guaranteed Income: Experimental Evidence from Two U.S. States"
+    url: "https://www.nber.org/papers/w32719"
+    auteurs: ["Eva Vivalt", "Elizabeth Rhodes", "Alexander W. Bartik", "David E. Broockman", "Patrick Krause", "Sarah Miller"]
+    date_publication: "2024-07"
+    consulte_le: "2026-10-13"
+    note: "NBER Working Paper 32719, version révisée en août 2026 (chiffres lus dans cette révision : résumé, p. 3-4, 20-21, tableau IV). Aucune version publiée en revue indiquée par le NBER au 13/10/2026."
+  - id: yagan-2015
+    type: etude_academique
+    editeur: "American Economic Review"
+    titre: "Capital Tax Reform and the Real Economy: The Effects of the 2003 Dividend Tax Cut"
+    url: "https://doi.org/10.1257/aer.20130098"
+    auteurs: ["Danny Yagan"]
+    date_publication: "2015-12"
+    consulte_le: "2026-10-13"
+    note: "Vol. 105, n° 12, p. 3531-3563. Résumé lu sur la page AEA."
+  - id: zwick-mahon-2017
+    type: etude_academique
+    editeur: "American Economic Review"
+    titre: "Tax Policy and Heterogeneous Investment Behavior"
+    url: "https://doi.org/10.1257/aer.20140855"
+    auteurs: ["Eric Zwick", "James Mahon"]
+    date_publication: "2017-01"
+    consulte_le: "2026-10-13"
+    note: "Vol. 107, n° 1, p. 217-248. Résumé lu sur la page AEA."

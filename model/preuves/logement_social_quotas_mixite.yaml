@@ -1,0 +1,49 @@
+question:
+  id: logement_social_quotas_mixite
+  titre: "Effet de la loi SRU (quotas de logements sociaux) sur la construction et la mixité sociale"
+  definition: "Surcroît de croissance annuelle du nombre de logements sociaux, en points de pourcentage par an, dans les communes soumises à l'obligation de la loi SRU (article 55 : au moins 20 % de logements sociaux, sous peine d'amende) par rapport à des communes comparables non soumises. Les effets sur la mixité (présence et ségrégation des ménages modestes) sont décrits dans les notes."
+  unite: points_de_pourcentage
+  regles_liees: []
+  sens_attendu: positif
+  estimations:
+    - source: gobillon-vignolles-2016-revue-economique
+      valeur: 1.25
+      intervalle_95: null
+      methode: "Comparaison des communes juste au-dessus et juste en dessous du seuil de population d'application de la loi (discontinuité), 2000-2008"
+      champ: "France, communes proches du seuil d'éligibilité ayant déjà des logements sociaux en 2000, période 2000-2008"
+      pays: FR
+      annee_donnees: 2008
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "La loi a augmenté le taux de croissance annuel du parc social de 1,25 point en moyenne, effet concentré dans les communes qui avaient moins de 5 % de logements sociaux en 2000. Elle a aussi réduit la ségrégation des logements par type au sein des communes (logements sociaux plus dispersés), sans effet détecté sur les prix de revente des logements."
+    - source: chapelle-gobillon-vignolles-2025-iza
+      valeur: 1.8
+      intervalle_95: null
+      methode: "Différence de différences au niveau des communes et des quartiers, données fiscales exhaustives 1996-2008, avec tests de tendances préalables, placebos et prise en compte de la loi antérieure (LOV)"
+      champ: "France, 728 communes soumises à la loi sur la période triennale 2002-2004 et communes témoins, 2000-2008"
+      pays: FR
+      annee_donnees: 2008
+      type_etude: quasi_experimental
+      revue_par_les_pairs: false
+      note: "Parc social +15 % de plus que dans les communes témoins entre 2000 et 2008, soit +1,8 point de croissance annuelle (19 logements sociaux de plus par commune en moyenne, 61 % de la hausse observée). MIXITÉ : le nombre de ménages modestes n'augmente que de 0,7 point par an (11 ménages par commune) ; la part de logements sociaux augmente de 0,93 point mais celle des logements sociaux occupés par des ménages modestes de seulement 0,28 point, car les nouveaux logements relèvent de catégories accessibles aux revenus moyens. La ségrégation des logements sociaux dans la commune baisse (-3,5 points d'indice de dissimilarité), mais celle des ménages modestes presque pas (-0,64 point, non significatif). En 2002-2004, 50,8 % des communes soumises n'ont pas atteint leur objectif triennal ; l'amende médiane représentait 1,6 % du budget communal."
+    - source: bono-davidson-trannoy-2013-amse
+      valeur: null
+      intervalle_95: null
+      methode: "Méthode contrefactuelle construite sur la production passée de logements sociaux, comparée aux doubles différences et aux changements dans les changements"
+      champ: "France, communes soumises à l'article 55 de la loi SRU"
+      pays: FR
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: false
+      note: "Effet positif mais faible : gain de production sur quatre ans estimé à 0,35 point de pourcentage supplémentaire, soit plus de 40 logements pour une commune de 20 000 habitants. Exprimé en part du parc et non en croissance du parc social : non convertible sans hypothèse sur la part initiale de logements sociaux."
+    - source: beaubrun-diant-maury-2022-demography
+      valeur: null
+      intervalle_95: null
+      methode: "Analyse de l'effet du logement public sur la ségrégation par le revenu"
+      champ: "France, ségrégation par le revenu au sein des communes"
+      pays: FR
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Impact négligeable de la loi SRU sur un indice global de ségrégation par le revenu au sein des communes. Résultat lu uniquement via la revue de littérature de Chapelle, Gobillon et Vignolles (2025) ; le résumé original n'a pas pu être consulté."
+  note_synthese: "Les évaluations disponibles, peu nombreuses et toutes françaises, concordent sur la construction : la loi SRU a accéléré la croissance du parc social dans les communes soumises, d'environ 1,25 à 1,8 point par an sur 2000-2008, surtout là où il y avait très peu de logements sociaux. Elles concordent aussi sur la mixité : l'effet est faible, car les logements construits sont souvent destinés aux revenus moyens et implantés dans les quartiers déjà les plus modestes de la commune, si bien que la ségrégation des ménages pauvres baisse à peine. L'étude la plus complète est celle de Chapelle, Gobillon et Vignolles (données fiscales exhaustives, nombreux tests de robustesse), mais elle n'est pas encore publiée dans une revue. Lacunes : les résultats portent sur la seule période 2000-2008, alors que la loi a été modifiée depuis, et les bilans officiels (ministère du Logement, Cour des comptes, France Stratégie) n'ont pas pu être consultés pour cette fiche."

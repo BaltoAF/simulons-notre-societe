@@ -1,0 +1,529 @@
+# FICHIER GÉNÉRÉ par system/sync_openfisca.py le 2026-10-13 à partir d'OpenFisca-France 176.1.2.
+# Ne pas modifier à la main : modifier model/moteur/openfisca_leviers.yaml puis relancer le Système.
+genere_par: system/sync_openfisca.py
+domaine: prestations
+theme: RSA
+regles:
+- id: prestations.rsa.montant_forfaitaire
+  titre: 'RSA : montant forfaitaire pour une personne seule (par mois)'
+  explication: Revenu minimum garanti à une personne seule sans ressources. Il est majoré selon la composition du foyer et
+    diminue quand les autres revenus augmentent.
+  type: nombre
+  unite: euros
+  bornes:
+  - 0
+  - 2000
+  valeurs:
+  - depuis: '2009-06-01'
+    valeur: 454.63
+    sources:
+    - of-ref-d7afb60604
+    - openfisca-france
+  - depuis: '2010-01-01'
+    valeur: 460.09
+    sources:
+    - of-ref-eb69b6c7b1
+    - openfisca-france
+  - depuis: '2011-01-01'
+    valeur: 466.99
+    sources:
+    - of-ref-182140bcbf
+    - openfisca-france
+  - depuis: '2012-01-01'
+    valeur: 474.93
+    sources:
+    - of-ref-ede6a85620
+    - openfisca-france
+  - depuis: '2013-01-01'
+    valeur: 483.24
+    sources:
+    - of-ref-e0add4d796
+    - openfisca-france
+  - depuis: '2013-09-01'
+    valeur: 492.9
+    sources:
+    - of-ref-6cb4d59cad
+    - openfisca-france
+  - depuis: '2014-01-01'
+    valeur: 499.31
+    sources:
+    - of-ref-5bfebf00ba
+    - openfisca-france
+  - depuis: '2014-09-01'
+    valeur: 509.3
+    sources:
+    - of-ref-f20ecf77a7
+    - openfisca-france
+  - depuis: '2015-01-01'
+    valeur: 513.88
+    sources:
+    - of-ref-10da12e792
+    - openfisca-france
+  - depuis: '2015-09-01'
+    valeur: 524.16
+    sources:
+    - of-ref-d4e11c5c6e
+    - openfisca-france
+  - depuis: '2016-04-01'
+    valeur: 524.68
+    sources:
+    - of-ref-33723793f1
+    - openfisca-france
+  - depuis: '2016-09-01'
+    valeur: 535.17
+    sources:
+    - of-ref-ad8e141d3c
+    - openfisca-france
+  - depuis: '2017-04-01'
+    valeur: 536.78
+    sources:
+    - of-ref-c39ac63a09
+    - openfisca-france
+  - depuis: '2017-09-01'
+    valeur: 545.48
+    sources:
+    - of-ref-435188b769
+    - openfisca-france
+  - depuis: '2018-04-01'
+    valeur: 550.93
+    sources:
+    - of-ref-a92ffba18e
+    - openfisca-france
+  - depuis: '2019-04-01'
+    valeur: 559.74
+    sources:
+    - of-ref-6a5a526de9
+    - openfisca-france
+  - depuis: '2020-04-01'
+    valeur: 564.78
+    sources:
+    - of-ref-e008812ad7
+    - openfisca-france
+  - depuis: '2021-04-01'
+    valeur: 565.34
+    sources:
+    - of-ref-6d987072f4
+    - of-ref-46963d1989
+    - openfisca-france
+  - depuis: '2022-04-01'
+    valeur: 575.52
+    sources:
+    - of-ref-8f09e9cf19
+    - openfisca-france
+  - depuis: '2022-07-01'
+    valeur: 598.54
+    sources:
+    - of-ref-abbd9c5808
+    - openfisca-france
+  - depuis: '2023-04-01'
+    valeur: 607.75
+    sources:
+    - of-ref-a8a529b631
+    - openfisca-france
+  - depuis: '2024-04-01'
+    valeur: 635.71
+    sources:
+    - of-ref-99333b9d0c
+    - openfisca-france
+  - depuis: '2025-04-01'
+    valeur: 646.52
+    sources:
+    - of-ref-825bf7e94c
+    - openfisca-france
+  - depuis: '2026-04-01'
+    valeur: 651.69
+    sources:
+    - of-ref-05c661ca37
+    - openfisca-france
+  tags:
+  - minima_sociaux
+  - pauvrete
+  verifie_le: '2026-04-01'
+  moteur:
+    openfisca: prestations_sociales.solidarite_insertion.minima_sociaux.rsa.rsa_m.montant_de_base_du_rsa
+  a_verifier: false
+- id: prestations.prime_activite.montant_forfaitaire
+  titre: 'Prime d''activité : montant forfaitaire (par mois)'
+  explication: Base de calcul de la prime d'activité, l'aide versée aux travailleurs modestes pour compléter leurs revenus.
+  type: nombre
+  unite: euros
+  bornes:
+  - 0
+  - 2000
+  valeurs:
+  - depuis: '2016-01-01'
+    valeur: 524.16
+    sources:
+    - of-ref-80e8f94bc8
+    - of-ref-1310ba544c
+    - openfisca-france
+  - depuis: '2016-04-01'
+    valeur: 524.68
+    sources:
+    - of-ref-957bb04c5a
+    - openfisca-france
+  - depuis: '2017-04-01'
+    valeur: 526.25
+    sources:
+    - of-ref-0b1778a4bb
+    - openfisca-france
+  - depuis: '2018-04-01'
+    valeur: 531.51
+    sources:
+    - of-ref-0b648a1897
+    - openfisca-france
+  - depuis: '2018-08-01'
+    valeur: 551.51
+    sources:
+    - of-ref-b3d4a85956
+    - openfisca-france
+  - depuis: '2020-04-01'
+    valeur: 553.16
+    sources:
+    - of-ref-bd15186378
+    - openfisca-france
+  - depuis: '2021-04-01'
+    valeur: 553.71
+    sources:
+    - of-ref-3bc67f7a4c
+    - openfisca-france
+  - depuis: '2022-04-01'
+    valeur: 563.68
+    sources:
+    - of-ref-46f03c7f08
+    - openfisca-france
+  - depuis: '2022-07-01'
+    valeur: 586.23
+    sources:
+    - of-ref-093418a201
+    - openfisca-france
+  - depuis: '2023-04-01'
+    valeur: 595.25
+    sources:
+    - of-ref-400b02d5df
+    - openfisca-france
+  - depuis: '2024-04-01'
+    valeur: 622.63
+    sources:
+    - of-ref-cb87d7f099
+    - of-ref-97aa59560f
+    - openfisca-france
+  - depuis: '2025-04-01'
+    valeur: 633.21
+    sources:
+    - of-ref-b5d36b43e3
+    - openfisca-france
+  - depuis: '2026-04-01'
+    valeur: 638.28
+    sources:
+    - of-ref-9a0714702a
+    - openfisca-france
+  tags:
+  - travail
+  - incitation
+  verifie_le: '2026-04-01'
+  moteur:
+    openfisca: prestations_sociales.solidarite_insertion.minima_sociaux.ppa.pa_m.montant_de_base
+  a_verifier: false
+- id: prestations.prime_activite.part_revenus_activite
+  titre: 'Prime d''activité : part des revenus du travail prise en compte'
+  explication: Pour 100 € gagnés en travaillant, cette part s'ajoute au droit. Plus elle est élevée, plus travailler davantage
+    est récompensé.
+  type: nombre
+  unite: pourcent
+  bornes:
+  - 0
+  - 100
+  valeurs:
+  - depuis: '2016-01-01'
+    valeur: 62.0
+    sources:
+    - of-ref-e93dfeb78b
+    - of-ref-a8d2da8442
+    - openfisca-france
+  - depuis: '2018-08-01'
+    valeur: 61.0
+    sources:
+    - of-ref-a439ccedc7
+    - of-ref-37b9dee8f8
+    - openfisca-france
+  - depuis: '2025-04-01'
+    valeur: 59.85
+    sources:
+    - of-ref-ddbf337878
+    - of-ref-37b9dee8f8
+    - openfisca-france
+  verifie_le: '2025-06-26'
+  moteur:
+    openfisca: prestations_sociales.solidarite_insertion.minima_sociaux.ppa.pa_m.majoration_ressources_revenus_activite
+  a_verifier: false
+- id: prestations.prime_activite.bonification_max
+  titre: 'Prime d''activité : bonification individuelle maximale (en % du montant forfaitaire)'
+  explication: Supplément versé à chaque travailleur dont les revenus approchent ou dépassent le SMIC.
+  type: nombre
+  unite: pourcent
+  bornes:
+  - 0
+  - 100
+  valeurs:
+  - depuis: '2016-01-01'
+    valeur: 12.782
+    sources:
+    - of-ref-e93dfeb78b
+    - of-ref-1753828442
+    - openfisca-france
+  - depuis: '2018-10-01'
+    valeur: 29.101
+    sources:
+    - of-ref-bbf07fa814
+    - of-ref-bcddfac820
+    - openfisca-france
+  - depuis: '2026-04-01'
+    valeur: 37.7
+    sources:
+    - of-ref-60da4893d8
+    - of-ref-bcddfac820
+    - openfisca-france
+  verifie_le: '2026-04-01'
+  moteur:
+    openfisca: prestations_sociales.solidarite_insertion.minima_sociaux.ppa.pa_m.bonification.taux_bonification_max
+  a_verifier: false
+- id: prestations.aah.montant
+  titre: 'Allocation aux adultes handicapés (AAH) : montant maximal (par mois)'
+  explication: Revenu minimum versé aux personnes en situation de handicap qui ont peu ou pas de ressources.
+  type: nombre
+  unite: euros
+  bornes:
+  - 0
+  - 3000
+  valeurs:
+  - depuis: '2009-09-01'
+    valeur: 681.63
+    sources:
+    - of-ref-fff48a9a49
+    - openfisca-france
+  - depuis: '2010-04-01'
+    valeur: 696.63
+    sources:
+    - of-ref-3408bb7867
+    - openfisca-france
+  - depuis: '2010-09-01'
+    valeur: 711.95
+    sources:
+    - of-ref-3408bb7867
+    - openfisca-france
+  - depuis: '2011-04-01'
+    valeur: 727.61
+    sources:
+    - of-ref-eb386b913f
+    - openfisca-france
+  - depuis: '2011-09-01'
+    valeur: 743.62
+    sources:
+    - of-ref-eb386b913f
+    - openfisca-france
+  - depuis: '2012-04-01'
+    valeur: 759.98
+    sources:
+    - of-ref-7ba82f65c6
+    - openfisca-france
+  - depuis: '2012-09-01'
+    valeur: 776.59
+    sources:
+    - of-ref-7ba82f65c6
+    - openfisca-france
+  - depuis: '2013-09-01'
+    valeur: 790.18
+    sources:
+    - of-ref-ad922c98ad
+    - openfisca-france
+  - depuis: '2014-09-01'
+    valeur: 800.45
+    sources:
+    - of-ref-c0795390ba
+    - openfisca-france
+  - depuis: '2015-09-01'
+    valeur: 807.65
+    sources:
+    - of-ref-1d794cabd9
+    - openfisca-france
+  - depuis: '2016-04-01'
+    valeur: 808.46
+    sources:
+    - of-ref-41029a5b16
+    - openfisca-france
+  - depuis: '2017-04-01'
+    valeur: 810.89
+    sources:
+    - of-ref-11e0ca4111
+    - openfisca-france
+  - depuis: '2018-04-01'
+    valeur: 819.0
+    sources:
+    - of-ref-c29e3bc468
+    - openfisca-france
+  - depuis: '2018-11-01'
+    valeur: 860.0
+    sources:
+    - of-ref-b28dc1d44d
+    - openfisca-france
+  - depuis: '2019-11-01'
+    valeur: 900.0
+    sources:
+    - of-ref-7351d16806
+    - openfisca-france
+  - depuis: '2020-04-01'
+    valeur: 902.7
+    sources:
+    - of-ref-e27c5c87aa
+    - openfisca-france
+  - depuis: '2021-04-01'
+    valeur: 903.6
+    sources:
+    - of-ref-b3ecdb84d6
+    - openfisca-france
+  - depuis: '2022-04-01'
+    valeur: 919.86
+    sources:
+    - of-ref-178d72b90a
+    - of-ref-61eef05987
+    - openfisca-france
+  - depuis: '2022-07-01'
+    valeur: 956.65
+    sources:
+    - of-ref-00762f08c6
+    - of-ref-aa58be771a
+    - openfisca-france
+  - depuis: '2023-04-01'
+    valeur: 971.37
+    sources:
+    - of-ref-7d6912ed2b
+    - openfisca-france
+  - depuis: '2024-04-01'
+    valeur: 1016.05
+    sources:
+    - of-ref-aa8d40a125
+    - openfisca-france
+  - depuis: '2025-04-01'
+    valeur: 1033.32
+    sources:
+    - of-ref-7d2f87c171
+    - openfisca-france
+  - depuis: '2026-04-01'
+    valeur: 1041.59
+    sources:
+    - of-ref-c04b7c779e
+    - openfisca-france
+  verifie_le: '2026-04-01'
+  moteur:
+    openfisca: prestations_sociales.prestations_etat_de_sante.invalidite.aah.montant
+  a_verifier: false
+- id: prestations.aspa.montant_personne_seule
+  titre: 'Minimum vieillesse (ASPA) : montant maximal pour une personne seule (par an)'
+  explication: Revenu minimum garanti aux personnes âgées. Le plafond de ressources évolue avec le montant.
+  type: nombre
+  unite: euros
+  bornes:
+  - 0
+  - 30000
+  valeurs:
+  - depuis: '2009-04-01'
+    valeur: 8125.59
+    sources:
+    - of-ref-0d7704716c
+    - openfisca-france
+  - depuis: '2010-04-01'
+    valeur: 8507.49
+    sources:
+    - of-ref-27040758ef
+    - openfisca-france
+  - depuis: '2011-04-01'
+    valeur: 8907.34
+    sources:
+    - of-ref-2499318769
+    - openfisca-france
+  - depuis: '2012-04-01'
+    valeur: 9325.98
+    sources:
+    - of-ref-c72d8092f5
+    - openfisca-france
+  - depuis: '2013-04-01'
+    valeur: 9447.21
+    sources:
+    - of-ref-ef9a86de03
+    - openfisca-france
+  - depuis: '2014-04-01'
+    valeur: 9503.89
+    sources:
+    - of-ref-d082fd80ff
+    - openfisca-france
+  - depuis: '2014-10-01'
+    valeur: 9600.0
+    sources:
+    - of-ref-f6f3b8fb51
+    - openfisca-france
+  - depuis: '2016-04-01'
+    valeur: 9609.6
+    sources:
+    - of-ref-fba7384837
+    - openfisca-france
+  - depuis: '2017-04-01'
+    valeur: 9638.42
+    sources:
+    - of-ref-823c59ead8
+    - openfisca-france
+  - depuis: '2018-04-01'
+    valeur: 9998.4
+    sources:
+    - of-ref-039f927bf0
+    - of-ref-197a3b2006
+    - openfisca-france
+  - depuis: '2019-01-01'
+    valeur: 10418.4
+    sources:
+    - of-ref-039f927bf0
+    - openfisca-france
+  - depuis: '2020-01-01'
+    valeur: 10838.4
+    sources:
+    - of-ref-039f927bf0
+    - openfisca-france
+  - depuis: '2021-01-01'
+    valeur: 10881.75
+    sources:
+    - of-ref-e5505a5c46
+    - openfisca-france
+  - depuis: '2022-01-01'
+    valeur: 11001.44
+    sources:
+    - of-ref-ea9ac8b18f
+    - openfisca-france
+  - depuis: '2022-07-01'
+    valeur: 11441.5
+    sources:
+    - of-ref-f548a9102e
+    - openfisca-france
+  - depuis: '2023-01-01'
+    valeur: 11533.02
+    sources:
+    - of-ref-67ba57328d
+    - openfisca-france
+  - depuis: '2024-01-01'
+    valeur: 12144.27
+    sources:
+    - of-ref-bc62673749
+    - openfisca-france
+  - depuis: '2025-01-01'
+    valeur: 12411.44
+    sources:
+    - of-ref-30ca97e41c
+    - openfisca-france
+  - depuis: '2026-01-01'
+    valeur: 12523.14
+    sources:
+    - of-ref-1041f62ff2
+    - openfisca-france
+  verifie_le: '2026-01-06'
+  moteur:
+    openfisca: prestations_sociales.solidarite_insertion.minimum_vieillesse.aspa.montant_maximum_annuel.personnes_seules
+  a_verifier: false

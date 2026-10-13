@@ -1,0 +1,69 @@
+question:
+  id: vitesse_limite_mortalite_routiere
+  titre: "Effet de l'abaissement des limitations de vitesse sur la mortalité routière"
+  definition: "Variation, en %, du nombre de tués (ou du taux de tués par kilomètre parcouru) sur les routes concernées, ramenée à un abaissement de 10 km/h de la vitesse maximale autorisée. Les études portant sur des HAUSSES de limitation sont converties en effet équivalent d'une baisse de 10 km/h (conversion détaillée dans chaque note)."
+  unite: pourcent
+  regles_liees: []
+  sens_attendu: negatif
+  estimations:
+    - source: cerema-onisr-2020-evaluation-80kmh
+      valeur: null
+      intervalle_95: null
+      methode: "Évaluation avant/après : comparaison de la mortalité sur le réseau concerné et sur le reste du réseau par rapport à la moyenne 2013-2017, et mesures de vitesses sur 50 points de suivi (143 millions de passages)"
+      champ: "France métropolitaine, routes bidirectionnelles hors agglomération sans séparateur central, passage de 90 à 80 km/h le 1er juillet 2018, accidents de juillet 2018 à février 2020 (20 mois)"
+      pays: FR
+      annee_donnees: 2020
+      type_etude: descriptif
+      revue_par_les_pairs: false
+      note: "Résultat publié : 349 vies épargnées en 20 mois sur le réseau hors agglomération hors autoroute ; vitesse moyenne des voitures -3,5 km/h, des poids lourds -1,8 km/h ; taux de tués pour 100 accidents passé de 15,2 à 13,7 (-10 %) sur le réseau concerné, contre 2,9 à 3,1 sur le reste du réseau, qui compte 48 tués de plus que la moyenne de référence. Valeur laissée vide : le nombre de tués de référence sur le réseau concerné n'a pas pu être lu, ce qui empêche le calcul en %. Bilan socio-économique estimé à environ +700 M€ par an."
+    - source: oms-2026-fiche-traumatismes-routiers
+      valeur: -15
+      intervalle_95: null
+      methode: "Modèle de puissance (relation de Nilsson) : 1 % de vitesse moyenne en plus = 4 % de risque d'accident mortel en plus"
+      champ: "Application au passage de 90 à 80 km/h en France : baisse observée de 3,5 km/h de la vitesse moyenne des voitures, à partir d'une vitesse moyenne d'environ 86 km/h"
+      pays: FR
+      annee_donnees: 2019
+      type_etude: simulation_institutionnelle
+      revue_par_les_pairs: false
+      note: "Conversion : -3,5 / 86 = -4,1 % de vitesse moyenne ; (1 - 0,041)^4 - 1 = -15 % de risque d'accident mortel (-16 % en lecture linéaire 4 x 4,1 %). La vitesse de départ de 86 km/h est celle mesurée pendant l'expérimentation de 2015-2017 (ONISR), la baisse de 3,5 km/h celle de l'évaluation nationale de 2020. Cette relation correspond au « modèle de puissance » de Nilsson ; elle porte sur la vitesse moyenne réellement pratiquée, pas sur la limite affichée."
+    - source: ashenfelter-greenstone-2004-jpe
+      valeur: -17
+      intervalle_95: null
+      methode: "Différence de différences : relèvement de 55 à 65 mph (89 à 105 km/h) autorisé en 1987 sur les autoroutes interétatiques rurales, pas sur les urbaines ; États adoptants contre non adoptants"
+      champ: "États-Unis, autoroutes interétatiques rurales, 21 États aux données complètes, fin des années 1980"
+      pays: US
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Le passage à 65 mph a augmenté les vitesses d'environ 3,5 % (2 mph) et le taux de mortalité d'environ 35 %. Conversion : +35 % pour +16,1 km/h, soit 1,35^(10/16,1) = +20,5 % pour +10 km/h, ou -17 % pour une baisse de 10 km/h (en supposant un effet symétrique)."
+    - source: van-benthem-2015-jpube
+      valeur: -21
+      intervalle_95: null
+      methode: "Exploitation des relèvements massifs des limitations sur les autoroutes de l'ouest des États-Unis en 1987 et 1996"
+      champ: "États-Unis (États de l'Ouest), autoroutes"
+      pays: US
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Une hausse de 10 mph (16,1 km/h) de la limite augmente la vitesse pratiquée de 3 à 4 mph, les accidents de 9 à 15 % et les accidents mortels de 34 à 60 %. Conversion (milieu 47 %) : 1,47^(10/16,1) = +27 % pour +10 km/h, soit -21 % pour une baisse de 10 km/h (fourchette -17 % à -25 %). Porte sur les accidents mortels, pas sur les tués."
+    - source: farmer-2019-iihs
+      valeur: -9.6
+      intervalle_95: null
+      methode: "Modèle de panel des taux de mortalité par mile parcouru par État (1993-2017), contrôlant le temps, le chômage, la part de jeunes conducteurs et le port de la ceinture"
+      champ: "États-Unis, autoroutes interétatiques et voies express, 1993-2017"
+      pays: US
+      annee_donnees: 2017
+      type_etude: quasi_experimental
+      revue_par_les_pairs: false
+      note: "+5 mph de limite maximale = +8,5 % de taux de mortalité. Conversion : 1,085^(10/8,05) = +10,7 % pour +10 km/h, soit -9,6 % pour une baisse de 10 km/h. Au total, 36 760 tués de plus en 25 ans attribués aux relèvements (13 638 sur autoroutes, 23 122 sur les autres routes)."
+    - source: farmer-2019-iihs
+      valeur: -3.4
+      intervalle_95: null
+      methode: "Modèle de panel des taux de mortalité par mile parcouru par État (1993-2017)"
+      champ: "États-Unis, autres routes que les autoroutes, 1993-2017"
+      pays: US
+      annee_donnees: 2017
+      type_etude: quasi_experimental
+      revue_par_les_pairs: false
+      note: "+5 mph de limite maximale de l'État = +2,8 % de taux de mortalité sur les autres routes. Conversion : 1,028^(10/8,05) = +3,5 % pour +10 km/h, soit -3,4 % pour une baisse de 10 km/h. La variable explicative est la limite maximale de l'État, pas forcément celle de chaque route, ce qui dilue l'effet."
+  note_synthese: "Le consensus scientifique est solide sur le sens de l'effet : rouler moins vite réduit la mortalité, et la relation de Nilsson reprise par l'OMS (1 % de vitesse moyenne en moins = environ 4 % d'accidents mortels en moins) fait référence. L'évaluation officielle du passage à 80 km/h (Cerema-ONISR, 2020) chiffre le gain à 349 vies épargnées en 20 mois, avec une baisse de 3,5 km/h de la vitesse moyenne des voitures, ce qui correspond à une baisse de la mortalité d'environ 15 % selon la relation de l'OMS. Les études américaines sur les relèvements de limitation donnent des effets équivalents de -10 % à -21 % pour 10 km/h sur autoroute, et de seulement -3 % sur les autres routes quand on mesure la limite maximale de l'État. Le débat porte surtout sur l'ampleur : elle dépend de la baisse réelle des vitesses pratiquées (en général bien inférieure à la baisse de la limite), du type de route et de la période d'observation (l'évaluation française a été arrêtée en février 2020 à cause du Covid). Les méta-analyses d'Elvik n'ont pas pu être consultées directement pour cette fiche."

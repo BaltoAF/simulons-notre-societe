@@ -1,0 +1,119 @@
+question:
+  id: impot_societes_investissement
+  titre: "Effet d'une baisse de l'impôt sur les sociétés sur l'investissement et l'emploi"
+  definition: "Variation en % de l'investissement (ou du stock de capital) des entreprises pour une baisse de 1 point du taux d'impôt sur les sociétés (semi-élasticité, à moyen terme). Les effets sur l'emploi et les salaires sont précisés dans les notes."
+  unite: semi_elasticite_pourcent_par_point
+  regles_liees: [fiscalite.is.taux_normal]
+  sens_attendu: positif
+  estimations:
+    - source: ohrn-2018
+      valeur: 4.7
+      intervalle_95: null
+      methode: "Différence de différences exploitant la déduction fiscale DPAD (2005), qui a réduit le taux effectif d'IS de façon différente selon l'industrie et la taille des entreprises"
+      champ: "États-Unis, sociétés cotées (Compustat), 2005-2012 ; investissement rapporté au capital installé"
+      pays: US
+      annee_donnees: 2012
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Résumé : « A 1 percentage point reduction in tax rates increases investment by 4.7 percent of installed capital » ; les dividendes versés augmentent de 0,3 % du chiffre d'affaires et la dette baisse de 5,3 % de l'actif. ATTENTION À L'UNITÉ : 4,7 est exprimé en % du stock de capital (le supplément d'investissement annuel équivaut à 4,7 % du capital, soit un stock de capital environ 4,7 % plus élevé après un an), pas en % de l'investissement ; en % de l'investissement l'effet serait plusieurs fois plus grand (conversion impossible sans le taux d'investissement moyen, non lu). L'annexe en ligne (tableau A2) donne, selon les spécifications, une élasticité de l'investissement au taux net d'impôt (1 − taux) de 4,7 à 10,4. C'est l'estimation la plus élevée de cette fiche."
+
+    - source: djankov-et-al-2010
+      valeur: 1.0
+      intervalle_95: null
+      methode: "Comparaison internationale (coupe transversale) de taux effectifs d'IS calculés pour une entreprise type, avec contrôles (autres impôts, administration fiscale, institutions, développement)"
+      champ: "85 pays, taux effectif de première année en 2004 ; investissement / PIB moyen 2003-2005"
+      pays: INT
+      annee_donnees: 2005
+      type_etude: descriptif
+      revue_par_les_pairs: true
+      note: "Document de travail NBER w13756 : « raising the 1st year effective tax rate by 10 percentage points reduces the investment rate by 2.2 percentage points (average investment rate is 21.5%) ». Conversion : 0,22 point de PIB par point de taux / 21,5 % = environ 1,0 % d'investissement en plus par point de baisse. Corrélation entre pays (risque de facteurs omis malgré les contrôles) ; le taux est un taux effectif, pas le taux légal. Effets aussi sur l'investissement direct étranger (−2,3 points pour +10 points de taux) et la création d'entreprises."
+
+    - source: chodorow-reich-et-al-2024
+      valeur: 0.25
+      intervalle_95: null
+      methode: "Estimations sur données fiscales des entreprises (différences selon l'exposition à la réforme) combinées à un modèle d'investissement mondial en équilibre général"
+      champ: "États-Unis, réforme TCJA de 2017 (taux fédéral d'IS ramené de 35 % à 21 %, amortissement immédiat, nouvelles règles internationales) ; stock de capital domestique des sociétés à long terme (15 ans)"
+      pays: US
+      annee_donnees: null
+      type_etude: structurel
+      revue_par_les_pairs: false
+      note: "Le texte indique : « Changes in the METR τ alone would have increased capital by about 3.5% after 15 years », soit environ la moitié de l'effet total. Conversion approximative : 3,5 % / 14 points de baisse du taux légal ≈ 0,25 % par point (le taux marginal effectif a baissé de moins de 14 points pour beaucoup d'entreprises, donc l'effet par point de taux effectif serait plus élevé). Effet total de la réforme : +20 % d'investissement pour les entreprises ayant la variation d'impôt moyenne par rapport à celles sans variation ; stock de capital domestique +7,2 % à long terme en équilibre général (e.t. 2,7) et +12,8 % en équilibre partiel ; salaires +0,9 % à long terme (environ 750 dollars par an et par salarié) ; recettes d'IS −41 % presque pas compensées par la croissance. La synthèse des mêmes auteurs (JEP 2024) retient une hausse de 11 % de l'investissement corporel total."
+
+    - source: dobbins-jacob-2016
+      valeur: null
+      intervalle_95: null
+      methode: "Différence de différences : entreprises allemandes à capitaux nationaux contre filiales de groupes étrangers (qui transfèrent plus facilement leurs bénéfices)"
+      champ: "Allemagne, réforme de l'impôt sur les sociétés de 2008 (forte baisse du taux), données d'entreprises"
+      pays: DE
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Non convertible en semi-élasticité à partir du résumé : la baisse d'impôt a conduit à « a one-to-one increase in the real investments of domestic firms » (par rapport aux filiales étrangères), avec un effet plus fort pour les entreprises dépendant de leurs fonds propres et une croissance plus rapide des ventes. Effet positif sur l'investissement, ampleur en % par point non lue."
+
+    - source: giroud-rauh-2019
+      valeur: null
+      intervalle_95: null
+      methode: "Données au niveau des établissements ; variations des taux d'imposition des États américains"
+      champ: "États-Unis, sociétés de capitaux (C corporations), emploi et nombre d'établissements"
+      pays: US
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Pas d'estimation sur l'investissement (valeur null). EMPLOI : le résumé indique que l'emploi et le nombre d'établissements des sociétés ont des « short-run corporate tax elasticities of −0.4 to −0.5 » : une baisse du taux d'IS des États augmente l'emploi local de ces entreprises, en partie par déplacement d'activité entre États."
+
+    - source: ljungqvist-smolyansky-2018
+      valeur: null
+      intervalle_95: null
+      methode: "Comparaison de comtés voisins situés de part et d'autre d'une frontière entre États, variations des taux d'IS des États"
+      champ: "États-Unis, 1970-2010, emploi et revenus salariaux"
+      pays: US
+      annee_donnees: 2010
+      type_etude: quasi_experimental
+      revue_par_les_pairs: false
+      note: "Pas d'estimation sur l'investissement (valeur null). EMPLOI : asymétrie — les hausses d'IS réduisent significativement l'emploi et les revenus salariaux, mais les baisses d'IS « only boost economic activity if implemented during recessions ». Contrepoint aux études qui trouvent des effets symétriques."
+
+    - source: fuest-et-al-2018
+      valeur: null
+      intervalle_95: null
+      methode: "Études d'événements et différences de différences sur un panel de 20 ans de communes allemandes (6 800 variations de l'impôt local sur les entreprises)"
+      champ: "Allemagne, impôt local sur les bénéfices des entreprises (Gewerbesteuer), salaires"
+      pays: DE
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Pas d'estimation sur l'investissement (valeur null). SALAIRES : « workers bear about one-half of the total tax burden », davantage pour les salariés peu qualifiés, jeunes et les femmes. Le rapport du CPO (2017) cite un résultat proche sur neuf pays européens dont la France (Arulampalam, Devereux et Maffini 2012 : 1 euro d'impôt en plus réduit la masse salariale de 49 centimes)."
+
+    - source: yagan-2015
+      valeur: null
+      intervalle_95: null
+      methode: "Méthode quasi expérimentale sur les déclarations fiscales des sociétés américaines (1996-2008)"
+      champ: "États-Unis, baisse de l'impôt sur les DIVIDENDES de 2003 (pas une baisse de l'IS)"
+      pays: US
+      annee_donnees: 2008
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Valeur null car il s'agit d'un impôt sur les dividendes et non du taux d'IS. Résumé : « the tax cut caused zero change in corporate investment and employee compensation ». Contrepoint : toutes les baisses d'impôt sur le capital ne stimulent pas l'investissement ; l'effet dépend de l'instrument."
+
+    - source: zwick-mahon-2017
+      valeur: null
+      intervalle_95: null
+      methode: "Exploitation des variations de l'amortissement accéléré (« bonus depreciation ») sur les données de plus de 120 000 entreprises, comparaison de l'investissement éligible et non éligible"
+      champ: "États-Unis, amortissement accéléré temporaire (2001-2004 et 2008-2010), investissement en équipement"
+      pays: US
+      annee_donnees: 2010
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Valeur null : il s'agit d'un amortissement accéléré, pas d'une baisse du taux d'IS, et la conversion vers une semi-élasticité par point de taux supposerait des paramètres de coût du capital non publiés dans le résumé. Résumé : l'amortissement accéléré a augmenté l'investissement éligible de 10,4 % (2001-2004) et de 16,9 % (2008-2010) par rapport à l'investissement non éligible ; les petites entreprises réagissent 95 % plus que les grandes, surtout quand la mesure procure de la trésorerie immédiate."
+
+    - source: cpo-impot-societes-2017
+      valeur: null
+      intervalle_95: null
+      methode: "Revue de littérature et auditions (rapport particulier du Conseil des prélèvements obligatoires)"
+      champ: "France, impôt sur les sociétés, effets sur les comportements des entreprises (évaluation ex ante, avant la baisse du taux)"
+      pays: FR
+      annee_donnees: null
+      type_etude: descriptif
+      revue_par_les_pairs: false
+      note: "Aucune estimation chiffrée propre à la France sur l'investissement. Le rapport intitule sa section 3.1 « L'IS affecte probablement significativement l'investissement des entreprises de petite taille » et juge qu'à long terme une partie de l'impôt est supportée par les salariés. Le rapport principal du CPO (12 janvier 2017) proposait de ramener progressivement le taux vers environ 25 % sans en chiffrer les effets. Aucune évaluation ex post chiffrée de la baisse récente du taux d'IS en France n'a été trouvée lors de cette recherche."
+
+  note_synthese: "Les études s'accordent sur le sens de l'effet : baisser l'impôt sur les sociétés augmente l'investissement, mais l'ampleur varie beaucoup selon la méthode. Pour la grande réforme américaine de 2017 (taux de 35 % à 21 %), la seule baisse du taux aurait augmenté le stock de capital d'environ 3,5 % en 15 ans (environ 0,25 % par point), une comparaison entre 85 pays suggère environ 1 % d'investissement en plus par point, et une étude sur une déduction ciblée trouve un effet bien plus fort (supplément d'investissement égal à 4,7 % du capital par point). Sur l'emploi et les salaires, plusieurs études trouvent des effets réels (les salariés supporteraient environ la moitié de l'impôt en Allemagne et en Europe), mais d'autres trouvent que les baisses d'impôt ne créent des emplois qu'en période de récession, et une baisse de l'impôt sur les dividendes aux États-Unis n'a eu aucun effet sur l'investissement. Pour la France, aucune évaluation chiffrée après coup de la baisse récente du taux de l'IS n'a été trouvée ; le Conseil des prélèvements obligatoires jugeait en 2017 l'effet sur l'investissement probablement significatif, sans le chiffrer."

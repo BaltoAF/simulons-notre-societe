@@ -1,0 +1,337 @@
+# Métriques complémentaires utilisées par les modèles d'impact des réformes.
+# Sources : model/sources/complements_impacts.yaml (ids « cpl- »). Consultées le 13 octobre 2026.
+# Convention de date : 31 décembre pour une valeur annuelle, date de référence exacte sinon.
+metriques:
+  # ---------------------------------------------------------------------------
+  # TRAVAIL
+  # ---------------------------------------------------------------------------
+  - id: travail.salaries_concernes_revalorisation_smic_part
+    titre: "Part des salariés du privé directement concernés par la dernière revalorisation mesurée du Smic"
+    explication: "Proportion de salariés dont la paie a dû être relevée quand le Smic a augmenté. La dernière mesure publiée (enquête Acemo de la Dares, reprise par le Groupe d'experts sur le Smic) porte sur la hausse anticipée du 1er novembre 2024 (Smic à 11,88 € bruts de l'heure) : 12,4 % des salariés, contre une part plus élevée en début d'année 2024. Champ : secteur privé hors agriculture, hors apprentis, stagiaires et intérimaires, France hors Mayotte. Ce n'est pas exactement la part des salariés payés au Smic."
+    unite: pourcent
+    serie:
+      - date: "2024-11-01"
+        valeur: 12.4
+        source: cpl-groupe-experts-smic-2025
+        statut: definitif
+
+  - id: travail.salaries_concernes_revalorisation_smic_nombre
+    titre: "Nombre de salariés du privé directement concernés par la dernière revalorisation mesurée du Smic"
+    explication: "Nombre de salariés dont la paie a dû être relevée lors de la hausse anticipée du Smic au 1er novembre 2024 : environ 2,2 millions (valeur arrondie publiée). Même champ que la part correspondante (privé hors agriculture, France hors Mayotte)."
+    unite: personnes
+    serie:
+      - date: "2024-11-01"
+        valeur: 2200000
+        source: cpl-groupe-experts-smic-2025
+        statut: definitif
+
+  - id: travail.duree_moyenne_indemnisation_chomage
+    titre: "Durée moyenne d'indemnisation chômage réellement consommée (droits interrompus dans l'année)"
+    explication: "Pour les 2,6 millions de droits au chômage qui se sont arrêtés en 2023, l'Unédic compte en moyenne 327 jours indemnisés, soit environ 11 mois, alors que la durée de droit disponible était en moyenne de 19 mois (564 jours) : les allocataires consomment en moyenne 60 % de leur droit. La plupart de ces droits avaient été ouverts avant la réforme de 2023."
+    unite: mois
+    serie:
+      - date: "2023-12-31"
+        valeur: 11
+        source: cpl-unedic-durees-indemnisation-2025
+        statut: definitif
+
+  - id: travail.allocation_chomage_moyenne_nette
+    titre: "Allocation chômage moyenne nette versée par mois (allocataires indemnisés)"
+    explication: "Montant moyen réellement versé chaque mois aux personnes indemnisées par l'Assurance chômage, en tenant compte des mois incomplets (arrêt maladie, cumul avec un salaire…). Au 1er trimestre 2026 : 1 055 € nets par mois en moyenne (1 152 € pour ceux qui n'ont pas travaillé, 820 € pour ceux qui cumulent avec un emploi) ; 54 % des indemnisés touchent moins de 1 000 €."
+    unite: euros
+    serie:
+      - date: "2026-03-31"
+        valeur: 1055
+        source: cpl-unedic-montant-t1-2026
+        statut: provisoire
+
+  # ---------------------------------------------------------------------------
+  # FISCALITÉ - TVA
+  # ---------------------------------------------------------------------------
+  - id: fiscalite.tva.recettes_brutes_totales
+    titre: "Recettes totales de TVA, toutes administrations publiques (comptabilité nationale)"
+    explication: "Produit total de la TVA, quel que soit le bénéficiaire (État, Sécurité sociale, collectivités), mesuré par l'Insee dans les comptes nationaux. Pour 2025, la DGFiP publie des ordres de grandeur proches : 211 Md€ de « TVA économique » et 212 Md€ de TVA budgétaire collectée. Statuts Insee : 2023 définitif, 2024 semi-définitif (codé provisoire), 2025 provisoire."
+    unite: milliards_euros
+    serie:
+      - date: "2023-12-31"
+        valeur: 206.312
+        source: cpl-insee-cn2025-t3217
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 207.753
+        source: cpl-insee-cn2025-t3217
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 208.821
+        source: cpl-insee-cn2025-t3217
+        statut: provisoire
+
+  - id: fiscalite.tva.part_recettes_taux_normal
+    titre: "Part du taux normal (20 %) dans la TVA brute collectée par les entreprises"
+    explication: "Part de la TVA facturée au taux de 20 % (ventes en métropole, produits pétroliers et importations) dans le total de la TVA brute collectée en 2025 (943 Md€, avant déduction de la TVA payée par les entreprises sur leurs achats). Calcul Société 2.0 à partir des montants DGFiP : (798 841 + 13 431,2 + 30 311,5) / 943 322 M€. Attention : cette part surestime le poids du taux normal dans les recettes nettes, car la TVA collectée entre entreprises est surtout au taux normal puis déduite. Les recettes nettes par taux ne sont pas observables dans les déclarations (CPO, 2023) ; pour simuler une réforme, la DG Trésor estime qu'un point de TVA rapporte en 2025 : 8,9 Md€ au taux de 20 %, 1,9 Md€ à 10 %, 2,4 Md€ à 5,5 % et 0,4 Md€ à 2,1 % (13,7 Md€ au total, Trésor-Éco n° 371)."
+    unite: pourcent
+    serie:
+      - date: "2025-12-31"
+        valeur: 89.3
+        source: cpl-dgfip-tva-secteurs-taux-2025
+        statut: estimation
+
+  - id: fiscalite.tva.part_recettes_taux_intermediaire
+    titre: "Part du taux intermédiaire (10 %) dans la TVA brute collectée par les entreprises"
+    explication: "Part de la TVA facturée au taux de 10 % (restauration, travaux dans les logements, transport de voyageurs…), importations comprises, dans le total de la TVA brute collectée en 2025. Calcul Société 2.0 à partir des montants DGFiP : (32 417,4 + 131,5) / 943 322 M€. Même limite que pour le taux normal : il s'agit de TVA collectée avant déductions, pas des recettes nettes. Repère DG Trésor : un point de TVA au taux de 10 % rapporte 1,9 Md€ bruts en 2025."
+    unite: pourcent
+    serie:
+      - date: "2025-12-31"
+        valeur: 3.5
+        source: cpl-dgfip-tva-secteurs-taux-2025
+        statut: estimation
+
+  - id: fiscalite.tva.part_recettes_taux_reduit
+    titre: "Part du taux réduit (5,5 %) dans la TVA brute collectée par les entreprises"
+    explication: "Part de la TVA facturée au taux de 5,5 % (alimentation, énergie, travaux de rénovation énergétique…), importations comprises, dans le total de la TVA brute collectée en 2025. Calcul Société 2.0 à partir des montants DGFiP : (48 201,1 + 840,5) / 943 322 M€. Même limite que pour le taux normal. Le reste (environ 2 %) correspond aux taux des DOM, de la Corse, au 2,1 % et aux « autres taux » que la DGFiP ne détaille pas. Repère DG Trésor : un point de TVA au taux de 5,5 % rapporte 2,4 Md€ bruts en 2025."
+    unite: pourcent
+    serie:
+      - date: "2025-12-31"
+        valeur: 5.2
+        source: cpl-dgfip-tva-secteurs-taux-2025
+        statut: estimation
+
+  # ---------------------------------------------------------------------------
+  # CONSOMMATION - poids de la TVA selon le niveau de vie
+  # ---------------------------------------------------------------------------
+  - id: consommation.tva_part_revenu_disponible_decile_1
+    titre: "TVA payée en % du revenu disponible – 10 % de ménages les plus modestes (1er décile de niveau de vie)"
+    explication: "Part du revenu des ménages les plus modestes qui part en TVA : 12,5 %, contre 4,7 % pour les 10 % les plus aisés, parce que les ménages modestes consomment presque tout leur revenu. Estimation la plus récente publiée par le Conseil des prélèvements obligatoires (2023), qui reprend un calcul de 2015 (modèle Ines, enquête Budget de famille 2011, législation 2014), jugé toujours valable. Les déciles 3 à 8 ne sont publiés que sous forme de graphique."
+    unite: pourcent
+    serie:
+      - date: "2014-12-31"
+        valeur: 12.5
+        source: cpl-cpo-2023-tva-rp5
+        statut: estimation
+
+  - id: consommation.tva_part_revenu_disponible_decile_2
+    titre: "TVA payée en % du revenu disponible – 2e décile de niveau de vie"
+    explication: "Selon le CPO, entre le 2e et le 9e décile le poids de la TVA « décroît de 9,5 % à 7,5 % » du revenu disponible ; 9,5 % correspond donc au 2e décile. Même estimation que pour le 1er décile (législation 2014, enquête Budget de famille 2011)."
+    unite: pourcent
+    serie:
+      - date: "2014-12-31"
+        valeur: 9.5
+        source: cpl-cpo-2023-tva-rp5
+        statut: estimation
+
+  - id: consommation.tva_part_revenu_disponible_decile_9
+    titre: "TVA payée en % du revenu disponible – 9e décile de niveau de vie"
+    explication: "Selon le CPO, entre le 2e et le 9e décile le poids de la TVA « décroît de 9,5 % à 7,5 % » du revenu disponible ; 7,5 % correspond donc au 9e décile. Même estimation que pour le 1er décile (législation 2014, enquête Budget de famille 2011)."
+    unite: pourcent
+    serie:
+      - date: "2014-12-31"
+        valeur: 7.5
+        source: cpl-cpo-2023-tva-rp5
+        statut: estimation
+
+  - id: consommation.tva_part_revenu_disponible_decile_10
+    titre: "TVA payée en % du revenu disponible – 10 % de ménages les plus aisés (10e décile de niveau de vie)"
+    explication: "Les 10 % de ménages les plus aisés consacrent 4,7 % de leur revenu disponible à la TVA, car ils épargnent une part importante de leur revenu. Rapporté à la seule consommation, le taux de TVA payé est en revanche à peu près le même pour tous (écart de 0,8 point entre le 1er et le dernier décile). Même estimation que pour le 1er décile."
+    unite: pourcent
+    serie:
+      - date: "2014-12-31"
+        valeur: 4.7
+        source: cpl-cpo-2023-tva-rp5
+        statut: estimation
+
+  # ---------------------------------------------------------------------------
+  # ÉNERGIE - ENVIRONNEMENT
+  # ---------------------------------------------------------------------------
+  - id: energie.consommation_gazole_routier
+    titre: "Consommation de gazole routier (hors biocarburants)"
+    explication: "Quantité de gazole consommée sur les routes en France (métropole et DROM), exprimée en millions de tonnes équivalent pétrole (Mtep), hors part de biocarburants incorporée. Biocarburants inclus, la consommation de gazole atteint 28,2 Mtep en 2025. 2025 : donnée provisoire."
+    unite: mtep
+    serie:
+      - date: "2023-12-31"
+        valeur: 27.6586
+        source: cpl-sdes-cce-2026
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 26.7539
+        source: cpl-sdes-cce-2026
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 26.1074
+        source: cpl-sdes-cce-2026
+        statut: provisoire
+
+  - id: energie.consommation_essence_routier
+    titre: "Consommation de supercarburants routiers – essence (hors biocarburants)"
+    explication: "Quantité d'essence (SP95, SP95-E10, SP98) consommée sur les routes en France (métropole et DROM), en millions de tonnes équivalent pétrole (Mtep), hors part de biocarburants. Biocarburants inclus, le SDES publie pour 2025 : 2,57 Mtep de SP95 (y compris E85), 6,92 Mtep de SP95-E10 et 2,33 Mtep de SP98. 2025 : donnée provisoire."
+    unite: mtep
+    serie:
+      - date: "2023-12-31"
+        valeur: 9.61759
+        source: cpl-sdes-cce-2026
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 10.432
+        source: cpl-sdes-cce-2026
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 10.7992
+        source: cpl-sdes-cce-2026
+        statut: provisoire
+
+  - id: environnement.emissions_co2_transport_routier
+    titre: "Émissions de gaz à effet de serre du transport routier"
+    explication: "Émissions de gaz à effet de serre des voitures, camions, utilitaires, bus et deux-roues, en millions de tonnes équivalent CO2 (inventaire Citepa, France hexagonale et outre-mer de l'UE). Premier secteur émetteur, soit près d'un tiers des émissions françaises. La valeur 2025 est une estimation préliminaire (baisse de 2,1 %)."
+    unite: mt_co2e
+    serie:
+      - date: "2024-12-31"
+        valeur: 117
+        source: cpl-citepa-secten-2026
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 115
+        source: cpl-citepa-secten-2026
+        statut: estimation
+
+  # ---------------------------------------------------------------------------
+  # RETRAITES
+  # ---------------------------------------------------------------------------
+  - id: retraites.nouveaux_retraites_par_an
+    titre: "Nouveaux retraités de droit direct dans l'année (tous régimes)"
+    explication: "Nombre de personnes qui ont pris leur retraite (pension de droit direct) dans l'année et sont en vie au 31 décembre, tous régimes confondus, y compris les retraités vivant à l'étranger (830 500 en 2024 pour les seuls résidents en France). Estimation de la DREES à partir de l'enquête auprès des caisses de retraite et du modèle Ancêtre."
+    unite: personnes
+    serie:
+      - date: "2022-12-31"
+        valeur: 934079
+        source: cpl-drees-eacr-2026
+        statut: estimation
+      - date: "2023-12-31"
+        valeur: 899735
+        source: cpl-drees-eacr-2026
+        statut: estimation
+      - date: "2024-12-31"
+        valeur: 857880
+        source: cpl-drees-eacr-2026
+        statut: estimation
+
+  - id: retraites.part_departs_age_legal
+    titre: "Part des nouveaux retraités du régime général partis exactement à l'âge légal avec le taux plein"
+    explication: "Parmi les 658 481 nouveaux retraités du régime général en 2024, 12,1 % sont partis le mois même où ils ont atteint l'âge légal, avec une retraite à taux plein. À titre de comparaison, 34,9 % sont partis à taux plein avant l'âge légal (carrières longues notamment), 24,2 % à taux plein après l'âge légal mais avant l'âge du taux plein automatique, 15,3 % à partir de cet âge, et 13,5 % avec une décote. Les départs à l'âge légal avec décote ne sont pas comptés dans les 12,1 %."
+    unite: pourcent
+    serie:
+      - date: "2024-12-31"
+        valeur: 12.1
+        source: cpl-cnav-abrege-2025
+        statut: definitif
+
+  # ---------------------------------------------------------------------------
+  # JUSTICE
+  # ---------------------------------------------------------------------------
+  - id: justice.cout_journee_detention
+    titre: "Coût moyen d'une journée de détention par personne détenue"
+    explication: "Ce que coûte en moyenne à l'État une journée de prison pour un détenu, tous frais compris (personnel, fonctionnement, immobilier). Évalué à 128 € pour 2024 selon le rapport du Sénat sur le budget 2026 de l'administration pénitentiaire."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 128
+        source: cpl-senat-avis-145-t6-plf2026
+        statut: estimation
+
+  # ---------------------------------------------------------------------------
+  # ENTREPRISES
+  # ---------------------------------------------------------------------------
+  - id: entreprises.fbcf_societes_non_financieres
+    titre: "Investissement des sociétés non financières (formation brute de capital fixe, euros courants)"
+    explication: "Dépenses d'investissement des entreprises hors banques et assurances (machines, bâtiments, logiciels, recherche…), en milliards d'euros courants (comptes nationaux de l'Insee). Statuts Insee : 2023 définitif, 2024 semi-définitif (codé provisoire), 2025 provisoire."
+    unite: milliards_euros
+    serie:
+      - date: "2023-12-31"
+        valeur: 337.605
+        source: cpl-insee-cn2025-t7101
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 342.532
+        source: cpl-insee-cn2025-t7101
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 348.222
+        source: cpl-insee-cn2025-t7101
+        statut: provisoire
+
+  - id: entreprises.excedent_brut_exploitation_snf
+    titre: "Excédent brut d'exploitation des sociétés non financières (euros courants)"
+    explication: "Ce qu'il reste aux entreprises (hors banques et assurances) après avoir payé les salaires, les cotisations et les impôts sur la production : c'est la marge qui finance l'investissement, les intérêts, l'impôt sur les sociétés et les dividendes. En milliards d'euros courants. Statuts Insee : 2023 définitif, 2024 semi-définitif (codé provisoire), 2025 provisoire."
+    unite: milliards_euros
+    serie:
+      - date: "2023-12-31"
+        valeur: 487.141
+        source: cpl-insee-cn2025-t7101
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 500.51
+        source: cpl-insee-cn2025-t7101
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 497.541
+        source: cpl-insee-cn2025-t7101
+        statut: provisoire
+
+  # ---------------------------------------------------------------------------
+  # FISCALITÉ DU PATRIMOINE
+  # ---------------------------------------------------------------------------
+  - id: fiscalite.ifi.nombre_redevables
+    titre: "Nombre de foyers redevables de l'impôt sur la fortune immobilière (IFI)"
+    explication: "Foyers dont le patrimoine immobilier net taxable dépasse 1,3 million d'euros au 1er janvier et qui ont reçu un avis d'IFI. En 2025 : 193 600 foyers (193 625 exactement), pour 2,3 Md€ d'impôt et 493 Md€ de patrimoine net imposable."
+    unite: foyers
+    serie:
+      - date: "2024-01-01"
+        valeur: 186100
+        source: cpl-dgfip-stat-45-ifi-2025
+        statut: definitif
+      - date: "2025-01-01"
+        valeur: 193600
+        source: cpl-dgfip-stat-45-ifi-2025
+        statut: definitif
+
+  # ---------------------------------------------------------------------------
+  # SÉCURITÉ ROUTIÈRE
+  # ---------------------------------------------------------------------------
+  - id: securite_routiere.tues_annee
+    titre: "Personnes tuées sur les routes dans l'année (France métropolitaine)"
+    explication: "Nombre de personnes décédées dans un accident de la route en France métropolitaine (bilan définitif de l'ONISR). En 2025 : 3 263 morts, 70 de plus qu'en 2024 ; s'y ajoutent 252 décès outre-mer, soit 3 515 pour la France entière."
+    unite: personnes
+    serie:
+      - date: "2025-12-31"
+        valeur: 3263
+        source: cpl-onisr-bilan-2025
+        statut: definitif
+
+  # ---------------------------------------------------------------------------
+  # TABAC
+  # ---------------------------------------------------------------------------
+  - id: tabac.ventes_cigarettes
+    titre: "Ventes de cigarettes chez les buralistes (France continentale)"
+    explication: "Quantité de cigarettes vendue dans le réseau des buralistes de France continentale, en tonnes (l'OFDT compte environ 1 gramme de tabac par cigarette). En 2025 : 23 326 tonnes, en baisse de 8,7 % sur un an ; les achats à l'étranger et la contrebande ne sont pas comptés."
+    unite: tonnes
+    serie:
+      - date: "2025-12-31"
+        valeur: 23326
+        source: cpl-ofdt-tabac-2025
+        statut: definitif
+
+  - id: tabac.recettes_fiscales
+    titre: "Recettes des accises sur les tabacs (toutes administrations publiques)"
+    explication: "Produit des droits d'accise sur les produits du tabac, en milliards d'euros (comptes nationaux de l'Insee), hors TVA payée sur ces produits. Statuts Insee : 2023 définitif, 2024 semi-définitif (codé provisoire), 2025 provisoire."
+    unite: milliards_euros
+    serie:
+      - date: "2023-12-31"
+        valeur: 14.24
+        source: cpl-insee-cn2025-t3217
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 13.662
+        source: cpl-insee-cn2025-t3217
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 13.598
+        source: cpl-insee-cn2025-t3217
+        statut: provisoire

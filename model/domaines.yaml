@@ -1,0 +1,54 @@
+# Domaines de la Société 1.0 : libellés grand public et ordre d'affichage.
+domaines:
+  - id: fiscalite
+    titre: Impôts et taxes
+    question: "Qui paie quoi, et combien ?"
+    icone: coins
+  - id: prestations
+    titre: Aides et prestations sociales
+    question: "Quelles aides pour qui ?"
+    icone: hand-heart
+  - id: travail
+    titre: Travail et emploi
+    question: "Comment on travaille, combien on est payé ?"
+    icone: briefcase
+  - id: retraites
+    titre: Retraites
+    question: "Quand et comment partir à la retraite ?"
+    icone: hourglass
+  - id: budget
+    titre: Budget de l'État et de la Sécu
+    question: "Où va l'argent public ?"
+    icone: landmark
+  - id: sante
+    titre: Santé
+    question: "Comment on se soigne et qui rembourse ?"
+    icone: stethoscope
+  - id: education
+    titre: Éducation
+    question: "Comment l'école est organisée ?"
+    icone: graduation-cap
+  - id: logement
+    titre: Logement
+    question: "Quelles règles pour se loger ?"
+    icone: home
+  - id: environnement_energie
+    titre: Environnement et énergie
+    question: "Quelles règles pour le climat et l'énergie ?"
+    icone: leaf
+  - id: justice_penale
+    titre: Justice pénale
+    question: "Quelles infractions, quelles peines ?"
+    icone: scale
+  - id: droit_civil
+    titre: Famille et droit civil
+    question: "Majorité, mariage, héritage…"
+    icone: users
+  - id: institutions
+    titre: Institutions et démocratie
+    question: "Comment on élit et qui décide ?"
+    icone: vote
+  - id: nationalite_immigration
+    titre: Nationalité et immigration
+    question: "Comment on devient français, qui peut s'installer ?"
+    icone: globe

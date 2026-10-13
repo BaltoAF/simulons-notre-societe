@@ -1,0 +1,99 @@
+question:
+  id: elasticite_prix_carburants
+  titre: "Élasticité-prix de la demande de carburants (court et long terme)"
+  definition: "Variation en % de la consommation de carburants routiers pour une hausse de 1 % du prix à la pompe. Le court terme (moins d'un an environ) reflète surtout l'usage du véhicule ; le long terme intègre le changement de véhicule, de lieu de vie ou de travail. L'horizon est précisé dans le champ de chaque estimation."
+  unite: elasticite
+  regles_liees: []
+  sens_attendu: negatif
+  estimations:
+    - source: clerc-marcus-2009-insee
+      valeur: -0.2
+      intervalle_95: null
+      methode: "Séries temporelles trimestrielles françaises de consommation et de prix des carburants"
+      champ: "France, ménages, COURT TERME"
+      pays: FR
+      annee_donnees: null
+      type_etude: structurel
+      revue_par_les_pairs: false
+      note: "« Environ 0,2 à court terme » selon le résumé (signe négatif implicite)."
+    - source: clerc-marcus-2009-insee
+      valeur: -0.4
+      intervalle_95: null
+      methode: "Séries temporelles trimestrielles françaises de consommation et de prix des carburants"
+      champ: "France, ménages, LONG TERME"
+      pays: FR
+      annee_donnees: null
+      type_etude: structurel
+      revue_par_les_pairs: false
+      note: "« 0,4 à long terme » selon le résumé."
+    - source: clerc-marcus-2009-insee
+      valeur: -0.85
+      intervalle_95: null
+      methode: "Analyse microéconomique en coupe des données de dépenses de consommation des ménages de 2006, avec indices de prix personnalisés par ménage"
+      champ: "France, ménages, 2006, estimation en coupe (horizon de long terme)"
+      pays: FR
+      annee_donnees: 2006
+      type_etude: structurel
+      revue_par_les_pairs: false
+      note: "Fourchette publiée de 0,7 à 1,0 en valeur absolue ; valeur = milieu. Les ménages qui utilisent leur voiture pour aller travailler sont moins sensibles aux hausses de prix ; les écarts de revenu jouent peu. Les estimations en coupe tendent à être plus élevées que celles en séries temporelles."
+    - source: brons-et-al-2008-eneco
+      valeur: -0.34
+      intervalle_95: null
+      methode: "Méta-analyse (approche SUR) des élasticités-prix de la demande d'essence publiées"
+      champ: "Monde (études internationales), COURT TERME"
+      pays: INT
+      annee_donnees: null
+      type_etude: meta_analyse
+      revue_par_les_pairs: true
+      note: "Moyenne des élasticités de court terme publiées : -0,34."
+    - source: brons-et-al-2008-eneco
+      valeur: -0.84
+      intervalle_95: null
+      methode: "Méta-analyse (approche SUR) des élasticités-prix de la demande d'essence publiées"
+      champ: "Monde (études internationales), LONG TERME"
+      pays: INT
+      annee_donnees: null
+      type_etude: meta_analyse
+      revue_par_les_pairs: true
+      note: "Moyenne des élasticités de long terme publiées : -0,84. Aucune correction du biais de publication."
+    - source: havranek-irsova-janda-2012-eneco
+      valeur: -0.09
+      intervalle_95: null
+      methode: "Méta-analyse avec correction du biais de publication (méta-régression multiniveaux à effets mixtes)"
+      champ: "Monde (études internationales), COURT TERME"
+      pays: INT
+      annee_donnees: null
+      type_etude: meta_analyse
+      revue_par_les_pairs: true
+      note: "Les auteurs montrent que les élasticités publiées sont exagérées d'un facteur deux, les estimations non significatives ou positives étant rarement publiées. Après correction : -0,09 à court terme."
+    - source: havranek-irsova-janda-2012-eneco
+      valeur: -0.31
+      intervalle_95: null
+      methode: "Méta-analyse avec correction du biais de publication (méta-régression multiniveaux à effets mixtes)"
+      champ: "Monde (études internationales), LONG TERME"
+      pays: INT
+      annee_donnees: null
+      type_etude: meta_analyse
+      revue_par_les_pairs: true
+      note: "Après correction du biais de publication : -0,31 à long terme."
+    - source: hughes-knittel-sperling-2008-ej
+      valeur: -0.055
+      intervalle_95: null
+      methode: "Estimation sur données agrégées de la demande d'essence américaine, comparaison de deux périodes de prix élevés"
+      champ: "États-Unis, 2001-2006, COURT TERME"
+      pays: US
+      annee_donnees: 2006
+      type_etude: structurel
+      revue_par_les_pairs: true
+      note: "Élasticités de -0,034 à -0,077 en 2001-2006 (valeur = milieu), contre -0,21 à -0,34 en 1975-1980 : la demande à court terme serait devenue beaucoup moins sensible au prix."
+    - source: levin-lewis-wolak-2017-aej
+      valeur: null
+      intervalle_95: null
+      methode: "Données quotidiennes de dépenses et de prix de l'essence par ville, modèle de fréquence d'achat distinguant demande et dépense"
+      champ: "États-Unis, villes, COURT TERME (données à haute fréquence)"
+      pays: US
+      annee_donnees: null
+      type_etude: structurel
+      revue_par_les_pairs: true
+      note: "L'élasticité estimée est « d'un ordre de grandeur plus grande » que celle des études sur données agrégées, et plus l'agrégation spatiale et temporelle est forte, plus les estimations sont inélastiques. Valeur numérique absente du résumé consulté."
+  note_synthese: "Toutes les études s'accordent sur deux points : la demande de carburants baisse quand le prix augmente, mais peu à court terme, et davantage à long terme quand les ménages peuvent changer de voiture ou d'habitudes. Pour la France, l'Insee (Clerc et Marcus) estime environ -0,2 à court terme et -0,4 à long terme, avec des valeurs plus fortes (-0,7 à -1,0) dans les comparaisons entre ménages. Les méta-analyses internationales classiques donnent -0,3 à court terme et -0,8 à long terme (Brons et al.), mais une méta-analyse corrigeant le biais de publication divise ces chiffres par deux environ (-0,09 et -0,31). Le débat porte donc sur l'ampleur : les estimations récentes sur données agrégées américaines trouvent une demande de court terme très peu sensible, tandis que les données à haute fréquence suggèrent au contraire des réactions plus fortes. Les travaux de Douenne sur la taxe carbone française et les méta-analyses d'Espey, de Goodwin et de Labandeira et al. n'ont pas pu être consultés en détail."

@@ -1,0 +1,136 @@
+domaine: sante
+theme: "Vaccinations obligatoires et congés liés à la naissance"
+regles:
+  - id: sante.vaccination.nombre_vaccinations_obligatoires_nourrissons
+    titre: "Nombre de vaccinations obligatoires pour les nourrissons"
+    explication: "Nombre de maladies contre lesquelles la vaccination des jeunes enfants est obligatoire (condition d'entrée en crèche et à l'école, sauf contre-indication médicale)."
+    type: nombre
+    unite: vaccinations
+    bornes: [0, 20]
+    valeurs:
+      - depuis: "2018-01-01"
+        valeur: 11
+        sources: [ameli-vaccins-obligatoires, sp-f724-vaccinations]
+        article: "Code de la santé publique, art. L3111-1 à L3111-11 (vaccinations obligatoires)"
+      - depuis: "2025-01-01"
+        valeur: 12
+        sources: [ameli-vaccins-obligatoires, sp-f724-vaccinations]
+        article: "Code de la santé publique, art. L3111-1 à L3111-11 (vaccinations obligatoires)"
+    tags: [vaccination, prevention, enfants]
+    a_verifier: true
+    note: "Ameli (21/05/2026) : « Jusqu'à fin 2024, 11 vaccins étaient obligatoires » ; depuis 2025, la vaccination contre les méningocoques ACWY remplace celle contre le méningocoque C et celle contre le méningocoque B devient obligatoire. Le total de 12 est un décompte déduit (diphtérie, tétanos, poliomyélite, coqueluche, Haemophilus influenzae b, hépatite B, pneumocoque, rougeole, oreillons, rubéole, méningocoques ACWY, méningocoque B), non affiché tel quel par une source officielle. La date de 2018 pour le passage à 11 n'a pas été lue sur une source officielle (convention)."
+
+  - id: sante.conge_maternite.duree_1er_2e_enfant
+    titre: "Congé maternité : durée pour un 1er ou 2e enfant"
+    explication: "Durée totale du congé maternité d'une salariée attendant un 1er ou 2e enfant : 6 semaines avant l'accouchement et 10 semaines après."
+    type: nombre
+    unite: semaines
+    bornes: [8, 52]
+    valeurs:
+      - depuis: "2026-06-01"
+        valeur: 16
+        sources: [sp-f2265-conge-maternite]
+    tags: [conge, naissance, maternite, famille]
+    a_verifier: false
+    note: "Date « depuis » = date de vérification de la fiche service-public (01/06/2026) ; règle ancienne, date d'origine non vérifiée. Arrêt minimal obligatoire : 8 semaines dont 6 après l'accouchement."
+
+  - id: sante.conge_maternite.duree_3e_enfant
+    titre: "Congé maternité : durée à partir du 3e enfant"
+    explication: "Durée totale du congé maternité lorsque la salariée a déjà au moins deux enfants : 8 semaines avant et 18 semaines après l'accouchement."
+    type: nombre
+    unite: semaines
+    bornes: [8, 60]
+    valeurs:
+      - depuis: "2026-06-01"
+        valeur: 26
+        sources: [sp-f2265-conge-maternite]
+    tags: [conge, naissance, maternite, famille]
+    a_verifier: false
+    note: "Date « depuis » = date de vérification de la fiche service-public."
+
+  - id: sante.conge_maternite.duree_jumeaux
+    titre: "Congé maternité : durée en cas de jumeaux"
+    explication: "Durée totale du congé maternité pour une naissance de jumeaux : 12 semaines avant et 22 semaines après l'accouchement."
+    type: nombre
+    unite: semaines
+    bornes: [8, 70]
+    valeurs:
+      - depuis: "2026-06-01"
+        valeur: 34
+        sources: [sp-f2265-conge-maternite]
+    tags: [conge, naissance, maternite, famille]
+    a_verifier: false
+    note: "Date « depuis » = date de vérification de la fiche. Triplés ou plus : 46 semaines (24 + 22)."
+
+  - id: sante.conge_paternite.duree_totale
+    titre: "Congé de paternité et d'accueil de l'enfant : durée totale (naissance unique)"
+    explication: "Durée du congé de paternité et d'accueil de l'enfant du second parent (père ou conjoint de la mère) : 4 jours obligatoires pris juste après les 3 jours ouvrables de congé de naissance, puis 21 jours facultatifs."
+    type: nombre
+    unite: jours
+    bornes: [0, 120]
+    valeurs:
+      - depuis: "2026-06-01"
+        valeur: 25
+        sources: [sp-f3156-conge-paternite]
+        article: "Code du travail, art. L1225-35 et L1225-36"
+    tags: [conge, naissance, paternite, famille]
+    a_verifier: false
+    note: "Service-public : 25 jours calendaires = 4 jours obligatoires + 21 jours facultatifs, auxquels s'ajoutent 3 jours ouvrables de congé de naissance. Partie facultative fractionnable en 2 périodes d'au moins 5 jours, à prendre dans les 6 mois. Date « depuis » = date de vérification de la fiche (01/06/2026) ; date d'entrée en vigueur non vérifiée."
+
+  - id: sante.conge_paternite.duree_naissances_multiples
+    titre: "Congé de paternité et d'accueil de l'enfant : durée en cas de naissances multiples"
+    explication: "Durée totale du congé du second parent en cas de naissance de jumeaux ou plus (28 jours facultatifs au lieu de 21)."
+    type: nombre
+    unite: jours
+    bornes: [0, 150]
+    valeurs:
+      - depuis: "2026-06-01"
+        valeur: 32
+        sources: [sp-f3156-conge-paternite]
+        article: "Code du travail, art. L1225-35"
+    tags: [conge, naissance, paternite, famille]
+    a_verifier: false
+    note: "Date « depuis » = date de vérification de la fiche service-public."
+
+  - id: sante.conge_supplementaire_naissance.duree_max_par_parent
+    titre: "Congé supplémentaire de naissance : durée maximale par parent"
+    explication: "Nouveau congé indemnisé, cumulable avec les congés maternité et paternité : chaque parent peut prendre 1 ou 2 mois, en une fois ou en deux périodes d'un mois, dans les 9 mois suivant la naissance."
+    type: nombre
+    unite: mois
+    bornes: [0, 12]
+    valeurs:
+      - depuis: "2026-07-01"
+        valeur: 2
+        sources: [ameli-conge-supplementaire-naissance, bdt-localtis-lfss-2026]
+        article: "Loi n° 2025-1403 du 30 décembre 2025 de financement de la sécurité sociale pour 2026"
+    tags: [conge, naissance, famille, reforme_2026]
+    a_verifier: false
+    note: "Effectif depuis le 1er juillet 2026, pour les enfants nés ou arrivés au foyer à partir du 1er janvier 2026 (ameli). Avant : congé inexistant."
+
+  - id: sante.conge_supplementaire_naissance.indemnisation_premier_mois
+    titre: "Congé supplémentaire de naissance : taux d'indemnisation du 1er mois"
+    explication: "Part du salaire net versée sous forme d'indemnités journalières pendant le premier mois du congé, dans la limite du plafond de la Sécurité sociale."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2026-07-01"
+        valeur: 70
+        sources: [ameli-conge-supplementaire-naissance, bdt-localtis-lfss-2026]
+    tags: [conge, naissance, famille, indemnisation, reforme_2026]
+    a_verifier: false
+    note: "Indemnité journalière maximale : 72,81 € par jour le 1er mois (ameli)."
+
+  - id: sante.conge_supplementaire_naissance.indemnisation_deuxieme_mois
+    titre: "Congé supplémentaire de naissance : taux d'indemnisation du 2e mois"
+    explication: "Part du salaire net versée pendant le second mois du congé, dans la limite du plafond de la Sécurité sociale."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2026-07-01"
+        valeur: 60
+        sources: [ameli-conge-supplementaire-naissance, bdt-localtis-lfss-2026]
+    tags: [conge, naissance, famille, indemnisation, reforme_2026]
+    a_verifier: false
+    note: "Indemnité journalière maximale : 62,41 € par jour le 2e mois (ameli)."

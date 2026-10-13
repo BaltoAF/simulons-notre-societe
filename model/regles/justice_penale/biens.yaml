@@ -1,0 +1,349 @@
+domaine: justice_penale
+theme: "Atteintes aux biens"
+regles:
+  # --- Vol ---
+  - id: justice_penale.vol_simple.prison_max
+    titre: "Vol simple : peine maximale de prison"
+    explication: "Prendre un bien qui appartient à quelqu'un d'autre sans son accord est un vol. Sans circonstance aggravante, c'est un délit puni de 3 ans de prison au maximum, quelle que soit la valeur de l'objet."
+    type: nombre
+    unite: ans
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2023-07-05"
+        valeur: 3
+        sources: [sp-f1523, justice-circulaire-afd-vol-2023-annexe, legi-cp-311-1]
+        article: "Code pénal, art. 311-3"
+    tags: [peine, delit, vol, biens]
+    a_verifier: false
+    note: "Même peine en cas de tentative ou si l'objet est rendu. Date d'entrée en vigueur non établie ; valeur attestée au 2023-07-05 (circulaire du ministère de la Justice citant l'art. 311-3)."
+
+  - id: justice_penale.vol_simple.amende_max
+    titre: "Vol simple : amende maximale"
+    explication: "En plus de la prison, l'auteur d'un vol simple risque une amende pouvant aller jusqu'à 45 000 €."
+    type: nombre
+    unite: euros
+    bornes: [0, 150000]
+    valeurs:
+      - depuis: "2023-07-05"
+        valeur: 45000
+        sources: [sp-f1523, justice-circulaire-afd-vol-2023-annexe, legi-cp-311-1]
+        article: "Code pénal, art. 311-3"
+    tags: [peine, amende, delit, vol, biens]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2023-07-05."
+
+  - id: justice_penale.vol_aggrave.prison_max_une_circonstance
+    titre: "Vol avec une circonstance aggravante : peine maximale de prison"
+    explication: "Un vol commis avec une circonstance aggravante (à plusieurs, par un policier, dans les transports, visage caché, sur une personne vulnérable…) est puni plus sévèrement : 5 ans de prison et 75 000 € d'amende au premier palier."
+    type: nombre
+    unite: ans
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2026-06-19"
+        valeur: 5
+        sources: [sp-f1523, wikipedia-vol-droit-penal-francais]
+        article: "Code pénal, art. 311-4"
+    tags: [peine, delit, vol, biens]
+    a_verifier: true
+    note: "La fiche officielle F1523 indique seulement que le vol aggravé est puni « de 5 ans de prison à la réclusion criminelle à perpétuité » ; l'association de 5 ans / 75 000 € au cas d'une seule circonstance (art. 311-4) vient de Wikipédia. Les paliers à 2 et 3 circonstances n'ont pas été lus sur une source. Date d'entrée en vigueur non établie ; valeur attestée au 2026-06-19."
+
+  - id: justice_penale.vol_aggrave.peine_max
+    titre: "Vol aggravé : peine maximale possible"
+    explication: "Selon les circonstances, le vol aggravé peut devenir un crime. Dans les cas les plus graves (par exemple des violences ayant causé la mort), la peine peut aller jusqu'à la réclusion criminelle à perpétuité."
+    type: choix
+    choix: ["5_ans", "10_ans", "15_ans", "20_ans", "30_ans", "perpetuite"]
+    valeurs:
+      - depuis: "2026-06-19"
+        valeur: "perpetuite"
+        sources: [sp-f1523, legi-cp-311-1]
+        article: "Code pénal, art. 311-1 à 311-11"
+    tags: [peine, crime, vol, biens, perpetuite]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-06-19."
+
+  - id: justice_penale.vol_aggrave.amende_max
+    titre: "Vol aggravé : amende maximale"
+    explication: "Quelles que soient les circonstances aggravantes, l'amende encourue pour un vol aggravé ne dépasse pas 150 000 €."
+    type: nombre
+    unite: euros
+    bornes: [0, 300000]
+    valeurs:
+      - depuis: "2026-06-19"
+        valeur: 150000
+        sources: [sp-f1523, legi-cp-311-1]
+        article: "Code pénal, art. 311-1 à 311-11"
+    tags: [peine, amende, vol, biens]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-06-19."
+
+  - id: justice_penale.vol_bande_organisee.reclusion_max
+    titre: "Vol en bande organisée : peine maximale de réclusion criminelle"
+    explication: "Un vol commis par un groupe organisé à l'avance est un crime puni de 15 ans de réclusion criminelle et 150 000 € d'amende (20 ans avec violences, 30 ans avec une arme)."
+    type: nombre
+    unite: ans
+    bornes: [0, 30]
+    valeurs:
+      - depuis: "2026-08-11"
+        valeur: 15
+        sources: [wikipedia-vol-droit-penal-francais]
+    tags: [peine, crime, vol, bande_organisee, biens]
+    a_verifier: true
+    note: "Valeur trouvée uniquement sur Wikipédia. La fiche F1523 cite le vol en bande organisée parmi les circonstances aggravantes sans en donner la peine. Date d'entrée en vigueur non établie ; valeur attestée au 2026-08-11."
+
+  - id: justice_penale.vol_avec_arme.reclusion_max
+    titre: "Vol avec arme (vol à main armée) : peine maximale de réclusion criminelle"
+    explication: "Un vol commis en utilisant ou en menaçant d'utiliser une arme est un crime puni de 20 ans de réclusion criminelle et 150 000 € d'amende."
+    type: nombre
+    unite: ans
+    bornes: [0, 30]
+    valeurs:
+      - depuis: "2026-08-11"
+        valeur: 20
+        sources: [wikipedia-vol-droit-penal-francais]
+    tags: [peine, crime, vol, arme, biens]
+    a_verifier: true
+    note: "Durée trouvée uniquement sur Wikipédia ; la fiche officielle F1487 confirme seulement que le « vol à main armée » est un crime jugé par la cour d'assises. Date d'entrée en vigueur non établie ; valeur attestée au 2026-08-11."
+
+  # --- Amende forfaitaire délictuelle (AFD) pour vol de faible valeur ---
+  - id: justice_penale.vol_faible_valeur.amende_forfaitaire
+    titre: "Vol d'un objet de 300 € ou moins : montant de l'amende forfaitaire délictuelle"
+    explication: "Pour un vol simple portant sur un objet de 300 € ou moins, rendu à la victime ou remboursé, les forces de l'ordre peuvent infliger directement une amende forfaitaire de 300 €, qui met fin aux poursuites."
+    type: nombre
+    unite: euros
+    bornes: [0, 1000]
+    valeurs:
+      - depuis: "2023-07-11"
+        valeur: 300
+        sources: [justice-circulaire-afd-vol-2023-annexe, justice-circulaire-afd-vol-2023]
+        article: "Code pénal, art. 311-3-1 (créé par l'art. 28 de la loi n° 2022-52 du 24 janvier 2022)"
+    tags: [amende_forfaitaire, vol, biens, procedure]
+    a_verifier: false
+    note: "Applicable même en récidive. Expérimentée dans quelques parquets à partir du 1er mars 2023, l'AFD vol est généralisée à tout le territoire à compter du 11 juillet 2023 (circulaire du 6 juillet 2023)."
+
+  - id: justice_penale.vol_faible_valeur.amende_forfaitaire_minoree
+    titre: "Vol d'un objet de 300 € ou moins : amende forfaitaire minorée"
+    explication: "Si l'amende forfaitaire pour vol est payée rapidement, son montant est réduit à 250 €."
+    type: nombre
+    unite: euros
+    bornes: [0, 1000]
+    valeurs:
+      - depuis: "2023-07-11"
+        valeur: 250
+        sources: [justice-circulaire-afd-vol-2023-annexe, justice-circulaire-afd-vol-2023]
+        article: "Code pénal, art. 311-3-1"
+    tags: [amende_forfaitaire, vol, biens, procedure]
+    a_verifier: false
+    note: "Généralisation nationale de l'AFD vol au 11 juillet 2023."
+
+  - id: justice_penale.vol_faible_valeur.amende_forfaitaire_majoree
+    titre: "Vol d'un objet de 300 € ou moins : amende forfaitaire majorée"
+    explication: "Si l'amende forfaitaire pour vol n'est pas payée à temps, son montant passe à 600 €."
+    type: nombre
+    unite: euros
+    bornes: [0, 2000]
+    valeurs:
+      - depuis: "2023-07-11"
+        valeur: 600
+        sources: [justice-circulaire-afd-vol-2023-annexe, justice-circulaire-afd-vol-2023]
+        article: "Code pénal, art. 311-3-1"
+    tags: [amende_forfaitaire, vol, biens, procedure]
+    a_verifier: false
+    note: "Généralisation nationale de l'AFD vol au 11 juillet 2023."
+
+  - id: justice_penale.vol_faible_valeur.seuil_valeur
+    titre: "Amende forfaitaire pour vol : valeur maximale de l'objet volé"
+    explication: "L'amende forfaitaire n'est possible que si l'objet (ou l'ensemble des objets) volé vaut 300 € ou moins. Au-delà, l'auteur doit être jugé."
+    type: nombre
+    unite: euros
+    bornes: [0, 2000]
+    valeurs:
+      - depuis: "2023-07-11"
+        valeur: 300
+        sources: [justice-circulaire-afd-vol-2023-annexe, justice-circulaire-afd-vol-2023]
+        article: "Code pénal, art. 311-3-1"
+    tags: [amende_forfaitaire, vol, biens, procedure, seuil]
+    a_verifier: false
+    note: "La chose doit aussi avoir été restituée ou la victime indemnisée au moment du constat. Les procureurs peuvent fixer localement des seuils ou exclusions plus restrictifs."
+
+  # --- Escroquerie, abus de confiance, recel ---
+  - id: justice_penale.escroquerie.prison_max
+    titre: "Escroquerie : peine maximale de prison"
+    explication: "Tromper quelqu'un par des manœuvres (fausse identité, mensonges organisés…) pour qu'il remette de l'argent ou un bien est une escroquerie, punie de 5 ans de prison au maximum."
+    type: nombre
+    unite: ans
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2025-05-28"
+        valeur: 5
+        sources: [sp-f1520, legi-cp-313-1]
+        article: "Code pénal, art. 313-1 à 313-3"
+    tags: [peine, delit, escroquerie, biens]
+    a_verifier: false
+    note: "7 ans et 750 000 € notamment si la victime est vulnérable ou si l'escroc se fait passer pour un agent public. Date d'entrée en vigueur non établie ; valeur attestée au 2025-05-28."
+
+  - id: justice_penale.escroquerie.amende_max
+    titre: "Escroquerie : amende maximale"
+    explication: "L'escroquerie est punie d'une amende pouvant aller jusqu'à 375 000 €."
+    type: nombre
+    unite: euros
+    bornes: [0, 1000000]
+    valeurs:
+      - depuis: "2025-05-28"
+        valeur: 375000
+        sources: [sp-f1520, legi-cp-313-1]
+        article: "Code pénal, art. 313-1 à 313-3"
+    tags: [peine, amende, delit, escroquerie, biens]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-05-28."
+
+  - id: justice_penale.escroquerie_bande_organisee.prison_max
+    titre: "Escroquerie en bande organisée : peine maximale de prison"
+    explication: "Une escroquerie commise par un groupe organisé est punie de 10 ans de prison et d'1 million d'euros d'amende au maximum."
+    type: nombre
+    unite: ans
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2025-05-28"
+        valeur: 10
+        sources: [sp-f1520, legi-cp-313-1]
+        article: "Code pénal, art. 313-1 à 313-3"
+    tags: [peine, delit, escroquerie, bande_organisee, biens]
+    a_verifier: false
+    note: "Amende associée : 1 000 000 €. Date d'entrée en vigueur non établie ; valeur attestée au 2025-05-28."
+
+  - id: justice_penale.abus_de_confiance.prison_max
+    titre: "Abus de confiance : peine maximale de prison"
+    explication: "Détourner de l'argent ou un bien qu'on vous a confié pour un usage précis (par exemple un comptable qui détourne des fonds) est un abus de confiance, puni de 5 ans de prison."
+    type: nombre
+    unite: ans
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2026-04-10"
+        valeur: 5
+        sources: [sp-f1515, legi-cp-314-1]
+        article: "Code pénal, art. 314-1 à 314-4"
+    tags: [peine, delit, abus_de_confiance, biens]
+    a_verifier: false
+    note: "7 ans et 750 000 € en bande organisée ou au préjudice d'une personne vulnérable ; 10 ans et 1 500 000 € pour certains professionnels (notaire, commissaire de justice…). Date d'entrée en vigueur non établie ; valeur attestée au 2026-04-10."
+
+  - id: justice_penale.abus_de_confiance.amende_max
+    titre: "Abus de confiance : amende maximale"
+    explication: "L'abus de confiance est puni d'une amende pouvant aller jusqu'à 375 000 € pour une personne (1 875 000 € pour une entreprise ou une association)."
+    type: nombre
+    unite: euros
+    bornes: [0, 2000000]
+    valeurs:
+      - depuis: "2026-04-10"
+        valeur: 375000
+        sources: [sp-f1515, legi-cp-314-1]
+        article: "Code pénal, art. 314-1 à 314-4"
+    tags: [peine, amende, delit, abus_de_confiance, biens]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-04-10."
+
+  - id: justice_penale.recel.prison_max
+    titre: "Recel de vol : peine maximale de prison"
+    explication: "Garder, transmettre ou profiter d'un objet en sachant qu'il a été volé est un recel, puni de 5 ans de prison. Il passe à 10 ans s'il est habituel, professionnel ou en bande organisée."
+    type: nombre
+    unite: ans
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2026-03-20"
+        valeur: 5
+        sources: [sp-f33023, legi-cp-321-1]
+        article: "Code pénal, art. 321-1 à 321-5"
+    tags: [peine, delit, recel, biens]
+    a_verifier: false
+    note: "Recel aggravé : 10 ans et 750 000 €. Date d'entrée en vigueur non établie ; valeur attestée au 2026-03-20."
+
+  - id: justice_penale.recel.amende_max
+    titre: "Recel de vol : amende maximale"
+    explication: "L'amende maximale est de 375 000 €, mais elle peut aller jusqu'à la moitié de la valeur des objets recelés si celle-ci est plus élevée."
+    type: nombre
+    unite: euros
+    bornes: [0, 1000000]
+    valeurs:
+      - depuis: "2026-03-20"
+        valeur: 375000
+        sources: [sp-f33023, legi-cp-321-1]
+        article: "Code pénal, art. 321-1 à 321-5"
+    tags: [peine, amende, delit, recel, biens]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-03-20."
+
+  # --- Destructions, dégradations ---
+  - id: justice_penale.degradation_legere.amende_max
+    titre: "Dégradation légère d'un bien (vandalisme) : amende maximale"
+    explication: "Abîmer légèrement le bien d'autrui (par exemple casser un rétroviseur) est une contravention punie d'une amende de 1 500 € au maximum."
+    type: nombre
+    unite: euros
+    bornes: [0, 3000]
+    valeurs:
+      - depuis: "2025-06-06"
+        valeur: 1500
+        sources: [sp-f1514, legi-cp-322-1]
+        article: "Code pénal, art. 322-1 à 322-4-1"
+    tags: [peine, amende, contravention, degradation, biens]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-06-06."
+
+  - id: justice_penale.destruction_degradation.prison_max
+    titre: "Destruction ou dégradation importante d'un bien : peine maximale de prison"
+    explication: "Détruire ou abîmer gravement le bien d'autrui (par exemple une porte d'entrée ou une voiture) est un délit puni de 2 ans de prison. La peine passe à 5 ans avec une circonstance aggravante (à plusieurs, visage caché, bien public…) et à 10 ans en cas d'incendie ou d'explosion dangereux pour les personnes."
+    type: nombre
+    unite: ans
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2025-06-06"
+        valeur: 2
+        sources: [sp-f1514, legi-cp-322-1]
+        article: "Code pénal, art. 322-1 à 322-4-1"
+    tags: [peine, delit, degradation, biens]
+    a_verifier: false
+    note: "Avec une circonstance aggravante : 5 ans et 75 000 € ; avec 2 circonstances (cas des tags) : 7 ans et 100 000 €. Date d'entrée en vigueur non établie ; valeur attestée au 2025-06-06."
+
+  - id: justice_penale.destruction_degradation.amende_max
+    titre: "Destruction ou dégradation importante d'un bien : amende maximale"
+    explication: "En plus de la prison, l'auteur risque jusqu'à 30 000 € d'amende."
+    type: nombre
+    unite: euros
+    bornes: [0, 150000]
+    valeurs:
+      - depuis: "2025-06-06"
+        valeur: 30000
+        sources: [sp-f1514, legi-cp-322-1]
+        article: "Code pénal, art. 322-1 à 322-4-1"
+    tags: [peine, amende, delit, degradation, biens]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2025-06-06."
+
+  # --- Violation de domicile (squat) ---
+  - id: justice_penale.violation_domicile.prison_max
+    titre: "Violation de domicile (squat) : peine maximale de prison"
+    explication: "Entrer dans le logement d'autrui sans droit (par exemple en forçant la porte) est puni de 3 ans de prison ; s'y maintenir est puni de la même peine. Dégrader le logement est puni en plus."
+    type: nombre
+    unite: ans
+    bornes: [0, 5]
+    valeurs:
+      - depuis: "2026-08-20"
+        valeur: 3
+        sources: [sp-f35254, legi-cp-226-4]
+        article: "Code pénal, art. 226-4"
+    tags: [peine, delit, squat, logement, biens]
+    a_verifier: false
+    note: "Historique (valeur antérieure à la réforme de 2023 dite « Kasbarian » et date de cette réforme) non établi faute de source lue. Date d'entrée en vigueur non établie ; valeur attestée au 2026-08-20."
+
+  - id: justice_penale.violation_domicile.amende_max
+    titre: "Violation de domicile (squat) : amende maximale"
+    explication: "L'entrée et le maintien illicites dans le logement d'autrui sont chacun punis d'une amende pouvant aller jusqu'à 45 000 €."
+    type: nombre
+    unite: euros
+    bornes: [0, 100000]
+    valeurs:
+      - depuis: "2026-08-20"
+        valeur: 45000
+        sources: [sp-f35254, legi-cp-226-4]
+        article: "Code pénal, art. 226-4"
+    tags: [peine, amende, delit, squat, logement, biens]
+    a_verifier: false
+    note: "Dégradation du logement squatté : 2 ans et 30 000 €. Historique (avant la loi de 2023) non établi. Date d'entrée en vigueur non établie ; valeur attestée au 2026-08-20."

@@ -1,0 +1,109 @@
+question:
+  id: taille_classe_resultats
+  titre: "Effet de la réduction de la taille des classes sur les résultats scolaires"
+  definition: "Gain de résultats aux tests standardisés, en écart-type du score, pour un élève de moins dans la classe pendant une année scolaire. Exemple : 0,02 signifie qu'un dédoublement de 24 à 12 élèves (12 élèves de moins) améliore les résultats d'environ 0,24 écart-type."
+  unite: ecart_type_par_eleve
+  regles_liees: []
+  sens_attendu: positif
+  estimations:
+    - source: krueger-1999-qje
+      valeur: 0.026
+      intervalle_95: null
+      methode: "Expérience randomisée STAR : élèves et enseignants affectés au hasard à des petites classes (environ 15 élèves) ou à des classes normales (environ 23 élèves)"
+      champ: "États-Unis (Tennessee), 11 600 élèves de la maternelle au CE2, expérience lancée en 1986"
+      pays: US
+      annee_donnees: null
+      type_etude: experimental
+      revue_par_les_pairs: true
+      note: "Conversion par élève faite par l'IPP (note n° 28, 2017, tableau 1) : 0,027 (maternelle), 0,033 (CP), 0,019 (CE1), 0,024 (CE2) ; valeur = moyenne des quatre niveaux. Le résumé de Krueger indique +4 centiles la première année en petite classe, puis environ +1 centile par an. Effets plus forts pour les élèves pauvres et noirs."
+    - source: angrist-lavy-1999-qje
+      valeur: 0.033
+      intervalle_95: null
+      methode: "Discontinuités créées par la règle de Maïmonide (classe dédoublée au-delà de 40 élèves), variables instrumentales"
+      champ: "Israël, élèves de CM1 et CM2 (4e et 5e années), 1991"
+      pays: IL
+      annee_donnees: 1991
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Conversion IPP (2017) : 0,012 (maths CM1), 0,023 (lecture CM1), 0,040 (maths CM2), 0,059 (lecture CM2) ; valeur = moyenne. Aucun effet net pour les élèves de CE2 (vague de tests 1992 jugée moins fiable par les auteurs)."
+    - source: angrist-lavy-lederluis-shany-2019-aer-insights
+      valeur: 0.0004
+      intervalle_95: null
+      methode: "Même règle de Maïmonide, avec une version corrigée de la manipulation des effectifs (inscriptions imputées d'après les dates de naissance)"
+      champ: "Israël, grands échantillons d'élèves de CM2, 2002-2011"
+      pays: IL
+      annee_donnees: 2011
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Conversion IPP (2017, d'après la version document de travail NBER 2017) : 0,0002 (maths) et 0,0005 (hébreu). Les auteurs trouvent des zéros estimés avec précision : les effets observés en Israël au début des années 1990 ont disparu."
+    - source: hoxby-2000-qje
+      valeur: 0
+      intervalle_95: null
+      methode: "Variations aléatoires des cohortes et seuils de taille maximale/minimale des classes dans 649 écoles élémentaires"
+      champ: "États-Unis, 649 écoles élémentaires"
+      pays: US
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Aucun effet statistiquement significatif ; l'auteure exclut même des effets modestes de 2 à 4 % d'écart-type pour une réduction de 10 % de la taille des classes (soit environ 0,01 à 0,02 par élève pour des classes de 20 élèves). Conversion IPP : 0,00 à 0,0001 selon la matière."
+    - source: piketty-valdenaire-2006-dep
+      valeur: 0.025
+      intervalle_95: null
+      methode: "Seuils d'ouverture de classes (régression sur discontinuité), panel primaire 1997 et panel secondaire 1995 du ministère"
+      champ: "France, élèves de CE1 en 1998-1999 (école élémentaire)"
+      pays: FR
+      annee_donnees: 1999
+      type_etude: quasi_experimental
+      revue_par_les_pairs: false
+      note: "Conversion IPP (2017) : 0,028 (maths CE1) et 0,022 (français CE1) ; valeur = moyenne. Au collège (3e), effets environ deux fois plus faibles : 0,008 à 0,016 selon la matière. Effets environ deux fois plus élevés pour les enfants d'ouvriers et d'inactifs."
+    - source: bressoux-kramarz-prost-2009-ej
+      valeur: 0.0265
+      intervalle_95: null
+      methode: "Quasi-expérience : erreurs de prévision administrative du nombre d'enseignants qui créent des classes plus ou moins chargées"
+      champ: "France, élèves de CE2, 1991"
+      pays: FR
+      annee_donnees: 1991
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Conversion IPP (2017) : 0,027 (maths) et 0,026 (lecture) ; valeur = moyenne. Le résumé indique un bénéfice plus marqué pour les élèves faibles."
+    - source: depp-2021-dt-dedoublement-cp
+      valeur: 0.016
+      intervalle_95: null
+      methode: "Évaluation du dédoublement des CP en REP+ : comparaison avec des écoles REP proches non concernées (gains de début à fin de CP) et double différence entre cohortes avant/après réforme"
+      champ: "France, élèves de CP en REP+ concernés par le dédoublement, taille moyenne passée de 21,2 à 12,7 élèves contre 21,7 à 20,0 dans le groupe témoin"
+      pays: FR
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: false
+      note: "Effets de 9 % à 14 % d'écart-type selon la méthode et la matière (moyenne 11 %), pour une réduction relative de 6,8 élèves : 0,11 / 6,8 = 0,016 par élève (calcul repris de l'IPP, Perspectives budgétaires 2025). L'expérience française non randomisée « CP à 12 » de 2002-2003 (Bressoux et Lima, 2011) donnait 0,022 par élève."
+    - source: leuven-oosterbeek-ronning-2008-sje
+      valeur: 0.0001
+      intervalle_95: null
+      methode: "Règles de taille maximale des classes et variations de population, données administratives exhaustives"
+      champ: "Norvège, fin du premier cycle du secondaire (équivalent collège)"
+      pays: "NO"
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Effet impossible à distinguer de zéro ; les auteurs excluent des effets de 0,015 écart-type par élève maintenus trois ans. Conversion IPP : 0,0001 (maths et norvégien)."
+    - source: fredriksson-ockert-oosterbeek-2013-qje
+      valeur: 0.033
+      intervalle_95: null
+      methode: "Règle de taille maximale des classes en Suède (régression sur discontinuité)"
+      champ: "Suède, trois dernières années du primaire (10 à 13 ans), suivi jusqu'à 42 ans"
+      pays: SE
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Conversion IPP (2017) : 0,033 sur les compétences logiques et verbales (CM1-6e). Les petites classes améliorent aussi les résultats à 16 ans, le niveau d'études et les salaires entre 27 et 42 ans, assez pour passer un test coût-bénéfice."
+    - source: iversen-bonesronning-2013-educecon
+      valeur: 0.0046
+      intervalle_95: null
+      methode: "Seuils d'ouverture de classes"
+      champ: "Norvège, élèves de CM1"
+      pays: "NO"
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Conversion IPP (2017) : 0,0046 en maths et lecture, effet faible et non significatif en moyenne, mais deux fois plus fort pour les enfants de familles monoparentales. Résultat lu uniquement dans la note IPP."
+  note_synthese: "À l'école primaire, la plupart des études solides (expérience randomisée STAR aux États-Unis, seuils d'ouverture de classes en France, en Israël ou en Suède, évaluation par la DEPP du dédoublement des CP en REP+) trouvent un effet positif d'environ 0,015 à 0,03 écart-type par élève en moins. Un dédoublement de 24 à 12 élèves améliorerait donc les résultats d'environ 0,2 à 0,3 écart-type, avec des effets plus forts pour les élèves défavorisés. Mais plusieurs études de grande qualité ne trouvent aucun effet : Hoxby aux États-Unis, Leuven et al. en Norvège, et la réplication récente d'Angrist et al. en Israël, qui ne retrouve plus l'effet trouvé en 1999. Au collège, les effets semblent plus faibles. Pour la France, l'évaluation de la DEPP (0,016 par élève) est la plus pertinente pour la politique actuelle de dédoublement, même si elle n'est pas randomisée. L'expérience STAR reste la référence méthodologique. Les conversions en écart-type par élève sont reprises de l'Institut des politiques publiques (IPP)."

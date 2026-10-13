@@ -1,0 +1,79 @@
+question:
+  id: prison_recidive
+  titre: "Effet de l'incarcération, par rapport aux peines alternatives, sur la récidive"
+  definition: "Différence, en points de pourcentage, de la probabilité de récidiver (nouvelle condamnation, nouvelle arrestation ou nouvelle incarcération, à environ 5 ans) entre une personne incarcérée et une personne comparable condamnée à une alternative (bracelet électronique, sursis, semi-liberté, peine en milieu ouvert). Une valeur positive signifie que la prison augmente la récidive."
+  unite: points_de_pourcentage
+  regles_liees: []
+  sens_attendu: ambigu
+  estimations:
+    - source: henneguelle-monnery-kensey-2016-jle
+      valeur: 6.5
+      intervalle_95: null
+      methode: "Variables instrumentales exploitant le déploiement progressif du placement sous surveillance électronique entre tribunaux (expérimentation dans quatre tribunaux en 2000-2001, puis généralisation)"
+      champ: "France, condamnés à de courtes peines de prison, aménagées ou non sous bracelet électronique, récidive à 5 ans"
+      pays: FR
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Convertir intégralement une peine de prison en bracelet électronique réduit la probabilité de nouvelle condamnation à 5 ans de 6 à 7 points (soit 9 % à 11 %) ; valeur = milieu, signe inversé (effet de la prison par rapport au bracelet). Les auteurs y voient à la fois un effet de réinsertion et de dissuasion, et concluent que le bracelet est une alternative très rentable aux courtes peines."
+    - source: monnery-wolff-henneguelle-2020-irle
+      valeur: null
+      intervalle_95: null
+      methode: "Sélection sur observables (régressions de Cox, entropy balancing) et analyses de sensibilité pour borner l'effet causal, faute d'instrument"
+      champ: "France, 1 445 condamnés tous éligibles à la semi-liberté, récidive dans les 5 ans suivant la libération"
+      pays: FR
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "La semi-liberté est associée à une réduction de 22 % à 31 % du risque instantané (hazard) de récidive par rapport à la prison ; l'effet diminue mais reste négatif et significatif quand on ajoute des facteurs de confusion plausibles. Résultat en risque relatif, non convertible en points sans le taux de base."
+    - source: bhuller-dahl-loken-mogstad-2020-jpe
+      valeur: -29
+      intervalle_95: null
+      methode: "Variables instrumentales : affectation aléatoire des affaires à des juges plus ou moins sévères"
+      champ: "Norvège, prévenus jugés, récidive dans les 5 ans"
+      pays: "NO"
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "L'incarcération réduit de 29 points la probabilité de récidiver dans les 5 ans, et de 11 le nombre d'infractions poursuivies. L'effet se concentre sur les personnes sans emploi avant l'incarcération ; pour celles qui travaillaient, aucun effet sur la récidive mais un effet négatif durable sur l'emploi. Contexte particulier : prisons norvégiennes très orientées vers la réinsertion."
+    - source: di-tella-schargrodsky-2013-jpe
+      valeur: 9
+      intervalle_95: null
+      methode: "Comparaison des anciens détenus et des personnes placées sous bracelet électronique, en exploitant l'affectation aléatoire des prévenus à des juges d'idéologies différentes"
+      champ: "Argentine, prévenus détenus ou placés sous bracelet électronique, taux de nouvelle arrestation"
+      pays: AR
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Taux de nouvelle arrestation de 22 % après la prison contre 13 % après le bracelet (40 % de moins) ; valeur = 22 - 13 = 9 points. Conditions de détention particulièrement dures dans le contexte étudié ; horizon de mesure non précisé dans le résumé."
+    - source: rose-shem-tov-2021-jpe
+      valeur: null
+      intervalle_95: null
+      methode: "Régression sur discontinuité exploitant les grilles de peines de Caroline du Nord, complétée par un modèle économétrique dose-réponse"
+      champ: "États-Unis (Caroline du Nord), condamnés autour des seuils des grilles de peines"
+      pays: US
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Un an d'incarcération réduit la probabilité d'être réincarcéré de 44 % à 3 ans, 29 % à 5 ans et 21 % à 8 ans (baisses relatives, non converties en points faute de taux de base dans le résumé). L'effet protecteur diminue avec la longueur de la peine : raccourcir les peines tout en incarcérant davantage réduirait la récidive à budget constant."
+    - source: mueller-smith-2015-wp
+      valeur: null
+      intervalle_95: null
+      methode: "Variables instrumentales : affectation aléatoire des prévenus aux chambres du tribunal, avec correction des biais liés aux peines multidimensionnelles et non monotones"
+      champ: "États-Unis (comté de Harris, Texas), 1,1 million de prévenus, suivi jusqu'à 20 trimestres"
+      pays: US
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: false
+      note: "L'incarcération a un léger effet de neutralisation pendant la détention (3 à 6 points par trimestre), plus que compensé après la sortie : +4 à +7 points de probabilité trimestrielle d'activité délinquante par année d'incarcération supplémentaire, des infractions plus graves, et -3,6 points d'emploi par année. Unité trimestrielle non convertible en probabilité à 5 ans."
+    - source: aizer-doyle-2015-qje
+      valeur: null
+      intervalle_95: null
+      methode: "Variables instrumentales : propension à incarcérer de juges affectés aléatoirement"
+      champ: "États-Unis (grand comté urbain), plus de 35 000 mineurs délinquants sur 10 ans"
+      pays: US
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "L'incarcération des mineurs réduit fortement l'obtention du diplôme de fin de secondaire et augmente l'incarcération à l'âge adulte, y compris pour crimes violents. Le résumé ne donne pas d'ordre de grandeur ; concerne les mineurs et non les adultes."
+  note_synthese: "La question est réellement débattue, car les meilleures études aboutissent à des conclusions opposées selon les pays et les publics. En France, les deux études quasi-expérimentales disponibles (bracelet électronique, semi-liberté) trouvent que les alternatives à la prison réduisent la récidive par rapport à l'incarcération, d'environ 6 à 7 points à 5 ans pour le bracelet. Plusieurs études américaines (Mueller-Smith au Texas, Aizer et Doyle pour les mineurs) et argentine (Di Tella et Schargrodsky) vont dans le même sens : la prison serait criminogène. À l'inverse, deux études récentes très solides trouvent que l'incarcération réduit la récidive : en Norvège, où les prisons sont orientées vers la réinsertion (-29 points), et en Caroline du Nord. Le contexte (conditions de détention, accompagnement à la sortie, durée des peines, profil des condamnés) semble donc décisif, et les résultats étrangers sont difficilement transposables à la France. Les synthèses de référence (Nagin et al., revue Campbell de Villettaz et al.) et les statistiques descriptives du ministère de la Justice n'ont pas pu être consultées pour cette fiche."
