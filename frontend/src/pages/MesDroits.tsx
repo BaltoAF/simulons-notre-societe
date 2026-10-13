@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { ArrowLeft, ArrowRight, Calculator, GitFork, Lock, Minus, Plus, RotateCcw } from 'lucide-react'
 import { api, type Confiance, type Regle } from '../lib/api'
@@ -7,6 +7,8 @@ import { PRESETS, resoudrePreset } from '../lib/presets'
 import { situationVersMenage, useApp, useFetch, type AdulteSaisie, type SituationSaisie } from '../lib/state'
 import { ConfidenceBadge, ErrorBox, Loading, Notice } from '../components/ui'
 import { DroitsNonMonetaires } from '../components/DroitsNonMonetaires'
+import { Terme } from '../components/Terme'
+import { PROFILS } from '../lib/profils'
 
 type Resultat = {
   revenu_disponible: number
@@ -35,15 +37,13 @@ const POURQUOI: Record<string, { regles: string[]; texte: string }> = {
 function Stepper({ step }: { step: number }) {
   const etapes = ['Votre foyer', 'Vos revenus', 'Votre logement']
   return (
-    <div className="row" style={{ gap: 8, marginBottom: 18 }}>
+    <ol className="etapes" aria-label="Les étapes">
       {etapes.map((e, i) => (
-        <div key={e} className="row" style={{ gap: 6 }}>
-          <span className="step-num" style={{ width: 26, height: 26, fontSize: '.85rem', opacity: i <= step ? 1 : 0.35 }}>{i + 1}</span>
-          <span className="small" style={{ fontWeight: i === step ? 750 : 500 }}>{e}</span>
-          {i < etapes.length - 1 && <span className="muted">—</span>}
-        </div>
+        <li key={e} className={i < step ? 'fait' : i === step ? 'actif' : ''} aria-current={i === step ? 'step' : undefined}>
+          <span className="n">{i < step ? '✓' : i + 1}</span>{e}
+        </li>
       ))}
-    </div>
+    </ol>
   )
 }
 
@@ -69,6 +69,12 @@ export default function MesDroits() {
       setRes(r); setStep(3)
     } catch (e: any) { setErr(e.message) } finally { setLoading(false) }
   }
+
+  // De retour sur la page avec une situation déjà saisie : on affiche directement le résultat
+  useEffect(() => {
+    if (situation && !res && !loading) calculer(situation)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const tester = async (pid: string) => {
     const p = PRESETS.find((x) => x.id === pid)!
@@ -108,9 +114,9 @@ export default function MesDroits() {
               <div className="card">
                 <div className="card-head">
                   <div>
-                    <div className="kpi-label">Revenu disponible du foyer</div>
+                    <div className="kpi-label"><Terme id="revenu_disponible">Ce qui reste au foyer chaque mois</Terme></div>
                     <div className="kpi big">{euros(res.revenu_disponible)} <span className="muted" style={{ fontSize: '1rem', fontWeight: 600 }}>/ mois</span></div>
-                    <div className="small muted">Soit un niveau de vie de {euros(res.niveau_de_vie)} par mois et par unité de consommation.</div>
+                    <div className="small muted">Revenus + aides − impôts. Soit un <Terme id="niveau_vie">niveau de vie</Terme> de {euros(res.niveau_de_vie)} par mois et par personne (en tenant compte de la taille du foyer).</div>
                   </div>
                   <ConfidenceBadge c={res.confiance} align="right" />
                 </div>
@@ -158,13 +164,13 @@ export default function MesDroits() {
                             : Number.isNaN(r.delta) ? <span className="small muted">indisponible</span>
                               : <span className={`delta ${r.delta > 0.5 ? 'pos' : r.delta < -0.5 ? 'neg' : 'zero'}`}>{r.delta > 0.5 ? '+' : r.delta < -0.5 ? '−' : '±'}{euros(Math.abs(r.delta))} / mois</span>)
                             : <button className="btn small" onClick={() => tester(p.id)}>Tester sur mon foyer</button>}
-                          {r && !r.loading && <button className="btn small ghost" onClick={() => ouvrirAtelier(p.id)}>Tous les impacts <ArrowRight size={13} /></button>}
+                          {r && !r.loading && <button className="btn small ghost" onClick={() => ouvrirAtelier(p.id)}>Effets sur le pays <ArrowRight size={13} /></button>}
                         </div>
                       </li>
                     )
                   })}
                 </ul>
-                <Link to="/atelier" className="btn primary" style={{ width: '100%', marginTop: 8 }}><GitFork size={16} /> Composer ma propre réforme</Link>
+                <Link to="/atelier" className="btn primary" style={{ width: '100%', marginTop: 8 }}><GitFork size={16} /> Imaginer ma propre réforme</Link>
               </div>
               <div className="small muted"><Lock size={13} /> Votre situation reste dans votre navigateur. Elle sert uniquement au calcul et n'est jamais enregistrée par Société 2.0.</div>
             </div>
@@ -180,6 +186,12 @@ export default function MesDroits() {
       <h1>Calculer mes droits</h1>
       <p className="lead ink2">Trois questions pour connaître vos aides, votre impôt et votre revenu disponible selon les règles actuelles. Sans compte, sans enregistrement.</p>
       <Stepper step={step} />
+      {step === 0 && (
+        <div className="card soft" style={{ marginBottom: 14, padding: 14 }}>
+          <div className="small" style={{ fontWeight: 650, marginBottom: 6 }}>Pressé ? Partez d'un foyer qui vous ressemble :</div>
+          <div className="pill-list">{PROFILS.map((p) => <button key={p.titre} className="badge" style={{ cursor: 'pointer' }} onClick={() => { setS(p.s); calculer(p.s) }}>{p.titre}</button>)}</div>
+        </div>
+      )}
       <div className="card">
         {step === 0 && (
           <div>

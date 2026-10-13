@@ -30,18 +30,34 @@ export function ValueEditor({ rule, value, onChange }: { rule: Regle; value: Val
   const cur = typeof rule.valeur === 'number' ? rule.valeur : 0
   const [lo, hi] = rule.bornes ?? [Math.min(0, cur * 0.5), Math.max(cur * 2, cur + 10, 1)]
   const step = (hi - lo) / 200 > 1 ? Math.round((hi - lo) / 200) : (hi - lo) <= 5 ? 0.05 : 0.5
+  // boutons rapides : en points pour un taux, en unités pour une durée, en pourcentage pour un montant
+  const borne = (v: number) => Math.min(rule.bornes ? hi : Infinity, Math.max(rule.bornes ? lo : -Infinity, v))
+  const arrondi = (v: number) => (Math.abs(cur) >= 100 ? Math.round(v) : Math.round(v * 100) / 100)
+  const singulier: Record<string, string> = { ans: 'an', mois: 'mois', jours: 'jour', heures: 'heure', enfants: 'enfant', parts: 'part' }
+  const unitaire = singulier[rule.unite]
+  const pasPt = (hi - lo) <= 3 ? 0.1 : (hi - lo) <= 20 ? 0.5 : 1
+  const rapides: [string, number][] = rule.unite === 'pourcent'
+    ? [[`−${nombre(pasPt, 1)} point`, borne(num - pasPt)], [`+${nombre(pasPt, 1)} point`, borne(num + pasPt)]]
+    : unitaire ? [[`−1 ${unitaire}`, borne(num - 1)], [`+1 ${unitaire}`, borne(num + 1)]]
+      : cur !== 0 ? [['−10 %', borne(arrondi(cur * 0.9))], ['−5 %', borne(arrondi(cur * 0.95))], ['+5 %', borne(arrondi(cur * 1.05))], ['+10 %', borne(arrondi(cur * 1.1))]] : []
   return (
     <div>
       <div className="row" style={{ gap: 10 }}>
         <div className="input-suffix grow">
-          <input type="number" value={Number.isFinite(num) ? num : ''} step="any"
+          <input type="number" value={Number.isFinite(num) ? num : ''} step="any" aria-label={`Nouvelle valeur : ${rule.titre}`}
             onChange={(e) => onChange(e.target.value === '' ? 0 : Number(e.target.value))} />
           <span className="suffix">{unite(rule.unite)}</span>
         </div>
       </div>
       <input type="range" min={lo} max={hi} step={step} value={Math.min(hi, Math.max(lo, num))}
         onChange={(e) => onChange(Number(e.target.value))} aria-label={rule.titre} />
-      <div className="row between small muted"><span>{fmt(lo, rule.unite)}</span><span>Actuel : {fmt(rule.valeur, rule.unite)}</span><span>{fmt(hi, rule.unite)}</span></div>
+      <div className="row between small muted"><span>{fmt(lo, rule.unite)}</span><span>Aujourd'hui : {fmt(rule.valeur, rule.unite)}</span><span>{fmt(hi, rule.unite)}</span></div>
+      {(rapides.length > 0 || num !== cur) && (
+        <div className="row" style={{ gap: 6, marginTop: 6 }}>
+          {rapides.map(([l, v]) => <button key={l} type="button" className="btn small" onClick={() => onChange(v)}>{l}</button>)}
+          {num !== cur && <button type="button" className="btn small ghost" onClick={() => onChange(cur)}>Valeur d'aujourd'hui</button>}
+        </div>
+      )}
     </div>
   )
 }
@@ -52,7 +68,7 @@ export function BaremeEditor({ value, onChange }: { value: Tranche[]; onChange: 
   return (
     <div className="bareme-table">
       <table className="table">
-        <thead><tr><th>À partir de (par part)</th><th>Taux</th><th /></tr></thead>
+        <thead><tr><th>Revenu à partir de (par part)</th><th>Taux</th><th /></tr></thead>
         <tbody>
           {rows.map((r, i) => (
             <tr key={i}>
@@ -67,6 +83,7 @@ export function BaremeEditor({ value, onChange }: { value: Tranche[]; onChange: 
         const last = rows[rows.length - 1] ?? { seuil: 0, taux: 0 }
         onChange([...rows, { seuil: Math.round(last.seuil * 1.5 + 10000), taux: Math.min(100, last.taux + 5) }])
       }}><Plus size={15} /> Ajouter une tranche</button>
+      <div className="small muted" style={{ marginTop: 6 }}>Chaque taux ne s'applique qu'à la partie du revenu située au-dessus de son seuil (et sous le seuil suivant).</div>
     </div>
   )
 }
@@ -85,7 +102,7 @@ export function RulePicker({ onPick, onClose, exclude, domaine = '' }: { onPick:
   }, [data, q, dom, seulementSimulables, exclude])
   const domaines = useMemo(() => Array.from(new Set((data?.regles ?? []).map((r) => r.domaine))), [data])
   return (
-    <Modal title="Choisir une règle à modifier" onClose={onClose} width={820}>
+    <Modal title="Quelle règle voulez-vous changer ?" onClose={onClose} width={820}>
       <div className="row" style={{ marginBottom: 12 }}>
         <div className="input-suffix grow">
           <input type="search" autoFocus placeholder="Rechercher : RSA, TVA, SMIC, peine, retraite…" value={q} onChange={(e) => setQ(e.target.value)} />
@@ -98,7 +115,7 @@ export function RulePicker({ onPick, onClose, exclude, domaine = '' }: { onPick:
       </div>
       <label className="row small" style={{ marginBottom: 10, cursor: 'pointer' }}>
         <input type="checkbox" checked={seulementSimulables} onChange={(e) => setSeulementSimulables(e.target.checked)} />
-        Seulement les règles dont l'impact est chiffré
+        Seulement les règles dont le Système sait calculer les effets
       </label>
       {loading ? <Loading /> : (
         <ul className="list" style={{ maxHeight: '58vh', overflowY: 'auto' }}>
@@ -109,7 +126,8 @@ export function RulePicker({ onPick, onClose, exclude, domaine = '' }: { onPick:
                   <strong style={{ display: 'inline' }}>{r.titre}</strong>
                   <span className="badge">{fmt(r.valeur, r.unite, r.type)}</span>
                 </div>
-                <div className="small muted">{DOMAINE_TITRE[r.domaine] ?? r.domaine} · {r.theme}{r.simulable ? '' : ' · impact non chiffré'}</div>
+                {r.explication && <div className="small ink2">{r.explication.length > 130 ? r.explication.slice(0, 127).replace(/\s+\S*$/, '') + '…' : r.explication}</div>}
+                <div className="small muted">{DOMAINE_TITRE[r.domaine] ?? r.domaine} · {r.theme}{r.simulable ? '' : ' · effets pas encore calculés'}</div>
               </button>
             </li>
           ))}

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { ArrowRight, BookOpen, ChevronDown, ChevronRight, Scale } from 'lucide-react'
 import type { Indicateur, Rapport, Section, Valeur } from '../lib/api'
 import { delta, euros, nombre, valeur } from '../lib/format'
+import { milliards } from '../lib/humain'
 import { ColumnChart, DivergingBars } from './charts'
 import { ConfidenceBadge } from './ui'
 import { EnBref, EquilibresPanel } from './synthese'
@@ -211,20 +212,26 @@ export function SectionView({ s, ouvert = false }: { s: Section; ouvert?: boolea
 export function ReportView({ r, overrides, onAppliquer }: { r: Rapport; overrides?: Record<string, Valeur>; onAppliquer?: (o: Record<string, Valeur>) => void }) {
   const syn = r.synthese
   const budget = r.equilibres?.find((e) => e.id === 'budget')
+  if (r.partiel) {
+    // 1er temps du calcul : seulement le foyer et les ménages types, le reste arrive
+    return <div className="stack">{r.sections.map((s) => <SectionView key={s.id} s={s} ouvert />)}</div>
+  }
   return (
     <div className="stack">
       {r.bilan && <EnBref r={r} />}
       {r.equilibres && (
         <div>
-          <h3 style={{ margin: '8px 0 10px' }}>Les équilibres à respecter</h3>
+          <h2 style={{ margin: '8px 0 4px', fontSize: '1.3rem' }}>Les équilibres à respecter</h2>
+          <p className="small muted" style={{ marginTop: 0, marginBottom: 10 }}>Deux limites s'imposent à toute réforme : ne pas dépenser sans financer, et ne pas émettre plus de gaz à effet de serre que le plafond fixé pour le climat.</p>
           <EquilibresPanel r={r} overrides={overrides} onAppliquer={onAppliquer} />
           {syn.solde_public_annuel_md !== null && budget && Math.abs(syn.solde_public_annuel_md - budget.effet) > 0.05 && (
             <p className="small muted" style={{ marginTop: 8 }}>En comptant aussi les réactions des ménages et des entreprises et l'effet sur l'activité (estimations moins certaines),
-              l'effet sur les finances publiques serait de <strong>{syn.solde_public_annuel_md >= 0 ? '+' : '−'}{nombre(Math.abs(syn.solde_public_annuel_md), 1)} Md€</strong> par an.</p>
+              la réforme {syn.solde_public_annuel_md >= 0 ? 'rapporterait' : 'coûterait'} plutôt <strong>{milliards(Math.abs(syn.solde_public_annuel_md))}</strong> par an.</p>
           )}
         </div>
       )}
-      <h3 style={{ margin: '8px 0 0' }}>Le détail, pour aller plus loin</h3>
+      <h2 style={{ margin: '8px 0 0', fontSize: '1.3rem' }}>Pour aller plus loin : le détail</h2>
+      <p className="small muted" style={{ margin: 0 }}>Cliquez sur une rubrique pour l'ouvrir. Chaque chiffre indique d'où il vient et à quel point on peut s'y fier.</p>
       {r.sections.map((s) => <SectionView key={s.id} s={s} ouvert={s.id === 'menage'} />)}
       {r.erreurs.length > 0 && (
         <div className="notice warn small">Certains modules n'ont pas pu être calculés : {r.erreurs.map((e) => e.module).join(', ')}.</div>

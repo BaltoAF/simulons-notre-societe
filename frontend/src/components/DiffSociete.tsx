@@ -42,7 +42,7 @@ export function DiffSociete({ items, vide }: { items: Diff[]; vide: string }) {
                   {c.provenance && (
                     <div className="small muted" style={{ marginTop: 4 }}>
                       {c.provenance.justification && <div><Quote size={12} /> « {c.provenance.justification} »</div>}
-                      <div><GitCommit size={12} /> {c.provenance.auteur_systeme ? 'Le Système' : c.provenance.auteur} · {relatif(c.provenance.date)} · « {c.provenance.message} » <code>{c.provenance.commit.slice(0, 7)}</code></div>
+                      <div><GitCommit size={12} /> {c.provenance.auteur_systeme ? 'Le Système' : c.provenance.auteur} · {relatif(c.provenance.date)} · « {c.provenance.message} »</div>
                     </div>
                   )}
                 </li>

@@ -36,6 +36,18 @@ def dump_yaml(data, path: Path, header: str):
         yaml.safe_dump(data, f, allow_unicode=True, sort_keys=False, width=120)
 
 
+def repare_encodage(s: str) -> str:
+    """Certaines références d'OpenFisca sont en UTF-8 relu comme du Latin-1 (« DÃ©cret nÂ° ») : on les répare."""
+    if "Ã" not in s and "Â" not in s:
+        return s
+    for enc in ("cp1252", "latin-1"):
+        try:
+            return s.encode(enc).decode("utf-8")
+        except (UnicodeEncodeError, UnicodeDecodeError):
+            continue
+    return s
+
+
 def rule_ids_defined_elsewhere() -> set[str]:
     """Ids de règles définies dans des fiches qui ne sont pas générées par ce script."""
     ids = set()
@@ -88,7 +100,7 @@ class SourceRegistry:
         key = (href or "") + "|" + (title or "")
         sid = "of-ref-" + hashlib.sha1(key.encode("utf-8")).hexdigest()[:10]
         if sid not in self.sources:
-            t = (title or href or "Référence légale").strip()
+            t = repare_encodage((title or href or "Référence légale").strip())
             official = bool(href and ("legifrance" in href or "journal-officiel" in href or "bofip" in href)) or \
                 t.lower().startswith(("loi", "décret", "decret", "arrêté", "arrete", "ordonnance", "code", "article", "circulaire", "lfss", "lfi", "lf "))
             self.sources[sid] = {

@@ -1,12 +1,15 @@
 // Du budget national au budget de chaque ménage.
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ChevronDown, Landmark, Lock, PiggyBank, Wallet } from 'lucide-react'
+import { ArrowRight, ChevronDown, Landmark, Lock, PiggyBank, Scale, TrendingDown, TrendingUp, Wallet } from 'lucide-react'
 import { api } from '../lib/api'
 import { euros, nombre } from '../lib/format'
 import { situationVersMenage, useApp, useFetch, type SituationSaisie } from '../lib/state'
 import { PROFILS } from '../lib/profils'
 import { ErrorBox, Loading } from '../components/ui'
+import { Pourquoi, Terme } from '../components/Terme'
+import { milliards, parMenageMois } from '../lib/humain'
+import { MISSIONS, infoMission } from '../lib/missions'
 
 type Fonction = { id: string; titre: string; description: string; md: number; part: number; par_habitant_an: number; annee: string; source: string
   detail?: { id: string; titre: string; md: number; par_habitant_an: number }[] }
@@ -32,6 +35,42 @@ type VueMenage = {
 
 function Barre({ part, couleur = 'var(--primary)' }: { part: number; couleur?: string }) {
   return <div className="bar-track" style={{ height: 10 }}><div className="bar-fill" style={{ width: `${Math.max(0.5, part * 100)}%`, background: couleur }} /></div>
+}
+
+// Comment modifier le budget : les trois façons de faire, et pourquoi certaines dépenses sont verrouillées.
+function CommentChanger({ totalEtat }: { totalEtat: number }) {
+  const verrouillees = Object.values(MISSIONS).filter((m) => m.verrou)
+  return (
+    <div className="card" style={{ marginTop: 20 }}>
+      <h2 style={{ fontSize: '1.3rem', marginBottom: 4 }}>Comment changer ce budget ?</h2>
+      <p className="small muted" style={{ marginTop: 0 }}>Dans l'atelier, vous pouvez modifier le budget de l'État (environ {milliards(totalEtat)} par an) de trois façons :</p>
+      <div className="grid cols-3">
+        <div className="card flat">
+          <strong><Scale size={16} /> Répartir autrement</strong>
+          <p className="small ink2" style={{ marginBottom: 0 }}>Plus pour l'école, moins ailleurs. Le total ne bouge pas : c'est toujours équilibré.</p>
+        </div>
+        <div className="card flat">
+          <strong><TrendingUp size={16} /> Dépenser plus</strong>
+          <p className="small ink2" style={{ marginBottom: 0 }}>Il faut trouver l'argent : faire des économies ailleurs, augmenter un impôt… Le site vous propose des solutions chiffrées.
+            Sinon, il faut emprunter : c'est autorisé, mais vous devez l'assumer, car la <Terme id="dette">dette</Terme> augmente. Exemple : 10 milliards de plus par an ≈ {parMenageMois(10)} par mois et par ménage.</p>
+        </div>
+        <div className="card flat">
+          <strong><TrendingDown size={16} /> Dépenser moins</strong>
+          <p className="small ink2" style={{ marginBottom: 0 }}>Le <Terme id="deficit">déficit</Terme> baisse, et avec lui la dette. En contrepartie, les services concernés (école, police…) ont moins de moyens.</p>
+        </div>
+      </div>
+      <Pourquoi titre="Pourquoi certaines dépenses ont un cadenas ?">
+        <p style={{ marginTop: 0 }}>Certaines dépenses ne se décident pas d'un simple coup de crayon :</p>
+        <ul style={{ paddingLeft: 18, margin: '0 0 6px' }}>{verrouillees.map((m) => <li key={m.nom}><strong>{m.nom}</strong> : {m.verrou}</li>)}</ul>
+        <p style={{ marginBottom: 0 }}>On ne peut donc pas les baisser directement ; on agit sur leurs causes (moins de déficit, autres règles d'impôt).</p>
+      </Pourquoi>
+      <Pourquoi titre="Et la Sécurité sociale, les retraites, les aides ?">
+        Elles dépendent surtout de règles (montant du RSA, âge de départ, taux de cotisation…) plutôt que d'un budget voté. Pour les changer, modifiez ces règles
+        dans l'atelier : le Système calcule ce que cela coûte ou rapporte.
+      </Pourquoi>
+      <Link className="btn primary" style={{ marginTop: 14 }} to="/atelier?budget=1">Essayer de répartir le budget <ArrowRight size={15} /></Link>
+    </div>
+  )
 }
 
 export default function Budget() {
@@ -60,18 +99,18 @@ export default function Budget() {
       <p className="lead ink2" style={{ maxWidth: 820 }}>D'où vient l'argent public, où il va, et quelle est votre part. Toutes les dépenses publiques sont comptées : État, Sécurité sociale et collectivités locales.</p>
 
       <div className="grid cols-3" style={{ marginBottom: 20 }}>
-        <div className="card"><div className="kpi-label">Dépense publique {n.depenses?.date?.slice(0, 4)}</div><div className="kpi">{nombre(dep, 0)} Md€</div>
+        <div className="card"><div className="kpi-label">L'argent public dépensé en {n.depenses?.date?.slice(0, 4)}</div><div className="kpi">{milliards(dep)}</div>
           <div className="small muted">soit <strong>{euros(n.par_habitant.depense ?? 0)}</strong> par habitant et par an</div></div>
-        <div className="card"><div className="kpi-label">Déficit {n.solde?.date?.slice(0, 4)}</div><div className="kpi"><span className="delta neg">{nombre(Math.abs(n.solde?.valeur ?? 0), 1)} Md€</span></div>
-          <div className="small muted">dépenses non couvertes par les recettes ({nombre(n.recettes_totales?.valeur ?? 0, 0)} Md€)</div></div>
-        <div className="card"><div className="kpi-label">Dette publique</div><div className="kpi">{nombre(n.dette?.valeur ?? 0, 0)} Md€</div>
-          <div className="small muted">soit {euros(n.par_habitant.dette ?? 0)} par habitant</div></div>
+        <div className="card"><div className="kpi-label"><Terme id="deficit">Le déficit</Terme> {n.solde?.date?.slice(0, 4)}</div><div className="kpi"><span className="delta neg">{milliards(Math.abs(n.solde?.valeur ?? 0))}</span></div>
+          <div className="small muted">dépensés en plus de ce qui rentre ({milliards(n.recettes_totales?.valeur ?? 0)} de recettes) : il faut l'emprunter</div></div>
+        <div className="card"><div className="kpi-label"><Terme id="dette">La dette publique</Terme></div><div className="kpi">{milliards(n.dette?.valeur ?? 0)}</div>
+          <div className="small muted">soit {euros(n.par_habitant.dette ?? 0)} par habitant : la somme des déficits passés</div></div>
       </div>
 
       <div className="split even">
         <div className="card">
           <h3><Landmark size={18} /> Où va l'argent public</h3>
-          <p className="small muted">Dépenses par grande fonction (classification internationale COFOG, {n.fonctions[0]?.annee}). Cliquez pour le détail.</p>
+          <p className="small muted">Toutes les administrations (État, Sécurité sociale, collectivités), par grand domaine, en {n.fonctions[0]?.annee}. Cliquez sur un domaine pour le détail.</p>
           {n.fonctions.map((f) => (
             <div key={f.id} style={{ marginBottom: 12 }}>
               <button className="row between" onClick={() => setOuvert(ouvert === f.id ? null : f.id)}
@@ -87,7 +126,7 @@ export default function Budget() {
               )}
             </div>
           ))}
-          <div className="small muted">Source : Eurostat / INSEE, comptes des administrations publiques.</div>
+          <div className="small muted">Source : Eurostat / INSEE, comptes des administrations publiques (nomenclature internationale COFOG).</div>
         </div>
         <div className="card">
           <h3><PiggyBank size={18} /> D'où vient l'argent</h3>
@@ -99,16 +138,22 @@ export default function Budget() {
             </div>
           ))}
           <details className="explain">
-            <summary><ChevronDown size={15} /> Le budget de l'État, mission par mission</summary>
-            <ul className="list small">{n.etat_missions.slice(0, 40).map((x) => <li key={x.id} className="list-row" style={{ padding: '5px 0' }}><Link to={`/regles/r/${x.id}`}>{x.titre}</Link><span>{nombre(x.md, 1)} Md€</span></li>)}</ul>
+            <summary><ChevronDown size={15} /> Le budget de l'État, domaine par domaine</summary>
+            <ul className="list small">{n.etat_missions.slice(0, 40).map((x) => {
+              const i = infoMission(x.id, x.titre)
+              return <li key={x.id} className="list-row" style={{ padding: '5px 0' }}>
+                <span>{i.verrou && <span title={i.verrou}><Lock size={12} color="var(--ink-3)" /> </span>}<Link to={`/regles/r/${x.id}`}>{i.nom}</Link></span><span>{nombre(x.md, 1)} Md€</span></li>
+            })}</ul>
+            <div className="small muted"><Lock size={12} /> = dépense obligatoire, voir « Pourquoi certaines dépenses ont un cadenas ? » plus bas.</div>
           </details>
           <details className="explain">
             <summary><ChevronDown size={15} /> La Sécurité sociale, branche par branche</summary>
             <ul className="list small">{n.secu_branches.map((x) => <li key={x.id} className="list-row" style={{ padding: '5px 0' }}><Link to={`/regles/r/${x.id}`}>{x.titre}</Link><span>{nombre(x.md, 1)} Md€</span></li>)}</ul>
           </details>
-          <Link className="btn" style={{ marginTop: 12 }} to="/atelier?budget=1">Répartir autrement le budget de l'État</Link>
         </div>
       </div>
+
+      <CommentChanger totalEtat={n.etat_missions.reduce((a, x) => a + x.md, 0)} />
 
       <div className="section-title"><h2><Wallet size={22} /> Et vous ?</h2></div>
       <div className="row" style={{ marginBottom: 12 }}>

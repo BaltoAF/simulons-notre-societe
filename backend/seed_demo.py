@@ -61,7 +61,7 @@ def main():
            {"regle": "prestations.revenu_universel.remplace_rsa_prime_activite", "valeur": True}],
           "Revenu universel de 600 €")
     variante = creer(sacha, "[Exemple] Société plus solidaire — variante TVA",
-                     "Exemple de démonstration : fork de la société de Camille, qui propose de financer aussi par la TVA.",
+                     "Exemple de démonstration : une variante de la société de Camille, qui propose de financer aussi par la TVA.",
                      [{"regle": "fiscalite.tva.taux_normal", "valeur": 21, "justification": "Élargir le financement"}],
                      "TVA à 21 %", source=solidaire["id"])
     try:
@@ -69,7 +69,7 @@ def main():
             vcs.create_proposal(sacha, variante["id"], vcs.BRANCHE_PRINCIPALE, solidaire["id"], vcs.BRANCHE_PRINCIPALE,
                                 "Financer aussi par une hausse de TVA",
                                 "La tranche à 50 % rapporte peu ; je propose d'ajouter un point de TVA. Les impacts sont visibles dans l'onglet Impacts.")
-            vcs.add_comment(camille, "societe", solidaire["id"], "Bienvenue ! Les impacts sur les ménages types sont intéressants, n'hésitez pas à forker.")
+            vcs.add_comment(camille, "societe", solidaire["id"], "Bienvenue ! Les impacts sur les ménages types sont intéressants, n'hésitez pas à créer votre version.")
     except HTTPException as e:
         print("Proposition non créée :", e.detail)
     print("Données de démonstration prêtes. Comptes :", ", ".join(p for p, _ in COMPTES), "— mot de passe : voir MOT_DE_PASSE_DEMO dans ce fichier.")

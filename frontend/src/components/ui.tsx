@@ -6,6 +6,7 @@ import {
 } from 'lucide-react'
 import type { Confiance, Source } from '../lib/api'
 import { date } from '../lib/format'
+import { CONFIANCE_FEMININ } from '../lib/humain'
 
 const ICONES: Record<string, typeof Coins> = {
   coins: Coins, 'hand-heart': HandHeart, briefcase: Briefcase, hourglass: Hourglass, landmark: Landmark,
@@ -45,14 +46,14 @@ export function ConfidenceBadge({ c, align = 'left', compact = false }: { c: Con
   return (
     <span className="popover-wrap" ref={ref}>
       <button type="button" className={`conf ${c.niveau}`} onClick={() => setOpen((o) => !o)}
-        aria-expanded={open} title={`Confiance : ${c.libelle} (${c.score}/100)`}>
+        aria-expanded={open} title={`Confiance ${CONFIANCE_FEMININ[c.niveau]} (${c.score}/100) — cliquez pour comprendre`}>
         <span className="dots" aria-hidden>{[1, 2, 3, 4].map((i) => <i key={i} className={i <= n ? 'on' : ''} />)}</span>
-        {compact ? null : <>Confiance {c.libelle.toLowerCase()}</>}
+        {compact ? null : <>Confiance {CONFIANCE_FEMININ[c.niveau]}</>}
       </button>
       {open && (
         <div className={`popover ${align === 'right' ? 'right' : ''}`} role="dialog">
           <div className="row between" style={{ marginBottom: 8 }}>
-            <strong>Confiance : {c.libelle}</strong>
+            <strong>Confiance {CONFIANCE_FEMININ[c.niveau]}</strong>
             <span className="badge">{c.score}/100</span>
           </div>
           <p className="muted small" style={{ marginBottom: 10 }}>{c.description}</p>

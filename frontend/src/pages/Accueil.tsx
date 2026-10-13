@@ -24,26 +24,26 @@ export default function Accueil() {
     <div>
       <section className="hero">
         <div className="container">
-          <span className="badge primary" style={{ marginBottom: 14 }}><GitFork size={14} /> Les règles de la société, en open source</span>
+          <span className="badge primary" style={{ marginBottom: 14 }}><GitFork size={14} /> Les règles de la France, ouvertes à tous</span>
           <h1>Et si on changeait les règles ? <em>Mesurons d'abord.</em></h1>
-          <p className="lead">Société 2.0 traduit les règles de la France — impôts, aides, travail, retraites, justice, institutions… — en paramètres
-            vérifiables. Chacun peut en créer sa version, comme on « forke » un logiciel, et voir ce que ça change : pour soi, pour le pays,
-            avec un indice de confiance pour chaque chiffre.</p>
+          <p className="lead">Impôts, aides, retraites, travail, climat… Société 2.0 rassemble les règles de la France, chacune prouvée par un texte officiel.
+            Vous pouvez voir ce qu'elles vous donnent, puis imaginer les vôtres et découvrir ce que ça changerait, pour vous et pour le pays.
+            Chaque chiffre dit d'où il vient et à quel point on peut s'y fier.</p>
           <div className="grid cols-3" style={{ marginTop: 26 }}>
             <Link to="/mes-droits" className="card link" style={{ borderColor: 'var(--primary)' }}>
               <Calculator size={26} color="var(--primary)" />
-              <h3 style={{ marginTop: 8 }}>Que me donne la société ?</h3>
-              <p className="small ink2" style={{ margin: 0 }}>Vos aides, vos impôts, votre âge de départ à la retraite… en 3 questions.</p>
+              <h3 style={{ marginTop: 8 }}>Mes droits</h3>
+              <p className="small ink2" style={{ margin: 0 }}>Vos aides, vos impôts, votre âge de départ à la retraite… en 3 questions, sans compte.</p>
             </Link>
             <Link to="/budget" className="card link">
               <Landmark size={26} color="var(--accent)" />
               <h3 style={{ marginTop: 8 }}>Où va l'argent public ?</h3>
-              <p className="small ink2" style={{ margin: 0 }}>Du budget de la France à votre propre contribution, poste par poste.</p>
+              <p className="small ink2" style={{ margin: 0 }}>Le budget de la France, et ce que vous y mettez, poste par poste.</p>
             </Link>
             <Link to="/atelier" className="card link">
               <GitFork size={26} color="var(--gain)" />
-              <h3 style={{ marginTop: 8 }}>Et si on changeait les règles ?</h3>
-              <p className="small ink2" style={{ margin: 0 }}>Testez une idée : effets sur vous, l'économie, le social, la planète et le bien-être.</p>
+              <h3 style={{ marginTop: 8 }}>Changer les règles</h3>
+              <p className="small ink2" style={{ margin: 0 }}>Testez une idée : ce qu'elle change pour vous, pour les finances publiques, le climat et le bien-être.</p>
             </Link>
           </div>
         </div>
@@ -52,18 +52,18 @@ export default function Accueil() {
       <section className="container">
         <div className="grid cols-3">
           <div className="card">
-            <div className="row"><span className="step-num">1</span><h3 style={{ margin: 0 }}>La Société 1.0</h3></div>
-            <p className="ink2" style={{ marginTop: 10 }}>Les règles en vigueur aujourd'hui. Chaque valeur est <strong>prouvée</strong> par un texte officiel ou une statistique publique, et tenue à jour par le Système.</p>
+            <div className="row"><span className="step-num">1</span><h3 style={{ margin: 0 }}>La France d'aujourd'hui</h3></div>
+            <p className="ink2" style={{ marginTop: 10 }}>Toutes les règles en vigueur : c'est la « Société 1.0 ». Chaque valeur est <strong>prouvée</strong> par un texte officiel, et tenue à jour automatiquement quand la loi change.</p>
             <Link to="/regles">Explorer les règles <ArrowRight size={14} /></Link>
           </div>
           <div className="card">
             <div className="row"><span className="step-num">2</span><h3 style={{ margin: 0 }}>Votre version</h3></div>
-            <p className="ink2" style={{ marginTop: 10 }}>Modifiez une ou plusieurs règles, enregistrez votre société, proposez-la, améliorez celle des autres. Tout est versionné et public, <strong>comme git</strong>.</p>
+            <p className="ink2" style={{ marginTop: 10 }}>Changez une ou plusieurs règles et enregistrez votre « société ». Les autres peuvent s'en inspirer, créer leur version et vous suggérer des améliorations. Chaque changement est <strong>signé et daté</strong>.</p>
             <Link to="/societes">Voir les sociétés proposées <ArrowRight size={14} /></Link>
           </div>
           <div className="card">
-            <div className="row"><span className="step-num">3</span><h3 style={{ margin: 0 }}>Les impacts, sourcés</h3></div>
-            <p className="ink2" style={{ marginTop: 10 }}>Pour votre foyer et pour le pays, sur quatre dimensions : économie, social, écologie et bien-être. Une hausse qui dégrade le budget public ou le budget carbone doit être <strong>compensée ailleurs</strong>. Quand les études divergent, le Système tranche et dit avec quelle confiance.</p>
+            <div className="row"><span className="step-num">3</span><h3 style={{ margin: 0 }}>Les effets, sans tricher</h3></div>
+            <p className="ink2" style={{ marginTop: 10 }}>Pour votre foyer et pour le pays : argent, inégalités, climat, bien-être. Toute dépense en plus doit être <strong>financée ailleurs</strong>, et toute hausse des émissions compensée. Quand les études se contredisent, le Système tranche et dit avec quelle confiance.</p>
             <Link to="/preuves">Voir les études <ArrowRight size={14} /></Link>
           </div>
         </div>
@@ -76,7 +76,7 @@ export default function Accueil() {
               <div><div className="kpi">{nombre(s.regles, 0)}</div><div className="kpi-label">règles numérisées</div></div>
               <div><div className="kpi">{nombre(s.sources, 0)}</div><div className="kpi-label">sources référencées</div></div>
               <div><div className="kpi">{s.regles ? nombre(s.regles_texte_officiel / s.regles * 100, 0) : 0} %</div><div className="kpi-label">des règles prouvées par un texte officiel</div></div>
-              <div><div className="kpi">{nombre(s.estimations, 0)}</div><div className="kpi-label">estimations issues de {nombre(s.preuves, 0)} questions d'études</div></div>
+              <div><div className="kpi">{nombre(s.estimations, 0)}</div><div className="kpi-label">résultats d'études, sur {nombre(s.preuves, 0)} grandes questions</div></div>
             </div>
           </div>
         </section>
@@ -120,7 +120,7 @@ export default function Accueil() {
             <ul className="list small">
               <li><BadgeCheck size={15} color="var(--gain)" /> <strong>Pas de chiffre sans source.</strong> Chaque règle renvoie à son texte (Légifrance, JO, BOFiP) ; chaque estimation à son étude.</li>
               <li><Scale size={15} color="var(--primary)" /> <strong>Neutralité.</strong> Toutes les études crédibles sont prises en compte, même contradictoires. La synthèse est calculée par une méthode publique.</li>
-              <li><GitFork size={15} color="var(--accent)" /> <strong>Ouverture.</strong> Tester est libre et anonyme ; proposer nécessite seulement de s'identifier. Code et données sont ouverts.</li>
+              <li><GitFork size={15} color="var(--accent)" /> <strong>Ouverture.</strong> Tester est libre et anonyme ; un compte ne sert qu'à enregistrer et partager. Le code et les données sont publics.</li>
             </ul>
           </div>
           <div className="card">
@@ -129,7 +129,7 @@ export default function Accueil() {
               {(soc?.societes ?? []).slice(0, 5).map((x) => (
                 <li key={x.id} className="list-row">
                   <div><Link to={`/societes/${x.id}`}><strong>{x.nom}</strong></Link>
-                    <div className="small muted">{x.reference ? 'Référence, maintenue par le Système' : `par ${x.owner_pseudo} · ${x.nb_differences ?? 0} règle(s) modifiée(s)`} · {relatif(x.updated_at)}</div></div>
+                    <div className="small muted">{x.reference ? 'La loi actuelle, tenue à jour par le Système' : `par ${x.owner_pseudo} · ${x.nb_differences ?? 0} règle${(x.nb_differences ?? 0) > 1 ? 's' : ''} changée${(x.nb_differences ?? 0) > 1 ? 's' : ''}`} · {relatif(x.updated_at)}</div></div>
                   <span className="badge">★ {x.etoiles}</span>
                 </li>
               ))}

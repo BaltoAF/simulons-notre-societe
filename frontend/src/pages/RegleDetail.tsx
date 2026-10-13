@@ -4,6 +4,7 @@ import type { RegleDetail as RD, Tranche } from '../lib/api'
 import { date, DOMAINE_TITRE, nombre, valeur } from '../lib/format'
 import { useApp, useFetch } from '../lib/state'
 import { ConfidenceBadge, ErrorBox, Loading, SourceItem } from '../components/ui'
+import { Pourquoi, Terme } from '../components/Terme'
 
 function Bareme({ t }: { t: Tranche[] }) {
   const rows = [...t].sort((a, b) => a.seuil - b.seuil)
@@ -39,7 +40,10 @@ export default function RegleDetail() {
             <h1 style={{ fontSize: '1.8rem' }}>{r.titre}</h1>
             <p className="ink2" style={{ fontSize: '1.05rem' }}>{r.explication}</p>
             <div className="kpi-label">Valeur en vigueur{r.valeur_depuis ? ` depuis le ${date(r.valeur_depuis)}` : ''}</div>
-            {r.type === 'bareme' && Array.isArray(r.valeur) ? <Bareme t={r.valeur as Tranche[]} /> : <div className="value-big">{valeur(r.valeur, r.unite, r.type)}</div>}
+            {r.type === 'bareme' && Array.isArray(r.valeur) ? <>
+              <Bareme t={r.valeur as Tranche[]} />
+              <Pourquoi titre="Comment lire ce barème ?">Chaque taux ne s'applique qu'à la partie du revenu comprise dans sa tranche. Exemple : passer dans une tranche supérieure ne fait pas payer plus sur tout le revenu, seulement sur ce qui dépasse le seuil.</Pourquoi>
+            </> : <div className="value-big">{valeur(r.valeur, r.unite, r.type)}</div>}
             {r.article && <div className="small muted" style={{ marginTop: 4 }}>{r.article}</div>}
             {r.prochaine_valeur && <div className="notice" style={{ marginTop: 12 }}>Évolution déjà prévue : {valeur(r.prochaine_valeur.valeur, r.unite, r.type)} à partir du {date(r.prochaine_valeur.depuis)}.</div>}
             {r.a_verifier && <div className="notice warn" style={{ marginTop: 12 }}><AlertTriangle size={18} /> Le Système n'a pas encore pu confirmer cette valeur sur une source officielle.</div>}
@@ -50,17 +54,17 @@ export default function RegleDetail() {
               </div>
             ))}
             {r.note && <p className="small muted" style={{ marginTop: 12 }}>{r.note}</p>}
-            {r.virtuel && <div className="notice" style={{ marginTop: 12 }}>Ce dispositif n'existe pas aujourd'hui : il est proposé comme levier pour que les forks puissent le créer et le chiffrer.</div>}
+            {r.virtuel && <div className="notice" style={{ marginTop: 12 }}>Ce dispositif n'existe pas aujourd'hui : il est proposé pour que chacun puisse l'essayer dans sa société et en mesurer les effets.</div>}
           </div>
 
           <div className="card">
-            <h3>Les preuves</h3>
-            <p className="small muted">Les sources qui établissent cette valeur et son historique.</p>
+            <h3>D'où vient cette valeur ?</h3>
+            <p className="small muted">Les textes officiels qui la fixent : cliquez pour les consulter.</p>
             {r.sources.length ? <ul className="list">{r.sources.map((s) => <SourceItem key={s.id} s={s} />)}</ul> : <div className="small muted">Aucune source (dispositif virtuel).</div>}
           </div>
 
           <div className="card">
-            <h3>Historique</h3>
+            <h3>Comment elle a évolué</h3>
             <ul className="timeline">
               {hist.map((v, i) => (
                 <li key={i} className={v.depuis === r.valeur_depuis ? 'current' : ''}>
@@ -77,19 +81,20 @@ export default function RegleDetail() {
           {r.levier && (
             <div className="card">
               <h3><GitFork size={17} /> Et si on la changeait ?</h3>
-              <p className="small ink2">{r.simulable ? 'Le Système sait chiffrer l\'impact d\'un changement de cette règle.' : 'Vous pouvez la modifier dans votre société ; son impact n\'est pas encore chiffré, mais les études disponibles seront affichées.'}</p>
-              <button className="btn primary" style={{ width: '100%' }} onClick={tester}><Calculator size={16} /> Modifier dans l'atelier</button>
+              <p className="small ink2">{r.simulable ? 'Essayez une autre valeur : le Système calculera ce que cela change pour vous, pour les finances publiques et pour le pays.' : 'Vous pouvez essayer une autre valeur. Son effet n\'est pas encore calculé précisément, mais les études disponibles seront affichées.'}</p>
+              <button className="btn primary" style={{ width: '100%' }} onClick={tester}><Calculator size={16} /> Essayer une autre valeur</button>
             </div>
           )}
           {r.preuves.length > 0 && (
             <div className="card">
               <h3>Ce que disent les études</h3>
+              <p className="small muted" style={{ marginTop: 0 }}>Les effets de cette règle, d'après la recherche. La <Terme id="confiance">confiance</Terme> dit à quel point les études sont solides et d'accord entre elles.</p>
               <ul className="list">
                 {r.preuves.map((p) => (
                   <li key={p.id}>
                     <Link to={`/preuves/${p.id}`} style={{ fontWeight: 650 }}>{p.titre}</Link>
                     <div className="row between small" style={{ marginTop: 4 }}>
-                      <span>Valeur retenue : <strong>{p.valeur_retenue !== null ? nombre(p.valeur_retenue, 3) : '—'}</strong> <span className="muted">({p.n_estimations} estimations)</span></span>
+                      <span className="muted">{p.n_estimations > 1 ? `${p.n_estimations} estimations comparées` : p.n_estimations === 1 ? 'Une seule estimation' : 'Pas encore d\'estimation'}</span>
                       <ConfidenceBadge c={p.confiance} compact align="right" />
                     </div>
                   </li>
@@ -97,12 +102,13 @@ export default function RegleDetail() {
               </ul>
             </div>
           )}
-          <div className="card soft small">
-            <div><FileCode2 size={14} /> Fichier : <code>{r.fichier}</code></div>
+          <details className="card soft small curieux">
+            <summary>Pour les curieux : détails techniques</summary>
+            <div style={{ marginTop: 8 }}><FileCode2 size={14} /> Fichier : <code>{r.fichier}</code></div>
             {r.moteur && <div style={{ marginTop: 4 }}><Cpu size={14} /> Moteur : paramètre OpenFisca <code>{r.moteur.openfisca}</code></div>}
             {r.verifie_le && <div style={{ marginTop: 4 }}>Valeur confirmée par les mainteneurs d'OpenFisca le {date(r.verifie_le)}.</div>}
             <div style={{ marginTop: 4 }} className="muted">Identifiant : <code>{r.id}</code></div>
-          </div>
+          </details>
         </div>
       </div>
     </div>

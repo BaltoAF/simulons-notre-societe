@@ -105,6 +105,8 @@ export function relatif(d?: string | null): string {
   return dateCourte(d)
 }
 
+export const STATUT_SUGGESTION: Record<string, string> = { ouverte: 'en discussion', fusionnee: 'intégrée', fermee: 'refusée' }
+
 export const DOMAINE_TITRE: Record<string, string> = {
   fiscalite: 'Impôts et taxes', prestations: 'Aides et prestations', travail: 'Travail et emploi', retraites: 'Retraites',
   budget: 'Budget public', sante: 'Santé', education: 'Éducation', logement: 'Logement',

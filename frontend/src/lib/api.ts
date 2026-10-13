@@ -114,6 +114,7 @@ export type Rapport = {
   equilibres: Equilibre[]
   bilan: Pilier[]
   pour_vous: { delta_mois: number; avant: number; apres: number; confiance: Confiance | null } | null
+  partiel?: boolean // vrai pendant le 1er temps du calcul (foyer et ménages types seulement)
 }
 
 export type Equilibre = {

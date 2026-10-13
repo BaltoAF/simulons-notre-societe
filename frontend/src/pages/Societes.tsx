@@ -18,7 +18,7 @@ export default function Societes() {
       <div className="row between">
         <div>
           <h1>{auteur ? `Les sociétés de ${auteur}` : 'Les sociétés'}</h1>
-          <p className="ink2" style={{ maxWidth: 720 }}>Chaque société est une version des règles de la France. Toutes partent de la Société 1.0 ; on peut les forker, les comparer et leur proposer des améliorations.</p>
+          <p className="ink2" style={{ maxWidth: 720 }}>Chaque société est une idée de France, imaginée par quelqu'un : la même loi qu'aujourd'hui (la Société 1.0), avec quelques règles changées. Explorez-les, comparez-les, créez votre version de celle qui vous plaît.</p>
         </div>
         <Link to="/atelier" className="btn primary"><GitFork size={16} /> Créer la mienne</Link>
       </div>
@@ -43,14 +43,14 @@ export default function Societes() {
               </div>
               {s.description && <p className="small ink2" style={{ margin: '6px 0' }}>{s.description.length > 180 ? s.description.slice(0, 177) + '…' : s.description}</p>}
               <div className="small muted">
-                {s.reference ? 'Référence · maintenue par le Système' : <>par <strong>{s.owner_pseudo}</strong> · {s.nb_differences ?? 0} règle(s) changée(s) par rapport à la loi</>}
+                {s.reference ? 'La loi actuelle · tenue à jour par le Système' : <>par <strong>{s.owner_pseudo}</strong> · {s.nb_differences ?? 0} règle{(s.nb_differences ?? 0) > 1 ? 's' : ''} changée{(s.nb_differences ?? 0) > 1 ? 's' : ''} par rapport à aujourd'hui</>}
                 {' · '}mise à jour {relatif(s.updated_at)}
-                {s.propositions_ouvertes ? ` · ${s.propositions_ouvertes} proposition(s) ouverte(s)` : ''}
+                {s.propositions_ouvertes ? ` · ${s.propositions_ouvertes} suggestion${s.propositions_ouvertes > 1 ? 's' : ''} en discussion` : ''}
               </div>
             </Link>
           ))}
         </div>
-      ) : <Empty>Aucune société pour l'instant. <Link to="/atelier">Soyez le premier à en créer une !</Link></Empty>)}
+      ) : <Empty>Aucune société pour l'instant. <Link to="/atelier">Créez la première !</Link></Empty>)}
     </div>
   )
 }

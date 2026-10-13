@@ -1,9 +1,9 @@
-import { lazy, Suspense, useEffect } from 'react'
+import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { Link, NavLink, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
-import { GitFork, LogIn, LogOut, User } from 'lucide-react'
+import { ChevronDown, GitFork, LogIn, LogOut, Menu, User, X } from 'lucide-react'
 import { api } from './lib/api'
 import { useApp } from './lib/state'
-import { Loading } from './components/ui'
+import { Loading, useClickOutside } from './components/ui'
 import Accueil from './pages/Accueil'
 
 const MesDroits = lazy(() => import('./pages/MesDroits'))
@@ -23,29 +23,59 @@ const SourceDetail = lazy(() => import('./pages/SourceDetail'))
 const Systeme = lazy(() => import('./pages/Systeme'))
 const Methode = lazy(() => import('./pages/Methode'))
 const Connexion = lazy(() => import('./pages/Connexion'))
+const Glossaire = lazy(() => import('./pages/Glossaire'))
+
+function MenuComprendre() {
+  const [open, setOpen] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+  const { pathname } = useLocation()
+  useClickOutside(ref, () => setOpen(false))
+  useEffect(() => setOpen(false), [pathname])
+  const actif = ['/regles', '/preuves', '/sources', '/systeme', '/methode', '/glossaire'].some((p) => pathname.startsWith(p))
+  return (
+    <div className="popover-wrap" ref={ref}>
+      <button className={`btn small ghost ${actif ? 'active' : ''}`} onClick={() => setOpen((o) => !o)} aria-expanded={open}
+        style={actif ? { background: 'var(--primary-soft)', color: 'var(--primary)' } : undefined}>
+        Comprendre <ChevronDown size={14} />
+      </button>
+      {open && (
+        <div className="menu-deroulant">
+          <Link to="/regles">Toutes les règles<small>Ce que dit la loi aujourd'hui, prouvé par les textes</small></Link>
+          <Link to="/preuves">Ce que disent les études<small>Comment on estime les effets sur l'emploi, les prix…</small></Link>
+          <Link to="/methode">Comment ça marche<small>La méthode et l'indice de confiance</small></Link>
+          <Link to="/glossaire">Le petit lexique<small>Tous les mots expliqués simplement</small></Link>
+          <Link to="/sources">Les sources<small>Textes officiels, statistiques, études</small></Link>
+          <Link to="/systeme">Le Système<small>Comment la Société 1.0 est tenue à jour</small></Link>
+        </div>
+      )}
+    </div>
+  )
+}
 
 function Header() {
   const { user, setUser } = useApp()
   const nav = useNavigate()
+  const [menu, setMenu] = useState(false)
+  const { pathname } = useLocation()
+  useEffect(() => setMenu(false), [pathname])
   return (
     <header className="header">
       <div className="container">
         <Link to="/" className="logo" aria-label="Société 2.0, accueil">
           <img src="/favicon.svg" alt="" width={30} height={30} /> Société 2.0 <span className="tag">bêta</span>
         </Link>
-        <nav className="nav" aria-label="Navigation principale">
+        <button className="icon-btn menu-mobile" onClick={() => setMenu((m) => !m)} aria-label="Menu" aria-expanded={menu}>{menu ? <X size={22} /> : <Menu size={22} />}</button>
+        <nav className={`nav ${menu ? 'ouvert' : ''}`} aria-label="Navigation principale">
           <NavLink to="/mes-droits">Mes droits</NavLink>
           <NavLink to="/budget">Le budget</NavLink>
-          <NavLink to="/atelier">Tester une réforme</NavLink>
-          <NavLink to="/regles">Les règles</NavLink>
-          <NavLink to="/societes">Les sociétés</NavLink>
-          <NavLink to="/preuves">Les preuves</NavLink>
-          <NavLink to="/systeme">Le Système</NavLink>
+          <NavLink to="/atelier">Changer les règles</NavLink>
+          <NavLink to="/societes">Les propositions</NavLink>
+          <MenuComprendre />
         </nav>
-        <div className="user">
+        <div className={`user ${menu ? 'ouvert' : ''}`}>
           {user ? (
             <>
-              <Link to={`/societes?auteur=${encodeURIComponent(user.pseudo)}`} className="btn small ghost"><User size={15} /> {user.pseudo}</Link>
+              <Link to={`/societes?auteur=${encodeURIComponent(user.pseudo)}`} className="btn small ghost" title="Mes sociétés"><User size={15} /> {user.pseudo}</Link>
               <button className="icon-btn" title="Se déconnecter" onClick={async () => { await api('/api/auth/deconnexion', { method: 'POST' }); setUser(null); nav('/') }}><LogOut size={17} /></button>
             </>
           ) : (
@@ -110,6 +140,7 @@ export default function App() {
             <Route path="/systeme" element={<Systeme />} />
             <Route path="/methode" element={<Methode />} />
             <Route path="/connexion" element={<Connexion />} />
+            <Route path="/glossaire" element={<Glossaire />} />
             <Route path="*" element={<div className="container page"><h1>Page introuvable</h1><Link to="/">Retour à l'accueil</Link></div>} />
           </Routes>
         </Suspense>

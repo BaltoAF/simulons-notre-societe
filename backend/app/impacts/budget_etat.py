@@ -12,7 +12,10 @@ DEPENSES_EXACTES = {"budget.secu.ondam.total"}
 
 
 def est_depense(rid: str, rule: dict) -> bool:
-    return (rid.startswith(PREFIXES_DEPENSES) or rid in DEPENSES_EXACTES) and         rule.get("unite") in ("milliards_euros", "md_euros", "milliards")
+    # un « .total » est la somme d'autres leviers : le modifier compterait deux fois la même dépense
+    if rid.endswith(".total") and rid not in DEPENSES_EXACTES:
+        return False
+    return (rid.startswith(PREFIXES_DEPENSES) or rid in DEPENSES_EXACTES) and rule.get("unite") in ("milliards_euros", "md_euros", "milliards")
 
 
 def indicateurs_dette(store, delta_solde_md: float) -> tuple[list[Indicateur], dict]:
