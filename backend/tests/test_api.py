@@ -107,3 +107,32 @@ def test_mise_a_jour_automatique_des_forks():
     vcs._set_head("france", "principale", head)
     with db.transaction() as conn:
         conn.execute("DELETE FROM synchronisations")
+
+
+def test_budget_national_et_menage():
+    with client() as c:
+        n = c.get("/api/budget/national").json()
+        assert n["fonctions"] and n["par_habitant"]["depense"] > 10000
+        m = c.post("/api/budget/menage", json={"menage": {"adultes": [{"age": 40, "activite": "salarie", "salaire_net_mensuel": 2500}],
+                                                           "logement": "proprietaire"}}).json()
+        assert m["total_paye"] > 5000 and m["finance"]
+
+
+def test_droits_non_monetaires():
+    with client() as c:
+        r = c.post("/api/droits", json={"profil": {"annee_naissance": 1968, "mois_naissance": 5}}).json()
+        retraite = next(x for x in r["reponses"] if x["theme"] == "Retraite")
+        assert "63 ans et 9 mois" in retraite["reponse"]
+
+
+def test_equilibres_et_compensation():
+    with client() as c:
+        rap = c.post("/api/simulation/reforme", json={"overrides": {"prestations.rsa.montant_forfaitaire": 800}}).json()
+        budget = next(e for e in rap["equilibres"] if e["id"] == "budget")
+        assert budget["statut"] == "a_compenser" and budget["manque"] > 1
+        opts = c.post("/api/compensations", json={"overrides": {"prestations.rsa.montant_forfaitaire": 800},
+                                                  "equilibre": "budget", "manque": budget["manque"]}).json()["options"]
+        tva = next(o for o in opts if o["id"] == "tva")
+        rap2 = c.post("/api/simulation/reforme", json={"overrides": {"prestations.rsa.montant_forfaitaire": 800, **tva["overrides"]}}).json()
+        assert next(e for e in rap2["equilibres"] if e["id"] == "budget")["statut"] == "respecte"
+        assert {p["pilier"] for p in rap["bilan"]} == {"economie", "social", "ecologie", "bien_etre"}
