@@ -123,7 +123,7 @@ def vue_menage(store, m: Menage) -> dict:
     tva_part, tva_txt = _part_tva(store, float(res["niveau_de_vie"][0]) * 12)
     if tva_part is not None:
         payes.append({"id": "tva", "titre": "TVA (estimation)", "montant": rd * tva_part, "nature": "estime",
-                      "note": f"{tva_part * 100:.1f} % du revenu disponible, part moyenne observée pour les ménages du {tva_txt}".replace(".", ",", 1)})
+                      "note": f"Estimation : les foyers aux revenus comparables consacrent environ {tva_part * 100:.1f} % de leur revenu à la TVA".replace(".", ",", 1)})
     if m.logement == "proprietaire":
         tf = store.metric_value("impots_locaux.taxe_fonciere_moyenne_par_avis")
         if tf:

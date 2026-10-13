@@ -27,7 +27,7 @@ export default function Atelier() {
   const [budgetEd, setBudgetEd] = useState(false)
   const [presets, setPresets] = useState(false)
   const [avecFoyer, setAvecFoyer] = useState(!!situation)
-  const [rapport, setRapport] = useState<Rapport | null>(null)
+  const [rapport, setRapport] = useState<Rapport | null>(() => lireSession<Rapport>('atelier.rapport'))
   const [loading, setLoading] = useState(false)
   const [err, setErr] = useState<string | null>(null)
   const [base, setBase] = useState<{ societe: SocieteDetail; overrides: Record<string, Valeur> } | null>(null)
@@ -60,7 +60,9 @@ export default function Atelier() {
   const ids = Object.keys(draft.overrides)
   const changes = ids.filter((id) => regles[id] && !same(draft.overrides[id], regles[id].valeur))
 
-  const [rapportPour, setRapportPour] = useState<string | null>(null)
+  const [rapportPour, setRapportPour] = useState<string | null>(() => lireSession<string>('atelier.rapportPour'))
+  useEffect(() => { if (!rapport?.partiel) ecrireSession('atelier.rapport', rapport); ecrireSession('atelier.rapportPour', rapportPour) }, [rapport, rapportPour])
+  const [annulable, setAnnulable] = useState<typeof draft | null>(null) // « Tout recommencer » peut être annulé
   const [demarrage, setDemarrage] = useState(false) // le Système vient de redémarrer : premier calcul plus long
   const [phase, setPhase] = useState(0) // 0 : rien en cours ; 1 : foyer et ménages types ; 2 : effets nationaux
   const resultats = useRef<HTMLDivElement>(null)
@@ -148,8 +150,12 @@ export default function Atelier() {
     <div className="container page">
       <div className="row between" style={{ marginBottom: 4 }}>
         <h1 style={{ margin: 0 }}>Changer les règles</h1>
-        {changes.length > 0 && <button className="btn ghost small" onClick={() => { setDraft(BROUILLON_VIDE); setBase(null); setRapport(null); setRapportPour(null) }}><Undo2 size={15} /> Tout recommencer</button>}
+        {changes.length > 0 && <button className="btn ghost small" onClick={() => { setAnnulable(draft); setDraft(BROUILLON_VIDE); setBase(null); setRapport(null); setRapportPour(null) }}><Undo2 size={15} /> Tout recommencer</button>}
       </div>
+      {annulable && changes.length === 0 && (
+        <div className="notice small" style={{ margin: '6px 0' }}><div>Votre réforme a été effacée.{' '}
+          <button className="lien" onClick={() => { setDraft(annulable); setAnnulable(null) }}>Annuler</button></div></div>
+      )}
       <p className="ink2" style={{ maxWidth: 760, marginBottom: 8 }}>Imaginez une autre règle et découvrez ce qu'elle changerait, pour vous et pour le pays. C'est libre et anonyme ; un compte n'est utile que pour enregistrer et partager.</p>
       <Etapes etape={etape} />
 
@@ -199,7 +205,7 @@ export default function Atelier() {
                   <div style={{ marginTop: 10 }}><ValueEditor rule={r} value={v} onChange={(x) => setVal(id, x)} /></div>
                   {!modifie && <div className="small muted" style={{ marginTop: 6 }}>Changez la valeur ci-dessus.</div>}
                   {modifie && (
-                    <input type="text" placeholder="En une phrase : pourquoi ce changement ? (facultatif)" style={{ marginTop: 8, fontSize: '.88rem' }}
+                    <input type="text" placeholder="Pourquoi ? (facultatif)" style={{ marginTop: 8, fontSize: '.88rem' }}
                       value={draft.justifications[id] ?? ''} onChange={(e) => setDraft((d) => ({ ...d, justifications: { ...d.justifications, [id]: e.target.value } }))} />
                   )}
                   <button className="btn ghost small" style={{ marginTop: 6, paddingLeft: 0 }} onClick={() => retirer(id)}><Trash2 size={14} /> {modifie ? 'Annuler ce changement' : 'Retirer'}</button>
@@ -244,7 +250,7 @@ export default function Atelier() {
                 <div className="stack">
                   <p className="small" style={{ margin: 0 }}><CheckCircle2 size={15} color="var(--gain)" /> Votre réforme est équilibrée : vous pouvez l'enregistrer.</p>
                   {proprietaire && <button className="btn primary" style={{ width: '100%' }} onClick={() => setSaving(true)}><GitBranch size={16} /> Mettre à jour « {base!.societe.nom} »</button>}
-                  <button className={`btn ${proprietaire ? '' : 'primary'}`} style={{ width: '100%' }} onClick={() => setSaving(true)}><GitFork size={16} /> Créer ma société</button>
+                  <button className={`btn ${proprietaire ? '' : 'primary'}`} style={{ width: '100%' }} onClick={() => setSaving(true)}><GitFork size={16} /> Enregistrer ma proposition</button>
                 </div>
               )}
             </div>
@@ -258,8 +264,28 @@ export default function Atelier() {
             <div className="notice warn" style={{ marginBottom: 12 }}><div>Vous avez modifié votre réforme depuis le dernier calcul : les résultats ci-dessous ne sont plus à jour.{' '}
               <button className="btn small" onClick={() => simuler()}>Recalculer les effets</button></div></div>
           )}
+          {aJour && !loading && changes.length > 0 && desequilibres.length === 0 && (
+            <div className="notice ok" style={{ marginBottom: 12 }}><CheckCircle2 size={18} style={{ flexShrink: 0 }} />
+              <div className="grow"><strong>Votre réforme est équilibrée.</strong> Vous pouvez l'enregistrer pour la partager.</div>
+              {user ? <button className="btn primary small" onClick={() => setSaving(true)}><GitFork size={15} /> Enregistrer ma proposition</button>
+                : <Link className="btn primary small" to="/connexion?retour=/atelier">Se connecter pour enregistrer</Link>}
+            </div>
+          )}
+          {aJour && !loading && desequilibres.length > 0 && (
+            <div className="notice warn" style={{ marginBottom: 12 }}><div><strong>Encore une étape :</strong>{' '}
+              {desequilibres.map((e) => e.id === 'budget' ? `il manque ${milliards(e.manque)} par an pour financer votre réforme` : `votre réforme émet ${tonnes(e.manque)} de trop par an`).join(', et ')}.
+              {' '}<a href="#equilibres">Choisir une solution ↓</a></div></div>
+          )}
           {rapport && (!loading || rapport.partiel) && <ReportView r={rapport} overrides={draft.overrides} onAppliquer={appliquerCompensation} />}
-          {!loading && !rapport && (
+          {!loading && !rapport && changes.length > 0 && (
+            <div className="card soft" style={{ textAlign: 'center', padding: 32 }}>
+              <Calculator size={36} color="var(--primary)" />
+              <h3 style={{ marginTop: 10 }}>Votre réforme est prête</h3>
+              <p className="muted small" style={{ maxWidth: 480, margin: '0 auto 14px' }}>Le Système va calculer ce qu'elle change pour vous et pour le pays : argent public, inégalités, climat et bien-être.</p>
+              <button className="btn primary large" onClick={() => simuler()}><Calculator size={18} /> Voir les effets</button>
+            </div>
+          )}
+          {!loading && !rapport && changes.length === 0 && (
             <div className="card soft" style={{ textAlign: 'center', padding: 32 }}>
               <Calculator size={36} color="var(--primary)" />
               <h3 style={{ marginTop: 10 }}>Par où commencer ?</h3>
@@ -292,6 +318,14 @@ export default function Atelier() {
         onClose={() => setSaving(false)} onDone={(sid) => { setSaving(false); setDraft((d) => ({ ...d, societe: sid })); nav(`/societes/${sid}`) }} />}
     </div>
   )
+}
+
+// Conserver les résultats le temps de la visite (le navigateur peut refuser : on fait alors sans)
+function lireSession<T>(cle: string): T | null {
+  try { const v = sessionStorage.getItem(cle); return v ? JSON.parse(v) as T : null } catch { return null }
+}
+function ecrireSession(cle: string, v: unknown) {
+  try { if (v === null || v === undefined) sessionStorage.removeItem(cle); else sessionStorage.setItem(cle, JSON.stringify(v)) } catch { /* espace plein ou stockage bloqué */ }
 }
 
 function Etapes({ etape }: { etape: number }) {
@@ -358,22 +392,22 @@ function SaveModal({ proprietaire, base, changements, nomDefaut, onClose, onDone
     } catch (e: any) { setErr(e.message) } finally { setBusy(false) }
   }
   return (
-    <Modal title="Enregistrer votre réforme" onClose={onClose}>
+    <Modal title="Enregistrer votre proposition" onClose={onClose}>
       {proprietaire && (
         <div className="choices" style={{ marginBottom: 14 }}>
           <button className={`choice ${mode === 'commit' ? 'on' : ''}`} onClick={() => setMode('commit')}>Mettre à jour « {base!.societe.nom} »</button>
-          <button className={`choice ${mode === 'fork' ? 'on' : ''}`} onClick={() => setMode('fork')}>Créer une nouvelle société</button>
+          <button className={`choice ${mode === 'fork' ? 'on' : ''}`} onClick={() => setMode('fork')}>Créer une nouvelle proposition</button>
         </div>
       )}
       {mode === 'fork' && (
         <>
-          <label className="field"><span>Nom de votre société</span><input type="text" value={nom} onChange={(e) => setNom(e.target.value)} placeholder="Ex. : Le travail mieux payé" /></label>
-          <label className="field"><span>Votre idée en quelques lignes (facultatif)</span><textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Quelle société voulez-vous ? Pourquoi ces changements ?" /></label>
+          <label className="field"><span>Nom de votre proposition</span><input type="text" value={nom} onChange={(e) => setNom(e.target.value)} placeholder="Ex. : Le travail mieux payé" /></label>
+          <label className="field"><span>Votre idée en quelques lignes (facultatif)</span><textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Quelle France voulez-vous ? Pourquoi ces changements ?" /></label>
         </>
       )}
       <label className="field"><span>En une phrase, ce que vous avez changé</span><input type="text" value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Ex. : RSA à 800 €, financé par une tranche d'impôt à 50 %" />
-        <span className="hint">Cette phrase apparaîtra dans l'historique de votre société.</span></label>
-      <div className="small muted" style={{ marginBottom: 12 }}>{(() => { const m = changements.filter((c) => String(c.regle).startsWith('budget.etat.mission.')).length; const n = changements.length - m + (m ? 1 : 0); return <>{n} changement{n > 1 ? 's' : ''} {n > 1 ? 'seront enregistrés' : 'sera enregistré'}{m ? ` (dont le budget de l'État : ${m} domaine${m > 1 ? 's' : ''} ajusté${m > 1 ? 's' : ''})` : ''}.</> })()} Votre société sera visible par tous : chacun pourra s'en inspirer, créer sa propre version et vous suggérer des améliorations.</div>
+        <span className="hint">Cette phrase apparaîtra dans l'historique de votre proposition.</span></label>
+      <div className="small muted" style={{ marginBottom: 12 }}>{(() => { const m = changements.filter((c) => String(c.regle).startsWith('budget.etat.mission.')).length; const n = changements.length - m + (m ? 1 : 0); return <>{n} changement{n > 1 ? 's' : ''} {n > 1 ? 'seront enregistrés' : 'sera enregistré'}{m ? ` (dont le budget de l'État : ${m} domaine${m > 1 ? 's' : ''} ajusté${m > 1 ? 's' : ''})` : ''}.</> })()} Votre proposition sera visible par tous : chacun pourra s'en inspirer, créer sa propre version et vous suggérer des améliorations.</div>
       {changements.length === 0 && <Notice kind="warn">Rien n'a changé par rapport à votre point de départ.</Notice>}
       {err && <ErrorBox message={err} />}
       <div className="row" style={{ justifyContent: 'flex-end', marginTop: 12 }}>

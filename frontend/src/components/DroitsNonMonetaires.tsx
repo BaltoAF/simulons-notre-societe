@@ -37,9 +37,9 @@ export function DroitsNonMonetaires({ age }: { age: number }) {
           {['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'].map((m, i) => <option key={m} value={i + 1}>{m}</option>)}
         </select></label>
         <input type="number" value={annee} min={1920} max={2025} onChange={(e) => setAnnee(Number(e.target.value))} style={{ width: 100 }} aria-label="Année de naissance" />
-        <label className="small row" style={{ gap: 6 }}><GitCompare size={15} /> Et dans une autre société ?
+        <label className="small row" style={{ gap: 6 }}><GitCompare size={15} /> Comparer avec une proposition
           <select value={societe} onChange={(e) => setSociete(e.target.value)} style={{ width: 'auto' }}>
-            <option value="">— non merci —</option>
+            <option value="">— aucune —</option>
             {(socs?.societes ?? []).filter((s) => !s.reference).map((s) => <option key={s.id} value={s.id}>{s.nom}</option>)}
           </select>
         </label>

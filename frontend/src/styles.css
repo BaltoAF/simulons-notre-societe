@@ -6,7 +6,7 @@
   --surface-3: #e8e8f2;
   --ink: #181a33;
   --ink-2: #44476a;
-  --ink-3: #6b6e8f;
+  --ink-3: #5c5f80;
   --line: #e2e2ee;
   --line-2: #cfd0e2;
   --primary: #4338ca;
@@ -74,7 +74,7 @@ h1 { font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 800; }
 h2 { font-size: 1.5rem; font-weight: 750; }
 h3 { font-size: 1.15rem; font-weight: 700; }
 p { margin: 0 0 .9em; }
-small, .small { font-size: .85rem; }
+small, .small { font-size: .9rem; }
 .muted { color: var(--ink-3); }
 .ink2 { color: var(--ink-2); }
 code, .mono { font-family: var(--mono); font-size: .85em; }
@@ -364,3 +364,23 @@ details.curieux[open] > summary { margin-bottom: 4px; }
 }
 /* une colonne de grille ne doit jamais s'élargir au-delà de l'écran à cause d'un contenu large */
 .split > *, .grid > * { min-width: 0; }
+
+/* Fenêtres : en-tête fixe, contenu qui défile, pied (boutons) toujours visible */
+.modal { display: flex; flex-direction: column; max-height: 88vh; }
+.modal-tete { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 12px; flex-shrink: 0; }
+.modal-tete h2 { flex: 1; }
+.modal-corps { overflow-y: auto; min-height: 0; margin: 0 -4px; padding: 0 4px; }
+.modal-pied { flex-shrink: 0; border-top: 1px solid var(--line); margin-top: 12px; padding-top: 12px; }
+@media (max-width: 640px) {
+  .modal-backdrop { padding: 8px; }
+  .modal { max-height: calc(100vh - 16px); max-height: calc(100dvh - 16px); padding: 16px; }
+}
+.ligne-budget { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+@media (max-width: 640px) {
+  .ligne-budget { flex-wrap: wrap; }
+  .ligne-budget > .row { margin-left: auto; }
+  .bouton-plusmoins { width: 40px; height: 40px; }
+}
+.ligne-montant { margin-bottom: 12px; }
+.ligne-montant a { font-weight: 600; }
+button.lien { background: none; border: 0; padding: 0; color: var(--primary); font: inherit; cursor: pointer; text-decoration: underline; }

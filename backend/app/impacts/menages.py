@@ -17,11 +17,11 @@ PRELEVEMENTS = {"impot_revenu", "pfu", "prelevements_sociaux_capital"}
 def confiance_moteur(approximations: list[str] | None = None) -> Confiance:
     approximations = approximations or []
     score = 88 - 4 * len(approximations)
-    facteurs = [Facteur("Législation codée", 0.95,
+    facteurs = [Facteur("Calcul fidèle à la loi", 0.95,
                         "Calcul réalisé par OpenFisca-France, modèle public de la législation socio-fiscale, "
                         "testé sur des milliers de cas et utilisé par l'Assemblée nationale (LexImpact).")]
     for a in approximations:
-        facteurs.append(Facteur("Approximation", 0.7, a))
+        facteurs.append(Facteur("Petite approximation", 0.7, a))
     return Confiance(score, facteurs, "Calcul mécanique de la législation")
 
 

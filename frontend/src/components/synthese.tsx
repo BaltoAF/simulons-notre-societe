@@ -13,20 +13,22 @@ const VERDICT: Record<Pilier['verdict'], { txt: string; cls: string }> = {
   degradation: { txt: 'Plutôt négatif', cls: 'loss' },
   contraste: { txt: 'Du positif et du négatif', cls: 'warn' },
   neutre: { txt: 'Peu de changement', cls: '' },
-  non_mesure: { txt: 'Pas d\'effet mesuré', cls: '' },
+  non_mesure: { txt: 'Pas encore chiffré', cls: '' },
 }
 
-export function EnBref({ r }: { r: Rapport }) {
+export type Contexte = 'reforme' | 'societe'
+
+export function EnBref({ r, contexte = 'reforme' }: { r: Rapport; contexte?: Contexte }) {
   const pv = r.pour_vous
   return (
     <div className="card" style={{ borderColor: 'var(--primary)' }}>
-      <h2 style={{ fontSize: '1.35rem', marginBottom: 12 }}>Ce que change votre réforme</h2>
+      <h2 style={{ fontSize: '1.35rem', marginBottom: 12 }}>{contexte === 'societe' ? 'Ce que change cette proposition' : 'Ce que change votre réforme'}</h2>
       {pv && (
         <div className="row" style={{ marginBottom: 14, flexWrap: 'nowrap', alignItems: 'flex-start' }}>
           <Wallet size={22} color="var(--primary)" style={{ flexShrink: 0, marginTop: 4 }} />
           <div className="phrase-xl">
-            {Math.abs(pv.delta_mois) < 0.5 ? <>Pour votre foyer : <span className="muted">rien ne change.</span></>
-              : <>Pour votre foyer : <span className={`delta ${pv.delta_mois > 0 ? 'pos' : 'neg'}`}>{pv.delta_mois > 0 ? '+' : '−'}{euros(Math.abs(pv.delta_mois))} par mois</span>.</>}
+            {Math.abs(pv.delta_mois) < 0.5 ? <>Pour votre porte-monnaie : <span className="muted">rien ne change.</span></>
+              : <>Pour votre porte-monnaie : <span className={`delta ${pv.delta_mois > 0 ? 'pos' : 'neg'}`}>{pv.delta_mois > 0 ? '+' : '−'}{euros(Math.abs(pv.delta_mois))} par mois</span>.</>}
           </div>
         </div>
       )}
@@ -57,7 +59,10 @@ export function EnBref({ r }: { r: Rapport }) {
           )
         })}
       </div>
-      <p className="small muted" style={{ marginTop: 12, marginBottom: 0 }}>Le Système ne donne pas de note globale : à vous de peser ce qui compte le plus. <span className="puce-sens favorable" style={{ marginTop: 0 }} />plutôt bien <span className="puce-sens defavorable" style={{ marginTop: 0, marginLeft: 8 }} />plutôt mal</p>
+      <div className="row between small muted" style={{ marginTop: 12 }}>
+        <span>Pas de note globale : à vous de peser ce qui compte le plus.</span>
+        <span><span className="puce-sens favorable" style={{ marginTop: 0 }} />plutôt bien <span className="puce-sens defavorable" style={{ marginTop: 0, marginLeft: 10 }} />plutôt mal</span>
+      </div>
     </div>
   )
 }
@@ -96,8 +101,8 @@ function Compensations({ e, overrides, onAppliquer }: { e: Equilibre; overrides:
               <div key={o.id} className="preset" style={{ cursor: 'default', display: 'flex', flexDirection: 'column' }}>
                 <strong>{o.titre}</strong>
                 <span className="small muted" style={{ flex: 1 }}>{o.description}</span>
-                {o.rendement !== 0 && <div className="small" style={{ marginTop: 6 }}>Couvre <strong>{o.unite === 'mt_co2e' ? tonnes(Math.abs(o.rendement)) : milliards(Math.abs(o.rendement))}</strong> par an</div>}
-                <button className="btn small primary" style={{ marginTop: 8, alignSelf: 'flex-start' }} onClick={() => onAppliquer(o.overrides)}>Choisir cette solution</button>
+                {o.rendement !== 0 && <div className="small" style={{ marginTop: 6 }}>Couvre <strong style={{ whiteSpace: 'nowrap' }}>{o.unite === 'mt_co2e' ? tonnes(Math.abs(o.rendement)) : milliards(Math.abs(o.rendement))}</strong> par an</div>}
+                <button className="btn small primary" style={{ marginTop: 8, alignSelf: 'flex-start' }} aria-label={`Choisir : ${o.titre}`} onClick={() => onAppliquer(o.overrides)}>Choisir cette solution</button>
               </div>
             ))}
           </div>
@@ -109,7 +114,7 @@ function Compensations({ e, overrides, onAppliquer }: { e: Equilibre; overrides:
 
 function Titre({ e }: { e: Equilibre }) {
   const budget = e.id === 'budget'
-  if (e.statut === 'non_mesure') return <>Pas d'effet mesuré.</>
+  if (e.statut === 'non_mesure') return <>{budget ? "Pas d'effet sur les finances publiques." : "Pas d'effet direct sur les émissions."}</>
   if (budget) {
     if (e.statut === 'a_compenser') return <>Il manque <span className="delta neg">{milliards(e.manque)}</span> par an.</>
     if (e.statut === 'assume') return <>Financé par l'emprunt : <span className="delta neg">{milliards(e.effet)}</span> de dette en plus chaque année.</>
@@ -122,9 +127,11 @@ function Titre({ e }: { e: Equilibre }) {
   return e.effet < -0.005 ? <>Les émissions baissent de <span className="delta pos">{tonnes(e.effet)}</span> par an. <CheckCircle2 size={20} color="var(--gain)" style={{ verticalAlign: -3 }} /></> : <>Dans les clous. <CheckCircle2 size={20} color="var(--gain)" style={{ verticalAlign: -3 }} /></>
 }
 
-export function EquilibresPanel({ r, overrides, onAppliquer }: { r: Rapport; overrides?: Record<string, Valeur>; onAppliquer?: (o: Record<string, Valeur>) => void }) {
+export function EquilibresPanel({ r, overrides, onAppliquer, contexte = 'reforme' }: { r: Rapport; overrides?: Record<string, Valeur>; onAppliquer?: (o: Record<string, Valeur>) => void; contexte?: Contexte }) {
+  // effet indirect sur les émissions (via l'activité) : affiché, mais pas compté dans le plafond car trop incertain
+  const indirect = r.sections.flatMap((s) => s.indicateurs).find((i) => i.id === 'impact_emissions_activite')?.valeur ?? 0
   return (
-    <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
+    <div className="stack">
       {r.equilibres.map((e) => {
         const budget = e.id === 'budget'
         const I = budget ? Coins : Globe2
@@ -138,9 +145,14 @@ export function EquilibresPanel({ r, overrides, onAppliquer }: { r: Rapport; ove
             <div className="phrase-xl" style={{ margin: '6px 0' }}><Titre e={e} /></div>
             {budget && alerte && <div className="small muted">soit environ {parMenageMois(e.manque)} par mois et par ménage.</div>}
             {!budget && Math.abs(e.effet) >= 0.005 && <div className="small muted">{equivalentCarbone(e.effet)}.</div>}
+            {!budget && Math.abs(indirect) >= 0.005 && (
+              <div className="small muted">Effet indirect, par l'activité économique : {tonnes(indirect, true)} par an. Trop incertain pour être compté dans le plafond.</div>
+            )}
             {alerte && (
-              <div className="notice err small" style={{ marginTop: 10 }}><ShieldAlert size={16} />
-                <div>{budget ? 'Il faut trouver cet argent ailleurs avant de pouvoir enregistrer votre société.' : 'Il faut compenser ces émissions ailleurs avant de pouvoir enregistrer votre société.'}</div></div>
+              <div className={`notice ${contexte === 'societe' ? 'warn' : 'err'} small`} style={{ marginTop: 10 }}><ShieldAlert size={16} />
+                <div>{contexte === 'societe'
+                  ? (budget ? "Cette proposition n'est pas entièrement financée : elle a été enregistrée avant cette vérification, ou la loi a changé depuis." : "Cette proposition dépasse le plafond d'émissions : elle a été enregistrée avant cette vérification, ou la loi a changé depuis.")
+                  : (budget ? 'Il faut trouver cet argent ailleurs avant de pouvoir enregistrer votre réforme.' : 'Il faut compenser ces émissions ailleurs avant de pouvoir enregistrer votre réforme.')}</div></div>
             )}
             {e.statut === 'a_surveiller' && <div className="notice warn small" style={{ marginTop: 10 }}><ShieldAlert size={16} /><div>Estimation trop incertaine pour exiger une compensation : à surveiller.</div></div>}
             <Pourquoi titre={budget ? 'Pourquoi faut-il financer ?' : 'Pourquoi faut-il compenser ?'}>

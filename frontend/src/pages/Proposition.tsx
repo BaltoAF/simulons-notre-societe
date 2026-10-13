@@ -43,7 +43,7 @@ export default function Proposition() {
           <ListeChangements items={p.changements ?? []} vide="Cette suggestion n'apporte aucun changement." />
           {(p.conflits?.length ?? 0) > 0 && (
             <div>
-              <Notice kind="warn">Désaccord sur ces règles : les deux sociétés les ont changées, chacune à sa façon. L'auteur de « {p.target_nom} » choisit la valeur à garder.</Notice>
+              <Notice kind="warn">Désaccord sur ces règles : les deux propositions les ont changées, chacune à sa façon. L'auteur de « {p.target_nom} » choisit la valeur à garder.</Notice>
               {p.conflits!.map((c) => (
                 <div key={c.regle} className="change-chip">
                   <Link to={`/regles/r/${c.regle}`}><strong>{p.changements?.find((x) => x.regle === c.regle)?.titre ?? c.regle}</strong></Link>
@@ -59,7 +59,7 @@ export default function Proposition() {
           <div className="row">
             {peutFusionner && <button className="btn primary" onClick={fusionner}><GitMerge size={16} /> Intégrer ces changements</button>}
             {user && (user.id === p.author_id || peutFusionner) && <button className="btn" onClick={fermer}><XCircle size={16} /> {user && user.id === p.author_id && !peutFusionner ? 'Retirer ma suggestion' : 'Refuser'}</button>}
-            <Link className="btn ghost" to={`/comparer?a=${p.target_society}&b=${p.source_society}&branche_a=${p.target_branch}&branche_b=${p.source_branch}`}>Comparer les deux sociétés</Link>
+            <Link className="btn ghost" to={`/comparer?a=${p.target_society}&b=${p.source_society}&branche_a=${p.target_branch}&branche_b=${p.source_branch}`}>Comparer les deux propositions</Link>
           </div>
         </div>
       )}

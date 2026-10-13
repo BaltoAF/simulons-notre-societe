@@ -9,7 +9,7 @@ import { PROFILS } from '../lib/profils'
 import { ErrorBox, Loading } from '../components/ui'
 import { Pourquoi, Terme } from '../components/Terme'
 import { milliards, parMenageMois } from '../lib/humain'
-import { MISSIONS, infoMission } from '../lib/missions'
+import { infoMission } from '../lib/missions'
 
 type Fonction = { id: string; titre: string; description: string; md: number; part: number; par_habitant_an: number; annee: string; source: string
   detail?: { id: string; titre: string; md: number; par_habitant_an: number }[] }
@@ -37,38 +37,62 @@ function Barre({ part, couleur = 'var(--primary)' }: { part: number; couleur?: s
   return <div className="bar-track" style={{ height: 10 }}><div className="bar-fill" style={{ width: `${Math.max(0.5, part * 100)}%`, background: couleur }} /></div>
 }
 
-// Comment modifier le budget : les trois façons de faire, et pourquoi certaines dépenses sont verrouillées.
-function CommentChanger({ totalEtat }: { totalEtat: number }) {
-  const verrouillees = Object.values(MISSIONS).filter((m) => m.verrou)
+// Le budget de l'État, domaine par domaine : ce qu'on peut changer, ce qui est verrouillé (et pourquoi), et comment le modifier.
+function BudgetEtat({ missions, depenseTotale }: { missions: { id: string; titre: string; md: number }[]; depenseTotale: number }) {
+  const [tout, setTout] = useState(false)
+  const totalEtat = missions.reduce((a, x) => a + x.md, 0)
+  const max = Math.max(...missions.map((x) => x.md))
+  const visibles = tout ? missions : missions.slice(0, 10)
   return (
     <div className="card" style={{ marginTop: 20 }}>
-      <h2 style={{ fontSize: '1.3rem', marginBottom: 4 }}>Comment changer ce budget ?</h2>
-      <p className="small muted" style={{ marginTop: 0 }}>Dans l'atelier, vous pouvez modifier le budget de l'État (environ {milliards(totalEtat)} par an) de trois façons :</p>
-      <div className="grid cols-3">
-        <div className="card flat">
-          <strong><Scale size={16} /> Répartir autrement</strong>
-          <p className="small ink2" style={{ marginBottom: 0 }}>Plus pour l'école, moins ailleurs. Le total ne bouge pas : c'est toujours équilibré.</p>
+      <h2 style={{ fontSize: '1.3rem', marginBottom: 4 }}><Landmark size={20} /> Le budget de l'État, et comment le changer</h2>
+      <p className="small ink2" style={{ marginTop: 0 }}>Sur les {milliards(depenseTotale)} d'argent public, l'État en gère environ <strong>{milliards(totalEtat)}</strong>.
+        Le reste, c'est surtout la Sécurité sociale (retraites, santé, familles) et les communes, départements et régions.</p>
+      <div className="split even" style={{ alignItems: 'start' }}>
+        <div>
+          {visibles.map((x) => {
+            const i = infoMission(x.id, x.titre)
+            return (
+              <div key={x.id} className="ligne-montant">
+                <div className="row between" style={{ flexWrap: 'nowrap', gap: 10 }}>
+                  <span style={{ minWidth: 0 }}>
+                    {i.verrou && <Lock size={14} color="var(--ink-2)" style={{ verticalAlign: -2 }} />} <Link to={`/regles/r/${x.id}`}>{i.nom}</Link>
+                    {i.verrou && <span className="badge" style={{ marginLeft: 6 }}>obligatoire</span>}
+                  </span>
+                  <strong className="small" style={{ whiteSpace: 'nowrap' }}>{nombre(x.md, x.md < 10 ? 1 : 0)} Md€</strong>
+                </div>
+                <Barre part={x.md / max} couleur={i.verrou ? 'var(--ink-3)' : 'var(--primary)'} />
+                {i.verrou && <div className="small muted" style={{ marginTop: 4 }}>{i.verrou}</div>}
+              </div>
+            )
+          })}
+          {missions.length > 10 && <button className="btn ghost small" onClick={() => setTout(!tout)}>{tout ? 'Voir moins' : `Voir les ${missions.length - 10} autres domaines`}</button>}
         </div>
-        <div className="card flat">
-          <strong><TrendingUp size={16} /> Dépenser plus</strong>
-          <p className="small ink2" style={{ marginBottom: 0 }}>Il faut trouver l'argent : faire des économies ailleurs, augmenter un impôt… Le site vous propose des solutions chiffrées.
-            Sinon, il faut emprunter : c'est autorisé, mais vous devez l'assumer, car la <Terme id="dette">dette</Terme> augmente. Exemple : 10 milliards de plus par an ≈ {parMenageMois(10)} par mois et par ménage.</p>
-        </div>
-        <div className="card flat">
-          <strong><TrendingDown size={16} /> Dépenser moins</strong>
-          <p className="small ink2" style={{ marginBottom: 0 }}>Le <Terme id="deficit">déficit</Terme> baisse, et avec lui la dette. En contrepartie, les services concernés (école, police…) ont moins de moyens.</p>
+        <div className="stack" style={{ gap: 10 }}>
+          <div className="notice small"><Lock size={16} style={{ flexShrink: 0 }} /><div><strong>Pourquoi des cadenas ?</strong> Ces dépenses ne se décident pas d'un coup de crayon :
+            elles découlent d'engagements déjà pris (les intérêts de la dette) ou des règles d'impôt. On ne peut pas les baisser directement ;
+            on agit sur leurs causes : moins de déficit, d'autres règles d'impôt.</div></div>
+          <div className="kpi-label">Trois façons de changer ce budget</div>
+          <div className="card flat" style={{ padding: 12 }}>
+            <strong><Scale size={16} /> Répartir autrement</strong>
+            <div className="small ink2">Plus pour l'école, moins ailleurs. Le total ne bouge pas : c'est toujours équilibré.</div>
+          </div>
+          <div className="card flat" style={{ padding: 12 }}>
+            <strong><TrendingUp size={16} /> Dépenser plus</strong>
+            <div className="small ink2">Il faut trouver l'argent : des économies ailleurs ou un impôt en plus (le site propose des solutions chiffrées).
+              Ou bien emprunter, en l'assumant : la <Terme id="dette">dette</Terme> augmente. 10 milliards de plus par an ≈ {parMenageMois(10)} par mois et par ménage.</div>
+          </div>
+          <div className="card flat" style={{ padding: 12 }}>
+            <strong><TrendingDown size={16} /> Dépenser moins</strong>
+            <div className="small ink2">Le <Terme id="deficit">déficit</Terme> baisse, et avec lui la dette. En contrepartie, les services concernés (école, police…) ont moins de moyens.</div>
+          </div>
+          <Link className="btn primary" to="/atelier?budget=1">Modifier le budget de l'État <ArrowRight size={15} /></Link>
+          <Pourquoi titre="Et la Sécurité sociale, les retraites, les aides ?">
+            Elles dépendent surtout de règles (montant du RSA, âge de départ, taux de cotisation…) plutôt que d'un budget voté. Pour les changer,
+            modifiez ces règles dans « Changer les règles » : le site calcule ce que cela coûte ou rapporte.
+          </Pourquoi>
         </div>
       </div>
-      <Pourquoi titre="Pourquoi certaines dépenses ont un cadenas ?">
-        <p style={{ marginTop: 0 }}>Certaines dépenses ne se décident pas d'un simple coup de crayon :</p>
-        <ul style={{ paddingLeft: 18, margin: '0 0 6px' }}>{verrouillees.map((m) => <li key={m.nom}><strong>{m.nom}</strong> : {m.verrou}</li>)}</ul>
-        <p style={{ marginBottom: 0 }}>On ne peut donc pas les baisser directement ; on agit sur leurs causes (moins de déficit, autres règles d'impôt).</p>
-      </Pourquoi>
-      <Pourquoi titre="Et la Sécurité sociale, les retraites, les aides ?">
-        Elles dépendent surtout de règles (montant du RSA, âge de départ, taux de cotisation…) plutôt que d'un budget voté. Pour les changer, modifiez ces règles
-        dans l'atelier : le Système calcule ce que cela coûte ou rapporte.
-      </Pourquoi>
-      <Link className="btn primary" style={{ marginTop: 14 }} to="/atelier?budget=1">Essayer de répartir le budget <ArrowRight size={15} /></Link>
     </div>
   )
 }
@@ -110,13 +134,13 @@ export default function Budget() {
       <div className="split even">
         <div className="card">
           <h3><Landmark size={18} /> Où va l'argent public</h3>
-          <p className="small muted">Toutes les administrations (État, Sécurité sociale, collectivités), par grand domaine, en {n.fonctions[0]?.annee}. Cliquez sur un domaine pour le détail.</p>
+          <p className="small muted">Toutes les administrations (État, Sécurité sociale, collectivités), par grand domaine, en {n.fonctions[0]?.annee} (le dernier détail publié). Cliquez sur un domaine pour le détail.</p>
           {n.fonctions.map((f) => (
             <div key={f.id} style={{ marginBottom: 12 }}>
-              <button className="row between" onClick={() => setOuvert(ouvert === f.id ? null : f.id)}
-                style={{ width: '100%', background: 'none', border: 0, padding: 0, cursor: f.detail ? 'pointer' : 'default', color: 'inherit', font: 'inherit', textAlign: 'left' }}>
-                <span><strong>{f.titre}</strong> <span className="small muted">— {f.description}</span></span>
-                <span className="small" style={{ whiteSpace: 'nowrap' }}><strong>{nombre(f.md, 0)} Md€</strong> · {euros(f.par_habitant_an)}/hab.</span>
+              <button className="row between" onClick={() => setOuvert(ouvert === f.id ? null : f.id)} aria-expanded={ouvert === f.id}
+                style={{ width: '100%', background: 'none', border: 0, padding: '4px 0', cursor: f.detail ? 'pointer' : 'default', color: 'inherit', font: 'inherit', textAlign: 'left', flexWrap: 'nowrap', alignItems: 'flex-start', gap: 10 }}>
+                <span style={{ minWidth: 0 }}><strong>{f.detail && <ChevronDown size={14} style={{ transform: ouvert === f.id ? 'none' : 'rotate(-90deg)', verticalAlign: -2 }} />} {f.titre}</strong> <span className="small muted">— {f.description}</span></span>
+                <span className="small" style={{ whiteSpace: 'nowrap', textAlign: 'right' }}><strong>{nombre(f.md, 0)} Md€</strong><br /><span className="muted">{euros(f.par_habitant_an)}/hab.</span></span>
               </button>
               <Barre part={f.md / maxF} />
               {ouvert === f.id && f.detail && (
@@ -138,22 +162,13 @@ export default function Budget() {
             </div>
           ))}
           <details className="explain">
-            <summary><ChevronDown size={15} /> Le budget de l'État, domaine par domaine</summary>
-            <ul className="list small">{n.etat_missions.slice(0, 40).map((x) => {
-              const i = infoMission(x.id, x.titre)
-              return <li key={x.id} className="list-row" style={{ padding: '5px 0' }}>
-                <span>{i.verrou && <span title={i.verrou}><Lock size={12} color="var(--ink-3)" /> </span>}<Link to={`/regles/r/${x.id}`}>{i.nom}</Link></span><span>{nombre(x.md, 1)} Md€</span></li>
-            })}</ul>
-            <div className="small muted"><Lock size={12} /> = dépense obligatoire, voir « Pourquoi certaines dépenses ont un cadenas ? » plus bas.</div>
-          </details>
-          <details className="explain">
             <summary><ChevronDown size={15} /> La Sécurité sociale, branche par branche</summary>
             <ul className="list small">{n.secu_branches.map((x) => <li key={x.id} className="list-row" style={{ padding: '5px 0' }}><Link to={`/regles/r/${x.id}`}>{x.titre}</Link><span>{nombre(x.md, 1)} Md€</span></li>)}</ul>
           </details>
         </div>
       </div>
 
-      <CommentChanger totalEtat={n.etat_missions.reduce((a, x) => a + x.md, 0)} />
+      <BudgetEtat missions={n.etat_missions} depenseTotale={dep} />
 
       <div className="section-title"><h2><Wallet size={22} /> Et vous ?</h2></div>
       <div className="row" style={{ marginBottom: 12 }}>
@@ -176,7 +191,7 @@ export default function Budget() {
             <div className="kpi">{euros(m.total_recu)}</div>
             {m.recu.length ? <ul className="list small">{m.recu.map((r) => <li key={r.id} className="list-row"><span>{r.titre}</span><strong>{euros(r.montant)}</strong></li>)}</ul>
               : <div className="small muted">Aucune prestation monétaire.</div>}
-            <p className="small muted" style={{ marginTop: 10 }}>Sans compter les services publics gratuits ou remboursés (école, soins, routes…) : en moyenne, la dépense publique représente {euros(m.depense_publique_moyenne_foyer)} par an pour un foyer de {m.personnes} personne(s).</p>
+            <p className="small muted" style={{ marginTop: 10 }}>À cela s'ajoutent les services publics gratuits ou remboursés : l'école, l'hôpital, les routes, la police… coûtent en moyenne {euros(m.depense_publique_moyenne_foyer)} par an pour un foyer de {m.personnes} personne{m.personnes > 1 ? 's' : ''}.</p>
           </div>
           <div className="card">
             <div className="kpi-label">Ce que finance sa contribution</div>

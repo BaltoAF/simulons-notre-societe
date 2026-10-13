@@ -46,12 +46,19 @@ const UNITES: Record<string, (v: number) => string> = {
   elasticite: (v) => nombre(v, 3),
 }
 
+/** Unité lisible : « km_h » → « km/h », « euros_par_hectolitre » → « € par hectolitre », « pourcent_pib » → « % du PIB ». */
+export function uniteLisible(u: string): string {
+  const map: Record<string, string> = { km_h: 'km/h', pourcent_pib: '% du PIB', mt_co2e: 'Mt CO₂e', twh_par_an: 'TWh par an', gw: 'GW', kg: 'kg', etpt: 'emplois à temps plein' }
+  return map[u] ?? u.replace(/^euros_par_/, '€ par ').replace(/^euros$/, '€').replace(/_par_/g, ' par ').replace(/_/g, ' ')
+    .replace(/\bmwh\b/g, 'MWh').replace(/\bkwh\b/g, 'kWh').replace(/\bco2e?\b/g, 'CO₂').replace(/\btco2e?\b/g, 'tonne de CO₂')
+}
+
 export function unite(u: string): string {
   const map: Record<string, string> = {
     euros: '€', euros_mois: '€/mois', milliards_euros: 'Md€', pourcent: '%', ans: 'ans', mois: 'mois', jours: 'jours',
     heures: 'h', smic: 'SMIC', parts: 'parts', enfants: 'enfants',
   }
-  return map[u] ?? u
+  return map[u] ?? uniteLisible(u)
 }
 
 export function valeur(v: Valeur | undefined, u = '', type?: string): string {
@@ -61,7 +68,7 @@ export function valeur(v: Valeur | undefined, u = '', type?: string): string {
   if (typeof v === 'number') {
     const f = UNITES[u]
     if (f) return f(v)
-    return nombre(v) + (u ? ' ' + u.replace(/_/g, ' ') : '')
+    return nombre(v) + (u ? ' ' + uniteLisible(u) : '')
   }
   if (type === 'choix') return String(v).replace(/_/g, ' ')
   return String(v)

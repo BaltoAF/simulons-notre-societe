@@ -100,7 +100,8 @@ export function SourceItem({ s }: { s: Source }) {
   )
 }
 
-export function Modal({ title, onClose, children, width }: { title: string; onClose: () => void; children: ReactNode; width?: number }) {
+/** Fenêtre : un seul défilement (le contenu), et un pied facultatif toujours visible (boutons d'action). */
+export function Modal({ title, onClose, children, width, footer }: { title: string; onClose: () => void; children: ReactNode; width?: number; footer?: ReactNode }) {
   useEffect(() => {
     const h = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
     document.addEventListener('keydown', h)
@@ -109,11 +110,12 @@ export function Modal({ title, onClose, children, width }: { title: string; onCl
   return (
     <div className="modal-backdrop" onMouseDown={(e) => { if (e.target === e.currentTarget) onClose() }}>
       <div className="modal" role="dialog" aria-modal="true" aria-label={title} style={width ? { width: `min(${width}px, 100%)` } : undefined}>
-        <div className="row between" style={{ marginBottom: 12 }}>
+        <div className="modal-tete">
           <h2 style={{ margin: 0, fontSize: '1.3rem' }}>{title}</h2>
           <button className="icon-btn" onClick={onClose} aria-label="Fermer"><X size={20} /></button>
         </div>
-        {children}
+        <div className="modal-corps">{children}</div>
+        {footer && <div className="modal-pied">{footer}</div>}
       </div>
     </div>
   )

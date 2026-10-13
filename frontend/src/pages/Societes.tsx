@@ -17,21 +17,21 @@ export default function Societes() {
     <div className="container page">
       <div className="row between">
         <div>
-          <h1>{auteur ? `Les sociétés de ${auteur}` : 'Les sociétés'}</h1>
-          <p className="ink2" style={{ maxWidth: 720 }}>Chaque société est une idée de France, imaginée par quelqu'un : la même loi qu'aujourd'hui (la Société 1.0), avec quelques règles changées. Explorez-les, comparez-les, créez votre version de celle qui vous plaît.</p>
+          <h1>{auteur ? `Les propositions de ${auteur}` : 'Les propositions'}</h1>
+          <p className="ink2" style={{ maxWidth: 720 }}>Chaque proposition est une idée de France, imaginée par quelqu'un : la loi d'aujourd'hui, avec quelques règles changées. Explorez-les, comparez-les, ou partez de celle qui vous plaît pour faire la vôtre.</p>
         </div>
         <Link to="/atelier" className="btn primary"><GitFork size={16} /> Créer la mienne</Link>
       </div>
       <div className="row" style={{ margin: '12px 0 18px' }}>
         <form className="input-suffix grow" style={{ maxWidth: 420 }} onSubmit={(e) => { e.preventDefault(); params.set('q', q); setParams(params) }}>
-          <input type="search" placeholder="Rechercher une société" value={q} onChange={(e) => setQ(e.target.value)} />
+          <input type="search" placeholder="Rechercher une proposition" value={q} onChange={(e) => setQ(e.target.value)} />
           <span className="suffix"><Search size={16} /></span>
         </form>
         <div className="choices">
           <button className={`choice ${tri === 'recent' ? 'on' : ''}`} onClick={() => { params.set('tri', 'recent'); setParams(params) }}>Récentes</button>
           <button className={`choice ${tri === 'populaire' ? 'on' : ''}`} onClick={() => { params.set('tri', 'populaire'); setParams(params) }}>Populaires</button>
         </div>
-        {auteur && <Link to="/societes" className="small">Voir toutes les sociétés</Link>}
+        {auteur && <Link to="/societes" className="small">Voir toutes les propositions</Link>}
       </div>
       {loading ? <Loading /> : (data?.societes.length ? (
         <div className="grid cols-2">
@@ -50,7 +50,7 @@ export default function Societes() {
             </Link>
           ))}
         </div>
-      ) : <Empty>Aucune société pour l'instant. <Link to="/atelier">Créez la première !</Link></Empty>)}
+      ) : <Empty>Aucune proposition pour l'instant. <Link to="/atelier">Créez la première !</Link></Empty>)}
     </div>
   )
 }

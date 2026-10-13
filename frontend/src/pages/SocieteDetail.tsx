@@ -93,7 +93,7 @@ export default function SocieteDetail() {
 
   return (
     <div className="container page">
-      <div className="breadcrumb"><Link to="/societes">Les sociétés</Link> › {s.nom}</div>
+      <div className="breadcrumb"><Link to="/societes">Les propositions</Link> › {s.nom}</div>
       <div className="row between top">
         <div className="grow">
           <h1 style={{ marginBottom: 4 }}>{s.reference && <ShieldCheck size={26} color="var(--primary)" />} {s.nom}</h1>
@@ -103,8 +103,8 @@ export default function SocieteDetail() {
           </div>
         </div>
         <div className="row">
-          <button className={`btn ${s.etoile ? 'primary' : ''}`} onClick={etoile} title="J'aime cette société"><Star size={16} /> {s.etoiles}</button>
-          <button className="btn" onClick={() => (user ? setModal('fork') : nav(`/connexion?retour=/societes/${s.id}`))} title="Une copie à vous, que vous pourrez modifier librement"><GitFork size={16} /> Créer ma version</button>
+          <button className={`btn ${s.etoile ? 'primary' : ''}`} onClick={etoile} title="J'aime cette proposition"><Star size={16} /> {s.etoiles}</button>
+          <button className="btn" onClick={() => (user ? setModal('fork') : nav(`/connexion?retour=/societes/${s.id}`))} title="Une copie à vous, que vous pourrez modifier librement"><GitFork size={16} /> Partir de cette proposition</button>
           <Link className="btn primary" to={`/atelier?societe=${s.id}&branche=${branche}`}><Calculator size={16} /> {s.proprietaire ? 'Modifier' : 'Tester des changements'}</Link>
         </div>
       </div>
@@ -112,7 +112,7 @@ export default function SocieteDetail() {
       {msg && <Notice kind="ok">{msg}</Notice>}
       {s.conflits_loi.length > 0 && (
         <div className="notice warn" style={{ margin: '12px 0' }}>
-          <RefreshCw size={18} /> <div className="grow">La loi a changé sur {s.conflits_loi[0].conflits.length} règle(s) que cette société modifie aussi
+          <RefreshCw size={18} /> <div className="grow">La loi a changé sur {s.conflits_loi[0].conflits.length} règle(s) que cette proposition modifie aussi
             ({s.conflits_loi[0].conflits.map((c) => c.titre ?? c.regle).slice(0, 3).join(', ')}). Le Système n'impose rien : {s.proprietaire ? 'à vous de choisir, règle par règle.' : 'son auteur doit choisir.'}</div>
           {s.proprietaire && <button className="btn small" onClick={() => setModal('sync')}>Choisir</button>}
         </div>
@@ -132,9 +132,9 @@ export default function SocieteDetail() {
             {s.branches.map((b) => <option key={b.nom} value={b.nom}>{b.nom === 'principale' ? 'principale' : b.nom}</option>)}
           </select>
         </>}
-        <span className="small muted">Dernière modification : « {s.head.message} »</span>
+        {!s.head.message.startsWith("Mise à jour automatique") && <span className="small muted">Dernière modification : « {s.head.message} »</span>}
         {s.proprietaire && <button className="btn small ghost" onClick={() => setModal('branche')}>+ variante</button>}
-        {!s.reference && user && <button className="btn small ghost" onClick={() => setModal('proposer')}><GitPullRequest size={14} /> Suggérer mes changements à une autre société</button>}
+        {!s.reference && user && <button className="btn small ghost" onClick={() => setModal('proposer')}><GitPullRequest size={14} /> Suggérer mes changements à une autre proposition</button>}
       </div>
 
       <div className="tabs">
@@ -164,7 +164,7 @@ export default function SocieteDetail() {
           </div>
         </div>
       )}
-      {tab === 'impacts' && (calc ? <div className="card"><Loading label="Le Système calcule les effets de cette société (10 à 30 secondes)…" /></div> : rapport ? <ReportView r={rapport} /> : <Empty>Aucun impact à calculer.</Empty>)}
+      {tab === 'impacts' && (calc ? <div className="card"><Loading label="Le Système calcule les effets de cette proposition (10 à 30 secondes)…" /></div> : rapport ? <ReportView r={rapport} contexte="societe" /> : <Empty>Aucun impact à calculer.</Empty>)}
       {tab === 'historique' && <div className="card"><Historique sid={s.id} branche={branche} /></div>}
       {tab === 'propositions' && (
         <div className="card">
@@ -197,12 +197,12 @@ function ForkModal({ s, branche, onClose }: { s: SD; branche: string; onClose: (
     try { const r = await api<{ id: string }>('/api/societes', { body: { source: s.id, branche, nom } }); nav(`/societes/${r.id}`); onClose() } catch (e: any) { setErr(e.message) }
   }
   return (
-    <Modal title="Créer ma version de cette société" onClose={onClose}>
+    <Modal title="Partir de cette proposition" onClose={onClose}>
       <p className="small ink2">Vous obtenez votre propre copie, que vous pourrez modifier librement : l'original ne change pas. Si vos idées vous semblent bonnes, vous pourrez ensuite les suggérer à son auteur.</p>
       <p className="small muted">Les évolutions de la loi seront intégrées automatiquement à votre version, sauf sur les règles que vous aurez changées.</p>
       <label className="field"><span>Nom de votre version</span><input type="text" value={nom} onChange={(e) => setNom(e.target.value)} /></label>
       {err && <ErrorBox message={err} />}
-      <div className="row" style={{ justifyContent: 'flex-end' }}><button className="btn" onClick={onClose}>Annuler</button><button className="btn primary" onClick={go}><GitFork size={15} /> Créer ma version</button></div>
+      <div className="row" style={{ justifyContent: 'flex-end' }}><button className="btn" onClick={onClose}>Annuler</button><button className="btn primary" onClick={go}><GitFork size={15} /> Créer ma proposition</button></div>
     </Modal>
   )
 }
@@ -222,8 +222,8 @@ function ProposerModal({ s, branche, onClose }: { s: SD; branche: string; onClos
   }
   return (
     <Modal title="Suggérer vos changements" onClose={onClose}>
-      <p className="small ink2">Son auteur verra la liste de vos changements et leurs effets ; il pourra en discuter avec vous, puis les intégrer à sa société.</p>
-      <label className="field"><span>À quelle société ?</span>
+      <p className="small ink2">Son auteur verra la liste de vos changements et leurs effets ; il pourra en discuter avec vous, puis les intégrer à sa proposition.</p>
+      <label className="field"><span>À quelle proposition ?</span>
         <select value={cible} onChange={(e) => setCible(e.target.value)}>
           <option value="">Choisir…</option>
           {(data?.societes ?? []).filter((x) => !x.reference && x.id !== s.id).map((x) => <option key={x.id} value={x.id}>{x.nom} (par {x.owner_pseudo})</option>)}
@@ -243,7 +243,7 @@ function BrancheModal({ s, onClose, onDone }: { s: SD; onClose: () => void; onDo
   const go = async () => { try { const r = await api<{ nom: string }>(`/api/societes/${s.id}/branches`, { body: { nom } }); onDone(r.nom) } catch (e: any) { setErr(e.message) } }
   return (
     <Modal title="Nouvelle variante" onClose={onClose}>
-      <p className="small ink2">Une variante permet d'essayer une autre piste (par exemple, un autre financement) sans toucher à la version principale de votre société.</p>
+      <p className="small ink2">Une variante permet d'essayer une autre piste (par exemple, un autre financement) sans toucher à la version principale de votre proposition.</p>
       <label className="field"><span>Nom de la variante</span><input type="text" value={nom} onChange={(e) => setNom(e.target.value)} placeholder="ex. financement par la TVA" /></label>
       {err && <ErrorBox message={err} />}
       <div className="row" style={{ justifyContent: 'flex-end' }}><button className="btn" onClick={onClose}>Annuler</button><button className="btn primary" disabled={!nom.trim()} onClick={go}>Créer</button></div>
@@ -258,14 +258,14 @@ function SyncModal({ s, branche, onClose, onDone }: { s: SD; branche: string; on
   const go = async () => {
     try {
       const r = await api<{ statut: string; message?: string; changements?: any[] }>(`/api/societes/${s.id}/synchroniser`, { body: { branche, resolutions: res } })
-      onDone(r.statut === 'a_jour' ? r.message! : `Société mise à jour : ${r.changements?.length ?? 0} règle(s) actualisée(s) selon la loi.`)
+      onDone(r.statut === 'a_jour' ? r.message! : `Proposition mise à jour : ${r.changements?.length ?? 0} règle(s) actualisée(s) selon la loi.`)
     } catch (e: any) {
       if (e.status === 409) setConflits(e.data?.conflits ?? []); else setErr(e.message)
     }
   }
   return (
     <Modal title="Intégrer les évolutions de la loi" onClose={onClose}>
-      <p className="small ink2">La loi a changé depuis que vous avez créé votre société. Les règles que vous n'avez pas touchées prendront leur nouvelle valeur. Pour celles que vous aviez changées et que la loi a aussi modifiées, c'est à vous de choisir.</p>
+      <p className="small ink2">La loi a changé depuis que vous avez créé votre proposition. Les règles que vous n'avez pas touchées prendront leur nouvelle valeur. Pour celles que vous aviez changées et que la loi a aussi modifiées, c'est à vous de choisir.</p>
       {conflits && conflits.map((c) => (
         <div key={c.regle} className="change-chip">
           <strong>{c.titre}</strong>

@@ -5,6 +5,7 @@ import { date, DOMAINE_TITRE, nombre, valeur } from '../lib/format'
 import { useApp, useFetch } from '../lib/state'
 import { ConfidenceBadge, ErrorBox, Loading, SourceItem } from '../components/ui'
 import { Pourquoi, Terme } from '../components/Terme'
+import { infoMission } from '../lib/missions'
 
 function Bareme({ t }: { t: Tranche[] }) {
   const rows = [...t].sort((a, b) => a.seuil - b.seuil)
@@ -31,14 +32,23 @@ export default function RegleDetail() {
     nav('/atelier')
   }
   const hist = [...r.valeurs].reverse()
+  const mission = r.id.startsWith('budget.etat.mission.') ? infoMission(r.id, r.titre) : null
   return (
     <div className="container page">
       <div className="breadcrumb"><Link to="/regles">Les règles</Link> › <Link to={`/regles/d/${r.domaine}`}>{DOMAINE_TITRE[r.domaine] ?? r.domaine}</Link> › {r.theme}</div>
       <div className="split aside-360">
         <div className="stack">
           <div className="card">
-            <h1 style={{ fontSize: '1.8rem' }}>{r.titre}</h1>
-            <p className="ink2" style={{ fontSize: '1.05rem' }}>{r.explication}</p>
+            {mission ? <>
+              {/* un domaine du budget de l'État : d'abord en clair, le vocabulaire budgétaire ensuite, replié */}
+              <h1 style={{ fontSize: '1.8rem' }}>Budget de l'État : {mission.nom}</h1>
+              <p className="ink2" style={{ fontSize: '1.05rem' }}>{mission.description ? <>L'argent que l'État consacre chaque année à : {mission.description.charAt(0).toLowerCase() + mission.description.slice(1)}.</> : <>Un des grands domaines du budget de l'État.</>}</p>
+              {mission.verrou && <div className="notice small" style={{ marginBottom: 12 }}><div><strong>Dépense obligatoire.</strong> {mission.verrou}</div></div>}
+              <details className="curieux small" style={{ marginBottom: 12 }}><summary>Le détail budgétaire</summary><p className="ink2">{r.explication}</p></details>
+            </> : <>
+              <h1 style={{ fontSize: '1.8rem' }}>{r.titre}</h1>
+              <p className="ink2" style={{ fontSize: '1.05rem' }}>{r.explication}</p>
+            </>}
             <div className="kpi-label">Valeur en vigueur{r.valeur_depuis ? ` depuis le ${date(r.valeur_depuis)}` : ''}</div>
             {r.type === 'bareme' && Array.isArray(r.valeur) ? <>
               <Bareme t={r.valeur as Tranche[]} />
@@ -54,7 +64,7 @@ export default function RegleDetail() {
               </div>
             ))}
             {r.note && <p className="small muted" style={{ marginTop: 12 }}>{r.note}</p>}
-            {r.virtuel && <div className="notice" style={{ marginTop: 12 }}>Ce dispositif n'existe pas aujourd'hui : il est proposé pour que chacun puisse l'essayer dans sa société et en mesurer les effets.</div>}
+            {r.virtuel && <div className="notice" style={{ marginTop: 12 }}>Ce dispositif n'existe pas aujourd'hui : il est proposé pour que chacun puisse l'essayer dans sa proposition et en mesurer les effets.</div>}
           </div>
 
           <div className="card">

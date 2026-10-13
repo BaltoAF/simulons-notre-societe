@@ -61,7 +61,7 @@ def main():
            {"regle": "prestations.revenu_universel.remplace_rsa_prime_activite", "valeur": True}],
           "Revenu universel de 600 €")
     variante = creer(sacha, "[Exemple] Société plus solidaire — variante TVA",
-                     "Exemple de démonstration : une variante de la société de Camille, qui propose de financer aussi par la TVA.",
+                     "Exemple de démonstration : une variante de la proposition de Camille, qui propose de financer aussi par la TVA.",
                      [{"regle": "fiscalite.tva.taux_normal", "valeur": 21, "justification": "Élargir le financement"}],
                      "TVA à 21 %", source=solidaire["id"])
     try:

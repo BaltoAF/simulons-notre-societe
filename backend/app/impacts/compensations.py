@@ -49,15 +49,17 @@ def options_budget(store, overrides: dict, manque: float) -> list[dict]:
     out = []
     agg = _baseline_population(store) or {}
     # 1. Dépenses : toutes les missions de l'État à proportion
+    # les domaines que l'utilisateur vient lui-même de modifier ne sont pas touchés (sinon on reprendrait ce qu'il a donné)
     missions = {rid: _valeur(store, overrides, rid) for rid in store.regles
-                if rid.startswith("budget.etat.mission.") and not any(x in rid for x in MISSIONS_EXCLUES)}
+                if rid.startswith("budget.etat.mission.") and not any(x in rid for x in MISSIONS_EXCLUES)
+                and not (rid in overrides and overrides[rid] != store.rule_value(rid))}
     missions = {k: float(v) for k, v in missions.items() if isinstance(v, (int, float)) and v > 0}
     total = sum(missions.values())
     if total:
         pct = _arrondi(manque / total * 100, 0.1)
         out.append({"id": "missions_proportion", "famille": "depenses",
-                    "titre": f"Baisser de {g(pct)} % les crédits de toutes les missions de l'État",
-                    "description": f"Chaque ministère fait un effort proportionnel (hors charge de la dette et remboursements d'impôts), sur {g(round(total))} milliards € de crédits.",
+                    "titre": f"Économiser {g(pct)} % sur les autres dépenses de l'État",
+                    "description": f"Chaque ministère fait le même petit effort, sur {g(round(total))} milliards € (sans toucher aux domaines que vous avez changés, ni aux dépenses obligatoires).",
                     "rendement": round(total * pct / 100, 2),
                     "overrides": {rid: round(v * (1 - pct / 100), 3) for rid, v in missions.items()}})
         # la plus grosse mission (exemple d'arbitrage ciblé ; l'utilisateur peut en choisir une autre dans l'éditeur du budget)
@@ -69,7 +71,7 @@ def options_budget(store, overrides: dict, manque: float) -> list[dict]:
         par_pt = tva * part / 100 / float(taux_tva)
         d = _arrondi(manque / par_pt, 0.1)
         out.append({"id": "tva", "famille": "recettes", "titre": f"Relever la TVA normale de {g(taux_tva)} % à {g(float(taux_tva) + d)} %",
-                    "description": "Rapide à mettre en œuvre ; pèse proportionnellement plus sur les ménages modestes.",
+                    "description": "Simple et rapide ; mais pèse plus lourd, en proportion, sur les ménages modestes (ils dépensent tout leur revenu).",
                     "rendement": round(par_pt * d, 2), "overrides": {"fiscalite.tva.taux_normal": round(float(taux_tva) + d, 2)}})
     csg = _valeur(store, overrides, "fiscalite.csg.salaires_taux")
     if agg.get("csg_salaire") and csg:
@@ -77,14 +79,15 @@ def options_budget(store, overrides: dict, manque: float) -> list[dict]:
         par_pt = agg["csg_salaire"] * 0.85 / float(csg)
         d = _arrondi(manque / par_pt, 0.05)
         out.append({"id": "csg", "famille": "recettes", "titre": f"Relever la CSG sur les revenus d'activité de {g(csg)} % à {g(float(csg) + d)} %",
-                    "description": "Assiette très large : salaires et revenus d'activité.",
+                    "description": "Touche presque tous les revenus du travail : un petit taux rapporte beaucoup.",
                     "rendement": round(par_pt * d, 2), "overrides": {"fiscalite.csg.salaires_taux": round(float(csg) + d, 3)}})
     bareme = _valeur(store, overrides, "fiscalite.impot_revenu.bareme")
     if agg.get("impot_revenu+pfu") and isinstance(bareme, list):
         ir = agg["impot_revenu+pfu"] * 0.9
         pct = _arrondi(manque / ir * 100, 0.5)
-        out.append({"id": "ir", "famille": "recettes", "titre": f"Augmenter de {g(pct)} % tous les taux de l'impôt sur le revenu",
-                    "description": "Progressif : concerne surtout les foyers aux revenus moyens et élevés (moins de la moitié des foyers paie l'impôt).",
+        exemples = ", ".join(f"{g(b['taux'])} % → {g(round(b['taux'] * (1 + pct / 100), 1))} %" for b in bareme if b["taux"] > 0)
+        out.append({"id": "ir", "famille": "recettes", "titre": f"Relever un peu chaque taux de l'impôt sur le revenu ({exemples})",
+                    "description": f"Chaque taux augmente de {g(pct)} % de sa valeur. Touche surtout les revenus moyens et élevés : moins de la moitié des foyers paie cet impôt.",
                     "rendement": round(ir * pct / 100, 2),
                     "overrides": {"fiscalite.impot_revenu.bareme": [{"seuil": b["seuil"], "taux": round(b["taux"] * (1 + pct / 100), 2)} for b in bareme]}})
     is_, _, _ = metrique(store, "finances_publiques.recettes.impot_societes")
@@ -93,7 +96,7 @@ def options_budget(store, overrides: dict, manque: float) -> list[dict]:
         par_pt = is_ / float(taux_is)
         d = _arrondi(manque / par_pt, 0.5)
         out.append({"id": "is", "famille": "recettes", "titre": f"Relever l'impôt sur les sociétés de {g(taux_is)} % à {g(float(taux_is) + d)} %",
-                    "description": "Rendement direct ; les études divergent sur l'effet sur l'investissement.",
+                    "description": "Payé par les entreprises sur leurs bénéfices ; les études ne sont pas d'accord sur l'effet sur l'investissement et l'emploi.",
                     "rendement": round(par_pt * d, 2), "overrides": {"fiscalite.is.taux_normal": round(float(taux_is) + d, 2)}})
     # 3. Assumer
     if R_ART40 in store.regles:

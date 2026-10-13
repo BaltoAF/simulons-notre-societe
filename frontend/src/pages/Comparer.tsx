@@ -8,12 +8,12 @@ export default function Comparer() {
   const [p] = useSearchParams()
   const qs = p.toString()
   const { data, loading, error } = useFetch<{ a: { id: string; nom: string }; b: { id: string; nom: string }; differences: Changement[] }>(p.get('a') && p.get('b') ? `/api/comparer?${qs}` : null)
-  if (!p.get('a') || !p.get('b')) return <div className="container page"><ErrorBox message="Indiquez deux sociétés à comparer." /></div>
+  if (!p.get('a') || !p.get('b')) return <div className="container page"><ErrorBox message="Indiquez deux propositions à comparer." /></div>
   if (loading) return <div className="container page"><Loading /></div>
   if (error || !data) return <div className="container page"><ErrorBox message={error ?? 'Erreur'} /></div>
   return (
     <div className="container page">
-      <h1>Comparer deux sociétés</h1>
+      <h1>Comparer deux propositions</h1>
       <div className="card">
         <div className="table-wrap">
           <table className="table">
@@ -26,7 +26,7 @@ export default function Comparer() {
                   <td><strong>{valeur(d.apres, d.unite, d.type)}</strong></td>
                 </tr>
               ))}
-              {data.differences.length === 0 && <tr><td colSpan={3} className="muted">Ces deux sociétés sont identiques.</td></tr>}
+              {data.differences.length === 0 && <tr><td colSpan={3} className="muted">Ces deux propositions sont identiques.</td></tr>}
             </tbody>
           </table>
         </div>

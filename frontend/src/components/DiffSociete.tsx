@@ -2,12 +2,26 @@
 // regroupées par domaine, avec leur ampleur, leur auteur et leur justification.
 import { Link } from 'react-router-dom'
 import { ArrowRight, Bot, GitCommit, Quote } from 'lucide-react'
-import type { Changement } from '../lib/api'
+import type { Changement, Tranche, Valeur } from '../lib/api'
 import { DOMAINE_TITRE, nombre, relatif, valeur } from '../lib/format'
 
 export type Diff = Changement & {
   provenance?: { commit: string; auteur: string | null; auteur_systeme: boolean; date: string; message: string; justification: string } | null
   variation_pct?: number | null
+}
+
+/** Changement d'un barème dit en clair : « Nouvelle tranche à 50 % au-delà de 250 000 € », « 30 % → 32 % dès 29 579 € ». */
+function diffBareme(avant: Valeur | undefined, apres: Valeur | undefined): string[] | null {
+  if (!Array.isArray(avant) || !Array.isArray(apres)) return null
+  const a = avant as Tranche[], b = apres as Tranche[]
+  const out: string[] = []
+  for (const t of b) {
+    const old = a.find((x) => Math.abs(x.seuil - t.seuil) < 0.5)
+    if (!old) out.push(`Nouvelle tranche à ${nombre(t.taux, 1)} % au-delà de ${nombre(t.seuil, 0)} € par part`)
+    else if (Math.abs(old.taux - t.taux) > 1e-9) out.push(`Tranche dès ${nombre(t.seuil, 0)} € : ${nombre(old.taux, 1)} % → ${nombre(t.taux, 1)} %`)
+  }
+  for (const t of a) if (!b.find((x) => Math.abs(x.seuil - t.seuil) < 0.5)) out.push(`Tranche à ${nombre(t.taux, 1)} % dès ${nombre(t.seuil, 0)} € supprimée`)
+  return out.length ? out : null
 }
 
 export function DiffSociete({ items, vide }: { items: Diff[]; vide: string }) {
@@ -34,15 +48,19 @@ export function DiffSociete({ items, vide }: { items: Diff[]; vide: string }) {
                       <span className={`badge ${hausse ? 'accent' : 'primary'}`}>{c.variation_pct > 0 ? '+' : '−'}{nombre(Math.abs(c.variation_pct), 1)} %</span>
                     )}
                   </div>
-                  <div className="row small" style={{ gap: 8, marginTop: 4 }}>
-                    <span className="muted">Loi actuelle : {valeur(c.avant, c.unite, c.type)}</span>
-                    <ArrowRight size={14} className="arrow" />
-                    <strong>Cette société : {valeur(c.apres, c.unite, c.type)}</strong>
-                  </div>
+                  {diffBareme(c.avant, c.apres) ? (
+                    <ul className="small" style={{ margin: '4px 0 0', paddingLeft: 18 }}>{diffBareme(c.avant, c.apres)!.map((l) => <li key={l}><strong>{l}</strong></li>)}</ul>
+                  ) : (
+                    <div className="row small" style={{ gap: 8, marginTop: 4 }}>
+                      <span className="muted">Loi actuelle : {valeur(c.avant, c.unite, c.type)}</span>
+                      <ArrowRight size={14} className="arrow" />
+                      <strong>Cette proposition : {valeur(c.apres, c.unite, c.type)}</strong>
+                    </div>
+                  )}
                   {c.provenance && (
                     <div className="small muted" style={{ marginTop: 4 }}>
                       {c.provenance.justification && <div><Quote size={12} /> « {c.provenance.justification} »</div>}
-                      <div><GitCommit size={12} /> {c.provenance.auteur_systeme ? 'Le Système' : c.provenance.auteur} · {relatif(c.provenance.date)} · « {c.provenance.message} »</div>
+                      <div><GitCommit size={12} /> Changé par {c.provenance.auteur_systeme ? 'le Système' : c.provenance.auteur}, {relatif(c.provenance.date)}</div>
                     </div>
                   )}
                 </li>
@@ -58,9 +76,9 @@ export function DiffSociete({ items, vide }: { items: Diff[]; vide: string }) {
 export function MisesAJourAuto({ commits }: { commits: { id: string; message: string; created_at: string; changes: Changement[] }[] }) {
   if (!commits.length) return null
   return (
-    <div className="card soft">
-      <h3 style={{ fontSize: '1rem' }}><Bot size={16} /> Évolutions de la loi intégrées automatiquement</h3>
-      <p className="small muted">Quand la Société 1.0 change (nouvelle loi, revalorisation, entrée en vigueur), le Système met à jour cette société pour toutes les règles qu'elle n'a pas modifiées.</p>
+    <details className="card soft small curieux">
+      <summary><Bot size={15} /> Tenue à jour automatiquement avec la loi ({commits.length} mise{commits.length > 1 ? 's' : ''} à jour)</summary>
+      <p className="small muted">Quand la loi change (nouvelle loi, revalorisation, entrée en vigueur), le Système met à jour cette proposition pour toutes les règles qu'elle n'a pas modifiées.</p>
       <ul className="list small">
         {commits.map((c) => (
           <li key={c.id}>{c.message} <span className="muted">· {relatif(c.created_at)}</span>
@@ -68,6 +86,6 @@ export function MisesAJourAuto({ commits }: { commits: { id: string; message: st
           </li>
         ))}
       </ul>
-    </div>
+    </details>
   )
 }

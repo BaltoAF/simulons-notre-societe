@@ -29,9 +29,21 @@ const POURQUOI: Record<string, { regles: string[]; texte: string }> = {
   impot_revenu: { regles: ['fiscalite.impot_revenu.bareme', 'fiscalite.impot_revenu.decote.taux', 'fiscalite.impot_revenu.quotient_familial.plafond_demi_part'], texte: 'Impôt progressif calculé sur le revenu du foyer, divisé par le nombre de parts.' },
   aspa: { regles: ['prestations.aspa.montant_personne_seule'], texte: 'Le minimum vieillesse garantit un revenu minimal aux personnes âgées.' },
   aah: { regles: ['prestations.aah.montant'], texte: 'Allocation pour les personnes en situation de handicap aux ressources modestes.' },
-  salaire_net: { regles: ['fiscalite.csg.salaires_taux', 'travail.smic.horaire_brut'], texte: 'Salaire brut moins les cotisations sociales, la CSG et la CRDS.' },
+  salaire_net: { regles: ['fiscalite.csg.salaires_taux'], texte: 'Salaire brut moins les cotisations sociales, la CSG et la CRDS.' },
   retraite_nette: { regles: ['fiscalite.csg.retraites_taux_plein'], texte: 'Pension brute moins la CSG, la CRDS et la Casa.' },
   pfu: { regles: ['fiscalite.capital.pfu_taux_ir'], texte: 'Impôt forfaitaire de 12,8 % sur les intérêts et dividendes.' },
+  epargne: { regles: ['fiscalite.capital.pfu_taux_ir'], texte: 'Sur les intérêts et dividendes de votre épargne (hors livret A et autres livrets réglementés) : un impôt de 12,8 % et des prélèvements sociaux de 17,2 %.' },
+  impot_revenu_zero: { regles: ['fiscalite.impot_revenu.bareme', 'fiscalite.impot_revenu.decote.taux'], texte: 'Vos revenus, divisés par le nombre de parts du foyer, restent sous le seuil où l\'impôt commence, ou une réduction (la « décote ») l\'annule. C\'est le cas d\'environ la moitié des foyers.' },
+}
+
+/** « couple marié, 2 enfants (8 et 12 ans), salaires 2 100 € + 1 850 € nets/mois, propriétaire » */
+function resumeSituation(s: SituationSaisie): string {
+  const foyer = s.adultes.length > 1 ? `couple ${s.couple === 'marie' ? 'marié' : s.couple === 'pacse' ? 'pacsé' : 'en union libre'}` : 'personne seule'
+  const enfants = s.enfants.length ? `, ${s.enfants.length} enfant${s.enfants.length > 1 ? 's' : ''} (${s.enfants.join(' et ')} ans)` : ''
+  const nature: Record<string, string> = { salarie: 'salaire', chomeur: 'chômage', retraite: 'retraite', etudiant: 'étudiant', inactif: 'sans activité' }
+  const revenus = s.adultes.map((a) => (['salarie', 'chomeur', 'retraite'].includes(a.activite) ? `${nature[a.activite]} ${euros(a.montant_net)}` : nature[a.activite])).join(' + ')
+  const logement: Record<string, string> = { locataire_prive: 'locataire', locataire_social: 'locataire HLM', proprietaire: 'propriétaire', heberge: 'hébergé' }
+  return `${foyer}${enfants}, ${revenus} nets/mois, ${logement[s.logement] ?? ''}`
 }
 
 function Stepper({ step }: { step: number }) {
@@ -99,7 +111,15 @@ export default function MesDroits() {
   if (step === 3 && (res || loading || err)) {
     const revenus = res?.lignes.filter((l) => l.nature === 'revenu') ?? []
     const prest = res?.lignes.filter((l) => l.nature === 'prestation') ?? []
-    const prel = res?.lignes.filter((l) => l.nature === 'prelevement') ?? []
+    // Impôts : toujours une ligne « Impôt sur le revenu » (même à 0 €), et les petits impôts sur l'épargne regroupés
+    const brut = res?.lignes.filter((l) => l.nature === 'prelevement') ?? []
+    const ir = brut.find((l) => l.id === 'impot_revenu')
+    const epargne = brut.filter((l) => l.id === 'pfu' || l.id === 'prelevements_sociaux_capital')
+    const prel: Resultat['lignes'] = res ? [
+      ir ?? { id: 'impot_revenu_zero', libelle: 'Impôt sur le revenu', montant: 0, nature: 'prelevement' },
+      ...(epargne.length ? [{ id: 'epargne', libelle: 'Impôts sur votre épargne', montant: epargne.reduce((a, l) => a + l.montant, 0), nature: 'prelevement' }] : []),
+      ...brut.filter((l) => l.id !== 'impot_revenu' && !epargne.includes(l)),
+    ] : []
     return (
       <div className="container page">
         <div className="row between" style={{ marginBottom: 10 }}>
@@ -116,7 +136,8 @@ export default function MesDroits() {
                   <div>
                     <div className="kpi-label"><Terme id="revenu_disponible">Ce qui reste au foyer chaque mois</Terme></div>
                     <div className="kpi big">{euros(res.revenu_disponible)} <span className="muted" style={{ fontSize: '1rem', fontWeight: 600 }}>/ mois</span></div>
-                    <div className="small muted">Revenus + aides − impôts. Soit un <Terme id="niveau_vie">niveau de vie</Terme> de {euros(res.niveau_de_vie)} par mois et par personne (en tenant compte de la taille du foyer).</div>
+                    <div className="small muted">Revenus + aides − impôts.{s.adultes.length + s.enfants.length > 1 && <> Votre foyer vit aussi bien qu'une personne seule qui aurait {euros(res.niveau_de_vie)} par mois (c'est votre <Terme id="niveau_vie">niveau de vie</Terme> : à plusieurs, on partage le logement et les dépenses).</>}</div>
+                    <div className="small" style={{ marginTop: 6 }}>Calcul pour : {resumeSituation(s)} · <button className="lien" onClick={() => setStep(0)}>modifier</button></div>
                   </div>
                   <ConfidenceBadge c={res.confiance} align="right" />
                 </div>
@@ -130,11 +151,11 @@ export default function MesDroits() {
                           <li key={l.id}>
                             <div className="list-row">
                               <span>{l.libelle}</span>
-                              <strong className={`delta ${(sg as number) > 0 ? (l.nature === 'prestation' ? 'pos' : '') : 'neg'}`}>{(sg as number) > 0 ? '' : '−'}{euros(l.montant)}</strong>
+                              <strong className={`delta ${(sg as number) > 0 ? (l.nature === 'prestation' ? 'pos' : '') : l.montant > 0 ? 'neg' : ''}`}>{(sg as number) > 0 || l.montant === 0 ? '' : '−'}{euros(l.montant)}</strong>
                             </div>
                             {POURQUOI[l.id] && (
                               <details className="explain" style={{ marginTop: 6, paddingTop: 6 }}>
-                                <summary>Pourquoi ce montant ?</summary>
+                                <summary>{l.montant === 0 ? 'Pourquoi 0 € ?' : 'Pourquoi ce montant ?'}</summary>
                                 <p className="small ink2" style={{ marginBottom: 6 }}>{POURQUOI[l.id].texte}</p>
                                 <div className="small">Règles en jeu : {POURQUOI[l.id].regles.map((r, i) => <span key={r}>{i ? ' · ' : ''}<Link to={`/regles/r/${r}`}>{regles?.regles.find((x) => x.id === r)?.titre ?? r}</Link></span>)}</div>
                               </details>
@@ -188,8 +209,15 @@ export default function MesDroits() {
       <Stepper step={step} />
       {step === 0 && (
         <div className="card soft" style={{ marginBottom: 14, padding: 14 }}>
-          <div className="small" style={{ fontWeight: 650, marginBottom: 6 }}>Pressé ? Partez d'un foyer qui vous ressemble :</div>
-          <div className="pill-list">{PROFILS.map((p) => <button key={p.titre} className="badge" style={{ cursor: 'pointer' }} onClick={() => { setS(p.s); calculer(p.s) }}>{p.titre}</button>)}</div>
+          <div style={{ fontWeight: 700, marginBottom: 8 }}>Le plus rapide : choisissez un foyer qui vous ressemble</div>
+          <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 8 }}>
+            {PROFILS.map((p) => (
+              <button key={p.titre} className="preset" onClick={() => { setS(p.s); calculer(p.s) }}>
+                <strong>{p.titre}</strong><span className="small muted">{resumeSituation(p.s)}</span>
+              </button>
+            ))}
+          </div>
+          <div className="small muted" style={{ marginTop: 8 }}>… ou répondez aux 3 questions ci-dessous pour un calcul à votre mesure.</div>
         </div>
       )}
       <div className="card">

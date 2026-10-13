@@ -28,7 +28,7 @@ export default function Connexion() {
   return (
     <div className="container page" style={{ maxWidth: 480 }}>
       <h1>{mode === 'connexion' ? 'Se connecter' : 'Créer un compte'}</h1>
-      <Notice>Un compte sert uniquement à <strong>proposer</strong> : enregistrer et partager vos sociétés, commenter, ouvrir des propositions. Tout le reste est accessible sans compte.</Notice>
+      <Notice>Un compte sert uniquement à <strong>proposer</strong> : enregistrer et partager vos propositions, commenter, faire des suggestions. Tout le reste est accessible sans compte.</Notice>
       <form className="card" style={{ marginTop: 16 }} onSubmit={go}>
         <label className="field"><span>{mode === 'connexion' ? 'Pseudo ou e-mail' : 'Pseudo (public)'}</span><input type="text" value={pseudo} onChange={(e) => setPseudo(e.target.value)} autoComplete="username" required /></label>
         {mode === 'inscription' && <label className="field"><span>E-mail</span><input type="email" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" required /><span className="hint">Jamais affiché publiquement.</span></label>}

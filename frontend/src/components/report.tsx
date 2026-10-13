@@ -6,7 +6,7 @@ import { delta, euros, nombre, valeur } from '../lib/format'
 import { milliards } from '../lib/humain'
 import { ColumnChart, DivergingBars } from './charts'
 import { ConfidenceBadge } from './ui'
-import { EnBref, EquilibresPanel } from './synthese'
+import { EnBref, EquilibresPanel, type Contexte } from './synthese'
 
 const UNITES_DELTA = new Set(['euros_mois', 'euros', 'milliards_euros', 'points', 'points_pib', 'pourcent', 'emplois', 'personnes', 'mt_co2e', 'points_sur_10', 'ecart_type', 'heures'])
 
@@ -61,7 +61,7 @@ function SectionMenage({ s }: { s: Section }) {
             const d = delta(sign * l.delta, 'euros')
             return (
               <tr key={l.id}>
-                <td>{l.libelle}{l.nature === 'prelevement' ? <span className="muted small"> (payé)</span> : null}</td>
+                <td>{l.libelle}{l.nature === 'prelevement' ? <span className="muted small"> · impôt payé</span> : null}</td>
                 <td className="num">{euros(l.avant)}</td>
                 <td className="num">{euros(l.apres)}</td>
                 <td className="num"><span className={`delta ${d.cls}`}>{d.txt}</span></td>
@@ -209,7 +209,7 @@ export function SectionView({ s, ouvert = false }: { s: Section; ouvert?: boolea
   )
 }
 
-export function ReportView({ r, overrides, onAppliquer }: { r: Rapport; overrides?: Record<string, Valeur>; onAppliquer?: (o: Record<string, Valeur>) => void }) {
+export function ReportView({ r, overrides, onAppliquer, contexte = 'reforme' }: { r: Rapport; overrides?: Record<string, Valeur>; onAppliquer?: (o: Record<string, Valeur>) => void; contexte?: Contexte }) {
   const syn = r.synthese
   const budget = r.equilibres?.find((e) => e.id === 'budget')
   if (r.partiel) {
@@ -218,25 +218,29 @@ export function ReportView({ r, overrides, onAppliquer }: { r: Rapport; override
   }
   return (
     <div className="stack">
-      {r.bilan && <EnBref r={r} />}
+      {r.bilan && <EnBref r={r} contexte={contexte} />}
       {r.equilibres && (
         <div>
-          <h2 style={{ margin: '8px 0 4px', fontSize: '1.3rem' }}>Les équilibres à respecter</h2>
+          <h2 id="equilibres" style={{ margin: '8px 0 4px', fontSize: '1.3rem', scrollMarginTop: 80 }}>Les équilibres à respecter</h2>
           <p className="small muted" style={{ marginTop: 0, marginBottom: 10 }}>Deux limites s'imposent à toute réforme : ne pas dépenser sans financer, et ne pas émettre plus de gaz à effet de serre que le plafond fixé pour le climat.</p>
-          <EquilibresPanel r={r} overrides={overrides} onAppliquer={onAppliquer} />
+          <EquilibresPanel r={r} overrides={overrides} onAppliquer={onAppliquer} contexte={contexte} />
           {syn.solde_public_annuel_md !== null && budget && Math.abs(syn.solde_public_annuel_md - budget.effet) > 0.05 && (
-            <p className="small muted" style={{ marginTop: 8 }}>En comptant aussi les réactions des ménages et des entreprises et l'effet sur l'activité (estimations moins certaines),
-              la réforme {syn.solde_public_annuel_md >= 0 ? 'rapporterait' : 'coûterait'} plutôt <strong>{milliards(Math.abs(syn.solde_public_annuel_md))}</strong> par an.</p>
+            <details className="explain" style={{ marginTop: 8 }}>
+              <summary>Pourquoi un autre chiffre plus loin ?</summary>
+              <p className="small" style={{ marginBottom: 0 }}>Le montant à financer ({milliards(Math.abs(budget.effet))}) est le coût sûr, calculé règle par règle. Si l'on ajoute les réactions
+                des ménages et des entreprises et l'effet sur l'activité, le coût {syn.solde_public_annuel_md >= 0 ? 'deviendrait un gain' : 'serait plutôt'} d'environ {milliards(Math.abs(syn.solde_public_annuel_md))} par an :
+                c'est une estimation incertaine, donc on ne s'en sert pas pour décider si la réforme est financée.</p>
+            </details>
           )}
         </div>
       )}
       <h2 style={{ margin: '8px 0 0', fontSize: '1.3rem' }}>Pour aller plus loin : le détail</h2>
       <p className="small muted" style={{ margin: 0 }}>Cliquez sur une rubrique pour l'ouvrir. Chaque chiffre indique d'où il vient et à quel point on peut s'y fier.</p>
-      {r.sections.map((s) => <SectionView key={s.id} s={s} ouvert={s.id === 'menage'} />)}
+      {r.sections.map((s) => <SectionView key={s.id} s={s} ouvert={s.id === 'menage' && Math.abs(r.pour_vous?.delta_mois ?? 0) >= 0.5} />)}
       {r.erreurs.length > 0 && (
         <div className="notice warn small">Certains modules n'ont pas pu être calculés : {r.erreurs.map((e) => e.module).join(', ')}.</div>
       )}
-      <div className="small muted">Calcul réalisé en {nombre(r.duree_secondes, 1)} s par le moteur de Société 2.0.</div>
+      {r.duree_secondes >= 0.5 && <div className="small muted">Calcul réalisé en {nombre(r.duree_secondes, 0)} secondes.</div>}
     </div>
   )
 }

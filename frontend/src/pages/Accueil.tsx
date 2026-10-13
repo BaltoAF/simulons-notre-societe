@@ -25,7 +25,7 @@ export default function Accueil() {
       <section className="hero">
         <div className="container">
           <span className="badge primary" style={{ marginBottom: 14 }}><GitFork size={14} /> Les règles de la France, ouvertes à tous</span>
-          <h1>Et si on changeait les règles ? <em>Mesurons d'abord.</em></h1>
+          <h1>Comprenez les règles de la France. <em>Imaginez les vôtres.</em></h1>
           <p className="lead">Impôts, aides, retraites, travail, climat… Société 2.0 rassemble les règles de la France, chacune prouvée par un texte officiel.
             Vous pouvez voir ce qu'elles vous donnent, puis imaginer les vôtres et découvrir ce que ça changerait, pour vous et pour le pays.
             Chaque chiffre dit d'où il vient et à quel point on peut s'y fier.</p>
@@ -50,40 +50,7 @@ export default function Accueil() {
       </section>
 
       <section className="container">
-        <div className="grid cols-3">
-          <div className="card">
-            <div className="row"><span className="step-num">1</span><h3 style={{ margin: 0 }}>La France d'aujourd'hui</h3></div>
-            <p className="ink2" style={{ marginTop: 10 }}>Toutes les règles en vigueur : c'est la « Société 1.0 ». Chaque valeur est <strong>prouvée</strong> par un texte officiel, et tenue à jour automatiquement quand la loi change.</p>
-            <Link to="/regles">Explorer les règles <ArrowRight size={14} /></Link>
-          </div>
-          <div className="card">
-            <div className="row"><span className="step-num">2</span><h3 style={{ margin: 0 }}>Votre version</h3></div>
-            <p className="ink2" style={{ marginTop: 10 }}>Changez une ou plusieurs règles et enregistrez votre « société ». Les autres peuvent s'en inspirer, créer leur version et vous suggérer des améliorations. Chaque changement est <strong>signé et daté</strong>.</p>
-            <Link to="/societes">Voir les sociétés proposées <ArrowRight size={14} /></Link>
-          </div>
-          <div className="card">
-            <div className="row"><span className="step-num">3</span><h3 style={{ margin: 0 }}>Les effets, sans tricher</h3></div>
-            <p className="ink2" style={{ marginTop: 10 }}>Pour votre foyer et pour le pays : argent, inégalités, climat, bien-être. Toute dépense en plus doit être <strong>financée ailleurs</strong>, et toute hausse des émissions compensée. Quand les études se contredisent, le Système tranche et dit avec quelle confiance.</p>
-            <Link to="/preuves">Voir les études <ArrowRight size={14} /></Link>
-          </div>
-        </div>
-      </section>
-
-      {s && (
-        <section className="container" style={{ marginTop: 28 }}>
-          <div className="card soft">
-            <div className="grid cols-4">
-              <div><div className="kpi">{nombre(s.regles, 0)}</div><div className="kpi-label">règles numérisées</div></div>
-              <div><div className="kpi">{nombre(s.sources, 0)}</div><div className="kpi-label">sources référencées</div></div>
-              <div><div className="kpi">{s.regles ? nombre(s.regles_texte_officiel / s.regles * 100, 0) : 0} %</div><div className="kpi-label">des règles prouvées par un texte officiel</div></div>
-              <div><div className="kpi">{nombre(s.estimations, 0)}</div><div className="kpi-label">résultats d'études, sur {nombre(s.preuves, 0)} grandes questions</div></div>
-            </div>
-          </div>
-        </section>
-      )}
-
-      <section className="container">
-        <div className="section-title"><h2>Des idées à tester en un clic</h2><Link to="/atelier">Composer la vôtre <ArrowRight size={14} /></Link></div>
+        <div className="section-title"><h2>Des idées à tester en un clic</h2><Link to="/atelier">Imaginer la vôtre <ArrowRight size={14} /></Link></div>
         <div className="grid cols-3">
           {PRESETS.slice(0, 6).map((p) => (
             <button key={p.id} className="preset" onClick={() => lancerPreset(p.id)}>
@@ -96,7 +63,31 @@ export default function Accueil() {
       </section>
 
       <section className="container">
-        <div className="section-title"><h2>Toutes les règles de la société</h2><Link to="/regles"><Search size={14} /> Rechercher une règle</Link></div>
+        <div className="section-title"><h2>Comment ça marche</h2><Link to="/methode">En savoir plus <ArrowRight size={14} /></Link></div>
+      </section>
+      <section className="container">
+        <div className="grid cols-3">
+          <div className="card">
+            <div className="row"><span className="step-num">1</span><h3 style={{ margin: 0 }}>La France d'aujourd'hui</h3></div>
+            <p className="ink2" style={{ marginTop: 10 }}>Toutes les règles en vigueur : c'est la « Société 1.0 ». Chaque valeur est <strong>prouvée</strong> par un texte officiel, et tenue à jour automatiquement quand la loi change.</p>
+            <Link to="/regles">Explorer les règles <ArrowRight size={14} /></Link>
+          </div>
+          <div className="card">
+            <div className="row"><span className="step-num">2</span><h3 style={{ margin: 0 }}>Votre version</h3></div>
+            <p className="ink2" style={{ marginTop: 10 }}>Changez une ou plusieurs règles et enregistrez votre proposition. Les autres peuvent s'en inspirer, créer leur version et vous suggérer des améliorations. Chaque changement est <strong>signé et daté</strong>.</p>
+            <Link to="/societes">Voir les propositions <ArrowRight size={14} /></Link>
+          </div>
+          <div className="card">
+            <div className="row"><span className="step-num">3</span><h3 style={{ margin: 0 }}>Les effets, sans tricher</h3></div>
+            <p className="ink2" style={{ marginTop: 10 }}>Pour votre foyer et pour le pays : argent, inégalités, climat, bien-être. Toute dépense en plus doit être <strong>financée ailleurs</strong>, et toute hausse des émissions compensée. Quand les études se contredisent, le site tranche et dit avec quelle confiance.</p>
+            <Link to="/preuves">Voir les études <ArrowRight size={14} /></Link>
+          </div>
+        </div>
+      </section>
+
+
+      <section className="container">
+        <div className="section-title"><h2>Toutes les règles, par thème</h2><Link to="/regles"><Search size={14} /> Rechercher une règle</Link></div>
         <div className="grid auto">
           {(meta?.domaines ?? []).map((d) => (
             <Link key={d.id} to={`/regles/d/${d.id}`} className="card link">
@@ -124,20 +115,33 @@ export default function Accueil() {
             </ul>
           </div>
           <div className="card">
-            <h3><GitFork size={18} /> Sociétés populaires</h3>
+            <h3><GitFork size={18} /> Exemples de propositions</h3>
             <ul className="list">
               {(soc?.societes ?? []).slice(0, 5).map((x) => (
                 <li key={x.id} className="list-row">
                   <div><Link to={`/societes/${x.id}`}><strong>{x.nom}</strong></Link>
                     <div className="small muted">{x.reference ? 'La loi actuelle, tenue à jour par le Système' : `par ${x.owner_pseudo} · ${x.nb_differences ?? 0} règle${(x.nb_differences ?? 0) > 1 ? 's' : ''} changée${(x.nb_differences ?? 0) > 1 ? 's' : ''}`} · {relatif(x.updated_at)}</div></div>
-                  <span className="badge">★ {x.etoiles}</span>
+                  {x.etoiles > 0 && <span className="badge">★ {x.etoiles}</span>}
                 </li>
               ))}
             </ul>
-            <Link to="/societes" className="small">Toutes les sociétés <ArrowRight size={13} /></Link>
+            <Link to="/societes" className="small">Toutes les propositions <ArrowRight size={13} /></Link>
           </div>
         </div>
       </section>
+
+      {s && (
+        <section className="container" style={{ marginTop: 28 }}>
+          <div className="card soft">
+            <div className="grid cols-4">
+              <div><div className="kpi">{nombre(s.regles, 0)}</div><div className="kpi-label">règles numérisées</div></div>
+              <div><div className="kpi">{nombre(s.sources, 0)}</div><div className="kpi-label">sources référencées</div></div>
+              <div><div className="kpi">{s.regles ? nombre(s.regles_texte_officiel / s.regles * 100, 0) : 0} %</div><div className="kpi-label">des règles prouvées par un texte officiel</div></div>
+              <div><div className="kpi">{nombre(s.estimations, 0)}</div><div className="kpi-label">résultats d'études, sur {nombre(s.preuves, 0)} grandes questions</div></div>
+            </div>
+          </div>
+        </section>
+      )}
     </div>
   )
 }

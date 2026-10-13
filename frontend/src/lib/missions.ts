@@ -4,10 +4,10 @@
 export type InfoMission = { nom: string; description: string; mots?: string; verrou?: string }
 
 export const MISSIONS: Record<string, InfoMission> = {
-  remboursements_degrevements: { nom: 'Remboursements d\'impôts', description: 'Impôts trop perçus rendus aux contribuables, crédits d\'impôt…',
+  remboursements_degrevements: { nom: 'Impôts rendus aux contribuables', description: 'Trop-perçus remboursés, crédits d\'impôt (emploi à domicile, garde d\'enfants…)', mots: 'remboursements crédit impôt',
     verrou: 'Ce montant découle des règles fiscales (taux, crédits d\'impôt) : il ne se décide pas comme une dépense. Pour le changer, modifiez les règles d\'impôt elles-mêmes.' },
   engagements_financiers_etat: { nom: 'Intérêts de la dette', description: 'Intérêts versés aux prêteurs de l\'État', mots: 'dette emprunt intérêts',
-    verrou: 'Ce sont les intérêts de l\'argent déjà emprunté : l\'État doit les payer, sinon il ferait défaut. Pour les réduire, il faut emprunter moins, donc réduire le déficit.' },
+    verrou: 'Ce sont les intérêts de l\'argent déjà emprunté : l\'État doit les payer, sinon plus personne ne lui prêterait. Pour les réduire, il faut emprunter moins, donc réduire le déficit.' },
   enseignement_scolaire: { nom: 'École, collège, lycée', description: 'Enseignants, écoles, collèges et lycées publics et privés sous contrat', mots: 'éducation école professeurs élèves' },
   defense: { nom: 'Défense', description: 'Armées, équipements militaires, opérations extérieures', mots: 'armée militaire' },
   recherche_enseignement_superieur: { nom: 'Universités et recherche', description: 'Universités, grandes écoles, CNRS, bourses étudiantes', mots: 'université étudiants recherche science' },
