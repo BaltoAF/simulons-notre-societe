@@ -1,0 +1,79 @@
+question:
+  id: chomage_satisfaction_vie
+  titre: "Effet du chômage sur la satisfaction dans la vie"
+  definition: "Écart de satisfaction dans la vie (en points sur une échelle de 0 à 10) entre une personne au chômage et une personne comparable en emploi, ou variation de satisfaction lors du passage au chômage. Lorsque l'étude le permet, la valeur retenue est l'effet au-delà de la perte de revenu (revenu contrôlé) ; l'effet total est indiqué dans la note."
+  unite: points_sur_10
+  regles_liees: []
+  sens_attendu: negatif
+  estimations:
+    - source: pbe-insee-ia71-2022
+      valeur: -0.62
+      intervalle_95: null
+      methode: "Analyse de variance-covariance sur données répétées « toutes choses égales par ailleurs » (âge, santé, composition familiale, niveau de vie du ménage, nationalité, lieu de résidence…)"
+      champ: "France métropolitaine, personnes de 16 ans ou plus en logement ordinaire, enquêtes SRCV 2010-2019 (environ 162 000 réponses)"
+      pays: FR
+      annee_donnees: 2019
+      type_etude: descriptif
+      revue_par_les_pairs: false
+      note: "« Se trouver au chômage diminue en moyenne la satisfaction générale dans la vie de 0,62 point, toutes choses égales par ailleurs. » Le niveau de vie du ménage étant contrôlé, il s'agit d'un effet au-delà de la perte de revenu. L'effet est plus fort à Paris et dans la couronne parisienne (un chômeur de province déclare 0,3 à 0,5 point de plus qu'un chômeur parisien) et lorsque le chômage local est élevé. Corrélation en coupe : la causalité n'est pas établie."
+    - source: pbe-delassus-perona-2025-cepremap-chomage
+      valeur: -0.5
+      intervalle_95: null
+      methode: "Régression « toutes choses égales par ailleurs » de la satisfaction dans la vie (0-10) sur le statut de demandeur d'emploi, avec et sans contrôle de la situation financière"
+      champ: "France, 6e volet du Baromètre Unédic de la perception du chômage et de l'emploi (demandeurs d'emploi et actifs en emploi), 2024-2025"
+      pays: FR
+      annee_donnees: 2025
+      type_etude: descriptif
+      revue_par_les_pairs: false
+      note: "Écart brut d'environ 1,5 point entre demandeurs d'emploi et actifs occupés ; -1,4 point toutes choses égales par ailleurs ; environ -0,5 point une fois la situation financière prise en compte (valeur retenue). La baisse des revenus expliquerait environ 1 point. Résultat retrouvé dans toutes les catégories (genre, âge, zone, diplôme, situation familiale, logement)."
+    - source: pbe-clark-fleche-layard-powdthavee-ward-2018
+      valeur: -0.466
+      intervalle_95: [-0.53, -0.38]
+      methode: "Régression de la satisfaction dans la vie (0-10) incluant le revenu, la santé et les facteurs habituels"
+      champ: "Royaume-Uni (données de panel britanniques, ouvrage « The Origins of Happiness »)"
+      pays: GB
+      annee_donnees: null
+      type_etude: descriptif
+      revue_par_les_pairs: true
+      note: "Valeur lue dans le guide d'évaluation de HM Treasury (2021), qui retient « UK : -0,46 (IC 95 % : -0,38 à -0,53) » et utilise 0,4660 dans ses calculs ; le revenu étant inclus dans la régression, l'effet s'ajoute à la perte de salaire. Le guide note l'absence d'adaptation : la satisfaction reste basse tant que dure le chômage. Ouvrage non consulté directement."
+    - source: pbe-lucas-clark-georgellis-diener-2004
+      valeur: -0.54
+      intervalle_95: null
+      methode: "Modèle multiniveau sur données de panel : évolution intra-individuelle de la satisfaction avant, pendant et après un épisode de chômage, en contrôlant les variations de revenu"
+      champ: "Allemagne, panel SOEP sur 15 ans, 1 119 personnes ayant connu un seul épisode de chômage puis retrouvé un emploi"
+      pays: DE
+      annee_donnees: null
+      type_etude: descriptif
+      revue_par_les_pairs: true
+      note: "Version de travail (2002) : « même après avoir contrôlé cet effet [du revenu], les personnes deviennent plus d'un demi-point moins satisfaites » pendant la phase de chômage (coefficient du tableau 1 lu comme -0,537, mise en page dégradée). Après le retour à l'emploi, la satisfaction ne revient pas complètement à son niveau antérieur. Forte variabilité individuelle."
+    - source: pbe-www-2017-chomage
+      valeur: -0.5
+      intervalle_95: null
+      methode: "Revue systématique de la littérature (4 028 études examinées, 99 retenues)"
+      champ: "Études internationales longitudinales, transversales, liées aux récessions et aux fermetures d'usines"
+      pays: INT
+      annee_donnees: null
+      type_etude: meta_analyse
+      revue_par_les_pairs: false
+      note: "Les chômeurs déclarent une satisfaction dans la vie « environ 0,5 point plus basse » que les personnes en emploi (échelle 0-10), avec des différences selon les groupes et les contextes. Pas d'adaptation : le bien-être reste durablement réduit ; il remonte au retour à l'emploi selon la qualité de l'emploi retrouvé. La synthèse ne précise pas si le revenu est contrôlé ; elle recoupe en partie les études listées ici."
+    - source: pbe-winkelmann-2014-izawol
+      valeur: -1.3
+      intervalle_95: null
+      methode: "Comparaison descriptive des moyennes de satisfaction entre chômeurs et actifs occupés"
+      champ: "Allemagne de l'Ouest, panel SOEP 1984-2011, personnes de 20 à 60 ans"
+      pays: DE
+      annee_donnees: 2011
+      type_etude: descriptif
+      revue_par_les_pairs: true
+      note: "Écart brut de 1,3 point (les chômeurs se situent entre 5,5 et 6,2 et toujours au moins 1 point sous les actifs occupés). Écart total, incluant la perte de revenu et les différences de composition : non comparable aux valeurs « revenu contrôlé ». L'article précise que l'effet reste « très important » après contrôle du revenu (Winkelmann et Winkelmann 1998), que le coût non monétaire dépasse le coût monétaire, et que l'écart varie d'environ 0,5 à 2,5 points selon les 21 pays de l'European Social Survey (Wulfgramm 2014)."
+    - source: pbe-kassenboehmer-haisken-denew-2009
+      valeur: null
+      intervalle_95: null
+      methode: "Entrée au chômage due à la fermeture de l'entreprise (choc exogène), comparée aux autres entrées au chômage"
+      champ: "Allemagne, panel SOEP 1991-2006, hommes et femmes, Est et Ouest"
+      pays: DE
+      annee_donnees: 2006
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Résumé : pour les femmes, à l'Est comme à l'Ouest, perdre son emploi à cause d'une fermeture d'entreprise a des effets fortement négatifs sur la satisfaction, au-delà de l'effet du chômage en général, avec une « variation compensatoire » en revenu importante (coûts non monétaires élevés). Aucun coefficient lisible sur l'échelle 0-10 : valeur laissée vide."
+  note_synthese: "Le chômage est l'un des événements de la vie qui pèse le plus sur la satisfaction : en France comme à l'étranger, les chômeurs se déclarent 1,3 à 1,5 point moins satisfaits (sur 10) que les personnes en emploi. Une partie de cet écart vient de la perte de revenu, mais à revenu égal il reste une perte d'environ 0,5 à 0,6 point (Insee : -0,62 ; Cepremap : -0,5 ; Royaume-Uni : -0,47 ; Allemagne : -0,54), liée à la perte de statut, de lien social et de sens. Les études qui suivent les mêmes personnes dans le temps montrent qu'on ne s'habitue pas au chômage et que la satisfaction ne revient pas toujours à son niveau antérieur après la reprise d'un emploi. Les estimations convergent sur l'ampleur, mais la plupart sont des corrélations : seules quelques études (fermetures d'usines, suivi individuel) approchent un effet causal, et elles confirment un effet nettement négatif."

@@ -1,0 +1,59 @@
+question:
+  id: temps_travail_bien_etre
+  titre: "Effet d'une réduction de la durée du travail sur le bien-être des salariés"
+  definition: "Variation de la satisfaction dans la vie (en points sur une échelle de 0 à 10) des salariés concernés par une réduction de leur durée de travail (réforme légale ou expérimentation de la semaine de 4 jours), par rapport à des salariés non concernés ou à la situation antérieure. Quand l'étude ne mesure que la satisfaction au travail ou ne publie que des écarts-types, l'unité utilisée est précisée dans le champ."
+  unite: points_sur_10
+  regles_liees: []
+  sens_attendu: ambigu
+  estimations:
+    - source: pbe-lewis-et-al-2023-uk-semaine-4-jours
+      valeur: 0.87
+      intervalle_95: null
+      methode: "Expérimentation volontaire de 6 mois de la semaine de 4 jours sans baisse de salaire ; comparaison avant/après des réponses des mêmes salariés, sans groupe témoin"
+      champ: "Mesure : satisfaction dans la vie (0-10). Royaume-Uni, 2022, 61 entreprises volontaires, environ 2 900 salariés (1 967 répondants au départ, taux de réponse en baisse ensuite) ; durée hebdomadaire passée de 38 à 34 heures en moyenne"
+      pays: GB
+      annee_donnees: 2022
+      type_etude: descriptif
+      revue_par_les_pairs: false
+      note: "Satisfaction dans la vie passée de 6,69 à 7,56 sur 10 (+0,87) ; satisfaction quant au temps disponible de 5,28 à 7,51 ; satisfaction au travail de 7,12 à 7,69 ; épuisement professionnel de 2,80 à 2,34 (échelle 1-5). Entreprises volontaires et absence de groupe témoin : l'effet est probablement surestimé. Échantillon inclus dans l'étude de Fan et al. (2025), qui n'est donc pas indépendante."
+    - source: pbe-fan-schor-kelly-gu-2025
+      valeur: null
+      intervalle_95: null
+      methode: "Comparaison avant/après de salariés d'entreprises passées à la semaine de 4 jours (6 mois d'essai sans baisse de salaire, après réorganisation) et de 12 entreprises témoins"
+      champ: "Mesure : épuisement professionnel, satisfaction au travail, santé mentale et physique. Australie, Canada, Irlande, Nouvelle-Zélande, Royaume-Uni et États-Unis, 2 896 salariés de 141 organisations"
+      pays: INT
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Résumé : amélioration de l'épuisement professionnel, de la satisfaction au travail, de la santé mentale et physique, non observée dans les entreprises témoins ; gains plus importants quand la baisse d'heures individuelle est plus forte ; médiateurs : capacité de travail, sommeil, fatigue. Effets chiffrés et satisfaction dans la vie non lus (texte intégral inaccessible) : valeur laissée vide. Entreprises volontaires."
+    - source: pbe-hamermesh-kawaguchi-lee-2017
+      valeur: 0.19
+      intervalle_95: null
+      methode: "Données de panel : satisfaction dans la vie en 2009 (loi pleinement en vigueur) des salariés qui faisaient des heures supplémentaires en 1999, comparée à celle des autres, à satisfaction initiale donnée"
+      champ: "Mesure : satisfaction dans la vie (échelle 1-5 convertie en points sur 10). Corée du Sud, passage de la durée légale de 44 à 40 heures appliqué de mi-2004 à mi-2008, panel KLIPS, salariés de 32 à 59 ans en 2009 (1 023 personnes)"
+      pays: KR
+      annee_donnees: 2009
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Version NBER : les salariés qui faisaient des heures supplémentaires en 1999 sont 0,13 écart-type plus satisfaits une fois la loi pleinement appliquée (0,20 écart-type pour ceux qui travaillaient 41 à 44 heures). Conversion : écart-type de la satisfaction 2009 = 0,59 sur l'échelle 1-5, soit 0,13 × 0,59 = 0,077 point sur 1-5, × 10/4 = 0,19 point sur 10 (0,26 avec l'écart-type de 1999, 0,80). Effet non significatif avec la satisfaction mesurée en 2007 ou 2010. Des résultats de même sens sont obtenus au Japon (réforme des années 1990) en coupe répétée, avec des problèmes d'identification reconnus par les auteurs."
+    - source: pbe-rudolf-2014
+      valeur: null
+      intervalle_95: null
+      methode: "Panel 1998-2008 : la réforme coréenne de la semaine de cinq jours traitée comme une baisse exogène des heures de travail"
+      champ: "Mesure : satisfaction dans la vie, satisfaction au travail et satisfaction quant aux horaires. Corée du Sud, panel KLIPS"
+      pays: KR
+      annee_donnees: 2008
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Résumé : la baisse des heures a augmenté la satisfaction quant aux horaires mais n'a eu « aucun impact » sur la satisfaction au travail ni sur la satisfaction dans la vie ; l'auteur suggère qu'une intensification du travail a pu compenser les gains. Même réforme et mêmes données que Hamermesh et al., avec une conclusion opposée. Valeur ponctuelle non lue : laissée vide (lecture : effet nul)."
+    - source: pbe-lepinteur-2019
+      valeur: 0.11
+      intervalle_95: null
+      methode: "Doubles différences : salariés dont la durée hebdomadaire a été réduite par la loi comparés aux salariés non concernés"
+      champ: "Mesure : satisfaction au travail et satisfaction quant aux loisirs, valeur en écart-type (et non en points sur 10). France (lois Aubry, 35 heures) et Portugal (réforme de 1996), panel européen des ménages (ECHP)"
+      pays: FR
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Hausses significatives et robustes de la satisfaction au travail et quant aux loisirs, de 0,07 à 0,15 écart-type selon le pays et le domaine (valeur retenue : milieu de la fourchette, calcul). La hausse de la satisfaction au travail vient surtout de la satisfaction quant aux horaires et aux conditions de travail ; les instances représentatives du personnel semblent importantes pour transformer la baisse d'heures en gain de bien-être. La satisfaction dans la vie n'est pas mesurée : non convertible en points sur 10."
+  note_synthese: "Travailler moins semble améliorer le bien-être, mais l'ampleur dépend beaucoup de la façon dont la réduction est mise en œuvre. Les expérimentations de la semaine de 4 jours sans baisse de salaire montrent des gains nets (au Royaume-Uni, satisfaction dans la vie passée de 6,7 à 7,6 sur 10, avec moins d'épuisement professionnel), mais elles portent sur des entreprises volontaires et le plus souvent sans groupe témoin, ce qui gonfle probablement les résultats. Les réformes légales donnent des effets plus modestes : en France et au Portugal, les 35 heures et la réforme de 1996 ont augmenté la satisfaction au travail et quant aux loisirs d'environ 0,1 écart-type ; en Corée, la réforme de la semaine de 40 heures aurait apporté environ 0,2 point sur 10 aux salariés concernés selon une étude, mais aucun effet sur la satisfaction dans la vie selon une autre, peut-être parce que le travail s'est intensifié. Une réduction du temps de travail imposée à tous peut donc améliorer un peu le bien-être, à condition qu'elle ne s'accompagne ni d'une baisse de salaire ni d'une intensification du travail."

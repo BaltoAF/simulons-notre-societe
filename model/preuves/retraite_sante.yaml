@@ -1,0 +1,99 @@
+question:
+  id: retraite_sante
+  titre: "Effet du départ à la retraite sur la santé"
+  definition: "Effet causal du passage à la retraite (ou, symétriquement, d'un report de l'âge de départ) sur la santé, estimé par des méthodes quasi expérimentales (âges légaux, réformes). Valeur positive = meilleure santé à la retraite. Pour les indicateurs de santé (indice de santé, santé perçue), la valeur est exprimée en écart-type ; pour la mortalité, elle est exprimée en points de pourcentage de probabilité de décès évitée (positif = moins de décès), comme indiqué dans le champ de chaque estimation."
+  unite: ecart_type
+  regles_liees: []
+  sens_attendu: ambigu
+  estimations:
+    - source: pbe-coe-zamarro-2011
+      valeur: 0.97
+      intervalle_95: [0.30, 1.64]
+      methode: "Variables instrumentales : âges de retraite anticipée et à taux plein propres à chaque pays comme instruments du fait d'être retraité"
+      champ: "Mesure : indice de santé synthétique (santé perçue prédite par des indicateurs objectifs), en écart-type. Europe (11 pays dont la France), enquête SHARE vague 1 (2004), hommes de 50 ans et plus (5 282 observations)"
+      pays: INT
+      annee_donnees: 2004
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Tableau 5 : coefficient IV de -0,968 (e.t. 0,343) sur l'indice (où une valeur élevée signifie une moins bonne santé), interprété par les auteurs comme une amélioration de « presque un écart-type ». Signe inversé pour la convention de la fiche ; intervalle = 0,968 ± 1,96 × 0,343. La retraite réduit aussi de 35 points la probabilité de se déclarer en santé moyenne ou mauvaise (effet qui semble temporaire, alors que l'écart sur l'indice persiste). Pas d'effet significatif sur la dépression. Estimation très imprécise et d'ampleur inhabituelle."
+    - source: pbe-insler-2014
+      valeur: 0.14
+      intervalle_95: null
+      methode: "Variables instrumentales à effets fixes individuels : probabilités subjectives de travailler après 62 et 65 ans déclarées au début du suivi comme instruments de la retraite"
+      champ: "Mesure : variation sur deux ans d'un indice de santé (pondération d'indicateurs objectifs et subjectifs), en écart-type de cette variation. États-Unis, Health and Retirement Study"
+      pays: US
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Version de travail : coefficient de la retraite de longue durée de 0,0194 sur la variation de l'indice, dont l'écart-type est de 0,143, soit 0,0194 / 0,143 = 0,14 écart-type. L'auteur l'interprète comme l'équivalent de la prévention d'« un quart » d'affection. Les modèles naïfs (MCO) trouvent au contraire un effet négatif, dû à la sélection : on part souvent à la retraite parce qu'on est malade. Mécanismes : moins de tabac, plus d'exercice."
+    - source: pbe-kuhn-staubli-wuellrich-zweimuller-2020
+      valeur: -1.85
+      intervalle_95: null
+      methode: "Variables instrumentales : réforme autrichienne de l'assurance chômage (REBP) permettant, dans certaines régions, de quitter le marché du travail trois ans plus tôt"
+      champ: "Mesure : mortalité, valeur en points de pourcentage (et non en écart-type) — effet d'une année de retraite anticipée sur la probabilité de décéder avant 73 ans. Autriche, hommes, données administratives"
+      pays: AT
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Version NBER : une année de retraite anticipée augmente de 1,85 point le risque de décès avant 73 ans chez les hommes (+6,8 % en relatif) et réduit l'âge au décès de 0,2 an ; pas d'effet significatif pour les femmes. Valeur négative = santé dégradée par la retraite. Équivalent en écart-type : avec une probabilité de base d'environ 27,3 % (écart-type d'une variable binaire = 0,445), -1,85 / 44,5 ≈ -0,04 écart-type. Effet plus fort pour les ouvriers. La perte de revenu n'explique pas l'effet (revenu total entre 50 et 73 ans en baisse de 0,4 % seulement chez les hommes) ; les auteurs privilégient les changements de mode de vie liés à l'arrêt du travail."
+    - source: pbe-bloemen-hochguertel-zweerink-2017
+      valeur: 2.6
+      intervalle_95: null
+      methode: "Variables instrumentales : baisse inattendue et temporaire de l'âge d'éligibilité à la retraite anticipée pour les fonctionnaires"
+      champ: "Mesure : mortalité, valeur en points de pourcentage (et non en écart-type) — probabilité de décéder dans les 5 ans. Pays-Bas, hommes fonctionnaires, données administratives"
+      pays: NL
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Résumé : la retraite anticipée induite a réduit de 2,6 points la probabilité qu'un homme décède dans les 5 ans ; résultat robuste. Valeur positive = santé améliorée par la retraite. Taux de mortalité de base non lu : conversion en écart-type impossible."
+    - source: pbe-bozio-garrouste-perdrix-2021
+      valeur: null
+      intervalle_95: null
+      methode: "Exploitation de la réforme Balladur de 1993 (allongement de la durée d'assurance dans le secteur privé), données administratives de carrière et de décès"
+      champ: "Mesure : mortalité entre 61 et 79 ans. France, salariés du secteur privé, générations concernées par la réforme de 1993"
+      pays: FR
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Résumé : un report exogène d'un an de l'âge de liquidation n'a pas d'effet significatif sur la probabilité de décéder entre 61 et 79 ans, y compris en autorisant des effets non linéaires ; estimations « précises », et les effets minimaux détectables indiquent qu'un éventuel effet serait très faible. Valeur ponctuelle non lue : laissée vide (lecture : effet proche de zéro)."
+    - source: pbe-hernaes-et-al-2013
+      valeur: null
+      intervalle_95: null
+      methode: "Doubles différences sur cohortes mensuelles et variables instrumentales, réformes de la retraite anticipée en Norvège ; modèle de durée"
+      champ: "Mesure : mortalité. Norvège, population complète (données administratives)"
+      pays: "NO"
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Résumé : le programme de retraite anticipée a nettement abaissé l'âge de départ, mais l'âge de la retraite n'a aucun effet sur la mortalité (variables instrumentales et modèle de durée). Valeur ponctuelle non lue : laissée vide (lecture : effet nul)."
+    - source: pbe-blake-garrouste-2019
+      valeur: null
+      intervalle_95: null
+      methode: "Doubles différences (salariés du privé touchés par la réforme de 1993 contre fonctionnaires non concernés), puis réforme utilisée comme instrument de la retraite"
+      champ: "Mesure : santé physique, mentale et sociale déclarée. France, enquêtes santé et emploi de 1999 et 2005"
+      pays: FR
+      annee_donnees: 2005
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Résumé : les personnes les plus incitées par la réforme à travailler plus longtemps sont celles dont la santé s'est le moins améliorée, voire dégradée, entre 1999 et 2005 ; la retraite améliore la santé physique et sociale, surtout pour les moins diplômés. Aucune valeur chiffrée lisible (texte intégral inaccessible) : valeur laissée vide."
+    - source: pbe-fitzpatrick-moore-2018
+      valeur: null
+      intervalle_95: null
+      methode: "Régression sur discontinuité à 62 ans (âge d'éligibilité à la Social Security), données exhaustives de décès"
+      champ: "Mesure : mortalité. États-Unis, cohortes nées de 1921 à 1948"
+      pays: US
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Hausse « robuste » de 2 % (en relatif) de la mortalité masculine juste après 62 ans (1,85 à 2,43 % selon les spécifications), soit environ +20 % pour ceux qui cessent de travailler à cause de l'éligibilité ; pour les femmes, +0,6 à +1,4 %, peu précis. Va dans le sens d'un effet néfaste de la retraite. Taux de mortalité de base non lu : conversion en points ou en écart-type impossible, valeur laissée vide."
+    - source: pbe-filomena-picchio-2023
+      valeur: null
+      intervalle_95: null
+      methode: "Méta-analyse de 308 estimations tirées de 85 articles publiés entre 2000 et 2021"
+      champ: "Mesure : ensemble des indicateurs de santé (physique, mentale, perçue, mortalité). International"
+      pays: INT
+      annee_donnees: null
+      type_etude: meta_analyse
+      revue_par_les_pairs: true
+      note: "Résumé : sous l'hypothèse d'un effet vrai commun, l'effet moyen de la retraite sur la santé est « très faible et à peine significatif » ; la retraite obligatoire ou involontaire est associée à un effet négatif, faible lui aussi. Valeurs détaillées non lues : laissée vide."
+  note_synthese: "Les études ne s'accordent pas sur l'effet de la retraite sur la santé. Plusieurs travaux européens et américains trouvent que partir à la retraite améliore la santé déclarée et l'état général, surtout pour les travailleurs peu diplômés aux métiers pénibles (SHARE : forte amélioration d'un indice de santé ; France : la réforme de 1993, qui a fait travailler plus longtemps, a freiné l'amélioration de la santé des plus touchés ; Pays-Bas : moins de décès après une retraite anticipée). D'autres trouvent l'inverse pour la mortalité des hommes, en Autriche et aux États-Unis, où la sortie précoce du travail s'accompagne de plus de décès prématurés, probablement à cause des changements de mode de vie qui suivent l'arrêt du travail. Pour la France, l'étude la plus directe ne trouve aucun effet du report de l'âge de départ sur la mortalité, comme en Norvège, et une méta-analyse de 85 articles conclut à un effet moyen très faible. En résumé, un report de l'âge de la retraite a probablement un effet limité sur la mortalité, mais peut dégrader la santé perçue des seniors dont le travail est physiquement exigeant ; attention, les chiffres de cette fiche mélangent écarts-types (santé) et points de pourcentage (mortalité)."

@@ -1,0 +1,99 @@
+question:
+  id: elasticite_empreinte_carbone_revenu
+  titre: "Élasticité de l'empreinte carbone des ménages à leur revenu"
+  definition: "Variation en % de l'empreinte carbone (émissions directes et importées liées à la consommation) d'un ménage quand son revenu disponible augmente de 1 %, estimée en comparant des ménages d'un même pays (coupe transversale). L'élasticité à la dépense de consommation, plus élevée car l'épargne augmente avec le revenu, est indiquée dans la note quand elle est disponible."
+  unite: elasticite
+  regles_liees: []
+  sens_attendu: positif
+  estimations:
+    - source: pbe-pottier-2022
+      valeur: 0.62
+      intervalle_95: null
+      methode: "Régression log-log de l'empreinte carbone (CO2, méthode entrées-sorties) sur le revenu, sans contrôle, calculée par l'auteur à partir des données publiées"
+      champ: "France, 2005, données de Lenglart, Lesieur et Pasquier (Insee, « Les émissions de CO2 du circuit économique en France », 2010)"
+      pays: FR
+      annee_donnees: 2005
+      type_etude: descriptif
+      revue_par_les_pairs: true
+      note: "Tableau 2 de la recension : élasticité au revenu 0,62, élasticité à la dépense 0,82 (estimations propres de l'auteur à partir des données Insee). Lu dans la version FAERE WP 2021.01."
+    - source: pbe-malliet-2020
+      valeur: 0.54
+      intervalle_95: null
+      methode: "Rapport entre ratio interdécile (D9/D1) des émissions et ratio interdécile des niveaux de vie ; empreinte calculée à partir de l'enquête Budget de famille et d'intensités carbone multirégionales"
+      champ: "France, ménages, empreinte de gaz à effet de serre (environ 2010)"
+      pays: FR
+      annee_donnees: 2010
+      type_etude: descriptif
+      revue_par_les_pairs: false
+      note: "Ratio D9/D1 des émissions = 2,11 contre 3,88 pour les niveaux de vie, « ce qui se traduit par une élasticité des émissions de GES par rapport au revenu de l'ordre de 0,54 ». L'auteur souligne que ce résultat nuance l'élasticité de 0,9 retenue par Chancel et Piketty (2015) et le facteur 8 entre les 10 % les plus pauvres et les plus riches avancé par Chancel (2017). L'intensité carbone de la consommation baisse avec le revenu (1,68 kgCO2e par euro au 1er décile, 1,14 au dernier). Forte dispersion à revenu donné."
+    - source: pbe-semet-2024
+      valeur: 0.52
+      intervalle_95: null
+      methode: "Empreinte carbone hybride (entrées-sorties Exiobase + quantités d'énergie et de mobilité) par décile de revenu ; élasticité « en arc » entre déciles extrêmes calculée à partir des chiffres publiés"
+      champ: "France métropolitaine, enquête Budget de famille 2017 (12 081 ménages) et enquête Mobilité des personnes 2019"
+      pays: FR
+      annee_donnees: 2017
+      type_etude: descriptif
+      revue_par_les_pairs: true
+      note: "Les ménages du 10e décile émettent 31 tCO2e par an, soit 2,6 fois les 12 tCO2e du 1er décile, pour un rapport de revenus d'environ 6,2 (rapport des dépenses : 3,2). Conversion : ln(2,6) / ln(6,2) = 0,52. Les régressions de l'auteur avec contrôles donnent des élasticités plus faibles (de 0,4 au 1er décile conditionnel à 0,1 au dernier) ; il cite Lenglart et al. (environ 0,6), Malliet (0,5) et Chancel (0,9)."
+    - source: pbe-levay-goedeme-verbist-2023
+      valeur: 0.48
+      intervalle_95: [0.43, 0.52]
+      methode: "Régression log-log de l'empreinte carbone individuelle sur le revenu équivalent, modèle sans contrôle ; 90 variantes méthodologiques testées"
+      champ: "Belgique, enquête Budget des ménages (Statbel) avec module d'émissions entrées-sorties"
+      pays: BE
+      annee_donnees: null
+      type_etude: descriptif
+      revue_par_les_pairs: true
+      note: "Tableau A11 (version de travail) : élasticité au revenu 0,48 (e.t. 0,02), 0,32 avec contrôles ; élasticité à la dépense 0,84 (jusqu'à 0,97 en incluant loyers et remboursements). Sur les 90 variantes, les estimations vont de 0,22 (revenu, modèle linéaire avec contrôles) à 0,99 (dépense, log-log) : le choix entre revenu et dépense est le facteur le plus déterminant. Recension de Pottier : 0,47 pour la Belgique 2014 (Lévay et al. 2020)."
+    - source: pbe-pottier-2022
+      valeur: 0.58
+      intervalle_95: null
+      methode: "Régression log-log de l'empreinte de GES sur le revenu, données corrigées de la sous-déclaration, élasticité au revenu calculée par l'auteur"
+      champ: "Allemagne, 2013, données de Hardadi, Buchholz et Pauliuk (Journal of Industrial Ecology, 2020)"
+      pays: DE
+      annee_donnees: 2013
+      type_etude: descriptif
+      revue_par_les_pairs: true
+      note: "Tableau 2 : élasticité à la dépense 1,04 (Hardadi et al.), élasticité au revenu 0,58 (calcul propre de Pottier). Illustre l'écart entre les deux concepts : les auteurs primaires présentent une élasticité proche de 1 qui porte en réalité sur la dépense."
+    - source: pbe-buchs-schnepf-2013
+      valeur: 0.6
+      intervalle_95: null
+      methode: "Régressions des émissions de CO2 des ménages (énergie domestique, transport, indirectes) sur le revenu et les caractéristiques socio-économiques"
+      champ: "Royaume-Uni, ménages, 2006-2009"
+      pays: GB
+      annee_donnees: 2009
+      type_etude: descriptif
+      revue_par_les_pairs: true
+      note: "Élasticité au revenu de 0,6 lue dans le tableau 2 de Pottier (2021/2022). Autres estimations britanniques de la recension : 0,34 (Gough et al. 2012, et estimation de Pottier à partir de Minx et al. 2009) et 0,7 (Baiocchi et al. 2010, revenus reconstitués)."
+    - source: pbe-pottier-2022
+      valeur: 0.35
+      intervalle_95: null
+      methode: "Régression log-log de l'empreinte de CO2 sur le revenu, calculée par Pottier à partir des données complémentaires de Sager (2019, courbes d'Engel environnementales)"
+      champ: "États-Unis, 2009, enquête Consumer Expenditure Survey"
+      pays: US
+      annee_donnees: 2009
+      type_etude: descriptif
+      revue_par_les_pairs: true
+      note: "Tableau 2 : élasticité au revenu 0,35 (CO2 ; 0,34 pour l'ensemble des GES), élasticité à la dépense 0,83. Les estimations américaines de la recension sont presque toutes entre 0,34 et 0,39 (Weber et Matthews 2008 : 0,36 avec contrôles ; Ummel 2014 : 0,34). Sager (2019) lui-même ne publie pas d'élasticité unique mais une courbe concave (élasticité inférieure à 1)."
+    - source: pbe-chancel-piketty-2015
+      valeur: 0.9
+      intervalle_95: null
+      methode: "Hypothèse de calibrage d'une méthode « descendante » répartissant les émissions nationales selon la distribution des revenus"
+      champ: "Monde, estimation des inégalités mondiales d'émissions 1998-2013"
+      pays: INT
+      annee_donnees: 2013
+      type_etude: simulation_institutionnelle
+      revue_par_les_pairs: false
+      note: "Les résultats centraux reposent sur une élasticité de 0,9, « valeur médiane des estimations existantes », identique pour tous les pays ; des valeurs de 0,6 à 1,5 sont testées. Les auteurs s'appuient sur la compilation de Chakravarty et al. (2009) : 0,6 à 1 pour le CO2, la plupart entre 0,8 et 1. Pottier (2022) montre que ces valeurs sont surtout des élasticités à la dépense, pas au revenu."
+    - source: pbe-kartha-et-al-2020
+      valeur: 1.0
+      intervalle_95: null
+      methode: "Hypothèse d'élasticité unitaire dans une méthode descendante de répartition mondiale des émissions de consommation"
+      champ: "Monde, 1990-2015 (rapport SEI / Oxfam)"
+      pays: INT
+      annee_donnees: 2015
+      type_etude: simulation_institutionnelle
+      revue_par_les_pairs: false
+      note: "D'après Pottier (2022), les auteurs supposent que l'élasticité de l'empreinte au revenu est égale à 1 dans chaque pays, hypothèse présentée comme « fondée sur de nombreuses études ». Pottier conteste cette lecture : les études citées portent sur la dépense, et une estimation à 0,65 tirée d'Ummel (2014) aurait été écartée car « trop basse ». Rapport non consulté directement."
+  note_synthese: "Les ménages plus aisés ont une empreinte carbone plus élevée, mais elle augmente moins vite que leur revenu : quand le revenu augmente de 10 %, l'empreinte augmente d'environ 5 à 6 % en France (élasticité de 0,52 à 0,62 selon les études, avec des données de 2005, 2010 et 2017). Les autres pays européens donnent des valeurs proches (0,48 en Belgique, 0,58 en Allemagne, 0,6 au Royaume-Uni), les États-Unis plus faibles (environ 0,35). En revanche, plusieurs travaux de chiffrage des inégalités mondiales (Chancel et Piketty, Oxfam) supposent une élasticité de 0,9 à 1 : Antonin Pottier montre que ce choix confond l'élasticité au revenu avec l'élasticité à la dépense, plus élevée parce que les riches épargnent davantage, et n'est pas soutenu par les mesures directes. Les estimations restent fragiles : elles supposent qu'un euro dépensé dans une catégorie émet autant quel que soit le prix payé, et à revenu égal les émissions varient beaucoup selon le lieu de vie et le mode de chauffage. Pour une réforme qui modifie les revenus, retenir une élasticité d'environ 0,5 à 0,6 est donc raisonnable pour la France."

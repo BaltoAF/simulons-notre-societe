@@ -75,11 +75,21 @@ def _wquantile(values: list[float], weights: list[float], q: float) -> float:
     return pairs[-1][0]
 
 
+def unite_compatible(e: dict, question: dict) -> bool:
+    """Une estimation exprimée dans une autre unité que la question est affichée mais exclue de la synthèse."""
+    if e.get("unite"):
+        return str(e["unite"]) == str(question.get("unite"))
+    return "et non en" not in (e.get("champ") or "").lower()
+
+
 def synthese(question: dict, store=None) -> dict:
     """Calcule la synthèse d'une fiche de preuves. `store` permet de qualifier les sources citées."""
     lignes = []
     for e in question.get("estimations", []):
         val = e.get("valeur")
+        comparable = unite_compatible(e, question)
+        if not comparable:
+            val = None
         src = (store.sources.get(str(e.get("source"))) if store else None) or {}
         fiab = src.get("fiabilite", 0.6)
         q_type = QUALITE_TYPE.get(e.get("type_etude"), 0.5)
@@ -106,6 +116,8 @@ def synthese(question: dict, store=None) -> dict:
             "type_etude_libelle": LIBELLE_TYPE.get(e.get("type_etude"), e.get("type_etude") or "—"),
             "revue_par_les_pairs": bool(e.get("revue_par_les_pairs")),
             "note": e.get("note"),
+            "valeur_affichee": e.get("valeur"),
+            "comparable": comparable,
             "_qualite": qualite, "_pertinence": pert, "_fraicheur": fraich, "_se": se,
         })
 
@@ -142,7 +154,8 @@ def synthese(question: dict, store=None) -> dict:
 
     vals = [l["valeur"] for l in num]
     ws = [l["poids"] for l in num]
-    med = _wquantile(vals, ws, 0.5)
+    # avec une ou deux études, une médiane n'a pas de sens : on retient la moyenne pondérée
+    med = _wquantile(vals, ws, 0.5) if len(num) >= 3 else sum(v * w for v, w in zip(vals, ws)) / (sum(ws) or 1)
     p10, p25, p75, p90 = (_wquantile(vals, ws, q) for q in (0.1, 0.25, 0.75, 0.9))
     mean_abs = sum(abs(v) * w for v, w in zip(vals, ws))
 
@@ -163,6 +176,8 @@ def synthese(question: dict, store=None) -> dict:
     score = 100 * (max(f_vol, eps) ** 0.25) * (max(f_qual, eps) ** 0.25) * (max(f_acc, eps) ** 0.30) * (max(f_pert, eps) ** 0.20)
     if len(num) == 1:
         score = min(score, 35)
+    elif len(num) == 2:
+        score = min(score, 49)  # deux études ne suffisent pas à atteindre « Élevé »
     sens = question.get("sens_attendu")
     facteurs = [
         Facteur("Volume de preuves", f_vol,

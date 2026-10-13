@@ -1,0 +1,79 @@
+question:
+  id: vitesse_limite_emissions_co2
+  titre: "Effet d'un abaissement de la vitesse maximale autorisée sur la consommation de carburant et les émissions de CO2"
+  definition: "Variation, en %, de la consommation de carburant (ou des émissions de CO2, qui lui sont proportionnelles) des véhicules circulant sur les routes concernées, ramenée à un abaissement de 10 km/h de la vitesse maximale autorisée (règle de proportionnalité : un effet mesuré pour -20 km/h est divisé par deux). Les valeurs « par véhicule respectant la limite » et « à l'échelle du réseau, vitesses réellement pratiquées » sont distinguées dans les notes."
+  unite: pourcent
+  regles_liees: [transports.vitesse_max.autoroute, transports.vitesse_max.route_bidirectionnelle]
+  sens_attendu: negatif
+  estimations:
+    - source: pbe-cgdd-2018-thema-vitesses
+      valeur: -2.6
+      intervalle_95: null
+      methode: "Simulation avec le modèle de trafic national Modev : effet sur les vitesses pratiquées, les reports d'itinéraire et la consommation de carburant (courbes de consommation selon la vitesse)"
+      champ: "France, réseau autoroutier, scénario d'abaissement de 130 à 110 km/h pour les véhicules légers"
+      pays: FR
+      annee_donnees: 2014
+      type_etude: simulation_institutionnelle
+      revue_par_les_pairs: false
+      note: "Consommation de carburant sur les autoroutes : -5,1 % pour -20 km/h, soit -2,6 % pour -10 km/h (conversion proportionnelle). La vitesse moyenne pratiquée ne baisse que de 4,7 km/h (hypothèse : la baisse de la limite se répercute à 50 % sur les vitesses ; le trafic reporté et la congestion réduisent encore l'effet). Gain : 1,45 MtCO2 par an. Pour -10 km/h sur les routes nationales et départementales, le gain de carburant est jugé « négligeable » (0,21 MtCO2 par an) car la consommation y est déjà proche de son minimum."
+    - source: pbe-cerema-2020-evaluation-80kmh
+      valeur: -3.2
+      intervalle_95: null
+      methode: "Évaluation avant/après : vitesses réellement mesurées (données de véhicules traceurs) en 2017 et 2019, appliquées aux courbes de consommation COPERT 4 et au parc roulant 2018"
+      champ: "France métropolitaine, routes bidirectionnelles hors agglomération sans séparateur central, passage de 90 à 80 km/h le 1er juillet 2018"
+      pays: FR
+      annee_donnees: 2019
+      type_etude: simulation_institutionnelle
+      revue_par_les_pairs: false
+      note: "Économie de 458 à 583 millions de litres de carburant par an pour 220 à 280 milliards de véhicules-km, soit environ 0,21 L/100 km dans les deux hypothèses ; émissions de GES -1,03 à -1,31 MtCO2 par an. Conversion en % (approximative, consommation de référence non fournie par le rapport) : 0,21 / 6,5 L/100 km = -3,2 % (-3,0 % à -3,5 % pour 7 à 6 L/100 km). Le rapport cite aussi Atmo Auvergne-Rhône-Alpes (2018) : gains « ne dépassant pas 3 % » sur le CO2 pour le passage à 80 km/h, selon la part de poids lourds."
+    - source: pbe-cerema-2020-evaluation-80kmh
+      valeur: -2.0
+      intervalle_95: null
+      methode: "Synthèse bibliographique de l'ADEME (2014) sur les modèles microscopiques d'émissions, citée dans la revue de littérature du Cerema"
+      champ: "Routes interurbaines, abaissement de 90 à 70 km/h"
+      pays: FR
+      annee_donnees: 2014
+      type_etude: simulation_institutionnelle
+      revue_par_les_pairs: false
+      note: "Les émissions de GES « diminuent de 4 % » pour un passage de 90 à 70 km/h, soit -2 % pour -10 km/h (conversion proportionnelle). Le Cerema souligne que les études sur le CO2 sont peu nombreuses et que les résultats varient selon le type de modèle. Synthèse ADEME 2014 non consultée directement."
+    - source: pbe-asensio-gomez-lobo-matas-2014
+      valeur: -2.5
+      intervalle_95: null
+      methode: "Quasi-expérience : panel de 48 provinces espagnoles sur quatre ans (données mensuelles de consommation), mesures d'économie d'énergie de mars à juin 2011"
+      champ: "Espagne, abaissement temporaire de 120 à 110 km/h sur autoroutes et voies rapides en 2011"
+      pays: ES
+      annee_donnees: 2011
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "La baisse de la limite a réduit la consommation d'essence de 2 à 3 % (milieu de fourchette retenu : -2,5 % pour -10 km/h). Mesuré sur la consommation totale d'essence des provinces (tous réseaux), donc plutôt une borne basse pour les seuls véhicules sur autoroute. Très en deçà des objectifs gouvernementaux (-15 % pour l'essence, -11 % pour le gazole) selon la présentation de l'IEB. Mesure de quelques mois seulement."
+    - source: pbe-castillo-manzano-et-al-2014
+      valeur: null
+      intervalle_95: null
+      methode: "Modèles de séries temporelles à composantes inobservées"
+      champ: "Espagne, abaissement temporaire de la vitesse maximale en 2011 (plan d'efficacité énergétique)"
+      pays: ES
+      annee_donnees: 2011
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Résumé : effet sur la consommation de carburant de « signification statistique limitée » et baisse modérée de la mortalité routière ; les coûts de ce changement temporaire expliqueraient l'écart avec les prévisions du gouvernement. Aucune valeur chiffrée lisible : valeur laissée vide."
+    - source: pbe-an-qe8339-2023
+      valeur: -10
+      intervalle_95: null
+      methode: "Affirmation ministérielle (réponse à une question écrite), sans méthode publiée"
+      champ: "France, véhicule circulant à 110 km/h au lieu de 130 km/h sur autoroute"
+      pays: FR
+      annee_donnees: 2023
+      type_etude: simulation_institutionnelle
+      revue_par_les_pairs: false
+      note: "« Cette mesure permet un gain de 20 % de carburant » pour -20 km/h, soit -10 % pour -10 km/h (conversion proportionnelle). Effet par véhicule qui respecte effectivement la nouvelle vitesse, sans tenir compte du fait que la vitesse moyenne baisse beaucoup moins que la limite. La question écrite évoquait par ailleurs une économie de 4 % des émissions de GES de la France (chiffre non sourcé)."
+    - source: pbe-ademe-2026-cles-carburant
+      valeur: -5.7
+      intervalle_95: null
+      methode: "Conseil d'écoconduite fondé sur des consommations de véhicules (méthode non détaillée)"
+      champ: "France, véhicule particulier réduisant sa vitesse de 10 km/h sur autoroute"
+      pays: FR
+      annee_donnees: 2026
+      type_etude: simulation_institutionnelle
+      revue_par_les_pairs: false
+      note: "« Entre 1 et 3 litres économisés sur un trajet de 500 km. » Conversion approximative (consommation de référence non fournie par l'ADEME) : avec 7 L/100 km, un trajet de 500 km consomme 35 L, d'où -2,9 % à -8,6 %, valeur centrale 2 L / 35 L = -5,7 % (-5 % à -6,7 % pour 8 à 6 L/100 km). Effet par véhicule respectant la vitesse choisie."
+  note_synthese: "Rouler moins vite fait consommer moins : pour une voiture qui respecte la limite, passer de 130 à 120 km/h économise environ 5 à 10 % de carburant et donc de CO2 (ADEME, ministère des Transports). Mais quand on abaisse la limite pour tout le monde, l'effet mesuré est beaucoup plus faible, de l'ordre de 2 à 3 % par tranche de 10 km/h, car la vitesse réellement pratiquée baisse bien moins que la limite (environ 3 à 5 km/h) et une partie du trafic change d'itinéraire : c'est ce que trouvent le CGDD pour un passage des autoroutes à 110 km/h (-5,1 % pour -20 km/h), le Cerema pour le passage à 80 km/h et la principale évaluation causale disponible, en Espagne en 2011 (-2 à -3 %). Sur les routes déjà limitées à 80 ou 90 km/h, le gain est encore plus modeste, car les voitures y consomment déjà près de leur minimum. Les chiffres « de 20 % » souvent cités pour le 110 km/h décrivent donc un conducteur discipliné, pas l'effet moyen d'une réforme, qui réduirait surtout les émissions des trajets autoroutiers et seulement d'environ 1,5 MtCO2 par an selon le CGDD."

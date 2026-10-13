@@ -10,7 +10,7 @@ import { fmtEffet } from './Preuves'
 type Est = {
   source: string; titre_source?: string; auteurs: string[]; url?: string; valeur: number | null; intervalle_95: [number, number] | null
   methode?: string; champ?: string; pays?: string; annee_donnees?: number; type_etude_libelle: string; revue_par_les_pairs: boolean
-  note?: string; poids: number; qualite: number; pertinence: number; fraicheur: number
+  note?: string; poids: number; qualite: number; pertinence: number; fraicheur: number; valeur_affichee?: number | null; comparable?: boolean
 }
 type Detail = {
   id: string; titre: string; definition: string; unite: string; note_synthese?: string; regles_liees: { id: string; titre: string }[]
@@ -61,7 +61,9 @@ export default function PreuveDetail() {
                   <div className="pill-list" style={{ marginTop: 4 }}><span className="badge">{e.type_etude_libelle}</span>{e.revue_par_les_pairs && <span className="badge gain">relue par des pairs</span>}{e.pays && <span className="badge">{e.pays}</span>}</div>
                 </td>
                 <td className="small">{e.methode}<div className="muted">{e.champ}</div>{e.note && <div className="muted" style={{ marginTop: 4 }}>{e.note}</div>}</td>
-                <td className="num"><strong>{fmtEffet(e.valeur, q.unite)}</strong>{e.intervalle_95 && <div className="small muted">[{nombre(e.intervalle_95[0], 2)} ; {nombre(e.intervalle_95[1], 2)}]</div>}</td>
+                <td className="num">{e.comparable === false
+                  ? <><span className="muted">{e.valeur_affichee ?? '—'}</span><div className="small"><span className="badge warn">autre unité, non comptée</span></div></>
+                  : <><strong>{fmtEffet(e.valeur, q.unite)}</strong>{e.intervalle_95 && <div className="small muted">[{nombre(e.intervalle_95[0], 2)} ; {nombre(e.intervalle_95[1], 2)}]</div>}</>}</td>
                 <td className="num">{nombre(e.poids * 100, 1)} %<div className="small muted" title="qualité × pertinence × fraîcheur">Q {nombre(e.qualite, 2)} · P {nombre(e.pertinence, 2)} · F {nombre(e.fraicheur, 2)}</div></td>
               </tr>
             ))}</tbody>
