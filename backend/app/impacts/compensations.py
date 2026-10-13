@@ -116,9 +116,29 @@ def options_carbone(store, overrides: dict, manque: float) -> list[dict]:
         if par_euro_hl <= 0:
             continue
         d = _arrondi(manque / par_euro_hl, 0.5)
-        out.append({"id": f"accise_{lib}", "famille": "recettes", "titre": f"Relever l'accise sur le {lib} de {acc:g} à {float(acc) + d:g} €/hl",
+        art = "l'essence" if lib == "essence" else "le gazole"
+        out.append({"id": f"accise_{lib}", "famille": "prix", "titre": f"Relever l'accise sur {art} de {acc:g} à {float(acc) + d:g} €/hl",
                     "description": f"Environ +{d * 1.2 / 100:.2f} € par litre à la pompe ; réduit la consommation et les émissions du transport routier.",
                     "rendement": round(par_euro_hl * d, 3), "unite": "mt_co2e", "overrides": {rid: round(float(acc) + d, 2)}})
+    # Vitesses : abaisser la limitation sur autoroute ou voie rapide (par paliers de 10 km/h)
+    from .planete_bien_etre import RESEAUX
+    v_em, _, _ = valeur_ou_defaut(store, "vitesse_limite_emissions_co2", -5.0)
+    for rid in ("transports.vitesse_max.autoroute", "transports.vitesse_max.voie_rapide"):
+        lib, _, part_trafic = RESEAUX[rid]
+        vitesse = _valeur(store, overrides, rid)
+        if not (em_route and vitesse):
+            continue
+        par_10 = -em_route * part_trafic * v_em / 100  # baisse d'émissions pour −10 km/h
+        if par_10 <= 0:
+            continue
+        paliers = math.ceil(manque / par_10)
+        nouvelle = float(vitesse) - 10 * paliers
+        if nouvelle < 70:
+            continue
+        out.append({"id": f"vitesse_{rid.rsplit('.', 1)[1]}", "famille": "regles",
+                    "titre": f"Abaisser la vitesse maximale sur les {lib} de {vitesse:g} à {nouvelle:g} km/h",
+                    "description": "Réduit les émissions et le nombre de tués sur la route ; allonge un peu les trajets.",
+                    "rendement": round(par_10 * paliers, 3), "unite": "mt_co2e", "overrides": {rid: nouvelle}})
     return out
 
 

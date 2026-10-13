@@ -61,8 +61,20 @@ export default function Methode() {
         <p>Pour un total qui additionne plusieurs composantes (par exemple l'effet global sur les comptes publics), la confiance est la <strong>moyenne des confiances de chaque composante, pondérée par son ampleur</strong> : une composante peu fiable mais minuscule ne disqualifie pas le total ; une composante peu fiable et massive le fait baisser fortement.</p>
       </div>
 
+      <div className="card stack" id="equilibres" style={{ marginTop: 16 }}>
+        <h2>6. Les équilibres et le bilan en quatre piliers</h2>
+        <p>Chaque réforme est évaluée sur <strong>quatre dimensions</strong> : économie (finances publiques, activité, emploi), social (inégalités, pauvreté), écologie (émissions de gaz à effet de serre) et bien-être (satisfaction dans la vie, santé, sécurité, temps libre). Ces dimensions reposent sur des sources différentes : comptes publics, enquêtes de l'INSEE sur le bien-être, inventaires d'émissions du CITEPA et du SDES, études de santé publique. Aucune note globale n'est calculée : les arbitrages vous appartiennent.</p>
+        <p>Deux <strong>équilibres</strong> doivent être respectés, car ils sont déjà « bloqués » : les <strong>finances publiques</strong> (le déficit dépasse la limite européenne de 3 % du PIB, et l'article 40 de la Constitution interdit de créer une charge publique sans compensation) et le <strong>budget carbone</strong> (les émissions de la France dépassent le budget légal de la stratégie nationale bas-carbone). Une réforme qui dégrade l'un d'eux doit être compensée ailleurs ; le Système propose des compensations chiffrées. Une société peut aussi décider d'assumer un déficit, de façon transparente : ce choix devient une règle de cette société.</p>
+        <p>Un dépassement dont l'estimation est de confiance « Très faible » est signalé « à surveiller », sans bloquer l'enregistrement.</p>
+      </div>
+
+      <div className="card stack" id="mises-a-jour" style={{ marginTop: 16 }}>
+        <h2>7. La mise à jour invisible</h2>
+        <p>Chaque nuit, le Système vérifie le moteur de calcul (nouvelle version d'OpenFisca-France, installée seulement si elle passe les contrôles), les données, la cohérence du modèle et une partie des liens des sources. Si la loi a changé, il publie une nouvelle version de la Société 1.0. À minuit, les règles dont la date d'entrée en vigueur arrive s'appliquent d'elles-mêmes. Les sociétés forkées sont mises à jour automatiquement pour toutes les règles qu'elles n'ont pas modifiées ; en cas de conflit, rien n'est imposé et leur auteur choisit.</p>
+      </div>
+
       <div className="card stack" id="forks" style={{ marginTop: 16 }}>
-        <h2><GitFork size={22} /> 6. Forks, branches et propositions</h2>
+        <h2><GitFork size={22} /> 8. Forks, branches et propositions</h2>
         <p>Comme dans git : une société est un ensemble de valeurs de règles ; chaque modification est un commit signé par son auteur ; une branche permet d'explorer une variante ; une proposition permet d'intégrer les changements d'une société dans une autre, après discussion. Quand la loi change, le propriétaire d'un fork peut intégrer les évolutions de la Société 1.0 et décider, règle par règle, en cas de conflit.</p>
         <p>Tester est libre et anonyme. Proposer (enregistrer, publier, commenter) nécessite d'être identifié.</p>
       </div>

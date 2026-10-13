@@ -6,6 +6,7 @@ import { euros } from '../lib/format'
 import { PRESETS, resoudrePreset } from '../lib/presets'
 import { situationVersMenage, useApp, useFetch, type AdulteSaisie, type SituationSaisie } from '../lib/state'
 import { ConfidenceBadge, ErrorBox, Loading, Notice } from '../components/ui'
+import { DroitsNonMonetaires } from '../components/DroitsNonMonetaires'
 
 type Resultat = {
   revenu_disponible: number
@@ -140,6 +141,7 @@ export default function MesDroits() {
                 ))}
                 <Notice>Ce sont vos <strong>droits théoriques</strong> selon la législation en vigueur, calculés par le moteur public OpenFisca-France. Pour une démarche officielle, utilisez les simulateurs de l'administration (mesdroitssociaux.gouv.fr, impots.gouv.fr).</Notice>
               </div>
+              <DroitsNonMonetaires age={s.adultes[0]?.age ?? 35} />
             </div>
             <div className="stack sticky">
               <div className="card">

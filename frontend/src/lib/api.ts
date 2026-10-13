@@ -141,7 +141,7 @@ export type Pilier = {
 }
 
 export type OptionCompensation = {
-  id: string; famille: 'depenses' | 'recettes' | 'assumer'; titre: string; description: string
+  id: string; famille: 'depenses' | 'recettes' | 'assumer' | 'regles' | 'prix'; titre: string; description: string
   rendement: number; unite: string; overrides: Record<string, Valeur>
 }
 
@@ -185,6 +185,8 @@ export type SocieteDetail = Societe & {
   branche: string; head: Commit; branches: { nom: string; head: string; message: string; commit_date: string }[]
   differences_reference: Changement[]; differences_parent: Changement[] | null; a_jour_reference: boolean
   etoile: boolean; proprietaire: boolean; propositions: PropositionResume[]
+  conflits_loi: { branche: string; ref_commit: string; created_at: string; conflits: { regle: string; titre?: string; base: Valeur; cible: Valeur; source: Valeur }[] }[]
+  mises_a_jour_auto: Commit[]
 }
 
 export type PropositionResume = {

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Bot, Database, GitCommit, ShieldAlert } from 'lucide-react'
+import { Bot, Database, GitCommit, RefreshCw, ShieldAlert } from 'lucide-react'
 import type { Commit } from '../lib/api'
 import { DOMAINE_TITRE, nombre, relatif, valeur } from '../lib/format'
 import { useApp, useFetch } from '../lib/state'
@@ -26,8 +26,11 @@ function MetriqueView({ id }: { id: string }) {
 export default function Systeme() {
   const { meta } = useApp()
   const { data: j, loading } = useFetch<{ commits: Commit[] }>('/api/systeme/journal')
-  const { data: q } = useFetch<{ problemes: { niveau: string; fichier: string; message: string; ref: string | null }[]; controles: { regle: string; titre: string; concordant: boolean; autre_source: string }[] }>('/api/qualite')
+  const { data: q } = useFetch<{ problemes: { niveau: string; fichier: string; message: string; ref: string | null }[]; controles: { regle: string; titre: string; concordant: boolean; autre_source: string }[];
+    liens?: { verifies: number; total: number; bilan: Record<string, number>; introuvables: { id: string; titre: string }[] } }>('/api/qualite')
   const { data: m } = useFetch<{ metriques: Metrique[] }>('/api/metriques')
+  const { data: ex } = useFetch<{ executions: { id: number; debut: string; fin: string | null; statut: string; declencheur: string; resume: any }[];
+    planificateur: { actif: boolean; heure_planifiee: string; prochaine_maj: string | null; dernier_rechargement: string | null; en_cours: boolean } }>('/api/systeme/executions')
   const [mq, setMq] = useState('')
   const [open, setOpen] = useState<string | null>(null)
   const s = meta?.stats
@@ -46,6 +49,30 @@ export default function Systeme() {
           <div className="card"><div className="kpi">{nombre(s.estimations, 0)}</div><div className="kpi-label">estimations d'études</div><div className="small muted">{s.preuves} questions</div></div>
         </div>
       )}
+
+      <div className="card" style={{ marginBottom: 20 }}>
+        <h3><RefreshCw size={18} /> Mise à jour automatique</h3>
+        {ex && (
+          <p className="small ink2">{ex.planificateur.actif
+            ? <>Chaque nuit à {ex.planificateur.heure_planifiee}, le Système vérifie le moteur de calcul, les données et les sources, publie une nouvelle version si la loi a changé et met à jour les sociétés forkées sans conflit. Les règles dont la date d'entrée en vigueur arrive s'appliquent d'elles-mêmes à minuit.
+              {ex.planificateur.prochaine_maj && <> Prochain passage : <strong>{new Date(ex.planificateur.prochaine_maj).toLocaleString('fr-FR')}</strong>.</>}
+              {ex.planificateur.en_cours && <> <span className="badge primary">mise à jour en cours</span></>}</>
+            : 'La mise à jour automatique est désactivée sur ce serveur.'}</p>
+        )}
+        {q?.liens && <p className="small muted">Liens des sources vérifiés : {q.liens.verifies} sur {q.liens.total}
+          {Object.entries(q.liens.bilan).map(([k, v]) => ` · ${v} ${k === 'ok' ? 'accessibles' : k === 'bloque' ? 'protégés contre les robots' : k === 'introuvable' ? 'introuvables' : 'injoignables'}`).join('')}.</p>}
+        {ex && ex.executions.length > 0 ? (
+          <ul className="list small">
+            {ex.executions.slice(0, 8).map((e) => (
+              <li key={e.id} className="list-row" style={{ alignItems: 'flex-start' }}>
+                <span><span className={`badge ${e.statut === 'succes' ? 'gain' : e.statut === 'echec' ? 'loss' : 'primary'}`}>{e.statut === 'succes' ? 'réussie' : e.statut === 'echec' ? 'échec' : 'en cours'}</span>{' '}
+                  {new Date(e.debut).toLocaleString('fr-FR')} <span className="muted">({e.declencheur})</span></span>
+                <span className="muted" style={{ textAlign: 'right' }}>{e.resume?.publication ?? e.resume?.erreur?.slice(0, 80) ?? ''}{e.resume?.forks ? ` · forks mis à jour : ${e.resume.forks.mises_a_jour}` : ''}</span>
+              </li>
+            ))}
+          </ul>
+        ) : <p className="small muted">Aucune exécution enregistrée pour l'instant.</p>}
+      </div>
 
       <div className="grid cols-2" style={{ alignItems: 'start' }}>
         <div className="card">

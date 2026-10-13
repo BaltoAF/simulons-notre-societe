@@ -6,6 +6,7 @@ import { DOMAINE_TITRE, relatif, valeur } from '../lib/format'
 import { useApp, useFetch } from '../lib/state'
 import { ReportView } from '../components/report'
 import { Empty, ErrorBox, Loading, Modal, Notice } from '../components/ui'
+import { DiffSociete, MisesAJourAuto, type Diff } from '../components/DiffSociete'
 
 export function ListeChangements({ items, vide = 'Aucune différence.' }: { items: Changement[]; vide?: string }) {
   if (!items.length) return <div className="small muted">{vide}</div>
@@ -108,7 +109,14 @@ export default function SocieteDetail() {
       </div>
       {s.description && <p className="ink2" style={{ marginTop: 12, maxWidth: 820, whiteSpace: 'pre-wrap' }}>{s.description}</p>}
       {msg && <Notice kind="ok">{msg}</Notice>}
-      {!s.reference && !s.a_jour_reference && (
+      {s.conflits_loi.length > 0 && (
+        <div className="notice warn" style={{ margin: '12px 0' }}>
+          <RefreshCw size={18} /> <div className="grow">La loi a changé sur {s.conflits_loi[0].conflits.length} règle(s) que cette société modifie aussi
+            ({s.conflits_loi[0].conflits.map((c) => c.titre ?? c.regle).slice(0, 3).join(', ')}). Le Système n'impose rien : {s.proprietaire ? 'choisissez pour chacune.' : 'son auteur doit choisir.'}</div>
+          {s.proprietaire && <button className="btn small" onClick={() => setModal('sync')}>Choisir</button>}
+        </div>
+      )}
+      {!s.reference && !s.a_jour_reference && s.conflits_loi.length === 0 && (
         <div className="notice warn" style={{ margin: '12px 0' }}>
           <RefreshCw size={18} /> <div className="grow">La loi a évolué depuis la création de cette société (nouvelle version de la Société 1.0).
             {s.proprietaire ? ' Intégrez ces évolutions pour rester à jour.' : ''}</div>
@@ -135,10 +143,14 @@ export default function SocieteDetail() {
       {tab === 'apercu' && (
         <div className="grid cols-2" style={{ alignItems: 'start' }}>
           <div className="card">
-            <h3>Ce qui change par rapport à la loi actuelle</h3>
-            <ListeChangements items={s.differences_reference} vide={s.reference ? 'C\'est la référence : la loi en vigueur.' : 'Aucune différence avec la Société 1.0 pour l\'instant.'} />
-            {s.differences_reference.length > 0 && <button className="btn primary" style={{ marginTop: 12 }} onClick={calculer}><Calculator size={16} /> Mesurer les impacts</button>}
+            <div className="row between"><h3 style={{ margin: 0 }}>Ce qui change par rapport à la loi actuelle</h3>
+              {!s.reference && <span className="badge primary">{s.differences_reference.length} règle(s)</span>}</div>
+            <p className="small muted">Chaque différence avec la Société 1.0, avec son ampleur, son auteur et sa justification.</p>
+            <DiffSociete items={s.differences_reference as Diff[]} vide={s.reference ? 'C\'est la référence : la loi en vigueur.' : 'Aucune différence avec la Société 1.0 pour l\'instant.'} />
+            {s.differences_reference.length > 0 && <button className="btn primary" style={{ marginTop: 12 }} onClick={calculer}><Calculator size={16} /> Mesurer les impacts de ces changements</button>}
           </div>
+          <div className="stack">
+          <MisesAJourAuto commits={s.mises_a_jour_auto} />
           {s.differences_parent && (
             <div className="card">
               <h3>… et par rapport à {s.parent_nom}</h3>
@@ -146,6 +158,7 @@ export default function SocieteDetail() {
               <Link className="small" to={`/comparer?a=${s.parent_id}&b=${s.id}`}>Comparer en détail</Link>
             </div>
           )}
+          </div>
         </div>
       )}
       {tab === 'impacts' && (calc ? <div className="card"><Loading label="Calcul des impacts…" /></div> : rapport ? <ReportView r={rapport} /> : <Empty>Aucun impact à calculer.</Empty>)}

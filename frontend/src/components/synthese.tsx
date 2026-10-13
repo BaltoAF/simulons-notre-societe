@@ -69,6 +69,7 @@ export function EnBref({ r }: { r: Rapport }) {
 
 const FAMILLES: Record<OptionCompensation['famille'], string> = {
   depenses: 'Réduire d\'autres dépenses', recettes: 'Augmenter des recettes', assumer: 'Assumer',
+  regles: 'Changer d\'autres règles', prix: 'Agir par les prix',
 }
 
 function Compensations({ e, overrides, onAppliquer }: { e: Equilibre; overrides: Record<string, Valeur>; onAppliquer: (o: Record<string, Valeur>) => void }) {

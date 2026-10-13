@@ -60,6 +60,29 @@ ménages, âges, statut d'occupation, emploi, retraités, déciles de niveau de 
 effectifs de bénéficiaires CNAF/DREES corrigés du non-recours ; les montants versés et l'impôt servent
 de contrôles (voir `docs/CALAGE-POPULATION.md`).
 
+## Équilibres et bilan
+
+- `impacts/equilibres.py` : finances publiques (règles `budget.regles.article_40_irrecevabilite_financiere`,
+  `budget.regles.deficit_public_max_pct_pib` ; effet direct hors comportements) et budget carbone (règles
+  `environnement_energie.budget_carbone.periode_*`, émissions observées). Statuts : respecté, à compenser,
+  à surveiller (confiance < 25), assumé (règle désactivée dans le fork), information.
+- `impacts/compensations.py` : rendements marginaux des leviers (missions, TVA, CSG, IR, IS, accises, vitesses),
+  ajustement nécessaire, application en un clic puis vérification par une nouvelle simulation.
+- `impacts/bilan.py` : bilan en quatre piliers (économie, social, écologie, bien-être), sans note agrégée.
+- `impacts/planete_bien_etre.py` : émissions (carburants, vitesses, revenus, activité), satisfaction dans la vie,
+  emploi, temps libre, santé (retraite), sécurité routière, tabac.
+- `budget_vue.py` : du budget national (COFOG, recettes, déficit, dette) au budget d'un ménage.
+- `droits.py` : droits non monétaires personnalisés (retraite, chômage, travail, vote, route, santé), comparables
+  entre deux sociétés.
+
+## Mise à jour invisible
+
+- `system/maj_quotidienne.py` : moteur (avec retour arrière), leviers, population, contrôles, publication,
+  synchronisation des forks, vérification de liens par rotation.
+- `app/planificateur.py` : fil d'arrière-plan du serveur ; date de référence glissante (entrées en vigueur),
+  détection des modifications du modèle (rechargement à chaud), passage nocturne (SOCIETE_MAJ_HEURE, SOCIETE_MAJ=0).
+- `vcs.auto_sync_forks` : fusion silencieuse sans conflit ; conflits enregistrés pour le propriétaire.
+
 ## Indice de confiance
 
 - Études : moyenne géométrique pondérée du volume (25 %), de la qualité (25 %), de l'accord (30 %) et

@@ -604,10 +604,13 @@ def auto_sync_forks(store) -> dict:
                           " VALUES (?, ?, ?, ?, datetime('now'))", (sid, branch, ref, db.dumps(conflicts)))
             bilan["conflits"] += 1
             continue
-        n = len(diff_states(state_of(head), merged))
+        d = diff_states(state_of(head), merged)
+        ajouts = sum(1 for x in d if x["avant"] is None)
+        modifs = len(d) - ajouts
+        parts = [p for p in (f"{modifs} règle(s) modifiée(s) par la loi" if modifs else "",
+                             f"{ajouts} règle(s) nouvellement numérisée(s)" if ajouts else "") if p]
         _commit_merged_state(sid, branch, merged, ref_commit["base_snapshot"],
-                             f"Mise à jour automatique : la loi a évolué ({n} règle(s) actualisée(s))" if n else
-                             "Mise à jour automatique : nouvelle version de la Société 1.0",
+                             "Mise à jour automatique : " + (", ".join(parts) if parts else "nouvelle version de la Société 1.0"),
                              None, ref, store, systeme=True)
         with db.transaction() as c:
             c.execute("DELETE FROM synchronisations WHERE society_id = ? AND branche = ?", (sid, branch))

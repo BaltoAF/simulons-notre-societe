@@ -287,7 +287,22 @@ def get_preuve(qid: str):
 @app.get("/api/qualite")
 def qualite():
     store = get_store()
-    return {"stats": store.stats(), "problemes": [i.to_dict() for i in store.issues][:500], "controles": store.controles}
+    etat_liens = {}
+    chemin = config.DATA_DIR / "sources_etat.json"
+    if chemin.exists():
+        import json as _json
+        try:
+            etat_liens = _json.loads(chemin.read_text(encoding="utf-8"))
+        except ValueError:
+            etat_liens = {}
+    bilan_liens = {}
+    for v in etat_liens.values():
+        bilan_liens[v.get("statut")] = bilan_liens.get(v.get("statut"), 0) + 1
+    introuvables = [{"id": k, "titre": store.sources.get(k, {}).get("titre"), "verifie_le": v.get("verifie_le")}
+                    for k, v in etat_liens.items() if v.get("statut") == "introuvable"][:30]
+    return {"stats": store.stats(), "problemes": [i.to_dict() for i in store.issues][:500], "controles": store.controles,
+            "liens": {"verifies": len(etat_liens), "total": sum(1 for x in store.sources.values() if (x.get("url") or "").startswith("http")),
+                      "bilan": bilan_liens, "introuvables": introuvables}}
 
 
 # ───────────────────────── simulations ─────────────────────────
@@ -375,6 +390,26 @@ def budget_menage(body: MenageIn):
         ENGINE.load()
     m, _ = menage_depuis_saisie(body.menage, body.montants)
     return vue_menage(get_store(), m)
+
+
+class DroitsIn(BaseModel):
+    profil: dict
+    societe: str | None = None
+    branche: str = vcs.BRANCHE_PRINCIPALE
+
+
+@app.post("/api/droits")
+def droits(body: DroitsIn, user: dict | None = Depends(auth.current_user)):
+    """Vos droits au-delà de l'argent, dans la Société 1.0 et, en option, dans une autre société (comparaison)."""
+    from .droits import comparer, repondre
+    store = get_store()
+    ref = store.snapshot()
+    if not body.societe:
+        return {"reponses": repondre(ref, body.profil)}
+    soc = vcs.get_society(body.societe)
+    _check_visible(soc, user)
+    st = vcs.state_of(vcs.branch_head(body.societe, body.branche))
+    return {"reponses": comparer(ref, st, body.profil), "societe": {"id": soc["id"], "nom": soc["nom"]}}
 
 
 class CompensationIn(BaseModel):
@@ -482,8 +517,19 @@ def get_societe(sid: str, branche: str = vcs.BRANCHE_PRINCIPALE, user: dict | No
             parent_diff = None
     ref_head = vcs.reference_head()
     a_jour = ref_head in set(vcs._ancestors(head))
+    if not soc["reference"] and diff:
+        prov = vcs.provenance(sid, branche, {d["regle"] for d in diff})
+        for d in diff:
+            d["provenance"] = prov.get(d["regle"])
+            try:
+                d["variation_pct"] = (float(d["apres"]) / float(d["avant"]) - 1) * 100 if float(d["avant"]) else None
+            except (TypeError, ValueError):
+                d["variation_pct"] = None
+    mises_a_jour = [c for c in vcs.log(sid, branche, 60) if c["auteur_systeme"] and c["society_id"] == sid][:10]
     return {**soc, "branche": branche, "head": vcs.commit_view(head), "branches": vcs.list_branches(sid),
             "differences_reference": diff, "differences_parent": parent_diff, "a_jour_reference": a_jour,
+            "conflits_loi": [c for c in vcs.conflits_en_attente(sid) if c["branche"] == branche],
+            "mises_a_jour_auto": mises_a_jour,
             "etoile": vcs.has_star(user, sid), "proprietaire": bool(user and user["id"] == soc["owner_id"]),
             "propositions": vcs.list_proposals(sid)}
 

@@ -16,6 +16,11 @@ avec un **indice de confiance** sur chaque chiffre.
   recherche qui collectent, vérifient et publient. Les utilisateurs agissent sur des forks.
 - **Trancher avec honnêteté.** Quand les études divergent, le Système calcule une valeur retenue
   (médiane pondérée) et un indice de confiance à 4 niveaux : Très faible, Faible, Élevé, Très élevé.
+- **Quatre dimensions, deux équilibres.** Chaque réforme est évaluée sur l'économie, le social, l'écologie et le
+  bien-être. Une hausse qui dégrade le budget public (article 40 de la Constitution) ou le budget carbone (SNBC)
+  doit être compensée ailleurs.
+- **Du national au particulier.** Le budget de la France, et la part de chaque ménage.
+- **Mise à jour invisible.** Chaque nuit, le Système vérifie et publie ; les forks suivent la loi automatiquement.
 - **Tester est libre et anonyme ; proposer nécessite d'être identifié.**
 - **Bien commun** : code sous licence AGPL-3.0, données sous Licence Ouverte.
 
