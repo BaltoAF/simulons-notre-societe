@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom'
 import { ArrowRight, Bot, GitCommit, Quote } from 'lucide-react'
 import type { Changement, Tranche, Valeur } from '../lib/api'
 import { DOMAINE_TITRE, nombre, relatif, valeur } from '../lib/format'
+import { milliards } from '../lib/humain'
+import { infoMission } from '../lib/missions'
+import { Terme } from './Terme'
 
 export type Diff = Changement & {
   provenance?: { commit: string; auteur: string | null; auteur_systeme: boolean; date: string; message: string; justification: string } | null
@@ -24,32 +27,69 @@ function diffBareme(avant: Valeur | undefined, apres: Valeur | undefined): strin
   return out.length ? out : null
 }
 
-export function DiffSociete({ items, vide }: { items: Diff[]; vide: string }) {
-  if (!items.length) return <div className="small muted">{vide}</div>
+/** Les domaines du budget de l'État modifiés, résumés en une ligne : « École +5 milliards · −2,8 % sur 28 autres domaines ». */
+function BudgetResume({ items }: { items: Diff[] }) {
+  const mv = items.map((c) => ({ c, nom: infoMission(c.regle, c.titre ?? c.regle).nom, d: Number(c.apres) - Number(c.avant), pct: Number(c.apres) / Number(c.avant) - 1 }))
+  const total = mv.reduce((a, m) => a + m.d, 0)
+  // une baisse (ou hausse) uniforme appliquée à beaucoup de domaines : on la dit en une fois
+  const freq: Record<string, number> = {}
+  for (const m of mv) freq[(m.pct * 100).toFixed(1)] = (freq[(m.pct * 100).toFixed(1)] ?? 0) + 1
+  const [pctCommun, n] = Object.entries(freq).sort((a, b) => b[1] - a[1])[0] ?? ['0', 0]
+  const uniforme = n >= 4 ? Number(pctCommun) : null
+  // tolérance : les arrondis font varier le pourcentage de quelques dixièmes sur les petits domaines
+  const dansUniforme = (m: { pct: number }) => uniforme !== null && Math.abs(m.pct * 100 - uniforme) < 0.25
+  const nUniforme = mv.filter(dansUniforme).length
+  const autres = mv.filter((m) => !dansUniforme(m)).sort((a, b) => Math.abs(b.d) - Math.abs(a.d))
+  return (
+    <li>
+      <strong>Budget de l'État</strong>
+      <div className="small" style={{ marginTop: 4 }}>
+        {autres.slice(0, 4).map((m) => `${m.nom} ${milliards(m.d, true)}`).join(' · ')}
+        {uniforme !== null && <>{autres.length ? ' · ' : ''}{uniforme > 0 ? '+' : '−'}{nombre(Math.abs(uniforme), 1)} % sur {nUniforme}{autres.length ? ' autres' : ''} domaines</>}
+      </div>
+      <div className="small muted">Au total : {Math.abs(total) < 0.05 ? 'même montant, réparti autrement' : total > 0 ? `${milliards(total)} de dépenses en plus par an` : `${milliards(Math.abs(total))} d'économies par an`}</div>
+      <details className="curieux small" style={{ marginTop: 4 }}><summary>Voir les {items.length} domaines</summary>
+        <ul className="list small">{mv.sort((a, b) => a.d - b.d).map((m) => <li key={m.c.regle} className="list-row"><Link to={`/regles/r/${m.c.regle}`}>{m.nom}</Link><span>{milliards(m.d, true)}</span></li>)}</ul>
+      </details>
+    </li>
+  )
+}
+
+export function DiffSociete({ items: tous, vide }: { items: Diff[]; vide: string }) {
+  if (!tous.length) return <div className="small muted">{vide}</div>
+  const missions = tous.filter((d) => d.regle.startsWith('budget.etat.mission.'))
+  const items = missions.length >= 3 ? tous.filter((d) => !missions.includes(d)) : tous
   const parDomaine: Record<string, Diff[]> = {}
   for (const d of items) (parDomaine[d.domaine ?? 'autre'] ??= []).push(d)
+  if (missions.length >= 3) parDomaine.budget = parDomaine.budget ?? []
   const domaines = Object.keys(parDomaine).sort((a, b) => parDomaine[b].length - parDomaine[a].length)
   return (
     <div>
       <div className="pill-list" style={{ marginBottom: 12 }}>
-        {domaines.map((d) => <a key={d} href={`#diff-${d}`} className="badge primary">{DOMAINE_TITRE[d] ?? d} · {parDomaine[d].length}</a>)}
+        {domaines.map((d) => <a key={d} href={`#diff-${d}`} className="badge primary">{DOMAINE_TITRE[d] ?? d} · {parDomaine[d].length + (d === 'budget' && missions.length >= 3 ? 1 : 0)}</a>)}
       </div>
       {domaines.map((dom) => (
         <div key={dom} id={`diff-${dom}`} style={{ marginBottom: 16 }}>
           <div className="kpi-label" style={{ marginBottom: 6 }}>{DOMAINE_TITRE[dom] ?? dom}</div>
           <ul className="list">
+            {dom === 'budget' && missions.length >= 3 && <BudgetResume items={missions} />}
             {parDomaine[dom].map((c) => {
               const hausse = typeof c.avant === 'number' && typeof c.apres === 'number' ? (c.apres as number) > (c.avant as number) : null
               return (
                 <li key={c.regle}>
                   <div className="row between top" style={{ flexWrap: 'nowrap' }}>
                     <Link to={`/regles/r/${c.regle}`} style={{ fontWeight: 650 }}>{c.titre ?? c.regle}</Link>
-                    {c.variation_pct !== undefined && c.variation_pct !== null && Math.abs(c.variation_pct) >= 0.05 && (
+                    {c.unite === 'pourcent' && typeof c.avant === 'number' && typeof c.apres === 'number' ? (
+                      <span className={`badge ${hausse ? 'accent' : 'primary'}`}>{c.apres > c.avant ? '+' : '−'}{nombre(Math.abs(c.apres - c.avant), 2)} point{Math.abs(c.apres - c.avant) >= 2 ? 's' : ''}</span>
+                    ) : c.variation_pct !== undefined && c.variation_pct !== null && Math.abs(c.variation_pct) >= 0.05 && (
                       <span className={`badge ${hausse ? 'accent' : 'primary'}`}>{c.variation_pct > 0 ? '+' : '−'}{nombre(Math.abs(c.variation_pct), 1)} %</span>
                     )}
                   </div>
                   {diffBareme(c.avant, c.apres) ? (
-                    <ul className="small" style={{ margin: '4px 0 0', paddingLeft: 18 }}>{diffBareme(c.avant, c.apres)!.map((l) => <li key={l}><strong>{l}</strong></li>)}</ul>
+                    <>
+                      <ul className="small" style={{ margin: '4px 0 0', paddingLeft: 18 }}>{diffBareme(c.avant, c.apres)!.map((l) => <li key={l}><strong>{l}</strong></li>)}</ul>
+                      <div className="small muted">Les seuils s'entendent par <Terme id="part_fiscale">part</Terme> (une par adulte, une demie par enfant).</div>
+                    </>
                   ) : (
                     <div className="row small" style={{ gap: 8, marginTop: 4 }}>
                       <span className="muted">Loi actuelle : {valeur(c.avant, c.unite, c.type)}</span>

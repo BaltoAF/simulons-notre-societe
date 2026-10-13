@@ -71,8 +71,9 @@ def construire(sections: list[Section], equilibres: list[dict]) -> list[dict]:
         for x in items:
             if _negligeable(x):
                 x["sens"] = "neutre"
-            if x["id"] == "gagnants":  # une part de gagnants n'est ni bonne ni mauvaise en soi : elle informe
-                x["sens"] = "neutre"
+            if x["id"] == "gagnants":  # nettement plus de perdants que de gagnants (ou l'inverse) : cela compte aussi
+                g, p = x["valeur"] or 0, x.get("perdants") or 0
+                x["sens"] = "favorable" if g - p >= 20 else "defavorable" if p - g >= 20 else "neutre"
         comptes = [x for x in items if (x["confiance"] or {}).get("score", 30) >= CONFIANCE_MIN_VERDICT]
         pos = sum((x["confiance"] or {}).get("score", 30) for x in comptes if x["sens"] == "favorable")
         neg = sum((x["confiance"] or {}).get("score", 30) for x in comptes if x["sens"] == "defavorable")

@@ -43,7 +43,7 @@ export default function Societes() {
               </div>
               {s.description && <p className="small ink2" style={{ margin: '6px 0' }}>{s.description.length > 180 ? s.description.slice(0, 177) + '…' : s.description}</p>}
               <div className="small muted">
-                {s.reference ? 'La loi actuelle · tenue à jour par le Système' : <>par <strong>{s.owner_pseudo}</strong> · {s.nb_differences ?? 0} règle{(s.nb_differences ?? 0) > 1 ? 's' : ''} changée{(s.nb_differences ?? 0) > 1 ? 's' : ''} par rapport à aujourd'hui</>}
+                {s.reference ? 'La loi actuelle, tenue à jour automatiquement' : <>par <strong>{s.owner_pseudo}</strong> · {s.nb_differences ?? 0} règle{(s.nb_differences ?? 0) > 1 ? 's' : ''} changée{(s.nb_differences ?? 0) > 1 ? 's' : ''} par rapport à aujourd'hui</>}
                 {' · '}mise à jour {relatif(s.updated_at)}
                 {s.propositions_ouvertes ? ` · ${s.propositions_ouvertes} suggestion${s.propositions_ouvertes > 1 ? 's' : ''} en discussion` : ''}
               </div>

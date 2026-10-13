@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, ChevronDown, Landmark, Lock, PiggyBank, Scale, TrendingDown, TrendingUp, Wallet } from 'lucide-react'
 import { api } from '../lib/api'
-import { euros, nombre } from '../lib/format'
+import { euros } from '../lib/format'
 import { situationVersMenage, useApp, useFetch, type SituationSaisie } from '../lib/state'
 import { PROFILS } from '../lib/profils'
 import { ErrorBox, Loading } from '../components/ui'
@@ -59,7 +59,7 @@ function BudgetEtat({ missions, depenseTotale }: { missions: { id: string; titre
                     {i.verrou && <Lock size={14} color="var(--ink-2)" style={{ verticalAlign: -2 }} />} <Link to={`/regles/r/${x.id}`}>{i.nom}</Link>
                     {i.verrou && <span className="badge" style={{ marginLeft: 6 }}>obligatoire</span>}
                   </span>
-                  <strong className="small" style={{ whiteSpace: 'nowrap' }}>{nombre(x.md, x.md < 10 ? 1 : 0)} Md€</strong>
+                  <strong className="small" style={{ whiteSpace: 'nowrap' }}>{milliards(x.md)}</strong>
                 </div>
                 <Barre part={x.md / max} couleur={i.verrou ? 'var(--ink-3)' : 'var(--primary)'} />
                 {i.verrou && <div className="small muted" style={{ marginTop: 4 }}>{i.verrou}</div>}
@@ -140,12 +140,12 @@ export default function Budget() {
               <button className="row between" onClick={() => setOuvert(ouvert === f.id ? null : f.id)} aria-expanded={ouvert === f.id}
                 style={{ width: '100%', background: 'none', border: 0, padding: '4px 0', cursor: f.detail ? 'pointer' : 'default', color: 'inherit', font: 'inherit', textAlign: 'left', flexWrap: 'nowrap', alignItems: 'flex-start', gap: 10 }}>
                 <span style={{ minWidth: 0 }}><strong>{f.detail && <ChevronDown size={14} style={{ transform: ouvert === f.id ? 'none' : 'rotate(-90deg)', verticalAlign: -2 }} />} {f.titre}</strong> <span className="small muted">— {f.description}</span></span>
-                <span className="small" style={{ whiteSpace: 'nowrap', textAlign: 'right' }}><strong>{nombre(f.md, 0)} Md€</strong><br /><span className="muted">{euros(f.par_habitant_an)}/hab.</span></span>
+                <span className="small" style={{ whiteSpace: 'nowrap', textAlign: 'right' }}><strong>{milliards(f.md)}</strong><br /><span className="muted">{euros(f.par_habitant_an)}/hab.</span></span>
               </button>
               <Barre part={f.md / maxF} />
               {ouvert === f.id && f.detail && (
                 <ul className="list small" style={{ marginLeft: 12 }}>
-                  {f.detail.map((d) => <li key={d.id} className="list-row" style={{ padding: '5px 0' }}><span>{d.titre}</span><span>{nombre(d.md, 0)} Md€ · {euros(d.par_habitant_an)}/hab.</span></li>)}
+                  {f.detail.map((d) => <li key={d.id} className="list-row" style={{ padding: '5px 0' }}><span>{d.titre}</span><span>{milliards(d.md)} · {euros(d.par_habitant_an)}/hab.</span></li>)}
                 </ul>
               )}
             </div>
@@ -157,13 +157,13 @@ export default function Budget() {
           <p className="small muted">Principales recettes publiques ({n.recettes[0]?.annee}).</p>
           {n.recettes.map((r) => (
             <div key={r.id} style={{ marginBottom: 12 }}>
-              <div className="row between small"><strong>{r.titre}</strong><span>{nombre(r.md, 0)} Md€ · {euros(r.par_habitant_an)}/hab.</span></div>
+              <div className="row between small"><strong>{r.titre}</strong><span>{milliards(r.md)} · {euros(r.par_habitant_an)}/hab.</span></div>
               <Barre part={r.md / Math.max(...n.recettes.map((x) => x.md))} couleur="var(--accent)" />
             </div>
           ))}
           <details className="explain">
             <summary><ChevronDown size={15} /> La Sécurité sociale, branche par branche</summary>
-            <ul className="list small">{n.secu_branches.map((x) => <li key={x.id} className="list-row" style={{ padding: '5px 0' }}><Link to={`/regles/r/${x.id}`}>{x.titre}</Link><span>{nombre(x.md, 1)} Md€</span></li>)}</ul>
+            <ul className="list small">{n.secu_branches.map((x) => <li key={x.id} className="list-row" style={{ padding: '5px 0' }}><Link to={`/regles/r/${x.id}`}>{x.titre}</Link><span>{milliards(x.md)}</span></li>)}</ul>
           </details>
         </div>
       </div>

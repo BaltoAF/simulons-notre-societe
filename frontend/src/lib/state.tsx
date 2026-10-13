@@ -62,7 +62,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<Utilisateur | null>(null)
   const [meta, setMeta] = useState<Meta | null>(null)
   const [draft, setDraftState] = useState<Brouillon>(() => load('societe.brouillon', BROUILLON_VIDE))
-  const [situation, setSituationState] = useState<SituationSaisie | null>(() => load('societe.situation', null))
+  const [situation, setSituationState] = useState<SituationSaisie | null>(() => migrerSituation(load('societe.situation', null)))
 
   useEffect(() => {
     api<{ utilisateur: Utilisateur | null }>('/api/auth/moi').then((r) => setUser(r.utilisateur)).catch(() => {})
@@ -93,6 +93,16 @@ export function useApp(): Ctx {
 }
 
 /** Convertit la saisie grand public en ménage pour l'API (montants nets). */
+/** L'ancien profil « Couple, 2 enfants, revenus médians » (2 100 € + 1 850 €) devient le foyer type des rapports. */
+function migrerSituation(s: SituationSaisie | null): SituationSaisie | null {
+  if (!s || s.adultes.length !== 2) return s
+  const [a, b] = s.adultes
+  if (a.montant_net === 2100 && b.montant_net === 1850 && s.revenus_capital_annuels === 300 && s.enfants.join() === '8,12') {
+    return { ...s, adultes: [{ ...a, montant_net: 2137 }, { ...b, montant_net: 1900 }], revenus_capital_annuels: 0 }
+  }
+  return s
+}
+
 export function situationVersMenage(s: SituationSaisie) {
   return {
     couple: s.adultes.length > 1 ? s.couple : 'seul',

@@ -70,6 +70,12 @@ function Discussion({ sid }: { sid: string }) {
   )
 }
 
+// les domaines du budget de l'État modifiés ensemble comptent pour un seul changement (ils sont résumés en une ligne)
+function nbChangements(diff: { regle: string }[]): number {
+  const m = diff.filter((d) => d.regle.startsWith('budget.etat.mission.')).length
+  return m >= 3 ? diff.length - m + 1 : diff.length
+}
+
 export default function SocieteDetail() {
   const { id } = useParams()
   const { user } = useApp()
@@ -147,7 +153,7 @@ export default function SocieteDetail() {
         <div className="grid cols-2" style={{ alignItems: 'start' }}>
           <div className="card">
             <div className="row between"><h3 style={{ margin: 0 }}>Ce qui change par rapport à la loi actuelle</h3>
-              {!s.reference && <span className="badge primary">{s.differences_reference.length} règle{s.differences_reference.length > 1 ? "s" : ""} changée{s.differences_reference.length > 1 ? "s" : ""}</span>}</div>
+              {!s.reference && <span className="badge primary">{nbChangements(s.differences_reference)} changement{nbChangements(s.differences_reference) > 1 ? "s" : ""}</span>}</div>
             <p className="small muted">Chaque différence avec la loi actuelle (la <Terme id="societe_1_0">Société 1.0</Terme>) : de combien, qui l'a décidée et pourquoi.</p>
             <DiffSociete items={s.differences_reference as Diff[]} vide={s.reference ? 'C\'est la référence : la loi en vigueur.' : 'Aucune différence avec la Société 1.0 pour l\'instant.'} />
             {s.differences_reference.length > 0 && <button className="btn primary" style={{ marginTop: 12 }} onClick={calculer}><Calculator size={16} /> Voir les effets de ces changements</button>}

@@ -120,7 +120,7 @@ export default function Accueil() {
               {(soc?.societes ?? []).slice(0, 5).map((x) => (
                 <li key={x.id} className="list-row">
                   <div><Link to={`/societes/${x.id}`}><strong>{x.nom}</strong></Link>
-                    <div className="small muted">{x.reference ? 'La loi actuelle, tenue à jour par le Système' : `par ${x.owner_pseudo} · ${x.nb_differences ?? 0} règle${(x.nb_differences ?? 0) > 1 ? 's' : ''} changée${(x.nb_differences ?? 0) > 1 ? 's' : ''}`} · {relatif(x.updated_at)}</div></div>
+                    <div className="small muted">{x.reference ? 'La loi actuelle, tenue à jour automatiquement' : `par ${x.owner_pseudo} · ${x.nb_differences ?? 0} règle${(x.nb_differences ?? 0) > 1 ? 's' : ''} changée${(x.nb_differences ?? 0) > 1 ? 's' : ''}`} · {relatif(x.updated_at)}</div></div>
                   {x.etoiles > 0 && <span className="badge">★ {x.etoiles}</span>}
                 </li>
               ))}
