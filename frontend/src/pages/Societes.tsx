@@ -2,7 +2,9 @@ import { useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { GitFork, Search, ShieldCheck, Star } from 'lucide-react'
 import type { Societe } from '../lib/api'
-import { relatif } from '../lib/format'
+import { relatif, valeur } from '../lib/format'
+import { milliards } from '../lib/humain'
+import { diffBareme, nomCourt } from '../components/DiffSociete'
 import { useFetch } from '../lib/state'
 import { Empty, Loading } from '../components/ui'
 
@@ -39,11 +41,24 @@ export default function Societes() {
             <Link key={s.id} to={`/societes/${s.id}`} className="card link" style={s.reference ? { borderColor: 'var(--primary)' } : undefined}>
               <div className="row between top">
                 <h3 style={{ margin: 0 }}>{s.reference && <ShieldCheck size={17} color="var(--primary)" />} {s.nom}</h3>
-                <span className="badge"><Star size={12} /> {s.etoiles}</span>
+                {s.etoiles > 0 && <span className="badge"><Star size={12} /> {s.etoiles}</span>}
               </div>
-              {s.description && <p className="small ink2" style={{ margin: '6px 0' }}>{s.description.length > 180 ? s.description.slice(0, 177) + '…' : s.description}</p>}
+              {!s.reference && (s.mesures ?? []).length > 0 ? (
+                <div className="small" style={{ margin: '8px 0' }}>
+                  <div className="kpi-label" style={{ marginBottom: 2 }}>Ce qu'elle change</div>
+                  <ul style={{ margin: 0, paddingLeft: 18 }}>
+                    {(s.mesures ?? []).map((mm) => (
+                      <li key={mm.regle}>{mm.budget_resume
+                        ? <>Budget de l'État : {Number(mm.apres) >= 0 ? `${milliards(Number(mm.apres))} de dépenses en plus` : `${milliards(Math.abs(Number(mm.apres)))} d'économies`} par an</>
+                        : (diffBareme(mm.avant, mm.apres) ?? []).sort((x, y) => Number(y.startsWith('Nouvelle')) - Number(x.startsWith('Nouvelle')))[0] ?? <>{nomCourt(mm.titre)} : {valeur(mm.apres, mm.unite, mm.type)} <span className="muted">(aujourd'hui {valeur(mm.avant, mm.unite, mm.type)})</span></>}</li>
+                    ))}
+                    {(s.nb_mesures ?? 0) > (s.mesures ?? []).length && <li className="muted">et {(s.nb_mesures ?? 0) - (s.mesures ?? []).length} autre{(s.nb_mesures ?? 0) - (s.mesures ?? []).length > 1 ? 's' : ''}</li>}
+                  </ul>
+                  {(s.nb_equilibrage ?? 0) > 0 && <div className="muted" style={{ marginTop: 2 }}>+ {s.nb_equilibrage} changement{(s.nb_equilibrage ?? 0) > 1 ? 's' : ''} pour l'équilibrer (financement, climat)</div>}
+                </div>
+              ) : s.description && <p className="small ink2" style={{ margin: '6px 0' }}>{s.description.length > 180 ? s.description.slice(0, 177) + '…' : s.description}</p>}
               <div className="small muted">
-                {s.reference ? 'La loi actuelle, tenue à jour automatiquement' : <>par <strong>{s.owner_pseudo}</strong> · {s.nb_differences ?? 0} règle{(s.nb_differences ?? 0) > 1 ? 's' : ''} changée{(s.nb_differences ?? 0) > 1 ? 's' : ''} par rapport à aujourd'hui</>}
+                {s.reference ? 'La loi actuelle, tenue à jour automatiquement' : (s.mesures ?? []).length ? <>par <strong>{s.owner_pseudo}</strong></> : <>par <strong>{s.owner_pseudo}</strong> · {s.nb_differences ?? 0} règle{(s.nb_differences ?? 0) > 1 ? 's' : ''} changée{(s.nb_differences ?? 0) > 1 ? 's' : ''} par rapport à aujourd'hui</>}
                 {' · '}mise à jour {relatif(s.updated_at)}
                 {s.propositions_ouvertes ? ` · ${s.propositions_ouvertes} suggestion${s.propositions_ouvertes > 1 ? 's' : ''} en discussion` : ''}
               </div>

@@ -528,10 +528,57 @@ def list_societies(store, user: dict | None = None, tri: str = "recent", q: str 
         s["reference"] = bool(s["reference"])
         try:
             st = state_of(branch_head(s["id"], BRANCHE_PRINCIPALE))
-            s["nb_differences"] = len(diff_states(ref, st))
+            diff = diff_states(ref, st, store)
+            s["nb_differences"] = len(diff)
+            s.update(resume_mesures(s["id"], diff))
         except HTTPException:
             s["nb_differences"] = None
     return out
+
+
+# Changements ajoutés pour respecter les équilibres (financement, climat) : reconnus à leur justification
+JUSTIFICATIONS_EQUILIBRE = ("Équilibrer la proposition", "Financer la réforme", "Compenser les émissions")
+
+
+def est_equilibrage(prov: dict | None) -> bool:
+    if not prov:
+        return False
+    return (prov.get("justification") or "") in JUSTIFICATIONS_EQUILIBRE or (prov.get("message") or "").startswith(("Équilibrer", "Rééquilibrer"))
+
+
+def origines(sid: str, branch: str, regles: set[str], limit: int = 500) -> dict[str, dict]:
+    """Pour chaque règle, le PREMIER changement qui l'a modifiée (l'intention de l'auteur), là où provenance() donne le
+    plus récent : une règle d'abord changée par l'auteur puis ajustée pour équilibrer reste une mesure principale."""
+    out: dict[str, dict] = {}
+    cid = branch_head(sid, branch)
+    n = 0
+    while cid and n < limit:
+        c = commit_view(cid)
+        if not c["auteur_systeme"]:  # les mises à jour automatiques de la loi ne sont pas des intentions
+            for ch in c["changes"]:
+                rid = ch.get("regle")
+                if rid in regles:  # en remontant le temps, le dernier vu est le plus ancien
+                    out[rid] = {"message": c["message"], "justification": ch.get("justification") or ""}
+        cid = c["parent_id"]
+        n += 1
+    return out
+
+
+def resume_mesures(sid: str, diff: list[dict]) -> dict:
+    """Mesures principales d'une société (3 au plus, les domaines du budget de l'État comptant pour une) et nombre de
+    changements ajoutés pour l'équilibrer : ce que la liste des propositions affiche en une ligne."""
+    prov = origines(sid, BRANCHE_PRINCIPALE, {d["regle"] for d in diff}) if diff else {}
+    principales = [d for d in diff if not est_equilibrage(prov.get(d["regle"]))]
+    equilibrage = [d for d in diff if est_equilibrage(prov.get(d["regle"]))]
+    missions = [d for d in principales if d["regle"].startswith("budget.etat.mission.")]
+    mesures = [d for d in principales if not d["regle"].startswith("budget.etat.mission.")][:3]
+    if missions:
+        delta = sum(float(d["apres"] or 0) - float(d["avant"] or 0) for d in missions)
+        mesures.append({"regle": "budget.etat", "titre": "Budget de l'État", "unite": "milliards_euros", "type": "nombre",
+                        "avant": None, "apres": round(delta, 3), "budget_resume": True})
+    n_eq = len({d["regle"] for d in equilibrage if not d["regle"].startswith("budget.etat.mission.")}) + (1 if any(
+        d["regle"].startswith("budget.etat.mission.") for d in equilibrage) else 0)
+    return {"mesures": mesures[:3], "nb_mesures": len(principales) - len(missions) + (1 if missions else 0), "nb_equilibrage": n_eq}
 
 
 def toggle_star(user: dict, sid: str) -> dict:

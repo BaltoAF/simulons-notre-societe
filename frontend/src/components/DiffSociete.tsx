@@ -9,12 +9,13 @@ import { infoMission } from '../lib/missions'
 import { Terme } from './Terme'
 
 export type Diff = Changement & {
+  pour_equilibrer?: boolean
   provenance?: { commit: string; auteur: string | null; auteur_systeme: boolean; date: string; message: string; justification: string } | null
   variation_pct?: number | null
 }
 
 /** Changement d'un barème dit en clair : « Nouvelle tranche à 50 % au-delà de 250 000 € », « 30 % → 32 % dès 29 579 € ». */
-function diffBareme(avant: Valeur | undefined, apres: Valeur | undefined): string[] | null {
+export function diffBareme(avant: Valeur | undefined, apres: Valeur | undefined): string[] | null {
   if (!Array.isArray(avant) || !Array.isArray(apres)) return null
   const a = avant as Tranche[], b = apres as Tranche[]
   const out: string[] = []
@@ -55,7 +56,32 @@ function BudgetResume({ items }: { items: Diff[] }) {
   )
 }
 
-export function DiffSociete({ items: tous, vide }: { items: Diff[]; vide: string }) {
+/** Nom court d'une règle pour une liste : « RSA », « CSG sur les revenus d'activité », « TVA ». */
+export function nomCourt(titre: string): string {
+  return titre.split(' : ')[0].replace(/\s*\([^)]*\)\s*$/, '').trim()
+}
+
+export function DiffSociete({ items, vide }: { items: Diff[]; vide: string }) {
+  if (!items.length) return <div className="small muted">{vide}</div>
+  // d'abord l'idée de l'auteur, puis ce qui a été ajouté pour respecter les équilibres (financement, climat)
+  const principales = items.filter((d) => !d.pour_equilibrer)
+  const equilibrage = items.filter((d) => d.pour_equilibrer)
+  return (
+    <div>
+      <ListeDiff items={principales.length ? principales : items} pastilles vide={vide} />
+      {principales.length > 0 && equilibrage.length > 0 && (
+        <div style={{ marginTop: 18 }}>
+          <h4 style={{ margin: '0 0 2px' }}>Ajouté pour l'équilibrer</h4>
+          <p className="small muted" style={{ marginTop: 0 }}>Le site exige que toute proposition soit financée et respecte le plafond d'émissions.
+            Ces changements servent à cela, ils ne sont pas le cœur de l'idée.</p>
+          <ListeDiff items={equilibrage} pastilles={false} vide="" />
+        </div>
+      )}
+    </div>
+  )
+}
+
+function ListeDiff({ items: tous, vide, pastilles }: { items: Diff[]; vide: string; pastilles: boolean }) {
   if (!tous.length) return <div className="small muted">{vide}</div>
   const missions = tous.filter((d) => d.regle.startsWith('budget.etat.mission.'))
   const items = missions.length >= 3 ? tous.filter((d) => !missions.includes(d)) : tous
@@ -65,9 +91,9 @@ export function DiffSociete({ items: tous, vide }: { items: Diff[]; vide: string
   const domaines = Object.keys(parDomaine).sort((a, b) => parDomaine[b].length - parDomaine[a].length)
   return (
     <div>
-      <div className="pill-list" style={{ marginBottom: 12 }}>
+      {pastilles && <div className="pill-list" style={{ marginBottom: 12 }}>
         {domaines.map((d) => <a key={d} href={`#diff-${d}`} className="badge primary">{DOMAINE_TITRE[d] ?? d} · {parDomaine[d].length + (d === 'budget' && missions.length >= 3 ? 1 : 0)}</a>)}
-      </div>
+      </div>}
       {domaines.map((dom) => (
         <div key={dom} id={`diff-${dom}`} style={{ marginBottom: 16 }}>
           <div className="kpi-label" style={{ marginBottom: 6 }}>{DOMAINE_TITRE[dom] ?? dom}</div>

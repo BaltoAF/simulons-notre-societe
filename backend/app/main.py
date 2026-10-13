@@ -529,8 +529,10 @@ def get_societe(sid: str, branche: str = vcs.BRANCHE_PRINCIPALE, user: dict | No
     a_jour = ref_head in set(vcs._ancestors(head))
     if not soc["reference"] and diff:
         prov = vcs.provenance(sid, branche, {d["regle"] for d in diff})
+        orig = vcs.origines(sid, branche, {d["regle"] for d in diff})
         for d in diff:
             d["provenance"] = prov.get(d["regle"])
+            d["pour_equilibrer"] = vcs.est_equilibrage(orig.get(d["regle"]))
             try:
                 d["variation_pct"] = (float(d["apres"]) / float(d["avant"]) - 1) * 100 if float(d["avant"]) else None
             except (TypeError, ValueError):

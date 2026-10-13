@@ -181,6 +181,8 @@ export type Societe = {
   parent_id: string | null; parent_nom?: string | null; parent_commit: string | null; visibilite: string
   reference: boolean; created_at: string; updated_at: string; etoiles: number
   nb_differences?: number | null; propositions_ouvertes?: number
+  mesures?: { regle: string; titre: string; unite: string; type: string; avant: Valeur; apres: Valeur; budget_resume?: boolean }[]
+  nb_mesures?: number; nb_equilibrage?: number
 }
 
 export type SocieteDetail = Societe & {

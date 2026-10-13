@@ -104,7 +104,11 @@ export default function Budget() {
   const [titreProfil, setTitreProfil] = useState<string>(situation ? 'Votre foyer (renseigné dans « Mes droits »)' : '')
   const [m, setM] = useState<VueMenage | null>(null)
   const [mLoading, setMLoading] = useState(false)
-  const [ouvert, setOuvert] = useState<string | null>('protection_sociale')
+  // sur téléphone, rien n'est déplié d'office et les listes montrent d'abord l'essentiel (la page reste courte)
+  const petitEcran = typeof window !== 'undefined' && window.matchMedia('(max-width: 640px)').matches
+  const [ouvert, setOuvert] = useState<string | null>(petitEcran ? null : 'protection_sociale')
+  const [toutesFonctions, setToutesFonctions] = useState(!petitEcran)
+  const [toutesRecettes, setToutesRecettes] = useState(!petitEcran)
 
   useEffect(() => {
     if (!profil) return
@@ -139,7 +143,7 @@ export default function Budget() {
         <div className="card">
           <h3><Landmark size={18} /> Où va l'argent public</h3>
           <p className="small muted">Toutes les administrations (État, Sécurité sociale, collectivités), par grand domaine, en {n.fonctions[0]?.annee} (le dernier détail publié). Cliquez sur un domaine pour le détail.</p>
-          {n.fonctions.map((f) => (
+          {(toutesFonctions ? n.fonctions : n.fonctions.slice(0, 5)).map((f) => (
             <div key={f.id} style={{ marginBottom: 12 }}>
               <button className="row between" onClick={() => setOuvert(ouvert === f.id ? null : f.id)} aria-expanded={ouvert === f.id}
                 style={{ width: '100%', background: 'none', border: 0, padding: '4px 0', cursor: f.detail ? 'pointer' : 'default', color: 'inherit', font: 'inherit', textAlign: 'left', flexWrap: 'nowrap', alignItems: 'flex-start', gap: 10 }}>
@@ -154,17 +158,19 @@ export default function Budget() {
               )}
             </div>
           ))}
+          {!toutesFonctions && n.fonctions.length > 5 && <button className="btn ghost small" onClick={() => setToutesFonctions(true)}>Voir les {n.fonctions.length - 5} autres domaines</button>}
           <div className="small muted">Source : Eurostat / INSEE, comptes des administrations publiques (nomenclature internationale COFOG).</div>
         </div>
         <div className="card">
           <h3><PiggyBank size={18} /> D'où vient l'argent</h3>
           <p className="small muted">Principales recettes publiques ({n.recettes[0]?.annee}).</p>
-          {n.recettes.map((r) => (
+          {(toutesRecettes ? n.recettes : n.recettes.slice(0, 5)).map((r) => (
             <div key={r.id} style={{ marginBottom: 12 }}>
               <div className="row between small"><strong>{r.titre}</strong><span>{milliards(r.md)} · {euros(r.par_habitant_an)}/hab.</span></div>
               <Barre part={r.md / Math.max(...n.recettes.map((x) => x.md))} couleur="var(--accent)" />
             </div>
           ))}
+          {!toutesRecettes && n.recettes.length > 5 && <button className="btn ghost small" onClick={() => setToutesRecettes(true)}>Voir les {n.recettes.length - 5} autres recettes</button>}
           <details className="explain">
             <summary><ChevronDown size={15} /> La Sécurité sociale, branche par branche</summary>
             <ul className="list small">{n.secu_branches.map((x) => <li key={x.id} className="list-row" style={{ padding: '5px 0' }}><Link to={`/regles/r/${x.id}`}>{x.titre}</Link><span>{milliards(x.md)}</span></li>)}</ul>
