@@ -1,0 +1,323 @@
+# Registre des sources — règles budgétaires (budget), sécurité routière (transports), tabac et alcool (sante).
+# Fichiers : model/regles/budget/regles_budgetaires.yaml, model/regles/transports/securite_routiere.yaml,
+# model/regles/sante/tabac_alcool.yaml. Consultées le 2026-10-13.
+# NB : EUR-Lex et Légifrance bloquent les outils automatisés (protection anti-robots). Les URL Légifrance
+# éventuellement citées ont été relevées dans des pages officielles ou des résultats de recherche (cf. note).
+# Copies locales des documents téléchargés : system/cache/regles-complements/.
+sources:
+  # ---------------------------------------------------------------- Budget : Constitution
+  - id: rc-cc-constitution-1958
+    type: texte_officiel
+    editeur: "Conseil constitutionnel"
+    titre: "Texte intégral de la Constitution du 4 octobre 1958 en vigueur"
+    url: "https://www.conseil-constitutionnel.fr/le-bloc-de-constitutionnalite/texte-integral-de-la-constitution-du-4-octobre-1958-en-vigueur"
+    auteurs: []
+    date_publication: ""
+    consulte_le: "2026-10-13"
+    note: "Articles 34, 40, 47 et 47-1 lus dans la version en vigueur."
+
+  # ---------------------------------------------------------------- Budget : règles européennes
+  - id: rc-consilium-decision-pde-france-2024
+    type: texte_officiel
+    editeur: "Conseil de l'Union européenne"
+    titre: "Décision du Conseil sur l'existence d'un déficit excessif en France (doc. 12166/24, dossier 2024/0169(NLE))"
+    url: "https://data.consilium.europa.eu/doc/document/ST-12166-2024-INIT/fr/pdf"
+    auteurs: []
+    date_publication: "2024-07-23"
+    consulte_le: "2026-10-13"
+    note: "Texte de l'acte transmis pour adoption ; adopté le 26 juillet 2024 comme décision (UE) 2024/2122 (JO L du 1er août 2024, ELI https://eur-lex.europa.eu/eli/dec/2024/2122/oj, référence relevée dans la recommandation du Conseil du 21/01/2025). Cite le protocole n° 12 et la « valeur de référence de 3 % du PIB prévue par le TFUE »."
+
+  - id: rc-conseil-rec-pde-france-2025
+    type: texte_officiel
+    editeur: "Conseil de l'Union européenne (publié par la Commission européenne, DG ECFIN)"
+    titre: "Council Recommendation with a view to bringing an end to the situation of an excessive deficit in France (doc. 5033/1/25 REV 1)"
+    url: "https://economy-finance.ec.europa.eu/document/download/d70549fa-ab20-439a-a5d5-4391bd3f963e_en?filename=ecofin_5033_fr.pdf"
+    auteurs: []
+    date_publication: "2025-01-21"
+    consulte_le: "2026-10-13"
+    note: "Version du 17 janvier 2025 (mention LIMITE) adoptée par le Conseil le 21 janvier 2025 selon la page de la Commission. Fixe l'échéance de correction (2029), les plafonds de croissance des dépenses nettes (annexe I), rappelle la valeur de référence de 60 % pour la dette et l'ajustement structurel minimal de 0,5 % du PIB."
+
+  - id: rc-conseil-rec-psmt-france-2025
+    type: texte_officiel
+    editeur: "Conseil de l'Union européenne (Journal officiel de l'Union européenne, série C)"
+    titre: "Council Recommendation of 21 January 2025 endorsing the national medium-term fiscal-structural plan of France (C/2025/659)"
+    url: "https://economy-finance.ec.europa.eu/document/download/f8be355b-dd72-4726-b81e-fea6e416fc1b_en?filename=MTFSP_2025_FR.pdf"
+    auteurs: []
+    date_publication: "2025-02-10"
+    consulte_le: "2026-10-13"
+    note: "JO C du 10.2.2025, ELI http://data.europa.eu/eli/C/2025/659/oj. Annexe I : taux de croissance maximaux des dépenses nettes 2025-2029 ; période d'ajustement de 7 ans (2025-2031)."
+
+  - id: rc-ce-pde-france
+    type: rapport_institutionnel
+    editeur: "Commission européenne (DG ECFIN)"
+    titre: "Excessive deficit procedures – France (étapes de la procédure en cours)"
+    url: "https://economy-finance.ec.europa.eu/economic-governance-framework/stability-and-growth-pact/corrective-arm-excessive-deficit-procedure/excessive-deficit-procedures-overview/france_en"
+    auteurs: []
+    date_publication: ""
+    consulte_le: "2026-10-13"
+    note: "Liste les étapes : rapport 126(3) du 19/06/2024, décision 126(6) du 26/07/2024, recommandation 126(7) du 21/01/2025, rapports d'action de la France des 30/04/2025, 25/11/2025 et 07/05/2026. Aucune abrogation mentionnée."
+
+  # ---------------------------------------------------------------- Budget : programmation et lois financières
+  - id: rc-an-ta186-lpfp-2023-2027
+    type: texte_officiel
+    editeur: "Assemblée nationale"
+    titre: "Projet de loi de programmation des finances publiques pour les années 2023 à 2027 — texte définitif (texte adopté n° 186)"
+    url: "https://www.assemblee-nationale.fr/dyn/opendata/PRJLANR5L16BTA0186.html"
+    auteurs: []
+    date_publication: "2023-11-15"
+    consulte_le: "2026-10-13"
+    note: "Texte considéré comme adopté définitivement (art. 49, al. 3) le 15 novembre 2023, promulgué comme loi n° 2023-1195 du 18 décembre 2023 (JO n° 293 du 19 décembre 2023) après la décision n° 2023-857 DC du 14 décembre 2023 (conforme). Articles 2, 3, 5, 18 et rapport annexé lus."
+
+  - id: rc-senat-dossier-lpfp-2023-2027
+    type: texte_officiel
+    editeur: "Sénat"
+    titre: "Dossier législatif : Programmation des finances publiques pour les années 2023 à 2027"
+    url: "https://www.senat.fr/dossier-legislatif/pjl22-071.html"
+    auteurs: []
+    date_publication: ""
+    consulte_le: "2026-10-13"
+    note: "Donne la référence de la loi promulguée (loi n° 2023-1195 du 18 décembre 2023, JO n° 293 du 19 décembre 2023) et la décision n° 2023-857 DC du 14 décembre 2023."
+
+  - id: rc-an-plf-2027
+    type: texte_officiel
+    editeur: "Assemblée nationale"
+    titre: "Projet de loi de finances pour 2027 (n° 3210)"
+    url: "https://www.assemblee-nationale.fr/dyn/opendata/PRJLANR5L17B3210.html"
+    auteurs: []
+    date_publication: "2026-10-01"
+    consulte_le: "2026-10-13"
+    note: "Projet non voté au 13/10/2026. Article liminaire : solde effectif -5,1 % (2025), -5,4 % (2026, cible LFI 2026 révisée de -5,0 %), -5,0 % (2027) ; dette 115,7 / 119,3 / 121,7 % du PIB ; comparaison avec la LPFP 2023-2027, toujours citée comme référence (norme de dépense, charte de budgétisation)."
+
+  # ---------------------------------------------------------------- Budget : comité d'alerte de l'ONDAM
+  - id: rc-secu-comite-alerte
+    type: rapport_institutionnel
+    editeur: "Direction de la sécurité sociale (securite-sociale.fr)"
+    titre: "Les avis du comité d'alerte"
+    url: "https://www.securite-sociale.fr/la-secu-en-detail/comptes-de-la-securite-sociale/les-avis-du-comite-dalerte"
+    auteurs: []
+    date_publication: ""
+    consulte_le: "2026-10-13"
+    note: "Présente le comité (créé par la loi du 13 août 2004), l'historique du seuil (0,75 % initialement, 0,7 % en 2011, 0,6 % en 2012, 0,5 % à partir de 2013 ; plafond légal de 1 %) et la liste des avis 2025-2026."
+
+  - id: rc-comite-alerte-avis-2026-1
+    type: rapport_institutionnel
+    editeur: "Comité d'alerte sur l'évolution des dépenses d'assurance maladie"
+    titre: "Avis du Comité d'alerte n° 2026-1 sur le respect de l'objectif national de dépenses d'assurance maladie (ONDAM)"
+    url: "https://www.securite-sociale.fr/files/live/sites/SSFR/files/medias/DSS/2025/Projet%20d'avis%2020.4.2026_.pdf"
+    auteurs: []
+    date_publication: "2026-04-20"
+    consulte_le: "2026-10-13"
+    note: "Cite le seuil de 0,5 % « fixé par l'article D. 114-4-0-17 du code de la sécurité sociale » et rappelle l'alerte de l'avis n° 2 du 18 juin 2025. Le nom du fichier porte la mention « Projet d'avis »."
+
+  - id: rc-comite-alerte-avis-2026-2
+    type: rapport_institutionnel
+    editeur: "Comité d'alerte sur l'évolution des dépenses d'assurance maladie"
+    titre: "Avis du Comité d'alerte n° 2026-2 sur le respect de l'objectif national de dépenses d'assurance maladie (ONDAM)"
+    url: "https://www.securite-sociale.fr/files/live/sites/SSFR/files/medias/COMITE_D-ALERTE/2026/Avis%20n%202%2025.6.2026.pdf"
+    auteurs: []
+    date_publication: "2026-06-25"
+    consulte_le: "2026-10-13"
+    note: "Cite l'article L114-4-1 (seuil « qui ne peut excéder 1 % ») et l'article D. 114-4-0-7 (seuil de 0,5 %, près de 1,4 Md€ en 2026) ; pas d'alerte en 2026 sous réserve d'annulation des 1,1 Md€ de mises en réserve."
+
+  # ---------------------------------------------------------------- Transports
+  - id: rc-sp-f19460
+    type: texte_officiel
+    editeur: "Service-Public.fr (DILA)"
+    titre: "Vitesse au volant"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F19460"
+    auteurs: []
+    date_publication: "2025-12-29"
+    consulte_le: "2026-10-13"
+    note: "Date « Vérifié le » de la fiche. Vitesses par type de route, temps de pluie, jeunes conducteurs, visibilité réduite, relèvement à 90 km/h par l'autorité locale (CGCT, art. L3221-4-1)."
+
+  - id: rc-onisr-relevement-90
+    type: rapport_institutionnel
+    editeur: "Observatoire national interministériel de la sécurité routière (ONISR)"
+    titre: "Increasing the speed limit to 90 kph on certain departmental roads"
+    url: "https://www.onisr.securite-routiere.gouv.fr/en/knowledge-centre/evaluation/evaluation-of-the-measures/increasing-the-speed-limit-to-90-kph-on-certain-departmental-roads"
+    auteurs: []
+    date_publication: "2022-12-16"
+    consulte_le: "2026-10-13"
+    note: "Abaissement de 90 à 80 km/h le 1er juillet 2018 (décret n° 2018-487 du 15 juin 2018) ; possibilité de relèvement à 90 km/h ouverte par la loi d'orientation des mobilités (« promulgated December 23, 2019 », art. 15 bis B) ; 39 départements ont relevé tout ou partie de leur réseau en 2020-2021."
+
+  - id: rc-sp-f2390
+    type: texte_officiel
+    editeur: "Service-Public.fr (DILA)"
+    titre: "Qu'est-ce que le permis de conduire probatoire ?"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F2390"
+    auteurs: []
+    date_publication: "2026-01-15"
+    consulte_le: "2026-10-13"
+    note: "Date « Vérifié le » de la fiche. Durée de la période probatoire, capital de points (6 au départ, 12 au maximum), gains annuels ; signale la loi RIPOST du 18 août 2026 (location de véhicules puissants)."
+
+  - id: rc-sp-f2828
+    type: texte_officiel
+    editeur: "Service-Public.fr (DILA)"
+    titre: "Permis B : voiture ou camionnette"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F2828"
+    auteurs: []
+    date_publication: "2025-05-26"
+    consulte_le: "2026-10-13"
+    note: "Date « Vérifié le » de la fiche. Âge minimal de 17 ans (décret n° 2023-1214 du 20 décembre 2023), apprentissage anticipé dès 15 ans, conduite supervisée dès 18 ans."
+
+  - id: rc-sp-a17009
+    type: texte_officiel
+    editeur: "Service-Public.fr (DILA)"
+    titre: "Le permis de conduire désormais possible à partir de 17 ans !"
+    url: "https://www.service-public.gouv.fr/particuliers/actualites/A17009"
+    auteurs: []
+    date_publication: "2023-12-22"
+    consulte_le: "2026-10-13"
+    note: "Actualité (signalée comme ancienne) : dès le 1er janvier 2024, permis B à 17 ans au lieu de 18 ans."
+
+  - id: rc-sp-f2881
+    type: texte_officiel
+    editeur: "Service-Public.fr (DILA)"
+    titre: "Alcool au volant"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F2881"
+    auteurs: []
+    date_publication: "2026-08-27"
+    consulte_le: "2026-10-13"
+    note: "Date « Vérifié le » de la fiche. Taux de 0,5 g/l (cas général), 0,2 g/l (permis probatoire, conduite accompagnée, EAD), délit à 0,8 g/l."
+
+  - id: rc-sp-f31551
+    type: texte_officiel
+    editeur: "Service-Public.fr (DILA)"
+    titre: "Permis de conduire : barème des points retirés par infraction"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F31551"
+    auteurs: []
+    date_publication: "2026-02-27"
+    consulte_le: "2026-10-13"
+    note: "Date « Vérifié le » de la fiche. Ceinture : 3 points ; téléphone tenu en main et écouteurs : contravention de 4e classe, 3 points."
+
+  - id: rc-sp-f18509
+    type: texte_officiel
+    editeur: "Service-Public.fr (DILA)"
+    titre: "Amende forfaitaire en cas de contravention au code de la route"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F18509"
+    auteurs: []
+    date_publication: "2025-01-11"
+    consulte_le: "2026-10-13"
+    note: "Date « Vérifié le » de la fiche. 4e classe : 135 € (minorée 90 €, majorée 375 €)."
+
+  - id: rc-sp-f628
+    type: texte_officiel
+    editeur: "Service-Public.fr (DILA)"
+    titre: "Ceinture de sécurité et siège auto : règles pour circuler en voiture"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F628"
+    auteurs: []
+    date_publication: "2025-10-03"
+    consulte_le: "2026-10-13"
+    note: "Date « Vérifié le » de la fiche. Amende forfaitaire de 135 € (jusqu'à 750 €), 3 points pour le conducteur, siège auto obligatoire jusqu'à 10 ans."
+
+  - id: rc-sp-f2878
+    type: texte_officiel
+    editeur: "Service-Public.fr (DILA)"
+    titre: "Contrôle technique d'une voiture (catégorie M1)"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F2878"
+    auteurs: []
+    date_publication: "2026-01-01"
+    consulte_le: "2026-10-13"
+    note: "Date « Vérifié le » de la fiche. Premier contrôle dans les 6 mois avant le 4e anniversaire, puis tous les 2 ans ; contre-visite sous 2 mois ; défaut de contrôle : 135 € (jusqu'à 750 €)."
+
+  - id: rc-sp-f37538
+    type: texte_officiel
+    editeur: "Service-Public.fr (DILA)"
+    titre: "Contrôle technique d'un 2 ou 3 roues ou d'un quadricycle à moteur (catégorie L)"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F37538"
+    auteurs: []
+    date_publication: "2026-01-01"
+    consulte_le: "2026-10-13"
+    note: "Date « Vérifié le » de la fiche. Validité de 3 ans ; calendrier du premier contrôle selon l'année d'immatriculation. Titre français reconstitué d'après la version anglaise de la fiche."
+
+  - id: rc-sp-a16861
+    type: texte_officiel
+    editeur: "Service-Public.fr (DILA)"
+    titre: "Le contrôle technique pour les deux-roues mis en place à partir du 15 avril 2024"
+    url: "https://www.service-public.gouv.fr/particuliers/actualites/A16861"
+    auteurs: []
+    date_publication: "2024-04-02"
+    consulte_le: "2026-10-13"
+    note: "Actualité (signalée comme ancienne). Obligation à partir du 15 avril 2024 (arrêté publié au JO du 24 octobre 2023), validité de 3 ans."
+
+  # ---------------------------------------------------------------- Santé : tabac
+  - id: rc-douane-fiscalite-tabacs
+    type: texte_officiel
+    editeur: "Direction générale des douanes et droits indirects (douane.gouv.fr)"
+    titre: "La fiscalité appliquée aux tabacs manufacturés et la composition du prix de vente au détail des produits du tabac commercialisés en France métropolitaine"
+    url: "https://www.douane.gouv.fr/fiche/la-fiscalite-appliquee-aux-tabacs-manufactures-et-la-composition-du-prix-de-vente-au-detail"
+    auteurs: []
+    date_publication: "2026-01-05"
+    consulte_le: "2026-10-13"
+    note: "Page mise à jour le 05/01/2026. Taux, tarifs et minimums de perception de l'accise applicables à compter du 1er janvier 2026 (CIBS, art. L314-24 ; arrêté du 24 décembre 2025, JORF n° 306 du 31 décembre 2025) ; exemples de décomposition du prix d'un paquet."
+
+  - id: rc-legi-arrete-pmp-tabac-2025
+    type: texte_officiel
+    editeur: "Légifrance (DILA)"
+    titre: "Arrêté du 26 janvier 2026 constatant pour chaque groupe de produits du tabac le prix moyen pondéré de vente au détail pour l'année 2025 au sens de l'article L. 3512-14-17 du code de la santé publique"
+    url: "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000053417349"
+    auteurs: []
+    date_publication: "2026-01-26"
+    consulte_le: "2026-10-13"
+    note: "URL et titre relevés dans des résultats de recherche ; la page Légifrance n'a pas pu être ouverte (HTTP 403). La valeur reprise (627,07 € pour 1 000 cigarettes) n'a pas été lue directement : à vérifier."
+
+  - id: rc-spe-f23604
+    type: texte_officiel
+    editeur: "Entreprendre.Service-Public.fr (DILA)"
+    titre: "Exploitation d'un bureau de tabac"
+    url: "https://entreprendre.service-public.gouv.fr/vosdroits/F23604"
+    auteurs: []
+    date_publication: "2026-02-04"
+    consulte_le: "2026-10-13"
+    note: "Date « Vérifié le » de la fiche. Interdiction de vente aux moins de 18 ans, amende de 135 €, sanction administrative jusqu'à 16 000 € (doublée depuis le 1er octobre 2025), remise du débitant de 10,29 %."
+
+  - id: rc-sp-f160
+    type: texte_officiel
+    editeur: "Service-Public.fr (DILA)"
+    titre: "Interdiction de fumer - Tabagisme"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F160"
+    auteurs: []
+    date_publication: "2026-04-01"
+    consulte_le: "2026-10-13"
+    note: "Date « Vérifié le » de la fiche. Lieux où il est interdit de fumer (dont plages, parcs, abribus, 10 m autour des établissements scolaires), amende jusqu'à 750 €, interdiction des produits à usage oral contenant de la nicotine depuis le 1er avril 2026."
+
+  - id: rc-sp-a18351
+    type: texte_officiel
+    editeur: "Service-Public.fr (DILA)"
+    titre: "Interdiction de fumer dans de nouveaux lieux publics depuis le 1er juillet"
+    url: "https://www.service-public.gouv.fr/particuliers/actualites/A18351"
+    auteurs: []
+    date_publication: "2025-06-13"
+    consulte_le: "2026-10-13"
+    note: "Actualité (signalée comme ancienne, mise à jour après publication du décret n° 2025-582 du 27 juin 2025 relatif aux espaces sans tabac). Entrée en vigueur le 1er juillet 2025."
+
+  # ---------------------------------------------------------------- Santé : alcool
+  - id: rc-sp-f20104
+    type: texte_officiel
+    editeur: "Service-Public.fr (DILA)"
+    titre: "Ivresse - Alcoolisme"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F20104"
+    auteurs: []
+    date_publication: "2026-04-10"
+    consulte_le: "2026-10-13"
+    note: "Date « Vérifié le » de la fiche. Vente et offre d'alcool interdites aux moins de 18 ans ; amende de 7 500 € (CSP, art. L3342-1 et L3353-3). Titre français reconstitué d'après la version anglaise de la fiche (« Drunkenness - Alcoholism »)."
+
+  - id: rc-douane-droits-alcools
+    type: texte_officiel
+    editeur: "Direction générale des douanes et droits indirects (douane.gouv.fr)"
+    titre: "Liquor and alcoholic beverages rights (droits sur les alcools et boissons alcooliques)"
+    url: "https://www.douane.gouv.fr/en/fiche/liquor-and-alcoholic-beverages-rights"
+    auteurs: []
+    date_publication: ""
+    consulte_le: "2026-10-13"
+    note: "Version anglaise de la fiche de la douane. Tarifs 2025 et 2026 de l'accise, de la cotisation sécurité sociale (> 18 % vol.) et de la taxe prémix ; plafond de revalorisation de 1,75 % pour 2026 (CIBS, art. L313-19)."
+
+  - id: rc-douane-da-25-060
+    type: texte_officiel
+    editeur: "Direction générale des douanes et droits indirects — Bulletin officiel des douanes"
+    titre: "DA 25-060 — Tarifs de l'accise sur les alcools et les boissons alcooliques applicables au 1er janvier 2026"
+    url: "https://www.douane.gouv.fr/la-douane/informations/bulletins-officiels-des-douanes/da/25-060"
+    auteurs: []
+    date_publication: "2025-12-22"
+    consulte_le: "2026-10-13"
+    note: "Circulaire du 22 décembre 2025 (également BOD n° 7614). Le PDF joint est une image numérisée qui n'a pas pu être lue automatiquement ; les montants ont été lus sur la fiche rc-douane-droits-alcools."

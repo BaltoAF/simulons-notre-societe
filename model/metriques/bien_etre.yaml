@@ -1,0 +1,1417 @@
+# Indicateurs de bien-être et « nouvelles richesses » : les 10 nouveaux indicateurs de richesse (loi n° 2015-411),
+# satisfaction dans la vie (Insee, enquête SRCV), santé-environnement, sécurité ressentie, lien social, OCDE « Comment va la vie ? ».
+# Conventions de date : grandeur annuelle datée du 31 décembre de l'année de référence ; enquête SRCV (satisfaction, privation),
+# collectée « en début d'année » selon l'Insee, datée du 1er janvier de l'année d'enquête ; moyennes pluriannuelles (Gallup, OCDE)
+# et estimations sur une période datées du 31 décembre de la dernière année de la période.
+# Non dupliqués ici : espérance de vie à la naissance (sante.esperance_vie_naissance_femmes / _hommes) et durée annuelle effective
+# du travail (travail.duree_annuelle_effective).
+metriques:
+  - id: bien_etre.nir.explication
+    titre: "Nouveaux indicateurs de richesse (loi n° 2015-411) : nombre d'indicateurs du tableau de bord"
+    explication: "La loi n° 2015-411 du 13 avril 2015 (dite « loi Sas ») demande au Gouvernement de remettre chaque année au Parlement un rapport sur l'évolution de nouveaux indicateurs de richesse et une évaluation qualitative ou quantitative de l'impact des principales réformes engagées (texte cité dans une question écrite au Sénat publiée le 7 juillet 2022). Dix indicateurs complètent le PIB : taux d'emploi, effort de recherche, endettement, espérance de vie en bonne santé, satisfaction dans la vie, inégalités de revenus, privation matérielle et sociale, sorties précoces du système scolaire, empreinte carbone et artificialisation des sols. L'Insee en publie la synthèse annuelle (édition 2025 parue le 17 juillet 2026). Selon la réponse du Gouvernement au Sénat (6 octobre 2022), la dernière édition datait alors du 7 décembre 2021 ; aucun rapport du Gouvernement au Parlement plus récent n'a été trouvé. Les métriques bien_etre.nir.* reprennent ces indicateurs."
+    unite: indicateurs
+    serie:
+      - date: "2026-07-17"
+        valeur: 10
+        source: be-insee-nir-2025
+        statut: definitif
+
+  - id: bien_etre.nir.taux_emploi
+    titre: "NIR 1 - Taux d'emploi des 15-64 ans (moyenne annuelle)"
+    explication: "Part des 15-64 ans qui ont un emploi (enquête Emploi de l'Insee). En 2024 : 68,8 %, plus haut niveau depuis 1975 (71,5 % pour les hommes, 66,2 % pour les femmes) ; moyenne de l'UE : 70,8 %. Champ : France hors Mayotte jusqu'en 2023 (fichier de l'édition 2024), France en 2024 (édition 2025). Séries trimestrielles plus récentes : travail.taux_emploi_15_64."
+    unite: pourcent
+    serie:
+      - date: "2015-12-31"
+        valeur: 64.7
+        source: be-insee-nir-emploi-2024
+        statut: definitif
+      - date: "2016-12-31"
+        valeur: 65.0
+        source: be-insee-nir-emploi-2024
+        statut: definitif
+      - date: "2017-12-31"
+        valeur: 65.6
+        source: be-insee-nir-emploi-2024
+        statut: definitif
+      - date: "2018-12-31"
+        valeur: 66.1
+        source: be-insee-nir-emploi-2024
+        statut: definitif
+      - date: "2019-12-31"
+        valeur: 66.4
+        source: be-insee-nir-emploi-2024
+        statut: definitif
+      - date: "2020-12-31"
+        valeur: 66.1
+        source: be-insee-nir-emploi-2024
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: 67.3
+        source: be-insee-nir-emploi-2024
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 68.2
+        source: be-insee-nir-emploi-2024
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 68.4
+        source: be-insee-nir-emploi-2024
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 68.8
+        source: be-insee-nir-2025
+        statut: definitif
+
+  - id: bien_etre.nir.effort_recherche
+    titre: "NIR 2 - Effort de recherche (dépense intérieure de R&D, en % du PIB)"
+    explication: "Dépense intérieure de recherche et développement (DIRD, entreprises + administrations) rapportée au PIB. 2023 : 61,5 Md€, soit 2,18 % du PIB (entreprises 1,44 %, administrations 0,74 %) ; 2024 : 2,18 % (estimation, 63,6 Md€). Objectif européen : 3 % ; moyenne UE-27 2024 : 2,14 %. Source des données : MESRE-SIES."
+    unite: pourcent_pib
+    serie:
+      - date: "2015-12-31"
+        valeur: 2.23
+        source: be-insee-nir-recherche-2024
+        statut: definitif
+      - date: "2016-12-31"
+        valeur: 2.22
+        source: be-insee-nir-recherche-2024
+        statut: definitif
+      - date: "2017-12-31"
+        valeur: 2.2
+        source: be-insee-nir-recherche-2024
+        statut: definitif
+      - date: "2018-12-31"
+        valeur: 2.2
+        source: be-insee-nir-recherche-2024
+        statut: definitif
+      - date: "2019-12-31"
+        valeur: 2.19
+        source: be-insee-nir-recherche-2024
+        statut: definitif
+      - date: "2020-12-31"
+        valeur: 2.28
+        source: be-insee-nir-recherche-2024
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: 2.22
+        source: be-insee-nir-recherche-2024
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 2.22
+        source: be-insee-nir-recherche-2024
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 2.18
+        source: be-insee-nir-2025
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 2.18
+        source: be-insee-nir-2025
+        statut: estimation
+
+  - id: bien_etre.nir.endettement
+    titre: "NIR 3 - Endettement : dette publique au sens de Maastricht (% du PIB)"
+    explication: "Indicateur d'endettement retenu par le tableau de bord (comparaison France/UE) : dette brute consolidée des administrations publiques, fin d'année, en % du PIB (comptes nationaux base 2020, Eurostat décembre 2025). UE-27 fin 2024 : 80,7 %. Le tableau de bord suit aussi la dette des ménages et des sociétés non financières (métriques voisines). Série complète et plus récente : finances_publiques.dette_maastricht_pct_pib."
+    unite: pourcent_pib
+    serie:
+      - date: "2019-12-31"
+        valeur: 98.2
+        source: be-insee-nir-2025
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 109.5
+        source: be-insee-nir-2025
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 112.6
+        source: be-insee-nir-2025
+        statut: provisoire
+
+  - id: bien_etre.nir.endettement_menages
+    titre: "NIR 3 - Endettement des ménages (encours de crédits, % du PIB)"
+    explication: "Encours des emprunts des ménages rapporté au PIB. En baisse depuis 2020 avec la hausse des taux et le recul du crédit immobilier. UE-27 2024 : 49,5 %."
+    unite: pourcent_pib
+    serie:
+      - date: "2019-12-31"
+        valeur: 61.5
+        source: be-insee-nir-2025
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 61.7
+        source: be-insee-nir-2025
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 59.6
+        source: be-insee-nir-2025
+        statut: provisoire
+
+  - id: bien_etre.nir.endettement_societes_non_financieres
+    titre: "NIR 3 - Endettement consolidé des sociétés non financières (% du PIB)"
+    explication: "Crédits et titres de créance des entreprises non financières rapportés au PIB, revenus fin 2024 au niveau de 2019 après le pic lié aux prêts garantis par l'État. UE-27 fin 2024 : 71,5 %."
+    unite: pourcent_pib
+    serie:
+      - date: "2019-12-31"
+        valeur: 91.1
+        source: be-insee-nir-2025
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 92.3
+        source: be-insee-nir-2025
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 90.7
+        source: be-insee-nir-2025
+        statut: provisoire
+
+  - id: bien_etre.nir.esperance_vie_bonne_sante_femmes
+    titre: "NIR 4 - Espérance de vie sans incapacité (en bonne santé) à la naissance des femmes"
+    explication: "Nombre d'années qu'une personne peut espérer vivre sans être limitée dans les gestes de la vie quotidienne (déclaratif, enquête SRCV, calculs DREES méthode Ehemu). En 2024 : 64,1 ans (femmes) et 63,7 ans (hommes), pour une espérance de vie de 85,8 et 80,2 ans. Les pics de 2020-2021 (crise sanitaire) sont à interpréter avec prudence. Champ : France métropolitaine jusqu'en 2021, France hors Mayotte ensuite. Espérance de vie totale : sante.esperance_vie_naissance_femmes / _hommes."
+    unite: ans
+    serie:
+      - date: "2015-12-31"
+        valeur: 64.5
+        source: be-insee-nir-evsi-2024
+        statut: definitif
+      - date: "2016-12-31"
+        valeur: 64.1
+        source: be-insee-nir-evsi-2024
+        statut: definitif
+      - date: "2017-12-31"
+        valeur: 64.9
+        source: be-insee-nir-evsi-2024
+        statut: definitif
+      - date: "2018-12-31"
+        valeur: 64.4
+        source: be-insee-nir-evsi-2024
+        statut: definitif
+      - date: "2019-12-31"
+        valeur: 64.5
+        source: be-insee-nir-evsi-2024
+        statut: definitif
+      - date: "2020-12-31"
+        valeur: 65.3
+        source: be-insee-nir-evsi-2024
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: 67.0
+        source: be-insee-nir-evsi-2024
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 65.2
+        source: be-insee-nir-evsi-2024
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 64.2
+        source: be-insee-nir-evsi-2024
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 64.1
+        source: be-insee-nir-2025
+        statut: definitif
+
+  - id: bien_etre.nir.esperance_vie_bonne_sante_hommes
+    titre: "NIR 4 - Espérance de vie sans incapacité (en bonne santé) à la naissance des hommes"
+    explication: "Nombre d'années qu'une personne peut espérer vivre sans être limitée dans les gestes de la vie quotidienne (déclaratif, enquête SRCV, calculs DREES méthode Ehemu). En 2024 : 64,1 ans (femmes) et 63,7 ans (hommes), pour une espérance de vie de 85,8 et 80,2 ans. Les pics de 2020-2021 (crise sanitaire) sont à interpréter avec prudence. Champ : France métropolitaine jusqu'en 2021, France hors Mayotte ensuite. Espérance de vie totale : sante.esperance_vie_naissance_femmes / _hommes."
+    unite: ans
+    serie:
+      - date: "2015-12-31"
+        valeur: 62.7
+        source: be-insee-nir-evsi-2024
+        statut: definitif
+      - date: "2016-12-31"
+        valeur: 62.6
+        source: be-insee-nir-evsi-2024
+        statut: definitif
+      - date: "2017-12-31"
+        valeur: 62.5
+        source: be-insee-nir-evsi-2024
+        statut: definitif
+      - date: "2018-12-31"
+        valeur: 63.4
+        source: be-insee-nir-evsi-2024
+        statut: definitif
+      - date: "2019-12-31"
+        valeur: 63.7
+        source: be-insee-nir-evsi-2024
+        statut: definitif
+      - date: "2020-12-31"
+        valeur: 63.9
+        source: be-insee-nir-evsi-2024
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: 65.6
+        source: be-insee-nir-evsi-2024
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 63.8
+        source: be-insee-nir-evsi-2024
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 63.6
+        source: be-insee-nir-evsi-2024
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 63.7
+        source: be-insee-nir-2025
+        statut: definitif
+
+  - id: bien_etre.nir.satisfaction_vie
+    titre: "NIR 5 - Satisfaction dans la vie (note moyenne sur 10, personnes de 16 ans ou plus)"
+    explication: "Les personnes notent leur satisfaction concernant la vie qu'elles mènent actuellement, de 0 (« pas du tout satisfait ») à 10 (« entièrement satisfait ») (enquête SRCV de l'Insee, collectée en début d'année ; date = 1er janvier de l'année d'enquête). Stable entre 7,1 et 7,3 depuis 2014, sauf 2021 (6,8, crise sanitaire). Ruptures de série légères en 2020 (refonte de l'enquête) et 2022 (nouvelle pondération). Champ : France métropolitaine."
+    unite: note_sur_10
+    serie:
+      - date: "2015-01-01"
+        valeur: 7.2
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2016-01-01"
+        valeur: 7.2
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2017-01-01"
+        valeur: 7.2
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2018-01-01"
+        valeur: 7.3
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2019-01-01"
+        valeur: 7.3
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2020-01-01"
+        valeur: 7.2
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2021-01-01"
+        valeur: 6.8
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2022-01-01"
+        valeur: 7.1
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2023-01-01"
+        valeur: 7.2
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2024-01-01"
+        valeur: 7.2
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2025-01-01"
+        valeur: 7.2
+        source: be-insee-srcv-satisfaction-2025
+        statut: provisoire
+
+  - id: bien_etre.nir.inegalites_revenus
+    titre: "NIR 6 - Inégalités de revenus : rapport (100-S80)/S20 des masses de niveau de vie"
+    explication: "Somme des niveaux de vie des 20 % les plus aisés divisée par celle des 20 % les plus modestes, après impôts directs et prestations sociales. 4,62 en 2024, plus haut niveau depuis 1996 (avant redistribution : 8,37). Série rétropolée de l'Insee (le point 2020 est fragile). Champ : France métropolitaine. Même valeur 2024 que revenus.niveau_vie.rapport_s80_s20."
+    unite: ratio
+    serie:
+      - date: "2015-12-31"
+        valeur: 4.2
+        source: be-insee-ip2117-inegalites
+        statut: definitif
+      - date: "2016-12-31"
+        valeur: 4.17
+        source: be-insee-ip2117-inegalites
+        statut: definitif
+      - date: "2017-12-31"
+        valeur: 4.17
+        source: be-insee-ip2117-inegalites
+        statut: definitif
+      - date: "2018-12-31"
+        valeur: 4.34
+        source: be-insee-ip2117-inegalites
+        statut: definitif
+      - date: "2019-12-31"
+        valeur: 4.2
+        source: be-insee-ip2117-inegalites
+        statut: definitif
+      - date: "2020-12-31"
+        valeur: 4.07
+        source: be-insee-ip2117-inegalites
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: 4.45
+        source: be-insee-ip2117-inegalites
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 4.4
+        source: be-insee-ip2117-inegalites
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 4.53
+        source: be-insee-ip2117-inegalites
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 4.62
+        source: be-insee-ip2117-inegalites
+        statut: definitif
+
+  - id: bien_etre.nir.pauvrete_conditions_vie
+    titre: "NIR 7 - Taux de privation matérielle et sociale (ex-pauvreté en conditions de vie)"
+    explication: "Part des personnes qui cumulent au moins 5 privations sur 13 faute de moyens (chauffer son logement, une semaine de vacances, faire face à une dépense imprévue de 1 000 €, remplacer des meubles, etc.). Enquête SRCV collectée en début d'année (date = 1er janvier de l'année d'enquête). Début 2025 : 13,1 % en métropole, 13,5 % en France hors Mayotte (9,0 millions de personnes) ; valeur 2025 provisoire. Champ : France métropolitaine, personnes en logement ordinaire."
+    unite: pourcent
+    serie:
+      - date: "2015-01-01"
+        valeur: 11.8
+        source: be-insee-focus-380-privation
+        statut: definitif
+      - date: "2016-01-01"
+        valeur: 12.1
+        source: be-insee-focus-380-privation
+        statut: definitif
+      - date: "2017-01-01"
+        valeur: 11.4
+        source: be-insee-focus-380-privation
+        statut: definitif
+      - date: "2018-01-01"
+        valeur: 11.9
+        source: be-insee-focus-380-privation
+        statut: definitif
+      - date: "2019-01-01"
+        valeur: 12.4
+        source: be-insee-focus-380-privation
+        statut: definitif
+      - date: "2020-01-01"
+        valeur: 12.3
+        source: be-insee-focus-380-privation
+        statut: definitif
+      - date: "2021-01-01"
+        valeur: 10.5
+        source: be-insee-focus-380-privation
+        statut: definitif
+      - date: "2022-01-01"
+        valeur: 12.9
+        source: be-insee-focus-380-privation
+        statut: definitif
+      - date: "2023-01-01"
+        valeur: 13.1
+        source: be-insee-focus-380-privation
+        statut: definitif
+      - date: "2024-01-01"
+        valeur: 12.7
+        source: be-insee-focus-380-privation
+        statut: definitif
+      - date: "2025-01-01"
+        valeur: 13.1
+        source: be-insee-focus-380-privation
+        statut: provisoire
+
+  - id: bien_etre.nir.sorties_precoces_scolaires
+    titre: "NIR 8 - Sorties précoces du système scolaire (% des 18-24 ans)"
+    explication: "Part des 18-24 ans sans diplôme du second cycle du secondaire (ni CAP, ni BEP, ni plus) qui ne sont ni en études ni en formation. 2024 : 7,9 % (9,5 % des jeunes hommes, 6,3 % des jeunes femmes ; UE-27 : 9,4 %, cible européenne 2030 : 9 %). Selon l'Insee, le taux était de 11,1 % en moyenne en 2003-2011 et se situe entre 7,8 % et 8,0 % depuis 2019. L'édition 2025 a révisé la série (extrapolation au champ France y compris Mayotte depuis 2011) : les valeurs des éditions antérieures ne sont pas reprises ici."
+    unite: pourcent
+    serie:
+      - date: "2024-12-31"
+        valeur: 7.9
+        source: be-insee-nir-2025
+        statut: provisoire
+
+  - id: bien_etre.nir.empreinte_carbone
+    titre: "NIR 9 - Empreinte carbone par habitant"
+    explication: "Gaz à effet de serre émis pour satisfaire la demande finale des Français, importations comprises (50 % en 2024) et exportations exclues. 2024 : 563 Mt CO2e au total (- 3,4 % sur un an, - 20 % depuis 1990), soit 8,2 t par personne (estimation provisoire), contre 9,5 t en 2019 et 12,7 t en 2008. UE-27 2022 (Eurostat, modèle Figaro) : 10,7 t. Série révisée d'environ - 7 % en 2025. Voir aussi environnement_energie.empreinte_carbone_par_habitant (SDES)."
+    unite: t_co2e_par_habitant
+    serie:
+      - date: "2008-12-31"
+        valeur: 12.7
+        source: be-insee-nir-2025
+        statut: definitif
+      - date: "2019-12-31"
+        valeur: 9.5
+        source: be-insee-nir-2025
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 8.2
+        source: be-insee-nir-2025
+        statut: provisoire
+
+  - id: bien_etre.nir.artificialisation_sols
+    titre: "NIR 10 - Part du territoire métropolitain artificialisée (enquête Teruti)"
+    explication: "Surface des sols bâtis, revêtus (routes, parkings) ou artificialisés non imperméabilisés (jardins, chantiers, carrières…) en % du territoire métropolitain. 9,5 % en 2023 (8,4 % pour la France entière). Rythme d'artificialisation : + 1,5 %/an en 1983-1993, + 0,9 %/an en 2013-2023. Au sens plus restrictif d'Eurostat (Lucas 2022) : 5,6 % contre 4,4 % dans l'UE."
+    unite: pourcent
+    serie:
+      - date: "1983-12-31"
+        valeur: 5.8
+        source: be-insee-nir-2025
+        statut: definitif
+      - date: "1993-12-31"
+        valeur: 6.8
+        source: be-insee-nir-2025
+        statut: definitif
+      - date: "2003-12-31"
+        valeur: 7.7
+        source: be-insee-nir-2025
+        statut: definitif
+      - date: "2013-12-31"
+        valeur: 8.8
+        source: be-insee-nir-2025
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 9.5
+        source: be-insee-nir-2025
+        statut: definitif
+
+  - id: bien_etre.satisfaction_vie_decile_1
+    titre: "Satisfaction dans la vie selon le niveau de vie : 1er dixième (note sur 10)"
+    explication: "Note moyenne de satisfaction dans la vie des 10 % de personnes les plus modestes (niveau de vie inférieur au 1er décile), personnes de 16 ans ou plus, France métropolitaine (enquête SRCV, début d'année). Début 2025 : 6,5 pour le 1er dixième contre 7,9 pour le dernier."
+    unite: note_sur_10
+    serie:
+      - date: "2015-01-01"
+        valeur: 6.5
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2016-01-01"
+        valeur: 6.5
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2017-01-01"
+        valeur: 6.5
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2018-01-01"
+        valeur: 6.5
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2019-01-01"
+        valeur: 6.5
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2020-01-01"
+        valeur: 6.3
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2021-01-01"
+        valeur: 6.1
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2022-01-01"
+        valeur: 6.5
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2023-01-01"
+        valeur: 6.5
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2024-01-01"
+        valeur: 6.4
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2025-01-01"
+        valeur: 6.5
+        source: be-insee-srcv-satisfaction-2025
+        statut: provisoire
+
+  - id: bien_etre.satisfaction_vie_decile_2
+    titre: "Satisfaction dans la vie selon le niveau de vie : 2e dixième (note sur 10)"
+    explication: "Note moyenne de satisfaction dans la vie des personnes du 2e dixième de niveau de vie (entre le 1er et le 2e décile), personnes de 16 ans ou plus, France métropolitaine (enquête SRCV, début d'année). Début 2025 : 6,5 pour le 1er dixième contre 7,9 pour le dernier."
+    unite: note_sur_10
+    serie:
+      - date: "2015-01-01"
+        valeur: 6.8
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2016-01-01"
+        valeur: 6.8
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2017-01-01"
+        valeur: 6.7
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2018-01-01"
+        valeur: 6.8
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2019-01-01"
+        valeur: 6.7
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2020-01-01"
+        valeur: 6.5
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2021-01-01"
+        valeur: 6.3
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2022-01-01"
+        valeur: 6.5
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2023-01-01"
+        valeur: 6.7
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2024-01-01"
+        valeur: 6.6
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2025-01-01"
+        valeur: 6.7
+        source: be-insee-srcv-satisfaction-2025
+        statut: provisoire
+
+  - id: bien_etre.satisfaction_vie_decile_3
+    titre: "Satisfaction dans la vie selon le niveau de vie : 3e dixième (note sur 10)"
+    explication: "Note moyenne de satisfaction dans la vie des personnes du 3e dixième de niveau de vie (entre le 2e et le 3e décile), personnes de 16 ans ou plus, France métropolitaine (enquête SRCV, début d'année). Début 2025 : 6,5 pour le 1er dixième contre 7,9 pour le dernier."
+    unite: note_sur_10
+    serie:
+      - date: "2015-01-01"
+        valeur: 6.8
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2016-01-01"
+        valeur: 6.9
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2017-01-01"
+        valeur: 7.0
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2018-01-01"
+        valeur: 7.0
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2019-01-01"
+        valeur: 6.9
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2020-01-01"
+        valeur: 6.8
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2021-01-01"
+        valeur: 6.5
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2022-01-01"
+        valeur: 6.7
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2023-01-01"
+        valeur: 6.8
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2024-01-01"
+        valeur: 6.7
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2025-01-01"
+        valeur: 6.8
+        source: be-insee-srcv-satisfaction-2025
+        statut: provisoire
+
+  - id: bien_etre.satisfaction_vie_decile_4
+    titre: "Satisfaction dans la vie selon le niveau de vie : 4e dixième (note sur 10)"
+    explication: "Note moyenne de satisfaction dans la vie des personnes du 4e dixième de niveau de vie (entre le 3e et le 4e décile), personnes de 16 ans ou plus, France métropolitaine (enquête SRCV, début d'année). Début 2025 : 6,5 pour le 1er dixième contre 7,9 pour le dernier."
+    unite: note_sur_10
+    serie:
+      - date: "2015-01-01"
+        valeur: 7.0
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2016-01-01"
+        valeur: 6.9
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2017-01-01"
+        valeur: 7.1
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2018-01-01"
+        valeur: 7.0
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2019-01-01"
+        valeur: 7.2
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2020-01-01"
+        valeur: 6.9
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2021-01-01"
+        valeur: 6.7
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2022-01-01"
+        valeur: 6.8
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2023-01-01"
+        valeur: 7.0
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2024-01-01"
+        valeur: 7.0
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2025-01-01"
+        valeur: 7.0
+        source: be-insee-srcv-satisfaction-2025
+        statut: provisoire
+
+  - id: bien_etre.satisfaction_vie_decile_5
+    titre: "Satisfaction dans la vie selon le niveau de vie : 5e dixième (note sur 10)"
+    explication: "Note moyenne de satisfaction dans la vie des personnes du 5e dixième de niveau de vie (entre le 4e et le 5e décile), personnes de 16 ans ou plus, France métropolitaine (enquête SRCV, début d'année). Début 2025 : 6,5 pour le 1er dixième contre 7,9 pour le dernier."
+    unite: note_sur_10
+    serie:
+      - date: "2015-01-01"
+        valeur: 7.2
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2016-01-01"
+        valeur: 7.1
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2017-01-01"
+        valeur: 7.2
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2018-01-01"
+        valeur: 7.2
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2019-01-01"
+        valeur: 7.3
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2020-01-01"
+        valeur: 7.1
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2021-01-01"
+        valeur: 6.7
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2022-01-01"
+        valeur: 7.0
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2023-01-01"
+        valeur: 7.0
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2024-01-01"
+        valeur: 7.1
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2025-01-01"
+        valeur: 7.1
+        source: be-insee-srcv-satisfaction-2025
+        statut: provisoire
+
+  - id: bien_etre.satisfaction_vie_decile_6
+    titre: "Satisfaction dans la vie selon le niveau de vie : 6e dixième (note sur 10)"
+    explication: "Note moyenne de satisfaction dans la vie des personnes du 6e dixième de niveau de vie (entre le 5e et le 6e décile), personnes de 16 ans ou plus, France métropolitaine (enquête SRCV, début d'année). Début 2025 : 6,5 pour le 1er dixième contre 7,9 pour le dernier."
+    unite: note_sur_10
+    serie:
+      - date: "2015-01-01"
+        valeur: 7.2
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2016-01-01"
+        valeur: 7.3
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2017-01-01"
+        valeur: 7.3
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2018-01-01"
+        valeur: 7.4
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2019-01-01"
+        valeur: 7.5
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2020-01-01"
+        valeur: 7.3
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2021-01-01"
+        valeur: 6.8
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2022-01-01"
+        valeur: 7.1
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2023-01-01"
+        valeur: 7.4
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2024-01-01"
+        valeur: 7.3
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2025-01-01"
+        valeur: 7.2
+        source: be-insee-srcv-satisfaction-2025
+        statut: provisoire
+
+  - id: bien_etre.satisfaction_vie_decile_7
+    titre: "Satisfaction dans la vie selon le niveau de vie : 7e dixième (note sur 10)"
+    explication: "Note moyenne de satisfaction dans la vie des personnes du 7e dixième de niveau de vie (entre le 6e et le 7e décile), personnes de 16 ans ou plus, France métropolitaine (enquête SRCV, début d'année). Début 2025 : 6,5 pour le 1er dixième contre 7,9 pour le dernier."
+    unite: note_sur_10
+    serie:
+      - date: "2015-01-01"
+        valeur: 7.5
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2016-01-01"
+        valeur: 7.5
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2017-01-01"
+        valeur: 7.4
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2018-01-01"
+        valeur: 7.6
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2019-01-01"
+        valeur: 7.5
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2020-01-01"
+        valeur: 7.4
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2021-01-01"
+        valeur: 7.1
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2022-01-01"
+        valeur: 7.2
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2023-01-01"
+        valeur: 7.5
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2024-01-01"
+        valeur: 7.5
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2025-01-01"
+        valeur: 7.5
+        source: be-insee-srcv-satisfaction-2025
+        statut: provisoire
+
+  - id: bien_etre.satisfaction_vie_decile_8
+    titre: "Satisfaction dans la vie selon le niveau de vie : 8e dixième (note sur 10)"
+    explication: "Note moyenne de satisfaction dans la vie des personnes du 8e dixième de niveau de vie (entre le 7e et le 8e décile), personnes de 16 ans ou plus, France métropolitaine (enquête SRCV, début d'année). Début 2025 : 6,5 pour le 1er dixième contre 7,9 pour le dernier."
+    unite: note_sur_10
+    serie:
+      - date: "2015-01-01"
+        valeur: 7.6
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2016-01-01"
+        valeur: 7.5
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2017-01-01"
+        valeur: 7.5
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2018-01-01"
+        valeur: 7.6
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2019-01-01"
+        valeur: 7.7
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2020-01-01"
+        valeur: 7.7
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2021-01-01"
+        valeur: 7.1
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2022-01-01"
+        valeur: 7.4
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2023-01-01"
+        valeur: 7.6
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2024-01-01"
+        valeur: 7.6
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2025-01-01"
+        valeur: 7.6
+        source: be-insee-srcv-satisfaction-2025
+        statut: provisoire
+
+  - id: bien_etre.satisfaction_vie_decile_9
+    titre: "Satisfaction dans la vie selon le niveau de vie : 9e dixième (note sur 10)"
+    explication: "Note moyenne de satisfaction dans la vie des personnes du 9e dixième de niveau de vie (entre le 8e et le 9e décile), personnes de 16 ans ou plus, France métropolitaine (enquête SRCV, début d'année). Début 2025 : 6,5 pour le 1er dixième contre 7,9 pour le dernier."
+    unite: note_sur_10
+    serie:
+      - date: "2015-01-01"
+        valeur: 7.6
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2016-01-01"
+        valeur: 7.5
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2017-01-01"
+        valeur: 7.5
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2018-01-01"
+        valeur: 7.6
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2019-01-01"
+        valeur: 7.8
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2020-01-01"
+        valeur: 7.8
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2021-01-01"
+        valeur: 7.2
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2022-01-01"
+        valeur: 7.5
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2023-01-01"
+        valeur: 7.7
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2024-01-01"
+        valeur: 7.8
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2025-01-01"
+        valeur: 7.7
+        source: be-insee-srcv-satisfaction-2025
+        statut: provisoire
+
+  - id: bien_etre.satisfaction_vie_decile_10
+    titre: "Satisfaction dans la vie selon le niveau de vie : 10e dixième (note sur 10)"
+    explication: "Note moyenne de satisfaction dans la vie des 10 % de personnes les plus aisées (niveau de vie supérieur au 9e décile), personnes de 16 ans ou plus, France métropolitaine (enquête SRCV, début d'année). Début 2025 : 6,5 pour le 1er dixième contre 7,9 pour le dernier."
+    unite: note_sur_10
+    serie:
+      - date: "2015-01-01"
+        valeur: 7.8
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2016-01-01"
+        valeur: 7.6
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2017-01-01"
+        valeur: 7.6
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2018-01-01"
+        valeur: 7.7
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2019-01-01"
+        valeur: 7.8
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2020-01-01"
+        valeur: 8.0
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2021-01-01"
+        valeur: 7.4
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2022-01-01"
+        valeur: 7.7
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2023-01-01"
+        valeur: 7.9
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2024-01-01"
+        valeur: 8.0
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2025-01-01"
+        valeur: 7.9
+        source: be-insee-srcv-satisfaction-2025
+        statut: provisoire
+
+  - id: bien_etre.satisfaction_vie_chomeurs
+    titre: "Satisfaction dans la vie des chômeurs (note sur 10)"
+    explication: "Note moyenne des personnes se déclarant au chômage : environ un point de moins que les personnes en emploi (6,5 contre 7,4 début 2025). Personnes de 16 ans ou plus, France métropolitaine, enquête SRCV collectée en début d'année (date = 1er janvier de l'année d'enquête)."
+    unite: note_sur_10
+    serie:
+      - date: "2015-01-01"
+        valeur: 6.4
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2016-01-01"
+        valeur: 6.3
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2017-01-01"
+        valeur: 6.3
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2018-01-01"
+        valeur: 6.5
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2019-01-01"
+        valeur: 6.3
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2020-01-01"
+        valeur: 6.3
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2021-01-01"
+        valeur: 6.2
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2022-01-01"
+        valeur: 6.3
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2023-01-01"
+        valeur: 6.5
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2024-01-01"
+        valeur: 6.3
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2025-01-01"
+        valeur: 6.5
+        source: be-insee-srcv-satisfaction-2025
+        statut: provisoire
+
+  - id: bien_etre.satisfaction_vie_en_emploi
+    titre: "Satisfaction dans la vie des personnes en emploi (note sur 10)"
+    explication: "Note moyenne des actifs occupés (statut d'emploi déclaré dans l'enquête). Personnes de 16 ans ou plus, France métropolitaine, enquête SRCV collectée en début d'année (date = 1er janvier de l'année d'enquête)."
+    unite: note_sur_10
+    serie:
+      - date: "2015-01-01"
+        valeur: 7.5
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2016-01-01"
+        valeur: 7.4
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2017-01-01"
+        valeur: 7.4
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2018-01-01"
+        valeur: 7.5
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2019-01-01"
+        valeur: 7.6
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2020-01-01"
+        valeur: 7.4
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2021-01-01"
+        valeur: 7.0
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2022-01-01"
+        valeur: 7.3
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2023-01-01"
+        valeur: 7.4
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2024-01-01"
+        valeur: 7.4
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2025-01-01"
+        valeur: 7.4
+        source: be-insee-srcv-satisfaction-2025
+        statut: provisoire
+
+  - id: bien_etre.satisfaction_vie_retraites
+    titre: "Satisfaction dans la vie des retraités et préretraités (note sur 10)"
+    explication: "Note moyenne des retraités ou préretraités. Personnes de 16 ans ou plus, France métropolitaine, enquête SRCV collectée en début d'année (date = 1er janvier de l'année d'enquête)."
+    unite: note_sur_10
+    serie:
+      - date: "2015-01-01"
+        valeur: 7.0
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2016-01-01"
+        valeur: 7.0
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2017-01-01"
+        valeur: 7.1
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2018-01-01"
+        valeur: 7.0
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2019-01-01"
+        valeur: 7.1
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2020-01-01"
+        valeur: 7.1
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2021-01-01"
+        valeur: 6.7
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2022-01-01"
+        valeur: 6.9
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2023-01-01"
+        valeur: 7.1
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2024-01-01"
+        valeur: 7.1
+        source: be-insee-srcv-satisfaction-2025
+        statut: definitif
+      - date: "2025-01-01"
+        valeur: 7.2
+        source: be-insee-srcv-satisfaction-2025
+        statut: provisoire
+
+  - id: bien_etre.deces_pollution_air_annuels
+    titre: "Décès annuels attribuables aux particules fines (PM2,5) - France métropolitaine"
+    explication: "Estimation de Santé publique France (évaluation quantitative d'impact sanitaire) du nombre de décès de personnes de 30 ans ou plus attribuables chaque année à l'exposition de long terme aux PM2,5 : 39 541 par an sur 2016-2019 (intervalle de confiance à 95 % : 14 160 à 61 690), soit 7 % de la mortalité, contre environ 48 000 par an sur 2007-2008 (publication de 2016, mêmes hypothèses). L'étude chiffre à 7,6 mois le gain d'espérance de vie correspondant. Santé publique France cite toujours « près de 40 000 décès » en octobre 2025. Date = fin de la période d'estimation."
+    unite: deces
+    serie:
+      - date: "2008-12-31"
+        valeur: 48000
+        source: be-spf-beh-2021-pollution-mortalite
+        statut: estimation
+      - date: "2019-12-31"
+        valeur: 39541
+        source: be-spf-beh-2021-pollution-mortalite
+        statut: estimation
+
+  - id: bien_etre.deces_pollution_air_no2_annuels
+    titre: "Décès annuels attribuables au dioxyde d'azote (NO2) - France métropolitaine"
+    explication: "Estimation de Santé publique France pour 2016-2019 : 6 790 décès par an (IC 95 % : 2 400 à 10 763), soit 1 % de la mortalité des 30 ans ou plus ; gain d'espérance de vie correspondant estimé à 1,6 mois."
+    unite: deces
+    serie:
+      - date: "2019-12-31"
+        valeur: 6790
+        source: be-spf-beh-2021-pollution-mortalite
+        statut: estimation
+
+  - id: bien_etre.taux_suicide
+    titre: "Taux standardisé de décès par suicide (pour 100 000 habitants)"
+    explication: "Décès par suicide rapportés à la population, à structure par âge constante (certificats de décès, CépiDc-Inserm ; indicateur de suivi des objectifs de développement durable). 2023 : 13,0 pour 100 000 (21,0 chez les hommes, 6,1 chez les femmes). Champ : France."
+    unite: deces_pour_100000_habitants
+    serie:
+      - date: "2018-12-31"
+        valeur: 14.1
+        source: be-insee-odd3-suicide
+        statut: definitif
+      - date: "2019-12-31"
+        valeur: 13.9
+        source: be-insee-odd3-suicide
+        statut: definitif
+      - date: "2020-12-31"
+        valeur: 14.1
+        source: be-insee-odd3-suicide
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: 13.9
+        source: be-insee-odd3-suicide
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 14.2
+        source: be-insee-odd3-suicide
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 13.0
+        source: be-insee-odd3-suicide
+        statut: definitif
+
+  - id: bien_etre.deces_suicide_annuels
+    titre: "Nombre de décès par suicide (France)"
+    explication: "Nombre de décès enregistrés en France dont la cause initiale est un suicide (CIM-10 X60-X84 et Y87.0), données transmises par la France à Eurostat (mise à jour du 24 septembre 2026)."
+    unite: deces
+    serie:
+      - date: "2015-12-31"
+        valeur: 9145
+        source: be-eurostat-suicides-nombre
+        statut: definitif
+      - date: "2016-12-31"
+        valeur: 8611
+        source: be-eurostat-suicides-nombre
+        statut: definitif
+      - date: "2017-12-31"
+        valeur: 8400
+        source: be-eurostat-suicides-nombre
+        statut: definitif
+      - date: "2018-12-31"
+        valeur: 8914
+        source: be-eurostat-suicides-nombre
+        statut: definitif
+      - date: "2019-12-31"
+        valeur: 8861
+        source: be-eurostat-suicides-nombre
+        statut: definitif
+      - date: "2020-12-31"
+        valeur: 9027
+        source: be-eurostat-suicides-nombre
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: 8987
+        source: be-eurostat-suicides-nombre
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 9237
+        source: be-eurostat-suicides-nombre
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 8905
+        source: be-eurostat-suicides-nombre
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 8784
+        source: be-eurostat-suicides-nombre
+        statut: provisoire
+
+  - id: bien_etre.sentiment_insecurite
+    titre: "Part des personnes ne se sentant pas en sécurité en marchant seules la nuit dans leur quartier"
+    explication: "Indicateur de l'OCDE (Comment va la vie ?), sondage Gallup World Poll auprès des 15 ans ou plus, moyennes sur 3 ans (point daté de la dernière année : 2014-2016, 2017-2019, 2020-2022, 2023-2025). Le SSMSI (enquête Vécu et ressenti en matière de sécurité) ne publie de chiffres accessibles que par sexe et âge : voir bien_etre.sentiment_insecurite_quartier_femmes_18_29 et suivantes ; son rapport d'ensemble n'a pas pu être consulté (site protégé par une vérification anti-robot)."
+    unite: pourcent
+    serie:
+      - date: "2016-12-31"
+        valeur: 27.7
+        source: be-ocde-hows-life-2026
+        statut: estimation
+      - date: "2019-12-31"
+        valeur: 24.6
+        source: be-ocde-hows-life-2026
+        statut: estimation
+      - date: "2022-12-31"
+        valeur: 23.0
+        source: be-ocde-hows-life-2026
+        statut: estimation
+      - date: "2025-12-31"
+        valeur: 26.3
+        source: be-ocde-hows-life-2026
+        statut: estimation
+
+  - id: bien_etre.sentiment_insecurite_quartier_femmes_18_29
+    titre: "Femmes de 18 à 29 ans se sentant en insécurité dans leur quartier ou leur village"
+    explication: "Part des femmes de 18-29 ans éprouvant « souvent ou de temps en temps » un sentiment d'insécurité dans leur quartier ou village (SSMSI, enquête Vécu et ressenti en matière de sécurité, année d'enquête). C'est le groupe le plus exposé : en 2024, la part va de 15,2 % (hommes de 75 ans ou plus) à 36,5 % (femmes de 18-29 ans). Champ : France métropolitaine, Guadeloupe, Martinique, La Réunion, 18 ans ou plus en logement ordinaire."
+    unite: pourcent
+    serie:
+      - date: "2022-12-31"
+        valeur: 30.5
+        source: be-insee-cc-insecurite-vrs-2024
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 35.1
+        source: be-insee-cc-insecurite-vrs-2024
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 36.5
+        source: be-insee-cc-insecurite-vrs-2024
+        statut: definitif
+
+  - id: bien_etre.sentiment_insecurite_quartier_hommes_18_29
+    titre: "Hommes de 18 à 29 ans se sentant en insécurité dans leur quartier ou leur village"
+    explication: "Même indicateur que pour les femmes du même âge (SSMSI, enquête VRS) : la part a augmenté chaque année depuis 2022."
+    unite: pourcent
+    serie:
+      - date: "2022-12-31"
+        valeur: 16.3
+        source: be-insee-cc-insecurite-vrs-2024
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 18.5
+        source: be-insee-cc-insecurite-vrs-2024
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 21.1
+        source: be-insee-cc-insecurite-vrs-2024
+        statut: definitif
+
+  - id: bien_etre.renonce_sortir_seule_femmes_18_29
+    titre: "Femmes de 18 à 29 ans renonçant à sortir seules de chez elles pour des raisons de sécurité"
+    explication: "Part des femmes de 18-29 ans déclarant renoncer « souvent ou de temps en temps » à sortir seules de chez elles pour des raisons de sécurité (SSMSI, enquête VRS). En 2024 : 44,9 %, contre 9,9 % des hommes du même âge."
+    unite: pourcent
+    serie:
+      - date: "2022-12-31"
+        valeur: 39.6
+        source: be-insee-cc-insecurite-vrs-2024
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 42.8
+        source: be-insee-cc-insecurite-vrs-2024
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 44.9
+        source: be-insee-cc-insecurite-vrs-2024
+        statut: definitif
+
+  - id: bien_etre.isolement_social
+    titre: "Part des personnes se sentant seules la plupart du temps ou tout le temps"
+    explication: "Personnes de 16 ans ou plus déclarant s'être senties seules « tout le temps » ou « la plupart du temps » au cours des quatre dernières semaines (module bien-être de l'enquête européenne EU-SILC, repris par l'OCDE). Pas d'indicateur annuel officiel français d'isolement relationnel trouvé."
+    unite: pourcent
+    serie:
+      - date: "2018-12-31"
+        valeur: 7.1
+        source: be-ocde-hows-life-2026
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 10.8
+        source: be-ocde-hows-life-2026
+        statut: definitif
+
+  - id: bien_etre.ocde.horaires_tres_longs
+    titre: "OCDE - Part des salariés travaillant habituellement 50 heures ou plus par semaine"
+    explication: "Indicateur d'équilibre vie professionnelle / vie privée de l'OCDE : salariés de 15 ans ou plus dont la durée habituelle de travail atteint 50 heures par semaine (selon l'OCDE, au-delà il ne reste probablement qu'une ou deux heures par jour pour les autres activités). 2025 : 5,9 % (7,8 % des hommes, 4,0 % des femmes). Durée annuelle effective : travail.duree_annuelle_effective."
+    unite: pourcent
+    serie:
+      - date: "2015-12-31"
+        valeur: 7.5
+        source: be-ocde-hows-life-2026
+        statut: definitif
+      - date: "2016-12-31"
+        valeur: 7.8
+        source: be-ocde-hows-life-2026
+        statut: definitif
+      - date: "2017-12-31"
+        valeur: 7.6
+        source: be-ocde-hows-life-2026
+        statut: definitif
+      - date: "2018-12-31"
+        valeur: 7.7
+        source: be-ocde-hows-life-2026
+        statut: definitif
+      - date: "2019-12-31"
+        valeur: 7.7
+        source: be-ocde-hows-life-2026
+        statut: definitif
+      - date: "2020-12-31"
+        valeur: 7.7
+        source: be-ocde-hows-life-2026
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: 6.2
+        source: be-ocde-hows-life-2026
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 6.2
+        source: be-ocde-hows-life-2026
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 6.1
+        source: be-ocde-hows-life-2026
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 6.0
+        source: be-ocde-hows-life-2026
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 5.9
+        source: be-ocde-hows-life-2026
+        statut: definitif
+
+  - id: bien_etre.ocde.absence_soutien_social
+    titre: "OCDE - Part des personnes n'ayant personne sur qui compter en cas de difficulté"
+    explication: "Réponse « non » à la question (traduite de l'anglais) : avez-vous, en cas de difficulté, des parents ou des amis sur qui compter pour vous aider quand vous en avez besoin ? (Gallup World Poll, 15 ans ou plus, moyennes sur 3 ans datées de la dernière année : 2014-2016, 2017-2019, 2020-2022, 2023-2025). Échantillon d'environ 1 000 personnes par an : évolutions à lire avec prudence."
+    unite: pourcent
+    serie:
+      - date: "2016-12-31"
+        valeur: 11.4
+        source: be-ocde-hows-life-2026
+        statut: estimation
+      - date: "2019-12-31"
+        valeur: 6.3
+        source: be-ocde-hows-life-2026
+        statut: estimation
+      - date: "2022-12-31"
+        valeur: 9.1
+        source: be-ocde-hows-life-2026
+        statut: estimation
+      - date: "2025-12-31"
+        valeur: 12.2
+        source: be-ocde-hows-life-2026
+        statut: estimation
+
+  - id: bien_etre.ocde.difficultes_fins_de_mois
+    titre: "OCDE - Part des personnes vivant dans un ménage qui a des difficultés à boucler ses fins de mois"
+    explication: "Part des personnes de 16 ans ou plus dont le ménage déclare avoir des difficultés ou de grandes difficultés à joindre les deux bouts (EU-SILC, repris par l'OCDE). Ruptures de série signalées par l'OCDE en 2020 et 2022."
+    unite: pourcent
+    serie:
+      - date: "2015-12-31"
+        valeur: 19.9
+        source: be-ocde-hows-life-2026
+        statut: definitif
+      - date: "2016-12-31"
+        valeur: 19.2
+        source: be-ocde-hows-life-2026
+        statut: definitif
+      - date: "2017-12-31"
+        valeur: 18.1
+        source: be-ocde-hows-life-2026
+        statut: definitif
+      - date: "2018-12-31"
+        valeur: 18.3
+        source: be-ocde-hows-life-2026
+        statut: definitif
+      - date: "2019-12-31"
+        valeur: 16.8
+        source: be-ocde-hows-life-2026
+        statut: definitif
+      - date: "2020-12-31"
+        valeur: 18.5
+        source: be-ocde-hows-life-2026
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: 16.6
+        source: be-ocde-hows-life-2026
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 21.7
+        source: be-ocde-hows-life-2026
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 22.1
+        source: be-ocde-hows-life-2026
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 21.8
+        source: be-ocde-hows-life-2026
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 21.7
+        source: be-ocde-hows-life-2026
+        statut: definitif

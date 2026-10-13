@@ -1,0 +1,57 @@
+# Registre des sources de model/metriques/budget_menages.yaml (ids préfixés « bm- »).
+sources:
+  - id: bm-eurostat-gov-10a-exp-md
+    type: statistique_publique
+    editeur: Eurostat
+    titre: "General government expenditure by function (COFOG) — gov_10a_exp, France, administrations publiques (S13), millions d'euros, toutes fonctions et sous-fonctions"
+    url: "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/gov_10a_exp?format=JSON&lang=EN&geo=FR&sector=S13&na_item=TE&unit=MIO_EUR&sinceTimePeriod=2022"
+    auteurs: []
+    date_publication: "2026-09-16"
+    consulte_le: "2026-10-13"
+    note: "Données transmises par l'Insee ; dernière année : 2024 (provisoire). Copie : system/cache/budget-menages/eurostat-gov_10a_exp-FR-S13-TE-MIO_EUR.json."
+  - id: bm-insee-fps2025-redistribution
+    type: statistique_publique
+    editeur: Insee
+    titre: "France, portrait social — édition 2025, fiche « Redistribution monétaire » (figure 1 : montants moyens des prélèvements et prestations par unité de consommation en 2024)"
+    url: "https://www.insee.fr/fr/statistiques/8612544?sommaire=8612596"
+    auteurs: []
+    date_publication: "2025-11-18"
+    consulte_le: "2026-10-13"
+    note: "Modèle Ines 2024 sur ERFS 2022 actualisée 2024. Données : https://www.insee.fr/fr/statistiques/fichier/8612544/FPORSOC25-F20.xlsx (copie : system/cache/budget-menages/insee-8612544-FPORSOC25-F20.xlsx). Publié par décile 1, décile 10 et quintiles uniquement."
+  - id: bm-dgfip-stat-46-tf-2025
+    type: statistique_publique
+    editeur: "DGFiP (Département des études et des statistiques fiscales)"
+    titre: "DGFiP Statistiques n° 46 — En 2025, la taxe foncière progresse de 2,4 %"
+    url: "https://www.impots.gouv.fr/sites/default/files/media/9_statistiques/0_etudes_et_stats/0_publications/dgfip_statistiques/2026/num46_05/dgfip_stat_46_tf_2026.pdf"
+    auteurs:
+      - "Matthieu Chtioui"
+    date_publication: "2026-05"
+    consulte_le: "2026-10-13"
+    note: "Tableau 2 (taxe foncière par type de propriétaire). Copie : system/cache/budget-menages/dgfip-stat-46-tf-2026.pdf."
+  - id: bm-insee-cn2025-t2104
+    type: statistique_publique
+    editeur: Insee
+    titre: "Les comptes de la Nation en 2025 — Tableau 2.104 : compte des ménages simplifié et ratios d'épargne"
+    url: "https://www.insee.fr/fr/statistiques/fichier/8988851/t_2104_fr.xlsx"
+    auteurs: []
+    date_publication: "2026-05-29"
+    consulte_le: "2026-10-13"
+    note: "Page : https://www.insee.fr/fr/statistiques/8988851?sommaire=8988934. Copie : system/cache/budget-menages/insee-8988851-t_2104_fr.xlsx (et t_2101_fr.xlsx pour le revenu disponible brut)."
+  - id: bm-cor-ra-2026
+    type: rapport_institutionnel
+    editeur: "Conseil d'orientation des retraites (COR)"
+    titre: "Évolutions et perspectives des retraites en France — rapport annuel, juin 2026"
+    url: "https://www.cor-retraites.fr/sites/default/files/2026-07/RA_2026_def_1.pdf"
+    auteurs: []
+    date_publication: "2026-06"
+    consulte_le: "2026-10-13"
+    note: "Partie 2, chapitre 2, p. 65 (dépenses 2025 : 422,2 Md€, 14,1 % du PIB) ; synthèse p. 9. Copie : system/cache/budget-menages/cor-ra-2026-def-1.pdf."
+  - id: bm-drees-cns-2026
+    type: statistique_publique
+    editeur: Drees
+    titre: "Les dépenses de santé en 2025 — Résultats des comptes de la santé, édition 2026 (Panoramas de la Drees)"
+    url: "https://drees.solidarites-sante.gouv.fr/publications-communique-de-presse-infographie-documents-de-reference/261001-les-d%C3%A9penses-de-sant%C3%A9-en-2025-edition-2026-panorama-de-la-drees"
+    auteurs: []
+    date_publication: "2026-10-01"
+    consulte_le: "2026-10-13"
+    note: "Vue d'ensemble, tableau 1 (DCSi par composante), tableau 2 (financement) et graphique 7 (reste à charge par habitant) : https://drees.solidarites-sante.gouv.fr/sites/default/files/2026-09/CNS2026%20-%20Vue%20d%27ensemble.xlsx (copie : system/cache/budget-menages/drees-cns2026-vue-ensemble.xlsx)."

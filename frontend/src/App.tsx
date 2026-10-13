@@ -7,6 +7,7 @@ import { Loading } from './components/ui'
 import Accueil from './pages/Accueil'
 
 const MesDroits = lazy(() => import('./pages/MesDroits'))
+const Budget = lazy(() => import('./pages/Budget'))
 const Regles = lazy(() => import('./pages/Regles'))
 const Domaine = lazy(() => import('./pages/Domaine'))
 const RegleDetail = lazy(() => import('./pages/RegleDetail'))
@@ -34,6 +35,7 @@ function Header() {
         </Link>
         <nav className="nav" aria-label="Navigation principale">
           <NavLink to="/mes-droits">Mes droits</NavLink>
+          <NavLink to="/budget">Le budget</NavLink>
           <NavLink to="/atelier">Tester une réforme</NavLink>
           <NavLink to="/regles">Les règles</NavLink>
           <NavLink to="/societes">Les sociétés</NavLink>
@@ -92,6 +94,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Accueil />} />
             <Route path="/mes-droits" element={<MesDroits />} />
+            <Route path="/budget" element={<Budget />} />
             <Route path="/regles" element={<Regles />} />
             <Route path="/regles/d/:domaine" element={<Domaine />} />
             <Route path="/regles/r/:id" element={<RegleDetail />} />

@@ -360,6 +360,36 @@ def simuler_reforme(body: ReformeIn, user: dict | None = Depends(auth.current_us
     return simulation.simuler(store, overrides, menage, approx, body.modules)
 
 
+@app.get("/api/budget/national")
+def budget_national():
+    """Où va l'argent public, d'où il vient, ramené par habitant et par ménage."""
+    from .budget_vue import vue_nationale
+    return vue_nationale(get_store())
+
+
+@app.post("/api/budget/menage")
+def budget_menage(body: MenageIn):
+    """Ce que paie et reçoit un ménage, et ce que finance sa contribution."""
+    from .budget_vue import vue_menage
+    if not ENGINE.ready:
+        ENGINE.load()
+    m, _ = menage_depuis_saisie(body.menage, body.montants)
+    return vue_menage(get_store(), m)
+
+
+class CompensationIn(BaseModel):
+    overrides: dict[str, Any] = Field(default_factory=dict)
+    equilibre: str = "budget"
+    manque: float
+
+
+@app.post("/api/compensations")
+def compensations(body: CompensationIn):
+    """Propositions pour compenser une réforme qui dégrade un équilibre (finances publiques, budget carbone)."""
+    from .impacts.compensations import proposer
+    return proposer(get_store(), body.overrides, body.equilibre, body.manque)
+
+
 # ───────────────────────── comptes ─────────────────────────
 class InscriptionIn(BaseModel):
     pseudo: str

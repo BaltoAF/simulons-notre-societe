@@ -74,3 +74,9 @@ def signe(delta: float, seuil: float = 0.5) -> str:
     if delta < -seuil:
         return "defavorable"
     return "neutre"
+
+
+def fr(x: float, d: int = 1) -> str:
+    """Nombre au format français (virgule décimale, espace pour les milliers)."""
+    txt = f"{x:,.{d}f}".replace(",", " ").replace(".", ",")
+    return txt

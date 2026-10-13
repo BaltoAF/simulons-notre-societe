@@ -1,0 +1,166 @@
+sources:
+  # ─────────────────────────────── SNBC 3 et budgets carbone ───────────────────────────────
+  - id: eco-mte-snbc3-partie1
+    type: texte_officiel
+    editeur: "Ministère de la Transition écologique (ecologie.gouv.fr)"
+    titre: "Stratégie nationale bas-carbone n° 3 – Partie 1 (juillet 2026)"
+    url: "https://www.ecologie.gouv.fr/sites/default/files/documents/SNBC3-Partie1-Juillet2026.pdf"
+    auteurs: []
+    date_publication: ""
+    consulte_le: "2026-10-13"
+    note: "Document de la SNBC 3 daté de juillet 2026 (nom du fichier ; jour non précisé). Partie II.C « Présentation des budgets carbone » (p. 65-73) : 3e budget 2024-2028 = 342 Mt CO2e/an, 4e budget 2029-2033 = 262, 5e budget 2034-2038 = 194, « hors puits de carbone (puits technologiques et secteur UTCATF) ». Tableau 4 (répartition par domaines d'activité, arrondie à 1 Mt) : 2024-2028 transports 116, bâtiments 51, agriculture 75, industrie 56, production d'énergie 30, déchets 14 ; 2029-2033 : 86, 34, 67, 40, 24, 12 ; 2034-2038 : 54, 21, 60, 28, 19, 10. Tableau 5 : SEQE-UE 60 / ESR 278 / aviation domestique 4 (2024-2028). Tableau 7 (tranches annuelles indicatives) : 2024 : 367, 2025 : 359, 2026 : 348, 2027 : 328, 2028 : 308 ; 2029-2033 : 292, 276, 262, 248, 234 ; 2034-2038 : 221, 207, 194, 180, 167. Tableau 8 : soutes internationales 22 Mt (2024-2028). Tableau 9 : budgets indicatifs en empreinte [516 ; 531], [408 ; 446], [312 ; 358]. Tableau 10 : puits UTCATF indicatifs -46, -33, -31. Bilan du 2e budget (p. 28-30) : 406 Mt/an en moyenne 2019-2023 contre un budget ajusté de 425 (+3 Mt/an par rapport au budget initial), marge de 91 Mt cumulés. Copie : system/cache/ecologie/snbc3-partie1-juillet2026.pdf."
+
+  - id: eco-mte-snbc-feuille-route
+    type: rapport_institutionnel
+    editeur: "Ministère de la Transition écologique (ecologie.gouv.fr)"
+    titre: "La SNBC, feuille de route climatique française"
+    url: "https://www.ecologie.gouv.fr/strategie-nationale-bas-carbone/feuille-route-climatique-francaise"
+    auteurs: []
+    date_publication: "2026-09-15"
+    consulte_le: "2026-10-13"
+    note: "Date = mise à jour (publication le 11/02/2026). « La troisième stratégie nationale bas-carbone met à jour les budgets pour 2024‑2028 et 2029‑2033 et fixe un nouveau budget pour 2034‑2038 » ; graphique décrit : 2024-2028 total 342 (agriculture 75, transports 116, bâtiments 51, industrie 56, énergie 30), 2029-2033 total 262, 2034-2038 total 194. Liens vers les documents de la SNBC 3. Copie HTML : system/cache/ecologie/mte-snbc_feuille-route-climatique-francaise.html."
+
+  - id: eco-mte-suivi-emissions-ges
+    type: rapport_institutionnel
+    editeur: "Ministère de la Transition écologique (ecologie.gouv.fr)"
+    titre: "Suivi des émissions de gaz à effet de serre en France"
+    url: "https://www.ecologie.gouv.fr/strategie-nationale-bas-carbone/suivi-des-emissions-gaz-effet-serre"
+    auteurs: []
+    date_publication: "2026-07-31"
+    consulte_le: "2026-10-13"
+    note: "Date = mise à jour (publication le 29/06/2026). Émissions 2024 : 367 Mt CO2e hors puits (-3,0 %) ; 2025 : 359 Mt (-2,2 % dans le corps du texte, -2,1 % dans l'encadré). « nous devons baisser nos émissions à un rythme annuel de -5 % entre 2024 et 2030 ». Tableau « budgets carbone en vigueur (SNBC 3) » : 2024-2028 : 342 ; 2029-2033 : 261 ; 2034-2038 : 193 (écart de 1 Mt avec le document de la SNBC 3 pour les deux dernières périodes). 2019-2023 : respecté avec une marge de 91 Mt cumulés (406 Mt/an contre un plafond de 425) ; 2015-2018 : dépassé de 61 Mt (budget ajusté 442 Mt/an)."
+
+  - id: eco-bdt-snbc3-jo-2026
+    type: presse
+    editeur: "Banque des Territoires (Localtis)"
+    titre: "La troisième stratégie nationale bas-carbone au Journal officiel"
+    url: "https://www.banquedesterritoires.fr/la-troisieme-strategie-nationale-bas-carbone-au-journal-officiel"
+    auteurs: ["Frédéric Fortin"]
+    date_publication: "2026-07-20"
+    consulte_le: "2026-10-13"
+    note: "Décret n° 2026-636 du 16 juillet 2026 relatif aux budgets carbone nationaux et à la stratégie nationale bas-carbone, publié au JO du 18 juillet 2026 (texte n° 8). Budgets hors puits : 2024-2028 révisé à 342 Mt (contre 359 fixés par la SNBC 2 en 2020), 2029-2033 à 262 Mt (contre 300), 2034-2038 : 194 Mt. Objectifs sectoriels 2030 vs 1990 : transports 92 Mt (-26 %), agriculture 68 (-26 %), déchets 12 (-28 %), bâtiments 37 (-61 %), énergie 25 (-69 %), industrie 42 (-70 %). Le texte du décret sur Légifrance (JORFTEXT) n'a pas pu être consulté (HTTP 403) ; NOR TECR2618516D d'après blog.landot-avocats.net (18/07/2026)."
+
+  # ─────────────────────────────── Émissions territoriales (Citepa) ───────────────────────────────
+  - id: eco-citepa-secten-2026-serie-longue
+    type: statistique_publique
+    editeur: "Citepa"
+    titre: "Données Secten en série temporelle – édition 2026 (fichier serie_longue_Citepa_Secten_ed_2026)"
+    url: "https://www.citepa.org/wp-content/uploads/2026/06/serie_longue_Citepa_Secten_ed_2026-d.xlsx"
+    auteurs: []
+    date_publication: "2026-06-16"
+    consulte_le: "2026-10-13"
+    note: "Page : https://www.citepa.org/donnees-air-climat/donnees-gaz-a-effet-de-serre/secten/ (dernière édition : 16 juin 2026 ; statistiques d'intérêt général depuis le 17/07/2025). Onglet BDD_Secten, substance « total GES » (MtCO2e, PRG AR5), périmètre « France hexagonale + Outre-mer inclus dans l'UE », hors UTCATF et hors transports internationaux. Agrégation par secteur_niv1 réalisée par le Système (somme des sous-secteurs) : total hors UTCATF 2015 : 460,84 ; 2019 : 437,71 ; 2023 : 378,23 ; 2024 : 367,02 ; 2025 : 359,40 (pré-estimation). 2024 par secteur : transport 125,35 ; agriculture/sylviculture 77,53 ; industrie manufacturière et construction 61,59 ; usage des bâtiments résidentiels/tertiaires 56,07 ; industrie de l'énergie 31,18 ; déchets centralisés 15,30 ; UTCATF -51,96. Transport routier 2024 : 117,35, dont voitures particulières (VP diesel, essence, GPL, GNV) 67,84. Copie : system/cache/ecologie/citepa-secten-2026-serie-longue.xlsx (identique à system/cache/complements/)."
+
+  # ─────────────────────────────── Empreinte carbone ───────────────────────────────
+  - id: eco-sdes-empreinte-1990-2024-donnees
+    type: statistique_publique
+    editeur: "SDES - Ministère de la Transition écologique / Insee"
+    titre: "L'empreinte carbone de la France de 1990 à 2024 – données des graphiques (octobre 2025)"
+    url: "https://www.statistiques.developpement-durable.gouv.fr/media/8724/download?inline"
+    auteurs: ["Manuel Baude", "Sylvain Larrieu"]
+    date_publication: "2025-10-16"
+    consulte_le: "2026-10-13"
+    note: "Fichier statistiques_sdes_empreinte_carbone_2024_donnees_graphiques_octobre2025.xlsx, onglet data_2 (empreinte totale en Mt CO2 éq et par personne, 1990-2024 ; 2024 provisoire ; 1990-2009 rétropolés). Page : https://www.statistiques.developpement-durable.gouv.fr/lempreinte-carbone-de-la-france-de-1990-2024 (révision Eurostat d'environ -7 % sur toute la période ; 2023 révisé à 583 Mt contre 644 Mt publiés en 2024). Champ : France et Saint-Martin ; CO2 + CH4 + N2O + gaz fluorés ; hors UTCATF. Les comptes carbone 2025 de l'Insee sont annoncés pour octobre 2026 (non parus au 13/10/2026). Copie : system/cache/ecologie/sdes-empreinte-carbone-2024-donnees-graphiques-oct2025.xlsx."
+
+  - id: eco-ofce-malliet-2020
+    type: document_de_travail
+    editeur: "OFCE (Sciences Po)"
+    titre: "L'empreinte carbone des ménages français et les effets redistributifs d'une fiscalité carbone aux frontières (OFCE Policy brief n° 62)"
+    url: "https://www.ofce.sciences-po.fr/pdf/pbrief/2020/OFCEpbrief62.pdf"
+    auteurs: ["Paul Malliet"]
+    date_publication: "2020-01-09"
+    consulte_le: "2026-10-13"
+    note: "Synthèse d'un rapport pour l'ADEME. Tableau 1 (empreinte par ménage selon le décile de niveau de vie, en tCO2e, données Budget de famille 2011 + EXIOBASE 3, émissions des APU réparties uniformément à 3,532 t par ménage) : D1 15,235 ; D2 17,839 ; D3 18,656 ; D4 20,109 ; D5 21,991 ; D6 24,83 ; D7 25,872 ; D8 28,029 ; D9 32,024 ; D10 40,4 ; moyenne 24,5. Par individu : 4,7 t (D1) et 18,4 t (D10). Intensité carbone de la consommation par UC : 1,68 kgCO2e par euro consommé (D1) contre 1,14 (D10). Copie : system/cache/ecologie/ofce-pbrief62-2020.pdf."
+
+  - id: eco-insee-es545-semet-2024
+    type: etude_academique
+    editeur: "Insee – Économie et Statistique n° 545"
+    titre: "L'influence des caractéristiques et des décisions des ménages sur leur empreinte carbone : une analyse par régression quantile"
+    url: "https://www.insee.fr/fr/statistiques/fichier/8561909/02_ES545_Semet_FR.pdf"
+    auteurs: ["Raphaël Semet"]
+    date_publication: ""
+    consulte_le: "2026-10-13"
+    note: "Numéro 545, année 2024 (date exacte non relevée). Enquête Budget de famille 2017, Exiobase 3, France métropolitaine : empreinte moyenne 19 tCO2e par ménage ; les ménages du dixième de revenu (par UC) le plus élevé émettent 31 tCO2e, 2,6 fois plus que ceux du plus bas dixième (12 tCO2e). Valeurs des déciles intermédiaires uniquement sous forme graphique. Copie : system/cache/ecologie/insee-es545-semet.pdf."
+
+  # ─────────────────────────────── Énergie ───────────────────────────────
+  - id: eco-sdes-chiffres-cles-energie-2026
+    type: statistique_publique
+    editeur: "SDES - Ministère de la Transition écologique"
+    titre: "Chiffres clés de l'énergie – Édition 2026 (données associées)"
+    url: "https://www.statistiques.developpement-durable.gouv.fr/media/9748/download?inline"
+    auteurs: []
+    date_publication: ""
+    consulte_le: "2026-10-13"
+    note: "Fichier statistiques_sdes_chiffres_cles_energie_edition_2026_donnees.xlsx. Onglets P2-38 (consommation finale à usage énergétique par énergie) et P2-40 (par secteur), TWh, données corrigées des variations climatiques, source primaire SDES, Bilan énergétique de la France ; métropole jusqu'en 2010, + 5 DROM depuis 2011. Total 2024 : 1 549,31 TWh ; 2025 (p) : 1 532,57 TWh (résidentiel 456,4 ; tertiaire 233,4 ; transports 512,5 ; industrie 273,9 ; agriculture-pêche 56,4). Onglet P1-21 : prix TTC 2025 gazole 1,6186 €/l, SP95-E10 1,6902 €/l (France métropolitaine hors Corse, DGEC/Insee). Copie : system/cache/ecologie/sdes-chiffres-cles-energie-2026-donnees.xlsx."
+
+  - id: eco-insee-prix-carburants
+    type: statistique_publique
+    editeur: "Insee – Banque de données macro-économiques (jeu IPC-PM-2015, prix moyens de vente de détail)"
+    titre: "Prix moyens annuels et mensuels de vente au détail en métropole – gazole et supercarburant SP95-E10 (1 litre)"
+    url: "https://bdm.insee.fr/series/sdmx/data/IPC-PM-2015?startPeriod=2025-01"
+    auteurs: []
+    date_publication: "2026-09-15"
+    consulte_le: "2026-10-13"
+    note: "Date = dernière mise à jour des séries. Idbanks : 010533883 (gazole, annuel) 2025 = 1,64 € ; 010596133 (SP95-E10, annuel) 2025 = 1,70 € ; 000442588 (gazole, mensuel) 2026-01 : 1,65, 02 : 1,69, 03 : 2,06, 04 : 2,26, 05 : 2,15, 06 : 1,96, 07 : 2,04, 08 : 2,21 ; 010596132 (SP95-E10, mensuel) 2026-01 : 1,68, 02 : 1,70, 03 : 1,89, 04 : 2,00, 05 : 2,04, 06 : 1,94, 07 : 1,97, 08 : 2,01. Pages série : https://www.insee.fr/fr/statistiques/serie/000442588 et https://www.insee.fr/fr/statistiques/serie/010596132. Copie : system/cache/ecologie/insee-ipc-pm-2015-recent.xml."
+
+  - id: eco-ademe-base-carbone-v23-6
+    type: statistique_publique
+    editeur: "ADEME – Base Empreinte / Base Carbone®"
+    titre: "Base Carbone® V23.6 – facteurs d'émission « Gazole routier B7 » et « Essence – Supercarburant sans plomb (95, 95-E10, 98) »"
+    url: "https://data.ademe.fr/datasets/base-carboner"
+    auteurs: []
+    date_publication: "2025-07-03"
+    consulte_le: "2026-10-13"
+    note: "Date = mise à jour des données (version V23.6). Lecture via l'API https://data.ademe.fr/data-fair/api/v1/datasets/base-carboner/lines. Élément 25775 « Gazole routier, B7 », France continentale, statut « Valide générique » : 3,1 kgCO2e/litre (combustion 2,49 ; amont 0,609). Élément 25763 « Essence, Supercarburant sans plomb (95, 95-E10, 98) », France continentale : 2,69 kgCO2e/litre (combustion 2,2 ; amont 0,491). Élément 13988 « Essence E10 » : 2,69 (combustion 2,19 ; amont 0,502). Période de validité indiquée : « déc-20 »."
+
+  # ─────────────────────────────── Artificialisation ───────────────────────────────
+  - id: eco-mte-artificialisation-sols
+    type: rapport_institutionnel
+    editeur: "Ministère de la Transition écologique (ecologie.gouv.fr)"
+    titre: "Artificialisation des sols"
+    url: "https://www.ecologie.gouv.fr/politiques-publiques/artificialisation-sols"
+    auteurs: []
+    date_publication: "2025-10-27"
+    consulte_le: "2026-10-13"
+    note: "Date = mise à jour (publication le 24/09/2023). « La France s'est fixée, dans le cadre de la loi Climat et résilience adoptée en août 2021 : l'objectif d'atteindre le \"zéro artificialisation nette des sols\" en 2050, avec un objectif intermédiaire de réduction de moitié de la consommation d'espaces naturels, agricoles et forestiers dans les dix prochaines années (2021-2031) par rapport à la décennie précédente (2011-2021) » ; loi ZAN du 20 juillet 2023 ; « 24 000 hectares d'espaces naturels, agricoles et forestiers ont été consommés chaque année en moyenne » sur la décennie précédente."
+
+  - id: eco-portail-artificialisation
+    type: rapport_institutionnel
+    editeur: "Portail de l'artificialisation des sols (Cerema, ministères)"
+    titre: "Portail de l'artificialisation des sols – page d'accueil et méthodologie"
+    url: "https://artificialisation.developpement-durable.gouv.fr/"
+    auteurs: []
+    date_publication: ""
+    consulte_le: "2026-10-13"
+    note: "Page consultée le 13/10/2026 (actualités datées jusqu'au 30/09/2026) : objectif ZAN en 2050 « avec un objectif intermédiaire de réduction de moitié de la consommation d'espaces naturels, agricoles et forestiers sur la décennie 2021-2031, par rapport à la décennie précédente 2011-2021 ». Article 194 de la loi Climat et résilience cité (première tranche de dix ans exprimée en consommation d'ENAF). Données 1er janvier 2011 - 1er janvier 2025 publiées en juin-juillet 2026."
+
+  - id: eco-cerema-conso-enaf-2011-2025
+    type: statistique_publique
+    editeur: "Cerema (data.gouv.fr)"
+    titre: "Consommation d'espaces naturels, agricoles et forestiers du 1er janvier 2011 au 1er janvier 2025 (fichier conso_com.csv)"
+    url: "https://www.data.gouv.fr/datasets/consommation-despaces-naturels-agricoles-et-forestiers-du-1er-janvier-2011-au-1er-janvier-2025"
+    auteurs: []
+    date_publication: "2026-07-24"
+    consulte_le: "2026-10-13"
+    note: "Fichier : https://static.data.gouv.fr/resources/consommation-despaces-naturels-agricoles-et-forestiers-du-1er-janvier-2011-au-1er-janvier-2025/20260724-142909/conso-com.csv (34 856 communes, France métropolitaine + Guadeloupe, Martinique, Guyane, La Réunion ; Mayotte absente). Mesure à partir des Fichiers fonciers ; données reconnues d'intérêt général par l'Autorité de la statistique publique. Variables nafAAartBB en m² (vérifié via surfcom2025). Somme nationale calculée par le Système : 2011 : 29 470 ha ; 2015 : 20 511 ; 2020 : 19 549 ; 2021 : 20 130 ; 2022 : 19 336 ; 2023 : 18 073 ; 2024 : 15 119 ; 1/1/2011-1/1/2021 : 226 734 ha ; 1/1/2021-1/1/2025 : 72 658 ha. Copie : system/cache/ecologie/conso-enaf/conso-com.csv."
+
+  # ─────────────────────────────── Santé, évaluation ───────────────────────────────
+  - id: eco-spf-pollution-air-2021
+    type: rapport_institutionnel
+    editeur: "Santé publique France"
+    titre: "Pollution de l'air ambiant : nouvelles estimations de son impact sur la santé des Français (communiqué)"
+    url: "https://www.santepubliquefrance.fr/presse/2021/pollution-de-l-air-ambiant-nouvelles-estimations-de-son-impact-sur-la-sante-des-francais"
+    auteurs: []
+    date_publication: "2021-04-14"
+    consulte_le: "2026-10-13"
+    note: "EQIS 2016-2019, France métropolitaine : « chaque année près de 40 000 décès seraient attribuables à une exposition des personnes âgées de 30 ans et plus aux particules fines (PM2,5) », soit 7 % de la mortalité totale (9 % en 2007-2008) et près de 8 mois d'espérance de vie perdus. Aucune estimation nationale plus récente trouvée au 13/10/2026."
+
+  - id: eco-hcc-ra2026
+    type: rapport_institutionnel
+    editeur: "Haut Conseil pour le climat"
+    titre: "Rapport annuel 2026 – Dangers climatiques : la France face à ses responsabilités (résumé exécutif et recommandations)"
+    url: "https://www.hautconseilclimat.fr/wp-content/uploads/2026/07/HCC_RA2026-Resume-executif-Recommandations_1707.pdf"
+    auteurs: []
+    date_publication: "2026-07-09"
+    consulte_le: "2026-10-13"
+    note: "Page : https://www.hautconseilclimat.fr/publications/dangers-climatiques-la-france-face-a-ses-responsabilites/. Section 4.1 : « En 2025, la France a émis 359 Mt éqCO2 d'après la pré-estimation du Citepa, soit une baisse de 7,6 Mt éqCO2 » ; baisse 2023-2024 : 3,0 % ; baisse pré-estimée 2024-2025 : 2,1 % ; 2022 et 2023 : -3,9 %, -6,8 %. « pour respecter le 3e budget carbone (2024-2028), le rythme doit s'accélérer et au moins doubler, pour atteindre en moyenne plus de 4 % par an en 2026, 2027 et 2028 ». Les plafonds annuels indicatifs 2024 et 2025 sont respectés car la trajectoire de la SNBC 3 a été alignée sur le ralentissement observé. Copie : system/cache/ecologie/HCC_RA2026-Resume-executif-Recommandations_1707.pdf."

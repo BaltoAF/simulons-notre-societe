@@ -29,7 +29,7 @@ const UNITES: Record<string, (v: number) => string> = {
   ans: (v) => nombre(v, 1) + (v >= 2 ? ' ans' : ' an'),
   mois: (v) => nombre(v, 1) + ' mois',
   jours: (v) => nombre(v, 0) + (v >= 2 ? ' jours' : ' jour'),
-  heures: (v) => nombre(v, 2) + ' h',
+  heures: (v) => nombre(v, 0) + ' h',
   personnes: (v) => nombre(v, 0) + ' pers.',
   emplois: (v) => nombre(v, 0) + ' emplois',
   menages: (v) => nombre(v, 0),
@@ -39,6 +39,10 @@ const UNITES: Record<string, (v: number) => string> = {
   smic: (v) => nombre(v, 2) + ' SMIC',
   sieges: (v) => nombre(v, 0) + ' sièges',
   ratio: (v) => nombre(v, 3),
+  mt_co2e: (v) => nombre(v, Math.abs(v) < 1 ? 2 : 1) + ' Mt CO₂e',
+  points_sur_10: (v) => nombre(v, 3) + ' pt sur 10',
+  ecart_type: (v) => nombre(v, 3) + ' écart-type',
+  heures_an: (v) => nombre(v, 0) + ' h/an',
   elasticite: (v) => nombre(v, 3),
 }
 

@@ -111,6 +111,38 @@ export type Rapport = {
   }
   erreurs: { module: string; erreur: string }[]
   duree_secondes: number
+  equilibres: Equilibre[]
+  bilan: Pilier[]
+  pour_vous: { delta_mois: number; avant: number; apres: number; confiance: Confiance | null } | null
+}
+
+export type Equilibre = {
+  id: 'budget' | 'carbone'
+  titre: string
+  unite: string
+  effet: number
+  statut: 'respecte' | 'a_compenser' | 'a_surveiller' | 'information' | 'assume' | 'non_mesure'
+  manque: number
+  bloque: boolean
+  marge_disponible: number | null
+  regles: string[]
+  regle_desactivable: string | null
+  explication: string
+  composantes: { libelle: string; section: string; valeur: number }[]
+  confiance: Confiance | null
+  par_menage_mois?: number
+}
+
+export type Pilier = {
+  pilier: 'economie' | 'social' | 'ecologie' | 'bien_etre'
+  titre: string
+  verdict: 'amelioration' | 'degradation' | 'contraste' | 'neutre' | 'non_mesure'
+  indicateurs: { id: string; libelle: string; valeur: number; unite: string; sens: string; section: string; confiance: Confiance | null }[]
+}
+
+export type OptionCompensation = {
+  id: string; famille: 'depenses' | 'recettes' | 'assumer'; titre: string; description: string
+  rendement: number; unite: string; overrides: Record<string, Valeur>
 }
 
 export type Domaine = { id: string; titre: string; question: string; icone: string; nb_regles: number }

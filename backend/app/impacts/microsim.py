@@ -18,7 +18,7 @@ from ..config import MODEL_DIR
 from ..confidence import Confiance, Facteur, confiance_calage
 from ..engine.household import Menage
 from ..evidence import synthese_par_id
-from .base import Indicateur, Section, signe
+from .base import Indicateur, Section, fr, signe
 from .contexte import Contexte
 
 POPULATION_FILE = MODEL_DIR / "population" / "population.json"
@@ -168,7 +168,7 @@ def section_budget(ctx: Contexte) -> Section | None:
                       sources=["openfisca-france", *meta.get("sources_calage", [])][:8],
                       preuves=["non_recours_prestations"] if any(p["nature"] == "depense" and abs(p["delta"]) > 0.005 for p in postes) else [],
                       sens="favorable" if solde > 0 else "defavorable")]
-    return Section("budget", "Pour les finances publiques", f"{'Gain' if solde >= 0 else 'Coût'} de {abs(solde):.1f} Md€ par an (effet mécanique)",
+    return Section("budget", "Pour les finances publiques", f"{'Gain' if solde >= 0 else 'Coût'} de {fr(abs(solde))} Md€ par an (effet mécanique)",
                    ind, conf,
                    "Le moteur calcule impôts et prestations pour chaque ménage de la population synthétique, avec et sans réforme ; "
                    "les montants sont pondérés pour représenter les 31 millions de ménages. La colonne « chiffre officiel » permet de "

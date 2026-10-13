@@ -21,9 +21,9 @@ _EXECUTOR = ThreadPoolExecutor(max_workers=2)
 
 def _modules():
     # imports tardifs : ces modules dépendent de données (population, preuves) chargées à la demande
-    from . import comportements, microsim, budget_etat
+    from . import comportements, microsim, budget_etat, planete_bien_etre
     return [section_menage, section_cas_types, microsim.section_budget, microsim.section_redistribution,
-            budget_etat.section_budget_etat, *comportements.MODULES]
+            budget_etat.section_budget_etat, *comportements.MODULES, *planete_bien_etre.MODULES]
 
 
 def regles_modifiees(ctx: Contexte) -> list[dict]:
@@ -99,10 +99,16 @@ def simuler(store, overrides: dict, menage=None, approximations: list[str] | Non
     if nm:
         sections.append(nm)
     sections.sort(key=lambda s: s.ordre)
+    from . import bilan as bilan_mod
+    from . import equilibres as eq_mod
+    equilibres = eq_mod.calculer(ctx, sections)
     rapport = {
         "regles_modifiees": regles_modifiees(ctx),
         "sections": [s.to_dict() for s in sections],
         "synthese": synthese_globale(sections),
+        "equilibres": equilibres,
+        "bilan": bilan_mod.construire(sections, equilibres),
+        "pour_vous": _pour_vous(sections),
         "erreurs": erreurs,
         "duree_secondes": round(time.time() - t0, 2),
     }
@@ -111,6 +117,14 @@ def simuler(store, overrides: dict, menage=None, approximations: list[str] | Non
         while len(_CACHE) > 64:
             _CACHE.popitem(last=False)
     return rapport
+
+
+def _pour_vous(sections: list[Section]) -> dict | None:
+    s = next((x for x in sections if x.id == "menage"), None)
+    if not s or not s.indicateurs:
+        return None
+    i = s.indicateurs[0]
+    return {"delta_mois": i.valeur, "avant": i.avant, "apres": i.apres, "confiance": i.confiance.to_dict() if i.confiance else None}
 
 
 def synthese_globale(sections: list[Section]) -> dict:

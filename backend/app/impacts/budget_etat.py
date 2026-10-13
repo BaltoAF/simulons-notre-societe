@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 from ..confidence import Confiance, Facteur
-from .base import Indicateur, Section
+from .base import Indicateur, Section, fr
 from .contexte import Contexte
 
 # Leviers de dépense : crédits des missions de l'État, prélèvements sur recettes, objectifs de dépenses
@@ -74,7 +74,7 @@ def section_budget_etat(ctx: Contexte) -> Section | None:
     dette_ind, dette_data = indicateurs_dette(ctx.store, -total)
     ind += dette_ind
     return Section("budget_etat", "Budget de l'État et de la Sécurité sociale",
-                   f"{'Hausse' if total > 0 else 'Baisse'} des dépenses de {abs(total):.1f} Md€ par an",
+                   f"{'Hausse' if total > 0 else 'Baisse'} des dépenses de {fr(abs(total))} Md€ par an",
                    ind, conf,
                    "Différence entre les crédits de votre société et ceux votés dans la loi de finances et la loi de "
                    "financement de la Sécurité sociale en vigueur.",

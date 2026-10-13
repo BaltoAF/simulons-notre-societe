@@ -23,7 +23,9 @@ REGLES_COUVERTES = {
     "travail.chomage.duree_max_moins_55_ans", "travail.chomage.duree_max_55_56_ans", "travail.chomage.duree_max_57_ans_et_plus",
     "travail.duree.legale_hebdomadaire", "environnement_energie.accise.gazole", "environnement_energie.accise.sp95_e10",
     "retraites.age_legal.generation_1969_et_apres", "retraites.age_legal.generation_1968", "retraites.age_legal.generation_1967",
-    "retraites.age_legal.generation_1966",
+    "retraites.age_legal.generation_1966", "transports.vitesse_max.route_bidirectionnelle", "transports.vitesse_max.autoroute",
+    "transports.vitesse_max.voie_rapide", "transports.vitesse_max.agglomeration", "sante.tabac.accise_cigarettes_taux",
+    "sante.tabac.accise_cigarettes_tarif",
 }
 
 
@@ -531,6 +533,7 @@ def section_comportements(ctx: Contexte) -> Section | None:
         if i.id.startswith("solde_public") and i.valeur is not None and i.confiance is not None:
             soldes[i.id] = (i.valeur, i.confiance)
     inds += mod_multiplicateur(ctx, soldes)
+    ctx.cache["comportements"] = inds
     if not inds:
         return None
     scores = [i.confiance.score for i in inds if i.confiance]

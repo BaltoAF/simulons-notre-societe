@@ -1,0 +1,607 @@
+metriques:
+  # ---------------------------------------------------------------------------
+  # ÉMISSIONS TERRITORIALES (inventaire Citepa, format Secten, édition juin 2026)
+  # Périmètre : France hexagonale + Outre-mer inclus dans l'UE ; hors UTCATF ;
+  # hors transports internationaux. Agrégations par secteur faites par le Système
+  # à partir de la base Secten (somme des sous-secteurs, substance « total GES »).
+  # ---------------------------------------------------------------------------
+  - id: ecologie.emissions_territoriales_totales
+    titre: "Émissions territoriales de gaz à effet de serre, hors puits de carbone (série annuelle)"
+    explication: "Gaz à effet de serre émis chaque année sur le territoire français (hors absorptions des forêts et des sols), selon l'inventaire officiel du Citepa. C'est la grandeur comparée aux budgets carbone légaux. Série annuelle complète depuis 2015 (l'indicateur environnement_energie.emissions_ges_hors_utcatf en donne quelques points). 2025 : pré-estimation."
+    unite: mt_co2e
+    serie:
+      - date: "2015-12-31"
+        valeur: 460.84
+        source: eco-citepa-secten-2026-serie-longue
+        statut: definitif
+      - date: "2016-12-31"
+        valeur: 463.71
+        source: eco-citepa-secten-2026-serie-longue
+        statut: definitif
+      - date: "2017-12-31"
+        valeur: 466.06
+        source: eco-citepa-secten-2026-serie-longue
+        statut: definitif
+      - date: "2018-12-31"
+        valeur: 446.54
+        source: eco-citepa-secten-2026-serie-longue
+        statut: definitif
+      - date: "2019-12-31"
+        valeur: 437.71
+        source: eco-citepa-secten-2026-serie-longue
+        statut: definitif
+      - date: "2020-12-31"
+        valeur: 397.95
+        source: eco-citepa-secten-2026-serie-longue
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: 422.39
+        source: eco-citepa-secten-2026-serie-longue
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 405.79
+        source: eco-citepa-secten-2026-serie-longue
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 378.23
+        source: eco-citepa-secten-2026-serie-longue
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 367.02
+        source: eco-citepa-secten-2026-serie-longue
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 359.40
+        source: eco-citepa-secten-2026-serie-longue
+        statut: estimation
+
+  - id: ecologie.emissions_par_secteur.transports
+    titre: "Émissions de gaz à effet de serre du secteur des transports (tous modes intérieurs)"
+    explication: "Route, aérien intérieur, ferroviaire, fluvial et maritime intérieur. Premier secteur émetteur (34 % du total en 2025 selon le HCC). Le transport routier seul (115 Mt en 2025) est suivi dans environnement.emissions_co2_transport_routier."
+    unite: mt_co2e
+    serie:
+      - date: "2024-12-31"
+        valeur: 125.35
+        source: eco-citepa-secten-2026-serie-longue
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 122.91
+        source: eco-citepa-secten-2026-serie-longue
+        statut: estimation
+
+  - id: ecologie.emissions_par_secteur.agriculture
+    titre: "Émissions de gaz à effet de serre de l'agriculture et de la sylviculture"
+    explication: "Élevage (méthane), engrais (protoxyde d'azote), engins et chaudières agricoles. Le HCC indique que 2024 est la dernière année estimée pour ce secteur : la valeur 2025 est à prendre avec prudence."
+    unite: mt_co2e
+    serie:
+      - date: "2024-12-31"
+        valeur: 77.53
+        source: eco-citepa-secten-2026-serie-longue
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 76.55
+        source: eco-citepa-secten-2026-serie-longue
+        statut: estimation
+
+  - id: ecologie.emissions_par_secteur.industrie
+    titre: "Émissions de gaz à effet de serre de l'industrie manufacturière et de la construction"
+    explication: "Chimie, sidérurgie, ciment et matériaux, agroalimentaire, etc. Baisse de 5,2 % entre 2024 et 2025 selon le HCC."
+    unite: mt_co2e
+    serie:
+      - date: "2024-12-31"
+        valeur: 61.59
+        source: eco-citepa-secten-2026-serie-longue
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 58.39
+        source: eco-citepa-secten-2026-serie-longue
+        statut: estimation
+
+  - id: ecologie.emissions_par_secteur.batiment
+    titre: "Émissions de gaz à effet de serre des bâtiments résidentiels et tertiaires"
+    explication: "Usage des bâtiments résidentiels et activités domestiques, et des bâtiments et activités tertiaires (bureaux, commerces, services), selon la nomenclature Secten."
+    unite: mt_co2e
+    serie:
+      - date: "2024-12-31"
+        valeur: 56.07
+        source: eco-citepa-secten-2026-serie-longue
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 54.89
+        source: eco-citepa-secten-2026-serie-longue
+        statut: estimation
+
+  - id: ecologie.emissions_par_secteur.energie
+    titre: "Émissions de gaz à effet de serre de l'industrie de l'énergie"
+    explication: "Production d'électricité et de chauffage urbain, raffinage, valorisation énergétique des déchets, extraction et distribution de combustibles."
+    unite: mt_co2e
+    serie:
+      - date: "2024-12-31"
+        valeur: 31.18
+        source: eco-citepa-secten-2026-serie-longue
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 31.37
+        source: eco-citepa-secten-2026-serie-longue
+        statut: estimation
+
+  - id: ecologie.emissions_par_secteur.dechets
+    titre: "Émissions de gaz à effet de serre du traitement centralisé des déchets"
+    explication: "Stockage des déchets (méthane des décharges), traitement des eaux usées, incinération sans récupération d'énergie. La valeur 2025 est identique à 2024 dans la pré-estimation."
+    unite: mt_co2e
+    serie:
+      - date: "2024-12-31"
+        valeur: 15.30
+        source: eco-citepa-secten-2026-serie-longue
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 15.30
+        source: eco-citepa-secten-2026-serie-longue
+        statut: estimation
+
+  - id: ecologie.emissions_par_secteur.utcatf
+    titre: "Bilan net du secteur des terres et forêts (UTCATF) : absorption nette"
+    explication: "Solde des émissions et absorptions des forêts, prairies, cultures, zones humides, zones artificialisées et produits bois. Valeur négative = la nature absorbe plus qu'elle n'émet. Non compté dans les émissions hors puits."
+    unite: mt_co2e
+    serie:
+      - date: "2024-12-31"
+        valeur: -51.96
+        source: eco-citepa-secten-2026-serie-longue
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: -51.34
+        source: eco-citepa-secten-2026-serie-longue
+        statut: estimation
+
+  - id: ecologie.part_emissions_routieres_voitures
+    titre: "Part des voitures particulières dans les émissions du transport routier"
+    explication: "Proportion des émissions de gaz à effet de serre de la route due aux voitures particulières (diesel, essence, GPL, gaz naturel). Le reste vient des poids lourds (27,8 Mt en 2024), des utilitaires légers (17,1 Mt), des bus et cars (3,0 Mt) et des deux-roues (1,6 Mt). Calcul du Système : voitures 67,84 Mt sur 117,35 Mt en 2024 ; 67,25 Mt sur 114,92 Mt en 2025."
+    unite: pourcent
+    serie:
+      - date: "2024-12-31"
+        valeur: 57.8
+        source: eco-citepa-secten-2026-serie-longue
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 58.5
+        source: eco-citepa-secten-2026-serie-longue
+        statut: estimation
+
+  # ---------------------------------------------------------------------------
+  # EMPREINTE CARBONE (SDES / Insee)
+  # ---------------------------------------------------------------------------
+  - id: ecologie.empreinte_carbone_totale
+    titre: "Empreinte carbone de la France (série annuelle)"
+    explication: "Gaz à effet de serre liés à la consommation des Français, y compris ceux émis à l'étranger pour fabriquer les produits importés et hors ceux des exportations. Série révisée en octobre 2025 (environ -7 % sur toute la période après révision des données Eurostat). Champ : France et Saint-Martin, hors UTCATF. Complète environnement_energie.empreinte_carbone_totale (2023-2024)."
+    unite: mt_co2e
+    serie:
+      - date: "1990-12-31"
+        valeur: 702.1
+        source: eco-sdes-empreinte-1990-2024-donnees
+        statut: estimation
+      - date: "2015-12-31"
+        valeur: 647.9
+        source: eco-sdes-empreinte-1990-2024-donnees
+        statut: definitif
+      - date: "2016-12-31"
+        valeur: 648.5
+        source: eco-sdes-empreinte-1990-2024-donnees
+        statut: definitif
+      - date: "2017-12-31"
+        valeur: 655.5
+        source: eco-sdes-empreinte-1990-2024-donnees
+        statut: definitif
+      - date: "2018-12-31"
+        valeur: 654.3
+        source: eco-sdes-empreinte-1990-2024-donnees
+        statut: definitif
+      - date: "2019-12-31"
+        valeur: 637.3
+        source: eco-sdes-empreinte-1990-2024-donnees
+        statut: definitif
+      - date: "2020-12-31"
+        valeur: 580.5
+        source: eco-sdes-empreinte-1990-2024-donnees
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: 619.8
+        source: eco-sdes-empreinte-1990-2024-donnees
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 620.7
+        source: eco-sdes-empreinte-1990-2024-donnees
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 582.6
+        source: eco-sdes-empreinte-1990-2024-donnees
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 562.8
+        source: eco-sdes-empreinte-1990-2024-donnees
+        statut: provisoire
+
+  - id: ecologie.empreinte_carbone_par_habitant
+    titre: "Empreinte carbone par habitant (série annuelle)"
+    explication: "Empreinte carbone rapportée à la population. En 2024, la moitié provient des importations (284 Mt), 18 % des émissions directes des ménages (chauffage, carburants : 99 Mt) et 32 % de la production intérieure destinée à la demande française (180 Mt). La valeur 1990 est rétropolée."
+    unite: t_co2e_par_habitant
+    serie:
+      - date: "1990-12-31"
+        valeur: 12.07
+        source: eco-sdes-empreinte-1990-2024-donnees
+        statut: estimation
+      - date: "2015-12-31"
+        valeur: 9.77
+        source: eco-sdes-empreinte-1990-2024-donnees
+        statut: definitif
+      - date: "2016-12-31"
+        valeur: 9.74
+        source: eco-sdes-empreinte-1990-2024-donnees
+        statut: definitif
+      - date: "2017-12-31"
+        valeur: 9.81
+        source: eco-sdes-empreinte-1990-2024-donnees
+        statut: definitif
+      - date: "2018-12-31"
+        valeur: 9.75
+        source: eco-sdes-empreinte-1990-2024-donnees
+        statut: definitif
+      - date: "2019-12-31"
+        valeur: 9.46
+        source: eco-sdes-empreinte-1990-2024-donnees
+        statut: definitif
+      - date: "2020-12-31"
+        valeur: 8.59
+        source: eco-sdes-empreinte-1990-2024-donnees
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: 9.12
+        source: eco-sdes-empreinte-1990-2024-donnees
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 9.10
+        source: eco-sdes-empreinte-1990-2024-donnees
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 8.52
+        source: eco-sdes-empreinte-1990-2024-donnees
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 8.21
+        source: eco-sdes-empreinte-1990-2024-donnees
+        statut: provisoire
+
+  # --- Empreinte selon le niveau de vie (par ménage, décile de niveau de vie) ---
+  # Source unique cohérente : Malliet (OFCE, 2020), données 2011 (Budget de famille
+  # 2011 + EXIOBASE 3), émissions des administrations publiques réparties à parts
+  # égales (3,5 t par ménage). Aucune série officielle récente par décile n'a été
+  # trouvée (comptes Insee par catégorie de ménages annoncés pour novembre 2026).
+  - id: ecologie.empreinte_carbone_menages_decile_1
+    titre: "Empreinte carbone moyenne d'un ménage du 1er décile de niveau de vie (10 % les plus modestes)"
+    explication: "Gaz à effet de serre liés à la consommation d'un ménage parmi les 10 % les plus modestes, par ménage (pas par personne ni par unité de consommation), année 2011. Une étude Insee plus récente (Semet, 2024, données 2017, champ et méthode différents) trouve 12 t par ménage pour le premier dixième de revenu."
+    unite: t_co2e_par_menage
+    serie:
+      - date: "2011-12-31"
+        valeur: 15.235
+        source: eco-ofce-malliet-2020
+        statut: estimation
+
+  - id: ecologie.empreinte_carbone_menages_decile_2
+    titre: "Empreinte carbone moyenne d'un ménage du 2e décile de niveau de vie"
+    explication: "Par ménage, année 2011 (Budget de famille 2011, EXIOBASE 3)."
+    unite: t_co2e_par_menage
+    serie:
+      - date: "2011-12-31"
+        valeur: 17.839
+        source: eco-ofce-malliet-2020
+        statut: estimation
+
+  - id: ecologie.empreinte_carbone_menages_decile_3
+    titre: "Empreinte carbone moyenne d'un ménage du 3e décile de niveau de vie"
+    explication: "Par ménage, année 2011 (Budget de famille 2011, EXIOBASE 3)."
+    unite: t_co2e_par_menage
+    serie:
+      - date: "2011-12-31"
+        valeur: 18.656
+        source: eco-ofce-malliet-2020
+        statut: estimation
+
+  - id: ecologie.empreinte_carbone_menages_decile_4
+    titre: "Empreinte carbone moyenne d'un ménage du 4e décile de niveau de vie"
+    explication: "Par ménage, année 2011 (Budget de famille 2011, EXIOBASE 3)."
+    unite: t_co2e_par_menage
+    serie:
+      - date: "2011-12-31"
+        valeur: 20.109
+        source: eco-ofce-malliet-2020
+        statut: estimation
+
+  - id: ecologie.empreinte_carbone_menages_decile_5
+    titre: "Empreinte carbone moyenne d'un ménage du 5e décile de niveau de vie"
+    explication: "Par ménage, année 2011 (Budget de famille 2011, EXIOBASE 3). Moyenne tous ménages : 24,5 t."
+    unite: t_co2e_par_menage
+    serie:
+      - date: "2011-12-31"
+        valeur: 21.991
+        source: eco-ofce-malliet-2020
+        statut: estimation
+
+  - id: ecologie.empreinte_carbone_menages_decile_6
+    titre: "Empreinte carbone moyenne d'un ménage du 6e décile de niveau de vie"
+    explication: "Par ménage, année 2011 (Budget de famille 2011, EXIOBASE 3)."
+    unite: t_co2e_par_menage
+    serie:
+      - date: "2011-12-31"
+        valeur: 24.83
+        source: eco-ofce-malliet-2020
+        statut: estimation
+
+  - id: ecologie.empreinte_carbone_menages_decile_7
+    titre: "Empreinte carbone moyenne d'un ménage du 7e décile de niveau de vie"
+    explication: "Par ménage, année 2011 (Budget de famille 2011, EXIOBASE 3)."
+    unite: t_co2e_par_menage
+    serie:
+      - date: "2011-12-31"
+        valeur: 25.872
+        source: eco-ofce-malliet-2020
+        statut: estimation
+
+  - id: ecologie.empreinte_carbone_menages_decile_8
+    titre: "Empreinte carbone moyenne d'un ménage du 8e décile de niveau de vie"
+    explication: "Par ménage, année 2011 (Budget de famille 2011, EXIOBASE 3)."
+    unite: t_co2e_par_menage
+    serie:
+      - date: "2011-12-31"
+        valeur: 28.029
+        source: eco-ofce-malliet-2020
+        statut: estimation
+
+  - id: ecologie.empreinte_carbone_menages_decile_9
+    titre: "Empreinte carbone moyenne d'un ménage du 9e décile de niveau de vie"
+    explication: "Par ménage, année 2011. Le rapport entre 9e et 1er décile (2,1) est bien inférieur à l'écart de niveau de vie : l'empreinte croît moins vite que le revenu (élasticité d'environ 0,5)."
+    unite: t_co2e_par_menage
+    serie:
+      - date: "2011-12-31"
+        valeur: 32.024
+        source: eco-ofce-malliet-2020
+        statut: estimation
+
+  - id: ecologie.empreinte_carbone_menages_decile_10
+    titre: "Empreinte carbone moyenne d'un ménage du 10e décile de niveau de vie (10 % les plus aisés)"
+    explication: "Par ménage, année 2011. Rapporté au nombre de personnes, 18,4 t par individu contre 4,7 t au 1er décile. L'étude Insee de Semet (2024, données 2017) trouve 31 t par ménage pour le dernier dixième de revenu, soit 2,6 fois le premier."
+    unite: t_co2e_par_menage
+    serie:
+      - date: "2011-12-31"
+        valeur: 40.4
+        source: eco-ofce-malliet-2020
+        statut: estimation
+
+  - id: ecologie.intensite_carbone_consommation_decile_1
+    titre: "Intensité carbone de la consommation des ménages du 1er décile de niveau de vie"
+    explication: "Kilogrammes de gaz à effet de serre émis par euro dépensé (par unité de consommation) par les 10 % de ménages les plus modestes, année 2011. Aucune intensité moyenne nationale officielle n'a été trouvée."
+    unite: kg_co2e_par_euro
+    serie:
+      - date: "2011-12-31"
+        valeur: 1.68
+        source: eco-ofce-malliet-2020
+        statut: estimation
+
+  - id: ecologie.intensite_carbone_consommation_decile_10
+    titre: "Intensité carbone de la consommation des ménages du 10e décile de niveau de vie"
+    explication: "Kilogrammes de gaz à effet de serre par euro dépensé (par unité de consommation) pour les 10 % de ménages les plus aisés, année 2011 : l'intensité décroît quand le revenu augmente (1,68 au 1er décile)."
+    unite: kg_co2e_par_euro
+    serie:
+      - date: "2011-12-31"
+        valeur: 1.14
+        source: eco-ofce-malliet-2020
+        statut: estimation
+
+  # ---------------------------------------------------------------------------
+  # ÉNERGIE, CARBURANTS
+  # ---------------------------------------------------------------------------
+  - id: ecologie.consommation_energie_finale
+    titre: "Consommation finale d'énergie à usage énergétique (corrigée des variations climatiques)"
+    explication: "Énergie consommée par les utilisateurs finaux (ménages, entreprises, transports, agriculture), hors usages non énergétiques. 2025 : résidentiel 456 TWh, transports 513, industrie 274, tertiaire 233, agriculture-pêche 56. Pétrole 583 TWh, électricité 411, gaz 272, renouvelables et déchets 216. Métropole et DROM."
+    unite: twh
+    serie:
+      - date: "2015-12-31"
+        valeur: 1675.4
+        source: eco-sdes-chiffres-cles-energie-2026
+        statut: definitif
+      - date: "2016-12-31"
+        valeur: 1671.6
+        source: eco-sdes-chiffres-cles-energie-2026
+        statut: definitif
+      - date: "2017-12-31"
+        valeur: 1675.3
+        source: eco-sdes-chiffres-cles-energie-2026
+        statut: definitif
+      - date: "2018-12-31"
+        valeur: 1666.6
+        source: eco-sdes-chiffres-cles-energie-2026
+        statut: definitif
+      - date: "2019-12-31"
+        valeur: 1649.1
+        source: eco-sdes-chiffres-cles-energie-2026
+        statut: definitif
+      - date: "2020-12-31"
+        valeur: 1551.7
+        source: eco-sdes-chiffres-cles-energie-2026
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: 1626.9
+        source: eco-sdes-chiffres-cles-energie-2026
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 1605.6
+        source: eco-sdes-chiffres-cles-energie-2026
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 1542.8
+        source: eco-sdes-chiffres-cles-energie-2026
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 1549.3
+        source: eco-sdes-chiffres-cles-energie-2026
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 1532.6
+        source: eco-sdes-chiffres-cles-energie-2026
+        statut: provisoire
+
+  - id: ecologie.facteur_emission_gazole
+    titre: "Facteur d'émission du gazole routier (B7), amont compris"
+    explication: "Gaz à effet de serre émis par litre de gazole routier vendu en France continentale : 2,49 kg à la combustion dans le moteur et 0,609 kg en amont (production et acheminement du carburant). Multiplier un volume de gazole (en litres) par ce facteur donne les émissions associées."
+    unite: kg_co2e_par_litre
+    serie:
+      - date: "2025-07-03"
+        valeur: 3.1
+        source: eco-ademe-base-carbone-v23-6
+        statut: definitif
+
+  - id: ecologie.facteur_emission_essence
+    titre: "Facteur d'émission de l'essence (SP95, SP95-E10, SP98), amont compris"
+    explication: "Gaz à effet de serre émis par litre de supercarburant sans plomb vendu en France continentale : 2,2 kg à la combustion et 0,491 kg en amont. Valeur identique (2,69) pour le seul SP95-E10. Attention : pour estimer un effet sur les émissions du secteur des transports de l'inventaire national, utiliser plutôt la part « combustion » (2,2 kg pour l'essence, 2,49 kg pour le gazole), la part « amont » n'étant pas comptée dans ce secteur."
+    unite: kg_co2e_par_litre
+    serie:
+      - date: "2025-07-03"
+        valeur: 2.69
+        source: eco-ademe-base-carbone-v23-6
+        statut: definitif
+
+  - id: ecologie.prix_moyen_gazole
+    titre: "Prix moyen du gazole à la pompe (TTC, en métropole)"
+    explication: "Prix moyen de vente au détail d'un litre de gazole, toutes taxes comprises. L'entrée datée du 31/12/2025 est la moyenne annuelle 2025 ; celle du 31/08/2026 est la moyenne du mois d'août 2026 (dernier mois publié). Forte hausse en 2026 : 1,65 € en janvier, 2,26 € en avril, 2,21 € en août. Le SDES publie pour 2025 une moyenne légèrement différente (1,62 €, métropole hors Corse)."
+    unite: euros_par_litre
+    serie:
+      - date: "2025-12-31"
+        valeur: 1.64
+        source: eco-insee-prix-carburants
+        statut: definitif
+      - date: "2026-08-31"
+        valeur: 2.21
+        source: eco-insee-prix-carburants
+        statut: definitif
+
+  - id: ecologie.prix_moyen_sp95_e10
+    titre: "Prix moyen du SP95-E10 à la pompe (TTC, en métropole)"
+    explication: "Prix moyen de vente au détail d'un litre de SP95-E10, toutes taxes comprises. L'entrée datée du 31/12/2025 est la moyenne annuelle 2025 ; celle du 31/08/2026 est la moyenne du mois d'août 2026 (dernier mois publié). Évolution 2026 : 1,68 € en janvier, 2,04 € en mai, 2,01 € en août. Le SDES publie pour 2025 une moyenne de 1,69 € (métropole hors Corse)."
+    unite: euros_par_litre
+    serie:
+      - date: "2025-12-31"
+        valeur: 1.70
+        source: eco-insee-prix-carburants
+        statut: definitif
+      - date: "2026-08-31"
+        valeur: 2.01
+        source: eco-insee-prix-carburants
+        statut: definitif
+
+  # ---------------------------------------------------------------------------
+  # SOLS, SANTÉ
+  # ---------------------------------------------------------------------------
+  - id: ecologie.artificialisation_annuelle
+    titre: "Consommation annuelle d'espaces naturels, agricoles et forestiers (mesure légale de l'artificialisation jusqu'en 2031)"
+    explication: "Surface d'espaces naturels, agricoles ou forestiers transformée chaque année en espaces urbanisés (logements, activités, routes…), mesurée à partir des fichiers fonciers. C'est l'indicateur suivi pour l'objectif de division par deux sur 2021-2031. Chaque valeur couvre l'année civile (du 1er janvier au 1er janvier suivant). Somme nationale des données communales calculée par le Système ; France métropolitaine et 4 DROM (Mayotte absente). Dernière année publiée : 2024 (donnée la plus récente, susceptible d'être révisée)."
+    unite: hectares
+    serie:
+      - date: "2011-12-31"
+        valeur: 29470
+        source: eco-cerema-conso-enaf-2011-2025
+        statut: definitif
+      - date: "2012-12-31"
+        valeur: 27619
+        source: eco-cerema-conso-enaf-2011-2025
+        statut: definitif
+      - date: "2013-12-31"
+        valeur: 25173
+        source: eco-cerema-conso-enaf-2011-2025
+        statut: definitif
+      - date: "2014-12-31"
+        valeur: 22632
+        source: eco-cerema-conso-enaf-2011-2025
+        statut: definitif
+      - date: "2015-12-31"
+        valeur: 20511
+        source: eco-cerema-conso-enaf-2011-2025
+        statut: definitif
+      - date: "2016-12-31"
+        valeur: 20977
+        source: eco-cerema-conso-enaf-2011-2025
+        statut: definitif
+      - date: "2017-12-31"
+        valeur: 21172
+        source: eco-cerema-conso-enaf-2011-2025
+        statut: definitif
+      - date: "2018-12-31"
+        valeur: 20877
+        source: eco-cerema-conso-enaf-2011-2025
+        statut: definitif
+      - date: "2019-12-31"
+        valeur: 18754
+        source: eco-cerema-conso-enaf-2011-2025
+        statut: definitif
+      - date: "2020-12-31"
+        valeur: 19549
+        source: eco-cerema-conso-enaf-2011-2025
+        statut: definitif
+      - date: "2021-12-31"
+        valeur: 20130
+        source: eco-cerema-conso-enaf-2011-2025
+        statut: definitif
+      - date: "2022-12-31"
+        valeur: 19336
+        source: eco-cerema-conso-enaf-2011-2025
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 18073
+        source: eco-cerema-conso-enaf-2011-2025
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 15119
+        source: eco-cerema-conso-enaf-2011-2025
+        statut: provisoire
+
+  - id: ecologie.deces_pollution_air
+    titre: "Décès attribuables chaque année à l'exposition aux particules fines (PM2,5)"
+    explication: "Nombre de décès annuels de personnes de 30 ans et plus attribuables à l'exposition prolongée aux particules fines, en moyenne sur 2016-2019, en France métropolitaine : 7 % de la mortalité totale et près de 8 mois d'espérance de vie perdus. Estimation nationale la plus récente de Santé publique France."
+    unite: deces
+    serie:
+      - date: "2019-12-31"
+        valeur: 40000
+        source: eco-spf-pollution-air-2021
+        statut: estimation
+
+  # ---------------------------------------------------------------------------
+  # ÉVALUATION DU HAUT CONSEIL POUR LE CLIMAT (rapport annuel 2026)
+  # ---------------------------------------------------------------------------
+  - id: ecologie.evaluation_hcc.rythme_baisse_observe
+    titre: "Variation annuelle des émissions territoriales brutes (évaluation du Haut Conseil pour le climat)"
+    explication: "Évolution d'une année sur l'autre des émissions hors puits de carbone, telle que retenue par le HCC dans son rapport 2026. En 2025, la baisse (-7,6 Mt, pré-estimation) a encore ralenti."
+    unite: pourcent
+    serie:
+      - date: "2022-12-31"
+        valeur: -3.9
+        source: eco-hcc-ra2026
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: -6.8
+        source: eco-hcc-ra2026
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: -3.0
+        source: eco-hcc-ra2026
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: -2.1
+        source: eco-hcc-ra2026
+        statut: estimation
+
+  - id: ecologie.evaluation_hcc.rythme_baisse_necessaire
+    titre: "Baisse annuelle moyenne des émissions nécessaire en 2026-2028 pour respecter le budget carbone 2024-2028 (HCC)"
+    explication: "Selon le Haut Conseil pour le climat, le rythme de baisse doit « au moins doubler » par rapport à 2025 et dépasser 4 % par an en moyenne en 2026, 2027 et 2028 pour tenir le 3e budget carbone (342 Mt/an). La valeur -4 est donc un minimum. Le ministère indique pour sa part qu'une baisse de 5 % par an entre 2024 et 2030 est nécessaire pour l'objectif 2030."
+    unite: pourcent
+    serie:
+      - date: "2028-12-31"
+        valeur: -4
+        source: eco-hcc-ra2026
+        statut: prevision

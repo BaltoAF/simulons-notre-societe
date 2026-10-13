@@ -1,0 +1,394 @@
+# Sécurité routière : limitations de vitesse, permis de conduire (âge, points, période probatoire),
+# alcool au volant, ceinture et téléphone, contrôle technique. Valeurs en vigueur au 13 octobre 2026.
+# Sources : fiches service-public.gouv.fr (DILA) et ONISR (securite-routiere.gouv.fr).
+# NB : certaines valeurs figurent aussi dans model/regles/justice_penale/stupefiants_route.yaml
+# (angle pénal : peines, délits) ; ici l'angle est celui des règles de circulation.
+# Légifrance n'étant pas accessible aux outils automatisés, les articles cités l'ont été d'après les fiches lues.
+domaine: transports
+theme: "Sécurité routière"
+regles:
+  # ------------------------------------------------------------------ Limitations de vitesse (voitures)
+  - id: transports.vitesse_max.autoroute
+    titre: "Vitesse maximale sur autoroute (voitures)"
+    explication: "Sur autoroute, une voiture ne doit pas dépasser 130 km/h par temps sec."
+    type: nombre
+    unite: km_h
+    bornes: [90, 160]
+    valeurs:
+      - depuis: "2025-12-29"
+        valeur: 130
+        sources: [rc-sp-f19460]
+        article: "Code de la route, art. R413-1 à R413-16"
+    tags: [route, vitesse, autoroute]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 29/12/2025 (fiche « Vérifié le 29 décembre 2025»)."
+
+  - id: transports.vitesse_max.autoroute_pluie
+    titre: "Vitesse maximale sur autoroute par temps de pluie"
+    explication: "Quand il pleut, la vitesse maximale sur autoroute descend à 110 km/h."
+    type: nombre
+    unite: km_h
+    bornes: [80, 130]
+    valeurs:
+      - depuis: "2025-12-29"
+        valeur: 110
+        sources: [rc-sp-f19460]
+        article: "Code de la route, art. R413-1 à R413-16"
+    tags: [route, vitesse, autoroute, pluie]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 29/12/2025. Par visibilité inférieure à 50 m, la limite est de 50 km/h sur toutes les routes."
+
+  - id: transports.vitesse_max.voie_rapide
+    titre: "Vitesse maximale sur route à 2x2 voies séparées par un terre-plein central"
+    explication: "Sur les voies rapides (deux voies dans chaque sens séparées par un terre-plein), la limite est de 110 km/h."
+    type: nombre
+    unite: km_h
+    bornes: [80, 130]
+    valeurs:
+      - depuis: "2025-12-29"
+        valeur: 110
+        sources: [rc-sp-f19460]
+        article: "Code de la route, art. R413-1 à R413-16"
+    tags: [route, vitesse, voie_rapide]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 29/12/2025."
+
+  - id: transports.vitesse_max.voie_rapide_pluie
+    titre: "Vitesse maximale sur route à 2x2 voies par temps de pluie"
+    explication: "Sur ces voies rapides, la limite descend à 100 km/h quand il pleut."
+    type: nombre
+    unite: km_h
+    bornes: [70, 110]
+    valeurs:
+      - depuis: "2025-12-29"
+        valeur: 100
+        sources: [rc-sp-f19460]
+        article: "Code de la route, art. R413-1 à R413-16"
+    tags: [route, vitesse, voie_rapide, pluie]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 29/12/2025."
+
+  - id: transports.vitesse_max.route_bidirectionnelle
+    titre: "Vitesse maximale sur route à double sens sans séparateur central (hors agglomération)"
+    explication: "Sur les routes de campagne à double sens sans séparation au milieu, la limite est de 80 km/h depuis juillet 2018 (90 km/h auparavant), y compris par temps de pluie."
+    type: nombre
+    unite: km_h
+    bornes: [60, 110]
+    valeurs:
+      - depuis: "2018-06-30"
+        valeur: 90
+        sources: [rc-onisr-relevement-90]
+      - depuis: "2018-07-01"
+        valeur: 80
+        sources: [rc-onisr-relevement-90, rc-sp-f19460]
+        article: "Décret n° 2018-487 du 15 juin 2018 ; code de la route, art. R413-1 à R413-16"
+    tags: [route, vitesse, route_departementale, reforme_2018]
+    a_verifier: false
+    note: "Ancienne limite (90 km/h) : date d'entrée en vigueur non établie, attestée jusqu'au 30/06/2018 par l'ONISR. Le département (ou le maire / président d'intercommunalité titulaire du pouvoir de police) peut relever la limite à 90 km/h sur ses routes : voir transports.vitesse_max.relevement_90_par_autorite_locale. Sur les sections ayant au moins 2 voies dans le même sens : 90 km/h (80 km/h par temps de pluie)."
+
+  - id: transports.vitesse_max.relevement_90_par_autorite_locale
+    titre: "Un département peut-il remonter la vitesse à 90 km/h sur ses routes ?"
+    explication: "Oui : depuis la loi d'orientation des mobilités de décembre 2019, le président du conseil départemental (ou le maire, ou le président d'intercommunalité, s'il gère la circulation) peut fixer 90 km/h au lieu de 80 sur certaines routes à double sens, après avis de la commission départementale de sécurité routière et étude d'accidentalité."
+    type: booleen
+    unite: ""
+    valeurs:
+      - depuis: "2018-07-01"
+        valeur: false
+        sources: [rc-onisr-relevement-90]
+      - depuis: "2019-12-23"
+        valeur: true
+        sources: [rc-onisr-relevement-90, rc-sp-f19460]
+        article: "Loi d'orientation des mobilités (art. 15 bis B du projet) ; code général des collectivités territoriales, art. L3221-4-1"
+    tags: [route, vitesse, route_departementale, decentralisation, reforme_2019]
+    a_verifier: false
+    note: "Date « promulguée le 23 décembre 2019 » indiquée par l'ONISR (page du 16/12/2022) ; la loi est couramment référencée comme loi n° 2019-1428 du 24 décembre 2019 : date exacte à confirmer sur Légifrance. En 2020 et 2021, 39 départements ont relevé tout ou partie de leur réseau à 90 km/h (ONISR) ; conditions : routes sans au moins 2 voies dans le même sens."
+
+  - id: transports.vitesse_max.agglomeration
+    titre: "Vitesse maximale en agglomération"
+    explication: "En ville et dans les villages, la limite est de 50 km/h, sauf si le maire fixe une limite plus basse (30 km/h par exemple)."
+    type: nombre
+    unite: km_h
+    bornes: [20, 70]
+    valeurs:
+      - depuis: "2025-12-29"
+        valeur: 50
+        sources: [rc-sp-f19460]
+        article: "Code de la route, art. R413-1 à R413-16 ; CGCT, art. L2213-1 à L2213-6-1 (pouvoirs du maire)"
+    tags: [route, vitesse, agglomeration]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 29/12/2025."
+
+  - id: transports.vitesse_max.jeune_conducteur_autoroute
+    titre: "Vitesse maximale sur autoroute pour un jeune conducteur (permis probatoire)"
+    explication: "Pendant la période probatoire, un conducteur ne doit pas dépasser 110 km/h sur autoroute (100 km/h sur les voies rapides et les sections d'autoroute limitées à moins de 130)."
+    type: nombre
+    unite: km_h
+    bornes: [80, 130]
+    valeurs:
+      - depuis: "2025-12-29"
+        valeur: 110
+        sources: [rc-sp-f19460, rc-sp-f2390]
+        article: "Code de la route, art. R413-5 et R413-6"
+    tags: [route, vitesse, jeunes_conducteurs, permis_probatoire]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 29/12/2025. Sur les routes à double sens et en agglomération, les limites sont les mêmes que pour les autres conducteurs (80 et 50 km/h)."
+
+  # ------------------------------------------------------------------ Permis de conduire
+  - id: transports.permis_b.age_minimal
+    titre: "Âge minimal pour obtenir le permis B (voiture)"
+    explication: "Depuis le 1er janvier 2024, on peut obtenir le permis voiture et conduire seul dès 17 ans, au lieu de 18 ans auparavant."
+    type: nombre
+    unite: ans
+    bornes: [15, 21]
+    valeurs:
+      - depuis: "2023-12-22"
+        valeur: 18
+        sources: [rc-sp-a17009]
+      - depuis: "2024-01-01"
+        valeur: 17
+        sources: [rc-sp-a17009, rc-sp-f2828]
+        article: "Décret n° 2023-1214 du 20 décembre 2023"
+    tags: [permis, age, jeunes_conducteurs, reforme_2024]
+    a_verifier: false
+    note: "Ancien âge (18 ans) : date d'entrée en vigueur non établie, attesté au 22/12/2023 par l'actualité service-public (« à partir de 17 ans au lieu de 18 ans »). L'examen du code peut être passé dès 15 ans en apprentissage anticipé, 16 ans sinon."
+
+  - id: transports.apprentissage_anticipe.age_minimal
+    titre: "Âge minimal pour commencer la conduite accompagnée (apprentissage anticipé)"
+    explication: "On peut commencer à apprendre à conduire avec un accompagnateur (conduite accompagnée) dès 15 ans."
+    type: nombre
+    unite: ans
+    bornes: [14, 18]
+    valeurs:
+      - depuis: "2025-05-26"
+        valeur: 15
+        sources: [rc-sp-f2828, rc-sp-a17009]
+    tags: [permis, age, conduite_accompagnee]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 26/05/2025 (fiche F2828). La conduite supervisée est ouverte à partir de 18 ans."
+
+  - id: transports.permis_points.capital_maximum
+    titre: "Nombre maximal de points du permis de conduire"
+    explication: "Un permis compte au maximum 12 points ; chaque infraction en fait perdre et, à zéro, le permis n'est plus valable."
+    type: nombre
+    unite: points
+    bornes: [6, 20]
+    valeurs:
+      - depuis: "2026-01-15"
+        valeur: 12
+        sources: [rc-sp-f2390]
+        article: "Code de la route, art. L223-1 à L223-9"
+    tags: [permis, permis_a_points]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 15/01/2026."
+
+  - id: transports.permis_points.capital_initial_probatoire
+    titre: "Nombre de points d'un nouveau permis (période probatoire)"
+    explication: "Un jeune conducteur démarre avec 6 points, puis en gagne 2 par an (3 par an s'il a fait la conduite accompagnée) s'il ne commet pas d'infraction, jusqu'à 12."
+    type: nombre
+    unite: points
+    bornes: [0, 12]
+    valeurs:
+      - depuis: "2026-01-15"
+        valeur: 6
+        sources: [rc-sp-f2390]
+        article: "Code de la route, art. L223-1 à L223-9 et R223-1 à R223-4-1"
+    tags: [permis, permis_a_points, jeunes_conducteurs]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 15/01/2026. Gain : +2 points à la fin de chaque année (formule classique) ou +3 (apprentissage anticipé) ; la formation complémentaire accélère le calendrier."
+
+  - id: transports.permis_probatoire.duree
+    titre: "Durée de la période probatoire (formation classique)"
+    explication: "Après l'obtention du permis par une formation classique, le conducteur est « probatoire » pendant 3 ans (2 ans s'il suit une formation complémentaire)."
+    type: nombre
+    unite: ans
+    bornes: [1, 5]
+    valeurs:
+      - depuis: "2026-01-15"
+        valeur: 3
+        sources: [rc-sp-f2390]
+        article: "Code de la route, art. L223-1 ; arrêté du 2 mai 2019 (formation complémentaire)"
+    tags: [permis, permis_probatoire, jeunes_conducteurs]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 15/01/2026. La loi RIPOST (18 août 2026) prévoit qu'un titulaire de permis probatoire ne pourra pas louer un véhicule dépassant une puissance qu'un texte doit encore fixer."
+
+  - id: transports.permis_probatoire.duree_apprentissage_anticipe
+    titre: "Durée de la période probatoire après la conduite accompagnée"
+    explication: "Si le permis a été obtenu après une conduite accompagnée, la période probatoire est de 2 ans (1 an et demi avec une formation complémentaire)."
+    type: nombre
+    unite: ans
+    bornes: [1, 5]
+    valeurs:
+      - depuis: "2026-01-15"
+        valeur: 2
+        sources: [rc-sp-f2390]
+        article: "Code de la route, art. L223-1"
+    tags: [permis, permis_probatoire, conduite_accompagnee]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 15/01/2026."
+
+  # ------------------------------------------------------------------ Alcool au volant
+  - id: transports.alcool.taux_max_general
+    titre: "Taux d'alcool maximal autorisé au volant (cas général)"
+    explication: "Il est interdit de conduire avec 0,5 gramme d'alcool ou plus par litre de sang (0,25 mg par litre d'air expiré)."
+    type: nombre
+    unite: g_par_litre
+    bornes: [0, 1]
+    valeurs:
+      - depuis: "2026-08-27"
+        valeur: 0.5
+        sources: [rc-sp-f2881]
+        article: "Code de la route, art. R234-1 et L234-1"
+    tags: [route, alcool, seuil]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 27/08/2026. À partir de 0,8 g/l, c'est un délit (3 ans de prison, 9 000 € d'amende). Entre les deux : amende forfaitaire de 135 € et 6 points retirés."
+
+  - id: transports.alcool.taux_max_probatoire
+    titre: "Taux d'alcool maximal pour les jeunes conducteurs"
+    explication: "En permis probatoire, en conduite accompagnée ou avec un éthylotest anti-démarrage imposé, la limite est de 0,2 g/l de sang, ce qui revient à « zéro verre »."
+    type: nombre
+    unite: g_par_litre
+    bornes: [0, 0.5]
+    valeurs:
+      - depuis: "2026-08-27"
+        valeur: 0.2
+        sources: [rc-sp-f2881]
+        article: "Code de la route, art. R234-1"
+    tags: [route, alcool, seuil, jeunes_conducteurs]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 27/08/2026. Équivalent air expiré : 0,10 mg/l."
+
+  # ------------------------------------------------------------------ Ceinture, téléphone, amendes
+  - id: transports.amende_forfaitaire.contravention_4e_classe
+    titre: "Montant de l'amende forfaitaire d'une contravention de 4e classe"
+    explication: "La plupart des infractions courantes au code de la route (ceinture, téléphone, feu rouge…) sont des contraventions de 4e classe : l'amende est de 135 €, réduite à 90 € si on paie dans les 15 jours, et portée à 375 € en cas de retard."
+    type: nombre
+    unite: euros
+    bornes: [0, 750]
+    valeurs:
+      - depuis: "2025-01-11"
+        valeur: 135
+        sources: [rc-sp-f18509]
+        article: "Code de procédure pénale, art. 529 et s., R48-1 à R49-8"
+    tags: [route, amende, contravention]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 11/01/2025. Minorée : 90 € (paiement immédiat ou sous 15 jours) ; majorée : 375 € (après 45 jours, 60 jours en télépaiement). Montant maximal si l'affaire est jugée : 750 €."
+
+  - id: transports.ceinture.amende_forfaitaire
+    titre: "Ceinture non attachée : amende forfaitaire"
+    explication: "Ne pas porter sa ceinture coûte en général 135 € d'amende forfaitaire (jusqu'à 750 € si l'affaire va devant le juge). Les passagers adultes sont aussi sanctionnés, et le conducteur est responsable des enfants mal attachés."
+    type: nombre
+    unite: euros
+    bornes: [0, 750]
+    valeurs:
+      - depuis: "2025-10-03"
+        valeur: 135
+        sources: [rc-sp-f628]
+        article: "Code de la route, art. R412-1 à R412-5"
+    tags: [route, ceinture, amende]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 03/10/2025. Un siège auto adapté est obligatoire jusqu'à 10 ans."
+
+  - id: transports.ceinture.retrait_points
+    titre: "Ceinture non attachée : points retirés au conducteur"
+    explication: "Le conducteur qui ne porte pas sa ceinture perd 3 points."
+    type: nombre
+    unite: points
+    bornes: [0, 12]
+    valeurs:
+      - depuis: "2025-10-03"
+        valeur: 3
+        sources: [rc-sp-f628, rc-sp-f31551]
+    tags: [route, ceinture, permis_a_points]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 03/10/2025."
+
+  - id: transports.telephone.amende_forfaitaire
+    titre: "Téléphone tenu en main au volant : amende forfaitaire"
+    explication: "Téléphoner avec l'appareil en main ou porter des écouteurs en conduisant est une contravention de 4e classe : 135 € d'amende."
+    type: nombre
+    unite: euros
+    bornes: [0, 750]
+    valeurs:
+      - depuis: "2026-02-27"
+        valeur: 135
+        sources: [rc-sp-f31551, rc-sp-f18509]
+    tags: [route, telephone, amende]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 27/02/2026 (classe : fiche F31551 ; montant de la 4e classe : fiche F18509)."
+
+  - id: transports.telephone.retrait_points
+    titre: "Téléphone tenu en main au volant : points retirés"
+    explication: "Téléphoner en tenant l'appareil ou porter oreillette, casque ou écouteurs en conduisant fait perdre 3 points."
+    type: nombre
+    unite: points
+    bornes: [0, 12]
+    valeurs:
+      - depuis: "2026-02-27"
+        valeur: 3
+        sources: [rc-sp-f31551]
+    tags: [route, telephone, permis_a_points]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 27/02/2026."
+
+  # ------------------------------------------------------------------ Contrôle technique
+  - id: transports.controle_technique.voiture_premier_controle
+    titre: "Âge de la voiture au premier contrôle technique"
+    explication: "Une voiture neuve doit passer son premier contrôle technique dans les 6 mois qui précèdent son 4e anniversaire de mise en circulation."
+    type: nombre
+    unite: ans
+    bornes: [1, 10]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 4
+        sources: [rc-sp-f2878]
+        article: "Code de la route, art. L323-1, R323-22"
+    tags: [vehicule, controle_technique]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 01/01/2026 (voitures particulières M1)."
+
+  - id: transports.controle_technique.voiture_periodicite
+    titre: "Périodicité du contrôle technique d'une voiture"
+    explication: "Après le premier contrôle, une voiture doit repasser le contrôle technique tous les 2 ans."
+    type: nombre
+    unite: ans
+    bornes: [1, 5]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 2
+        sources: [rc-sp-f2878]
+        article: "Code de la route, art. R323-22"
+    tags: [vehicule, controle_technique]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 01/01/2026. En cas de résultat défavorable, contre-visite obligatoire dans les 2 mois (défaillance critique : véhicule autorisé à circuler le seul jour du contrôle). Défaut de contrôle : amende forfaitaire de 135 € (jusqu'à 750 €) et immobilisation possible."
+
+  - id: transports.controle_technique.deux_roues_obligatoire
+    titre: "Le contrôle technique est-il obligatoire pour les deux-roues motorisés ?"
+    explication: "Oui, depuis le 15 avril 2024, les motos, scooters, trois-roues et quadricycles à moteur doivent passer un contrôle technique."
+    type: booleen
+    unite: ""
+    valeurs:
+      - depuis: "2024-04-02"
+        valeur: false
+        sources: [rc-sp-a16861]
+      - depuis: "2024-04-15"
+        valeur: true
+        sources: [rc-sp-a16861, rc-sp-f37538]
+        article: "Décret n° 2021-1062 du 9 août 2021 modifié (décret n° 2023-974 et arrêté du 23 octobre 2023) ; code de la route, art. R323-23 à R323-27"
+    tags: [vehicule, controle_technique, deux_roues, reforme_2024]
+    a_verifier: false
+    note: "Valeur « non » attestée au 02/04/2024 (actualité annonçant la mise en place). Mise en place échelonnée selon l'année d'immatriculation ; véhicules immatriculés depuis 2022 : premier contrôle dans les 6 mois avant le 5e anniversaire."
+
+  - id: transports.controle_technique.deux_roues_periodicite
+    titre: "Périodicité du contrôle technique des deux-roues motorisés"
+    explication: "Un deux-roues motorisé doit repasser le contrôle technique tous les 3 ans."
+    type: nombre
+    unite: ans
+    bornes: [1, 6]
+    valeurs:
+      - depuis: "2024-04-15"
+        valeur: 3
+        sources: [rc-sp-a16861, rc-sp-f37538]
+        article: "Code de la route, art. R323-27"
+    tags: [vehicule, controle_technique, deux_roues]
+    a_verifier: false
+    note: "Durée de validité d'un contrôle favorable : 3 ans (catégorie L)."

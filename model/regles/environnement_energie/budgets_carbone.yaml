@@ -1,0 +1,432 @@
+domaine: environnement_energie
+theme: "Budgets carbone et sobriété foncière"
+regles:
+  # ---------------------------------------------------------------------------
+  # BUDGETS CARBONE NATIONAUX (plafonds légaux d'émissions, SNBC 3)
+  # Convention : moyenne annuelle sur la période, en Mt CO2e, émissions
+  # territoriales brutes HORS puits de carbone (hors UTCATF et puits technologiques).
+  # ---------------------------------------------------------------------------
+  - id: environnement_energie.budget_carbone.periode_2019_2023
+    titre: "Budget carbone 2019-2023 (plafond annuel moyen d'émissions, hors puits de carbone) – période close"
+    explication: "Plafond d'émissions de gaz à effet de serre que la France ne devait pas dépasser, en moyenne par an, entre 2019 et 2023. Il a été respecté : 406 Mt par an en moyenne, soit une marge cumulée de 91 Mt."
+    type: nombre
+    unite: mt_co2e_par_an
+    bornes: [300, 500]
+    valeurs:
+      - depuis: "2020-04-21"
+        valeur: 422
+        sources: [eco-mte-snbc3-partie1]
+        article: "Décret n° 2020-457 du 21 avril 2020 (SNBC 2)"
+      - depuis: "2025-01-01"
+        valeur: 425
+        sources: [eco-mte-snbc3-partie1, eco-mte-suivi-emissions-ges]
+        article: "Code de l'environnement, art. D. 222-1-B (ajustement technique à la clôture du budget)"
+    tags: [climat, budget_carbone, snbc, contrainte]
+    a_verifier: false
+    note: "Valeur initiale déduite du document SNBC 3 (budget ajusté de 425 Mt/an = « écart de + 3 MtCO2e / an par rapport au budget initial »). L'ajustement technique « a été opéré en 2025 » : jour exact non précisé, 1er janvier 2025 retenu par convention. Budget avec puits : 380 Mt/an (respecté avec 48 Mt de marge) ; le budget du secteur UTCATF (-45 Mt/an) n'a pas été tenu (-36 Mt/an observés). Le 1er budget (2015-2018, 442 Mt/an ajusté) avait été dépassé de 61 Mt."
+
+  - id: environnement_energie.budget_carbone.periode_2024_2028
+    titre: "Budget carbone 2024-2028 (plafond annuel moyen d'émissions, hors puits de carbone)"
+    explication: "Plafond légal des émissions de gaz à effet de serre de la France, en moyenne par an sur 2024-2028, hors absorptions des forêts et des sols. C'est la contrainte climatique en cours : une réforme qui ajoute des émissions doit être compensée pour rester sous ce plafond."
+    type: nombre
+    unite: mt_co2e_par_an
+    bornes: [250, 450]
+    valeurs:
+      - depuis: "2020-04-21"
+        valeur: 359
+        sources: [eco-bdt-snbc3-jo-2026]
+        article: "Décret n° 2020-457 du 21 avril 2020 relatif aux budgets carbone nationaux et à la stratégie nationale bas-carbone (SNBC 2)"
+      - depuis: "2026-07-18"
+        valeur: 342
+        sources: [eco-mte-snbc3-partie1, eco-mte-snbc-feuille-route, eco-mte-suivi-emissions-ges, eco-bdt-snbc3-jo-2026]
+        article: "Décret n° 2026-636 du 16 juillet 2026 relatif aux budgets carbone nationaux et à la stratégie nationale bas-carbone (JO du 18 juillet 2026, texte n° 8), art. 2"
+    tags: [climat, budget_carbone, snbc, contrainte]
+    a_verifier: false
+    note: "3e budget carbone, révisé par la SNBC 3 (« fixé à 342 Mt CO2e/an hors puits de carbone (puits technologiques et secteur UTCATF) »). Les quatre sources concordent. Date « depuis » = publication au JO ; l'entrée en vigueur exacte et le texte même de l'article 2 n'ont pas pu être lus (Légifrance inaccessible, HTTP 403). Date « depuis » de la SNBC 2 = date du décret (publication au JO non vérifiée). Émissions observées : 367 Mt en 2024, 359 Mt en 2025 (pré-estimation)."
+
+  - id: environnement_energie.budget_carbone.periode_2029_2033
+    titre: "Budget carbone 2029-2033 (plafond annuel moyen d'émissions, hors puits de carbone)"
+    explication: "Plafond légal des émissions de gaz à effet de serre de la France, en moyenne par an sur 2029-2033, hors puits de carbone. Il correspond à la baisse de moitié des émissions entre 1990 et 2030."
+    type: nombre
+    unite: mt_co2e_par_an
+    bornes: [150, 400]
+    valeurs:
+      - depuis: "2020-04-21"
+        valeur: 300
+        sources: [eco-bdt-snbc3-jo-2026]
+        article: "Décret n° 2020-457 du 21 avril 2020 (SNBC 2)"
+      - depuis: "2026-07-18"
+        valeur: 262
+        sources: [eco-mte-snbc3-partie1, eco-mte-snbc-feuille-route, eco-bdt-snbc3-jo-2026]
+        article: "Décret n° 2026-636 du 16 juillet 2026 (JO du 18 juillet 2026, texte n° 8), art. 2"
+    tags: [climat, budget_carbone, snbc, contrainte]
+    a_verifier: true
+    note: "262 Mt/an selon le document de la SNBC 3, la page « feuille de route » du ministère et la Banque des Territoires (qui rend compte du décret) ; mais la page ministérielle « Suivi des émissions » affiche 261 Mt/an. Le texte du décret n'a pas pu être consulté pour trancher. Date « depuis » = publication au JO."
+
+  - id: environnement_energie.budget_carbone.periode_2034_2038
+    titre: "Budget carbone 2034-2038 (plafond annuel moyen d'émissions, hors puits de carbone)"
+    explication: "Nouveau plafond fixé pour la première fois par la SNBC 3 : émissions moyennes annuelles à ne pas dépasser sur 2034-2038, hors puits de carbone."
+    type: nombre
+    unite: mt_co2e_par_an
+    bornes: [100, 350]
+    valeurs:
+      - depuis: "2026-07-18"
+        valeur: 194
+        sources: [eco-mte-snbc3-partie1, eco-mte-snbc-feuille-route, eco-bdt-snbc3-jo-2026]
+        article: "Décret n° 2026-636 du 16 juillet 2026 (JO du 18 juillet 2026, texte n° 8), art. 2"
+    tags: [climat, budget_carbone, snbc, contrainte]
+    a_verifier: true
+    note: "194 Mt/an selon le document de la SNBC 3, la page « feuille de route » et la Banque des Territoires ; la page ministérielle « Suivi des émissions » affiche 193 Mt/an. Texte du décret non consulté. Rythme de baisse visé : environ -5 % par an."
+
+  # --- Tranches annuelles indicatives du 3e budget (période en cours) ---
+  - id: environnement_energie.budget_carbone.tranche_indicative_2026
+    titre: "Part annuelle indicative du budget carbone pour 2026 (hors puits de carbone)"
+    explication: "Niveau d'émissions que la France devrait viser en 2026 pour respecter le budget carbone 2024-2028. Les émissions de 2025 étaient estimées à 359 Mt, il faut donc une baisse d'environ 3 % en un an."
+    type: nombre
+    unite: mt_co2e
+    bornes: [250, 400]
+    valeurs:
+      - depuis: "2026-07-18"
+        valeur: 348
+        sources: [eco-mte-snbc3-partie1]
+        article: "SNBC 3, partie II.C, tableau 7"
+    tags: [climat, budget_carbone, snbc, trajectoire]
+    a_verifier: false
+    note: "Tranches indicatives (arrondies à 1 Mt) : 2024 : 367 ; 2025 : 359 (égales aux émissions observées, la trajectoire ayant été alignée sur elles d'après le HCC) ; 2026 : 348 ; 2027 : 328 ; 2028 : 308. Seul le plafond moyen de la période est contraignant ; les tranches annuelles sont indicatives."
+
+  - id: environnement_energie.budget_carbone.tranche_indicative_2027
+    titre: "Part annuelle indicative du budget carbone pour 2027 (hors puits de carbone)"
+    explication: "Niveau d'émissions visé en 2027 dans la trajectoire du budget carbone 2024-2028."
+    type: nombre
+    unite: mt_co2e
+    bornes: [200, 400]
+    valeurs:
+      - depuis: "2026-07-18"
+        valeur: 328
+        sources: [eco-mte-snbc3-partie1]
+        article: "SNBC 3, partie II.C, tableau 7"
+    tags: [climat, budget_carbone, snbc, trajectoire]
+    a_verifier: false
+    note: "Valeur indicative ; seul le plafond moyen 2024-2028 (342 Mt/an) est contraignant."
+
+  - id: environnement_energie.budget_carbone.tranche_indicative_2028
+    titre: "Part annuelle indicative du budget carbone pour 2028 (hors puits de carbone)"
+    explication: "Niveau d'émissions visé en 2028, dernière année du budget carbone 2024-2028."
+    type: nombre
+    unite: mt_co2e
+    bornes: [200, 400]
+    valeurs:
+      - depuis: "2026-07-18"
+        valeur: 308
+        sources: [eco-mte-snbc3-partie1]
+        article: "SNBC 3, partie II.C, tableau 7"
+    tags: [climat, budget_carbone, snbc, trajectoire]
+    a_verifier: false
+    note: "Valeur indicative. Tranches du 4e budget : 292 (2029), 276 (2030), 262 (2031), 248 (2032), 234 (2033) ; du 5e : 221, 207, 194, 180, 167 (2034-2038)."
+
+  # --- Répartition sectorielle du 3e budget (2024-2028) ---
+  - id: environnement_energie.budget_carbone.2024_2028.transports
+    titre: "Budget carbone 2024-2028 : part des transports"
+    explication: "Émissions annuelles moyennes allouées aux transports (voitures, camions, avions et bateaux intérieurs, trains) sur 2024-2028. Les transports émettaient 125 Mt en 2024 : c'est le premier secteur émetteur."
+    type: nombre
+    unite: mt_co2e_par_an
+    bornes: [50, 150]
+    valeurs:
+      - depuis: "2026-07-18"
+        valeur: 116
+        sources: [eco-mte-snbc3-partie1, eco-mte-snbc-feuille-route]
+        article: "SNBC 3, partie II.C, tableau 4 (répartition par domaines d'activité)"
+    tags: [climat, budget_carbone, transports, secteur]
+    a_verifier: false
+    note: "Répartition arrondie à 1 Mt. Niveaux de référence (Secten 2026) : 125 Mt en 1990, 146 en 2005, 125 en 2024. Hors transports internationaux (soutes : budget indicatif séparé de 22 Mt/an)."
+
+  - id: environnement_energie.budget_carbone.2024_2028.batiment
+    titre: "Budget carbone 2024-2028 : part des bâtiments (résidentiel et tertiaire)"
+    explication: "Émissions annuelles moyennes allouées au chauffage, à l'eau chaude et aux autres usages des logements et bureaux sur 2024-2028 (56 Mt émises en 2024)."
+    type: nombre
+    unite: mt_co2e_par_an
+    bornes: [20, 120]
+    valeurs:
+      - depuis: "2026-07-18"
+        valeur: 51
+        sources: [eco-mte-snbc3-partie1, eco-mte-snbc-feuille-route]
+        article: "SNBC 3, partie II.C, tableau 4"
+    tags: [climat, budget_carbone, batiment, secteur]
+    a_verifier: false
+    note: "Référence : 93 Mt en 1990, 107 en 2005, 56 en 2024."
+
+  - id: environnement_energie.budget_carbone.2024_2028.agriculture
+    titre: "Budget carbone 2024-2028 : part de l'agriculture"
+    explication: "Émissions annuelles moyennes allouées à l'agriculture (élevage, engrais, engins agricoles) sur 2024-2028 (78 Mt émises en 2024)."
+    type: nombre
+    unite: mt_co2e_par_an
+    bornes: [40, 100]
+    valeurs:
+      - depuis: "2026-07-18"
+        valeur: 75
+        sources: [eco-mte-snbc3-partie1, eco-mte-snbc-feuille-route]
+        article: "SNBC 3, partie II.C, tableau 4"
+    tags: [climat, budget_carbone, agriculture, secteur]
+    a_verifier: false
+    note: "Dont méthane 42 Mt et protoxyde d'azote 22 Mt. Référence : 93 Mt en 1990, 89 en 2005, 78 en 2024."
+
+  - id: environnement_energie.budget_carbone.2024_2028.industrie
+    titre: "Budget carbone 2024-2028 : part de l'industrie"
+    explication: "Émissions annuelles moyennes allouées à l'industrie manufacturière et à la construction sur 2024-2028 (62 Mt émises en 2024)."
+    type: nombre
+    unite: mt_co2e_par_an
+    bornes: [20, 150]
+    valeurs:
+      - depuis: "2026-07-18"
+        valeur: 56
+        sources: [eco-mte-snbc3-partie1, eco-mte-snbc-feuille-route]
+        article: "SNBC 3, partie II.C, tableau 4"
+    tags: [climat, budget_carbone, industrie, secteur]
+    a_verifier: false
+    note: "Référence : 140 Mt en 1990, 119 en 2005, 62 en 2024."
+
+  - id: environnement_energie.budget_carbone.2024_2028.energie
+    titre: "Budget carbone 2024-2028 : part de la production d'énergie"
+    explication: "Émissions annuelles moyennes allouées à la production d'électricité et de chaleur, au raffinage et à l'extraction de combustibles sur 2024-2028 (31 Mt émises en 2024)."
+    type: nombre
+    unite: mt_co2e_par_an
+    bornes: [10, 80]
+    valeurs:
+      - depuis: "2026-07-18"
+        valeur: 30
+        sources: [eco-mte-snbc3-partie1, eco-mte-snbc-feuille-route]
+        article: "SNBC 3, partie II.C, tableau 4"
+    tags: [climat, budget_carbone, energie, secteur]
+    a_verifier: false
+    note: "Référence : 79 Mt en 1990, 74 en 2005, 31 en 2024."
+
+  - id: environnement_energie.budget_carbone.2024_2028.dechets
+    titre: "Budget carbone 2024-2028 : part des déchets"
+    explication: "Émissions annuelles moyennes allouées au traitement des déchets (décharges, eaux usées, incinération sans récupération d'énergie) sur 2024-2028 (15 Mt émises en 2024)."
+    type: nombre
+    unite: mt_co2e_par_an
+    bornes: [5, 25]
+    valeurs:
+      - depuis: "2026-07-18"
+        valeur: 14
+        sources: [eco-mte-snbc3-partie1]
+        article: "SNBC 3, partie II.C, tableau 4"
+    tags: [climat, budget_carbone, dechets, secteur]
+    a_verifier: false
+    note: "Dont méthane 11 Mt. Référence : 17 Mt en 1990, 21 en 2005, 15 en 2024. Les six parts sectorielles somment à 342 Mt (arrondis)."
+
+  # --- Répartition sectorielle du 4e budget (2029-2033) ---
+  - id: environnement_energie.budget_carbone.2029_2033.transports
+    titre: "Budget carbone 2029-2033 : part des transports"
+    explication: "Émissions annuelles moyennes allouées aux transports sur 2029-2033."
+    type: nombre
+    unite: mt_co2e_par_an
+    bornes: [30, 150]
+    valeurs:
+      - depuis: "2026-07-18"
+        valeur: 86
+        sources: [eco-mte-snbc3-partie1, eco-mte-snbc-feuille-route]
+        article: "SNBC 3, partie II.C, tableau 4"
+    tags: [climat, budget_carbone, transports, secteur]
+    a_verifier: false
+    note: "5e budget (2034-2038) : 54 Mt/an."
+
+  - id: environnement_energie.budget_carbone.2029_2033.batiment
+    titre: "Budget carbone 2029-2033 : part des bâtiments"
+    explication: "Émissions annuelles moyennes allouées aux bâtiments résidentiels et tertiaires sur 2029-2033."
+    type: nombre
+    unite: mt_co2e_par_an
+    bornes: [10, 100]
+    valeurs:
+      - depuis: "2026-07-18"
+        valeur: 34
+        sources: [eco-mte-snbc3-partie1, eco-mte-snbc-feuille-route]
+        article: "SNBC 3, partie II.C, tableau 4"
+    tags: [climat, budget_carbone, batiment, secteur]
+    a_verifier: false
+    note: "5e budget (2034-2038) : 21 Mt/an."
+
+  - id: environnement_energie.budget_carbone.2029_2033.agriculture
+    titre: "Budget carbone 2029-2033 : part de l'agriculture"
+    explication: "Émissions annuelles moyennes allouées à l'agriculture sur 2029-2033."
+    type: nombre
+    unite: mt_co2e_par_an
+    bornes: [30, 100]
+    valeurs:
+      - depuis: "2026-07-18"
+        valeur: 67
+        sources: [eco-mte-snbc3-partie1, eco-mte-snbc-feuille-route]
+        article: "SNBC 3, partie II.C, tableau 4"
+    tags: [climat, budget_carbone, agriculture, secteur]
+    a_verifier: false
+    note: "5e budget (2034-2038) : 60 Mt/an."
+
+  - id: environnement_energie.budget_carbone.2029_2033.industrie
+    titre: "Budget carbone 2029-2033 : part de l'industrie"
+    explication: "Émissions annuelles moyennes allouées à l'industrie manufacturière et à la construction sur 2029-2033."
+    type: nombre
+    unite: mt_co2e_par_an
+    bornes: [10, 150]
+    valeurs:
+      - depuis: "2026-07-18"
+        valeur: 40
+        sources: [eco-mte-snbc3-partie1, eco-mte-snbc-feuille-route]
+        article: "SNBC 3, partie II.C, tableau 4"
+    tags: [climat, budget_carbone, industrie, secteur]
+    a_verifier: false
+    note: "5e budget (2034-2038) : 28 Mt/an."
+
+  - id: environnement_energie.budget_carbone.2029_2033.energie
+    titre: "Budget carbone 2029-2033 : part de la production d'énergie"
+    explication: "Émissions annuelles moyennes allouées à la production d'énergie sur 2029-2033."
+    type: nombre
+    unite: mt_co2e_par_an
+    bornes: [5, 80]
+    valeurs:
+      - depuis: "2026-07-18"
+        valeur: 24
+        sources: [eco-mte-snbc3-partie1]
+        article: "SNBC 3, partie II.C, tableau 4"
+    tags: [climat, budget_carbone, energie, secteur]
+    a_verifier: false
+    note: "5e budget (2034-2038) : 19 Mt/an."
+
+  - id: environnement_energie.budget_carbone.2029_2033.dechets
+    titre: "Budget carbone 2029-2033 : part des déchets"
+    explication: "Émissions annuelles moyennes allouées au traitement des déchets sur 2029-2033."
+    type: nombre
+    unite: mt_co2e_par_an
+    bornes: [2, 25]
+    valeurs:
+      - depuis: "2026-07-18"
+        valeur: 12
+        sources: [eco-mte-snbc3-partie1]
+        article: "SNBC 3, partie II.C, tableau 4"
+    tags: [climat, budget_carbone, dechets, secteur]
+    a_verifier: false
+    note: "5e budget (2034-2038) : 10 Mt/an. Les parts sectorielles arrondies somment à 263 Mt pour un budget de 262 Mt."
+
+  # --- Répartition par secteur de régulation européen (2024-2028) ---
+  - id: environnement_energie.budget_carbone.2024_2028.esr
+    titre: "Budget carbone 2024-2028 : part des secteurs du « partage de l'effort » (ESR)"
+    explication: "Émissions annuelles moyennes allouées aux secteurs non couverts par le marché carbone européen (transports, bâtiments, agriculture, déchets, petite industrie et énergie) : c'est la part sur laquelle les politiques nationales agissent le plus directement."
+    type: nombre
+    unite: mt_co2e_par_an
+    bornes: [100, 350]
+    valeurs:
+      - depuis: "2026-07-18"
+        valeur: 278
+        sources: [eco-mte-snbc3-partie1]
+        article: "SNBC 3, partie II.C, tableau 5"
+    tags: [climat, budget_carbone, ue, esr]
+    a_verifier: false
+    note: "Référence 2024 : 299 Mt. 4e budget : 214 ; 5e : 158. Le reste du budget 2024-2028 : marché carbone européen (installations fixes) 60 Mt, aviation civile domestique 4 Mt."
+
+  - id: environnement_energie.budget_carbone.2024_2028.seqe
+    titre: "Budget carbone 2024-2028 : part des installations couvertes par le marché carbone européen (SEQE-UE)"
+    explication: "Émissions annuelles moyennes allouées aux grandes installations industrielles et énergétiques soumises au marché européen des quotas d'émission."
+    type: nombre
+    unite: mt_co2e_par_an
+    bornes: [10, 120]
+    valeurs:
+      - depuis: "2026-07-18"
+        valeur: 60
+        sources: [eco-mte-snbc3-partie1]
+        article: "SNBC 3, partie II.C, tableau 5"
+    tags: [climat, budget_carbone, ue, seqe]
+    a_verifier: false
+    note: "Hors aviation et maritime. Référence 2024 : 64 Mt. 4e budget : 45 ; 5e : 33."
+
+  # --- Budgets indicatifs complémentaires (non contraignants) ---
+  - id: environnement_energie.budget_carbone.2024_2028.puits_utcatf_indicatif
+    titre: "Budget carbone indicatif 2024-2028 du puits naturel (forêts, sols : secteur UTCATF)"
+    explication: "Absorption moyenne de CO2 par les forêts, prairies et sols que la France se fixe pour objectif d'atteindre sur 2024-2028 (valeur négative = absorption). Ce puits s'est nettement affaibli (de -69 Mt en 2005 à -52 Mt en 2024) sous l'effet des sécheresses, incendies et crises sanitaires des forêts (scolytes)."
+    type: nombre
+    unite: mt_co2e_par_an
+    bornes: [-100, 0]
+    valeurs:
+      - depuis: "2026-07-18"
+        valeur: -46
+        sources: [eco-mte-snbc3-partie1]
+        article: "SNBC 3, partie II.C, tableau 10"
+    tags: [climat, budget_carbone, puits, utcatf, indicatif]
+    a_verifier: false
+    note: "Objectif indicatif (« la France se fixe l'objectif de tendre vers »), non contraignant. Référence : -39 Mt en 1990, -69 en 2005, -52 en 2024 ; 4e budget : -33 ; 5e : -31. Puits technologiques indicatifs : -0,1 / -0,8 / -3,9 Mt."
+
+  - id: environnement_energie.budget_carbone.2024_2028.soutes_internationales_indicatif
+    titre: "Budget carbone indicatif 2024-2028 des transports internationaux (soutes aériennes et maritimes)"
+    explication: "Plafond indicatif des émissions des carburants vendus en France pour les vols et trajets maritimes internationaux, comptées à part du total national."
+    type: nombre
+    unite: mt_co2e_par_an
+    bornes: [0, 40]
+    valeurs:
+      - depuis: "2026-07-18"
+        valeur: 22
+        sources: [eco-mte-snbc3-partie1]
+        article: "SNBC 3, partie II.C, tableau 8 ; code de l'environnement, art. L. 222-1 B"
+    tags: [climat, budget_carbone, aviation, maritime, indicatif]
+    a_verifier: false
+    note: "Fixé pour la première fois par la SNBC 3. Référence : 16 Mt en 1990, 24 en 2005, 22 en 2024 ; 4e budget : 21 ; 5e : 16."
+
+  - id: environnement_energie.budget_carbone.2024_2028.empreinte_indicatif_borne_haute
+    titre: "Budget carbone indicatif 2024-2028 en empreinte carbone (borne haute)"
+    explication: "Plafond indicatif de l'empreinte carbone de la France (émissions liées à sa consommation, importations comprises, exportations exclues) en moyenne annuelle sur 2024-2028. La borne haute correspond à un reste du monde qui se décarbone moins vite (trajectoire +2 °C)."
+    type: nombre
+    unite: mt_co2e_par_an
+    bornes: [300, 700]
+    valeurs:
+      - depuis: "2026-07-18"
+        valeur: 531
+        sources: [eco-mte-snbc3-partie1]
+        article: "SNBC 3, partie II.C, tableau 9"
+    tags: [climat, budget_carbone, empreinte, indicatif]
+    a_verifier: false
+    note: "Fourchette [516 ; 531] Mt/an pour 2024-2028, [408 ; 446] pour 2029-2033, [312 ; 358] pour 2034-2038. Empreinte observée : 563 Mt en 2024 (SDES, provisoire). Budgets indicatifs, susceptibles d'être révisés à chaque actualisation méthodologique."
+
+  - id: environnement_energie.budget_carbone.2024_2028.empreinte_indicatif_borne_basse
+    titre: "Budget carbone indicatif 2024-2028 en empreinte carbone (borne basse)"
+    explication: "Plafond indicatif de l'empreinte carbone de la France sur 2024-2028 si le reste du monde se décarbone au rythme compatible avec +1,5 °C."
+    type: nombre
+    unite: mt_co2e_par_an
+    bornes: [300, 700]
+    valeurs:
+      - depuis: "2026-07-18"
+        valeur: 516
+        sources: [eco-mte-snbc3-partie1]
+        article: "SNBC 3, partie II.C, tableau 9"
+    tags: [climat, budget_carbone, empreinte, indicatif]
+    a_verifier: false
+    note: "Voir la borne haute (531 Mt/an). Dont émissions intérieures hors exports 257 Mt et importées [259 ; 274] Mt."
+
+  # ---------------------------------------------------------------------------
+  # SOBRIÉTÉ FONCIÈRE : ZÉRO ARTIFICIALISATION NETTE (ZAN)
+  # ---------------------------------------------------------------------------
+  - id: environnement_energie.artificialisation.annee_objectif_zan
+    titre: "Année d'atteinte de l'objectif « zéro artificialisation nette » des sols"
+    explication: "Année à partir de laquelle la France ne doit plus artificialiser de sols sans en rendre autant à la nature (renaturation) : chaque hectare bétonné devra être compensé."
+    type: nombre
+    unite: annee
+    bornes: [2035, 2070]
+    valeurs:
+      - depuis: "2021-08-22"
+        valeur: 2050
+        sources: [eco-mte-artificialisation-sols, eco-portail-artificialisation]
+        article: "Loi « Climat et résilience » d'août 2021"
+    tags: [artificialisation, zan, sols, biodiversite]
+    a_verifier: false
+    note: "Objectif confirmé par la page ministérielle (mise à jour 27/10/2025) et le portail de l'artificialisation (consulté le 13/10/2026). Date « depuis » = date usuelle de la loi (22 août 2021) ; texte et date d'entrée en vigueur non lus sur Légifrance (inaccessible). Selon la presse spécialisée (Banque des Territoires, Weka ; non vérifié sur le site du Parlement), la proposition de loi « TRACE », adoptée en 1re lecture par le Sénat le 18/03/2025, maintient l'horizon 2050 mais supprimerait l'objectif intermédiaire chiffré ; aucune adoption définitive trouvée au 13/10/2026."
+
+  - id: environnement_energie.artificialisation.reduction_consommation_enaf_2021_2031
+    titre: "Objectif de réduction de la consommation d'espaces naturels, agricoles et forestiers sur 2021-2031 (par rapport à 2011-2021)"
+    explication: "Première étape vers le zéro artificialisation nette : sur la décennie 2021-2031, la France doit consommer deux fois moins d'espaces naturels, agricoles et forestiers que sur la décennie 2011-2021."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2021-08-22"
+        valeur: 50
+        sources: [eco-mte-artificialisation-sols, eco-portail-artificialisation]
+        article: "Loi « Climat et résilience » d'août 2021, art. 194 (première tranche de dix années)"
+    tags: [artificialisation, zan, sols, objectif_intermediaire]
+    a_verifier: false
+    note: "Objectif national territorialisé dans les schémas régionaux (avant le 22/11/2024), les SCoT (avant le 22/02/2027) et les PLU(i) (avant le 22/02/2028) ; une surface minimale d'un hectare est garantie aux communes couvertes par un document d'urbanisme, et les projets d'envergure nationale sont décomptés au niveau national (modalités présentées par le ministère ; la loi ZAN du 20 juillet 2023 a renforcé l'accompagnement des élus). Ordre de grandeur (Cerema, Fichiers fonciers) : 226 734 ha consommés entre le 1/1/2011 et le 1/1/2021, d'où une enveloppe nationale d'environ 113 000 ha pour 2021-2031 ; 72 658 ha consommés entre le 1/1/2021 et le 1/1/2025. Risque législatif (selon la presse spécialisée, non vérifié sur le site du Parlement) : la PPL « TRACE » (Sénat, 18/03/2025) supprimerait cet objectif chiffré au profit de trajectoires régionales avec un premier jalon en 2034 ; non adoptée définitivement à notre connaissance au 13/10/2026 (dernières informations trouvées : mars 2026)."

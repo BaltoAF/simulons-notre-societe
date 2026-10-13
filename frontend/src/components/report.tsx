@@ -1,11 +1,13 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, BookOpen, ChevronDown, Scale } from 'lucide-react'
-import type { Indicateur, Rapport, Section } from '../lib/api'
+import { ArrowRight, BookOpen, ChevronDown, ChevronRight, Scale } from 'lucide-react'
+import type { Indicateur, Rapport, Section, Valeur } from '../lib/api'
 import { delta, euros, nombre, valeur } from '../lib/format'
 import { ColumnChart, DivergingBars } from './charts'
 import { ConfidenceBadge } from './ui'
+import { EnBref, EquilibresPanel } from './synthese'
 
-const UNITES_DELTA = new Set(['euros_mois', 'euros', 'milliards_euros', 'points', 'points_pib', 'pourcent', 'emplois', 'personnes'])
+const UNITES_DELTA = new Set(['euros_mois', 'euros', 'milliards_euros', 'points', 'points_pib', 'pourcent', 'emplois', 'personnes', 'mt_co2e', 'points_sur_10', 'ecart_type', 'heures'])
 
 export function IndicatorCard({ ind, big = false }: { ind: Indicateur; big?: boolean }) {
   const isDelta = ind.avant !== null || ind.id.startsWith('solde') || UNITES_DELTA.has(ind.unite)
@@ -170,18 +172,24 @@ const RENDUS: Record<string, (p: { s: Section }) => JSX.Element | null> = {
   budget_etat: SectionBudgetEtat, non_modelise: SectionNonModelise,
 }
 
-export function SectionView({ s }: { s: Section }) {
+export function SectionView({ s, ouvert = false }: { s: Section; ouvert?: boolean }) {
   const R = RENDUS[s.id]
   const principaux = s.indicateurs
+  const [open, setOpen] = useState(ouvert)
   return (
     <section className="card" id={`section-${s.id}`}>
-      <div className="card-head">
-        <div>
-          <h3 style={{ marginBottom: 2 }}>{s.titre}</h3>
-          <div className="muted small">{s.sous_titre}</div>
-        </div>
+      <div className="card-head" style={{ marginBottom: open ? 12 : 0 }}>
+        <button className="row" onClick={() => setOpen((o) => !o)} aria-expanded={open}
+          style={{ background: 'none', border: 0, padding: 0, cursor: 'pointer', textAlign: 'left', color: 'inherit', font: 'inherit', alignItems: 'flex-start', flexWrap: 'nowrap' }}>
+          {open ? <ChevronDown size={20} style={{ marginTop: 2, flexShrink: 0 }} /> : <ChevronRight size={20} style={{ marginTop: 2, flexShrink: 0 }} />}
+          <div>
+            <h3 style={{ marginBottom: 2 }}>{s.titre}</h3>
+            <div className="muted small">{s.sous_titre}</div>
+          </div>
+        </button>
         <ConfidenceBadge c={s.confiance} align="right" />
       </div>
+      {open && <>
       {principaux.length > 0 && (
         <div className="grid" style={{ marginBottom: 14, gridTemplateColumns: principaux.length === 1 ? '1fr' : 'repeat(auto-fit, minmax(230px, 1fr))' }}>
           {principaux.map((i) => <IndicatorCard key={i.id} ind={i} big={s.id === 'menage'} />)}
@@ -195,36 +203,29 @@ export function SectionView({ s }: { s: Section }) {
           {s.limites.length > 0 && <ul className="small" style={{ paddingLeft: 18 }}>{s.limites.map((l, i) => <li key={i}>{l}</li>)}</ul>}
         </details>
       )}
+      </>}
     </section>
   )
 }
 
-export function ReportView({ r }: { r: Rapport }) {
+export function ReportView({ r, overrides, onAppliquer }: { r: Rapport; overrides?: Record<string, Valeur>; onAppliquer?: (o: Record<string, Valeur>) => void }) {
   const syn = r.synthese
+  const budget = r.equilibres?.find((e) => e.id === 'budget')
   return (
     <div className="stack">
-      {syn.solde_public_annuel_md !== null && (
-        <div className="card" style={{ borderColor: 'var(--primary)' }}>
-          <div className="card-head">
-            <div>
-              <div className="kpi-label">Effet total sur les comptes publics, chaque année</div>
-              <div className="kpi big"><span className={`delta ${syn.solde_public_annuel_md >= 0 ? 'pos' : 'neg'}`}>
-                {syn.solde_public_annuel_md >= 0 ? '+' : '−'}{nombre(Math.abs(syn.solde_public_annuel_md), 1)} Md€</span></div>
-              <div className="small muted">{syn.solde_public_annuel_md >= 0 ? 'Le déficit public diminue (ou l\'excédent augmente).' : 'Le déficit public augmente : il faudra financer cette somme.'}</div>
-            </div>
-            <ConfidenceBadge c={syn.confiance_solde} align="right" />
-          </div>
-          {syn.composantes_solde.length > 1 && (
-            <ul className="list small">
-              {syn.composantes_solde.map((c, i) => (
-                <li key={i} className="list-row"><span>{c.libelle} <span className="muted">— {c.section}</span></span>
-                  <span className="row"><span className={`delta ${c.valeur >= 0 ? 'pos' : 'neg'}`}>{c.valeur >= 0 ? '+' : '−'}{nombre(Math.abs(c.valeur), 2)} Md€</span><ConfidenceBadge c={c.confiance} compact align="right" /></span></li>
-              ))}
-            </ul>
+      {r.bilan && <EnBref r={r} />}
+      {r.equilibres && (
+        <div>
+          <h3 style={{ margin: '8px 0 10px' }}>Les équilibres à respecter</h3>
+          <EquilibresPanel r={r} overrides={overrides} onAppliquer={onAppliquer} />
+          {syn.solde_public_annuel_md !== null && budget && Math.abs(syn.solde_public_annuel_md - budget.effet) > 0.05 && (
+            <p className="small muted" style={{ marginTop: 8 }}>En comptant aussi les réactions des ménages et des entreprises et l'effet sur l'activité (estimations moins certaines),
+              l'effet sur les finances publiques serait de <strong>{syn.solde_public_annuel_md >= 0 ? '+' : '−'}{nombre(Math.abs(syn.solde_public_annuel_md), 1)} Md€</strong> par an.</p>
           )}
         </div>
       )}
-      {r.sections.map((s) => <SectionView key={s.id} s={s} />)}
+      <h3 style={{ margin: '8px 0 0' }}>Le détail, pour aller plus loin</h3>
+      {r.sections.map((s) => <SectionView key={s.id} s={s} ouvert={s.id === 'menage'} />)}
       {r.erreurs.length > 0 && (
         <div className="notice warn small">Certains modules n'ont pas pu être calculés : {r.erreurs.map((e) => e.module).join(', ')}.</div>
       )}

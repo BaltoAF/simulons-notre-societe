@@ -1,0 +1,429 @@
+# Tabac et alcool : fiscalité (accises, cotisation sécurité sociale, taxe « prémix »), âge minimal de vente,
+# interdictions de fumer. Valeurs en vigueur au 13 octobre 2026.
+# Sources : douane.gouv.fr (tarifs 2026), fiches service-public.gouv.fr (DILA).
+# Aucun prix minimum de vente de l'alcool n'a été trouvé dans les sources officielles consultées.
+domaine: sante
+theme: "Tabac et alcool"
+regles:
+  # ------------------------------------------------------------------ Tabac : vente
+  - id: sante.tabac.age_minimal_vente
+    titre: "Âge minimal pour acheter du tabac"
+    explication: "Un buraliste ne doit ni vendre ni offrir du tabac (ni des produits de vapotage) à une personne de moins de 18 ans. Il peut demander une pièce d'identité."
+    type: nombre
+    unite: ans
+    bornes: [16, 21]
+    valeurs:
+      - depuis: "2026-02-04"
+        valeur: 18
+        sources: [rc-spe-f23604]
+        article: "Code de la santé publique, art. L3512-10 à L3512-14-1"
+    tags: [tabac, mineurs, vente]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 04/02/2026."
+
+  - id: sante.tabac.vente_mineurs_amende
+    titre: "Vente de tabac à un mineur : amende"
+    explication: "Le buraliste qui vend du tabac à un mineur risque une amende de 135 €."
+    type: nombre
+    unite: euros
+    bornes: [0, 10000]
+    valeurs:
+      - depuis: "2026-02-04"
+        valeur: 135
+        sources: [rc-spe-f23604]
+    tags: [tabac, mineurs, vente, amende]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 04/02/2026. Par ailleurs, la sanction administrative pouvant frapper un débitant de tabac (avertissement ou amende) va jusqu'à 16 000 € : ce plafond a été doublé le 1er octobre 2025."
+
+  - id: sante.tabac.debitant_sanction_administrative_max
+    titre: "Débit de tabac : montant maximal de la sanction administrative"
+    explication: "Un buraliste qui manque à ses obligations peut recevoir un avertissement ou une amende administrative allant jusqu'à 16 000 €, deux fois plus qu'avant octobre 2025."
+    type: nombre
+    unite: euros
+    bornes: [0, 50000]
+    valeurs:
+      - depuis: "2025-10-01"
+        valeur: 16000
+        sources: [rc-spe-f23604]
+    tags: [tabac, buraliste, sanction, reforme_2025]
+    a_verifier: false
+    note: "La fiche indique que le montant maximal « a été doublé » depuis le 1er octobre 2025 ; l'ancien plafond (soit la moitié) n'est pas chiffré sur la fiche et n'est donc pas repris en historique."
+
+  # ------------------------------------------------------------------ Tabac : fiscalité (accise)
+  - id: sante.tabac.accise_cigarettes_taux
+    titre: "Accise sur les cigarettes : part proportionnelle (taux)"
+    explication: "L'accise (taxe principale sur le tabac) comprend un pourcentage du prix de vente au détail : 55 % pour les cigarettes. On y ajoute une part fixe par cigarette, avec un montant minimum."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 80]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 55
+        sources: [rc-douane-fiscalite-tabacs]
+        article: "Code des impositions sur les biens et services, art. L314-24 ; arrêté du 24 décembre 2025 (JORF n° 306 du 31 décembre 2025)"
+    tags: [tabac, fiscalite, accise, cigarettes]
+    a_verifier: false
+    note: "France continentale. L'accise due est le plus élevé de : (taux × prix de vente + tarif) ou minimum de perception. Exemple douane pour un paquet de 20 à 11,50 € : 6,325 € (taux) + 1,466 € (tarif) ; s'ajoutent la TVA « en dedans » (16,6667 % du prix, soit 1,92 €) et la remise du buraliste (10,29 %, soit 1,183 €)."
+
+  - id: sante.tabac.accise_cigarettes_tarif
+    titre: "Accise sur les cigarettes : part spécifique (tarif) pour 1 000 cigarettes"
+    explication: "Part fixe de l'accise : 73,30 € pour 1 000 cigarettes, soit environ 1,47 € par paquet de 20."
+    type: nombre
+    unite: euros_par_1000_unites
+    bornes: [0, 200]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 73.30
+        sources: [rc-douane-fiscalite-tabacs]
+        article: "CIBS, art. L314-24 ; arrêté du 24 décembre 2025"
+    tags: [tabac, fiscalite, accise, cigarettes]
+    a_verifier: false
+    note: "Montant par paquet de 20 donné par la douane : 1,466 €. Valeurs 2025 non publiées sur la page consultée."
+
+  - id: sante.tabac.accise_cigarettes_minimum_perception
+    titre: "Accise sur les cigarettes : minimum de perception pour 1 000 cigarettes"
+    explication: "Quel que soit le prix du paquet, l'accise ne peut pas être inférieure à 381,90 € pour 1 000 cigarettes, soit environ 7,64 € par paquet de 20. Cela empêche les paquets très bon marché."
+    type: nombre
+    unite: euros_par_1000_unites
+    bornes: [0, 800]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 381.90
+        sources: [rc-douane-fiscalite-tabacs]
+        article: "CIBS, art. L314-24 ; arrêté du 24 décembre 2025"
+    tags: [tabac, fiscalite, accise, cigarettes, minimum_perception]
+    a_verifier: false
+    note: "Montant par paquet de 20 donné par la douane : 7,638 €. Pour les paquets à 11,50 € et 13,50 € pris en exemple, c'est la somme taux + tarif qui s'applique car elle dépasse ce minimum."
+
+  - id: sante.tabac.accise_tabac_a_rouler_taux
+    titre: "Accise sur le tabac à rouler : part proportionnelle (taux)"
+    explication: "Pour le tabac à rouler, l'accise comprend 49,1 % du prix de vente, plus une part fixe au poids."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 80]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 49.10
+        sources: [rc-douane-fiscalite-tabacs]
+        article: "CIBS, art. L314-24 ; arrêté du 24 décembre 2025"
+    tags: [tabac, fiscalite, accise, tabac_a_rouler]
+    a_verifier: false
+    note: "Tabacs fine coupe destinés à rouler les cigarettes, France continentale."
+
+  - id: sante.tabac.accise_tabac_a_rouler_tarif
+    titre: "Accise sur le tabac à rouler : part spécifique (tarif) par kilo"
+    explication: "Part fixe de l'accise sur le tabac à rouler : 105 € par kilo."
+    type: nombre
+    unite: euros_par_1000_grammes
+    bornes: [0, 300]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 105.00
+        sources: [rc-douane-fiscalite-tabacs]
+        article: "CIBS, art. L314-24 ; arrêté du 24 décembre 2025"
+    tags: [tabac, fiscalite, accise, tabac_a_rouler]
+    a_verifier: false
+    note: "La page indique que les tarifs sont exprimés « pour 1000 unités ou 1000 grammes » sans préciser l'unité ligne par ligne ; l'unité (1 000 g) est déduite de la nature du produit, vendu au poids."
+
+  - id: sante.tabac.accise_tabac_a_rouler_minimum_perception
+    titre: "Accise sur le tabac à rouler : minimum de perception par kilo"
+    explication: "L'accise sur le tabac à rouler ne peut pas être inférieure à 358,60 € par kilo."
+    type: nombre
+    unite: euros_par_1000_grammes
+    bornes: [0, 800]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 358.60
+        sources: [rc-douane-fiscalite-tabacs]
+        article: "CIBS, art. L314-24 ; arrêté du 24 décembre 2025"
+    tags: [tabac, fiscalite, accise, tabac_a_rouler, minimum_perception]
+    a_verifier: false
+    note: "Unité déduite comme pour le tarif (1 000 g)."
+
+  - id: sante.tabac.accise_cigares_taux
+    titre: "Accise sur les cigares et cigarillos : part proportionnelle (taux)"
+    explication: "Pour les cigares et cigarillos, l'accise comprend 36,3 % du prix de vente, plus une part fixe (56,20 € pour 1 000) avec un minimum de 305 € pour 1 000."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 80]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 36.30
+        sources: [rc-douane-fiscalite-tabacs]
+        article: "CIBS, art. L314-24 ; arrêté du 24 décembre 2025"
+    tags: [tabac, fiscalite, accise, cigares]
+    a_verifier: false
+    note: "Autres catégories 2026 (taux / tarif / minimum) : autres tabacs à fumer ou à chauffer (narguilé…) 51,40 % / 36,20 / 153,70 ; tabacs à chauffer en bâtonnets 51,40 % / 50,90 / 336,00 ; autres tabacs à chauffer 51,40 % / 192,30 / 1 267,90 ; tabacs à priser 58,10 % ; tabacs à mâcher 40,70 % (sans tarif ni minimum)."
+
+  - id: sante.tabac.prix_moyen_pondere_cigarettes
+    titre: "Prix moyen pondéré des cigarettes (pour 1 000 cigarettes, année 2025)"
+    explication: "Prix de vente moyen des cigarettes vendues en France, pondéré par les quantités, constaté chaque année par arrêté : environ 627 € pour 1 000 cigarettes en 2025, soit environ 12,54 € le paquet de 20."
+    type: nombre
+    unite: euros_par_1000_unites
+    bornes: [0, 1500]
+    valeurs:
+      - depuis: "2026-01-26"
+        valeur: 627.07
+        sources: [rc-legi-arrete-pmp-tabac-2025]
+        article: "Arrêté du 26 janvier 2026 constatant le prix moyen pondéré de vente au détail pour l'année 2025 (CSP, art. L3512-14-17)"
+    tags: [tabac, prix, cigarettes]
+    a_verifier: true
+    note: "Valeur relevée dans un extrait de moteur de recherche de l'arrêté publié sur Légifrance ; la page Légifrance n'a pas pu être ouverte (protection anti-robots) : à confirmer. Valeur 2024 citée par le même extrait (non vérifiée) : 603,59 €. Il n'existe pas de publication officielle du « prix du paquet le plus vendu » ; les prix par marque sont homologués par arrêté (listes publiées par la douane)."
+
+  # ------------------------------------------------------------------ Tabac : interdictions de fumer
+  - id: sante.tabac.interdiction_fumer_lieux_collectifs
+    titre: "Interdiction de fumer dans les lieux publics fermés et les lieux de travail"
+    explication: "Il est interdit de fumer dans tous les lieux publics fermés et couverts (cafés, restaurants, commerces, discothèques) et sur les lieux de travail, sauf dans un fumoir aménagé. Aucun fumoir n'est permis dans les écoles, les établissements de santé et les lieux accueillant des mineurs."
+    type: booleen
+    unite: ""
+    valeurs:
+      - depuis: "2026-04-01"
+        valeur: true
+        sources: [rc-sp-f160]
+        article: "Code de la santé publique, art. L3512-8 et R3512-2 à R3512-9"
+    tags: [tabac, interdiction, lieux_publics]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie sur la fiche lue ; valeur attestée au 01/04/2026. Interdiction également dans les transports publics, les aires collectives de jeux pour enfants et dans une voiture en présence d'un mineur."
+
+  - id: sante.tabac.interdiction_fumer_espaces_exterieurs
+    titre: "Interdiction de fumer sur les plages, dans les parcs, aux arrêts de bus et aux abords des écoles"
+    explication: "Depuis le 1er juillet 2025, il est aussi interdit de fumer en plein air dans les parcs et jardins publics, sur les plages de baignade (en saison), aux abribus, aux abords des écoles et des lieux accueillant des mineurs, ainsi qu'aux abords des bibliothèques, piscines et stades."
+    type: booleen
+    unite: ""
+    valeurs:
+      - depuis: "2025-06-13"
+        valeur: false
+        sources: [rc-sp-a18351]
+      - depuis: "2025-07-01"
+        valeur: true
+        sources: [rc-sp-a18351, rc-sp-f160]
+        article: "Décret n° 2025-582 du 27 juin 2025 ; arrêté du 21 juillet 2025 (périmètres et signalisation)"
+    tags: [tabac, interdiction, espaces_exterieurs, reforme_2025]
+    a_verifier: false
+    note: "Valeur « non » au niveau national attestée au 13/06/2025 (actualité annonçant la mesure) ; des communes avaient pu prendre des arrêtés locaux auparavant. L'interdiction s'applique pendant les heures ou périodes d'ouverture des lieux concernés."
+
+  - id: sante.tabac.perimetre_abords_etablissements_mineurs
+    titre: "Distance autour des écoles où il est interdit de fumer"
+    explication: "Il est interdit de fumer dans un rayon de 10 mètres autour des entrées des écoles, collèges, lycées, universités et lieux accueillant des mineurs."
+    type: nombre
+    unite: metres
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2026-04-01"
+        valeur: 10
+        sources: [rc-sp-f160]
+        article: "Arrêté du 21 juillet 2025 fixant les périmètres et les modèles de signalisation"
+    tags: [tabac, interdiction, ecoles, mineurs]
+    a_verifier: false
+    note: "Valeur attestée au 01/04/2026 ; vraisemblablement applicable depuis l'arrêté du 21 juillet 2025, date non confirmée sur une source lue."
+
+  - id: sante.tabac.amende_max_fumer_lieu_interdit
+    titre: "Fumer dans un lieu interdit : amende maximale"
+    explication: "Fumer dans un lieu où c'est interdit (ou en voiture avec un mineur) peut coûter jusqu'à 750 € d'amende. Le responsable du lieu qui ne met pas la signalisation risque la même amende."
+    type: nombre
+    unite: euros
+    bornes: [0, 1500]
+    valeurs:
+      - depuis: "2026-04-01"
+        valeur: 750
+        sources: [rc-sp-f160]
+        article: "Code de la santé publique, art. R3512-2 à R3512-9"
+    tags: [tabac, interdiction, amende]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 01/04/2026. La fiche ne précise ni la classe de contravention ni le montant de l'amende forfaitaire."
+
+  - id: sante.tabac.interdiction_produits_nicotine_usage_oral
+    titre: "Interdiction des produits à la nicotine à usage oral (sachets de nicotine…)"
+    explication: "Depuis le 1er avril 2026, les produits contenant de la nicotine destinés à être mis dans la bouche (comme les sachets de nicotine) sont interdits, à l'exception des tabacs à chiquer."
+    type: booleen
+    unite: ""
+    valeurs:
+      - depuis: "2026-04-01"
+        valeur: true
+        sources: [rc-sp-f160]
+    tags: [tabac, nicotine, interdiction, reforme_2026]
+    a_verifier: false
+    note: "Information lue sur la fiche F160 (« Depuis le 1er avril 2026 ») ; le texte juridique instaurant l'interdiction n'est pas cité par la fiche consultée."
+
+  # ------------------------------------------------------------------ Alcool : vente
+  - id: sante.alcool.age_minimal_vente
+    titre: "Âge minimal pour acheter de l'alcool"
+    explication: "Il est interdit de vendre ou d'offrir de l'alcool à un mineur de moins de 18 ans dans les commerces, bars et lieux publics."
+    type: nombre
+    unite: ans
+    bornes: [16, 21]
+    valeurs:
+      - depuis: "2026-04-10"
+        valeur: 18
+        sources: [rc-sp-f20104]
+        article: "Code de la santé publique, art. L3342-1"
+    tags: [alcool, mineurs, vente]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 10/04/2026."
+
+  - id: sante.alcool.vente_mineurs_amende
+    titre: "Vente d'alcool à un mineur : amende"
+    explication: "Vendre de l'alcool à un mineur, ou lui en offrir dans un bar, un commerce ou un lieu public, est puni de 7 500 € d'amende."
+    type: nombre
+    unite: euros
+    bornes: [0, 50000]
+    valeurs:
+      - depuis: "2026-04-10"
+        valeur: 7500
+        sources: [rc-sp-f20104]
+        article: "Code de la santé publique, art. L3353-3"
+    tags: [alcool, mineurs, vente, amende]
+    a_verifier: false
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 10/04/2026."
+
+  # ------------------------------------------------------------------ Alcool : fiscalité (accises 2025 et 2026)
+  - id: sante.alcool.accise_vins_tranquilles
+    titre: "Accise sur les vins tranquilles (par hectolitre)"
+    explication: "Taxe sur le vin non pétillant : 4,19 € par hectolitre (100 litres) en 2026, soit environ 3 centimes par bouteille de 75 cl."
+    type: nombre
+    unite: euros_par_hectolitre
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2025-01-01"
+        valeur: 4.12
+        sources: [rc-douane-droits-alcools]
+      - depuis: "2026-01-01"
+        valeur: 4.19
+        sources: [rc-douane-droits-alcools, rc-douane-da-25-060]
+        article: "Code des impositions sur les biens et services (tarifs depuis le 1er janvier 2022), art. L313-19"
+    tags: [alcool, fiscalite, accise, vin]
+    a_verifier: false
+    note: "Même tarif pour les boissons fermentées autres que le vin et la bière. L'équivalence « environ 3 centimes par bouteille » est un calcul (4,19 € × 0,75 / 100)."
+
+  - id: sante.alcool.accise_vins_mousseux
+    titre: "Accise sur les vins mousseux (par hectolitre)"
+    explication: "Taxe sur les vins pétillants (champagne, crémant…) : 10,38 € par hectolitre en 2026."
+    type: nombre
+    unite: euros_par_hectolitre
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2025-01-01"
+        valeur: 10.20
+        sources: [rc-douane-droits-alcools]
+      - depuis: "2026-01-01"
+        valeur: 10.38
+        sources: [rc-douane-droits-alcools, rc-douane-da-25-060]
+    tags: [alcool, fiscalite, accise, vin]
+    a_verifier: false
+    note: ""
+
+  - id: sante.alcool.accise_cidres
+    titre: "Accise sur les cidres, poirés et hydromels (par hectolitre)"
+    explication: "Taxe sur le cidre, le poiré et l'hydromel : 1,46 € par hectolitre en 2026."
+    type: nombre
+    unite: euros_par_hectolitre
+    bornes: [0, 50]
+    valeurs:
+      - depuis: "2025-01-01"
+        valeur: 1.43
+        sources: [rc-douane-droits-alcools]
+      - depuis: "2026-01-01"
+        valeur: 1.46
+        sources: [rc-douane-droits-alcools, rc-douane-da-25-060]
+    tags: [alcool, fiscalite, accise, cidre]
+    a_verifier: false
+    note: ""
+
+  - id: sante.alcool.accise_bieres
+    titre: "Accise sur les bières de plus de 2,8 % (par hectolitre et par degré)"
+    explication: "La taxe sur la bière dépend de son degré : 8,24 € par hectolitre et par degré d'alcool en 2026. Pour une bière à 5 %, cela fait environ 41 € par hectolitre, soit environ 10 centimes par demi (25 cl)."
+    type: nombre
+    unite: euros_par_hectolitre_degre
+    bornes: [0, 50]
+    valeurs:
+      - depuis: "2025-01-01"
+        valeur: 8.10
+        sources: [rc-douane-droits-alcools]
+      - depuis: "2026-01-01"
+        valeur: 8.24
+        sources: [rc-douane-droits-alcools, rc-douane-da-25-060]
+    tags: [alcool, fiscalite, accise, biere]
+    a_verifier: false
+    note: "Bières de 2,8 % vol. ou moins et petites brasseries (200 000 hl/an ou moins) : 4,12 €/hl/degré en 2026 (4,05 € en 2025). Les exemples chiffrés de l'explication sont des calculs (8,24 × 5 = 41,2 €/hl)."
+
+  - id: sante.alcool.accise_produits_intermediaires
+    titre: "Accise sur les produits intermédiaires (porto, vermouth… par hectolitre)"
+    explication: "Les « produits intermédiaires » (vins doux, apéritifs à base de vin comme le porto ou le vermouth) sont taxés 209,53 € par hectolitre en 2026 ; les vins doux naturels et vins de liqueur d'appellation bénéficient d'un tarif réduit de 52,39 €."
+    type: nombre
+    unite: euros_par_hectolitre
+    bornes: [0, 1000]
+    valeurs:
+      - depuis: "2025-01-01"
+        valeur: 205.93
+        sources: [rc-douane-droits-alcools]
+      - depuis: "2026-01-01"
+        valeur: 209.53
+        sources: [rc-douane-droits-alcools, rc-douane-da-25-060]
+    tags: [alcool, fiscalite, accise, produits_intermediaires]
+    a_verifier: false
+    note: "Tarif réduit VDN/VDL AOP : 52,39 €/hl en 2026 ; le montant 2025 lu sur la page (50,6 €/hl) est incohérent avec la hausse plafonnée à 1,75 % et n'est pas repris."
+
+  - id: sante.alcool.accise_alcools_forts
+    titre: "Accise sur les alcools forts (par hectolitre d'alcool pur)"
+    explication: "Les spiritueux (whisky, vodka, rhum, pastis…) sont taxés 1 932,42 € par hectolitre d'alcool pur en 2026, soit environ 5,40 € pour une bouteille de 70 cl à 40 %. S'y ajoute la cotisation sécurité sociale."
+    type: nombre
+    unite: euros_par_hectolitre_alcool_pur
+    bornes: [0, 5000]
+    valeurs:
+      - depuis: "2025-01-01"
+        valeur: 1899.18
+        sources: [rc-douane-droits-alcools]
+      - depuis: "2026-01-01"
+        valeur: 1932.42
+        sources: [rc-douane-droits-alcools, rc-douane-da-25-060]
+    tags: [alcool, fiscalite, accise, spiritueux]
+    a_verifier: false
+    note: "Rhums des départements d'outre-mer : 966,75 €/hlap en 2026 (950,12 € en 2025). L'exemple par bouteille est un calcul (0,7 l × 40 % = 0,28 l d'alcool pur × 19,3242 €/l)."
+
+  - id: sante.alcool.cotisation_securite_sociale_plus_18_degres
+    titre: "Cotisation sécurité sociale sur les boissons de plus de 18 % (par hectolitre d'alcool pur)"
+    explication: "Les boissons titrant plus de 18 % d'alcool paient en plus une cotisation au profit de la Sécurité sociale : 620,47 € par hectolitre d'alcool pur en 2026, soit environ 1,74 € pour une bouteille de 70 cl à 40 %."
+    type: nombre
+    unite: euros_par_hectolitre_alcool_pur
+    bornes: [0, 3000]
+    valeurs:
+      - depuis: "2025-01-01"
+        valeur: 609.80
+        sources: [rc-douane-droits-alcools]
+      - depuis: "2026-01-01"
+        valeur: 620.47
+        sources: [rc-douane-droits-alcools, rc-douane-da-25-060]
+        article: "Code de la sécurité sociale, art. L245-9"
+    tags: [alcool, fiscalite, securite_sociale, spiritueux]
+    a_verifier: false
+    note: "Taux plein, applicable aussi aux rhums des DOM (le taux réduit de la cotisation sur les rhums et alcools du cru a été supprimé le 1er janvier 2025). Produits intermédiaires et bières de plus de 18 % : 52,39 €/hl en 2026 (51,49 € en 2025) ; VDN/VDL AOP : 20,97 €/hl (20,61 €). L'exemple par bouteille est un calcul."
+
+  - id: sante.alcool.taxe_premix_autres
+    titre: "Taxe « prémix » sur les boissons sucrées alcoolisées (par décilitre d'alcool pur)"
+    explication: "Les mélanges sucrés à base d'alcool fort (« prémix ») paient une taxe supplémentaire de 11 € par décilitre d'alcool pur (3 € pour ceux à base de vin ou d'autres boissons fermentées), pour décourager leur consommation par les jeunes."
+    type: nombre
+    unite: euros_par_decilitre_alcool_pur
+    bornes: [0, 50]
+    valeurs:
+      - depuis: "2020-01-01"
+        valeur: 11
+        sources: [rc-douane-droits-alcools]
+        article: "Code général des impôts, art. 1613 A"
+    tags: [alcool, fiscalite, premix, jeunes]
+    a_verifier: false
+    note: "Tarif en vigueur depuis le 1er janvier 2020 selon la douane ; non concerné par la revalorisation annuelle. Prémix à base de vin ou d'autres boissons fermentées : 3 €/dl d'alcool pur."
+
+  - id: sante.alcool.revalorisation_annuelle_plafond
+    titre: "Hausse annuelle maximale des tarifs d'accise sur l'alcool"
+    explication: "Les taxes sur l'alcool augmentent chaque 1er janvier comme les prix (hors tabac), mais la hausse est plafonnée : 1,75 % au maximum pour 2026."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 1.75
+        sources: [rc-douane-droits-alcools]
+        article: "Code des impositions sur les biens et services, art. L313-19 et L132-1 à L132-2"
+    tags: [alcool, fiscalite, indexation]
+    a_verifier: false
+    note: "Indexation sur l'évolution des prix à la consommation hors tabac entre la 3e et la 2e année précédant la révision ; plafond appliqué pour 2026 selon la douane."

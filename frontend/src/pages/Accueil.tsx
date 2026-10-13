@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom'
-import { ArrowRight, BadgeCheck, Calculator, GitFork, Scale, Search, ShieldCheck } from 'lucide-react'
+import { ArrowRight, BadgeCheck, Calculator, GitFork, Landmark, Scale, Search, ShieldCheck } from 'lucide-react'
 import { useApp, useFetch } from '../lib/state'
 import { PRESETS, resoudrePreset } from '../lib/presets'
 import type { Regle, Societe } from '../lib/api'
@@ -29,9 +29,22 @@ export default function Accueil() {
           <p className="lead">Société 2.0 traduit les règles de la France — impôts, aides, travail, retraites, justice, institutions… — en paramètres
             vérifiables. Chacun peut en créer sa version, comme on « forke » un logiciel, et voir ce que ça change : pour soi, pour le pays,
             avec un indice de confiance pour chaque chiffre.</p>
-          <div className="row" style={{ marginTop: 22 }}>
-            <Link to="/mes-droits" className="btn primary large"><Calculator size={18} /> Calculer mes droits</Link>
-            <Link to="/atelier" className="btn large"><GitFork size={18} /> Tester une réforme</Link>
+          <div className="grid cols-3" style={{ marginTop: 26 }}>
+            <Link to="/mes-droits" className="card link" style={{ borderColor: 'var(--primary)' }}>
+              <Calculator size={26} color="var(--primary)" />
+              <h3 style={{ marginTop: 8 }}>Que me donne la société ?</h3>
+              <p className="small ink2" style={{ margin: 0 }}>Vos aides, vos impôts, votre âge de départ à la retraite… en 3 questions.</p>
+            </Link>
+            <Link to="/budget" className="card link">
+              <Landmark size={26} color="var(--accent)" />
+              <h3 style={{ marginTop: 8 }}>Où va l'argent public ?</h3>
+              <p className="small ink2" style={{ margin: 0 }}>Du budget de la France à votre propre contribution, poste par poste.</p>
+            </Link>
+            <Link to="/atelier" className="card link">
+              <GitFork size={26} color="var(--gain)" />
+              <h3 style={{ marginTop: 8 }}>Et si on changeait les règles ?</h3>
+              <p className="small ink2" style={{ margin: 0 }}>Testez une idée : effets sur vous, l'économie, le social, la planète et le bien-être.</p>
+            </Link>
           </div>
         </div>
       </section>
@@ -50,7 +63,7 @@ export default function Accueil() {
           </div>
           <div className="card">
             <div className="row"><span className="step-num">3</span><h3 style={{ margin: 0 }}>Les impacts, sourcés</h3></div>
-            <p className="ink2" style={{ marginTop: 10 }}>Pour votre foyer, pour le budget de l'État, pour les inégalités, pour l'économie. Quand les études divergent, le Système <strong>tranche</strong> et vous dit avec quelle confiance.</p>
+            <p className="ink2" style={{ marginTop: 10 }}>Pour votre foyer et pour le pays, sur quatre dimensions : économie, social, écologie et bien-être. Une hausse qui dégrade le budget public ou le budget carbone doit être <strong>compensée ailleurs</strong>. Quand les études divergent, le Système tranche et dit avec quelle confiance.</p>
             <Link to="/preuves">Voir les études <ArrowRight size={14} /></Link>
           </div>
         </div>

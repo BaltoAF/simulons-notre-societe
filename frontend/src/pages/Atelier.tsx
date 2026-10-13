@@ -1,11 +1,12 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
-import { ArrowRight, Calculator, GitBranch, GitFork, Lightbulb, Plus, Save, Trash2, Undo2, User } from 'lucide-react'
+import { ArrowRight, Calculator, GitBranch, GitFork, Landmark, Lightbulb, Plus, Save, Trash2, Undo2, User } from 'lucide-react'
 import { api, type Rapport, type Regle, type SocieteDetail, type Valeur } from '../lib/api'
-import { DOMAINE_TITRE, valeur } from '../lib/format'
+import { DOMAINE_TITRE, nombre, valeur } from '../lib/format'
 import { PRESETS, resoudrePreset } from '../lib/presets'
 import { BROUILLON_VIDE, situationVersMenage, useApp, useFetch } from '../lib/state'
 import { RulePicker, ValueEditor } from '../components/editors'
+import { BudgetEditor } from '../components/BudgetEditor'
 import { ReportView } from '../components/report'
 import { ErrorBox, Loading, Modal, Notice } from '../components/ui'
 
@@ -18,6 +19,7 @@ export default function Atelier() {
   const { data: rdata } = useFetch<{ regles: Regle[] }>('/api/regles?limit=5000')
   const regles = useMemo(() => Object.fromEntries((rdata?.regles ?? []).map((r) => [r.id, r])), [rdata])
   const [picker, setPicker] = useState(false)
+  const [budgetEd, setBudgetEd] = useState(false)
   const [presets, setPresets] = useState(false)
   const [avecFoyer, setAvecFoyer] = useState(!!situation)
   const [rapport, setRapport] = useState<Rapport | null>(null)
@@ -53,15 +55,30 @@ export default function Atelier() {
   const ids = Object.keys(draft.overrides)
   const changes = ids.filter((id) => regles[id] && !same(draft.overrides[id], regles[id].valeur))
 
-  const simuler = async () => {
+  const [rapportPour, setRapportPour] = useState<string | null>(null)
+  const simuler = async (ov: Record<string, Valeur> = draft.overrides) => {
     setLoading(true); setErr(null)
     try {
       const r = await api<Rapport>('/api/simulation/reforme', {
-        body: { overrides: draft.overrides, menage: avecFoyer && situation ? situationVersMenage(situation) : null, montants: 'net' },
+        body: { overrides: ov, menage: avecFoyer && situation ? situationVersMenage(situation) : null, montants: 'net' },
       })
       setRapport(r)
+      setRapportPour(JSON.stringify(ov))
     } catch (e: any) { setErr(e.message) } finally { setLoading(false) }
   }
+  const appliquerCompensation = (o: Record<string, Valeur>) => {
+    const ov = { ...draft.overrides, ...o }
+    setDraft((d) => ({ ...d, overrides: ov }))
+    simuler(ov)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+  const aJour = rapport !== null && rapportPour === JSON.stringify(draft.overrides)
+  const desequilibres = aJour ? (rapport?.equilibres ?? []).filter((e) => e.statut === 'a_compenser') : []
+
+  useEffect(() => {
+    if (params.get('budget') && rdata) { setBudgetEd(true); params.delete('budget'); setParams(params, { replace: true }) }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [rdata])
 
   useEffect(() => {
     if (params.get('lancer') && !lance.current && rdata && Object.keys(draft.overrides).length) {
@@ -141,6 +158,7 @@ export default function Atelier() {
             <div className="row" style={{ marginTop: 12 }}>
               <button className="btn" onClick={() => setPicker(true)}><Plus size={16} /> Ajouter une règle</button>
               <button className="btn ghost" onClick={() => setPresets(true)}><Lightbulb size={16} /> Idées</button>
+              <button className="btn ghost" onClick={() => setBudgetEd(true)}><Landmark size={16} /> Répartir le budget</button>
             </div>
           </div>
 
@@ -150,7 +168,7 @@ export default function Atelier() {
               <span><User size={15} /> Inclure mon foyer</span>
             </label>
             {!situation && <div className="small muted" style={{ marginTop: 6 }}>Renseignez d'abord votre situation dans <Link to="/mes-droits">Mes droits</Link> pour voir l'effet sur votre budget.</div>}
-            <button className="btn primary large" style={{ width: '100%', marginTop: 14 }} disabled={!changes.length || loading} onClick={simuler}>
+            <button className="btn primary large" style={{ width: '100%', marginTop: 14 }} disabled={!changes.length || loading} onClick={() => simuler()}>
               <Calculator size={18} /> {loading ? 'Calcul en cours…' : 'Mesurer les impacts'}
             </button>
           </div>
@@ -160,6 +178,11 @@ export default function Atelier() {
               <h3><Save size={17} /> Enregistrer</h3>
               {!user ? (
                 <p className="small">Pour enregistrer votre société, la partager et recevoir des propositions, <Link to="/connexion?retour=/atelier">identifiez-vous</Link>. Votre brouillon est conservé.</p>
+              ) : !aJour ? (
+                <p className="small">Mesurez d'abord les impacts de votre version actuelle : une société ne s'enregistre qu'une fois ses équilibres vérifiés.</p>
+              ) : desequilibres.length > 0 ? (
+                <div className="notice err small"><div><strong>Réforme non équilibrée.</strong> {desequilibres.map((e) => `${e.titre} : ${e.id === 'budget' ? nombre(e.manque, 1) + ' Md€' : nombre(e.manque, 2) + ' Mt CO₂e'} à compenser`).join(' ; ')}.
+                  Choisissez une compensation dans le rapport (ou décidez d'assumer, ce qui sera inscrit dans votre société).</div></div>
               ) : (
                 <div className="stack">
                   {proprietaire && <button className="btn primary" style={{ width: '100%' }} onClick={() => setSaving(true)}><GitBranch size={16} /> Enregistrer dans « {base!.societe.nom} »</button>}
@@ -173,7 +196,7 @@ export default function Atelier() {
         <div>
           {err && <ErrorBox message={err} />}
           {loading && <div className="card"><Loading label="Le Système calcule les impacts : moteur socio-fiscal, ménages types, études…" /></div>}
-          {!loading && rapport && <ReportView r={rapport} />}
+          {!loading && rapport && <ReportView r={rapport} overrides={draft.overrides} onAppliquer={appliquerCompensation} />}
           {!loading && !rapport && (
             <div className="card soft" style={{ textAlign: 'center', padding: 40 }}>
               <Calculator size={36} color="var(--primary)" />
@@ -188,6 +211,8 @@ export default function Atelier() {
       </div>
 
       {picker && <RulePicker onPick={ajouter} onClose={() => setPicker(false)} exclude={ids} />}
+      {budgetEd && rdata && <BudgetEditor regles={rdata.regles} overrides={draft.overrides} onClose={() => setBudgetEd(false)}
+        onApply={(o) => { setDraft((d) => { const ov = { ...d.overrides }; for (const k of Object.keys(ov)) if (k.startsWith('budget.etat.mission.')) delete ov[k]; return { ...d, overrides: { ...ov, ...o } } }); setBudgetEd(false) }} />}
       {presets && (
         <Modal title="Idées de réformes" onClose={() => setPresets(false)}>
           <div className="grid cols-2">{PRESETS.map((p) => <button key={p.id} className="preset" onClick={() => appliquerPreset(p.id)}><strong>{p.titre}</strong><span className="small muted">{p.description}</span></button>)}</div>

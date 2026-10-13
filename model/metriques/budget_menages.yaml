@@ -1,0 +1,853 @@
+# Budget public et budget des ménages : « Où va l'argent public, et quelle est ma part ? »
+# Dépenses publiques par fonction en milliards d'euros (Eurostat/Insee, 2024), redistribution par niveau de vie
+# (Insee, Ines 2024), taxe foncière (DGFiP, 2025), comptes des ménages (Insee, 2025), retraites (COR, 2025), santé (Drees, 2025).
+# Non dupliqués ici : ratios COFOG au PIB et recettes par impôt (finances_publiques.yaml), niveau de vie moyen par
+# décile après redistribution (revenus.niveau_vie_moyen.*, population.yaml), reste à charge santé (social_env.yaml).
+# Convention : date = 31 décembre de l'année pour les données annuelles.
+metriques:
+  - id: finances_publiques.cofog_md.services_generaux
+    titre: "Dépenses publiques par fonction (COFOG) : Services publics généraux (milliards d'euros)"
+    explication: "Dépenses de l'ensemble des administrations publiques (État, organismes publics, collectivités locales, Sécurité sociale) pour cette fonction. Fonctionnement des pouvoirs publics (Parlement, ministères, impôts, affaires étrangères), recherche fondamentale, aide au développement et intérêts de la dette publique (58,9 Md€ en 2024). Source : Eurostat, tableau gov_10a_exp (données transmises par l'Insee, mise à jour du 16 septembre 2026). 2024 est la dernière année publiée (les données 2025 paraîtront fin 2026). Statuts Eurostat : 2022 définitif, 2023 et 2024 provisoires. Le total 2024 (1 671,8 Md€) est très proche de celui de l'Insee après la révision de mai 2026 (1 672,6 Md€). Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2022-12-31"
+        valeur: 173.222
+        source: bm-eurostat-gov-10a-exp-md
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 174.763
+        source: bm-eurostat-gov-10a-exp-md
+        statut: provisoire
+      - date: "2024-12-31"
+        valeur: 181.103
+        source: bm-eurostat-gov-10a-exp-md
+        statut: provisoire
+  - id: finances_publiques.cofog_md.defense
+    titre: "Dépenses publiques par fonction (COFOG) : Défense (milliards d'euros)"
+    explication: "Dépenses de l'ensemble des administrations publiques (État, organismes publics, collectivités locales, Sécurité sociale) pour cette fonction. Armées, défense civile, aide militaire à l'étranger et recherche de défense. Source : Eurostat, tableau gov_10a_exp (données transmises par l'Insee, mise à jour du 16 septembre 2026). 2024 est la dernière année publiée (les données 2025 paraîtront fin 2026). Statuts Eurostat : 2022 définitif, 2023 et 2024 provisoires. Le total 2024 (1 671,8 Md€) est très proche de celui de l'Insee après la révision de mai 2026 (1 672,6 Md€). Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2022-12-31"
+        valeur: 47.675
+        source: bm-eurostat-gov-10a-exp-md
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 51.18
+        source: bm-eurostat-gov-10a-exp-md
+        statut: provisoire
+      - date: "2024-12-31"
+        valeur: 54.199
+        source: bm-eurostat-gov-10a-exp-md
+        statut: provisoire
+  - id: finances_publiques.cofog_md.ordre_securite
+    titre: "Dépenses publiques par fonction (COFOG) : Ordre et sécurité publics (milliards d'euros)"
+    explication: "Dépenses de l'ensemble des administrations publiques (État, organismes publics, collectivités locales, Sécurité sociale) pour cette fonction. Police et gendarmerie (28,9 Md€ en 2024), pompiers (7,9 Md€), justice (8,3 Md€) et prisons (5,1 Md€). Source : Eurostat, tableau gov_10a_exp (données transmises par l'Insee, mise à jour du 16 septembre 2026). 2024 est la dernière année publiée (les données 2025 paraîtront fin 2026). Statuts Eurostat : 2022 définitif, 2023 et 2024 provisoires. Le total 2024 (1 671,8 Md€) est très proche de celui de l'Insee après la révision de mai 2026 (1 672,6 Md€). Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2022-12-31"
+        valeur: 45.474
+        source: bm-eurostat-gov-10a-exp-md
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 48.712
+        source: bm-eurostat-gov-10a-exp-md
+        statut: provisoire
+      - date: "2024-12-31"
+        valeur: 52.113
+        source: bm-eurostat-gov-10a-exp-md
+        statut: provisoire
+  - id: finances_publiques.cofog_md.affaires_economiques
+    titre: "Dépenses publiques par fonction (COFOG) : Affaires économiques (milliards d'euros)"
+    explication: "Dépenses de l'ensemble des administrations publiques (État, organismes publics, collectivités locales, Sécurité sociale) pour cette fonction. Transports (60,7 Md€ en 2024), aides aux entreprises et à l'emploi, énergie, agriculture, recherche appliquée. Source : Eurostat, tableau gov_10a_exp (données transmises par l'Insee, mise à jour du 16 septembre 2026). 2024 est la dernière année publiée (les données 2025 paraîtront fin 2026). Statuts Eurostat : 2022 définitif, 2023 et 2024 provisoires. Le total 2024 (1 671,8 Md€) est très proche de celui de l'Insee après la révision de mai 2026 (1 672,6 Md€). Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2022-12-31"
+        valeur: 179.789
+        source: bm-eurostat-gov-10a-exp-md
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 177.62
+        source: bm-eurostat-gov-10a-exp-md
+        statut: provisoire
+      - date: "2024-12-31"
+        valeur: 166.073
+        source: bm-eurostat-gov-10a-exp-md
+        statut: provisoire
+  - id: finances_publiques.cofog_md.environnement
+    titre: "Dépenses publiques par fonction (COFOG) : Protection de l'environnement (milliards d'euros)"
+    explication: "Dépenses de l'ensemble des administrations publiques (État, organismes publics, collectivités locales, Sécurité sociale) pour cette fonction. Gestion des déchets (15,9 Md€ en 2024), eaux usées, lutte contre la pollution, biodiversité. Source : Eurostat, tableau gov_10a_exp (données transmises par l'Insee, mise à jour du 16 septembre 2026). 2024 est la dernière année publiée (les données 2025 paraîtront fin 2026). Statuts Eurostat : 2022 définitif, 2023 et 2024 provisoires. Le total 2024 (1 671,8 Md€) est très proche de celui de l'Insee après la révision de mai 2026 (1 672,6 Md€). Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2022-12-31"
+        valeur: 27.163
+        source: bm-eurostat-gov-10a-exp-md
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 28.936
+        source: bm-eurostat-gov-10a-exp-md
+        statut: provisoire
+      - date: "2024-12-31"
+        valeur: 30.285
+        source: bm-eurostat-gov-10a-exp-md
+        statut: provisoire
+  - id: finances_publiques.cofog_md.logement_equipements
+    titre: "Dépenses publiques par fonction (COFOG) : Logement et équipements collectifs (milliards d'euros)"
+    explication: "Dépenses de l'ensemble des administrations publiques (État, organismes publics, collectivités locales, Sécurité sociale) pour cette fonction. Construction de logements, aménagement urbain et rural, eau potable, éclairage public (les aides personnelles au logement sont classées en protection sociale). Source : Eurostat, tableau gov_10a_exp (données transmises par l'Insee, mise à jour du 16 septembre 2026). 2024 est la dernière année publiée (les données 2025 paraîtront fin 2026). Statuts Eurostat : 2022 définitif, 2023 et 2024 provisoires. Le total 2024 (1 671,8 Md€) est très proche de celui de l'Insee après la révision de mai 2026 (1 672,6 Md€). Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2022-12-31"
+        valeur: 31.724
+        source: bm-eurostat-gov-10a-exp-md
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 35.602
+        source: bm-eurostat-gov-10a-exp-md
+        statut: provisoire
+      - date: "2024-12-31"
+        valeur: 42.129
+        source: bm-eurostat-gov-10a-exp-md
+        statut: provisoire
+  - id: finances_publiques.cofog_md.sante
+    titre: "Dépenses publiques par fonction (COFOG) : Santé (milliards d'euros)"
+    explication: "Dépenses de l'ensemble des administrations publiques (État, organismes publics, collectivités locales, Sécurité sociale) pour cette fonction. Hôpitaux (109,3 Md€ en 2024), soins de ville (91,8 Md€), médicaments et dispositifs médicaux (43,7 Md€), santé publique et recherche médicale. Source : Eurostat, tableau gov_10a_exp (données transmises par l'Insee, mise à jour du 16 septembre 2026). 2024 est la dernière année publiée (les données 2025 paraîtront fin 2026). Statuts Eurostat : 2022 définitif, 2023 et 2024 provisoires. Le total 2024 (1 671,8 Md€) est très proche de celui de l'Insee après la révision de mai 2026 (1 672,6 Md€). Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2022-12-31"
+        valeur: 240.773
+        source: bm-eurostat-gov-10a-exp-md
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 249.676
+        source: bm-eurostat-gov-10a-exp-md
+        statut: provisoire
+      - date: "2024-12-31"
+        valeur: 261.156
+        source: bm-eurostat-gov-10a-exp-md
+        statut: provisoire
+  - id: finances_publiques.cofog_md.loisirs_culture
+    titre: "Dépenses publiques par fonction (COFOG) : Loisirs, culture et culte (milliards d'euros)"
+    explication: "Dépenses de l'ensemble des administrations publiques (État, organismes publics, collectivités locales, Sécurité sociale) pour cette fonction. Sport, culture, audiovisuel public et édition, cultes. Source : Eurostat, tableau gov_10a_exp (données transmises par l'Insee, mise à jour du 16 septembre 2026). 2024 est la dernière année publiée (les données 2025 paraîtront fin 2026). Statuts Eurostat : 2022 définitif, 2023 et 2024 provisoires. Le total 2024 (1 671,8 Md€) est très proche de celui de l'Insee après la révision de mai 2026 (1 672,6 Md€). Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2022-12-31"
+        valeur: 38.465
+        source: bm-eurostat-gov-10a-exp-md
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 41.417
+        source: bm-eurostat-gov-10a-exp-md
+        statut: provisoire
+      - date: "2024-12-31"
+        valeur: 43.068
+        source: bm-eurostat-gov-10a-exp-md
+        statut: provisoire
+  - id: finances_publiques.cofog_md.enseignement
+    titre: "Dépenses publiques par fonction (COFOG) : Enseignement (milliards d'euros)"
+    explication: "Dépenses de l'ensemble des administrations publiques (État, organismes publics, collectivités locales, Sécurité sociale) pour cette fonction. Écoles maternelles et élémentaires (42,2 Md€ en 2024), collèges et lycées (63,8 Md€), enseignement supérieur (12,3 Md€), cantines, transports et services annexes. Source : Eurostat, tableau gov_10a_exp (données transmises par l'Insee, mise à jour du 16 septembre 2026). 2024 est la dernière année publiée (les données 2025 paraîtront fin 2026). Statuts Eurostat : 2022 définitif, 2023 et 2024 provisoires. Le total 2024 (1 671,8 Md€) est très proche de celui de l'Insee après la révision de mai 2026 (1 672,6 Md€). Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2022-12-31"
+        valeur: 134.017
+        source: bm-eurostat-gov-10a-exp-md
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 141.555
+        source: bm-eurostat-gov-10a-exp-md
+        statut: provisoire
+      - date: "2024-12-31"
+        valeur: 148.64
+        source: bm-eurostat-gov-10a-exp-md
+        statut: provisoire
+  - id: finances_publiques.cofog_md.protection_sociale
+    titre: "Dépenses publiques par fonction (COFOG) : Protection sociale (milliards d'euros)"
+    explication: "Dépenses de l'ensemble des administrations publiques (État, organismes publics, collectivités locales, Sécurité sociale) pour cette fonction. Retraites, réversion, famille, chômage, handicap et invalidité, aides au logement, minima sociaux (le détail figure dans les sous-fonctions protection_sociale_*). Source : Eurostat, tableau gov_10a_exp (données transmises par l'Insee, mise à jour du 16 septembre 2026). 2024 est la dernière année publiée (les données 2025 paraîtront fin 2026). Statuts Eurostat : 2022 définitif, 2023 et 2024 provisoires. Le total 2024 (1 671,8 Md€) est très proche de celui de l'Insee après la révision de mai 2026 (1 672,6 Md€). Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2022-12-31"
+        valeur: 632.03
+        source: bm-eurostat-gov-10a-exp-md
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 657.931
+        source: bm-eurostat-gov-10a-exp-md
+        statut: provisoire
+      - date: "2024-12-31"
+        valeur: 693.029
+        source: bm-eurostat-gov-10a-exp-md
+        statut: provisoire
+  - id: finances_publiques.cofog_md.protection_sociale_maladie_invalidite
+    titre: "Dépenses publiques par fonction (COFOG) : Protection sociale : maladie et invalidité (milliards d'euros)"
+    explication: "Dépenses de l'ensemble des administrations publiques (État, organismes publics, collectivités locales, Sécurité sociale) pour cette fonction. Revenus de remplacement et aides en cas de maladie ou de handicap (par exemple indemnités journalières et pensions d'invalidité). Les soins eux-mêmes sont classés en santé. Source : Eurostat, tableau gov_10a_exp (données transmises par l'Insee, mise à jour du 16 septembre 2026). 2024 est la dernière année publiée (les données 2025 paraîtront fin 2026). Statuts Eurostat : 2022 définitif, 2023 et 2024 provisoires. Le total 2024 (1 671,8 Md€) est très proche de celui de l'Insee après la révision de mai 2026 (1 672,6 Md€). Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2022-12-31"
+        valeur: 78.447
+        source: bm-eurostat-gov-10a-exp-md
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 78.382
+        source: bm-eurostat-gov-10a-exp-md
+        statut: provisoire
+      - date: "2024-12-31"
+        valeur: 83.899
+        source: bm-eurostat-gov-10a-exp-md
+        statut: provisoire
+  - id: finances_publiques.cofog_md.protection_sociale_vieillesse
+    titre: "Dépenses publiques par fonction (COFOG) : Protection sociale : vieillesse (milliards d'euros)"
+    explication: "Dépenses de l'ensemble des administrations publiques (État, organismes publics, collectivités locales, Sécurité sociale) pour cette fonction. Pensions de retraite de droit direct, minimum vieillesse et autres aides aux personnes âgées. Les pensions de réversion sont classées à part (protection_sociale_survivants). Source : Eurostat, tableau gov_10a_exp (données transmises par l'Insee, mise à jour du 16 septembre 2026). 2024 est la dernière année publiée (les données 2025 paraîtront fin 2026). Statuts Eurostat : 2022 définitif, 2023 et 2024 provisoires. Le total 2024 (1 671,8 Md€) est très proche de celui de l'Insee après la révision de mai 2026 (1 672,6 Md€). Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2022-12-31"
+        valeur: 350.659
+        source: bm-eurostat-gov-10a-exp-md
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 369.079
+        source: bm-eurostat-gov-10a-exp-md
+        statut: provisoire
+      - date: "2024-12-31"
+        valeur: 391.954
+        source: bm-eurostat-gov-10a-exp-md
+        statut: provisoire
+  - id: finances_publiques.cofog_md.protection_sociale_survivants
+    titre: "Dépenses publiques par fonction (COFOG) : Protection sociale : survivants (milliards d'euros)"
+    explication: "Dépenses de l'ensemble des administrations publiques (État, organismes publics, collectivités locales, Sécurité sociale) pour cette fonction. Pensions de réversion et autres prestations versées après le décès d'un proche. Source : Eurostat, tableau gov_10a_exp (données transmises par l'Insee, mise à jour du 16 septembre 2026). 2024 est la dernière année publiée (les données 2025 paraîtront fin 2026). Statuts Eurostat : 2022 définitif, 2023 et 2024 provisoires. Le total 2024 (1 671,8 Md€) est très proche de celui de l'Insee après la révision de mai 2026 (1 672,6 Md€). Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2022-12-31"
+        valeur: 36.932
+        source: bm-eurostat-gov-10a-exp-md
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 38.599
+        source: bm-eurostat-gov-10a-exp-md
+        statut: provisoire
+      - date: "2024-12-31"
+        valeur: 40.608
+        source: bm-eurostat-gov-10a-exp-md
+        statut: provisoire
+  - id: finances_publiques.cofog_md.protection_sociale_famille
+    titre: "Dépenses publiques par fonction (COFOG) : Protection sociale : famille et enfants (milliards d'euros)"
+    explication: "Dépenses de l'ensemble des administrations publiques (État, organismes publics, collectivités locales, Sécurité sociale) pour cette fonction. Allocations familiales et autres prestations familiales, congés parentaux, accueil du jeune enfant, aide sociale à l'enfance. Source : Eurostat, tableau gov_10a_exp (données transmises par l'Insee, mise à jour du 16 septembre 2026). 2024 est la dernière année publiée (les données 2025 paraîtront fin 2026). Statuts Eurostat : 2022 définitif, 2023 et 2024 provisoires. Le total 2024 (1 671,8 Md€) est très proche de celui de l'Insee après la révision de mai 2026 (1 672,6 Md€). Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2022-12-31"
+        valeur: 61.134
+        source: bm-eurostat-gov-10a-exp-md
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 64.228
+        source: bm-eurostat-gov-10a-exp-md
+        statut: provisoire
+      - date: "2024-12-31"
+        valeur: 66.711
+        source: bm-eurostat-gov-10a-exp-md
+        statut: provisoire
+  - id: finances_publiques.cofog_md.protection_sociale_chomage
+    titre: "Dépenses publiques par fonction (COFOG) : Protection sociale : chômage (milliards d'euros)"
+    explication: "Dépenses de l'ensemble des administrations publiques (État, organismes publics, collectivités locales, Sécurité sociale) pour cette fonction. Allocations chômage et autres aides aux demandeurs d'emploi. Source : Eurostat, tableau gov_10a_exp (données transmises par l'Insee, mise à jour du 16 septembre 2026). 2024 est la dernière année publiée (les données 2025 paraîtront fin 2026). Statuts Eurostat : 2022 définitif, 2023 et 2024 provisoires. Le total 2024 (1 671,8 Md€) est très proche de celui de l'Insee après la révision de mai 2026 (1 672,6 Md€). Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2022-12-31"
+        valeur: 44.181
+        source: bm-eurostat-gov-10a-exp-md
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 45.854
+        source: bm-eurostat-gov-10a-exp-md
+        statut: provisoire
+      - date: "2024-12-31"
+        valeur: 48.521
+        source: bm-eurostat-gov-10a-exp-md
+        statut: provisoire
+  - id: finances_publiques.cofog_md.protection_sociale_logement
+    titre: "Dépenses publiques par fonction (COFOG) : Protection sociale : logement (milliards d'euros)"
+    explication: "Dépenses de l'ensemble des administrations publiques (État, organismes publics, collectivités locales, Sécurité sociale) pour cette fonction. Aides personnelles au logement (APL, ALF, ALS) et autres aides au paiement du logement. Source : Eurostat, tableau gov_10a_exp (données transmises par l'Insee, mise à jour du 16 septembre 2026). 2024 est la dernière année publiée (les données 2025 paraîtront fin 2026). Statuts Eurostat : 2022 définitif, 2023 et 2024 provisoires. Le total 2024 (1 671,8 Md€) est très proche de celui de l'Insee après la révision de mai 2026 (1 672,6 Md€). Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2022-12-31"
+        valeur: 20.438
+        source: bm-eurostat-gov-10a-exp-md
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 20.511
+        source: bm-eurostat-gov-10a-exp-md
+        statut: provisoire
+      - date: "2024-12-31"
+        valeur: 21.147
+        source: bm-eurostat-gov-10a-exp-md
+        statut: provisoire
+  - id: finances_publiques.cofog_md.protection_sociale_exclusion
+    titre: "Dépenses publiques par fonction (COFOG) : Protection sociale : exclusion sociale (milliards d'euros)"
+    explication: "Dépenses de l'ensemble des administrations publiques (État, organismes publics, collectivités locales, Sécurité sociale) pour cette fonction. Aides aux personnes en situation de pauvreté ou d'exclusion (revenus minimums, hébergement, aide sociale…). Source : Eurostat, tableau gov_10a_exp (données transmises par l'Insee, mise à jour du 16 septembre 2026). 2024 est la dernière année publiée (les données 2025 paraîtront fin 2026). Statuts Eurostat : 2022 définitif, 2023 et 2024 provisoires. Le total 2024 (1 671,8 Md€) est très proche de celui de l'Insee après la révision de mai 2026 (1 672,6 Md€). Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2022-12-31"
+        valeur: 36.056
+        source: bm-eurostat-gov-10a-exp-md
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 37.165
+        source: bm-eurostat-gov-10a-exp-md
+        statut: provisoire
+      - date: "2024-12-31"
+        valeur: 36.461
+        source: bm-eurostat-gov-10a-exp-md
+        statut: provisoire
+  - id: finances_publiques.cofog_md.protection_sociale_autres
+    titre: "Dépenses publiques par fonction (COFOG) : Protection sociale : autres dépenses (milliards d'euros)"
+    explication: "Dépenses de l'ensemble des administrations publiques (État, organismes publics, collectivités locales, Sécurité sociale) pour cette fonction. Dépenses de protection sociale non ventilables entre les risques (administration générale…). Source : Eurostat, tableau gov_10a_exp (données transmises par l'Insee, mise à jour du 16 septembre 2026). 2024 est la dernière année publiée (les données 2025 paraîtront fin 2026). Statuts Eurostat : 2022 définitif, 2023 et 2024 provisoires. Le total 2024 (1 671,8 Md€) est très proche de celui de l'Insee après la révision de mai 2026 (1 672,6 Md€). Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2022-12-31"
+        valeur: 4.185
+        source: bm-eurostat-gov-10a-exp-md
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 4.115
+        source: bm-eurostat-gov-10a-exp-md
+        statut: provisoire
+      - date: "2024-12-31"
+        valeur: 3.728
+        source: bm-eurostat-gov-10a-exp-md
+        statut: provisoire
+  - id: finances_publiques.cofog_md.total
+    titre: "Dépenses publiques par fonction (COFOG) : Total des dépenses publiques (milliards d'euros)"
+    explication: "Dépenses de l'ensemble des administrations publiques (État, organismes publics, collectivités locales, Sécurité sociale) pour cette fonction. Ensemble des dépenses des administrations publiques ventilées par fonction ; sert de dénominateur pour calculer la part de chaque fonction. Source : Eurostat, tableau gov_10a_exp (données transmises par l'Insee, mise à jour du 16 septembre 2026). 2024 est la dernière année publiée (les données 2025 paraîtront fin 2026). Statuts Eurostat : 2022 définitif, 2023 et 2024 provisoires. Le total 2024 (1 671,8 Md€) est très proche de celui de l'Insee après la révision de mai 2026 (1 672,6 Md€). Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2022-12-31"
+        valeur: 1550.332
+        source: bm-eurostat-gov-10a-exp-md
+        statut: definitif
+      - date: "2023-12-31"
+        valeur: 1607.392
+        source: bm-eurostat-gov-10a-exp-md
+        statut: provisoire
+      - date: "2024-12-31"
+        valeur: 1671.794
+        source: bm-eurostat-gov-10a-exp-md
+        statut: provisoire
+  - id: menages.niveau_vie_avant_redistribution_decile_1
+    titre: "Niveau de vie moyen avant redistribution : 10 % des personnes les plus modestes (sous le 1er décile) (euros par unité de consommation et par an)"
+    explication: "Revenu annuel moyen par unité de consommation avant impôts directs et prestations sociales non contributives (revenus d'activité, du patrimoine, pensions de retraite et allocations chômage). Insee, France, portrait social 2025, fiche « Redistribution monétaire » : estimation 2024 par le modèle Ines (enquête Revenus fiscaux et sociaux 2022 actualisée en 2024). Les personnes sont classées selon leur niveau de vie AVANT redistribution. Champ : France métropolitaine, logements ordinaires, ménages au revenu positif ou nul dont la personne de référence n'est pas étudiante. Concept Insee de redistribution monétaire : les systèmes de retraite et d'assurance chômage sont exclus du champ (pensions et allocations chômage sont donc comprises dans le niveau de vie avant redistribution) ; les prélèvements retenus sont les prélèvements directs non contributifs (cotisations patronales famille, contributions sociales hors part de la CSG affectée à la maladie, impôt sur le revenu, IFI), sans la TVA ni la taxe foncière. L'Insee ne publie pas ce tableau pour les déciles 2 à 9 : seuls le 1er décile, le 10e décile et les cinq quintiles sont disponibles (ids *_quintile_1 à *_quintile_5)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 4710
+        source: bm-insee-fps2025-redistribution
+        statut: estimation
+  - id: menages.redistribution_decile_1.prelevements
+    titre: "Prélèvements payés : 10 % des personnes les plus modestes (sous le 1er décile) (euros par unité de consommation et par an, négatif = payé)"
+    explication: "Montant moyen des prélèvements redistributifs par unité de consommation (signe négatif = somme payée par le ménage). Dont financement de la protection sociale (cotisations patronales famille, contributions sociales hors CSG maladie) : -330 € ; dont impôts directs (impôt sur le revenu après crédits d'impôt, IFI) : 10 €. Insee, France, portrait social 2025, fiche « Redistribution monétaire » : estimation 2024 par le modèle Ines (enquête Revenus fiscaux et sociaux 2022 actualisée en 2024). Les personnes sont classées selon leur niveau de vie AVANT redistribution. Champ : France métropolitaine, logements ordinaires, ménages au revenu positif ou nul dont la personne de référence n'est pas étudiante. Concept Insee de redistribution monétaire : les systèmes de retraite et d'assurance chômage sont exclus du champ (pensions et allocations chômage sont donc comprises dans le niveau de vie avant redistribution) ; les prélèvements retenus sont les prélèvements directs non contributifs (cotisations patronales famille, contributions sociales hors part de la CSG affectée à la maladie, impôt sur le revenu, IFI), sans la TVA ni la taxe foncière. L'Insee ne publie pas ce tableau pour les déciles 2 à 9 : seuls le 1er décile, le 10e décile et les cinq quintiles sont disponibles (ids *_quintile_1 à *_quintile_5)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: -320
+        source: bm-insee-fps2025-redistribution
+        statut: estimation
+  - id: menages.redistribution_decile_1.prestations
+    titre: "Prestations sociales reçues : 10 % des personnes les plus modestes (sous le 1er décile) (euros par unité de consommation et par an)"
+    explication: "Montant moyen des prestations non contributives reçues par unité de consommation. Dont prestations familiales : 2000 € ; dont aides personnelles au logement : 1920 € ; dont prime d'activité et minima sociaux (RSA, minimum vieillesse, AAH, contrat d'engagement jeune…) : 3650 €. Insee, France, portrait social 2025, fiche « Redistribution monétaire » : estimation 2024 par le modèle Ines (enquête Revenus fiscaux et sociaux 2022 actualisée en 2024). Les personnes sont classées selon leur niveau de vie AVANT redistribution. Champ : France métropolitaine, logements ordinaires, ménages au revenu positif ou nul dont la personne de référence n'est pas étudiante. Concept Insee de redistribution monétaire : les systèmes de retraite et d'assurance chômage sont exclus du champ (pensions et allocations chômage sont donc comprises dans le niveau de vie avant redistribution) ; les prélèvements retenus sont les prélèvements directs non contributifs (cotisations patronales famille, contributions sociales hors part de la CSG affectée à la maladie, impôt sur le revenu, IFI), sans la TVA ni la taxe foncière. L'Insee ne publie pas ce tableau pour les déciles 2 à 9 : seuls le 1er décile, le 10e décile et les cinq quintiles sont disponibles (ids *_quintile_1 à *_quintile_5)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 7570
+        source: bm-insee-fps2025-redistribution
+        statut: estimation
+  - id: menages.redistribution_decile_1.niveau_vie_apres
+    titre: "Niveau de vie moyen après redistribution : 10 % des personnes les plus modestes (sous le 1er décile), classement avant redistribution (euros par unité de consommation et par an)"
+    explication: "Niveau de vie avant redistribution + prélèvements + prestations, pour les mêmes personnes (classées selon leur niveau de vie avant redistribution). À ne pas confondre avec revenus.niveau_vie_moyen.decile_<k> (population.yaml, enquête ERFS 2024), où les personnes sont classées selon leur niveau de vie après redistribution. Insee, France, portrait social 2025, fiche « Redistribution monétaire » : estimation 2024 par le modèle Ines (enquête Revenus fiscaux et sociaux 2022 actualisée en 2024). Les personnes sont classées selon leur niveau de vie AVANT redistribution. Champ : France métropolitaine, logements ordinaires, ménages au revenu positif ou nul dont la personne de référence n'est pas étudiante. Concept Insee de redistribution monétaire : les systèmes de retraite et d'assurance chômage sont exclus du champ (pensions et allocations chômage sont donc comprises dans le niveau de vie avant redistribution) ; les prélèvements retenus sont les prélèvements directs non contributifs (cotisations patronales famille, contributions sociales hors part de la CSG affectée à la maladie, impôt sur le revenu, IFI), sans la TVA ni la taxe foncière. L'Insee ne publie pas ce tableau pour les déciles 2 à 9 : seuls le 1er décile, le 10e décile et les cinq quintiles sont disponibles (ids *_quintile_1 à *_quintile_5)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 11960
+        source: bm-insee-fps2025-redistribution
+        statut: estimation
+  - id: menages.redistribution_decile_1.taux
+    titre: "Taux de redistribution : 10 % des personnes les plus modestes (sous le 1er décile) (%)"
+    explication: "(Prélèvements + prestations) / niveau de vie avant redistribution, en % : positif = le groupe reçoit plus qu'il ne paie, négatif = il paie plus qu'il ne reçoit. Insee, France, portrait social 2025, fiche « Redistribution monétaire » : estimation 2024 par le modèle Ines (enquête Revenus fiscaux et sociaux 2022 actualisée en 2024). Les personnes sont classées selon leur niveau de vie AVANT redistribution. Champ : France métropolitaine, logements ordinaires, ménages au revenu positif ou nul dont la personne de référence n'est pas étudiante. Concept Insee de redistribution monétaire : les systèmes de retraite et d'assurance chômage sont exclus du champ (pensions et allocations chômage sont donc comprises dans le niveau de vie avant redistribution) ; les prélèvements retenus sont les prélèvements directs non contributifs (cotisations patronales famille, contributions sociales hors part de la CSG affectée à la maladie, impôt sur le revenu, IFI), sans la TVA ni la taxe foncière. L'Insee ne publie pas ce tableau pour les déciles 2 à 9 : seuls le 1er décile, le 10e décile et les cinq quintiles sont disponibles (ids *_quintile_1 à *_quintile_5)."
+    unite: pourcent
+    serie:
+      - date: "2024-12-31"
+        valeur: 153.9
+        source: bm-insee-fps2025-redistribution
+        statut: estimation
+  - id: menages.niveau_vie_avant_redistribution_quintile_1
+    titre: "Niveau de vie moyen avant redistribution : 20 % les plus modestes (sous le 1er quintile) (euros par unité de consommation et par an)"
+    explication: "Revenu annuel moyen par unité de consommation avant impôts directs et prestations sociales non contributives (revenus d'activité, du patrimoine, pensions de retraite et allocations chômage). Insee, France, portrait social 2025, fiche « Redistribution monétaire » : estimation 2024 par le modèle Ines (enquête Revenus fiscaux et sociaux 2022 actualisée en 2024). Les personnes sont classées selon leur niveau de vie AVANT redistribution. Champ : France métropolitaine, logements ordinaires, ménages au revenu positif ou nul dont la personne de référence n'est pas étudiante. Concept Insee de redistribution monétaire : les systèmes de retraite et d'assurance chômage sont exclus du champ (pensions et allocations chômage sont donc comprises dans le niveau de vie avant redistribution) ; les prélèvements retenus sont les prélèvements directs non contributifs (cotisations patronales famille, contributions sociales hors part de la CSG affectée à la maladie, impôt sur le revenu, IFI), sans la TVA ni la taxe foncière."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 9090
+        source: bm-insee-fps2025-redistribution
+        statut: estimation
+  - id: menages.redistribution_quintile_1.prelevements
+    titre: "Prélèvements payés : 20 % les plus modestes (sous le 1er quintile) (euros par unité de consommation et par an, négatif = payé)"
+    explication: "Montant moyen des prélèvements redistributifs par unité de consommation (signe négatif = somme payée par le ménage). Dont financement de la protection sociale (cotisations patronales famille, contributions sociales hors CSG maladie) : -610 € ; dont impôts directs (impôt sur le revenu après crédits d'impôt, IFI) : 20 €. Insee, France, portrait social 2025, fiche « Redistribution monétaire » : estimation 2024 par le modèle Ines (enquête Revenus fiscaux et sociaux 2022 actualisée en 2024). Les personnes sont classées selon leur niveau de vie AVANT redistribution. Champ : France métropolitaine, logements ordinaires, ménages au revenu positif ou nul dont la personne de référence n'est pas étudiante. Concept Insee de redistribution monétaire : les systèmes de retraite et d'assurance chômage sont exclus du champ (pensions et allocations chômage sont donc comprises dans le niveau de vie avant redistribution) ; les prélèvements retenus sont les prélèvements directs non contributifs (cotisations patronales famille, contributions sociales hors part de la CSG affectée à la maladie, impôt sur le revenu, IFI), sans la TVA ni la taxe foncière."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: -590
+        source: bm-insee-fps2025-redistribution
+        statut: estimation
+  - id: menages.redistribution_quintile_1.prestations
+    titre: "Prestations sociales reçues : 20 % les plus modestes (sous le 1er quintile) (euros par unité de consommation et par an)"
+    explication: "Montant moyen des prestations non contributives reçues par unité de consommation. Dont prestations familiales : 1700 € ; dont aides personnelles au logement : 1320 € ; dont prime d'activité et minima sociaux (RSA, minimum vieillesse, AAH, contrat d'engagement jeune…) : 2580 €. Insee, France, portrait social 2025, fiche « Redistribution monétaire » : estimation 2024 par le modèle Ines (enquête Revenus fiscaux et sociaux 2022 actualisée en 2024). Les personnes sont classées selon leur niveau de vie AVANT redistribution. Champ : France métropolitaine, logements ordinaires, ménages au revenu positif ou nul dont la personne de référence n'est pas étudiante. Concept Insee de redistribution monétaire : les systèmes de retraite et d'assurance chômage sont exclus du champ (pensions et allocations chômage sont donc comprises dans le niveau de vie avant redistribution) ; les prélèvements retenus sont les prélèvements directs non contributifs (cotisations patronales famille, contributions sociales hors part de la CSG affectée à la maladie, impôt sur le revenu, IFI), sans la TVA ni la taxe foncière."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 5600
+        source: bm-insee-fps2025-redistribution
+        statut: estimation
+  - id: menages.redistribution_quintile_1.niveau_vie_apres
+    titre: "Niveau de vie moyen après redistribution : 20 % les plus modestes (sous le 1er quintile), classement avant redistribution (euros par unité de consommation et par an)"
+    explication: "Niveau de vie avant redistribution + prélèvements + prestations, pour les mêmes personnes (classées selon leur niveau de vie avant redistribution). À ne pas confondre avec revenus.niveau_vie_moyen.decile_<k> (population.yaml, enquête ERFS 2024), où les personnes sont classées selon leur niveau de vie après redistribution. Insee, France, portrait social 2025, fiche « Redistribution monétaire » : estimation 2024 par le modèle Ines (enquête Revenus fiscaux et sociaux 2022 actualisée en 2024). Les personnes sont classées selon leur niveau de vie AVANT redistribution. Champ : France métropolitaine, logements ordinaires, ménages au revenu positif ou nul dont la personne de référence n'est pas étudiante. Concept Insee de redistribution monétaire : les systèmes de retraite et d'assurance chômage sont exclus du champ (pensions et allocations chômage sont donc comprises dans le niveau de vie avant redistribution) ; les prélèvements retenus sont les prélèvements directs non contributifs (cotisations patronales famille, contributions sociales hors part de la CSG affectée à la maladie, impôt sur le revenu, IFI), sans la TVA ni la taxe foncière."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 14100
+        source: bm-insee-fps2025-redistribution
+        statut: estimation
+  - id: menages.redistribution_quintile_1.taux
+    titre: "Taux de redistribution : 20 % les plus modestes (sous le 1er quintile) (%)"
+    explication: "(Prélèvements + prestations) / niveau de vie avant redistribution, en % : positif = le groupe reçoit plus qu'il ne paie, négatif = il paie plus qu'il ne reçoit. Insee, France, portrait social 2025, fiche « Redistribution monétaire » : estimation 2024 par le modèle Ines (enquête Revenus fiscaux et sociaux 2022 actualisée en 2024). Les personnes sont classées selon leur niveau de vie AVANT redistribution. Champ : France métropolitaine, logements ordinaires, ménages au revenu positif ou nul dont la personne de référence n'est pas étudiante. Concept Insee de redistribution monétaire : les systèmes de retraite et d'assurance chômage sont exclus du champ (pensions et allocations chômage sont donc comprises dans le niveau de vie avant redistribution) ; les prélèvements retenus sont les prélèvements directs non contributifs (cotisations patronales famille, contributions sociales hors part de la CSG affectée à la maladie, impôt sur le revenu, IFI), sans la TVA ni la taxe foncière."
+    unite: pourcent
+    serie:
+      - date: "2024-12-31"
+        valeur: 55.1
+        source: bm-insee-fps2025-redistribution
+        statut: estimation
+  - id: menages.niveau_vie_avant_redistribution_quintile_2
+    titre: "Niveau de vie moyen avant redistribution : entre le 1er et le 2e quintile (euros par unité de consommation et par an)"
+    explication: "Revenu annuel moyen par unité de consommation avant impôts directs et prestations sociales non contributives (revenus d'activité, du patrimoine, pensions de retraite et allocations chômage). Insee, France, portrait social 2025, fiche « Redistribution monétaire » : estimation 2024 par le modèle Ines (enquête Revenus fiscaux et sociaux 2022 actualisée en 2024). Les personnes sont classées selon leur niveau de vie AVANT redistribution. Champ : France métropolitaine, logements ordinaires, ménages au revenu positif ou nul dont la personne de référence n'est pas étudiante. Concept Insee de redistribution monétaire : les systèmes de retraite et d'assurance chômage sont exclus du champ (pensions et allocations chômage sont donc comprises dans le niveau de vie avant redistribution) ; les prélèvements retenus sont les prélèvements directs non contributifs (cotisations patronales famille, contributions sociales hors part de la CSG affectée à la maladie, impôt sur le revenu, IFI), sans la TVA ni la taxe foncière."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 20970
+        source: bm-insee-fps2025-redistribution
+        statut: estimation
+  - id: menages.redistribution_quintile_2.prelevements
+    titre: "Prélèvements payés : entre le 1er et le 2e quintile (euros par unité de consommation et par an, négatif = payé)"
+    explication: "Montant moyen des prélèvements redistributifs par unité de consommation (signe négatif = somme payée par le ménage). Dont financement de la protection sociale (cotisations patronales famille, contributions sociales hors CSG maladie) : -1590 € ; dont impôts directs (impôt sur le revenu après crédits d'impôt, IFI) : 20 €. Insee, France, portrait social 2025, fiche « Redistribution monétaire » : estimation 2024 par le modèle Ines (enquête Revenus fiscaux et sociaux 2022 actualisée en 2024). Les personnes sont classées selon leur niveau de vie AVANT redistribution. Champ : France métropolitaine, logements ordinaires, ménages au revenu positif ou nul dont la personne de référence n'est pas étudiante. Concept Insee de redistribution monétaire : les systèmes de retraite et d'assurance chômage sont exclus du champ (pensions et allocations chômage sont donc comprises dans le niveau de vie avant redistribution) ; les prélèvements retenus sont les prélèvements directs non contributifs (cotisations patronales famille, contributions sociales hors part de la CSG affectée à la maladie, impôt sur le revenu, IFI), sans la TVA ni la taxe foncière."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: -1570
+        source: bm-insee-fps2025-redistribution
+        statut: estimation
+  - id: menages.redistribution_quintile_2.prestations
+    titre: "Prestations sociales reçues : entre le 1er et le 2e quintile (euros par unité de consommation et par an)"
+    explication: "Montant moyen des prestations non contributives reçues par unité de consommation. Dont prestations familiales : 860 € ; dont aides personnelles au logement : 150 € ; dont prime d'activité et minima sociaux (RSA, minimum vieillesse, AAH, contrat d'engagement jeune…) : 710 €. Insee, France, portrait social 2025, fiche « Redistribution monétaire » : estimation 2024 par le modèle Ines (enquête Revenus fiscaux et sociaux 2022 actualisée en 2024). Les personnes sont classées selon leur niveau de vie AVANT redistribution. Champ : France métropolitaine, logements ordinaires, ménages au revenu positif ou nul dont la personne de référence n'est pas étudiante. Concept Insee de redistribution monétaire : les systèmes de retraite et d'assurance chômage sont exclus du champ (pensions et allocations chômage sont donc comprises dans le niveau de vie avant redistribution) ; les prélèvements retenus sont les prélèvements directs non contributifs (cotisations patronales famille, contributions sociales hors part de la CSG affectée à la maladie, impôt sur le revenu, IFI), sans la TVA ni la taxe foncière."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 1720
+        source: bm-insee-fps2025-redistribution
+        statut: estimation
+  - id: menages.redistribution_quintile_2.niveau_vie_apres
+    titre: "Niveau de vie moyen après redistribution : entre le 1er et le 2e quintile, classement avant redistribution (euros par unité de consommation et par an)"
+    explication: "Niveau de vie avant redistribution + prélèvements + prestations, pour les mêmes personnes (classées selon leur niveau de vie avant redistribution). À ne pas confondre avec revenus.niveau_vie_moyen.decile_<k> (population.yaml, enquête ERFS 2024), où les personnes sont classées selon leur niveau de vie après redistribution. Insee, France, portrait social 2025, fiche « Redistribution monétaire » : estimation 2024 par le modèle Ines (enquête Revenus fiscaux et sociaux 2022 actualisée en 2024). Les personnes sont classées selon leur niveau de vie AVANT redistribution. Champ : France métropolitaine, logements ordinaires, ménages au revenu positif ou nul dont la personne de référence n'est pas étudiante. Concept Insee de redistribution monétaire : les systèmes de retraite et d'assurance chômage sont exclus du champ (pensions et allocations chômage sont donc comprises dans le niveau de vie avant redistribution) ; les prélèvements retenus sont les prélèvements directs non contributifs (cotisations patronales famille, contributions sociales hors part de la CSG affectée à la maladie, impôt sur le revenu, IFI), sans la TVA ni la taxe foncière."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 21110
+        source: bm-insee-fps2025-redistribution
+        statut: estimation
+  - id: menages.redistribution_quintile_2.taux
+    titre: "Taux de redistribution : entre le 1er et le 2e quintile (%)"
+    explication: "(Prélèvements + prestations) / niveau de vie avant redistribution, en % : positif = le groupe reçoit plus qu'il ne paie, négatif = il paie plus qu'il ne reçoit. Insee, France, portrait social 2025, fiche « Redistribution monétaire » : estimation 2024 par le modèle Ines (enquête Revenus fiscaux et sociaux 2022 actualisée en 2024). Les personnes sont classées selon leur niveau de vie AVANT redistribution. Champ : France métropolitaine, logements ordinaires, ménages au revenu positif ou nul dont la personne de référence n'est pas étudiante. Concept Insee de redistribution monétaire : les systèmes de retraite et d'assurance chômage sont exclus du champ (pensions et allocations chômage sont donc comprises dans le niveau de vie avant redistribution) ; les prélèvements retenus sont les prélèvements directs non contributifs (cotisations patronales famille, contributions sociales hors part de la CSG affectée à la maladie, impôt sur le revenu, IFI), sans la TVA ni la taxe foncière."
+    unite: pourcent
+    serie:
+      - date: "2024-12-31"
+        valeur: 0.7
+        source: bm-insee-fps2025-redistribution
+        statut: estimation
+  - id: menages.niveau_vie_avant_redistribution_quintile_3
+    titre: "Niveau de vie moyen avant redistribution : entre le 2e et le 3e quintile (euros par unité de consommation et par an)"
+    explication: "Revenu annuel moyen par unité de consommation avant impôts directs et prestations sociales non contributives (revenus d'activité, du patrimoine, pensions de retraite et allocations chômage). Insee, France, portrait social 2025, fiche « Redistribution monétaire » : estimation 2024 par le modèle Ines (enquête Revenus fiscaux et sociaux 2022 actualisée en 2024). Les personnes sont classées selon leur niveau de vie AVANT redistribution. Champ : France métropolitaine, logements ordinaires, ménages au revenu positif ou nul dont la personne de référence n'est pas étudiante. Concept Insee de redistribution monétaire : les systèmes de retraite et d'assurance chômage sont exclus du champ (pensions et allocations chômage sont donc comprises dans le niveau de vie avant redistribution) ; les prélèvements retenus sont les prélèvements directs non contributifs (cotisations patronales famille, contributions sociales hors part de la CSG affectée à la maladie, impôt sur le revenu, IFI), sans la TVA ni la taxe foncière."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 28690
+        source: bm-insee-fps2025-redistribution
+        statut: estimation
+  - id: menages.redistribution_quintile_3.prelevements
+    titre: "Prélèvements payés : entre le 2e et le 3e quintile (euros par unité de consommation et par an, négatif = payé)"
+    explication: "Montant moyen des prélèvements redistributifs par unité de consommation (signe négatif = somme payée par le ménage). Dont financement de la protection sociale (cotisations patronales famille, contributions sociales hors CSG maladie) : -2510 € ; dont impôts directs (impôt sur le revenu après crédits d'impôt, IFI) : -270 €. Insee, France, portrait social 2025, fiche « Redistribution monétaire » : estimation 2024 par le modèle Ines (enquête Revenus fiscaux et sociaux 2022 actualisée en 2024). Les personnes sont classées selon leur niveau de vie AVANT redistribution. Champ : France métropolitaine, logements ordinaires, ménages au revenu positif ou nul dont la personne de référence n'est pas étudiante. Concept Insee de redistribution monétaire : les systèmes de retraite et d'assurance chômage sont exclus du champ (pensions et allocations chômage sont donc comprises dans le niveau de vie avant redistribution) ; les prélèvements retenus sont les prélèvements directs non contributifs (cotisations patronales famille, contributions sociales hors part de la CSG affectée à la maladie, impôt sur le revenu, IFI), sans la TVA ni la taxe foncière."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: -2780
+        source: bm-insee-fps2025-redistribution
+        statut: estimation
+  - id: menages.redistribution_quintile_3.prestations
+    titre: "Prestations sociales reçues : entre le 2e et le 3e quintile (euros par unité de consommation et par an)"
+    explication: "Montant moyen des prestations non contributives reçues par unité de consommation. Dont prestations familiales : 510 € ; dont aides personnelles au logement : 40 € ; dont prime d'activité et minima sociaux (RSA, minimum vieillesse, AAH, contrat d'engagement jeune…) : 270 €. Insee, France, portrait social 2025, fiche « Redistribution monétaire » : estimation 2024 par le modèle Ines (enquête Revenus fiscaux et sociaux 2022 actualisée en 2024). Les personnes sont classées selon leur niveau de vie AVANT redistribution. Champ : France métropolitaine, logements ordinaires, ménages au revenu positif ou nul dont la personne de référence n'est pas étudiante. Concept Insee de redistribution monétaire : les systèmes de retraite et d'assurance chômage sont exclus du champ (pensions et allocations chômage sont donc comprises dans le niveau de vie avant redistribution) ; les prélèvements retenus sont les prélèvements directs non contributifs (cotisations patronales famille, contributions sociales hors part de la CSG affectée à la maladie, impôt sur le revenu, IFI), sans la TVA ni la taxe foncière."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 820
+        source: bm-insee-fps2025-redistribution
+        statut: estimation
+  - id: menages.redistribution_quintile_3.niveau_vie_apres
+    titre: "Niveau de vie moyen après redistribution : entre le 2e et le 3e quintile, classement avant redistribution (euros par unité de consommation et par an)"
+    explication: "Niveau de vie avant redistribution + prélèvements + prestations, pour les mêmes personnes (classées selon leur niveau de vie avant redistribution). À ne pas confondre avec revenus.niveau_vie_moyen.decile_<k> (population.yaml, enquête ERFS 2024), où les personnes sont classées selon leur niveau de vie après redistribution. Insee, France, portrait social 2025, fiche « Redistribution monétaire » : estimation 2024 par le modèle Ines (enquête Revenus fiscaux et sociaux 2022 actualisée en 2024). Les personnes sont classées selon leur niveau de vie AVANT redistribution. Champ : France métropolitaine, logements ordinaires, ménages au revenu positif ou nul dont la personne de référence n'est pas étudiante. Concept Insee de redistribution monétaire : les systèmes de retraite et d'assurance chômage sont exclus du champ (pensions et allocations chômage sont donc comprises dans le niveau de vie avant redistribution) ; les prélèvements retenus sont les prélèvements directs non contributifs (cotisations patronales famille, contributions sociales hors part de la CSG affectée à la maladie, impôt sur le revenu, IFI), sans la TVA ni la taxe foncière."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 26740
+        source: bm-insee-fps2025-redistribution
+        statut: estimation
+  - id: menages.redistribution_quintile_3.taux
+    titre: "Taux de redistribution : entre le 2e et le 3e quintile (%)"
+    explication: "(Prélèvements + prestations) / niveau de vie avant redistribution, en % : positif = le groupe reçoit plus qu'il ne paie, négatif = il paie plus qu'il ne reçoit. Insee, France, portrait social 2025, fiche « Redistribution monétaire » : estimation 2024 par le modèle Ines (enquête Revenus fiscaux et sociaux 2022 actualisée en 2024). Les personnes sont classées selon leur niveau de vie AVANT redistribution. Champ : France métropolitaine, logements ordinaires, ménages au revenu positif ou nul dont la personne de référence n'est pas étudiante. Concept Insee de redistribution monétaire : les systèmes de retraite et d'assurance chômage sont exclus du champ (pensions et allocations chômage sont donc comprises dans le niveau de vie avant redistribution) ; les prélèvements retenus sont les prélèvements directs non contributifs (cotisations patronales famille, contributions sociales hors part de la CSG affectée à la maladie, impôt sur le revenu, IFI), sans la TVA ni la taxe foncière."
+    unite: pourcent
+    serie:
+      - date: "2024-12-31"
+        valeur: -6.8
+        source: bm-insee-fps2025-redistribution
+        statut: estimation
+  - id: menages.niveau_vie_avant_redistribution_quintile_4
+    titre: "Niveau de vie moyen avant redistribution : entre le 3e et le 4e quintile (euros par unité de consommation et par an)"
+    explication: "Revenu annuel moyen par unité de consommation avant impôts directs et prestations sociales non contributives (revenus d'activité, du patrimoine, pensions de retraite et allocations chômage). Insee, France, portrait social 2025, fiche « Redistribution monétaire » : estimation 2024 par le modèle Ines (enquête Revenus fiscaux et sociaux 2022 actualisée en 2024). Les personnes sont classées selon leur niveau de vie AVANT redistribution. Champ : France métropolitaine, logements ordinaires, ménages au revenu positif ou nul dont la personne de référence n'est pas étudiante. Concept Insee de redistribution monétaire : les systèmes de retraite et d'assurance chômage sont exclus du champ (pensions et allocations chômage sont donc comprises dans le niveau de vie avant redistribution) ; les prélèvements retenus sont les prélèvements directs non contributifs (cotisations patronales famille, contributions sociales hors part de la CSG affectée à la maladie, impôt sur le revenu, IFI), sans la TVA ni la taxe foncière."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 38060
+        source: bm-insee-fps2025-redistribution
+        statut: estimation
+  - id: menages.redistribution_quintile_4.prelevements
+    titre: "Prélèvements payés : entre le 3e et le 4e quintile (euros par unité de consommation et par an, négatif = payé)"
+    explication: "Montant moyen des prélèvements redistributifs par unité de consommation (signe négatif = somme payée par le ménage). Dont financement de la protection sociale (cotisations patronales famille, contributions sociales hors CSG maladie) : -3520 € ; dont impôts directs (impôt sur le revenu après crédits d'impôt, IFI) : -1170 €. Insee, France, portrait social 2025, fiche « Redistribution monétaire » : estimation 2024 par le modèle Ines (enquête Revenus fiscaux et sociaux 2022 actualisée en 2024). Les personnes sont classées selon leur niveau de vie AVANT redistribution. Champ : France métropolitaine, logements ordinaires, ménages au revenu positif ou nul dont la personne de référence n'est pas étudiante. Concept Insee de redistribution monétaire : les systèmes de retraite et d'assurance chômage sont exclus du champ (pensions et allocations chômage sont donc comprises dans le niveau de vie avant redistribution) ; les prélèvements retenus sont les prélèvements directs non contributifs (cotisations patronales famille, contributions sociales hors part de la CSG affectée à la maladie, impôt sur le revenu, IFI), sans la TVA ni la taxe foncière."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: -4690
+        source: bm-insee-fps2025-redistribution
+        statut: estimation
+  - id: menages.redistribution_quintile_4.prestations
+    titre: "Prestations sociales reçues : entre le 3e et le 4e quintile (euros par unité de consommation et par an)"
+    explication: "Montant moyen des prestations non contributives reçues par unité de consommation. Dont prestations familiales : 300 € ; dont aides personnelles au logement : 30 € ; dont prime d'activité et minima sociaux (RSA, minimum vieillesse, AAH, contrat d'engagement jeune…) : 170 €. Insee, France, portrait social 2025, fiche « Redistribution monétaire » : estimation 2024 par le modèle Ines (enquête Revenus fiscaux et sociaux 2022 actualisée en 2024). Les personnes sont classées selon leur niveau de vie AVANT redistribution. Champ : France métropolitaine, logements ordinaires, ménages au revenu positif ou nul dont la personne de référence n'est pas étudiante. Concept Insee de redistribution monétaire : les systèmes de retraite et d'assurance chômage sont exclus du champ (pensions et allocations chômage sont donc comprises dans le niveau de vie avant redistribution) ; les prélèvements retenus sont les prélèvements directs non contributifs (cotisations patronales famille, contributions sociales hors part de la CSG affectée à la maladie, impôt sur le revenu, IFI), sans la TVA ni la taxe foncière."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 500
+        source: bm-insee-fps2025-redistribution
+        statut: estimation
+  - id: menages.redistribution_quintile_4.niveau_vie_apres
+    titre: "Niveau de vie moyen après redistribution : entre le 3e et le 4e quintile, classement avant redistribution (euros par unité de consommation et par an)"
+    explication: "Niveau de vie avant redistribution + prélèvements + prestations, pour les mêmes personnes (classées selon leur niveau de vie avant redistribution). À ne pas confondre avec revenus.niveau_vie_moyen.decile_<k> (population.yaml, enquête ERFS 2024), où les personnes sont classées selon leur niveau de vie après redistribution. Insee, France, portrait social 2025, fiche « Redistribution monétaire » : estimation 2024 par le modèle Ines (enquête Revenus fiscaux et sociaux 2022 actualisée en 2024). Les personnes sont classées selon leur niveau de vie AVANT redistribution. Champ : France métropolitaine, logements ordinaires, ménages au revenu positif ou nul dont la personne de référence n'est pas étudiante. Concept Insee de redistribution monétaire : les systèmes de retraite et d'assurance chômage sont exclus du champ (pensions et allocations chômage sont donc comprises dans le niveau de vie avant redistribution) ; les prélèvements retenus sont les prélèvements directs non contributifs (cotisations patronales famille, contributions sociales hors part de la CSG affectée à la maladie, impôt sur le revenu, IFI), sans la TVA ni la taxe foncière."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 33880
+        source: bm-insee-fps2025-redistribution
+        statut: estimation
+  - id: menages.redistribution_quintile_4.taux
+    titre: "Taux de redistribution : entre le 3e et le 4e quintile (%)"
+    explication: "(Prélèvements + prestations) / niveau de vie avant redistribution, en % : positif = le groupe reçoit plus qu'il ne paie, négatif = il paie plus qu'il ne reçoit. Insee, France, portrait social 2025, fiche « Redistribution monétaire » : estimation 2024 par le modèle Ines (enquête Revenus fiscaux et sociaux 2022 actualisée en 2024). Les personnes sont classées selon leur niveau de vie AVANT redistribution. Champ : France métropolitaine, logements ordinaires, ménages au revenu positif ou nul dont la personne de référence n'est pas étudiante. Concept Insee de redistribution monétaire : les systèmes de retraite et d'assurance chômage sont exclus du champ (pensions et allocations chômage sont donc comprises dans le niveau de vie avant redistribution) ; les prélèvements retenus sont les prélèvements directs non contributifs (cotisations patronales famille, contributions sociales hors part de la CSG affectée à la maladie, impôt sur le revenu, IFI), sans la TVA ni la taxe foncière."
+    unite: pourcent
+    serie:
+      - date: "2024-12-31"
+        valeur: -11.0
+        source: bm-insee-fps2025-redistribution
+        statut: estimation
+  - id: menages.niveau_vie_avant_redistribution_quintile_5
+    titre: "Niveau de vie moyen avant redistribution : 20 % les plus aisés (au-dessus du 4e quintile) (euros par unité de consommation et par an)"
+    explication: "Revenu annuel moyen par unité de consommation avant impôts directs et prestations sociales non contributives (revenus d'activité, du patrimoine, pensions de retraite et allocations chômage). Insee, France, portrait social 2025, fiche « Redistribution monétaire » : estimation 2024 par le modèle Ines (enquête Revenus fiscaux et sociaux 2022 actualisée en 2024). Les personnes sont classées selon leur niveau de vie AVANT redistribution. Champ : France métropolitaine, logements ordinaires, ménages au revenu positif ou nul dont la personne de référence n'est pas étudiante. Concept Insee de redistribution monétaire : les systèmes de retraite et d'assurance chômage sont exclus du champ (pensions et allocations chômage sont donc comprises dans le niveau de vie avant redistribution) ; les prélèvements retenus sont les prélèvements directs non contributifs (cotisations patronales famille, contributions sociales hors part de la CSG affectée à la maladie, impôt sur le revenu, IFI), sans la TVA ni la taxe foncière."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 74980
+        source: bm-insee-fps2025-redistribution
+        statut: estimation
+  - id: menages.redistribution_quintile_5.prelevements
+    titre: "Prélèvements payés : 20 % les plus aisés (au-dessus du 4e quintile) (euros par unité de consommation et par an, négatif = payé)"
+    explication: "Montant moyen des prélèvements redistributifs par unité de consommation (signe négatif = somme payée par le ménage). Dont financement de la protection sociale (cotisations patronales famille, contributions sociales hors CSG maladie) : -7900 € ; dont impôts directs (impôt sur le revenu après crédits d'impôt, IFI) : -8650 €. Insee, France, portrait social 2025, fiche « Redistribution monétaire » : estimation 2024 par le modèle Ines (enquête Revenus fiscaux et sociaux 2022 actualisée en 2024). Les personnes sont classées selon leur niveau de vie AVANT redistribution. Champ : France métropolitaine, logements ordinaires, ménages au revenu positif ou nul dont la personne de référence n'est pas étudiante. Concept Insee de redistribution monétaire : les systèmes de retraite et d'assurance chômage sont exclus du champ (pensions et allocations chômage sont donc comprises dans le niveau de vie avant redistribution) ; les prélèvements retenus sont les prélèvements directs non contributifs (cotisations patronales famille, contributions sociales hors part de la CSG affectée à la maladie, impôt sur le revenu, IFI), sans la TVA ni la taxe foncière."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: -16550
+        source: bm-insee-fps2025-redistribution
+        statut: estimation
+  - id: menages.redistribution_quintile_5.prestations
+    titre: "Prestations sociales reçues : 20 % les plus aisés (au-dessus du 4e quintile) (euros par unité de consommation et par an)"
+    explication: "Montant moyen des prestations non contributives reçues par unité de consommation. Dont prestations familiales : 150 € ; dont aides personnelles au logement : 20 € ; dont prime d'activité et minima sociaux (RSA, minimum vieillesse, AAH, contrat d'engagement jeune…) : 90 €. Insee, France, portrait social 2025, fiche « Redistribution monétaire » : estimation 2024 par le modèle Ines (enquête Revenus fiscaux et sociaux 2022 actualisée en 2024). Les personnes sont classées selon leur niveau de vie AVANT redistribution. Champ : France métropolitaine, logements ordinaires, ménages au revenu positif ou nul dont la personne de référence n'est pas étudiante. Concept Insee de redistribution monétaire : les systèmes de retraite et d'assurance chômage sont exclus du champ (pensions et allocations chômage sont donc comprises dans le niveau de vie avant redistribution) ; les prélèvements retenus sont les prélèvements directs non contributifs (cotisations patronales famille, contributions sociales hors part de la CSG affectée à la maladie, impôt sur le revenu, IFI), sans la TVA ni la taxe foncière."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 260
+        source: bm-insee-fps2025-redistribution
+        statut: estimation
+  - id: menages.redistribution_quintile_5.niveau_vie_apres
+    titre: "Niveau de vie moyen après redistribution : 20 % les plus aisés (au-dessus du 4e quintile), classement avant redistribution (euros par unité de consommation et par an)"
+    explication: "Niveau de vie avant redistribution + prélèvements + prestations, pour les mêmes personnes (classées selon leur niveau de vie avant redistribution). À ne pas confondre avec revenus.niveau_vie_moyen.decile_<k> (population.yaml, enquête ERFS 2024), où les personnes sont classées selon leur niveau de vie après redistribution. Insee, France, portrait social 2025, fiche « Redistribution monétaire » : estimation 2024 par le modèle Ines (enquête Revenus fiscaux et sociaux 2022 actualisée en 2024). Les personnes sont classées selon leur niveau de vie AVANT redistribution. Champ : France métropolitaine, logements ordinaires, ménages au revenu positif ou nul dont la personne de référence n'est pas étudiante. Concept Insee de redistribution monétaire : les systèmes de retraite et d'assurance chômage sont exclus du champ (pensions et allocations chômage sont donc comprises dans le niveau de vie avant redistribution) ; les prélèvements retenus sont les prélèvements directs non contributifs (cotisations patronales famille, contributions sociales hors part de la CSG affectée à la maladie, impôt sur le revenu, IFI), sans la TVA ni la taxe foncière."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 58690
+        source: bm-insee-fps2025-redistribution
+        statut: estimation
+  - id: menages.redistribution_quintile_5.taux
+    titre: "Taux de redistribution : 20 % les plus aisés (au-dessus du 4e quintile) (%)"
+    explication: "(Prélèvements + prestations) / niveau de vie avant redistribution, en % : positif = le groupe reçoit plus qu'il ne paie, négatif = il paie plus qu'il ne reçoit. Insee, France, portrait social 2025, fiche « Redistribution monétaire » : estimation 2024 par le modèle Ines (enquête Revenus fiscaux et sociaux 2022 actualisée en 2024). Les personnes sont classées selon leur niveau de vie AVANT redistribution. Champ : France métropolitaine, logements ordinaires, ménages au revenu positif ou nul dont la personne de référence n'est pas étudiante. Concept Insee de redistribution monétaire : les systèmes de retraite et d'assurance chômage sont exclus du champ (pensions et allocations chômage sont donc comprises dans le niveau de vie avant redistribution) ; les prélèvements retenus sont les prélèvements directs non contributifs (cotisations patronales famille, contributions sociales hors part de la CSG affectée à la maladie, impôt sur le revenu, IFI), sans la TVA ni la taxe foncière."
+    unite: pourcent
+    serie:
+      - date: "2024-12-31"
+        valeur: -21.7
+        source: bm-insee-fps2025-redistribution
+        statut: estimation
+  - id: menages.niveau_vie_avant_redistribution_decile_10
+    titre: "Niveau de vie moyen avant redistribution : 10 % les plus aisés (au-dessus du 9e décile) (euros par unité de consommation et par an)"
+    explication: "Revenu annuel moyen par unité de consommation avant impôts directs et prestations sociales non contributives (revenus d'activité, du patrimoine, pensions de retraite et allocations chômage). Insee, France, portrait social 2025, fiche « Redistribution monétaire » : estimation 2024 par le modèle Ines (enquête Revenus fiscaux et sociaux 2022 actualisée en 2024). Les personnes sont classées selon leur niveau de vie AVANT redistribution. Champ : France métropolitaine, logements ordinaires, ménages au revenu positif ou nul dont la personne de référence n'est pas étudiante. Concept Insee de redistribution monétaire : les systèmes de retraite et d'assurance chômage sont exclus du champ (pensions et allocations chômage sont donc comprises dans le niveau de vie avant redistribution) ; les prélèvements retenus sont les prélèvements directs non contributifs (cotisations patronales famille, contributions sociales hors part de la CSG affectée à la maladie, impôt sur le revenu, IFI), sans la TVA ni la taxe foncière. L'Insee ne publie pas ce tableau pour les déciles 2 à 9 : seuls le 1er décile, le 10e décile et les cinq quintiles sont disponibles (ids *_quintile_1 à *_quintile_5)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 99300
+        source: bm-insee-fps2025-redistribution
+        statut: estimation
+  - id: menages.redistribution_decile_10.prelevements
+    titre: "Prélèvements payés : 10 % les plus aisés (au-dessus du 9e décile) (euros par unité de consommation et par an, négatif = payé)"
+    explication: "Montant moyen des prélèvements redistributifs par unité de consommation (signe négatif = somme payée par le ménage). Dont financement de la protection sociale (cotisations patronales famille, contributions sociales hors CSG maladie) : -10910 € ; dont impôts directs (impôt sur le revenu après crédits d'impôt, IFI) : -14180 €. Insee, France, portrait social 2025, fiche « Redistribution monétaire » : estimation 2024 par le modèle Ines (enquête Revenus fiscaux et sociaux 2022 actualisée en 2024). Les personnes sont classées selon leur niveau de vie AVANT redistribution. Champ : France métropolitaine, logements ordinaires, ménages au revenu positif ou nul dont la personne de référence n'est pas étudiante. Concept Insee de redistribution monétaire : les systèmes de retraite et d'assurance chômage sont exclus du champ (pensions et allocations chômage sont donc comprises dans le niveau de vie avant redistribution) ; les prélèvements retenus sont les prélèvements directs non contributifs (cotisations patronales famille, contributions sociales hors part de la CSG affectée à la maladie, impôt sur le revenu, IFI), sans la TVA ni la taxe foncière. L'Insee ne publie pas ce tableau pour les déciles 2 à 9 : seuls le 1er décile, le 10e décile et les cinq quintiles sont disponibles (ids *_quintile_1 à *_quintile_5)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: -25090
+        source: bm-insee-fps2025-redistribution
+        statut: estimation
+  - id: menages.redistribution_decile_10.prestations
+    titre: "Prestations sociales reçues : 10 % les plus aisés (au-dessus du 9e décile) (euros par unité de consommation et par an)"
+    explication: "Montant moyen des prestations non contributives reçues par unité de consommation. Dont prestations familiales : 120 € ; dont aides personnelles au logement : 20 € ; dont prime d'activité et minima sociaux (RSA, minimum vieillesse, AAH, contrat d'engagement jeune…) : 70 €. Insee, France, portrait social 2025, fiche « Redistribution monétaire » : estimation 2024 par le modèle Ines (enquête Revenus fiscaux et sociaux 2022 actualisée en 2024). Les personnes sont classées selon leur niveau de vie AVANT redistribution. Champ : France métropolitaine, logements ordinaires, ménages au revenu positif ou nul dont la personne de référence n'est pas étudiante. Concept Insee de redistribution monétaire : les systèmes de retraite et d'assurance chômage sont exclus du champ (pensions et allocations chômage sont donc comprises dans le niveau de vie avant redistribution) ; les prélèvements retenus sont les prélèvements directs non contributifs (cotisations patronales famille, contributions sociales hors part de la CSG affectée à la maladie, impôt sur le revenu, IFI), sans la TVA ni la taxe foncière. L'Insee ne publie pas ce tableau pour les déciles 2 à 9 : seuls le 1er décile, le 10e décile et les cinq quintiles sont disponibles (ids *_quintile_1 à *_quintile_5)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 210
+        source: bm-insee-fps2025-redistribution
+        statut: estimation
+  - id: menages.redistribution_decile_10.niveau_vie_apres
+    titre: "Niveau de vie moyen après redistribution : 10 % les plus aisés (au-dessus du 9e décile), classement avant redistribution (euros par unité de consommation et par an)"
+    explication: "Niveau de vie avant redistribution + prélèvements + prestations, pour les mêmes personnes (classées selon leur niveau de vie avant redistribution). À ne pas confondre avec revenus.niveau_vie_moyen.decile_<k> (population.yaml, enquête ERFS 2024), où les personnes sont classées selon leur niveau de vie après redistribution. Insee, France, portrait social 2025, fiche « Redistribution monétaire » : estimation 2024 par le modèle Ines (enquête Revenus fiscaux et sociaux 2022 actualisée en 2024). Les personnes sont classées selon leur niveau de vie AVANT redistribution. Champ : France métropolitaine, logements ordinaires, ménages au revenu positif ou nul dont la personne de référence n'est pas étudiante. Concept Insee de redistribution monétaire : les systèmes de retraite et d'assurance chômage sont exclus du champ (pensions et allocations chômage sont donc comprises dans le niveau de vie avant redistribution) ; les prélèvements retenus sont les prélèvements directs non contributifs (cotisations patronales famille, contributions sociales hors part de la CSG affectée à la maladie, impôt sur le revenu, IFI), sans la TVA ni la taxe foncière. L'Insee ne publie pas ce tableau pour les déciles 2 à 9 : seuls le 1er décile, le 10e décile et les cinq quintiles sont disponibles (ids *_quintile_1 à *_quintile_5)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 74410
+        source: bm-insee-fps2025-redistribution
+        statut: estimation
+  - id: menages.redistribution_decile_10.taux
+    titre: "Taux de redistribution : 10 % les plus aisés (au-dessus du 9e décile) (%)"
+    explication: "(Prélèvements + prestations) / niveau de vie avant redistribution, en % : positif = le groupe reçoit plus qu'il ne paie, négatif = il paie plus qu'il ne reçoit. Insee, France, portrait social 2025, fiche « Redistribution monétaire » : estimation 2024 par le modèle Ines (enquête Revenus fiscaux et sociaux 2022 actualisée en 2024). Les personnes sont classées selon leur niveau de vie AVANT redistribution. Champ : France métropolitaine, logements ordinaires, ménages au revenu positif ou nul dont la personne de référence n'est pas étudiante. Concept Insee de redistribution monétaire : les systèmes de retraite et d'assurance chômage sont exclus du champ (pensions et allocations chômage sont donc comprises dans le niveau de vie avant redistribution) ; les prélèvements retenus sont les prélèvements directs non contributifs (cotisations patronales famille, contributions sociales hors part de la CSG affectée à la maladie, impôt sur le revenu, IFI), sans la TVA ni la taxe foncière. L'Insee ne publie pas ce tableau pour les déciles 2 à 9 : seuls le 1er décile, le 10e décile et les cinq quintiles sont disponibles (ids *_quintile_1 à *_quintile_5)."
+    unite: pourcent
+    serie:
+      - date: "2024-12-31"
+        valeur: -25.1
+        source: bm-insee-fps2025-redistribution
+        statut: estimation
+  - id: menages.niveau_vie_avant_redistribution_ensemble
+    titre: "Niveau de vie moyen avant redistribution : ensemble de la population (euros par unité de consommation et par an)"
+    explication: "Revenu annuel moyen par unité de consommation avant impôts directs et prestations sociales non contributives (revenus d'activité, du patrimoine, pensions de retraite et allocations chômage). Insee, France, portrait social 2025, fiche « Redistribution monétaire » : estimation 2024 par le modèle Ines (enquête Revenus fiscaux et sociaux 2022 actualisée en 2024). Les personnes sont classées selon leur niveau de vie AVANT redistribution. Champ : France métropolitaine, logements ordinaires, ménages au revenu positif ou nul dont la personne de référence n'est pas étudiante. Concept Insee de redistribution monétaire : les systèmes de retraite et d'assurance chômage sont exclus du champ (pensions et allocations chômage sont donc comprises dans le niveau de vie avant redistribution) ; les prélèvements retenus sont les prélèvements directs non contributifs (cotisations patronales famille, contributions sociales hors part de la CSG affectée à la maladie, impôt sur le revenu, IFI), sans la TVA ni la taxe foncière."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 34360
+        source: bm-insee-fps2025-redistribution
+        statut: estimation
+  - id: menages.redistribution_ensemble.prelevements
+    titre: "Prélèvements payés : ensemble de la population (euros par unité de consommation et par an, négatif = payé)"
+    explication: "Montant moyen des prélèvements redistributifs par unité de consommation (signe négatif = somme payée par le ménage). Dont financement de la protection sociale (cotisations patronales famille, contributions sociales hors CSG maladie) : -3230 € ; dont impôts directs (impôt sur le revenu après crédits d'impôt, IFI) : -2010 €. Insee, France, portrait social 2025, fiche « Redistribution monétaire » : estimation 2024 par le modèle Ines (enquête Revenus fiscaux et sociaux 2022 actualisée en 2024). Les personnes sont classées selon leur niveau de vie AVANT redistribution. Champ : France métropolitaine, logements ordinaires, ménages au revenu positif ou nul dont la personne de référence n'est pas étudiante. Concept Insee de redistribution monétaire : les systèmes de retraite et d'assurance chômage sont exclus du champ (pensions et allocations chômage sont donc comprises dans le niveau de vie avant redistribution) ; les prélèvements retenus sont les prélèvements directs non contributifs (cotisations patronales famille, contributions sociales hors part de la CSG affectée à la maladie, impôt sur le revenu, IFI), sans la TVA ni la taxe foncière."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: -5240
+        source: bm-insee-fps2025-redistribution
+        statut: estimation
+  - id: menages.redistribution_ensemble.prestations
+    titre: "Prestations sociales reçues : ensemble de la population (euros par unité de consommation et par an)"
+    explication: "Montant moyen des prestations non contributives reçues par unité de consommation. Dont prestations familiales : 700 € ; dont aides personnelles au logement : 310 € ; dont prime d'activité et minima sociaux (RSA, minimum vieillesse, AAH, contrat d'engagement jeune…) : 760 €. Insee, France, portrait social 2025, fiche « Redistribution monétaire » : estimation 2024 par le modèle Ines (enquête Revenus fiscaux et sociaux 2022 actualisée en 2024). Les personnes sont classées selon leur niveau de vie AVANT redistribution. Champ : France métropolitaine, logements ordinaires, ménages au revenu positif ou nul dont la personne de référence n'est pas étudiante. Concept Insee de redistribution monétaire : les systèmes de retraite et d'assurance chômage sont exclus du champ (pensions et allocations chômage sont donc comprises dans le niveau de vie avant redistribution) ; les prélèvements retenus sont les prélèvements directs non contributifs (cotisations patronales famille, contributions sociales hors part de la CSG affectée à la maladie, impôt sur le revenu, IFI), sans la TVA ni la taxe foncière."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 1770
+        source: bm-insee-fps2025-redistribution
+        statut: estimation
+  - id: menages.redistribution_ensemble.niveau_vie_apres
+    titre: "Niveau de vie moyen après redistribution : ensemble de la population, classement avant redistribution (euros par unité de consommation et par an)"
+    explication: "Niveau de vie avant redistribution + prélèvements + prestations, pour les mêmes personnes (classées selon leur niveau de vie avant redistribution). À ne pas confondre avec revenus.niveau_vie_moyen.decile_<k> (population.yaml, enquête ERFS 2024), où les personnes sont classées selon leur niveau de vie après redistribution. Insee, France, portrait social 2025, fiche « Redistribution monétaire » : estimation 2024 par le modèle Ines (enquête Revenus fiscaux et sociaux 2022 actualisée en 2024). Les personnes sont classées selon leur niveau de vie AVANT redistribution. Champ : France métropolitaine, logements ordinaires, ménages au revenu positif ou nul dont la personne de référence n'est pas étudiante. Concept Insee de redistribution monétaire : les systèmes de retraite et d'assurance chômage sont exclus du champ (pensions et allocations chômage sont donc comprises dans le niveau de vie avant redistribution) ; les prélèvements retenus sont les prélèvements directs non contributifs (cotisations patronales famille, contributions sociales hors part de la CSG affectée à la maladie, impôt sur le revenu, IFI), sans la TVA ni la taxe foncière."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 30900
+        source: bm-insee-fps2025-redistribution
+        statut: estimation
+  - id: menages.redistribution_ensemble.taux
+    titre: "Taux de redistribution : ensemble de la population (%)"
+    explication: "(Prélèvements + prestations) / niveau de vie avant redistribution, en % : positif = le groupe reçoit plus qu'il ne paie, négatif = il paie plus qu'il ne reçoit. Insee, France, portrait social 2025, fiche « Redistribution monétaire » : estimation 2024 par le modèle Ines (enquête Revenus fiscaux et sociaux 2022 actualisée en 2024). Les personnes sont classées selon leur niveau de vie AVANT redistribution. Champ : France métropolitaine, logements ordinaires, ménages au revenu positif ou nul dont la personne de référence n'est pas étudiante. Concept Insee de redistribution monétaire : les systèmes de retraite et d'assurance chômage sont exclus du champ (pensions et allocations chômage sont donc comprises dans le niveau de vie avant redistribution) ; les prélèvements retenus sont les prélèvements directs non contributifs (cotisations patronales famille, contributions sociales hors part de la CSG affectée à la maladie, impôt sur le revenu, IFI), sans la TVA ni la taxe foncière."
+    unite: pourcent
+    serie:
+      - date: "2024-12-31"
+        valeur: -10.1
+        source: bm-insee-fps2025-redistribution
+        statut: estimation
+  - id: impots_locaux.taxe_fonciere_moyenne_par_avis
+    titre: "Taxe foncière sur les propriétés bâties : montant moyen payé par un propriétaire particulier (euros par an)"
+    explication: "Montant moyen de taxe foncière (bâti, y compris taxes annexes et frais de gestion) payé en 2025 par chacun des 31,1 millions de propriétaires particuliers (34,69 Md€ au total). La DGFiP publie une moyenne par propriétaire et non par avis d'imposition (un propriétaire peut recevoir plusieurs avis). Moyenne tous propriétaires confondus (entreprises, SCI, HLM…) : 1 669 €. Source : DGFiP Statistiques n° 46 (mai 2026), montants dus au titre de 2025."
+    unite: euros
+    serie:
+      - date: "2025-12-31"
+        valeur: 1117
+        source: bm-dgfip-stat-46-tf-2025
+        statut: definitif
+  - id: impots_locaux.taxe_fonciere_produit_total
+    titre: "Taxe foncière sur les propriétés bâties : montant total dû (milliards d'euros, y compris taxes annexes et frais de gestion)"
+    explication: "Total de la taxe foncière sur les propriétés bâties due par les 33 millions de propriétaires en 2025, y compris les taxes annexes et les frais de gestion perçus par l'État : +2,8 % sur un an. Les particuliers en paient 34,69 Md€ (63 %). Hors taxes annexes et frais de gestion : 43,1 Md€ (voir aussi finances_publiques.recettes.taxe_fonciere, comptes nationaux). La taxe sur le foncier non bâti (2,7 Md€) n'est pas comprise. Source : DGFiP Statistiques n° 46 (mai 2026), montants dus au titre de 2025."
+    unite: milliards_euros
+    serie:
+      - date: "2025-12-31"
+        valeur: 55.13
+        source: bm-dgfip-stat-46-tf-2025
+        statut: definitif
+  - id: menages.consommation_finale_totale
+    titre: "Dépense de consommation finale des ménages (milliards d'euros)"
+    explication: "Ce que les ménages paient eux-mêmes pour leur consommation (alimentation, logement, transports, loisirs…), y compris les loyers imputés aux propriétaires occupants. Si l'on ajoute les biens et services fournis gratuitement par l'État, la Sécurité sociale et les associations (transferts sociaux en nature : 536,6 Md€ en 2025), on obtient la consommation finale effective (2 082,6 Md€ en 2025). Insee, comptes de la Nation 2025 (base 2020, publiés le 29 mai 2026), tableau 2.104 « Compte des ménages simplifié ». Ménages y compris entrepreneurs individuels. Statuts Insee : 2023 définitif, 2024 semi-définitif (codé « provisoire »), 2025 provisoire. Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2023-12-31"
+        valeur: 1482.483
+        source: bm-insee-cn2025-t2104
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 1527.123
+        source: bm-insee-cn2025-t2104
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 1545.939
+        source: bm-insee-cn2025-t2104
+        statut: provisoire
+  - id: menages.revenu_disponible_brut_total
+    titre: "Revenu disponible brut des ménages (milliards d'euros)"
+    explication: "Revenus d'activité et du patrimoine, plus les prestations sociales en espèces, moins les cotisations sociales et les impôts courants sur le revenu et le patrimoine (principalement impôt sur le revenu, CSG, CRDS). Hausse de 0,5 % en 2025 ; pouvoir d'achat : -0,4 %. Taux d'épargne 2025 : 17,9 %. Insee, comptes de la Nation 2025 (base 2020, publiés le 29 mai 2026), tableau 2.104 « Compte des ménages simplifié ». Ménages y compris entrepreneurs individuels. Statuts Insee : 2023 définitif, 2024 semi-définitif (codé « provisoire »), 2025 provisoire. Date = 31 décembre de l'année. Valeurs identiques dans le tableau 2.101."
+    unite: milliards_euros
+    serie:
+      - date: "2023-12-31"
+        valeur: 1779.879
+        source: bm-insee-cn2025-t2104
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 1868.043
+        source: bm-insee-cn2025-t2104
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 1876.863
+        source: bm-insee-cn2025-t2104
+        statut: provisoire
+  - id: menages.consommation_finale_effective_totale
+    titre: "Consommation finale effective des ménages (milliards d'euros)"
+    explication: "Dépense de consommation des ménages + biens et services individuels fournis gratuitement ou presque par les administrations publiques et les associations (soins remboursés, enseignement, action sociale…). Insee, comptes de la Nation 2025 (base 2020, publiés le 29 mai 2026), tableau 2.104 « Compte des ménages simplifié ». Ménages y compris entrepreneurs individuels. Statuts Insee : 2023 définitif, 2024 semi-définitif (codé « provisoire »), 2025 provisoire. Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2023-12-31"
+        valeur: 1988.003
+        source: bm-insee-cn2025-t2104
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 2051.008
+        source: bm-insee-cn2025-t2104
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 2082.556
+        source: bm-insee-cn2025-t2104
+        statut: provisoire
+  - id: menages.transferts_sociaux_en_nature
+    titre: "Transferts sociaux en nature reçus par les ménages (milliards d'euros)"
+    explication: "Valeur des services publics individualisables dont bénéficient les ménages : remboursements de soins par la Sécurité sociale, enseignement, prestations d'assistance sociale, services non marchands divers. Insee, comptes de la Nation 2025 (base 2020, publiés le 29 mai 2026), tableau 2.104 « Compte des ménages simplifié ». Ménages y compris entrepreneurs individuels. Statuts Insee : 2023 définitif, 2024 semi-définitif (codé « provisoire »), 2025 provisoire. Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2023-12-31"
+        valeur: 505.52
+        source: bm-insee-cn2025-t2104
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 523.885
+        source: bm-insee-cn2025-t2104
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 536.617
+        source: bm-insee-cn2025-t2104
+        statut: provisoire
+  - id: menages.prestations_sociales_especes
+    titre: "Prestations sociales en espèces reçues par les ménages (milliards d'euros)"
+    explication: "Pensions de retraite, allocations chômage, prestations familiales, minima sociaux, indemnités journalières… (prestations sociales autres que transferts sociaux en nature). Insee, comptes de la Nation 2025 (base 2020, publiés le 29 mai 2026), tableau 2.104 « Compte des ménages simplifié ». Ménages y compris entrepreneurs individuels. Statuts Insee : 2023 définitif, 2024 semi-définitif (codé « provisoire »), 2025 provisoire. Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2023-12-31"
+        valeur: 593.044
+        source: bm-insee-cn2025-t2104
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 628.816
+        source: bm-insee-cn2025-t2104
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 646.968
+        source: bm-insee-cn2025-t2104
+        statut: provisoire
+  - id: menages.cotisations_sociales_nettes
+    titre: "Cotisations sociales nettes versées par les ménages (milliards d'euros)"
+    explication: "Cotisations sociales (salariales, patronales et des indépendants) rattachées aux revenus des ménages en comptabilité nationale. Insee, comptes de la Nation 2025 (base 2020, publiés le 29 mai 2026), tableau 2.104 « Compte des ménages simplifié ». Ménages y compris entrepreneurs individuels. Statuts Insee : 2023 définitif, 2024 semi-définitif (codé « provisoire »), 2025 provisoire. Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2023-12-31"
+        valeur: 544.209
+        source: bm-insee-cn2025-t2104
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 568.682
+        source: bm-insee-cn2025-t2104
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 586.984
+        source: bm-insee-cn2025-t2104
+        statut: provisoire
+  - id: menages.impots_courants_revenu_patrimoine
+    titre: "Impôts courants sur le revenu et le patrimoine payés par les ménages (milliards d'euros)"
+    explication: "Principalement impôt sur le revenu, CSG et CRDS. Insee, comptes de la Nation 2025 (base 2020, publiés le 29 mai 2026), tableau 2.104 « Compte des ménages simplifié ». Ménages y compris entrepreneurs individuels. Statuts Insee : 2023 définitif, 2024 semi-définitif (codé « provisoire »), 2025 provisoire. Date = 31 décembre de l'année."
+    unite: milliards_euros
+    serie:
+      - date: "2023-12-31"
+        valeur: 273.42
+        source: bm-insee-cn2025-t2104
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 280.408
+        source: bm-insee-cn2025-t2104
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 291.863
+        source: bm-insee-cn2025-t2104
+        statut: provisoire
+  - id: retraites.depenses_totales_md
+    titre: "Dépenses totales du système de retraite (milliards d'euros)"
+    explication: "Dépenses du système de retraite (régimes obligatoires de base et complémentaires, minimum vieillesse compris) en 2025, soit 14,1 % du PIB et 24,3 % des dépenses publiques. Sur ces 422 Md€, 401 Md€ sont des pensions de retraite (dont 361 Md€ de droit direct et 39 Md€ de réversion) ; le reste (0,7 % du PIB) comprend notamment le minimum vieillesse. Nettes des prélèvements sur les pensions (CSG, CRDS, Casa…), les dépenses sont de 394 Md€. Source : Conseil d'orientation des retraites, rapport annuel de juin 2026."
+    unite: milliards_euros
+    serie:
+      - date: "2025-12-31"
+        valeur: 422.2
+        source: bm-cor-ra-2026
+        statut: provisoire
+  - id: sante.consommation_soins_biens_medicaux_md
+    titre: "Consommation de soins et de biens médicaux (CSBM) (milliards d'euros)"
+    explication: "Soins hospitaliers, soins de ville, médicaments et dispositifs médicaux consommés en France, quel que soit le payeur. En 2025 : 8,6 % du PIB, +2,7 % sur un an ; financée à 201,6 Md€ par la Sécurité sociale, 33,5 Md€ par les complémentaires santé, 19,7 Md€ par les ménages et 1,7 Md€ par l'État et les collectivités. Reste à charge : voir sante.reste_a_charge_menages_par_habitant (social_env.yaml). Source : Drees, comptes de la santé, édition 2026 (séries révisées : 2023 et 2024 diffèrent de l'édition 2025). Statuts : 2023 définitif, 2024 semi-définitif (codé « provisoire »), 2025 provisoire."
+    unite: milliards_euros
+    serie:
+      - date: "2023-12-31"
+        valeur: 241.334
+        source: bm-drees-cns-2026
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 249.698
+        source: bm-drees-cns-2026
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 256.452
+        source: bm-drees-cns-2026
+        statut: provisoire

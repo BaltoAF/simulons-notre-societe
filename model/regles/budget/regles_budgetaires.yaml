@@ -1,0 +1,341 @@
+# Règles qui encadrent les finances publiques : Constitution (art. 40, 47, 47-1), règles européennes
+# (protocole n° 12 / art. 126 TFUE, cadre de gouvernance réformé entré en vigueur le 30 avril 2024,
+# plan budgétaire et structurel à moyen terme de la France), loi de programmation des finances publiques
+# 2023-2027 (loi n° 2023-1195 du 18 décembre 2023, toujours la référence citée par le PLF 2027),
+# et comité d'alerte de l'ONDAM. Valeurs en vigueur au 13 octobre 2026.
+# NB : EUR-Lex et Légifrance bloquent les outils automatisés ; les textes européens ont été lus dans
+# les documents du Conseil de l'UE publiés par le Conseil et la Commission européenne.
+domaine: budget
+theme: "Règles budgétaires (Constitution, règles européennes, programmation)"
+regles:
+  # ------------------------------------------------------------------ Constitution
+  - id: budget.regles.article_40_irrecevabilite_financiere
+    titre: "Article 40 : les parlementaires ne peuvent pas proposer de baisser les recettes ou d'augmenter les dépenses publiques"
+    explication: "Un député ou un sénateur ne peut pas déposer une proposition de loi ou un amendement qui ferait perdre de l'argent à l'État ou à la Sécurité sociale, ou qui créerait une nouvelle dépense. Seul le Gouvernement peut le faire."
+    type: booleen
+    unite: ""
+    valeurs:
+      - depuis: "1958-10-04"
+        valeur: true
+        sources: [rc-cc-constitution-1958]
+        article: "Constitution du 4 octobre 1958, art. 40"
+    tags: [constitution, parlement, irrecevabilite, depenses, recettes]
+    a_verifier: false
+    note: "Texte exact (version en vigueur lue sur le site du Conseil constitutionnel) : « Les propositions et amendements formulés par les membres du Parlement ne sont pas recevables lorsque leur adoption aurait pour conséquence soit une diminution des ressources publiques, soit la création ou l'aggravation d'une charge publique. » En pratique, une baisse de recette peut être « gagée » par une hausse d'une autre recette, mais une charge nouvelle ne peut pas être compensée. Date : celle de la Constitution."
+
+  - id: budget.regles.delai_vote_loi_finances
+    titre: "Délai laissé au Parlement pour voter le budget de l'État"
+    explication: "Si le Parlement ne s'est pas prononcé sur le projet de loi de finances dans un délai de 70 jours, le Gouvernement peut le mettre en vigueur par ordonnance."
+    type: nombre
+    unite: jours
+    bornes: [30, 120]
+    valeurs:
+      - depuis: "2026-10-13"
+        valeur: 70
+        sources: [rc-cc-constitution-1958]
+        article: "Constitution, art. 47"
+    tags: [constitution, parlement, loi_de_finances, calendrier]
+    a_verifier: false
+    note: "Texte lu : « Si le Parlement ne s'est pas prononcé dans un délai de soixante-dix jours, les dispositions du projet peuvent être mises en vigueur par ordonnance. » Date d'entrée en vigueur non établie ; valeur attestée au 13/10/2026 (version en vigueur)."
+
+  - id: budget.regles.delai_vote_lfss
+    titre: "Délai laissé au Parlement pour voter le budget de la Sécurité sociale"
+    explication: "Si le Parlement ne s'est pas prononcé sur le projet de loi de financement de la sécurité sociale dans un délai de 50 jours, le Gouvernement peut le mettre en œuvre par ordonnance."
+    type: nombre
+    unite: jours
+    bornes: [20, 120]
+    valeurs:
+      - depuis: "2026-10-13"
+        valeur: 50
+        sources: [rc-cc-constitution-1958]
+        article: "Constitution, art. 47-1"
+    tags: [constitution, parlement, securite_sociale, calendrier]
+    a_verifier: false
+    note: "Texte lu : « Si le Parlement ne s'est pas prononcé dans un délai de cinquante jours, les dispositions du projet peuvent être mises en oeuvre par ordonnance. » Date d'entrée en vigueur non établie ; valeur attestée au 13/10/2026 (version en vigueur)."
+
+  # ------------------------------------------------------------------ Règles européennes (traités)
+  - id: budget.regles.deficit_public_max_pct_pib
+    titre: "Règle européenne : déficit public maximal (valeur de référence)"
+    explication: "Les pays de l'Union européenne doivent éviter un déficit public supérieur à 3 % de leur richesse produite (PIB). Au-delà, l'UE peut ouvrir une « procédure pour déficit excessif »."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2024-07-26"
+        valeur: 3
+        sources: [rc-consilium-decision-pde-france-2024, rc-conseil-rec-pde-france-2025, rc-conseil-rec-psmt-france-2025]
+        article: "TFUE, art. 126 et protocole n° 12 sur la procédure concernant les déficits excessifs"
+    tags: [ue, deficit, pacte_stabilite, traite]
+    a_verifier: false
+    note: "Valeur en % du PIB. Lue dans la décision du Conseil sur l'existence d'un déficit excessif en France (« valeur de référence de 3 % du PIB prévue par le TFUE pour le déficit public ») ; le texte du protocole n° 12 lui-même n'a pas pu être consulté (EUR-Lex inaccessible aux outils). Date d'entrée en vigueur non établie sur une source lue ; valeur attestée au 26/07/2024."
+
+  - id: budget.regles.dette_publique_max_pct_pib
+    titre: "Règle européenne : dette publique maximale (valeur de référence)"
+    explication: "La dette publique d'un pays de l'UE ne doit pas dépasser 60 % du PIB, ou doit diminuer à un rythme suffisant. La France est très au-dessus (environ 116 % fin 2025)."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 200]
+    valeurs:
+      - depuis: "2025-01-21"
+        valeur: 60
+        sources: [rc-conseil-rec-pde-france-2025]
+        article: "TFUE, art. 126 et protocole n° 12 sur la procédure concernant les déficits excessifs"
+    tags: [ue, dette, pacte_stabilite, traite]
+    a_verifier: false
+    note: "Valeur en % du PIB, lue dans la recommandation du Conseil du 21 janvier 2025 (« the 60% of GDP reference value ») ; le protocole n° 12 lui-même n'a pas pu être consulté (EUR-Lex inaccessible). Depuis la réforme de 2024, le respect du critère de dette s'apprécie surtout au regard de la trajectoire de dépenses nettes fixée par le Conseil. Dette française : 115,7 % du PIB en 2025, 119,3 % prévus en 2026 et 121,7 % en 2027 selon le PLF 2027. Date d'entrée en vigueur non établie ; valeur attestée au 21/01/2025."
+
+  # ------------------------------------------------------------------ Procédure pour déficit excessif visant la France
+  - id: budget.regles.france_sous_procedure_deficit_excessif
+    titre: "La France fait-elle l'objet d'une procédure européenne pour déficit excessif ?"
+    explication: "Oui : depuis juillet 2024, l'UE considère que le déficit français (5,5 % du PIB en 2023) est excessif. La France doit suivre une trajectoire de dépenses fixée par le Conseil et rendre compte tous les six mois."
+    type: booleen
+    unite: ""
+    valeurs:
+      - depuis: "2024-07-26"
+        valeur: true
+        sources: [rc-consilium-decision-pde-france-2024, rc-ce-pde-france]
+        article: "Décision (UE) 2024/2122 du Conseil du 26 juillet 2024 (TFUE, art. 126, § 6)"
+    tags: [ue, deficit, procedure_deficit_excessif]
+    a_verifier: false
+    note: "Décision fondée uniquement sur le critère du déficit (3 %). La page de la Commission consultée le 13/10/2026 ne mentionne aucune décision d'abrogation ; derniers rapports d'action de la France : 25/11/2025 et 07/05/2026."
+
+  - id: budget.regles.france_pde_echeance_correction
+    titre: "Année limite fixée à la France pour revenir sous 3 % de déficit"
+    explication: "Le Conseil de l'UE demande à la France de mettre fin à son déficit excessif au plus tard en 2029."
+    type: nombre
+    unite: annee
+    bornes: [2025, 2035]
+    valeurs:
+      - depuis: "2025-01-21"
+        valeur: 2029
+        sources: [rc-conseil-rec-pde-france-2025, rc-ce-pde-france]
+        article: "Recommandation du Conseil du 21 janvier 2025 (TFUE, art. 126, § 7), point 2"
+    tags: [ue, deficit, procedure_deficit_excessif, echeance]
+    a_verifier: false
+    note: "Texte lu (version du 17/01/2025, doc. 5033/1/25 REV 1, adoptée le 21/01/2025) : « France should thus put an end to the excessive deficit situation by 2029. » Le PLF 2027 prévoit un déficit de 5,4 % du PIB en 2026 (cible LFI 2026 : 5,0 %) et de 5,0 % en 2027."
+
+  - id: budget.regles.pde_ajustement_structurel_minimal
+    titre: "Effort structurel minimal demandé chaque année sous procédure pour déficit excessif"
+    explication: "Tant que son déficit dépasse 3 %, un pays sous procédure doit en principe réduire son déficit structurel (hors effets de la conjoncture) d'au moins 0,5 point de PIB par an."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 2]
+    valeurs:
+      - depuis: "2025-01-21"
+        valeur: 0.5
+        sources: [rc-conseil-rec-pde-france-2025]
+        article: "Règlement (CE) n° 1467/97 modifié par le règlement (UE) 2024/1264 (rappelé au considérant 5 de la recommandation du Conseil du 21/01/2025)"
+    tags: [ue, deficit, procedure_deficit_excessif, ajustement_structurel]
+    a_verifier: false
+    note: "Valeur en points de PIB, présentée comme un « benchmark » : la Commission peut l'ajuster en 2025, 2026 et 2027 pour tenir compte de la hausse des charges d'intérêts. Date d'entrée en vigueur du cadre réformé : 30 avril 2024 ; valeur attestée au 21/01/2025."
+
+  # ------------------------------------------------------------------ Cadre européen réformé : plan à moyen terme de la France
+  - id: budget.regles.depenses_nettes_croissance_max
+    titre: "Hausse maximale autorisée des dépenses publiques « nettes » de la France (par an)"
+    explication: "Depuis la réforme européenne de 2024, la règle principale porte sur les dépenses : les dépenses publiques nettes (hors intérêts de la dette, hors chômage conjoncturel et hors effet des hausses ou baisses d'impôts) ne doivent pas augmenter plus vite qu'un plafond fixé chaque année par le Conseil de l'UE."
+    type: nombre
+    unite: pourcent
+    bornes: [-2, 5]
+    valeurs:
+      - depuis: "2025-01-21"
+        valeur: 0.8
+        sources: [rc-conseil-rec-psmt-france-2025, rc-conseil-rec-pde-france-2025]
+        article: "Recommandation du Conseil du 21 janvier 2025 (C/2025/659), annexe I — année 2025"
+      - depuis: "2026-01-01"
+        valeur: 1.2
+        sources: [rc-conseil-rec-psmt-france-2025, rc-conseil-rec-pde-france-2025]
+        article: "Recommandation du Conseil du 21 janvier 2025 (C/2025/659), annexe I — année 2026"
+    tags: [ue, depenses_nettes, plan_moyen_terme, pacte_stabilite]
+    a_verifier: false
+    note: "Croissance nominale annuelle. Plafonds fixés : 0,8 % (2025), 1,2 % (2026), 1,2 % (2027), 1,2 % (2028), 1,1 % (2029) ; croissance cumulée par rapport à 2023 : 4,6 %, 5,8 %, 7,1 %, 8,4 %, 9,5 % (c'est le cumul qui sert au « compte de contrôle »). Les mêmes plafonds sont repris par la recommandation du Conseil au titre de la procédure pour déficit excessif. La trajectoire de référence initiale de la Commission (juin 2024) permettait 1,6 % en moyenne ; la France s'est engagée sur 1,1 % en moyenne. Aucune révision de la trajectoire n'apparaît sur la page de la Commission consultée le 13/10/2026."
+
+  - id: budget.regles.plan_moyen_terme_duree_ajustement
+    titre: "Durée de la période d'ajustement budgétaire accordée à la France"
+    explication: "La France a obtenu 7 ans (2025-2031) au lieu de 4 pour redresser ses finances, en échange d'engagements de réformes et d'investissements (retraites, assurance chômage, etc.)."
+    type: nombre
+    unite: ans
+    bornes: [4, 7]
+    valeurs:
+      - depuis: "2025-01-21"
+        valeur: 7
+        sources: [rc-conseil-rec-psmt-france-2025]
+        article: "Recommandation du Conseil du 21 janvier 2025 (C/2025/659), point 2 et annexe II ; règlement (UE) 2024/1263"
+    tags: [ue, plan_moyen_terme, ajustement]
+    a_verifier: false
+    note: "Le plan budgétaire et structurel à moyen terme de la France (transmis le 31 octobre 2024, complété le 16 janvier 2025) couvre 2025-2029 ; période d'ajustement 2025-2031. Selon le plan, le déficit passerait de 6,1 % du PIB en 2024 à 2,8 % en 2029 et 1,7 % en 2031, et la dette de 112,9 % (2024) à 116,5 % (2027) puis 113,5 % (2031)."
+
+  # ------------------------------------------------------------------ Loi de programmation des finances publiques 2023-2027
+  - id: budget.regles.lpfp_objectif_moyen_terme
+    titre: "Objectif de moyen terme : solde structurel visé à long terme"
+    explication: "À terme, la France s'est fixé un déficit « structurel » (corrigé des effets de la conjoncture) ne dépassant pas 0,4 % de son PIB potentiel. Cet objectif n'est pas atteint pendant la programmation."
+    type: nombre
+    unite: pourcent
+    bornes: [-5, 2]
+    valeurs:
+      - depuis: "2023-12-19"
+        valeur: -0.4
+        sources: [rc-an-ta186-lpfp-2023-2027, rc-senat-dossier-lpfp-2023-2027]
+        article: "Loi n° 2023-1195 du 18 décembre 2023, art. 2"
+    tags: [lpfp, solde_structurel, objectif_moyen_terme, tscg]
+    a_verifier: false
+    note: "Solde en points de PIB potentiel (valeur négative = déficit). Le rapport annexé rappelle que l'OMT est « inchangé par rapport à la précédente LPFP » et que le traité TSCG impose une limite inférieure de -0,5 % pour la France. Date : publication de la loi au JO du 19 décembre 2023."
+
+  - id: budget.regles.lpfp_deficit_public_cible_2026
+    titre: "Loi de programmation : déficit public visé pour 2026"
+    explication: "La loi de programmation de 2023 prévoyait de ramener le déficit public à 3,2 % du PIB en 2026. La réalité est bien plus élevée (5,4 % prévus)."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2023-12-19"
+        valeur: 3.2
+        sources: [rc-an-ta186-lpfp-2023-2027]
+        article: "Loi n° 2023-1195 du 18 décembre 2023, art. 3"
+    tags: [lpfp, deficit, trajectoire]
+    a_verifier: false
+    note: "Déficit en % du PIB (solde effectif de -3,2). Le PLF 2027 révise la cible 2026 de 5,0 % (LFI 2026) à 5,4 %."
+
+  - id: budget.regles.lpfp_deficit_public_cible_2027
+    titre: "Loi de programmation : déficit public visé pour 2027"
+    explication: "La loi de programmation 2023-2027 vise un retour du déficit public sous 3 % du PIB en 2027, à 2,7 %. Le projet de budget pour 2027 prévoit en réalité 5,0 %."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 10]
+    valeurs:
+      - depuis: "2023-12-19"
+        valeur: 2.7
+        sources: [rc-an-ta186-lpfp-2023-2027, rc-an-plf-2027]
+        article: "Loi n° 2023-1195 du 18 décembre 2023, art. 3"
+    tags: [lpfp, deficit, trajectoire]
+    a_verifier: false
+    note: "Déficit en % du PIB (solde effectif de -2,7). Trajectoire de la loi : 4,9 % (2023), 4,4 % (2024), 3,7 % (2025), 3,2 % (2026), 2,7 % (2027). Exécution : 5,1 % en 2025 ; le PLF 2027 (déposé le 1er octobre 2026) vise 5,0 % en 2027. La comparaison est faussée par le changement de base des comptes nationaux (base 2020, mai 2024)."
+
+  - id: budget.regles.lpfp_solde_structurel_cible_2027
+    titre: "Loi de programmation : déficit structurel visé pour 2027"
+    explication: "Hors effets de la conjoncture et des mesures ponctuelles, le déficit devait être ramené à 2,7 % du PIB potentiel en 2027."
+    type: nombre
+    unite: pourcent
+    bornes: [-10, 2]
+    valeurs:
+      - depuis: "2023-12-19"
+        valeur: -2.7
+        sources: [rc-an-ta186-lpfp-2023-2027, rc-an-plf-2027]
+        article: "Loi n° 2023-1195 du 18 décembre 2023, art. 2"
+    tags: [lpfp, solde_structurel, trajectoire]
+    a_verifier: false
+    note: "Solde structurel en points de PIB potentiel : -4,1 (2023), -3,7 (2024), -3,3 (2025), -2,9 (2026), -2,7 (2027). Le PLF 2027 prévoit -5,1 en 2026 et -4,6 en 2027."
+
+  - id: budget.regles.lpfp_dette_publique_cible_2027
+    titre: "Loi de programmation : dette publique visée pour 2027"
+    explication: "La loi prévoyait que la dette publique commence à baisser pour atteindre 108,1 % du PIB en 2027. Le projet de budget 2027 prévoit 121,7 %."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 200]
+    valeurs:
+      - depuis: "2023-12-19"
+        valeur: 108.1
+        sources: [rc-an-ta186-lpfp-2023-2027, rc-an-plf-2027]
+        article: "Loi n° 2023-1195 du 18 décembre 2023, art. 3"
+    tags: [lpfp, dette, trajectoire]
+    a_verifier: false
+    note: "Dette au sens de Maastricht en % du PIB : 109,7 (2023), 109,7 (2024), 109,6 (2025), 109,1 (2026), 108,1 (2027)."
+
+  - id: budget.regles.lpfp_depense_publique_cible_2027
+    titre: "Loi de programmation : poids de la dépense publique visé pour 2027"
+    explication: "La loi prévoyait de ramener l'ensemble des dépenses publiques (État, collectivités, Sécurité sociale) à 53,8 % du PIB en 2027."
+    type: nombre
+    unite: pourcent
+    bornes: [30, 70]
+    valeurs:
+      - depuis: "2023-12-19"
+        valeur: 53.8
+        sources: [rc-an-ta186-lpfp-2023-2027, rc-an-plf-2027]
+        article: "Loi n° 2023-1195 du 18 décembre 2023, art. 3"
+    tags: [lpfp, depense_publique, trajectoire]
+    a_verifier: false
+    note: "Soit 1 744 Md€ en 2027, avec une progression en volume limitée à 0,5 % par an de 2024 à 2027 (0,8 % en 2025) ; taux de prélèvements obligatoires visé : 44,4 % du PIB. Le PLF 2027 prévoit 56,9 % du PIB (1 782 Md€) en 2027."
+
+  - id: budget.regles.lpfp_ondam_plafond_2027
+    titre: "Loi de programmation : plafond de l'ONDAM pour 2027"
+    explication: "La loi de programmation plafonne les dépenses d'assurance maladie (ONDAM) de 2027 à 278 milliards d'euros, à périmètre constant."
+    type: nombre
+    unite: milliards_euros
+    bornes: [200, 350]
+    valeurs:
+      - depuis: "2023-12-19"
+        valeur: 278.0
+        sources: [rc-an-ta186-lpfp-2023-2027]
+        article: "Loi n° 2023-1195 du 18 décembre 2023, art. 18, II"
+    tags: [lpfp, ondam, securite_sociale, sante]
+    a_verifier: false
+    note: "Plafonds de la loi : 247,6 (2023), 254 (2024), 262,5 (2025), 270,1 (2026), 278,0 Md€ (2027). Le rapport annexé prévoyait une progression de 3,2 % en 2024, 3,0 % en 2025 et 2,9 % en 2026 et 2027. Numéro d'article déduit de la structure du texte définitif (section suivant l'en-tête « Article 18 »)."
+
+  - id: budget.regles.lpfp_delai_retour_trajectoire
+    titre: "Délai maximal pour corriger un écart important à la trajectoire"
+    explication: "Si le Haut Conseil des finances publiques constate un écart important avec la trajectoire prévue, le Gouvernement doit présenter des mesures de correction permettant de revenir sur la trajectoire en deux ans au plus."
+    type: nombre
+    unite: ans
+    bornes: [1, 5]
+    valeurs:
+      - depuis: "2023-12-19"
+        valeur: 2
+        sources: [rc-an-ta186-lpfp-2023-2027]
+        article: "Loi n° 2023-1195 du 18 décembre 2023, art. 5 (LOLF, art. 62)"
+    tags: [lpfp, mecanisme_correction, hcfp]
+    a_verifier: false
+    note: "Délai compté à partir de la fin de l'année au cours de laquelle les écarts ont été constatés ; les mesures portent sur l'ensemble des administrations publiques."
+
+  # ------------------------------------------------------------------ ONDAM : mise en réserve et comité d'alerte
+  - id: budget.regles.ondam_mise_en_reserve
+    titre: "Part de l'ONDAM mise en réserve en début d'année"
+    explication: "Une partie des crédits d'assurance maladie est gelée en début d'année et n'est débloquée que si les dépenses sont tenues, pour pouvoir absorber un dépassement."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 2]
+    valeurs:
+      - depuis: "2023-12-19"
+        valeur: 0.3
+        sources: [rc-an-ta186-lpfp-2023-2027]
+        article: "Loi n° 2023-1195 du 18 décembre 2023, rapport annexé (approuvé par l'art. 1er)"
+    tags: [ondam, securite_sociale, mise_en_reserve]
+    a_verifier: false
+    note: "Le rapport annexé indique que « le dispositif de mise en réserve de l'ONDAM à 0,3 % est reconduit ». En 2026, les mises en réserve constituées en début d'année atteignaient 1,1 Md€ selon le comité d'alerte (avis n° 2026-2), ce qui dépasse ce minimum."
+
+  - id: budget.regles.ondam_comite_alerte_seuil
+    titre: "Seuil de dépassement de l'ONDAM qui déclenche l'alerte"
+    explication: "Si un comité d'experts estime que les dépenses d'assurance maladie risquent sérieusement de dépasser de plus de 0,5 % l'objectif voté (près de 1,4 Md€ en 2026), il donne l'alerte : l'Assurance maladie et le Gouvernement doivent alors proposer des économies."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 1]
+    valeurs:
+      - depuis: "2004-08-13"
+        valeur: 0.75
+        sources: [rc-secu-comite-alerte]
+      - depuis: "2011-01-01"
+        valeur: 0.7
+        sources: [rc-secu-comite-alerte]
+      - depuis: "2012-01-01"
+        valeur: 0.6
+        sources: [rc-secu-comite-alerte]
+      - depuis: "2013-01-01"
+        valeur: 0.5
+        sources: [rc-secu-comite-alerte, rc-comite-alerte-avis-2026-1, rc-comite-alerte-avis-2026-2]
+        article: "Code de la sécurité sociale, art. L114-4-1 et D. 114-4-0-17"
+    tags: [ondam, securite_sociale, comite_alerte]
+    a_verifier: false
+    note: "En % du montant de l'ONDAM voté. Historique d'après la page de securite-sociale.fr (« Initialement fixé à 0,75 %, ce seuil sera progressivement abaissé à 0,5 % d'ici 2013 », avec 0,7 % en 2011 et 0,6 % en 2012) : les dates exactes sont approximées au 1er janvier de chaque exercice, et la date du seuil initial est celle de la loi du 13 août 2004 créant le comité. L'avis n° 2026-1 cite l'article D. 114-4-0-17, l'avis n° 2026-2 l'article D. 114-4-0-7. L'alerte a été déclenchée par l'avis n° 2 du 18 juin 2025 (risque de dépassement de l'ONDAM 2025 au-delà du seuil) ; en 2026 (avis du 20 avril et du 25 juin), pas d'alerte, le comité comptant sur l'annulation des mises en réserve."
+
+  - id: budget.regles.ondam_comite_alerte_seuil_plafond_legal
+    titre: "Plafond légal du seuil d'alerte de l'ONDAM"
+    explication: "La loi interdit de fixer le seuil d'alerte au-delà de 1 % de l'ONDAM ; le niveau exact est choisi par décret."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 5]
+    valeurs:
+      - depuis: "2026-06-25"
+        valeur: 1
+        sources: [rc-comite-alerte-avis-2026-2, rc-secu-comite-alerte]
+        article: "Code de la sécurité sociale, art. L114-4-1"
+    tags: [ondam, securite_sociale, comite_alerte]
+    a_verifier: false
+    note: "Citation de l'article L114-4-1 dans l'avis n° 2026-2 : « un seuil fixé par décret qui ne peut excéder 1 % ». Date d'entrée en vigueur non établie ; valeur attestée au 25/06/2026."
