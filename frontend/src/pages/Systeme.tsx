@@ -39,7 +39,7 @@ export default function Systeme() {
     <div className="container page">
       <h1><Bot size={28} /> Le Système</h1>
       <p className="lead ink2" style={{ maxWidth: 820 }}>La Société 1.0 n'est modifiée par personne d'autre que le Système : des programmes et des agents qui collectent les textes officiels,
-        les statistiques publiques et les études, vérifient leur cohérence, puis publient une nouvelle version. Chaque mise à jour est un commit public.</p>
+        les statistiques publiques et les études, vérifient leur cohérence, puis publient une nouvelle version. Chaque mise à jour est datée et consultable par tous.</p>
 
       {s && (
         <div className="grid cols-4" style={{ marginBottom: 20 }}>
@@ -54,7 +54,7 @@ export default function Systeme() {
         <h3><RefreshCw size={18} /> Mise à jour automatique</h3>
         {ex && (
           <p className="small ink2">{ex.planificateur.actif
-            ? <>Chaque nuit à {ex.planificateur.heure_planifiee}, le Système vérifie le moteur de calcul, les données et les sources, publie une nouvelle version si la loi a changé et met à jour les sociétés forkées sans conflit. Les règles dont la date d'entrée en vigueur arrive s'appliquent d'elles-mêmes à minuit.
+            ? <>Chaque nuit à {ex.planificateur.heure_planifiee}, le Système vérifie le moteur de calcul, les données et les sources, publie une nouvelle version si la loi a changé et met à jour les sociétés des utilisateurs (sauf sur les règles qu'ils ont eux-mêmes changées). Les règles dont la date d'entrée en vigueur arrive s'appliquent d'elles-mêmes à minuit.
               {ex.planificateur.prochaine_maj && <> Prochain passage : <strong>{new Date(ex.planificateur.prochaine_maj).toLocaleString('fr-FR')}</strong>.</>}
               {ex.planificateur.en_cours && <> <span className="badge primary">mise à jour en cours</span></>}</>
             : 'La mise à jour automatique est désactivée sur ce serveur.'}</p>
@@ -67,7 +67,7 @@ export default function Systeme() {
               <li key={e.id} className="list-row" style={{ alignItems: 'flex-start' }}>
                 <span><span className={`badge ${e.statut === 'succes' ? 'gain' : e.statut === 'echec' ? 'loss' : 'primary'}`}>{e.statut === 'succes' ? 'réussie' : e.statut === 'echec' ? 'échec' : 'en cours'}</span>{' '}
                   {new Date(e.debut).toLocaleString('fr-FR')} <span className="muted">({e.declencheur})</span></span>
-                <span className="muted" style={{ textAlign: 'right' }}>{e.resume?.publication ?? e.resume?.erreur?.slice(0, 80) ?? ''}{e.resume?.forks ? ` · forks mis à jour : ${e.resume.forks.mises_a_jour}` : ''}</span>
+                <span className="muted" style={{ textAlign: 'right' }}>{e.resume?.publication ?? e.resume?.erreur?.slice(0, 80) ?? ''}{e.resume?.forks ? ` · sociétés mises à jour : ${e.resume.forks.mises_a_jour}` : ''}</span>
               </li>
             ))}
           </ul>

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import threading
+from concurrent.futures import Future
 from dataclasses import dataclass, field
 
 import numpy as np
@@ -99,13 +100,40 @@ class Contexte:
                         _BASE_CACHE.pop(next(iter(_BASE_CACHE)))
             res = {k: v.copy() for k, v in base.items()}
         else:
-            res = ENGINE.compute(menages, self.spec)
+            # mémorisé aussi : le calcul rapide (foyer, ménages types) puis le calcul complet demandent les mêmes résultats
+            # (les deux appels arrivent ensemble : le second attend le résultat du premier au lieu de recalculer)
+            key = _menages_key(menages) + "|" + self.spec.key
+            with _BASE_LOCK:
+                cache = _REFORME_CACHE.get(key)
+                en_cours = _EN_COURS.get(key) if cache is None else None
+                moi = cache is None and en_cours is None
+                if moi:
+                    en_cours = _EN_COURS[key] = Future()
+            if cache is None and not moi:
+                cache = en_cours.result()
+            elif cache is None:
+                try:
+                    cache = ENGINE.compute(menages, self.spec)
+                    en_cours.set_result(cache)
+                except BaseException as e:
+                    en_cours.set_exception(e)
+                    raise
+                finally:
+                    with _BASE_LOCK:
+                        _EN_COURS.pop(key, None)
+                        if cache is not None:
+                            _REFORME_CACHE[key] = cache
+                            while len(_REFORME_CACHE) > 12:
+                                _REFORME_CACHE.pop(next(iter(_REFORME_CACHE)))
+            res = {k: v.copy() for k, v in cache.items()}
         if reforme:
             res = self.appliquer_extensions(res, menages)
         return res
 
 
 _BASE_CACHE: dict[str, dict] = {}
+_REFORME_CACHE: dict[str, dict] = {}
+_EN_COURS: dict[str, Future] = {}
 _BASE_LOCK = threading.Lock()
 
 

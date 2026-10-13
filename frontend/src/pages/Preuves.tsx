@@ -8,7 +8,7 @@ import { ConfidenceBadge, Empty, Loading } from '../components/ui'
 export function fmtEffet(v: number | null, unite?: string) {
   if (v === null || v === undefined) return '—'
   if (unite === 'pourcent') return nombre(v, 1) + ' %'
-  if (unite === 'emplois_par_milliard') return nombre(v, 0) + ' emplois / Md€'
+  if (unite === 'emplois_par_milliard') return nombre(v, 0) + ' emplois par milliard €'
   return nombre(v, Math.abs(v) < 1 ? 3 : 2) + (unite && !['elasticite', 'ratio'].includes(unite) ? ' ' + unite.replace(/_/g, ' ') : '')
 }
 

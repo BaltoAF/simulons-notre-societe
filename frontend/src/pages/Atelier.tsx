@@ -61,10 +61,12 @@ export default function Atelier() {
   const changes = ids.filter((id) => regles[id] && !same(draft.overrides[id], regles[id].valeur))
 
   const [rapportPour, setRapportPour] = useState<string | null>(null)
+  const [demarrage, setDemarrage] = useState(false) // le Système vient de redémarrer : premier calcul plus long
   const [phase, setPhase] = useState(0) // 0 : rien en cours ; 1 : foyer et ménages types ; 2 : effets nationaux
   const resultats = useRef<HTMLDivElement>(null)
   const simuler = async (ov: Record<string, Valeur> = draft.overrides) => {
-    setLoading(true); setErr(null); setPhase(1)
+    setLoading(true); setErr(null); setPhase(1); setDemarrage(false)
+    api<{ pret: boolean }>('/api/pret').then((p) => setDemarrage(!p.pret)).catch(() => {})
     // amener le lecteur au début des résultats s'il ne les voit pas (sur téléphone, ils sont sous la réforme)
     setTimeout(() => {
       const top = resultats.current?.getBoundingClientRect().top ?? 0
@@ -72,11 +74,14 @@ export default function Atelier() {
     }, 50)
     const body = { overrides: ov, menage: avecFoyer && situation ? situationVersMenage(situation) : null, montants: 'net' }
     try {
-      // 1er temps, rapide : votre foyer et les ménages types
-      const rapide = await api<Rapport>('/api/simulation/reforme', { body: { ...body, modules: ['menage', 'cas_types'] } })
-      setRapport({ ...rapide, partiel: true }); setPhase(2)
-      // 2e temps : finances publiques, inégalités, emploi, climat, bien-être
-      const r = await api<Rapport>('/api/simulation/reforme', { body })
+      // Les deux calculs partent ensemble : le rapide (votre foyer, les ménages types) s'affiche dès qu'il arrive,
+      // pendant que le complet (finances publiques, inégalités, emploi, climat, bien-être) continue.
+      let complet = false
+      api<Rapport>('/api/simulation/reforme', { body: { ...body, modules: ['menage', 'cas_types'] } })
+        .then((rapide) => { if (!complet) { setRapport({ ...rapide, partiel: true }); setPhase(2) } })
+        .catch(() => { /* le calcul complet suffit */ })
+      const total = api<Rapport>('/api/simulation/reforme', { body }).then((r) => { complet = true; return r })
+      const r = await total
       setRapport(r)
       setRapportPour(JSON.stringify(ov))
     } catch (e: any) { setErr(e.message) } finally { setLoading(false); setPhase(0) }
@@ -248,7 +253,7 @@ export default function Atelier() {
 
         <div ref={resultats} style={{ scrollMarginTop: 80 }}>
           {err && <ErrorBox message={err} />}
-          {loading && <Progression phase={phase} />}
+          {loading && <Progression phase={phase} demarrage={demarrage} />}
           {rapport && !loading && !aJour && rapportPour !== null && (
             <div className="notice warn" style={{ marginBottom: 12 }}><div>Vous avez modifié votre réforme depuis le dernier calcul : les résultats ci-dessous ne sont plus à jour.{' '}
               <button className="btn small" onClick={() => simuler()}>Recalculer les effets</button></div></div>
@@ -302,7 +307,7 @@ function Etapes({ etape }: { etape: number }) {
   )
 }
 
-function Progression({ phase }: { phase: number }) {
+function Progression({ phase, demarrage }: { phase: number; demarrage: boolean }) {
   const etapes = [
     'Votre foyer et des ménages types',
     'Les finances publiques et les inégalités (sur une population représentative de la France)',
@@ -322,7 +327,9 @@ function Progression({ phase }: { phase: number }) {
           )
         })}
       </div>
-      <p className="small muted" style={{ marginBottom: 0, marginTop: 10 }}>Comptez 10 à 30 secondes : toutes les règles d'impôts et d'aides sont appliquées, une à une, à des milliers de foyers.</p>
+      {demarrage
+        ? <div className="notice warn small" style={{ marginTop: 10, marginBottom: 0 }}><div>Le Système vient de redémarrer et prépare ses calculs : ce premier calcul peut prendre jusqu'à une minute. Les suivants seront bien plus rapides.</div></div>
+        : <p className="small muted" style={{ marginBottom: 0, marginTop: 10 }}>Comptez 10 à 30 secondes : toutes les règles d'impôts et d'aides sont appliquées, une à une, à des milliers de foyers.</p>}
     </div>
   )
 }

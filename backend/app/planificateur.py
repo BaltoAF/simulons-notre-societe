@@ -53,6 +53,7 @@ def recharger(raison: str) -> dict:
         forks = vcs.auto_sync_forks(store)
         simulation._CACHE.clear()
         contexte._BASE_CACHE.clear()
+        contexte._REFORME_CACHE.clear()
         microsim.charger_population.cache_clear()
         ENGINE.vider_caches()
         reset_pool()

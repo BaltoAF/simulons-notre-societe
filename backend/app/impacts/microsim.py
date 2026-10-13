@@ -261,14 +261,24 @@ def section_redistribution(ctx: Contexte) -> Section | None:
                    {"deciles": deciles, "gagnants_pct": gagnants, "perdants_pct": perdants}, ordre=40)
 
 
+# Vrai quand les calculs de référence sont prêts : avant, la première simulation est nettement plus longue
+# (le site le signale au lieu de laisser croire qu'il est bloqué).
+PRET = False
+
+
 def prechauffer(store) -> None:
     """Prépare les calculs de référence (population et ménages types) pour que la première simulation soit rapide."""
+    global PRET
     from ..engine.openfisca_engine import ENGINE, warm_pool
     from .menages import cas_types
-    ENGINE.load()
-    warm_pool()
-    ctx = Contexte.creer(store, {})
-    pop = charger_population()
-    if pop:
-        ctx.calculer(pop[0], reforme=False)
-    ctx.calculer(cas_types(), reforme=False)
+    PRET = False
+    try:
+        ENGINE.load()
+        warm_pool()
+        ctx = Contexte.creer(store, {})
+        pop = charger_population()
+        if pop:
+            ctx.calculer(pop[0], reforme=False)
+        ctx.calculer(cas_types(), reforme=False)
+    finally:
+        PRET = True

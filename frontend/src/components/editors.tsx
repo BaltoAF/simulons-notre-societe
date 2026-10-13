@@ -30,7 +30,7 @@ export function ValueEditor({ rule, value, onChange }: { rule: Regle; value: Val
   const cur = typeof rule.valeur === 'number' ? rule.valeur : 0
   const [lo, hi] = rule.bornes ?? [Math.min(0, cur * 0.5), Math.max(cur * 2, cur + 10, 1)]
   const step = (hi - lo) / 200 > 1 ? Math.round((hi - lo) / 200) : (hi - lo) <= 5 ? 0.05 : 0.5
-  // boutons rapides : en points pour un taux, en unités pour une durée, en pourcentage pour un montant
+  // boutons rapides, appliqués à la valeur affichée : en points pour un taux, en unités pour une durée, en % pour un montant
   const borne = (v: number) => Math.min(rule.bornes ? hi : Infinity, Math.max(rule.bornes ? lo : -Infinity, v))
   const arrondi = (v: number) => (Math.abs(cur) >= 100 ? Math.round(v) : Math.round(v * 100) / 100)
   const singulier: Record<string, string> = { ans: 'an', mois: 'mois', jours: 'jour', heures: 'heure', enfants: 'enfant', parts: 'part' }
@@ -39,7 +39,7 @@ export function ValueEditor({ rule, value, onChange }: { rule: Regle; value: Val
   const rapides: [string, number][] = rule.unite === 'pourcent'
     ? [[`−${nombre(pasPt, 1)} point`, borne(num - pasPt)], [`+${nombre(pasPt, 1)} point`, borne(num + pasPt)]]
     : unitaire ? [[`−1 ${unitaire}`, borne(num - 1)], [`+1 ${unitaire}`, borne(num + 1)]]
-      : cur !== 0 ? [['−10 %', borne(arrondi(cur * 0.9))], ['−5 %', borne(arrondi(cur * 0.95))], ['+5 %', borne(arrondi(cur * 1.05))], ['+10 %', borne(arrondi(cur * 1.1))]] : []
+      : num !== 0 ? [['−10 %', borne(arrondi(num * 0.9))], ['−5 %', borne(arrondi(num * 0.95))], ['+5 %', borne(arrondi(num * 1.05))], ['+10 %', borne(arrondi(num * 1.1))]] : []
   return (
     <div>
       <div className="row" style={{ gap: 10 }}>

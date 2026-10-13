@@ -17,7 +17,7 @@ export default function Methode() {
       <div className="card stack" id="societe">
         <h2><ShieldCheck size={22} /> 1. La Société 1.0 : un miroir prouvé de la loi</h2>
         <p>Chaque règle (un taux, un montant, une durée, un âge, un seuil…) est un paramètre avec sa valeur en vigueur, son historique et ses <strong>sources</strong>. Une valeur sans source n'est pas acceptée. Les règles fiscales et sociales sont adossées à <strong>OpenFisca-France</strong>, le modèle public de la législation socio-fiscale (utilisé par l'Assemblée nationale via LexImpact), dont le Système extrait automatiquement les valeurs et les références légales. Les autres domaines (justice, institutions, travail, retraites…) sont collectés par les agents du Système, qui lisent les textes officiels et marquent « à vérifier » ce qu'ils n'ont pas pu confirmer.</p>
-        <p>Personne ne modifie la Société 1.0 à la main : <Link to="/systeme">le Système</Link> publie une nouvelle version (un commit) quand la loi ou les données changent.</p>
+        <p>Personne ne modifie la Société 1.0 à la main : <Link to="/systeme">le Système</Link> publie une nouvelle version, datée, quand la loi ou les données changent.</p>
       </div>
 
       <div className="card stack" id="sources" style={{ marginTop: 16 }}>
@@ -70,12 +70,13 @@ export default function Methode() {
 
       <div className="card stack" id="mises-a-jour" style={{ marginTop: 16 }}>
         <h2>7. La mise à jour invisible</h2>
-        <p>Chaque nuit, le Système vérifie le moteur de calcul (nouvelle version d'OpenFisca-France, installée seulement si elle passe les contrôles), les données, la cohérence du modèle et une partie des liens des sources. Si la loi a changé, il publie une nouvelle version de la Société 1.0. À minuit, les règles dont la date d'entrée en vigueur arrive s'appliquent d'elles-mêmes. Les sociétés forkées sont mises à jour automatiquement pour toutes les règles qu'elles n'ont pas modifiées ; en cas de conflit, rien n'est imposé et leur auteur choisit.</p>
+        <p>Chaque nuit, le Système vérifie le moteur de calcul (nouvelle version d'OpenFisca-France, installée seulement si elle passe les contrôles), les données, la cohérence du modèle et une partie des liens des sources. Si la loi a changé, il publie une nouvelle version de la Société 1.0. À minuit, les règles dont la date d'entrée en vigueur arrive s'appliquent d'elles-mêmes. Les sociétés des utilisateurs sont mises à jour automatiquement pour toutes les règles qu'elles n'ont pas modifiées ; si la loi change une règle que l'auteur avait aussi changée, rien n'est imposé : c'est lui qui choisit.</p>
       </div>
 
       <div className="card stack" id="forks" style={{ marginTop: 16 }}>
-        <h2><GitFork size={22} /> 8. Forks, branches et propositions</h2>
-        <p>Comme dans git : une société est un ensemble de valeurs de règles ; chaque modification est un commit signé par son auteur ; une branche permet d'explorer une variante ; une proposition permet d'intégrer les changements d'une société dans une autre, après discussion. Quand la loi change, le propriétaire d'un fork peut intégrer les évolutions de la Société 1.0 et décider, règle par règle, en cas de conflit.</p>
+        <h2><GitFork size={22} /> 8. Versions, variantes et suggestions</h2>
+        <p>Une société, c'est la loi actuelle avec quelques règles changées. Chacun peut <strong>créer sa version</strong> d'une société existante, l'original ne change pas. Chaque modification est enregistrée comme une nouvelle <strong>version</strong>, signée et datée : on peut toujours voir qui a changé quoi, et pourquoi. Une <strong>variante</strong> permet d'essayer une autre piste sans toucher à la version principale. Une <strong>suggestion</strong> permet de proposer ses changements à l'auteur d'une autre société, qui en discute puis décide de les intégrer ou non.</p>
+        <p className="small muted">Pour les informaticiens : c'est le fonctionnement de git (fork, commit, branche, pull request), appliqué aux règles de la société.</p>
         <p>Tester est libre et anonyme. Proposer (enregistrer, publier, commenter) nécessite d'être identifié.</p>
       </div>
 

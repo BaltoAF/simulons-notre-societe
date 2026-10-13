@@ -47,6 +47,13 @@ def sante():
     return {"ok": True, "moteur_pret": ENGINE.ready, "moteur_version": ENGINE.version, "erreur_moteur": ENGINE.error}
 
 
+@app.get("/api/pret")
+def pret():
+    """Le Système a-t-il fini de préparer ses calculs de référence (après un démarrage ou une mise à jour) ?"""
+    from .impacts import microsim
+    return {"pret": microsim.PRET}
+
+
 @app.get("/api/meta")
 def meta():
     store = get_store()

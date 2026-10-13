@@ -15,7 +15,7 @@ export function RegleLigne({ r }: { r: Regle }) {
           <div className="small muted" style={{ marginTop: 2 }}>{r.explication.length > 160 ? r.explication.slice(0, 157) + '…' : r.explication}</div>
           <div className="pill-list" style={{ marginTop: 6 }}>
             <SourceType type={r.meilleure_source ?? undefined} />
-            {r.simulable && <span className="badge primary"><Calculator size={12} /> impact chiffré</span>}
+            {r.simulable && <span className="badge primary"><Calculator size={12} /> effets calculés</span>}
             {r.virtuel && <span className="badge accent">dispositif proposé</span>}
             {r.a_verifier && <span className="badge warn">à vérifier</span>}
             {r.prochaine_valeur && <span className="badge">évolution prévue le {new Date(r.prochaine_valeur.depuis).toLocaleDateString('fr-FR')}</span>}
