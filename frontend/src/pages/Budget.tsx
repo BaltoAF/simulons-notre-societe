@@ -44,7 +44,7 @@ function BudgetEtat({ missions, depenseTotale }: { missions: { id: string; titre
   const max = Math.max(...missions.map((x) => x.md))
   const visibles = tout ? missions : missions.slice(0, 10)
   return (
-    <div className="card" style={{ marginTop: 20 }}>
+    <div className="card" id="budget-etat" style={{ marginTop: 20, scrollMarginTop: 80 }}>
       <h2 style={{ fontSize: '1.3rem', marginBottom: 4 }}><Landmark size={20} /> Le budget de l'État, et comment le changer</h2>
       <p className="small ink2" style={{ marginTop: 0 }}>Sur les {milliards(depenseTotale)} d'argent public, l'État en gère environ <strong>{milliards(totalEtat)}</strong>.
         Le reste, c'est surtout la Sécurité sociale (retraites, santé, familles) et les communes, départements et régions.</p>
@@ -121,6 +121,10 @@ export default function Budget() {
     <div className="container page">
       <h1>Le budget de la France… et le vôtre</h1>
       <p className="lead ink2" style={{ maxWidth: 820 }}>D'où vient l'argent public, où il va, et quelle est votre part. Toutes les dépenses publiques sont comptées : État, Sécurité sociale et collectivités locales.</p>
+      <div className="row" style={{ marginBottom: 16 }}>
+        <a className="btn small" href="#budget-etat"><Lock size={14} /> Les cadenas, et comment changer le budget ↓</a>
+        <a className="btn small ghost" href="#et-vous"><Wallet size={14} /> Et vous ? ↓</a>
+      </div>
 
       <div className="grid cols-3" style={{ marginBottom: 20 }}>
         <div className="card"><div className="kpi-label">L'argent public dépensé en {n.depenses?.date?.slice(0, 4)}</div><div className="kpi">{milliards(dep)}</div>
@@ -170,7 +174,7 @@ export default function Budget() {
 
       <BudgetEtat missions={n.etat_missions} depenseTotale={dep} />
 
-      <div className="section-title"><h2><Wallet size={22} /> Et vous ?</h2></div>
+      <div className="section-title" id="et-vous" style={{ scrollMarginTop: 80 }}><h2><Wallet size={22} /> Et vous ?</h2></div>
       <div className="row" style={{ marginBottom: 12 }}>
         {situation && <button className={`choice ${titreProfil.startsWith('Votre') ? 'on' : ''}`} onClick={() => { setProfil(situation); setTitreProfil('Votre foyer (renseigné dans « Mes droits »)') }}>Mon foyer</button>}
         {PROFILS.map((p) => <button key={p.titre} className={`choice ${titreProfil === p.titre ? 'on' : ''}`} onClick={() => { setProfil(p.s); setTitreProfil(p.titre) }}>{p.titre}</button>)}

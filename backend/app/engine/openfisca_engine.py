@@ -385,6 +385,10 @@ class Engine:
         # conventions de signe : impôts et cotisations exprimés en montants positifs payés
         out["impot_revenu"] = -out["impot_revenu"]
         out["pfu"] = np.abs(out["pfu"])
+        # « impot_revenu_restant_a_payer » d'OpenFisca inclut déjà le prélèvement forfaitaire unique (et la contribution
+        # sur les hauts revenus) : on en retire le PFU, compté à part, pour ne pas le soustraire deux fois du revenu
+        # disponible ni le compter deux fois dans les recettes. « impot_revenu » = barème (+ CEHR, − crédits d'impôt).
+        out["impot_revenu"] = out["impot_revenu"] - out["pfu"]
         out["prelevements_sociaux_capital"] = np.abs(out["prelevements_sociaux_capital"])
         for k in ("cotisations_salariales", "cotisations_employeur", "csg_salaire", "csg_remplacement", "crds"):
             out[k] = -out[k]

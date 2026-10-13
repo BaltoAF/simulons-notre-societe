@@ -30,7 +30,7 @@ export const PRESETS: Preset[] = [
   {
     id: 'tranche-50',
     titre: 'Nouvelle tranche d\'impôt à 50 % au-delà de 250 000 €',
-    description: 'Ajout d\'une sixième tranche au barème de l\'impôt sur le revenu, par part.',
+    description: 'Une tranche d\'impôt de plus, réservée aux revenus les plus élevés (au-delà de 250 000 € par an pour une personne seule).',
     overrides: {
       [IR_BAREME]: (b: { seuil: number; taux: number }[]) => [...b.filter((t) => t.seuil < 250000), { seuil: 250000, taux: 50 }],
     },

@@ -4,6 +4,7 @@ import { ArrowRight, BookOpen, ChevronDown, ChevronRight, Scale } from 'lucide-r
 import type { Indicateur, Rapport, Section, Valeur } from '../lib/api'
 import { delta, euros, nombre, valeur } from '../lib/format'
 import { milliards } from '../lib/humain'
+import { Pourquoi } from './Terme'
 import { ColumnChart, DivergingBars } from './charts'
 import { ConfidenceBadge } from './ui'
 import { EnBref, EquilibresPanel, type Contexte } from './synthese'
@@ -218,8 +219,14 @@ export function ReportView({ r, overrides, onAppliquer, contexte = 'reforme' }: 
   }
   return (
     <div className="stack">
-      {(r.avertissements ?? []).map((a) => <div key={a} className="notice warn small"><div><strong>À savoir avant de lire :</strong> {a}</div></div>)}
       {r.bilan && <EnBref r={r} contexte={contexte} />}
+      {(r.avertissements ?? []).map((a) => (
+        <div key={a} className="small muted" style={{ marginTop: -6 }}><strong>À noter :</strong> {a}
+          <Pourquoi titre="Pourquoi ?">Les très hauts revenus sont rares : la simulation les représente par quelques dizaines de foyers fictifs, calés sur
+            les statistiques fiscales officielles. Mais on ne sait pas, en données ouvertes, quelle part de leurs revenus vient des salaires
+            et quelle part de l'épargne : ce qu'une tranche d'impôt très haute rapporterait est donc incertain.</Pourquoi>
+        </div>
+      ))}
       {r.equilibres && (
         <div>
           <h2 id="equilibres" style={{ margin: '8px 0 4px', fontSize: '1.3rem', scrollMarginTop: 80 }}>Les équilibres à respecter</h2>

@@ -8,10 +8,10 @@ reproduise les statistiques officielles ouvertes (calage par « raking ») :
   - nombre d'actifs occupés, de chômeurs indemnisés, de retraités (INSEE, Unédic/France Travail, DREES),
   - statut d'occupation du logement (INSEE / SDES),
   - distribution des niveaux de vie : part des personnes sous chaque décile (INSEE, ERFS),
-  - hauts revenus : nombre de foyers au revenu fiscal de référence (RFR) supérieur à 100 000 € et impôt
-    qu'ils paient (DGFiP, IRCOM). Un tirage au hasard ne produit presque jamais de très hauts revenus :
-    on ajoute donc des ménages répartis le long de la « queue » de la distribution, décrite par une loi
-    de Pareto dont le coefficient se déduit du revenu moyen au-delà de 100 000 € (méthode standard).
+  - hauts revenus : nombre de foyers au revenu fiscal de référence (RFR) supérieur à 100 000 €, impôt
+    qu'ils paient, foyers des tranches à 41 % et 45 % (DGFiP). Un tirage au hasard ne produit presque jamais
+    de très hauts revenus : on ajoute donc des ménages construits à partir des 18 tranches fines de RFR
+    publiées par la DGFiP (IRCOM), avec leur composition (salaires, pensions, autres revenus).
 Les autres statistiques (impôt sur le revenu, prestations, CSG) servent de CONTRÔLE : l'écart entre
 la simulation de la situation actuelle et le chiffre officiel détermine l'indice de confiance.
 
@@ -67,39 +67,83 @@ def tranche_marginale(m: Menage, seuils: dict[int, float]) -> int:
     return taux
 
 
-def menages_hauts_revenus(store: ModelStore, rng: np.random.Generator, k: int = 60) -> list[tuple[Menage, float]]:
-    """k ménages répartis le long de la queue de Pareto des RFR > 100 000 €, avec la masse de foyers que chacun représente.
+# Tranches fines de RFR au-delà de 100 000 € publiées par la DGFiP (IRCOM) : (borne basse, borne haute, clé de métrique)
+TRANCHES_HAUTS_REVENUS = [
+    (100_000, 200_000, "100001_200000"), (200_000, 300_000, "200001_300000"), (300_000, 400_000, "300001_400000"),
+    (400_000, 500_000, "400001_500000"), (500_000, 600_000, "500001_600000"), (600_000, 700_000, "600001_700000"),
+    (700_000, 800_000, "700001_800000"), (800_000, 900_000, "800001_900000"), (900_000, 1_000_000, "900001_1000000"),
+    (1_000_000, 2_000_000, "1000001_2000000"), (2_000_000, 3_000_000, "2000001_3000000"), (3_000_000, 4_000_000, "3000001_4000000"),
+    (4_000_000, 5_000_000, "4000001_5000000"), (5_000_000, 6_000_000, "5000001_6000000"), (6_000_000, 7_000_000, "6000001_7000000"),
+    (7_000_000, 8_000_000, "7000001_8000000"), (8_000_000, 9_000_000, "8000001_9000000"), (9_000_000, None, "plus_9000000"),
+]
 
-    Loi de Pareto : la part des foyers au-delà d'un revenu x vaut (100 000 / x)^α ; α se déduit du RFR moyen m au-delà du
-    seuil (m = α/(α−1) × seuil). Les strates vont de 100 000 € à environ 12 M€ (échelle logarithmique), pour que les
-    très hauts revenus soient représentés sans dominer l'échantillon.
-    Hypothèses (à défaut de données ouvertes plus fines) : couples mariés de 45 à 64 ans ; part des revenus de l'épargne
-    croissante avec le revenu (10 % à 100 000 €, 40 % à 1 M€, 70 % à 10 M€ : au sommet, l'essentiel du revenu vient du
-    capital), le reste en salaires de cadres.
+
+# Trois configurations de foyer par tranche (le nombre de parts change le taux marginal à revenu égal)
+FOYERS_HAUTS = ("couple_enfant", "couple", "seul")
+
+
+def _menage_haut(rfr: float, bareme: float, foyer: str = "couple_enfant", age: int = 55) -> Menage:
+    """Foyer à haut revenu : revenus soumis au barème (en salaires de cadres) et le reste en revenus de l'épargne."""
+    brut = max(0.0, bareme) / 0.70                             # retour au brut annuel (cotisations et abattement)
+    epargne = round(max(0.0, rfr - bareme), 0)
+    if foyer == "seul":
+        m = Menage(adultes=[Adulte(age=age, salaire_brut_mensuel=round(brut / 12, 2), cadre=True)],
+                   couple="seul", logement="proprietaire", revenus_capital_annuels=epargne)
+    else:
+        m = Menage(adultes=[Adulte(age=age, salaire_brut_mensuel=round(brut * 0.65 / 12, 2), cadre=True),
+                            Adulte(age=age - 2, salaire_brut_mensuel=round(brut * 0.35 / 12, 2), cadre=True)],
+                   couple="marie", enfants=[12] if foyer == "couple_enfant" else [], logement="proprietaire",
+                   revenus_capital_annuels=epargne)
+    m.libelle = "hauts_revenus"
+    return m
+
+
+def part_bareme_calee(rfr: float, impot_cible: float, foyer: str = "couple_enfant") -> float:
+    """Part du revenu soumise au barème telle que l'impôt calculé par le moteur égale l'impôt moyen publié par la DGFiP
+    pour la tranche (le reste étant taxé à part, comme l'épargne). Recherche sur une grille, en un seul calcul."""
+    grille = np.linspace(0.0, 1.0, 41)
+    res = ENGINE.compute([_menage_haut(rfr, rfr * g, foyer) for g in grille])
+    impots = res["impot_revenu"] * 12                           # barème seul, comme l'impôt net DGFiP
+    if impot_cible <= impots[0]:
+        return 0.0
+    if impot_cible >= impots[-1]:
+        return 1.0
+    return float(np.interp(impot_cible, impots, grille))
+
+
+def menages_hauts_revenus(store: ModelStore, rng: np.random.Generator) -> list[tuple[Menage, float]]:
+    """Ménages à hauts revenus construits à partir des tranches fines de RFR de la DGFiP (IRCOM), avec la masse de foyers
+    que chacun représente.
+
+    Pour chaque tranche, la DGFiP publie le nombre de foyers, leur RFR total et leur impôt net. On en déduit le niveau
+    de revenu, puis la part de ce revenu soumise au barème : celle qui fait payer au foyer l'impôt moyen de sa tranche
+    (le reste est taxé à part, comme les intérêts, dividendes et plus-values au prélèvement forfaitaire). La composition
+    des revenus découle donc des données. Trois configurations par tranche (couple avec un enfant, couple, personne
+    seule), dont le calage fixe le dosage ; le revenu au barème est représenté par des salaires de cadres.
     """
     m = store.metric_value
-    n = m("impot.ir.tranche_rfr_plus_100000.nombre_foyers")
-    total = m("impot.ir.tranche_rfr_plus_100000.rfr_total")
-    if not n or not total:
-        return []
-    moyen = total / n
-    alpha = moyen / (moyen - SEUIL_HAUTS_REVENUS)
-    survies = np.geomspace(1.0, 1e-4, k + 1)
     out = []
-    for i in range(k):
-        haut, bas = survies[i], survies[i + 1]
-        rfr = SEUIL_HAUTS_REVENUS * np.sqrt(haut * bas) ** (-1 / alpha)
-        part_epargne = float(min(0.75, 0.1 + 0.3 * np.log10(rfr / SEUIL_HAUTS_REVENUS)))
-        salaires = rfr * (1 - part_epargne) / 0.70           # retour au brut annuel (cotisations et abattement)
-        age = int(rng.integers(45, 65))
-        enfants = [int(rng.integers(6, 18)) for _ in range(int(rng.integers(0, 3)))]
-        menage = Menage(adultes=[Adulte(age=age, salaire_brut_mensuel=round(salaires * 0.65 / 12, 2), cadre=True),
-                                 Adulte(age=age - 2, salaire_brut_mensuel=round(salaires * 0.35 / 12, 2), cadre=True)],
-                        couple="marie", enfants=enfants, logement="proprietaire",
-                        revenus_capital_annuels=round(rfr * part_epargne, 0))
-        menage.libelle = "hauts_revenus"
-        out.append((menage, float(n * (haut - bas))))
-    print(f"Hauts revenus : {n:.0f} foyers au-delà de 100 000 €, RFR moyen {moyen:,.0f} €, Pareto α = {alpha:.2f}, {k} ménages ajoutés")
+    for lo, hi, cle in TRANCHES_HAUTS_REVENUS:
+        n = m(f"impot.ir.tranche_rfr_{cle}.nombre_foyers")
+        rfr_tot = m(f"impot.ir.tranche_rfr_{cle}.rfr_total")
+        impot = m(f"impot.ir.tranche_rfr_{cle}.impot_net")
+        if not n or not rfr_tot or impot is None:
+            continue
+        rfr_moyen = rfr_tot / n
+        parts = {}
+        # deux niveaux de revenu dans la tranche (même composition), pour que le revenu y soit étalé comme en réalité
+        niveaux = [rfr_moyen * f for f in (0.8, 1.25)]
+        if hi is not None:
+            niveaux = [min(max(r, lo * 1.02), hi * 0.98) for r in niveaux]
+        for foyer in FOYERS_HAUTS:  # chaque configuration paie l'impôt moyen de la tranche ; le calage choisit leur dosage
+            parts[foyer] = part_bareme_calee(rfr_moyen, impot / n, foyer)
+            for rfr in niveaux:
+                out.append((_menage_haut(rfr, rfr * parts[foyer], foyer, age=int(rng.integers(45, 65))),
+                            float(n / (len(FOYERS_HAUTS) * len(niveaux)))))
+        print(f"   tranche {lo:>9,} € : {n:>9,.0f} foyers, RFR moyen {rfr_moyen:>12,.0f} €, impôt moyen {impot / n:>10,.0f} €, part au barème "
+              + " / ".join(f"{parts[f]:.0%}" for f in FOYERS_HAUTS))
+    n_tot = sum(w for _, w in out)
+    print(f"Hauts revenus : {n_tot:,.0f} foyers au-delà de 100 000 € répartis en {len(TRANCHES_HAUTS_REVENUS)} tranches (DGFiP), {len(out)} ménages ajoutés")
     return out
 
 
@@ -263,6 +307,7 @@ def main():
     ap.add_argument("--n", type=int, default=6000)
     ap.add_argument("--seed", type=int, default=2026)
     ap.add_argument("--hash-calage", default=None, help="empreinte des statistiques de calage (renseignée par le Système)")
+    ap.add_argument("--sortie", default=None, help="fichier de sortie (par défaut : model/population/population.json)")
     args = ap.parse_args()
     rng = np.random.default_rng(args.seed)
     store = ModelStore.load()
@@ -271,6 +316,12 @@ def main():
     gen = Generateur(store, rng)
     menages = [gen.menage() for _ in range(args.n)]
     hauts = menages_hauts_revenus(store, rng)
+    if hauts:
+        # au-delà de 100 000 € de RFR, les ménages construits à partir des tranches DGFiP représentent seuls les foyers :
+        # les quelques ménages tirés au hasard à ce niveau feraient double emploi (et dégraderaient le calage)
+        avant = len(menages)
+        menages = [x for x in menages if rfr_approche(x) <= SEUIL_HAUTS_REVENUS]
+        print(f"{avant - len(menages)} ménages tirés au hasard au-delà de 100 000 € remplacés par les ménages des tranches DGFiP")
     menages += [mh for mh, _ in hauts]
     print(f"{len(menages)} ménages générés, {sum(x.taille for x in menages)} personnes")
 
@@ -333,15 +384,16 @@ def main():
     au_dela = (rfr > SEUIL_HAUTS_REVENUS).astype(float)
     if hauts and "impot.ir.tranche_rfr_plus_100000.impot_net" in store.metriques:
         add("foyers_rfr_plus_100000", au_dela, m("impot.ir.tranche_rfr_plus_100000.nombre_foyers"))
-        add("impot_rfr_plus_100000", au_dela * (res["impot_revenu"] + res["pfu"]) * 12, m("impot.ir.tranche_rfr_plus_100000.impot_net"))
+        # impôt du barème seulement : l'impôt net DGFiP exclut le prélèvement forfaitaire retenu à la source sur l'épargne
+        add("impot_rfr_plus_100000", au_dela * res["impot_revenu"] * 12, m("impot.ir.tranche_rfr_plus_100000.impot_net"))
         # et l'impôt total : sans lui, les revenus moyens-supérieurs compensaient l'absence des très hauts revenus
-        add("impot_revenu_total", (res["impot_revenu"] + res["pfu"]) * 12, m("impot.ir.impot_net_total"))
+        add("impot_revenu_total", res["impot_revenu"] * 12, m("impot.ir.impot_net_total"))
         # les foyers des deux tranches les plus hautes (41 % et 45 %) : nombre et impôt payé (DGFiP) ; ce sont eux
         # que touche une réforme du haut du barème
         bareme = sorted(store.rule_value("fiscalite.impot_revenu.bareme") or [], key=lambda t: t["seuil"])
         seuils = {int(t["taux"]): float(t["seuil"]) for t in bareme if int(t["taux"]) in (41, 45)}
         tmi = np.array([tranche_marginale(x, seuils) for x in menages])
-        ir_men = (res["impot_revenu"] + res["pfu"]) * 12
+        ir_men = res["impot_revenu"] * 12
         controle_tmi = {t: ((tmi == t).astype(float), (tmi == t) * ir_men) for t in (41, 45) if t in seuils}
         # tranche à 45 % imposée comme marge : sans elle, le calage écrase les très hauts revenus (quelques centaines de
         # foyers au lieu de 61 000). La tranche à 41 % en plus rend le calage instable (foyers et ménages ne se recouvrent
@@ -351,6 +403,7 @@ def main():
             add("impot_tmi_45", controle_tmi[45][1], m("impot.ir.taux_marginal_45.impot_net"))
         if 41 in controle_tmi and "impot.ir.taux_marginal_41.nombre_foyers" in store.metriques:
             add("foyers_tmi_41", controle_tmi[41][0], m("impot.ir.taux_marginal_41.nombre_foyers"))
+            add("impot_tmi_41", controle_tmi[41][1], m("impot.ir.taux_marginal_41.impot_net"))
 
     X = np.column_stack(cols)
     T = np.array(totals)
@@ -369,8 +422,9 @@ def main():
     rapport = [{"marge": n, "cible": round(t), "obtenu": round(a), "ecart_pct": round((a - t) / t * 100, 2) if t else None}
                for n, t, a in zip(noms, T, atteint)]
     print("Marges de calage (écart %) :", ", ".join(f"{r['marge']} {r['ecart_pct']}" for r in rapport))
-    ir_total = float(((res["impot_revenu"] + res["pfu"]) * 12 * w).sum())
-    print(f"Contrôle : impôt sur le revenu simulé {ir_total / 1e9:.1f} Md€ (officiel DGFiP : {m('impot.ir.impot_net_total') / 1e9:.1f} Md€)")
+    ir_total = float((res["impot_revenu"] * 12 * w).sum())
+    print(f"Contrôle : impôt sur le revenu (barème) simulé {ir_total / 1e9:.1f} Md€ (officiel DGFiP : {m('impot.ir.impot_net_total') / 1e9:.1f} Md€) ; "
+          f"prélèvement forfaitaire sur l'épargne {float((res['pfu'] * 12 * w).sum()) / 1e9:.1f} Md€")
     if hauts:
         for t, (nb, ir_t) in controle_tmi.items():
             print(f"Contrôle tranche {t} % : {float(nb @ w):,.0f} foyers (officiel {m(f'impot.ir.taux_marginal_{t}.nombre_foyers'):,.0f}), "
@@ -392,10 +446,11 @@ def main():
                                   if mid in store.metriques} - {None}),
         "menages": [{**x.to_dict(), "poids": round(float(wi), 3)} for x, wi in zip(menages, w)],
     }
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps(out, ensure_ascii=False), encoding="utf-8")
+    sortie = Path(args.sortie) if args.sortie else OUT
+    sortie.parent.mkdir(parents=True, exist_ok=True)
+    sortie.write_text(json.dumps(out, ensure_ascii=False), encoding="utf-8")
     poids = w / d
-    print(f"Écrit {OUT} — poids relatifs min {poids.min():.2f}, max {poids.max():.2f}, "
+    print(f"Écrit {sortie} — poids relatifs min {poids.min():.2f}, max {poids.max():.2f}, "
           f"taille effective {w.sum() ** 2 / (w ** 2).sum():.0f}")
 
 

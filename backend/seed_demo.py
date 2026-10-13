@@ -87,9 +87,9 @@ def main():
 
     solidaire = creer(camille, "[Exemple] Une France plus solidaire",
                       "Exemple de démonstration : porter le RSA à 800 € par mois et créer une tranche d'impôt à 50 % au-delà de 250 000 € par part. "
-                      "Le modèle estime mal ce que rapporte cette tranche (on ne connaît pas en données ouvertes la composition des très hauts revenus) : le financement est complété "
-                      "par une petite hausse de tous les taux de l'impôt sur le revenu. Les émissions en plus (le RSA augmente la consommation) "
-                      "sont compensées.",
+                      "Cette tranche rapporte peu, car les foyers concernés sont peu nombreux : le financement est complété par une petite hausse "
+                      "de tous les taux de l'impôt sur le revenu (la nouvelle tranche passe ainsi à un peu plus de 50 %). Les émissions en plus "
+                      "(le RSA augmente la consommation) sont compensées par une limitation à 110 km/h sur autoroute.",
                       [{"regle": "prestations.rsa.montant_forfaitaire", "valeur": 800, "justification": "Rapprocher le RSA du seuil de grande pauvreté"},
                        {"regle": "fiscalite.impot_revenu.bareme", "valeur": [b for b in bareme if b["seuil"] < 250000] + [{"seuil": 250000, "taux": 50}],
                         "justification": "Financer la hausse par les revenus les plus élevés"}],

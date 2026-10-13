@@ -3,7 +3,6 @@
 import { useMemo, useState } from 'react'
 import { Lock, Minus, Plus, RotateCcw, Search, Scale, TrendingUp } from 'lucide-react'
 import type { Regle, Valeur } from '../lib/api'
-import { nombre } from '../lib/format'
 import { milliards, parMenageMois } from '../lib/humain'
 import { infoMission } from '../lib/missions'
 import { Modal } from './ui'
@@ -83,9 +82,9 @@ export function BudgetEditor({ regles, overrides, onClose, onApply }: {
         </div>
         <div className="row" style={{ flexWrap: 'nowrap', gap: 6 }}>
           {!lock && <button className="bouton-plusmoins" onClick={() => changer(m.id, v - pas(vote[m.id]))} aria-label={`Réduire ${i.nom} de ${libellePas(vote[m.id])}`} title={`− ${libellePas(vote[m.id])}`}><Minus size={16} /></button>}
-          <div style={{ minWidth: 96, textAlign: 'right' }}>
-            <div style={{ fontWeight: 750 }}>{nombre(v, v < 10 ? 2 : 1)} Md€</div>
-            {Math.abs(d) >= 0.005 && <div className={`small delta ${d > 0 ? 'neg' : 'pos'}`}>{d > 0 ? '+' : '−'}{nombre(Math.abs(d), Math.abs(d) < 1 ? 2 : 1)} Md€</div>}
+          <div style={{ minWidth: 110, textAlign: 'right' }}>
+            <div style={{ fontWeight: 750, whiteSpace: 'nowrap' }}>{milliards(v)}</div>
+            {Math.abs(d) >= 0.005 && <div className={`small delta ${d > 0 ? 'neg' : 'pos'}`} style={{ whiteSpace: 'nowrap' }}>{milliards(d, true)}</div>}
           </div>
           {!lock && <button className="bouton-plusmoins" onClick={() => changer(m.id, v + pas(vote[m.id]))} aria-label={`Augmenter ${i.nom} de ${libellePas(vote[m.id])}`} title={`+ ${libellePas(vote[m.id])}`}><Plus size={16} /></button>}
         </div>

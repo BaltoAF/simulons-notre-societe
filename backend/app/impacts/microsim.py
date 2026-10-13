@@ -72,7 +72,9 @@ def avertissements_couverture(ctx: Contexte) -> list[str]:
     if not isinstance(apres, list):
         return []
     avant = {round(float(t["seuil"])): float(t["taux"]) for t in (ctx.store.rule_value(rid) or [])}
-    touches = [float(t["seuil"]) for t in apres if avant.get(round(float(t["seuil"]))) != float(t["taux"])]
+    # seules comptent les tranches nouvelles (ou déplacées) très haut dans le barème : relever tous les taux d'un peu
+    # touche aussi la tranche à 45 %, mais l'essentiel de l'effet vient de revenus bien représentés
+    touches = [float(t["seuil"]) for t in apres if round(float(t["seuil"])) not in avant and float(t["seuil"]) >= 200_000]
     pop = charger_population()
     if not touches or pop is None:
         return []
@@ -85,14 +87,10 @@ def avertissements_couverture(ctx: Contexte) -> list[str]:
         parts = len(m.adultes) + 0.5 * min(len(m.enfants), 2) + max(0, len(m.enfants) - 2)
         n += brut * 0.72 / parts > seuil
     if n < 10:
-        return [f"Les très hauts revenus sont presque absents de la population simulée ({n} foyer{'s' if n > 1 else ''} sur {len(menages)} "
-                f"au-delà de {fr(seuil, 0)} € de revenu par part) : ce que rapporte une tranche d'impôt à ce niveau est fortement sous-estimé ici."]
-    if seuil > 180_000:
-        # ménages fictifs calés sur les statistiques fiscales, mais la part salaires / capital au sommet n'est pas connue
-        return [f"Au-delà de {fr(seuil, 0)} € de revenu par part, les foyers sont représentés de façon approchée (ménages fictifs calés "
-                f"sur les statistiques fiscales, sans données ouvertes sur la composition de leurs revenus) : ce que rapporte une "
-                f"tranche d'impôt à ce niveau est incertain, et probablement sous-estimé."]
-    return []
+        return [f"Pour les très hauts revenus (au-delà de {fr(seuil, 0)} € par part), ce chiffre est très incertain : "
+                f"la simulation n'en compte presque pas."]
+    # ménages fictifs calés sur les statistiques fiscales, mais la part salaires / capital au sommet n'est pas connue
+    return [f"Pour les très hauts revenus (au-delà de {fr(seuil, 0)} € par part), ce chiffre est moins sûr."]
 
 
 def _agreger(res: dict) -> dict[str, np.ndarray]:

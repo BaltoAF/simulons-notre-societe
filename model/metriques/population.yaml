@@ -2023,3 +2023,816 @@ metriques:
         valeur: 31400230
         source: cnaf-allocataires-par-prestation-national
         statut: definitif
+
+  # --- Hauts revenus : tranches fines de RFR au-delà de 100 000 € (DGFiP, IRCOM revenus 2024) ---
+  # Servent à construire et caler les ménages à hauts revenus de la population synthétique (system/build_population.py).
+  - id: impot.ir.tranche_rfr_100001_200000.nombre_foyers
+    titre: "Foyers fiscaux dont le RFR entre 100 001 et 200 000 euros (revenus 2024)"
+    explication: "Nombre de foyers fiscaux de la tranche."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 1115487
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_100001_200000.rfr_total
+    titre: "RFR total des foyers dont le RFR entre 100 001 et 200 000 euros (revenus 2024)"
+    explication: "Somme des revenus fiscaux de référence des foyers de la tranche."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 146200998190
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_100001_200000.impot_net
+    titre: "Impôt net total des foyers dont le RFR entre 100 001 et 200 000 euros (revenus 2024)"
+    explication: "Impôt sur le revenu émis par voie de rôle, hors prélèvement forfaitaire déjà retenu à la source."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 20479968370
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_100001_200000.salaires
+    titre: "Traitements et salaires déclarés par les foyers dont le RFR entre 100 001 et 200 000 euros (revenus 2024)"
+    explication: "Montant des traitements et salaires déclarés (avant abattement de 10 %)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 100735060465
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_100001_200000.pensions
+    titre: "Retraites et pensions déclarées par les foyers dont le RFR entre 100 001 et 200 000 euros (revenus 2024)"
+    explication: "Montant des retraites et pensions déclarées (avant abattement de 10 %)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 19526490130
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_200001_300000.nombre_foyers
+    titre: "Foyers fiscaux dont le RFR entre 200 001 et 300 000 euros (revenus 2024)"
+    explication: "Nombre de foyers fiscaux de la tranche."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 163375
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_200001_300000.rfr_total
+    titre: "RFR total des foyers dont le RFR entre 200 001 et 300 000 euros (revenus 2024)"
+    explication: "Somme des revenus fiscaux de référence des foyers de la tranche."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 39093798623
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_200001_300000.impot_net
+    titre: "Impôt net total des foyers dont le RFR entre 200 001 et 300 000 euros (revenus 2024)"
+    explication: "Impôt sur le revenu émis par voie de rôle, hors prélèvement forfaitaire déjà retenu à la source."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 7299100030
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_200001_300000.salaires
+    titre: "Traitements et salaires déclarés par les foyers dont le RFR entre 200 001 et 300 000 euros (revenus 2024)"
+    explication: "Montant des traitements et salaires déclarés (avant abattement de 10 %)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 20826174801
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_200001_300000.pensions
+    titre: "Retraites et pensions déclarées par les foyers dont le RFR entre 200 001 et 300 000 euros (revenus 2024)"
+    explication: "Montant des retraites et pensions déclarées (avant abattement de 10 %)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 2938132780
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_300001_400000.nombre_foyers
+    titre: "Foyers fiscaux dont le RFR entre 300 001 et 400 000 euros (revenus 2024)"
+    explication: "Nombre de foyers fiscaux de la tranche."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 54453
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_300001_400000.rfr_total
+    titre: "RFR total des foyers dont le RFR entre 300 001 et 400 000 euros (revenus 2024)"
+    explication: "Somme des revenus fiscaux de référence des foyers de la tranche."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 18669131798
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_300001_400000.impot_net
+    titre: "Impôt net total des foyers dont le RFR entre 300 001 et 400 000 euros (revenus 2024)"
+    explication: "Impôt sur le revenu émis par voie de rôle, hors prélèvement forfaitaire déjà retenu à la source."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 3787365146
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_300001_400000.salaires
+    titre: "Traitements et salaires déclarés par les foyers dont le RFR entre 300 001 et 400 000 euros (revenus 2024)"
+    explication: "Montant des traitements et salaires déclarés (avant abattement de 10 %)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 8184397246
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_300001_400000.pensions
+    titre: "Retraites et pensions déclarées par les foyers dont le RFR entre 300 001 et 400 000 euros (revenus 2024)"
+    explication: "Montant des retraites et pensions déclarées (avant abattement de 10 %)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 1028980367
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_400001_500000.nombre_foyers
+    titre: "Foyers fiscaux dont le RFR entre 400 001 et 500 000 euros (revenus 2024)"
+    explication: "Nombre de foyers fiscaux de la tranche."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 26739
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_400001_500000.rfr_total
+    titre: "RFR total des foyers dont le RFR entre 400 001 et 500 000 euros (revenus 2024)"
+    explication: "Somme des revenus fiscaux de référence des foyers de la tranche."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 11910383064
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_400001_500000.impot_net
+    titre: "Impôt net total des foyers dont le RFR entre 400 001 et 500 000 euros (revenus 2024)"
+    explication: "Impôt sur le revenu émis par voie de rôle, hors prélèvement forfaitaire déjà retenu à la source."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 2412941253
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_400001_500000.salaires
+    titre: "Traitements et salaires déclarés par les foyers dont le RFR entre 400 001 et 500 000 euros (revenus 2024)"
+    explication: "Montant des traitements et salaires déclarés (avant abattement de 10 %)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 4464749798
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_400001_500000.pensions
+    titre: "Retraites et pensions déclarées par les foyers dont le RFR entre 400 001 et 500 000 euros (revenus 2024)"
+    explication: "Montant des retraites et pensions déclarées (avant abattement de 10 %)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 535108427
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_500001_600000.nombre_foyers
+    titre: "Foyers fiscaux dont le RFR entre 500 001 et 600 000 euros (revenus 2024)"
+    explication: "Nombre de foyers fiscaux de la tranche."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 14520
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_500001_600000.rfr_total
+    titre: "RFR total des foyers dont le RFR entre 500 001 et 600 000 euros (revenus 2024)"
+    explication: "Somme des revenus fiscaux de référence des foyers de la tranche."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 7919412321
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_500001_600000.impot_net
+    titre: "Impôt net total des foyers dont le RFR entre 500 001 et 600 000 euros (revenus 2024)"
+    explication: "Impôt sur le revenu émis par voie de rôle, hors prélèvement forfaitaire déjà retenu à la source."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 1636352640
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_500001_600000.salaires
+    titre: "Traitements et salaires déclarés par les foyers dont le RFR entre 500 001 et 600 000 euros (revenus 2024)"
+    explication: "Montant des traitements et salaires déclarés (avant abattement de 10 %)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 2815582221
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_500001_600000.pensions
+    titre: "Retraites et pensions déclarées par les foyers dont le RFR entre 500 001 et 600 000 euros (revenus 2024)"
+    explication: "Montant des retraites et pensions déclarées (avant abattement de 10 %)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 311262157
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_600001_700000.nombre_foyers
+    titre: "Foyers fiscaux dont le RFR entre 600 001 et 700 000 euros (revenus 2024)"
+    explication: "Nombre de foyers fiscaux de la tranche."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 8546
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_600001_700000.rfr_total
+    titre: "RFR total des foyers dont le RFR entre 600 001 et 700 000 euros (revenus 2024)"
+    explication: "Somme des revenus fiscaux de référence des foyers de la tranche."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 5524900243
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_600001_700000.impot_net
+    titre: "Impôt net total des foyers dont le RFR entre 600 001 et 700 000 euros (revenus 2024)"
+    explication: "Impôt sur le revenu émis par voie de rôle, hors prélèvement forfaitaire déjà retenu à la source."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 1145064005
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_600001_700000.salaires
+    titre: "Traitements et salaires déclarés par les foyers dont le RFR entre 600 001 et 700 000 euros (revenus 2024)"
+    explication: "Montant des traitements et salaires déclarés (avant abattement de 10 %)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 1848141436
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_600001_700000.pensions
+    titre: "Retraites et pensions déclarées par les foyers dont le RFR entre 600 001 et 700 000 euros (revenus 2024)"
+    explication: "Montant des retraites et pensions déclarées (avant abattement de 10 %)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 192921008
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_700001_800000.nombre_foyers
+    titre: "Foyers fiscaux dont le RFR entre 700 001 et 800 000 euros (revenus 2024)"
+    explication: "Nombre de foyers fiscaux de la tranche."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 5806
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_700001_800000.rfr_total
+    titre: "RFR total des foyers dont le RFR entre 700 001 et 800 000 euros (revenus 2024)"
+    explication: "Somme des revenus fiscaux de référence des foyers de la tranche."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 4338812177
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_700001_800000.impot_net
+    titre: "Impôt net total des foyers dont le RFR entre 700 001 et 800 000 euros (revenus 2024)"
+    explication: "Impôt sur le revenu émis par voie de rôle, hors prélèvement forfaitaire déjà retenu à la source."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 882730037
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_700001_800000.salaires
+    titre: "Traitements et salaires déclarés par les foyers dont le RFR entre 700 001 et 800 000 euros (revenus 2024)"
+    explication: "Montant des traitements et salaires déclarés (avant abattement de 10 %)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 1347360437
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_700001_800000.pensions
+    titre: "Retraites et pensions déclarées par les foyers dont le RFR entre 700 001 et 800 000 euros (revenus 2024)"
+    explication: "Montant des retraites et pensions déclarées (avant abattement de 10 %)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 134738529
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_800001_900000.nombre_foyers
+    titre: "Foyers fiscaux dont le RFR entre 800 001 et 900 000 euros (revenus 2024)"
+    explication: "Nombre de foyers fiscaux de la tranche."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 4142
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_800001_900000.rfr_total
+    titre: "RFR total des foyers dont le RFR entre 800 001 et 900 000 euros (revenus 2024)"
+    explication: "Somme des revenus fiscaux de référence des foyers de la tranche."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 3511883842
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_800001_900000.impot_net
+    titre: "Impôt net total des foyers dont le RFR entre 800 001 et 900 000 euros (revenus 2024)"
+    explication: "Impôt sur le revenu émis par voie de rôle, hors prélèvement forfaitaire déjà retenu à la source."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 714053280
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_800001_900000.salaires
+    titre: "Traitements et salaires déclarés par les foyers dont le RFR entre 800 001 et 900 000 euros (revenus 2024)"
+    explication: "Montant des traitements et salaires déclarés (avant abattement de 10 %)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 1036911602
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_800001_900000.pensions
+    titre: "Retraites et pensions déclarées par les foyers dont le RFR entre 800 001 et 900 000 euros (revenus 2024)"
+    explication: "Montant des retraites et pensions déclarées (avant abattement de 10 %)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 106639678
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_900001_1000000.nombre_foyers
+    titre: "Foyers fiscaux dont le RFR entre 900 001 et 1 000 000 euros (revenus 2024)"
+    explication: "Nombre de foyers fiscaux de la tranche."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 2993
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_900001_1000000.rfr_total
+    titre: "RFR total des foyers dont le RFR entre 900 001 et 1 000 000 euros (revenus 2024)"
+    explication: "Somme des revenus fiscaux de référence des foyers de la tranche."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 2835186754
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_900001_1000000.impot_net
+    titre: "Impôt net total des foyers dont le RFR entre 900 001 et 1 000 000 euros (revenus 2024)"
+    explication: "Impôt sur le revenu émis par voie de rôle, hors prélèvement forfaitaire déjà retenu à la source."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 577964568
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_900001_1000000.salaires
+    titre: "Traitements et salaires déclarés par les foyers dont le RFR entre 900 001 et 1 000 000 euros (revenus 2024)"
+    explication: "Montant des traitements et salaires déclarés (avant abattement de 10 %)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 795701788
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_900001_1000000.pensions
+    titre: "Retraites et pensions déclarées par les foyers dont le RFR entre 900 001 et 1 000 000 euros (revenus 2024)"
+    explication: "Montant des retraites et pensions déclarées (avant abattement de 10 %)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 64912713
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_1000001_2000000.nombre_foyers
+    titre: "Foyers fiscaux dont le RFR entre 1 000 001 et 2 000 000 euros (revenus 2024)"
+    explication: "Nombre de foyers fiscaux de la tranche."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 11478
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_1000001_2000000.rfr_total
+    titre: "RFR total des foyers dont le RFR entre 1 000 001 et 2 000 000 euros (revenus 2024)"
+    explication: "Somme des revenus fiscaux de référence des foyers de la tranche."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 15525624179
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_1000001_2000000.impot_net
+    titre: "Impôt net total des foyers dont le RFR entre 1 000 001 et 2 000 000 euros (revenus 2024)"
+    explication: "Impôt sur le revenu émis par voie de rôle, hors prélèvement forfaitaire déjà retenu à la source."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 3125893260
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_1000001_2000000.salaires
+    titre: "Traitements et salaires déclarés par les foyers dont le RFR entre 1 000 001 et 2 000 000 euros (revenus 2024)"
+    explication: "Montant des traitements et salaires déclarés (avant abattement de 10 %)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 3762795692
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_1000001_2000000.pensions
+    titre: "Retraites et pensions déclarées par les foyers dont le RFR entre 1 000 001 et 2 000 000 euros (revenus 2024)"
+    explication: "Montant des retraites et pensions déclarées (avant abattement de 10 %)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 305461782
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_2000001_3000000.nombre_foyers
+    titre: "Foyers fiscaux dont le RFR entre 2 000 001 et 3 000 000 euros (revenus 2024)"
+    explication: "Nombre de foyers fiscaux de la tranche."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 2999
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_2000001_3000000.rfr_total
+    titre: "RFR total des foyers dont le RFR entre 2 000 001 et 3 000 000 euros (revenus 2024)"
+    explication: "Somme des revenus fiscaux de référence des foyers de la tranche."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 7234112149
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_2000001_3000000.impot_net
+    titre: "Impôt net total des foyers dont le RFR entre 2 000 001 et 3 000 000 euros (revenus 2024)"
+    explication: "Impôt sur le revenu émis par voie de rôle, hors prélèvement forfaitaire déjà retenu à la source."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 1427609776
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_2000001_3000000.salaires
+    titre: "Traitements et salaires déclarés par les foyers dont le RFR entre 2 000 001 et 3 000 000 euros (revenus 2024)"
+    explication: "Montant des traitements et salaires déclarés (avant abattement de 10 %)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 1385997591
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_2000001_3000000.pensions
+    titre: "Retraites et pensions déclarées par les foyers dont le RFR entre 2 000 001 et 3 000 000 euros (revenus 2024)"
+    explication: "Montant des retraites et pensions déclarées (avant abattement de 10 %)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 85669826
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_3000001_4000000.nombre_foyers
+    titre: "Foyers fiscaux dont le RFR entre 3 000 001 et 4 000 000 euros (revenus 2024)"
+    explication: "Nombre de foyers fiscaux de la tranche."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 1338
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_3000001_4000000.rfr_total
+    titre: "RFR total des foyers dont le RFR entre 3 000 001 et 4 000 000 euros (revenus 2024)"
+    explication: "Somme des revenus fiscaux de référence des foyers de la tranche."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 4582514286
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_3000001_4000000.impot_net
+    titre: "Impôt net total des foyers dont le RFR entre 3 000 001 et 4 000 000 euros (revenus 2024)"
+    explication: "Impôt sur le revenu émis par voie de rôle, hors prélèvement forfaitaire déjà retenu à la source."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 893994508
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_3000001_4000000.salaires
+    titre: "Traitements et salaires déclarés par les foyers dont le RFR entre 3 000 001 et 4 000 000 euros (revenus 2024)"
+    explication: "Montant des traitements et salaires déclarés (avant abattement de 10 %)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 804518976
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_3000001_4000000.pensions
+    titre: "Retraites et pensions déclarées par les foyers dont le RFR entre 3 000 001 et 4 000 000 euros (revenus 2024)"
+    explication: "Montant des retraites et pensions déclarées (avant abattement de 10 %)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 36402304
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_4000001_5000000.nombre_foyers
+    titre: "Foyers fiscaux dont le RFR entre 4 000 001 et 5 000 000 euros (revenus 2024)"
+    explication: "Nombre de foyers fiscaux de la tranche."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 681
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_4000001_5000000.rfr_total
+    titre: "RFR total des foyers dont le RFR entre 4 000 001 et 5 000 000 euros (revenus 2024)"
+    explication: "Somme des revenus fiscaux de référence des foyers de la tranche."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 3025856527
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_4000001_5000000.impot_net
+    titre: "Impôt net total des foyers dont le RFR entre 4 000 001 et 5 000 000 euros (revenus 2024)"
+    explication: "Impôt sur le revenu émis par voie de rôle, hors prélèvement forfaitaire déjà retenu à la source."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 591539812
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_4000001_5000000.salaires
+    titre: "Traitements et salaires déclarés par les foyers dont le RFR entre 4 000 001 et 5 000 000 euros (revenus 2024)"
+    explication: "Montant des traitements et salaires déclarés (avant abattement de 10 %)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 439248134
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_4000001_5000000.pensions
+    titre: "Retraites et pensions déclarées par les foyers dont le RFR entre 4 000 001 et 5 000 000 euros (revenus 2024)"
+    explication: "Montant des retraites et pensions déclarées (avant abattement de 10 %)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 22483178
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_5000001_6000000.nombre_foyers
+    titre: "Foyers fiscaux dont le RFR entre 5 000 001 et 6 000 000 euros (revenus 2024)"
+    explication: "Nombre de foyers fiscaux de la tranche."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 455
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_5000001_6000000.rfr_total
+    titre: "RFR total des foyers dont le RFR entre 5 000 001 et 6 000 000 euros (revenus 2024)"
+    explication: "Somme des revenus fiscaux de référence des foyers de la tranche."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 2478686351
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_5000001_6000000.impot_net
+    titre: "Impôt net total des foyers dont le RFR entre 5 000 001 et 6 000 000 euros (revenus 2024)"
+    explication: "Impôt sur le revenu émis par voie de rôle, hors prélèvement forfaitaire déjà retenu à la source."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 470696826
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_5000001_6000000.salaires
+    titre: "Traitements et salaires déclarés par les foyers dont le RFR entre 5 000 001 et 6 000 000 euros (revenus 2024)"
+    explication: "Montant des traitements et salaires déclarés (avant abattement de 10 %)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 350593468
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_5000001_6000000.pensions
+    titre: "Retraites et pensions déclarées par les foyers dont le RFR entre 5 000 001 et 6 000 000 euros (revenus 2024)"
+    explication: "Montant des retraites et pensions déclarées (avant abattement de 10 %)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 14714678
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_6000001_7000000.nombre_foyers
+    titre: "Foyers fiscaux dont le RFR entre 6 000 001 et 7 000 000 euros (revenus 2024)"
+    explication: "Nombre de foyers fiscaux de la tranche."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 298
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_6000001_7000000.rfr_total
+    titre: "RFR total des foyers dont le RFR entre 6 000 001 et 7 000 000 euros (revenus 2024)"
+    explication: "Somme des revenus fiscaux de référence des foyers de la tranche."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 1930547875
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_6000001_7000000.impot_net
+    titre: "Impôt net total des foyers dont le RFR entre 6 000 001 et 7 000 000 euros (revenus 2024)"
+    explication: "Impôt sur le revenu émis par voie de rôle, hors prélèvement forfaitaire déjà retenu à la source."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 342764272
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_6000001_7000000.salaires
+    titre: "Traitements et salaires déclarés par les foyers dont le RFR entre 6 000 001 et 7 000 000 euros (revenus 2024)"
+    explication: "Montant des traitements et salaires déclarés (avant abattement de 10 %)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 202335593
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_6000001_7000000.pensions
+    titre: "Retraites et pensions déclarées par les foyers dont le RFR entre 6 000 001 et 7 000 000 euros (revenus 2024)"
+    explication: "Montant des retraites et pensions déclarées (avant abattement de 10 %)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 8268401
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_7000001_8000000.nombre_foyers
+    titre: "Foyers fiscaux dont le RFR entre 7 000 001 et 8 000 000 euros (revenus 2024)"
+    explication: "Nombre de foyers fiscaux de la tranche."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 180
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_7000001_8000000.rfr_total
+    titre: "RFR total des foyers dont le RFR entre 7 000 001 et 8 000 000 euros (revenus 2024)"
+    explication: "Somme des revenus fiscaux de référence des foyers de la tranche."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 1338196428
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_7000001_8000000.impot_net
+    titre: "Impôt net total des foyers dont le RFR entre 7 000 001 et 8 000 000 euros (revenus 2024)"
+    explication: "Impôt sur le revenu émis par voie de rôle, hors prélèvement forfaitaire déjà retenu à la source."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 245078376
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_7000001_8000000.salaires
+    titre: "Traitements et salaires déclarés par les foyers dont le RFR entre 7 000 001 et 8 000 000 euros (revenus 2024)"
+    explication: "Montant des traitements et salaires déclarés (avant abattement de 10 %)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 176629283
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_7000001_8000000.pensions
+    titre: "Retraites et pensions déclarées par les foyers dont le RFR entre 7 000 001 et 8 000 000 euros (revenus 2024)"
+    explication: "Montant des retraites et pensions déclarées (avant abattement de 10 %)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 6652620
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_8000001_9000000.nombre_foyers
+    titre: "Foyers fiscaux dont le RFR entre 8 000 001 et 9 000 000 euros (revenus 2024)"
+    explication: "Nombre de foyers fiscaux de la tranche."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 157
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_8000001_9000000.rfr_total
+    titre: "RFR total des foyers dont le RFR entre 8 000 001 et 9 000 000 euros (revenus 2024)"
+    explication: "Somme des revenus fiscaux de référence des foyers de la tranche."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 1327675602
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_8000001_9000000.impot_net
+    titre: "Impôt net total des foyers dont le RFR entre 8 000 001 et 9 000 000 euros (revenus 2024)"
+    explication: "Impôt sur le revenu émis par voie de rôle, hors prélèvement forfaitaire déjà retenu à la source."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 234481489
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_8000001_9000000.salaires
+    titre: "Traitements et salaires déclarés par les foyers dont le RFR entre 8 000 001 et 9 000 000 euros (revenus 2024)"
+    explication: "Montant des traitements et salaires déclarés (avant abattement de 10 %)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 132065915
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_8000001_9000000.pensions
+    titre: "Retraites et pensions déclarées par les foyers dont le RFR entre 8 000 001 et 9 000 000 euros (revenus 2024)"
+    explication: "Montant des retraites et pensions déclarées (avant abattement de 10 %)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 3991804
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_plus_9000000.nombre_foyers
+    titre: "Foyers fiscaux dont le RFR dépasse 9 000 000 euros (revenus 2024)"
+    explication: "Nombre de foyers fiscaux de la tranche."
+    unite: foyers
+    serie:
+      - date: "2024-12-31"
+        valeur: 695
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_plus_9000000.rfr_total
+    titre: "RFR total des foyers dont le RFR dépasse 9 000 000 euros (revenus 2024)"
+    explication: "Somme des revenus fiscaux de référence des foyers de la tranche."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 16711711889
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_plus_9000000.impot_net
+    titre: "Impôt net total des foyers dont le RFR dépasse 9 000 000 euros (revenus 2024)"
+    explication: "Impôt sur le revenu émis par voie de rôle, hors prélèvement forfaitaire déjà retenu à la source."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 2745113743
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_plus_9000000.salaires
+    titre: "Traitements et salaires déclarés par les foyers dont le RFR dépasse 9 000 000 euros (revenus 2024)"
+    explication: "Montant des traitements et salaires déclarés (avant abattement de 10 %)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 1037833146
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif
+  - id: impot.ir.tranche_rfr_plus_9000000.pensions
+    titre: "Retraites et pensions déclarées par les foyers dont le RFR dépasse 9 000 000 euros (revenus 2024)"
+    explication: "Montant des retraites et pensions déclarées (avant abattement de 10 %)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 26604544
+        source: dgfip-ircom-2025-revenus-2024
+        statut: definitif

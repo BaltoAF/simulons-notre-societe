@@ -5,6 +5,7 @@ import { PRESETS, resoudrePreset } from '../lib/presets'
 import type { Regle, Societe } from '../lib/api'
 import { nombre, relatif } from '../lib/format'
 import { DomainIcon } from '../components/ui'
+import { Terme } from '../components/Terme'
 
 export default function Accueil() {
   const { meta, setDraft } = useApp()
@@ -69,7 +70,7 @@ export default function Accueil() {
         <div className="grid cols-3">
           <div className="card">
             <div className="row"><span className="step-num">1</span><h3 style={{ margin: 0 }}>La France d'aujourd'hui</h3></div>
-            <p className="ink2" style={{ marginTop: 10 }}>Toutes les règles en vigueur : c'est la « Société 1.0 ». Chaque valeur est <strong>prouvée</strong> par un texte officiel, et tenue à jour automatiquement quand la loi change.</p>
+            <p className="ink2" style={{ marginTop: 10 }}>Toutes les règles en vigueur : c'est la « <Terme id="societe_1_0">Société 1.0</Terme> ». Chaque valeur est <strong>prouvée</strong> par un texte officiel, et tenue à jour automatiquement quand la loi change.</p>
             <Link to="/regles">Explorer les règles <ArrowRight size={14} /></Link>
           </div>
           <div className="card">
