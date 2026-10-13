@@ -84,10 +84,15 @@ def avertissements_couverture(ctx: Contexte) -> list[str]:
         brut = sum(a.salaire_brut_mensuel + a.retraite_brute_mensuelle + a.chomage_brut_mensuel for a in m.adultes) * 12
         parts = len(m.adultes) + 0.5 * min(len(m.enfants), 2) + max(0, len(m.enfants) - 2)
         n += brut * 0.72 / parts > seuil
-    if n >= 10:
-        return []
-    return [f"Les très hauts revenus sont presque absents de la population simulée ({n} foyer{'s' if n > 1 else ''} sur {len(menages)} "
-            f"au-delà de {fr(seuil, 0)} € de revenu par part) : ce que rapporte une tranche d'impôt à ce niveau est fortement sous-estimé ici."]
+    if n < 10:
+        return [f"Les très hauts revenus sont presque absents de la population simulée ({n} foyer{'s' if n > 1 else ''} sur {len(menages)} "
+                f"au-delà de {fr(seuil, 0)} € de revenu par part) : ce que rapporte une tranche d'impôt à ce niveau est fortement sous-estimé ici."]
+    if seuil > 180_000:
+        # ménages fictifs calés sur les statistiques fiscales, mais la part salaires / capital au sommet n'est pas connue
+        return [f"Au-delà de {fr(seuil, 0)} € de revenu par part, les foyers sont représentés de façon approchée (ménages fictifs calés "
+                f"sur les statistiques fiscales, sans données ouvertes sur la composition de leurs revenus) : ce que rapporte une "
+                f"tranche d'impôt à ce niveau est incertain, et probablement sous-estimé."]
+    return []
 
 
 def _agreger(res: dict) -> dict[str, np.ndarray]:
