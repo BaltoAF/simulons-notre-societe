@@ -48,6 +48,10 @@ function BudgetEtat({ missions, depenseTotale }: { missions: { id: string; titre
       <h2 style={{ fontSize: '1.3rem', marginBottom: 4 }}><Landmark size={20} /> Le budget de l'État, et comment le changer</h2>
       <p className="small ink2" style={{ marginTop: 0 }}>Sur les {milliards(depenseTotale)} d'argent public, l'État en gère environ <strong>{milliards(totalEtat)}</strong>.
         Le reste, c'est surtout la Sécurité sociale (retraites, santé, familles) et les communes, départements et régions.</p>
+      <div className="notice small" style={{ marginBottom: 10 }}><Lock size={16} style={{ flexShrink: 0 }} /><div><strong>Pourquoi des cadenas ?</strong> Ces dépenses ne se décident pas d'un coup de crayon :
+        elles découlent d'engagements déjà pris (les intérêts de la dette) ou des règles d'impôt. On ne peut pas les baisser directement ;
+        on agit sur leurs causes : moins de déficit, d'autres règles d'impôt.</div></div>
+      <Link className="btn primary small" style={{ marginBottom: 14 }} to="/atelier?budget=1">Modifier le budget de l'État <ArrowRight size={14} /></Link>
       <div className="split even" style={{ alignItems: 'start' }}>
         <div>
           {visibles.map((x) => {
@@ -69,9 +73,6 @@ function BudgetEtat({ missions, depenseTotale }: { missions: { id: string; titre
           {missions.length > 10 && <button className="btn ghost small" onClick={() => setTout(!tout)}>{tout ? 'Voir moins' : `Voir les ${missions.length - 10} autres domaines`}</button>}
         </div>
         <div className="stack" style={{ gap: 10 }}>
-          <div className="notice small"><Lock size={16} style={{ flexShrink: 0 }} /><div><strong>Pourquoi des cadenas ?</strong> Ces dépenses ne se décident pas d'un coup de crayon :
-            elles découlent d'engagements déjà pris (les intérêts de la dette) ou des règles d'impôt. On ne peut pas les baisser directement ;
-            on agit sur leurs causes : moins de déficit, d'autres règles d'impôt.</div></div>
           <div className="kpi-label">Trois façons de changer ce budget</div>
           <div className="card flat" style={{ padding: 12 }}>
             <strong><Scale size={16} /> Répartir autrement</strong>
@@ -127,7 +128,7 @@ export default function Budget() {
       <p className="lead ink2" style={{ maxWidth: 820 }}>D'où vient l'argent public, où il va, et quelle est votre part. Toutes les dépenses publiques sont comptées : État, Sécurité sociale et collectivités locales.</p>
       <div className="row" style={{ marginBottom: 16 }}>
         <a className="btn small" href="#budget-etat"><Lock size={14} /> Les cadenas, et comment changer le budget ↓</a>
-        <a className="btn small ghost" href="#et-vous"><Wallet size={14} /> Et vous ? ↓</a>
+        <a className="btn small" href="#et-vous"><Wallet size={14} /> Et vous ? ↓</a>
       </div>
 
       <div className="grid cols-3" style={{ marginBottom: 20 }}>
@@ -158,7 +159,7 @@ export default function Budget() {
               )}
             </div>
           ))}
-          {!toutesFonctions && n.fonctions.length > 5 && <button className="btn ghost small" onClick={() => setToutesFonctions(true)}>Voir les {n.fonctions.length - 5} autres domaines</button>}
+          {!toutesFonctions && n.fonctions.length > 5 && <button className="btn ghost small" onClick={() => setToutesFonctions(true)}>Voir {n.fonctions.length - 5 > 1 ? `les ${n.fonctions.length - 5} autres domaines` : "l'autre domaine"}</button>}
           <div className="small muted">Source : Eurostat / INSEE, comptes des administrations publiques (nomenclature internationale COFOG).</div>
         </div>
         <div className="card">
@@ -170,7 +171,7 @@ export default function Budget() {
               <Barre part={r.md / Math.max(...n.recettes.map((x) => x.md))} couleur="var(--accent)" />
             </div>
           ))}
-          {!toutesRecettes && n.recettes.length > 5 && <button className="btn ghost small" onClick={() => setToutesRecettes(true)}>Voir les {n.recettes.length - 5} autres recettes</button>}
+          {!toutesRecettes && n.recettes.length > 5 && <button className="btn ghost small" onClick={() => setToutesRecettes(true)}>Voir {n.recettes.length - 5 > 1 ? `les ${n.recettes.length - 5} autres recettes` : "l'autre recette"}</button>}
           <details className="explain">
             <summary><ChevronDown size={15} /> La Sécurité sociale, branche par branche</summary>
             <ul className="list small">{n.secu_branches.map((x) => <li key={x.id} className="list-row" style={{ padding: '5px 0' }}><Link to={`/regles/r/${x.id}`}>{x.titre}</Link><span>{milliards(x.md)}</span></li>)}</ul>

@@ -578,6 +578,9 @@ def resume_mesures(sid: str, diff: list[dict]) -> dict:
                         "avant": None, "apres": round(delta, 3), "budget_resume": True})
     n_eq = len({d["regle"] for d in equilibrage if not d["regle"].startswith("budget.etat.mission.")}) + (1 if any(
         d["regle"].startswith("budget.etat.mission.") for d in equilibrage) else 0)
+    # une règle de l'auteur ensuite ajustée pour équilibrer (ex. tous les taux d'impôt relevés) compte aussi comme ajout
+    dernier = provenance(sid, BRANCHE_PRINCIPALE, {d["regle"] for d in principales}) if principales else {}
+    n_eq += sum(1 for d in principales if est_equilibrage(dernier.get(d["regle"])))
     return {"mesures": mesures[:3], "nb_mesures": len(principales) - len(missions) + (1 if missions else 0), "nb_equilibrage": n_eq}
 
 

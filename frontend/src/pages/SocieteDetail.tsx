@@ -138,7 +138,7 @@ export default function SocieteDetail() {
             {s.branches.map((b) => <option key={b.nom} value={b.nom}>{b.nom === 'principale' ? 'principale' : b.nom}</option>)}
           </select>
         </>}
-        {!s.head.message.startsWith("Mise à jour automatique") && <span className="small muted">Dernière modification : « {s.head.message} »</span>}
+        {!/^(Mise à jour automatique|Équilibrer|Rééquilibrer)/.test(s.head.message) && <span className="small muted">Dernière modification : « {s.head.message} »</span>}
         {s.proprietaire && <button className="btn small ghost" onClick={() => setModal('branche')} title="Essayer une autre piste sans toucher à la version principale">Essayer une variante</button>}
         {!s.reference && user && <button className="btn small ghost" onClick={() => setModal('proposer')}><GitPullRequest size={14} /> Suggérer mes changements à une autre proposition</button>}
       </div>

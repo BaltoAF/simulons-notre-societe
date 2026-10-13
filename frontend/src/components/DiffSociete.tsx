@@ -10,11 +10,14 @@ import { Terme } from './Terme'
 
 export type Diff = Changement & {
   pour_equilibrer?: boolean
+  lignes?: string[] // lignes de barème à afficher (quand un barème est réparti entre l'idée et l'équilibrage)
   provenance?: { commit: string; auteur: string | null; auteur_systeme: boolean; date: string; message: string; justification: string } | null
   variation_pct?: number | null
 }
 
 /** Changement d'un barème dit en clair : « Nouvelle tranche à 50 % au-delà de 250 000 € », « 30 % → 32 % dès 29 579 € ». */
+const JUSTIFS_EQUILIBRE = ['Équilibrer la proposition', 'Financer la réforme', 'Compenser les émissions']
+
 export function diffBareme(avant: Valeur | undefined, apres: Valeur | undefined): string[] | null {
   if (!Array.isArray(avant) || !Array.isArray(apres)) return null
   const a = avant as Tranche[], b = apres as Tranche[]
@@ -64,8 +67,23 @@ export function nomCourt(titre: string): string {
 export function DiffSociete({ items, vide }: { items: Diff[]; vide: string }) {
   if (!items.length) return <div className="small muted">{vide}</div>
   // d'abord l'idée de l'auteur, puis ce qui a été ajouté pour respecter les équilibres (financement, climat)
-  const principales = items.filter((d) => !d.pour_equilibrer)
-  const equilibrage = items.filter((d) => d.pour_equilibrer)
+  const principales: Diff[] = []
+  const equilibrage: Diff[] = items.filter((d) => d.pour_equilibrer)
+  for (const d of items.filter((x) => !x.pour_equilibrer)) {
+    // barème d'abord changé par l'auteur (nouvelle tranche) puis relevé partout pour équilibrer : on sépare les deux
+    const lignes = diffBareme(d.avant, d.apres)
+    const ajuste = JUSTIFS_EQUILIBRE.includes(d.provenance?.justification ?? '')
+    if (lignes && ajuste) {
+      const idee = lignes.filter((l) => l.startsWith('Nouvelle tranche') || l.includes('supprimée'))
+      const hausse = lignes.filter((l) => !idee.includes(l))
+      if (idee.length && hausse.length) {
+        principales.push({ ...d, lignes: idee, provenance: null })
+        equilibrage.push({ ...d, regle: `${d.regle}#equilibre`, lignes: hausse })
+        continue
+      }
+    }
+    principales.push(d)
+  }
   return (
     <div>
       <ListeDiff items={principales.length ? principales : items} pastilles vide={vide} />
@@ -111,10 +129,10 @@ function ListeDiff({ items: tous, vide, pastilles }: { items: Diff[]; vide: stri
                       <span className={`badge ${hausse ? 'accent' : 'primary'}`}>{c.variation_pct > 0 ? '+' : '−'}{nombre(Math.abs(c.variation_pct), 1)} %</span>
                     )}
                   </div>
-                  {diffBareme(c.avant, c.apres) ? (
+                  {(c.lignes ?? diffBareme(c.avant, c.apres)) ? (
                     <>
-                      <ul className="small" style={{ margin: '4px 0 0', paddingLeft: 18 }}>{diffBareme(c.avant, c.apres)!.map((l) => <li key={l}><strong>{l}</strong></li>)}</ul>
-                      <div className="small muted">Les seuils s'entendent par <Terme id="part_fiscale">part</Terme> (une par adulte, une demie par enfant).</div>
+                      <ul className="small" style={{ margin: '4px 0 0', paddingLeft: 18 }}>{(c.lignes ?? diffBareme(c.avant, c.apres))!.map((l) => <li key={l}><strong>{l}</strong></li>)}</ul>
+                      <div className="small muted">Les seuils s'entendent par <Terme id="part_fiscale">part</Terme> (une part par adulte, une demi-part par enfant).</div>
                     </>
                   ) : (
                     <div className="row small" style={{ gap: 8, marginTop: 4 }}>

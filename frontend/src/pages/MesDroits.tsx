@@ -33,7 +33,7 @@ const POURQUOI: Record<string, { regles: string[]; texte: ReactNode }> = {
   retraite_nette: { regles: ['fiscalite.csg.retraites_taux_plein'], texte: 'Pension brute moins la CSG, la CRDS et la Casa.' },
   pfu: { regles: ['fiscalite.capital.pfu_taux_ir'], texte: 'Impôt forfaitaire de 12,8 % sur les intérêts et dividendes.' },
   epargne: { regles: ['fiscalite.capital.pfu_taux_ir'], texte: 'Sur les intérêts et dividendes de votre épargne (hors livret A et autres livrets réglementés) : un impôt de 12,8 % et des prélèvements sociaux de 17,2 %.' },
-  impot_revenu_zero: { regles: ['fiscalite.impot_revenu.bareme', 'fiscalite.impot_revenu.decote.taux'], texte: <>Le revenu du foyer est divisé en <Terme id="part_fiscale">parts</Terme> (une par adulte, une demie par enfant). Par part, il reste sous le seuil où l'impôt commence, ou bien l'impôt calculé est si faible qu'une réduction automatique, la <Terme id="decote">décote</Terme>, l'annule. C'est le cas d'environ la moitié des foyers.</> },
+  impot_revenu_zero: { regles: ['fiscalite.impot_revenu.bareme', 'fiscalite.impot_revenu.decote.taux'], texte: <>Le revenu du foyer est divisé en <Terme id="part_fiscale">parts</Terme> (une part par adulte, une demi-part par enfant). Par part, il reste sous le seuil où l'impôt commence, ou bien l'impôt calculé est si faible qu'une réduction automatique, la <Terme id="decote">décote</Terme>, l'annule. C'est le cas d'environ la moitié des foyers.</> },
 }
 
 /** « couple marié, 2 enfants (8 et 12 ans), salaires 2 100 € + 1 850 € nets/mois, propriétaire » */
