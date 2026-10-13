@@ -61,7 +61,7 @@ function SectionMenage({ s }: { s: Section }) {
             const d = delta(sign * l.delta, 'euros')
             return (
               <tr key={l.id}>
-                <td>{l.libelle}{l.nature === 'prelevement' ? <span className="muted small"> · impôt payé</span> : null}</td>
+                <td>{l.libelle}{l.nature === 'prelevement' && !/imp[oô]t|prélèvement|cotisation|csg|crds/i.test(l.libelle) ? <span className="muted small"> · payé</span> : null}</td>
                 <td className="num">{euros(l.avant)}</td>
                 <td className="num">{euros(l.apres)}</td>
                 <td className="num"><span className={`delta ${d.cls}`}>{d.txt}</span></td>
@@ -218,6 +218,7 @@ export function ReportView({ r, overrides, onAppliquer, contexte = 'reforme' }: 
   }
   return (
     <div className="stack">
+      {(r.avertissements ?? []).map((a) => <div key={a} className="notice warn small"><div><strong>À savoir avant de lire :</strong> {a}</div></div>)}
       {r.bilan && <EnBref r={r} contexte={contexte} />}
       {r.equilibres && (
         <div>

@@ -382,5 +382,13 @@ details.curieux[open] > summary { margin-bottom: 4px; }
   .bouton-plusmoins { width: 40px; height: 40px; }
 }
 .ligne-montant { margin-bottom: 12px; }
-.ligne-montant a { font-weight: 600; }
+.ligne-montant a { font-weight: 600; display: inline-block; padding: 6px 0; }
 button.lien { background: none; border: 0; padding: 0; color: var(--primary); font: inherit; cursor: pointer; text-decoration: underline; }
+
+.pied-budget { display: flex; align-items: center; gap: 12px; justify-content: space-between; }
+.pied-budget .resume { flex: 1; }
+@media (max-width: 640px) {
+  .pied-budget { flex-direction: column; align-items: stretch; gap: 8px; }
+  .pied-budget .resume { font-size: .85rem; line-height: 1.35; }
+  .modal-pied { margin-top: 8px; padding-top: 8px; }
+}

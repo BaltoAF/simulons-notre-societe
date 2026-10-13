@@ -41,6 +41,43 @@ def _baseline_population(store):
     return {k: float((v * poids).sum() * 12 / 1e9) for k, v in a.items()}
 
 
+# Rendements mesurés avec le calcul complet (le même qui vérifie ensuite l'équilibre) : une solution proposée
+# doit tenir sa promesse. Mesurés une fois (au démarrage, en arrière-plan), puis réutilisés ; vidés si la loi change.
+_RENDEMENTS: dict[str, float] = {}
+MARGE = 1.04  # petite marge de sécurité : les effets ne sont pas parfaitement proportionnels
+
+
+def _solde_mecanique(store, overrides: dict) -> float | None:
+    from . import simulation
+    r = simulation.simuler(store, overrides, None, None, ["budget"])
+    for s in r["sections"]:
+        for i in s["indicateurs"]:
+            if i["id"] == "solde_public_mecanique" and i["valeur"] is not None:
+                return float(i["valeur"])
+    return None
+
+
+def rendements_mesures(store) -> dict[str, float]:
+    """Gain pour les finances publiques (Md€/an) : par point de CSG sur les revenus d'activité, et par % de hausse de
+    tous les taux de l'impôt sur le revenu. Calculés sur la population simulée, comme la vérification de l'équilibre."""
+    if _RENDEMENTS:
+        return _RENDEMENTS
+    csg = store.rule_value("fiscalite.csg.salaires_taux")
+    bareme = store.rule_value("fiscalite.impot_revenu.bareme")
+    try:
+        if csg:
+            v = _solde_mecanique(store, {"fiscalite.csg.salaires_taux": round(float(csg) + 1, 3)})
+            if v and v > 0:
+                _RENDEMENTS["csg_par_point"] = v
+        if isinstance(bareme, list):
+            v = _solde_mecanique(store, {"fiscalite.impot_revenu.bareme": [{"seuil": b["seuil"], "taux": round(b["taux"] * 1.05, 3)} for b in bareme]})
+            if v and v > 0:
+                _RENDEMENTS["ir_par_pourcent"] = v / 5
+    except Exception:  # à défaut, les estimations par agrégats restent utilisées
+        pass
+    return _RENDEMENTS
+
+
 def _valeur(store, overrides, rid):
     return overrides.get(rid, store.rule_value(rid))
 
@@ -73,18 +110,20 @@ def options_budget(store, overrides: dict, manque: float) -> list[dict]:
         out.append({"id": "tva", "famille": "recettes", "titre": f"Relever la TVA normale de {g(taux_tva)} % à {g(float(taux_tva) + d)} %",
                     "description": "Simple et rapide ; mais pèse plus lourd, en proportion, sur les ménages modestes (ils dépensent tout leur revenu).",
                     "rendement": round(par_pt * d, 2), "overrides": {"fiscalite.tva.taux_normal": round(float(taux_tva) + d, 2)}})
+    mes = rendements_mesures(store)
     csg = _valeur(store, overrides, "fiscalite.csg.salaires_taux")
-    if agg.get("csg_salaire") and csg:
-        # rendement net : une CSG plus élevée réduit le salaire net et relève un peu la prime d'activité (≈ 15 % de déperdition)
-        par_pt = agg["csg_salaire"] * 0.85 / float(csg)
-        d = _arrondi(manque / par_pt, 0.05)
+    if (mes.get("csg_par_point") or agg.get("csg_salaire")) and csg:
+        # rendement net mesuré (salaire net plus bas, prime d'activité un peu plus haute, impôt un peu plus bas…) ;
+        # à défaut, estimation : ≈ 25 % de déperdition
+        par_pt = mes.get("csg_par_point") or agg["csg_salaire"] * 0.75 / float(csg)
+        d = _arrondi(manque * MARGE / par_pt, 0.05)
         out.append({"id": "csg", "famille": "recettes", "titre": f"Relever la CSG sur les revenus d'activité de {g(csg)} % à {g(float(csg) + d)} %",
                     "description": "Touche presque tous les revenus du travail : un petit taux rapporte beaucoup.",
                     "rendement": round(par_pt * d, 2), "overrides": {"fiscalite.csg.salaires_taux": round(float(csg) + d, 3)}})
     bareme = _valeur(store, overrides, "fiscalite.impot_revenu.bareme")
-    if agg.get("impot_revenu+pfu") and isinstance(bareme, list):
-        ir = agg["impot_revenu+pfu"] * 0.9
-        pct = _arrondi(manque / ir * 100, 0.5)
+    if (mes.get("ir_par_pourcent") or agg.get("impot_revenu+pfu")) and isinstance(bareme, list):
+        ir = mes["ir_par_pourcent"] * 100 if mes.get("ir_par_pourcent") else agg["impot_revenu+pfu"] * 0.85
+        pct = _arrondi(manque * MARGE / ir * 100, 0.5)
         exemples = ", ".join(f"{g(b['taux'])} % → {g(round(b['taux'] * (1 + pct / 100), 1))} %" for b in bareme if b["taux"] > 0)
         out.append({"id": "ir", "famille": "recettes", "titre": f"Relever un peu chaque taux de l'impôt sur le revenu ({exemples})",
                     "description": f"Chaque taux augmente de {g(pct)} % de sa valeur. Touche surtout les revenus moyens et élevés : moins de la moitié des foyers paie cet impôt.",
@@ -101,7 +140,7 @@ def options_budget(store, overrides: dict, manque: float) -> list[dict]:
     # 3. Assumer
     if R_ART40 in store.regles:
         out.append({"id": "assumer", "famille": "assumer", "titre": "Assumer un déficit plus élevé",
-                    "description": "On emprunte la somme manquante chaque année. C'est possible, mais la dette augmente (et ses intérêts aussi) : ce choix sera affiché dans votre société.",
+                    "description": "On emprunte la somme manquante chaque année. C'est possible, mais la dette augmente (et ses intérêts aussi) : ce choix sera affiché dans votre proposition.",
                     "rendement": 0, "overrides": {R_ART40: False}})
     for o in out:
         o["unite"] = "milliards_euros"

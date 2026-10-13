@@ -107,11 +107,10 @@ export function BudgetEditor({ regles, overrides, onClose, onApply }: {
 
   return (
     <Modal title="Modifier le budget de l'État" onClose={onClose} width={860} footer={
-      <div className="stack" style={{ gap: 10 }}>
-        {resume && <div className="small">{resume}</div>}
-        <div className="row between">
-          <button className="btn ghost small" onClick={reinit} disabled={!mode}><RotateCcw size={15} /> Revenir au budget voté</button>
-          <div className="row"><button className="btn" onClick={onClose}>Annuler</button><button className="btn primary" onClick={appliquer} disabled={!mode}>Valider ces choix</button></div>
+      <div className="pied-budget">
+        {resume && <div className="small resume">{resume}</div>}
+        <div className="row" style={{ justifyContent: 'flex-end', flexWrap: 'nowrap' }}>
+          <button className="btn" onClick={onClose}>Annuler</button><button className="btn primary" onClick={appliquer} disabled={!mode}>Valider ces choix</button>
         </div>
       </div>
     }>
@@ -131,7 +130,10 @@ export function BudgetEditor({ regles, overrides, onClose, onApply }: {
         <div className="card soft small" style={{ padding: 12 }}>Choisissez une des deux possibilités ci-dessus pour afficher les domaines.</div>
       ) : (
         <>
-          <div className="small muted" style={{ marginBottom: 6 }}>Chaque clic sur + ou − change le domaine d'1 milliard (moins pour les petits domaines).</div>
+          <div className="row between" style={{ marginBottom: 6 }}>
+            <span className="small muted">Chaque clic sur + ou − change le domaine d'1 milliard (moins pour les petits domaines).</span>
+            <button className="btn ghost small" onClick={reinit}><RotateCcw size={14} /> Revenir au budget voté</button>
+          </div>
           <div className="input-suffix" style={{ marginBottom: 6 }}>
             <input type="search" placeholder="Chercher : école, armée, police…" value={q} onChange={(e) => setQ(e.target.value)} aria-label="Chercher un domaine" />
             <span className="suffix"><Search size={16} /></span>

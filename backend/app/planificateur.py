@@ -44,7 +44,7 @@ def signature_modele() -> tuple:
 def recharger(raison: str) -> dict:
     """Recharge le modèle, publie la nouvelle version, met à jour les forks et vide les caches de calcul."""
     from .engine.openfisca_engine import ENGINE, reset_pool
-    from .impacts import contexte, microsim, simulation
+    from .impacts import compensations, contexte, microsim, simulation
     from .model_store import get_store
     with _LOCK:
         t = time.time()
@@ -54,6 +54,7 @@ def recharger(raison: str) -> dict:
         simulation._CACHE.clear()
         contexte._BASE_CACHE.clear()
         contexte._REFORME_CACHE.clear()
+        compensations._RENDEMENTS.clear()
         microsim.charger_population.cache_clear()
         ENGINE.vider_caches()
         reset_pool()

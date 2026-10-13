@@ -112,6 +112,7 @@ def simuler(store, overrides: dict, menage=None, approximations: list[str] | Non
         "bilan": bilan_mod.construire(sections, equilibres),
         "pour_vous": _pour_vous(sections),
         "erreurs": erreurs,
+        "avertissements": _avertissements(ctx),
         "duree_secondes": round(time.time() - t0, 2),
     }
     with _LOCK:
@@ -119,6 +120,14 @@ def simuler(store, overrides: dict, menage=None, approximations: list[str] | Non
         while len(_CACHE) > 64:
             _CACHE.popitem(last=False)
     return rapport
+
+
+def _avertissements(ctx) -> list[str]:
+    from .microsim import avertissements_couverture
+    try:
+        return avertissements_couverture(ctx)
+    except Exception:  # un avertissement ne doit jamais faire échouer le rapport
+        return []
 
 
 def _pour_vous(sections: list[Section]) -> dict | None:

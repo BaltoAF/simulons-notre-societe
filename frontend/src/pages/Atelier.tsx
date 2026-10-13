@@ -235,7 +235,7 @@ export default function Atelier() {
             {!changes.length && <div className="small muted" style={{ marginTop: 6, textAlign: 'center' }}>Changez au moins une règle pour voir ses effets.</div>}
           </div>
 
-          {changes.length > 0 && (
+          {changes.length > 0 && !(aJour && desequilibres.length === 0) && (
             <div className="card">
               <h3><Save size={17} /> Enregistrer et partager</h3>
               {!aJour ? (
@@ -267,8 +267,10 @@ export default function Atelier() {
           {aJour && !loading && changes.length > 0 && desequilibres.length === 0 && (
             <div className="notice ok" style={{ marginBottom: 12 }}><CheckCircle2 size={18} style={{ flexShrink: 0 }} />
               <div className="grow"><strong>Votre réforme est équilibrée.</strong> Vous pouvez l'enregistrer pour la partager.</div>
-              {user ? <button className="btn primary small" onClick={() => setSaving(true)}><GitFork size={15} /> Enregistrer ma proposition</button>
-                : <Link className="btn primary small" to="/connexion?retour=/atelier">Se connecter pour enregistrer</Link>}
+              {!user ? <Link className="btn primary small" to="/connexion?retour=/atelier">Se connecter pour enregistrer</Link>
+                : proprietaire ? <div className="row"><button className="btn primary small" onClick={() => setSaving(true)}><GitBranch size={15} /> Mettre à jour « {base!.societe.nom} »</button>
+                  <button className="btn small" onClick={() => setSaving(true)}><GitFork size={15} /> Nouvelle proposition</button></div>
+                : <button className="btn primary small" onClick={() => setSaving(true)}><GitFork size={15} /> Enregistrer ma proposition</button>}
             </div>
           )}
           {aJour && !loading && desequilibres.length > 0 && (
@@ -281,7 +283,7 @@ export default function Atelier() {
             <div className="card soft" style={{ textAlign: 'center', padding: 32 }}>
               <Calculator size={36} color="var(--primary)" />
               <h3 style={{ marginTop: 10 }}>Votre réforme est prête</h3>
-              <p className="muted small" style={{ maxWidth: 480, margin: '0 auto 14px' }}>Le Système va calculer ce qu'elle change pour vous et pour le pays : argent public, inégalités, climat et bien-être.</p>
+              <p className="muted small" style={{ maxWidth: 480, margin: '0 auto 14px' }}>Le site va calculer ce qu'elle change pour vous et pour le pays : argent public, inégalités, climat et bien-être.</p>
               <button className="btn primary large" onClick={() => simuler()}><Calculator size={18} /> Voir les effets</button>
             </div>
           )}
@@ -289,7 +291,7 @@ export default function Atelier() {
             <div className="card soft" style={{ textAlign: 'center', padding: 32 }}>
               <Calculator size={36} color="var(--primary)" />
               <h3 style={{ marginTop: 10 }}>Par où commencer ?</h3>
-              <p className="muted small" style={{ maxWidth: 520, margin: '0 auto 14px' }}>Choisissez un thème, puis la règle à changer. Le Système calculera ce qu'elle change pour vous et pour le pays : argent, inégalités, climat et bien-être.</p>
+              <p className="muted small" style={{ maxWidth: 520, margin: '0 auto 14px' }}>Choisissez un thème, puis la règle à changer. Le site calculera ce qu'elle change pour vous et pour le pays : argent, inégalités, climat et bien-être.</p>
               <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', textAlign: 'left', marginBottom: 18 }}>
                 {[['fiscalite', 'Les impôts'], ['prestations', 'Les aides'], ['travail', 'Le travail'], ['retraites', 'Les retraites'],
                   ['budget', "Le budget de l'État"], ['environnement_energie', 'Climat et énergie'], ['transports', 'La route'], ['sante', 'La santé']].map(([d, t]) => (
@@ -349,7 +351,7 @@ function Progression({ phase, demarrage }: { phase: number; demarrage: boolean }
   ]
   return (
     <div className="card" style={{ marginBottom: 12 }}>
-      <h3 style={{ marginBottom: 10 }}>Le Système fait les calculs…</h3>
+      <h3 style={{ marginBottom: 10 }}>Calcul en cours…</h3>
       <div className="progression">
         {etapes.map((e, i) => {
           const st = phase <= 1 ? (i === 0 ? 'encours' : '') : (i === 0 ? 'ok' : 'encours')
@@ -363,7 +365,7 @@ function Progression({ phase, demarrage }: { phase: number; demarrage: boolean }
       </div>
       {demarrage
         ? <div className="notice warn small" style={{ marginTop: 10, marginBottom: 0 }}><div>Le Système vient de redémarrer et prépare ses calculs : ce premier calcul peut prendre jusqu'à une minute. Les suivants seront bien plus rapides.</div></div>
-        : <p className="small muted" style={{ marginBottom: 0, marginTop: 10 }}>Comptez 10 à 30 secondes : toutes les règles d'impôts et d'aides sont appliquées, une à une, à des milliers de foyers.</p>}
+        : <p className="small muted" style={{ marginBottom: 0, marginTop: 10 }}>Comptez de 10 secondes à une minute : toutes les règles d'impôts et d'aides sont appliquées, une à une, à des milliers de foyers.</p>}
     </div>
   )
 }

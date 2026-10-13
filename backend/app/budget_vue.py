@@ -114,10 +114,10 @@ def vue_menage(store, m: Menage) -> dict:
     g = lambda k: float(res[k][0]) * 12  # noqa: E731 — annuel
     nat = vue_nationale(store)
     payes = [
-        {"id": "impot_revenu", "titre": "Impôt sur le revenu", "montant": g("impot_revenu") + g("pfu"), "nature": "direct"},
+        {"id": "impot_revenu", "titre": "Impôt sur le revenu", "montant": g("impot_revenu"), "nature": "direct"},
         {"id": "csg_crds", "titre": "CSG et CRDS", "montant": g("csg_salaire") + g("csg_remplacement") + g("crds"), "nature": "direct"},
         {"id": "cotisations", "titre": "Cotisations sociales (part salariale)", "montant": g("cotisations_salariales"), "nature": "direct"},
-        {"id": "prelevements_capital", "titre": "Prélèvements sociaux sur l'épargne", "montant": g("prelevements_sociaux_capital"), "nature": "direct"},
+        {"id": "prelevements_capital", "titre": "Impôts sur l'épargne", "montant": g("pfu") + g("prelevements_sociaux_capital"), "nature": "direct"},
     ]
     rd = g("revenu_disponible")
     tva_part, tva_txt = _part_tva(store, float(res["niveau_de_vie"][0]) * 12)

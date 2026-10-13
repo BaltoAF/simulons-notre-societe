@@ -114,7 +114,8 @@ export type Rapport = {
   equilibres: Equilibre[]
   bilan: Pilier[]
   pour_vous: { delta_mois: number; avant: number; apres: number; confiance: Confiance | null } | null
-  partiel?: boolean // vrai pendant le 1er temps du calcul (foyer et ménages types seulement)
+  partiel?: boolean
+  avertissements?: string[] // limites du calcul à connaître pour lire ce rapport // vrai pendant le 1er temps du calcul (foyer et ménages types seulement)
 }
 
 export type Equilibre = {
@@ -137,8 +138,8 @@ export type Equilibre = {
 export type Pilier = {
   pilier: 'economie' | 'social' | 'ecologie' | 'bien_etre'
   titre: string
-  verdict: 'amelioration' | 'degradation' | 'contraste' | 'neutre' | 'non_mesure'
-  indicateurs: { id: string; libelle: string; valeur: number; unite: string; sens: string; section: string; confiance: Confiance | null }[]
+  verdict: 'amelioration' | 'degradation' | 'contraste' | 'neutre' | 'non_mesure' | 'incertain'
+  indicateurs: { id: string; libelle: string; valeur: number; unite: string; sens: string; section: string; confiance: Confiance | null; perdants?: number | null }[]
 }
 
 export type OptionCompensation = {

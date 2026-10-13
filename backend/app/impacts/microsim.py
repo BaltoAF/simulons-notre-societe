@@ -61,6 +61,35 @@ def charger_population() -> tuple[list[Menage], np.ndarray, dict] | None:
     return menages, poids, meta
 
 
+def avertissements_couverture(ctx: Contexte) -> list[str]:
+    """Prévenir quand une réforme touche des revenus que la population simulée représente mal.
+
+    5 000 ménages suffisent pour la grande majorité de la population, mais les très hauts revenus y sont presque
+    absents : une tranche d'impôt réservée aux plus riches y rapporte alors presque rien, ce qui est faux.
+    """
+    rid = "fiscalite.impot_revenu.bareme"
+    apres = ctx.overrides.get(rid)
+    if not isinstance(apres, list):
+        return []
+    avant = {round(float(t["seuil"])): float(t["taux"]) for t in (ctx.store.rule_value(rid) or [])}
+    touches = [float(t["seuil"]) for t in apres if avant.get(round(float(t["seuil"]))) != float(t["taux"])]
+    pop = charger_population()
+    if not touches or pop is None:
+        return []
+    seuil = max(touches)
+    menages, poids = pop[0], pop[1]
+    n = 0
+    for m in menages:
+        # revenu imposable par part, approché : revenus bruts × 0,72 (cotisations, abattement de 10 %) / parts
+        brut = sum(a.salaire_brut_mensuel + a.retraite_brute_mensuelle + a.chomage_brut_mensuel for a in m.adultes) * 12
+        parts = len(m.adultes) + 0.5 * min(len(m.enfants), 2) + max(0, len(m.enfants) - 2)
+        n += brut * 0.72 / parts > seuil
+    if n >= 10:
+        return []
+    return [f"Les très hauts revenus sont presque absents de la population simulée ({n} foyer{'s' if n > 1 else ''} sur {len(menages)} "
+            f"au-delà de {fr(seuil, 0)} € de revenu par part) : ce que rapporte une tranche d'impôt à ce niveau est fortement sous-estimé ici."]
+
+
 def _agreger(res: dict) -> dict[str, np.ndarray]:
     """Regroupe les composantes du moteur en postes budgétaires (€/mois par ménage)."""
     return {
@@ -251,7 +280,8 @@ def section_redistribution(ctx: Contexte) -> Section | None:
     if best and abs(best["delta_pct"]) > 0.005:
         sens_txt = "hausse" if best["delta_pct"] > 0 else "baisse"
         qui = {1: "les 10 % les plus modestes", 10: "les 10 % les plus aisés"}.get(best["decile"], f"le {best['decile']}e dixième de la population")
-        sous = f"Plus forte {sens_txt} relative du niveau de vie : {qui} ({best['delta_pct']:+.2f} %)".replace(".", ",")
+        sous = (f"Ce sont {qui} dont le niveau de vie {'augmente' if best['delta_pct'] > 0 else 'baisse'} le plus "
+                f"({best['delta_pct']:+.1f} %)").replace(".", ",")
     else:
         sous = "Effet négligeable sur la répartition des revenus"
     return Section("redistribution", "Pour les inégalités", sous, ind, Confiance.maillon_faible(conf_d, conf_g, resume="Effets redistributifs"),
@@ -282,3 +312,6 @@ def prechauffer(store) -> None:
         ctx.calculer(cas_types(), reforme=False)
     finally:
         PRET = True
+    # ensuite, sans faire attendre personne : mesurer ce que rapportent les solutions de financement
+    from .compensations import rendements_mesures
+    rendements_mesures(store)

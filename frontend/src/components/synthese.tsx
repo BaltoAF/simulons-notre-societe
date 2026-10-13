@@ -2,21 +2,36 @@
 import { useState } from 'react'
 import { CheckCircle2, Coins, Globe2, Heart, Landmark, Leaf, ShieldAlert, Users, Wallet } from 'lucide-react'
 import { api, type Equilibre, type OptionCompensation, type Pilier, type Rapport, type Valeur } from '../lib/api'
-import { euros, valeur } from '../lib/format'
+import { euros, nombre } from '../lib/format'
 import { CONFIANCE_FEMININ, equivalentCarbone, milliards, parMenageMois, phrase, tonnes } from '../lib/humain'
 import { Pourquoi, Terme } from './Terme'
 import { ConfidenceBadge, ErrorBox, Loading } from './ui'
 
 const ICONES = { economie: Landmark, social: Users, ecologie: Leaf, bien_etre: Heart }
+// pilier sans indicateur : dire ce qui n'est pas mesuré, sans laisser croire qu'il n'y a « aucun effet »
+const AUCUN: Record<string, string> = {
+  economie: "Pas d'effet mesuré sur l'argent public ni sur l'activité.",
+  social: "L'effet sur les inégalités n'est pas mesuré pour ce type de mesure (il ne passe pas par les revenus des ménages).",
+  ecologie: "Pas d'effet mesuré sur les émissions de gaz à effet de serre.",
+  bien_etre: "L'effet sur le bien-être n'est pas encore chiffré pour ce type de mesure.",
+}
 const VERDICT: Record<Pilier['verdict'], { txt: string; cls: string }> = {
   amelioration: { txt: 'Plutôt positif', cls: 'gain' },
   degradation: { txt: 'Plutôt négatif', cls: 'loss' },
   contraste: { txt: 'Du positif et du négatif', cls: 'warn' },
   neutre: { txt: 'Peu de changement', cls: '' },
   non_mesure: { txt: 'Pas encore chiffré', cls: '' },
+  incertain: { txt: 'Effet incertain', cls: '' },
 }
 
 export type Contexte = 'reforme' | 'societe'
+
+/** La pauvreté (relative) recule alors que presque personne ne gagne : effet de seuil à expliquer, sinon le lecteur croit à une erreur. */
+function paradoxePauvrete(p: Pilier): boolean {
+  const pauv = p.indicateurs.find((i) => i.id === 'pauvrete')
+  const gagnants = p.indicateurs.find((i) => i.id === 'gagnants')
+  return !!pauv && !!gagnants && pauv.valeur <= -0.02 && gagnants.valeur < 10 && (gagnants.perdants ?? 0) > 30
+}
 
 export function EnBref({ r, contexte = 'reforme' }: { r: Rapport; contexte?: Contexte }) {
   const pv = r.pour_vous
@@ -44,15 +59,19 @@ export function EnBref({ r, contexte = 'reforme' }: { r: Rapport; contexte?: Con
                 <strong className="row" style={{ gap: 6, fontSize: '1.05rem' }}><I size={18} /> {p.titre}</strong>
                 <span className={`badge ${v.cls}`}>{v.txt}</span>
               </div>
-              {p.indicateurs.length === 0 ? <div className="small muted">Cette réforme ne touche pas cette dimension, ou son effet n'est pas encore chiffré.</div> : (
+              {p.indicateurs.length === 0 ? <div className="small muted">{AUCUN[p.pilier]}</div> : (
                 <div>
                   {p.indicateurs.slice(0, 3).map((i) => (
                     <div key={i.id} className="ligne-phrase small">
                       <span className={`puce-sens ${i.sens}`} />
-                      <span>{phrase(i.id, i.valeur, i.unite)}</span>
+                      <span>{i.id === 'gagnants' && i.perdants != null ? `${nombre(i.valeur, 0)} % des ménages y gagnent, ${nombre(i.perdants, 0)} % y perdent (au moins 1 € par mois).` : phrase(i.id, i.valeur, i.unite)}</span>
                     </div>
                   ))}
                 </div>
+              )}
+              {p.pilier === 'social' && paradoxePauvrete(p) && (
+                <div className="small muted" style={{ marginTop: 6 }}>Pourquoi la pauvreté recule-t-elle si presque personne n'y gagne ? Elle se mesure par rapport au revenu du milieu
+                  de la population : quand presque tout le monde perd un peu, ce repère baisse, et moins de personnes se retrouvent en dessous.</div>
               )}
               {conf && <div className="small muted" style={{ marginTop: 8 }}>Fiabilité : <ConfidenceBadge c={conf} compact align="right" /> {CONFIANCE_FEMININ[conf.niveau]}</div>}
             </div>
@@ -65,6 +84,14 @@ export function EnBref({ r, contexte = 'reforme' }: { r: Rapport; contexte?: Con
       </div>
     </div>
   )
+}
+
+// d'où vient chaque morceau du chiffre, en mots simples (clé : titre de la rubrique du rapport)
+const SOURCE_EFFET: Record<string, string> = {
+  'Pour les finances publiques': 'Impôts et aides des ménages',
+  "Budget de l'État et de la Sécurité sociale": 'Dépenses publiques (budget voté)',
+  'Effets économiques et comportementaux': 'Effets sur les prix et la consommation',
+  'Pour la planète': 'Carburants, vitesse et consommation des ménages',
 }
 
 const FAMILLES: Record<OptionCompensation['famille'], string> = {
@@ -171,7 +198,8 @@ export function EquilibresPanel({ r, overrides, onAppliquer, contexte = 'reforme
             {e.composantes.length > 1 && (
               <details className="explain">
                 <summary>D'où vient ce chiffre ?</summary>
-                <ul className="list small">{e.composantes.map((c, i) => <li key={i} className="list-row"><span>{c.libelle}</span><strong>{valeur(c.valeur, e.unite)}</strong></li>)}</ul>
+                <ul className="list small">{e.composantes.map((c, i) => <li key={i} className="list-row"><span>{SOURCE_EFFET[c.section] ?? c.libelle}</span>
+                  <strong>{budget ? milliards(c.valeur, true) : tonnes(c.valeur, true)}</strong></li>)}</ul>
               </details>
             )}
           </div>
