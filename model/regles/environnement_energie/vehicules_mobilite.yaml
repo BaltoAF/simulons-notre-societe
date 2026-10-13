@@ -149,10 +149,11 @@ regles:
     valeurs:
       - depuis: "2026-03-01"
         valeur: true
-        sources: [sp-f35950-malus-masse]
+        sources: [sp-f35950-malus-masse, verif-an-amdt-3611-plf2026, verif-tresor-flash-conjoncture-2026-02]
+        article: "CIBS, art. L421-71 à L421-81 (taxe sur la masse en ordre de marche)"
     tags: [vehicules, malus, electrique]
-    a_verifier: true
-    note: "La fiche (vérifiée le 01/03/2026) indique une exonération en renvoyant à la date de 1re immatriculation, sans préciser les conditions éventuelles (ex. éco-score) ni la date de fin. Date « depuis » = date de vérification."
+    a_verifier: false
+    note: "Vérifié le 2026-10-13 : la loi de finances pour 2025 prévoyait de soumettre les véhicules électriques au malus masse au 1er juillet 2026 ; la loi de finances pour 2026 a maintenu l'exonération des véhicules électriques et à hydrogène (amendement n° 1161 retenu dans le texte du Gouvernement, selon l'exposé de son amendement n° 3611 du 20/01/2026). La fiche service-public (vérifiée le 01/03/2026, après la LFI 2026) et la DG Trésor (20/02/2026) confirment l'exonération, sans date de fin. Texte consolidé du CIBS non lu (Légifrance inaccessible). Date « depuis » = date de vérification de la fiche (exonération antérieure)."
 
   # ---------------------------------------------------------------------------
   # ZONES À FAIBLES ÉMISSIONS

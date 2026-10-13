@@ -145,8 +145,8 @@ regles:
         sources: [senat-tas25-164, cc-decision-2026-915-dc, senat-rapport-l25-601, legi-loi-2026-798]
         article: "Code de procédure pénale, art. 706-88-3 (créé par la loi n° 2026-798 du 18 août 2026)"
     tags: [garde_a_vue, procedure, criminalite_organisee, reforme_2026]
-    a_verifier: true
-    note: "Avant la réforme, la durée maximale pour ces infractions (art. 706-73-1 CPP) était de 48 heures (droit commun), selon le rapport du Sénat n° 601. Disposition déclarée conforme par la décision n° 2026-915 DC ; date du 20 août 2026 déduite de la publication de la loi au JO du 19 août 2026 (aucune entrée en vigueur différée dans le texte de la CMP), non confirmée par une fiche pratique officielle."
+    a_verifier: false
+    note: "Vérifié le 2026-10-13 : la décision n° 2026-915 DC (§ 370 à 381 et art. 3 du dispositif) déclare conforme l'article 706-88-3 du CPP inséré par l'article 40 de la loi : prolongation supplémentaire et exceptionnelle de 24 heures, décidée par le JLD ou le juge d'instruction, pour les seules infractions de l'article 706-73-1, portant la durée maximale à 72 heures. Avant la réforme, la durée maximale pour ces infractions était de 48 heures (droit commun), selon le rapport du Sénat n° 601. Date du 20 août 2026 = lendemain de la publication de la loi au JO du 19 août 2026 (code civil, art. 1er ; aucune entrée en vigueur différée relevée dans le texte de la CMP). La fiche service-public F14837 (vérifiée le 10/07/2025) n'est pas encore à jour."
 
   # ------------------------------------------------------------------ Prescription de l'action publique
   - id: justice_penale.prescription.contraventions

@@ -259,11 +259,11 @@ regles:
     valeurs:
       - depuis: "2019-07-01"
         valeur: true
-        sources: [mte-encadrement-loyers, sp-f1314-encadrement-loyers]
-        article: "Loi n° 2018-1021 du 23 novembre 2018 (ELAN), art. 140 ; loi n° 89-462 du 6 juillet 1989, art. 17-1"
+        sources: [mte-encadrement-loyers, sp-f1314-encadrement-loyers, verif-anil-experimentation-encadrement-loyers]
+        article: "Loi n° 2018-1021 du 23 novembre 2018 (ELAN), art. 140 ; loi n° 2022-217 du 21 février 2022 (3DS), art. 85 ; loi n° 89-462 du 6 juillet 1989, art. 17-1"
     tags: [loyer, encadrement, zone_tendue]
-    a_verifier: true
-    note: "Paris depuis le 1er juillet 2019 (premier territoire). Expérimentation de 5 ans prolongée de 3 ans par la loi 3DS du 21 février 2022 « jusqu'en 2026 » (ministère, page du 28/10/2025) : une éventuelle prolongation ou pérennisation au-delà de novembre 2026 n'a pas été vérifiée. Service-public (01/08/2026) liste encore les territoires encadrés. Expérimentation distincte en outre-mer depuis la loi Bélim du 13 juin 2025."
+    a_verifier: false
+    note: "Vérifié le 2026-10-13 : dispositif en vigueur au 13/10/2026 (service-public, fiche vérifiée le 01/08/2026, liste les territoires encadrés : Paris, Est Ensemble, Plaine Commune, Lille, Lyon et Villeurbanne, Bordeaux, Montpellier, une partie de Grenoble-Alpes Métropole, Pays basque). Paris depuis le 1er juillet 2019 (premier territoire). Expérimentation prolongée de 3 ans par la loi 3DS « jusqu'au 25 novembre 2026 » (ANIL, à jour au 23/07/2026) ; aucune prolongation ni pérennisation votée relevée au 13/10/2026 (propositions de loi en cours) : la valeur devra être revue après le 25 novembre 2026. Expérimentation distincte en outre-mer depuis la loi Bélim du 13 juin 2025 (jusqu'en juin 2030)."
 
   - id: logement.encadrement_loyers.territoires
     titre: "Encadrement des loyers : territoires concernés"

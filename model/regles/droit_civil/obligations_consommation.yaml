@@ -26,11 +26,11 @@ regles:
     valeurs:
       - depuis: "2008-06-18"
         valeur: 20
-        sources: [an-ta-138-2007, senat-dossier-prescription-2008]
+        sources: [an-ta-138-2007, senat-dossier-prescription-2008, verif-senat-qe-15-22513]
         article: "Code civil, art. 2232 (loi n° 2008-561 du 17 juin 2008)"
     tags: [prescription, justice_civile, delai]
-    a_verifier: true
-    note: "Valeur lue dans le texte définitif de 2008 (date de publication au JO retenue) ; aucune source officielle à jour lue pour confirmer la rédaction en vigueur au 13/10/2026 (Légifrance inaccessible, fiche DGCCRF « Délais de prescription » bloquée par protection anti-bot). Le texte de 2008 écarte ce plafond notamment pour le dommage corporel (art. 2226), les actions réelles immobilières (art. 2227) et les actions relatives à l'état des personnes."
+    a_verifier: false
+    note: "Vérifié le 2026-10-13 : réponse du ministère de la justice (JO Sénat du 17/03/2022), citant Cass. 3e civ., 8 décembre 2021 : l'article 2232 du code civil « édicte un délai butoir de vingt ans à compter de la naissance du droit ». Rédaction consolidée non lue (Légifrance inaccessible). Valeur lue aussi dans le texte définitif de 2008 (date de publication au JO retenue). Le texte de 2008 écarte ce plafond notamment pour le dommage corporel (art. 2226), les actions réelles immobilières (art. 2227) et les actions relatives à l'état des personnes."
 
   # ---------------------------------------------------------------- droits de rétractation
   - id: droit_civil.retractation.achat_a_distance

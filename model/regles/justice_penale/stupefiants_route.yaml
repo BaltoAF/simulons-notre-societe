@@ -399,10 +399,11 @@ regles:
     valeurs:
       - depuis: "2025-12-29"
         valeur: 300
-        sources: [sp-a18723]
+        sources: [verif-senat-tas24-160, sp-a18723]
+        article: "Code de la route, art. L413-1, IV (rédaction issue de l'article 6 de la loi n° 2025-622 du 9 juillet 2025)"
     tags: [route, vitesse, amende_forfaitaire, reforme_2025]
-    a_verifier: true
-    note: "Montant lu uniquement dans l'actualité service-public A18723 (« une amende forfaitaire délictuelle est désormais proposée… 300 €, minorée à 250 €… majorée à 600 € ») ; la fiche « Vitesse au volant » (F19460) ne la mentionne pas et le texte légal n'a pas pu être consulté. Date alignée sur l'entrée en vigueur du délit (29/12/2025), à confirmer."
+    a_verifier: false
+    note: "Vérifié le 2026-10-13 : le texte définitivement adopté (Sénat, texte n° 160 du 1er juillet 2025, devenu la loi n° 2025-622 du 9 juillet 2025) prévoit l'extinction de l'action publique par le versement d'une amende forfaitaire de 300 € (minorée 250 €, majorée 600 €), avec entrée en vigueur à une date fixée par décret et au plus tard le 31 décembre 2025. Date du 29/12/2025 = entrée en vigueur du délit selon l'actualité service-public A18723."
 
   # ------------------------------------------------------------------ Refus d'obtempérer
   - id: justice_penale.refus_obtemperer.prison_max

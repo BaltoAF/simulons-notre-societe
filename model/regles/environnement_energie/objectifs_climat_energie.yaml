@@ -25,11 +25,11 @@ regles:
     valeurs:
       - depuis: "2015-08-17"
         valeur: 40
-        sources: [mte-ltecv]
-        article: "Code de l'énergie, art. L100-4 (loi du 17 août 2015 relative à la transition énergétique pour la croissance verte)"
+        sources: [mte-ltecv, verif-senat-rap-801-2025, verif-an-dossier-ppl-programmation-energie]
+        article: "Code de l'énergie, art. L100-4, I, 1° (loi du 17 août 2015 relative à la transition énergétique pour la croissance verte)"
     tags: [climat, objectif, emissions]
-    a_verifier: true
-    note: "Objectif lu sur la page ministérielle de la LTECV (mise à jour le 26/06/2025). La rédaction en vigueur de l'article L100-4 n'a pas pu être consultée (Légifrance inaccessible) : un relèvement législatif postérieur n'est pas exclu. La SNBC 3 vise, elle, -50 % en 2030 (voir règle dédiée)."
+    a_verifier: false
+    note: "Vérifié le 2026-10-13 : le rapport du Sénat n° 801 (1er juillet 2025) cite le droit en vigueur de l'art. L100-4, I, 1° (réduire les émissions de GES de 40 % entre 1990 et 2030). La proposition de loi « Gremillet » qui relevait l'objectif à 50 % (hors terres et forêts) n'est pas adoptée au 13/10/2026 (en instance de 2e lecture à l'Assemblée nationale depuis juillet 2025). Rédaction consolidée non lue (Légifrance inaccessible). La SNBC 3 vise, elle, -50 % en 2030 (voir règle dédiée)."
 
   - id: environnement_energie.climat.objectif_snbc3_reduction_emissions_2030
     titre: "Objectif de la 3e stratégie nationale bas-carbone : baisse des émissions territoriales en 2030 (par rapport à 1990)"

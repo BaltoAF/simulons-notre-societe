@@ -39,13 +39,13 @@ regles:
     unite: ans
     bornes: [0, 10]
     valeurs:
-      - depuis: "2026-06-19"
+      - depuis: "2023-01-26"
         valeur: 5
-        sources: [sp-f1523, wikipedia-vol-droit-penal-francais]
+        sources: [verif-senat-qe-16-00258, sp-f1523, verif-cc-2010-25-qpc-dossier]
         article: "Code pénal, art. 311-4"
     tags: [peine, delit, vol, biens]
-    a_verifier: true
-    note: "La fiche officielle F1523 indique seulement que le vol aggravé est puni « de 5 ans de prison à la réclusion criminelle à perpétuité » ; l'association de 5 ans / 75 000 € au cas d'une seule circonstance (art. 311-4) vient de Wikipédia. Les paliers à 2 et 3 circonstances n'ont pas été lus sur une source. Date d'entrée en vigueur non établie ; valeur attestée au 2026-06-19."
+    a_verifier: false
+    note: "Vérifié le 2026-10-13 : réponse du ministère de la justice (JO Sénat du 26/01/2023) : le vol aggravé fait encourir « 5, 7 ou 10 ans d'emprisonnement et 75 000, 100 000 ou 150 000 euros d'amende » selon qu'il y a une, deux ou trois circonstances aggravantes ; même palier de 5 ans / 75 000 € dans l'art. 311-4 reproduit par le Conseil constitutionnel (2010) ; la fiche F1523 (19/06/2026) confirme que le vol aggravé est puni à partir de 5 ans de prison. Rédaction consolidée 2026 non lue (Légifrance inaccessible). Date d'entrée en vigueur non établie ; valeur attestée au 2023-01-26."
 
   - id: justice_penale.vol_aggrave.peine_max
     titre: "Vol aggravé : peine maximale possible"
@@ -83,12 +83,13 @@ regles:
     unite: ans
     bornes: [0, 30]
     valeurs:
-      - depuis: "2026-08-11"
+      - depuis: "2002-01-01"
         valeur: 15
-        sources: [wikipedia-vol-droit-penal-francais]
+        sources: [verif-senat-qe-16-00258, verif-cc-2010-25-qpc-dossier]
+        article: "Code pénal, art. 311-9"
     tags: [peine, crime, vol, bande_organisee, biens]
-    a_verifier: true
-    note: "Valeur trouvée uniquement sur Wikipédia. La fiche F1523 cite le vol en bande organisée parmi les circonstances aggravantes sans en donner la peine. Date d'entrée en vigueur non établie ; valeur attestée au 2026-08-11."
+    a_verifier: false
+    note: "Vérifié le 2026-10-13 : réponse du ministère de la justice (JO Sénat du 26/01/2023) : le vol en bande organisée fait encourir « 15 ans de réclusion criminelle et 150 000 euros d'amende » ; l'art. 311-9 reproduit par le Conseil constitutionnel (rédaction issue de l'ordonnance n° 2000-916, en vigueur le 1er janvier 2002) prévoit 15 ans, 20 ans avec violences et 30 ans avec arme. Rédaction consolidée 2026 non lue (Légifrance inaccessible). La fiche F1523 cite le vol en bande organisée parmi les circonstances aggravantes sans en donner la peine."
 
   - id: justice_penale.vol_avec_arme.reclusion_max
     titre: "Vol avec arme (vol à main armée) : peine maximale de réclusion criminelle"
@@ -97,12 +98,13 @@ regles:
     unite: ans
     bornes: [0, 30]
     valeurs:
-      - depuis: "2026-08-11"
+      - depuis: "2002-01-01"
         valeur: 20
-        sources: [wikipedia-vol-droit-penal-francais]
+        sources: [verif-cc-2010-25-qpc-dossier, wikipedia-vol-droit-penal-francais]
+        article: "Code pénal, art. 311-8"
     tags: [peine, crime, vol, arme, biens]
     a_verifier: true
-    note: "Durée trouvée uniquement sur Wikipédia ; la fiche officielle F1487 confirme seulement que le « vol à main armée » est un crime jugé par la cour d'assises. Date d'entrée en vigueur non établie ; valeur attestée au 2026-08-11."
+    note: "Durée confirmée par une source officielle ancienne : l'art. 311-8 reproduit par le Conseil constitutionnel (dossier de la décision 2010-25 QPC) punit le vol avec usage ou menace d'une arme de vingt ans de réclusion criminelle et 150 000 € d'amende (rédaction en vigueur depuis le 1er janvier 2002). Maintien au 13/10/2026 non confirmé par une source officielle récente : tentatives du 2026-10-13 sans succès (Légifrance inaccessible, recherches sur service-public, justice.gouv.fr, Sénat, Assemblée nationale) ; la fiche F1487 confirme seulement que le « vol à main armée » est un crime jugé par la cour d'assises ; seul Wikipédia (2026-08-11) l'atteste à date récente."
 
   # --- Amende forfaitaire délictuelle (AFD) pour vol de faible valeur ---
   - id: justice_penale.vol_faible_valeur.amende_forfaitaire

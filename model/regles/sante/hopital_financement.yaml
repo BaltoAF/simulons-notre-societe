@@ -70,11 +70,11 @@ regles:
     valeurs:
       - depuis: "2025-12-31"
         valeur: 274.4
-        sources: [an-plfss-2027-exposemotifs-ondam, bdt-localtis-lfss-2026]
+        sources: [an-plfss-2027-exposemotifs-ondam, verif-ccss-octobre-2026, bdt-localtis-lfss-2026]
         article: "Loi n° 2025-1403 du 30 décembre 2025 de financement de la sécurité sociale pour 2026"
     tags: [ondam, finances_sociales, budget_sante]
-    a_verifier: true
-    note: "274,4 Md€ = montant « inscrit dans la loi de financement de la sécurité sociale pour 2026 » selon l'exposé des motifs du PLFSS 2027 (AN n° 3211, 01/10/2026). Banque des territoires (06/01/2026) indique 271,3 Md€ : divergence non résolue. Le PLFSS 2027, non adopté au 13/10/2026, propose de rectifier l'ONDAM 2026 de 1,1 Md€ (tableau : 273,3 Md€, +2,8 %). Date « depuis » = publication de la LFSS au JO (31/12/2025) selon Banque des territoires."
+    a_verifier: false
+    note: "Vérifié le 2026-10-13 : deux sources officielles concordent sur 274,4 Md€ : l'exposé des motifs du PLFSS 2027 (AN n° 3211, 01/10/2026 : montant « inscrit dans la loi de financement de la sécurité sociale pour 2026 ») et le rapport à la Commission des comptes de la sécurité sociale d'octobre 2026 (« prévision de la LFSS pour 2026, soit 274,4 Md€ », +3,1 % à champ constant). Le chiffre de 271,3 Md€ de la Banque des territoires (06/01/2026, source presse) n'est pas retenu. Le PLFSS 2027, non adopté au 13/10/2026, propose de rectifier l'ONDAM 2026 à 273,3 Md€ (-1,1 Md€, +2,8 %). Date « depuis » = publication de la LFSS au JO (31/12/2025) selon Banque des territoires."
 
   - id: sante.ondam.taux_evolution_2026
     titre: "ONDAM 2026 : taux d'évolution voté par rapport à 2025"

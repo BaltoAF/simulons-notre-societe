@@ -1,0 +1,109 @@
+question:
+  id: revenu_satisfaction_vie
+  titre: "Effet du revenu sur la satisfaction dans la vie"
+  definition: "Variation de la satisfaction dans la vie (en points sur une échelle de 0 à 10) associée à un doublement du revenu (du ménage ou par habitant), calculée comme le coefficient du logarithme népérien du revenu multiplié par ln 2 (≈ 0,693). Les coefficients publiés en écarts-types sont convertis lorsque l'écart-type de l'échelle 0-10 est connu."
+  unite: points_sur_10_par_doublement
+  regles_liees: []
+  sens_attendu: positif
+  estimations:
+    - source: pbe-perona-2023-cepremap-plus-quun-travail
+      valeur: 0.32
+      intervalle_95: null
+      methode: "Régression « toutes choses égales par ailleurs » de la satisfaction dans la vie (0-10) sur le logarithme du revenu disponible du ménage, avec effets fixes de profession et caractéristiques socio-démographiques"
+      champ: "France métropolitaine, personnes en emploi, enquête Insee SRCV (environ 10 000 ménages par an), années récentes"
+      pays: FR
+      annee_donnees: null
+      type_etude: descriptif
+      revue_par_les_pairs: false
+      note: "La note indique qu'une hausse de 10 % du revenu entraîne en moyenne un gain de 0,044 point de satisfaction dans la vie. Conversion : coefficient du log = 0,044 / ln(1,10) = 0,462 ; × ln 2 = 0,32 point par doublement (la note OBE 2025-06 précise que les coefficients sont multipliés par log(1,10) pour être exprimés en hausse de 10 %). Corrélation en coupe, non causale ; le contrôle par la profession absorbe une partie de l'effet du revenu."
+    - source: pbe-lindqvist-ostling-cesarini-2020
+      valeur: 0.50
+      intervalle_95: null
+      methode: "Quasi-expérience : comparaison de gagnants de loteries suédoises à des joueurs aux chances de gain identiques ; variable instrumentale (gain annuité sur 20 ans) pour le log du revenu permanent"
+      champ: "Suède, joueurs de loterie interrogés en 2016 (environ 3 300 répondants), gains survenus 5 à 22 ans plus tôt"
+      pays: SE
+      annee_donnees: 2016
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Version NBER : l'effet causal du log du revenu sur la satisfaction globale est de 0,377 écart-type. La satisfaction (0-10) a un écart-type de 1,93 dans l'échantillon (moyenne 7,21), d'où 0,377 × 1,93 = 0,73 point par unité de log, × ln 2 = 0,50 point par doublement. Cet effet est proche du gradient en coupe ; l'effet sur le bonheur ressenti est plus faible (0,165 écart-type). L'effet ne s'estompe pas avec le temps. NB : la synthèse de HM Treasury (2021) rapporte pour cette étude un coefficient de 0,35-0,50 « sur une échelle 0-10 », ce qui donnerait 0,24-0,35 par doublement ; écart non élucidé (probable confusion entre écarts-types et points)."
+    - source: pbe-frijters-haisken-denew-shields-2004
+      valeur: 0.35
+      intervalle_95: null
+      methode: "Panel à effets fixes exploitant la forte hausse des revenus réels en Allemagne de l'Est après la réunification"
+      champ: "Allemagne de l'Est, panel SOEP, années 1990"
+      pays: DE
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: true
+      note: "Coefficient du log du revenu de 0,5 (satisfaction 0-10) selon la synthèse de HM Treasury (2021) ; × ln 2 = 0,35 point par doublement. Texte intégral non consulté."
+    - source: pbe-hmt-2021-wellbeing-discussion-paper
+      valeur: 1.18
+      intervalle_95: null
+      methode: "Variable instrumentale (gains de loterie comme instrument du revenu du ménage), fonction de contrôle — étude de Fujiwara (2013, CEP Discussion Paper n° 1233)"
+      champ: "Royaume-Uni, British Household Panel Survey, gagnants de loterie ; effet de court terme"
+      pays: GB
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: false
+      note: "HM Treasury rapporte un coefficient de 1,1 sur l'échelle 1-7 du BHPS, soit « environ 1,7 » sur une échelle 0-10 (conversion faite par HM Treasury) ; × ln 2 = 1,18 point par doublement. C'est l'estimation la plus élevée de la littérature ; HM Treasury retient pour ses évaluations un coefficient voisin (1,96, issu de Fujiwara 2021 et fondé sur des consentements à payer). Étude primaire non consultée."
+    - source: pbe-clark-fleche-layard-powdthavee-ward-2018
+      valeur: 0.09
+      intervalle_95: null
+      methode: "Panel : variations individuelles de satisfaction et de revenu entre 34 et 42 ans"
+      champ: "Royaume-Uni, British Cohort Study (cohorte née en 1970)"
+      pays: GB
+      annee_donnees: null
+      type_etude: descriptif
+      revue_par_les_pairs: true
+      note: "Coefficient du log du revenu de 0,13 (satisfaction 0-10) selon HM Treasury (2021) ; × ln 2 = 0,09 point par doublement. Les estimations en panel avec effets individuels sont généralement plus faibles (le revenu mesuré inclut des variations transitoires et des erreurs de mesure). Ouvrage non consulté directement."
+    - source: pbe-murtin-boarini-cordoba-ripoll-2017
+      valeur: 0.33
+      intervalle_95: null
+      methode: "Régressions de la satisfaction (échelle de Cantril) sur le log du revenu du ménage, données individuelles"
+      champ: "Monde (Gallup World Poll), coefficient moyen"
+      pays: INT
+      annee_donnees: null
+      type_etude: descriptif
+      revue_par_les_pairs: true
+      note: "Coefficient moyen du log du revenu de 0,48 (0-10) selon HM Treasury (2021), qui précise que le revenu y est probablement endogène ; × ln 2 = 0,33 point par doublement. HM Treasury cite aussi Brenig & Proeger (2016) pour l'Europe : 0,49. Étude primaire non consultée."
+    - source: pbe-whr-2024-chapitre-2
+      valeur: 0.24
+      intervalle_95: [0.15, 0.33]
+      methode: "Régression MCO groupée des moyennes nationales de l'échelle de Cantril sur le log du PIB par habitant, en contrôlant le soutien social, l'espérance de vie en bonne santé, la liberté, la générosité et la corruption perçue"
+      champ: "155 pays, 2 103 observations pays-années, 2005-2023 (Gallup World Poll)"
+      pays: INT
+      annee_donnees: 2023
+      type_etude: descriptif
+      revue_par_les_pairs: false
+      note: "Tableau 2.1 : coefficient du log du PIB par habitant = 0,349 (e.t. 0,068) ; × ln 2 = 0,24 point par doublement du PIB par habitant. Intervalle = (0,349 ± 1,96 × 0,068) × 0,693. Comparaison entre pays et non effet d'un doublement du revenu individuel ; l'effet total du revenu est sous-estimé car une partie passe par l'espérance de vie et le soutien social, contrôlés dans la régression."
+    - source: pbe-stevenson-wolfers-2008
+      valeur: null
+      intervalle_95: null
+      methode: "Probit ordonné de la satisfaction sur le log du revenu, par pays (comparaisons internes) et entre pays (log du PIB par habitant)"
+      champ: "Gallup World Poll (113 pays avec données de revenu), World Values Survey, Pew ; comparaisons internes, entre pays et dans le temps"
+      pays: INT
+      annee_donnees: 2006
+      type_etude: descriptif
+      revue_par_les_pairs: false
+      note: "Gradient moyen interne aux pays de 0,38 (90 % des pays entre 0,07 et 0,72) et gradient entre pays d'environ 0,4, exprimés en écarts-types du bien-être latent (et non en points) : conversion impossible sans l'écart-type de l'échelle, valeur laissée vide. Résultat clé : les gradients entre pays et dans les pays sont semblables (proches de 0,4), sans point de saturation, ce qui contredit le « paradoxe d'Easterlin ». La version de Sacks, Stevenson et Wolfers (NBER w16441, 2010) trouve 0,23 écart-type par unité de log dans le Gallup World Poll (0,42 après correction du revenu transitoire)."
+    - source: pbe-easterlin-et-al-2010
+      valeur: null
+      intervalle_95: null
+      methode: "Séries temporelles nationales de satisfaction et de revenu sur 10 ans ou plus"
+      champ: "Pays développés, pays en développement et pays en transition post-socialiste"
+      pays: INT
+      annee_donnees: null
+      type_etude: descriptif
+      revue_par_les_pairs: true
+      note: "Résumé : à long terme (10 ans ou plus), la satisfaction n'augmente pas quand le revenu national augmente (relation « nulle ») ; à court terme, elle suit les cycles économiques. Les auteurs attribuent les résultats contraires à un artefact statistique ou à une confusion entre court et long terme. Aucune valeur chiffrée convertible n'a pu être lue : valeur laissée vide. Porte sur la croissance du revenu de tout un pays, pas sur le revenu d'un ménage par rapport aux autres."
+    - source: pbe-killingsworth-2021
+      valeur: null
+      intervalle_95: null
+      methode: "Échantillonnage d'expériences par smartphone (1,7 million de relevés) et questionnaire de satisfaction sur échelle continue"
+      champ: "États-Unis, 33 391 adultes en emploi de 18 à 65 ans, revenu du ménage d'au moins 10 000 $"
+      pays: US
+      annee_donnees: null
+      type_etude: descriptif
+      revue_par_les_pairs: true
+      note: "La satisfaction dans la vie et le bien-être ressenti augmentent tous deux linéairement avec le log du revenu, sans plateau à 75 000 $ (contrairement à Kahneman et Deaton 2010 pour les émotions ; ces derniers trouvaient déjà que l'évaluation de la vie progresse sans plateau). Corrélation revenu-satisfaction r = 0,17 ; pente du bien-être ressenti 0,11 par unité de log (unité de l'échelle non convertible en points sur 10) : valeur laissée vide. Échantillon non représentatif. La collaboration Killingsworth-Kahneman-Mellers (PNAS 2023) montre un plafonnement seulement chez les personnes les moins heureuses."
+  note_synthese: "Toutes les études trouvent que les personnes plus riches sont plus satisfaites de leur vie, et la relation suit le logarithme du revenu : doubler son revenu apporte à peu près le même gain, que l'on soit pauvre ou riche. L'ordre de grandeur le plus courant est d'environ +0,3 point sur 10 par doublement (France : +0,32 d'après l'enquête SRCV ; comparaisons mondiales : +0,24 à +0,33), et l'étude causale la plus solide, sur des gagnants de loterie suédois, trouve environ +0,5 point, durable dans le temps. Les estimations divergent fortement selon la méthode : de +0,09 en suivant les mêmes personnes dans le temps à +1,2 avec des gains de loterie britanniques, valeur haute retenue par le Trésor britannique pour ses évaluations. Le débat sur le « paradoxe d'Easterlin » reste ouvert : quand tout un pays s'enrichit sur le long terme, Easterlin ne trouve pas de hausse durable de la satisfaction, alors que Stevenson et Wolfers observent le même lien entre pays qu'entre individus. Pour une réforme qui augmente le revenu de certains ménages, un gain de l'ordre de 0,3 à 0,5 point par doublement du revenu est donc plausible, sans garantie qu'il se maintienne si tout le monde s'enrichit en même temps."

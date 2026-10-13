@@ -1,0 +1,419 @@
+# Registre des sources de la base de preuves « bien-être et écologie » (études citées dans model/preuves/).
+# Produit par le Système (agents de recherche) - consulté le 2026-10-13.
+# Fiches concernées : revenu_satisfaction_vie, chomage_satisfaction_vie, elasticite_empreinte_carbone_revenu,
+# vitesse_limite_emissions_co2, retraite_sante, temps_travail_bien_etre.
+sources:
+  # ---------------------------------------------------------------------------
+  # 1. Revenu et satisfaction dans la vie
+  # ---------------------------------------------------------------------------
+  - id: pbe-perona-2023-cepremap-plus-quun-travail
+    type: document_de_travail
+    editeur: "CEPREMAP – Observatoire du Bien-être"
+    titre: "Plus qu'un travail (Note de l'OBE n° 2023-09)"
+    url: "https://www.cepremap.fr/depot/2023/06/2023-09-Plus-quun-travail.pdf"
+    auteurs: ["Mathieu Perona"]
+    date_publication: "2023-06-08"
+    consulte_le: "2026-10-13"
+    note: "Données Insee SRCV (actifs occupés). Donne l'effet d'une hausse de 10 % du revenu disponible du ménage sur la satisfaction dans la vie (0-10), toutes choses égales par ailleurs."
+  - id: pbe-lindqvist-ostling-cesarini-2020
+    type: etude_academique
+    editeur: "The Review of Economic Studies"
+    titre: "Long-Run Effects of Lottery Wealth on Psychological Well-Being"
+    url: "https://doi.org/10.1093/restud/rdaa006"
+    auteurs: ["Erik Lindqvist", "Robert Östling", "David Cesarini"]
+    date_publication: "2020"
+    consulte_le: "2026-10-13"
+    note: "Vol. 87, n° 6, p. 2703-2726. Chiffres lus dans la version NBER Working Paper 24667 (mai 2018) : https://www.nber.org/papers/w24667."
+  - id: pbe-frijters-haisken-denew-shields-2004
+    type: etude_academique
+    editeur: "American Economic Review"
+    titre: "Money Does Matter! Evidence from Increasing Real Income and Life Satisfaction in East Germany Following Reunification"
+    url: "https://doi.org/10.1257/0002828041464551"
+    auteurs: ["Paul Frijters", "John P. Haisken-DeNew", "Michael A. Shields"]
+    date_publication: "2004-06"
+    consulte_le: "2026-10-13"
+    note: "Vol. 94, n° 3, p. 730-740. Coefficient du log du revenu (0,5 sur une échelle 0-10) lu dans la synthèse de HM Treasury (2021, document de discussion), texte intégral non consulté."
+  - id: pbe-clark-fleche-layard-powdthavee-ward-2018
+    type: etude_academique
+    editeur: "Princeton University Press"
+    titre: "The Origins of Happiness: The Science of Well-Being over the Life Course"
+    url: "https://doi.org/10.1515/9780691196954"
+    auteurs: ["Andrew E. Clark", "Sarah Flèche", "Richard Layard", "Nattavudh Powdthavee", "George Ward"]
+    date_publication: "2018"
+    consulte_le: "2026-10-13"
+    note: "Ouvrage (édition de poche 2019). Coefficients lus dans les documents de HM Treasury (2021) : log du revenu = 0,13 (British Cohort Study, panel 34-42 ans) ; chômage = -0,46/-0,466 (Royaume-Uni, revenu contrôlé). Ouvrage non consulté directement."
+  - id: pbe-murtin-boarini-cordoba-ripoll-2017
+    type: etude_academique
+    editeur: "European Economic Review"
+    titre: "Beyond GDP: Is there a law of one shadow price?"
+    url: "https://doi.org/10.1016/j.euroecorev.2017.09.001"
+    auteurs: ["Fabrice Murtin", "Romina Boarini", "Juan Carlos Cordoba", "Marla Ripoll"]
+    date_publication: "2017-11"
+    consulte_le: "2026-10-13"
+    note: "Vol. 100, p. 390-411 (version antérieure : OECD Statistics Working Paper, 2015). Coefficient moyen du log du revenu (0,48, échelle 0-10, Gallup World Poll) lu dans la synthèse de HM Treasury (2021)."
+  - id: pbe-hmt-2021-wellbeing-discussion-paper
+    type: rapport_institutionnel
+    editeur: "HM Treasury (Royaume-Uni)"
+    titre: "Wellbeing discussion paper: monetisation of life satisfaction effect sizes (background paper reviewing methods and approaches)"
+    url: "https://assets.publishing.service.gov.uk/media/60fa91c68fa8f50431ca80da/Wellbeing_guidance_for_appraisal_-_background_paper_reviewing_methods_and_approaches.pdf"
+    auteurs: []
+    date_publication: "2021-07"
+    consulte_le: "2026-10-13"
+    note: "Document de discussion (ne vaut pas position du gouvernement). Recense les coefficients du log du revenu sur la satisfaction (0-10) : Clark et al. 0,13 ; Murtin et al. 0,48 ; Brenig & Proeger 0,49 ; Lindqvist et al. 0,35-0,50 ; Frijters et al. 0,5 ; Fujiwara (2013, CEP Discussion Paper n° 1233) 1,7 ; Fujiwara (2021) 2,038."
+  - id: pbe-hmt-2021-wellbeing-guidance
+    type: rapport_institutionnel
+    editeur: "HM Treasury (Royaume-Uni)"
+    titre: "Wellbeing Guidance for Appraisal: Supplementary Green Book Guidance"
+    url: "https://assets.publishing.service.gov.uk/media/60fa9169d3bf7f0448719daf/Wellbeing_guidance_for_appraisal_-_supplementary_Green_Book_guidance.pdf"
+    auteurs: []
+    date_publication: "2021-07"
+    consulte_le: "2026-10-13"
+    note: "Guide officiel d'évaluation socio-économique. Retient un coefficient du log du revenu de 1,96 (satisfaction 0-10, d'après Fujiwara 2021) et un effet du chômage de -0,466 point au-delà de la perte de revenu (d'après Clark et al. 2018)."
+  - id: pbe-whr-2024-chapitre-2
+    type: rapport_institutionnel
+    editeur: "World Happiness Report (Wellbeing Research Centre, Université d'Oxford ; données Gallup World Poll)"
+    titre: "World Happiness Report 2024 – Chapter 2: Happiness of the Younger, the Older, and Those In Between"
+    url: "https://files.worldhappiness.report/WHR24_Ch02.pdf"
+    auteurs: ["John F. Helliwell", "Haifang Huang", "Hugh Shiplett", "Shun Wang"]
+    date_publication: "2024-03"
+    consulte_le: "2026-10-13"
+    note: "Tableau 2.1 : régression MCO groupée des moyennes nationales de l'échelle de Cantril (0-10) sur six facteurs, 155 pays, 2 103 observations pays-années (2005-2023)."
+  - id: pbe-stevenson-wolfers-2008
+    type: document_de_travail
+    editeur: "National Bureau of Economic Research (NBER)"
+    titre: "Economic Growth and Subjective Well-Being: Reassessing the Easterlin Paradox"
+    url: "https://www.nber.org/papers/w14282"
+    auteurs: ["Betsey Stevenson", "Justin Wolfers"]
+    date_publication: "2008-08"
+    consulte_le: "2026-10-13"
+    note: "NBER Working Paper 14282 ; publié dans Brookings Papers on Economic Activity (printemps 2008). Coefficients exprimés en écarts-types du bien-être latent (probit ordonné)."
+  - id: pbe-easterlin-et-al-2010
+    type: etude_academique
+    editeur: "Proceedings of the National Academy of Sciences (PNAS)"
+    titre: "The happiness-income paradox revisited"
+    url: "https://doi.org/10.1073/pnas.1015962107"
+    auteurs: ["Richard A. Easterlin", "Laura Angelescu McVey", "Malgorzata Switek", "Onnicha Sawangfa", "Jacqueline Smith Zweig"]
+    date_publication: "2010-12"
+    consulte_le: "2026-10-13"
+    note: "Vol. 107, n° 52, p. 22463-22468. Seul le résumé a pu être lu (texte intégral inaccessible)."
+  - id: pbe-killingsworth-2021
+    type: etude_academique
+    editeur: "Proceedings of the National Academy of Sciences (PNAS)"
+    titre: "Experienced well-being rises with income, even above $75,000 per year"
+    url: "https://doi.org/10.1073/pnas.2016976118"
+    auteurs: ["Matthew A. Killingsworth"]
+    date_publication: "2021-01"
+    consulte_le: "2026-10-13"
+    note: "Vol. 118, n° 4, e2016976118. Texte intégral lu via Europe PMC (PMC7848527)."
+  # ---------------------------------------------------------------------------
+  # 2. Chômage et satisfaction dans la vie
+  # ---------------------------------------------------------------------------
+  - id: pbe-insee-ia71-2022
+    type: statistique_publique
+    editeur: "Insee"
+    titre: "Vivre en Île-de-France a un effet négatif sur la satisfaction dans la vie (Insee Analyses n° 71)"
+    url: "https://www.insee.fr/fr/statistiques/6043792"
+    auteurs: ["François Gleizes", "Stéphane Legleye", "Anne Pla"]
+    date_publication: "2022-02"
+    consulte_le: "2026-10-13"
+    note: "Enquêtes SRCV 2010-2019, environ 162 000 réponses de 47 000 personnes ; régressions « toutes choses égales par ailleurs » incluant le niveau de vie du ménage."
+  - id: pbe-delassus-perona-2025-cepremap-chomage
+    type: document_de_travail
+    editeur: "CEPREMAP – Observatoire du Bien-être (module du Baromètre Unédic)"
+    titre: "Le chômage, entre précarité matérielle et vulnérabilité psychologique (Note de l'OBE n° 2025-12)"
+    url: "https://www.cepremap.fr/depot/2025/06/2025-12-Epreuve_Chomage.pdf"
+    auteurs: ["Joséphine Delassus", "Mathieu Perona"]
+    date_publication: "2025-06-10"
+    consulte_le: "2026-10-13"
+    note: "Exploitation du 6e volet du Baromètre de la perception du chômage et de l'emploi de l'Unédic."
+  - id: pbe-lucas-clark-georgellis-diener-2004
+    type: etude_academique
+    editeur: "Psychological Science"
+    titre: "Unemployment Alters the Set Point for Life Satisfaction"
+    url: "https://doi.org/10.1111/j.0963-7214.2004.01501002.x"
+    auteurs: ["Richard E. Lucas", "Andrew E. Clark", "Yannis Georgellis", "Ed Diener"]
+    date_publication: "2004-01"
+    consulte_le: "2026-10-13"
+    note: "Vol. 15, n° 1, p. 8-13. Chiffres lus dans la version de travail du 26 février 2002 (Brunel University, http://bura.brunel.ac.uk/bitstream/2438/926/1/02-16.pdf)."
+  - id: pbe-www-2017-chomage
+    type: rapport_institutionnel
+    editeur: "What Works Centre for Wellbeing (Royaume-Uni)"
+    titre: "Unemployment, (re)employment and wellbeing – Briefing"
+    url: "https://whatworkswellbeing.org/wp-content/uploads/2020/02/unemployment-reemployment-wellbeing-briefing-march-2017-v3.pdf"
+    auteurs: []
+    date_publication: "2017-03"
+    consulte_le: "2026-10-13"
+    note: "Synthèse d'une revue systématique (4 028 études examinées, 99 retenues). Site archivé depuis avril 2024 ; chiffre lu sur la page de présentation https://whatworkswellbeing.org/resources/unemployment-reemployment-and-wellbeing/."
+  - id: pbe-winkelmann-2014-izawol
+    type: etude_academique
+    editeur: "IZA World of Labor"
+    titre: "Unemployment and happiness"
+    url: "https://doi.org/10.15185/izawol.94"
+    auteurs: ["Rainer Winkelmann"]
+    date_publication: "2014-10"
+    consulte_le: "2026-10-13"
+    note: "Article de synthèse évalué par les pairs (IZA World of Labor n° 94), s'appuyant notamment sur le panel allemand SOEP 1984-2011."
+  - id: pbe-kassenboehmer-haisken-denew-2009
+    type: etude_academique
+    editeur: "The Economic Journal"
+    titre: "You're Fired! The Causal Negative Effect of Entry Unemployment on Life Satisfaction"
+    url: "https://doi.org/10.1111/j.1468-0297.2008.02246.x"
+    auteurs: ["Sonja C. Kassenboehmer", "John P. Haisken-DeNew"]
+    date_publication: "2009-03"
+    consulte_le: "2026-10-13"
+    note: "Vol. 119, n° 536, p. 448-462. Seul le résumé (IDEAS/RePEc) a pu être lu."
+  # ---------------------------------------------------------------------------
+  # 3. Élasticité de l'empreinte carbone au revenu
+  # ---------------------------------------------------------------------------
+  - id: pbe-pottier-2022
+    type: etude_academique
+    editeur: "Ecological Economics"
+    titre: "Expenditure elasticity and income elasticity of GHG emissions: A survey of literature on household carbon footprint"
+    url: "https://doi.org/10.1016/j.ecolecon.2021.107251"
+    auteurs: ["Antonin Pottier"]
+    date_publication: "2022-02"
+    consulte_le: "2026-10-13"
+    note: "Vol. 192, 107251. Recension d'environ 80 estimations (dont un tiers calculées par l'auteur). Chiffres lus dans la version FAERE Working Paper 2021.01 : https://faere.fr/pub/WorkingPapers/Pottier_FAERE_WP2021.01.pdf (tableau 2)."
+  - id: pbe-malliet-2020
+    type: document_de_travail
+    editeur: "OFCE (Sciences Po)"
+    titre: "L'empreinte carbone des ménages français et les effets redistributifs d'une fiscalité carbone aux frontières (OFCE Policy brief n° 62)"
+    url: "https://www.ofce.sciences-po.fr/pdf/pbrief/2020/OFCEpbrief62.pdf"
+    auteurs: ["Paul Malliet"]
+    date_publication: "2020-01-09"
+    consulte_le: "2026-10-13"
+    note: "Synthèse d'un rapport pour l'ADEME (« La fiscalité carbone aux frontières et ses effets redistributifs »)."
+  - id: pbe-semet-2024
+    type: etude_academique
+    editeur: "Insee – Economie et Statistique / Economics and Statistics"
+    titre: "Unravelling the Influence of Household Characteristics and Decisions on their Carbon Footprint: A Quantile Regression Analysis"
+    url: "https://doi.org/10.24187/ecostat.2024.545.2127"
+    auteurs: ["Raphaël Semet"]
+    date_publication: "2024"
+    consulte_le: "2026-10-13"
+    note: "N° 545, p. 27-46 (mis en ligne en avril 2025). Enquête Budget de famille 2017, 12 081 ménages. PDF lu : https://www.insee.fr/en/statistiques/fichier/8562082/02_ES545_Semet_EN.pdf."
+  - id: pbe-levay-goedeme-verbist-2023
+    type: etude_academique
+    editeur: "Ecological Economics"
+    titre: "Income and expenditure elasticity of household carbon footprints. Some methodological considerations"
+    url: "https://doi.org/10.1016/j.ecolecon.2023.107893"
+    auteurs: ["Petra Zsuzsa Lévay", "Tim Goedemé", "Gerlinde Verbist"]
+    date_publication: "2023-10"
+    consulte_le: "2026-10-13"
+    note: "Vol. 212, 107893. Chiffres lus dans la version CSB Working Paper 22/02 (Université d'Anvers, février 2022) : https://medialibrary.uantwerpen.be/files/57001/aa7b92d9-7fb7-44c8-9c87-a97f4905c434.pdf."
+  - id: pbe-buchs-schnepf-2013
+    type: etude_academique
+    editeur: "Ecological Economics"
+    titre: "Who emits most? Associations between socio-economic factors and UK households' home energy, transport, indirect and total CO2 emissions"
+    url: "https://doi.org/10.1016/j.ecolecon.2013.03.007"
+    auteurs: ["Milena Büchs", "Sylke V. Schnepf"]
+    date_publication: "2013-06"
+    consulte_le: "2026-10-13"
+    note: "Vol. 90, p. 114-123. Élasticité lue dans le tableau 2 de Pottier (2021/2022)."
+  - id: pbe-chancel-piketty-2015
+    type: document_de_travail
+    editeur: "Paris School of Economics (PSE)"
+    titre: "Carbon and inequality: from Kyoto to Paris – Trends in the global inequality of carbon emissions (1998-2013) & prospects for an equitable adaptation fund"
+    url: "http://piketty.pse.ens.fr/files/ChancelPiketty2015.pdf"
+    auteurs: ["Lucas Chancel", "Thomas Piketty"]
+    date_publication: "2015-11"
+    consulte_le: "2026-10-13"
+    note: "Rapport ; l'élasticité de 0,9 y est une hypothèse de calibrage (médiane des estimations existantes), testée entre 0,6 et 1,5."
+  - id: pbe-kartha-et-al-2020
+    type: think_tank
+    editeur: "Stockholm Environment Institute / Oxfam"
+    titre: "The Carbon Inequality Era: An assessment of the global distribution of consumption emissions among individuals from 1990 to 2015 and beyond"
+    url: "https://doi.org/10.21201/2020.6492"
+    auteurs: ["Sivan Kartha", "Eric Kemp-Benedict", "Emily Ghosh", "Anisha Nazareth", "Tim Gore"]
+    date_publication: "2020-09-21"
+    consulte_le: "2026-10-13"
+    note: "Rapport conjoint. Hypothèse d'une élasticité unitaire lue dans la discussion critique de Pottier (2021/2022) ; rapport non consulté directement."
+  # ---------------------------------------------------------------------------
+  # 4. Limitation de vitesse et émissions de CO2
+  # ---------------------------------------------------------------------------
+  - id: pbe-cgdd-2018-thema-vitesses
+    type: rapport_institutionnel
+    editeur: "Commissariat général au développement durable (CGDD, ministère de la Transition écologique)"
+    titre: "Réduction des vitesses sur les routes – Analyse coûts bénéfices (Théma Analyse)"
+    url: "https://www.ecologie.gouv.fr/sites/default/files/publications/Th%C3%A9ma%20-%20R%C3%A9duction%20des%20vitesses%20sur%20les%20routes.pdf"
+    auteurs: []
+    date_publication: "2018-03"
+    consulte_le: "2026-10-13"
+    note: "Simulations avec le modèle de trafic Modev ; hypothèse de référence : la baisse de la vitesse limite se répercute à 50 % sur la vitesse pratiquée."
+  - id: pbe-cerema-2020-evaluation-80kmh
+    type: rapport_institutionnel
+    editeur: "Cerema (pour l'ONISR / Délégation à la sécurité routière)"
+    titre: "Évaluation de l'abaissement à 80 km/h de la vitesse maximale autorisée sur les routes à double sens sans séparateur central – rapport final"
+    url: "https://www.onisr.securite-routiere.gouv.fr/sites/default/files/2020-08/Cerema-EvaluationV80-Juillet2020-V2.pdf"
+    auteurs: []
+    date_publication: "2020-07"
+    consulte_le: "2026-10-13"
+    note: "Sections 2.4 (revue des effets environnementaux, citant une synthèse ADEME 2014 et Atmo Auvergne-Rhône-Alpes 2018) et 9.4-9.5 (gains de carburant et de GES, courbes COPERT 4)."
+  - id: pbe-asensio-gomez-lobo-matas-2014
+    type: etude_academique
+    editeur: "Energy Economics"
+    titre: "How effective are policies to reduce gasoline consumption? Evaluating a set of measures in Spain"
+    url: "https://doi.org/10.1016/j.eneco.2013.11.011"
+    auteurs: ["Javier Asensio", "Andrés Gómez-Lobo", "Anna Matas"]
+    date_publication: "2014-03"
+    consulte_le: "2026-10-13"
+    note: "Vol. 42, p. 34-42. Résumé lu sur IDEAS/RePEc ; présentation de l'Institut d'économie de Barcelone (IEB) lue également."
+  - id: pbe-castillo-manzano-et-al-2014
+    type: etude_academique
+    editeur: "Economic Modelling"
+    titre: "Temporary speed limit changes: An econometric estimation of the effects of the Spanish Energy Efficiency and Saving Plan"
+    url: "https://doi.org/10.1016/j.econmod.2014.01.032"
+    auteurs: ["José I. Castillo-Manzano", "Mercedes Castro-Nuño", "Diego J. Pedregal-Tercero"]
+    date_publication: "2014"
+    consulte_le: "2026-10-13"
+    note: "Vol. 44, suppl. 1, p. S68-S76. Seul le résumé a pu être lu (version de conférence ERSA 2013 sur IDEAS)."
+  - id: pbe-an-qe8339-2023
+    type: rapport_institutionnel
+    editeur: "Assemblée nationale (réponse du ministère chargé des Transports, JO du 3 octobre 2023, p. 8870)"
+    titre: "Question écrite n° 8339 – Limitation de vitesse à 110 km/h sur les autoroutes"
+    url: "https://questions.assemblee-nationale.fr/dyn/16/questions/QANR5L16QE8339"
+    auteurs: []
+    date_publication: "2023-10-03"
+    consulte_le: "2026-10-13"
+    note: "Réponse ministérielle : rouler à 110 au lieu de 130 km/h permet un gain de 20 % de carburant. Chiffre affirmé sans référence méthodologique."
+  - id: pbe-ademe-2026-cles-carburant
+    type: rapport_institutionnel
+    editeur: "ADEME"
+    titre: "Comment consommer moins de carburant ? (Clés pour agir, réf. 011751)"
+    url: "https://librairie.ademe.fr/index.php?controller=attachment&id_attachment=11504&preview=1"
+    auteurs: []
+    date_publication: "2026-04"
+    consulte_le: "2026-10-13"
+    note: "Guide grand public : diminuer sa vitesse de 10 km/h sur autoroute fait économiser 1 à 3 litres sur un trajet de 500 km."
+  # ---------------------------------------------------------------------------
+  # 5. Retraite et santé
+  # ---------------------------------------------------------------------------
+  - id: pbe-coe-zamarro-2011
+    type: etude_academique
+    editeur: "Journal of Health Economics"
+    titre: "Retirement effects on health in Europe"
+    url: "https://doi.org/10.1016/j.jhealeco.2010.11.002"
+    auteurs: ["Norma B. Coe", "Gema Zamarro"]
+    date_publication: "2011-01"
+    consulte_le: "2026-10-13"
+    note: "Vol. 30, n° 1, p. 77-86. Texte intégral lu via PubMed Central (PMC3972912)."
+  - id: pbe-insler-2014
+    type: etude_academique
+    editeur: "Journal of Human Resources"
+    titre: "The Health Consequences of Retirement"
+    url: "https://doi.org/10.3368/jhr.49.1.195"
+    auteurs: ["Michael Insler"]
+    date_publication: "2014"
+    consulte_le: "2026-10-13"
+    note: "Vol. 49, n° 1, p. 195-233. Chiffres lus dans la version de travail US Naval Academy n° 2013-43 (https://www.usna.edu/EconDept/RePEc/usn/wp/usnawp43.pdf)."
+  - id: pbe-kuhn-staubli-wuellrich-zweimuller-2020
+    type: etude_academique
+    editeur: "Journal of Public Economics"
+    titre: "Fatal attraction? Extended unemployment benefits, labor force exits, and mortality"
+    url: "https://doi.org/10.1016/j.jpubeco.2019.104087"
+    auteurs: ["Andreas Kuhn", "Stefan Staubli", "Jean-Philippe Wuellrich", "Josef Zweimüller"]
+    date_publication: "2020-11"
+    consulte_le: "2026-10-13"
+    note: "Vol. 191, 104087. Chiffres lus dans la version NBER Working Paper 25124 (octobre 2018)."
+  - id: pbe-bloemen-hochguertel-zweerink-2017
+    type: etude_academique
+    editeur: "Health Economics"
+    titre: "The causal effect of retirement on mortality: Evidence from targeted incentives to retire early"
+    url: "https://doi.org/10.1002/hec.3493"
+    auteurs: ["Hans Bloemen", "Stefan Hochguertel", "Jochem Zweerink"]
+    date_publication: "2017"
+    consulte_le: "2026-10-13"
+    note: "Seul le résumé (Europe PMC) a pu être lu."
+  - id: pbe-bozio-garrouste-perdrix-2021
+    type: etude_academique
+    editeur: "Health Economics"
+    titre: "Impact of later retirement on mortality: Evidence from France"
+    url: "https://doi.org/10.1002/hec.4240"
+    auteurs: ["Antoine Bozio", "Clémentine Garrouste", "Elsa Perdrix"]
+    date_publication: "2021-03"
+    consulte_le: "2026-10-13"
+    note: "Vol. 30, n° 5, p. 1178-1199. Seul le résumé (Europe PMC) a pu être lu."
+  - id: pbe-hernaes-et-al-2013
+    type: etude_academique
+    editeur: "Journal of Health Economics"
+    titre: "Does retirement age impact mortality?"
+    url: "https://doi.org/10.1016/j.jhealeco.2013.03.001"
+    auteurs: ["Erik Hernaes", "Simen Markussen", "John Piggott", "Ola L. Vestad"]
+    date_publication: "2013-05"
+    consulte_le: "2026-10-13"
+    note: "Vol. 32, n° 3, p. 586-598. Seul le résumé (Europe PMC) a pu être lu."
+  - id: pbe-blake-garrouste-2019
+    type: etude_academique
+    editeur: "Annals of Economics and Statistics"
+    titre: "Collateral Effects of a Pension Reform in France"
+    url: "https://doi.org/10.15609/annaeconstat2009.133.0057"
+    auteurs: ["Hélène Blake", "Clémentine Garrouste"]
+    date_publication: "2019"
+    consulte_le: "2026-10-13"
+    note: "N° 133, p. 57 et suivantes. Seul le résumé a pu être lu (texte intégral HAL inaccessible)."
+  - id: pbe-fitzpatrick-moore-2018
+    type: etude_academique
+    editeur: "Journal of Public Economics"
+    titre: "The mortality effects of retirement: Evidence from Social Security eligibility at age 62"
+    url: "https://doi.org/10.1016/j.jpubeco.2017.12.001"
+    auteurs: ["Maria D. Fitzpatrick", "Timothy J. Moore"]
+    date_publication: "2018-01"
+    consulte_le: "2026-10-13"
+    note: "Vol. 157, p. 121-137. Chiffres lus dans la version de travail du Center for Retirement Research at Boston College (WP 2016-7)."
+  - id: pbe-filomena-picchio-2023
+    type: etude_academique
+    editeur: "Journal of Economic Surveys"
+    titre: "Retirement and health outcomes in a meta-analytical framework"
+    url: "https://doi.org/10.1111/joes.12527"
+    auteurs: ["Mattia Filomena", "Matteo Picchio"]
+    date_publication: "2023"
+    consulte_le: "2026-10-13"
+    note: "Vol. 37, n° 4, p. 1120-1155 (en ligne juillet 2022). Seul le résumé (IDEAS/RePEc) a pu être lu."
+  # ---------------------------------------------------------------------------
+  # 6. Durée du travail et bien-être
+  # ---------------------------------------------------------------------------
+  - id: pbe-lewis-et-al-2023-uk-semaine-4-jours
+    type: think_tank
+    editeur: "Autonomy (avec Boston College, University College Dublin et l'Université de Cambridge)"
+    titre: "The results are in: The UK's four-day week pilot"
+    url: "https://autonomy.work/wp-content/uploads/2023/02/The-results-are-in-The-UKs-four-day-week-pilot.pdf"
+    auteurs: ["Kyle Lewis", "Will Stronge", "Jack Kellam", "Lukas Kikuchi", "Juliet Schor", "Wen Fan", "Orla Kelly", "Guolin Gu"]
+    date_publication: "2023-02"
+    consulte_le: "2026-10-13"
+    note: "Expérimentation 2022 dans 61 entreprises (environ 2 900 salariés), sans baisse de salaire ; enquêtes avant/pendant/après."
+  - id: pbe-fan-schor-kelly-gu-2025
+    type: etude_academique
+    editeur: "Nature Human Behaviour"
+    titre: "Work time reduction via a 4-day workweek finds improvements in workers' well-being"
+    url: "https://doi.org/10.1038/s41562-025-02259-6"
+    auteurs: ["Wen Fan", "Juliet B. Schor", "Orla Kelly", "Guolin Gu"]
+    date_publication: "2025"
+    consulte_le: "2026-10-13"
+    note: "Seul le résumé (Europe PMC) a pu être lu."
+  - id: pbe-hamermesh-kawaguchi-lee-2017
+    type: etude_academique
+    editeur: "Journal of the Japanese and International Economies"
+    titre: "Does labor legislation benefit workers? Well-being after an hours reduction"
+    url: "https://doi.org/10.1016/j.jjie.2017.02.003"
+    auteurs: ["Daniel S. Hamermesh", "Daiji Kawaguchi", "Jungmin Lee"]
+    date_publication: "2017-06"
+    consulte_le: "2026-10-13"
+    note: "Vol. 44, p. 1-12. Chiffres lus dans la version NBER Working Paper 20398 (août 2014) : https://www.nber.org/papers/w20398."
+  - id: pbe-rudolf-2014
+    type: etude_academique
+    editeur: "Journal of Happiness Studies"
+    titre: "Work Shorter, Be Happier? Longitudinal Evidence from the Korean Five-Day Working Policy"
+    url: "https://doi.org/10.1007/s10902-013-9468-1"
+    auteurs: ["Robert Rudolf"]
+    date_publication: "2014"
+    consulte_le: "2026-10-13"
+    note: "Vol. 15, n° 5, p. 1139-1163 (en ligne août 2013). Seul le résumé (IDEAS/RePEc) a pu être lu."
+  - id: pbe-lepinteur-2019
+    type: etude_academique
+    editeur: "Labour Economics"
+    titre: "The shorter workweek and worker wellbeing: Evidence from Portugal and France"
+    url: "https://doi.org/10.1016/j.labeco.2018.05.010"
+    auteurs: ["Anthony Lepinteur"]
+    date_publication: "2019-06"
+    consulte_le: "2026-10-13"
+    note: "Vol. 58, p. 204-220. Résumé lu (Semantic Scholar) et ordre de grandeur des effets lu sur EconPapers ; texte intégral non consulté."

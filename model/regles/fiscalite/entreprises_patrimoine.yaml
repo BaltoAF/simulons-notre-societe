@@ -124,13 +124,13 @@ regles:
     unite: pourcent
     bornes: [0, 50]
     valeurs:
-      - depuis: "2026-02-20"
+      - depuis: "2023-12-31"
         valeur: 15
-        sources: [an-ta227-lfi-2026]
-        article: "Loi n° 2026-103, état A, ligne 1304 « Impôt minimum mondial à 15 % - pilier 2 »"
+        sources: [verif-bofip-boi-img-def, verif-bofip-boi-img, an-ta227-lfi-2026]
+        article: "CGI, art. 223 VK, 45° (loi n° 2023-1322 du 29 décembre 2023 de finances pour 2024, art. 33) ; loi n° 2026-103, état A, ligne 1304 « Impôt minimum mondial à 15 % - pilier 2 »"
     tags: [impot_societes, international]
-    a_verifier: true
-    note: "Taux lu dans l'intitulé de la ligne de recette de la LFI 2026 ; les articles du CGI instituant cet impôt complémentaire n'ont pas été consultés directement."
+    a_verifier: false
+    note: "Vérifié le 2026-10-13 : le BOFiP (BOI-IMG-DEF, § 670) définit le taux minimum d'imposition comme « un taux d'imposition correspondant à 15 % » ; le dispositif s'applique aux exercices ouverts à compter du 31 décembre 2023 (BOI-IMG, § 1). Taux également repris dans l'intitulé de la ligne de recette de la LFI 2026."
   # ---------------------------------------------------------------- Holdings patrimoniales
   - id: fiscalite.holdings.taxe_actifs_non_affectes.taux
     titre: "Taxe sur les actifs non professionnels des sociétés holdings patrimoniales : taux"

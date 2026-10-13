@@ -144,6 +144,15 @@ sources:
     date_publication: "2013-07-03"
     consulte_le: "2026-10-13"
     note: "« le délit d'abus de biens sociaux fait déjà encourir à son auteur une peine de cinq ans de prison et 375 000 euros d'amende »."
+  - id: verif-justice-circ-2014-01-23
+    type: texte_officiel
+    editeur: "Ministère de la justice (Bulletin officiel)"
+    titre: "Circulaire du 23 janvier 2014 relative à la présentation de la loi n° 2013-1117 du 6 décembre 2013 relative à la lutte contre la fraude fiscale et la grande délinquance économique et financière (NOR : JUSD1402112C)"
+    url: "https://www.justice.gouv.fr/sites/default/files/migrations/textes/art_pix/JUSD1402112C.pdf"
+    auteurs: []
+    date_publication: "2014-01-23"
+    consulte_le: "2026-10-13"
+    note: "L'article 30 de la loi crée une circonstance aggravante de l'abus de biens sociaux (comptes ou contrats à l'étranger, interposition de personnes ou entités établies à l'étranger, art. L241-3 et L242-6 du code de commerce) : « les peines encourues sont portées à sept années d'emprisonnement et à 500 000 € d'amende ». Copie locale : system/cache/verifications/justice-jusd1402112c/."
   - id: verif-an-rapport-3190-2026
     type: rapport_institutionnel
     editeur: "Assemblée nationale (commission spéciale)"

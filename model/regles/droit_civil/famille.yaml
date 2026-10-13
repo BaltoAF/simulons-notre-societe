@@ -217,11 +217,11 @@ regles:
     valeurs:
       - depuis: "2021-04-22"
         valeur: 5
-        sources: [an-ta-601-2021, senat-dossier-mineurs-2021, sp-f21829, legi-cp-222-23, legi-loi-2021-478]
+        sources: [an-ta-601-2021, senat-dossier-mineurs-2021, verif-cc-2023-1058-qpc, verif-an-rapport-3190-2026, sp-f21829, legi-cp-222-23, legi-loi-2021-478]
         article: "Code pénal, art. 222-23-1 et 222-29-2"
     tags: [mineurs, violences_sexuelles, consentement, penal, reforme_2021]
-    a_verifier: true
-    note: "Valeur lue dans le texte définitif de la loi de 2021 (site de l'Assemblée nationale) et évoquée par sp-f21829 (fiche de 2024, formulation approximative). La fiche sp-f2274 à jour (mai 2026) ne mentionne plus cet écart ; maintien en vigueur au 13/10/2026 non confirmé par une source à jour (Légifrance inaccessible)."
+    a_verifier: false
+    note: "Vérifié le 2026-10-13 : la décision n° 2023-1058 QPC du 21/07/2023 déclare conforme l'art. 222-23-1 (différence d'âge « d'au moins cinq ans ») ; le rapport de l'Assemblée nationale n° 3190 (23/09/2026) sur la proposition de loi « réponse intégrale » aux violences sexuelles présente cette clause comme toujours en vigueur et l'article 17 de cette proposition, non adoptée au 13/10/2026, vise à la supprimer. La fiche sp-f2274 (mai 2026) simplifie en ne mentionnant pas cet écart. Loi publiée au JO du 22 avril 2021 (date de publication retenue)."
 
   # ---------------------------------------------------------------- adoption
   - id: droit_civil.adoption.age_minimum_adoptant

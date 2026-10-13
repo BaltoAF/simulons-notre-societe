@@ -9,13 +9,13 @@ regles:
     unite: ans
     bornes: [0, 30]
     valeurs:
-      - depuis: "2026-10-10"
+      - depuis: "2010-09-16"
         valeur: 30
-        sources: [wikipedia-meurtre]
+        sources: [verif-an-rapport-473-2024, verif-cc-2010-25-qpc-dossier]
         article: "Code pénal, art. 221-1"
     tags: [peine, crime, homicide, personnes]
-    a_verifier: true
-    note: "Valeur trouvée uniquement sur une source non officielle (Wikipédia), aucune page officielle lue ne la cite. Date d'entrée en vigueur non établie ; valeur attestée au 2026-10-10."
+    a_verifier: false
+    note: "Vérifié le 2026-10-13 : l'art. 221-1 reproduit par le Conseil constitutionnel (dossier de la décision 2010-25 QPC) punit le meurtre de trente ans de réclusion criminelle ; le rapport de l'Assemblée nationale n° 473 (23/10/2024) rappelle que la peine du meurtre passe « de trente ans de réclusion criminelle à la réclusion criminelle à perpétuité » en cas de circonstance aggravante. Rédaction consolidée 2026 non lue (Légifrance inaccessible). Date d'entrée en vigueur non établie ; valeur attestée au 2010-09-16."
 
   - id: justice_penale.meurtre_aggrave.peine_max
     titre: "Meurtre aggravé : peine maximale"
@@ -23,13 +23,13 @@ regles:
     type: choix
     choix: ["15_ans", "20_ans", "30_ans", "perpetuite"]
     valeurs:
-      - depuis: "2026-10-10"
+      - depuis: "2010-09-16"
         valeur: "perpetuite"
-        sources: [wikipedia-meurtre]
-        article: "Code pénal, art. 221-4"
+        sources: [verif-an-rapport-473-2024, verif-cc-2010-25-qpc-dossier]
+        article: "Code pénal, art. 221-2 et 221-4"
     tags: [peine, crime, homicide, personnes, perpetuite]
-    a_verifier: true
-    note: "Perpétuité attestée seulement par Wikipédia (renvoi à l'art. 221-4). La fiche officielle service-public F1278 (« Surveillance de sûreté d'un criminel ») cite le « meurtre aggravé (le meurtre qui suit un viol, par exemple) » sans donner la peine. La liste complète des circonstances (conjoint, mineur de 15 ans, etc.) n'a pas été lue sur une source officielle. Date d'entrée en vigueur non établie ; valeur attestée au 2026-10-10."
+    a_verifier: false
+    note: "Vérifié le 2026-10-13 : le rapport de l'Assemblée nationale n° 473 (23/10/2024) indique que l'art. 221-4 punit le meurtre aggravé (ex. victime dépositaire de l'autorité publique) de la réclusion criminelle à perpétuité « plutôt que de trente ans » ; les art. 221-2 (meurtre qui précède, accompagne ou suit un autre crime, par exemple un viol) et 221-4 reproduits par le Conseil constitutionnel (2010) prévoient la perpétuité. Liste complète et à jour des circonstances de l'art. 221-4 non lue (Légifrance inaccessible). Date d'entrée en vigueur non établie ; valeur attestée au 2010-09-16."
 
   - id: justice_penale.assassinat.peine_max
     titre: "Assassinat : peine maximale"

@@ -232,11 +232,11 @@ regles:
     valeurs:
       - depuis: "2014-01-22"
         valeur: 166
-        sources: [cnav-circ-2014-20]
+        sources: [verif-lar-brochure-ma-retraite-quel-age, cnav-circ-2014-20]
         article: "Durées fixées par décrets annuels (loi n° 2010-1330, art. 17)"
     tags: [duree_assurance, generation]
-    a_verifier: true
-    note: "Valeur de 166 trimestres NON lue sur une source : la circulaire Cnav 2014-20 indique seulement que les durées des générations 1953-1957 ont été fixées chaque année par décret (circulaires Cnav 2011-20, 2011-66, 2013-14, 2013-57). Date « depuis » indicative."
+    a_verifier: false
+    note: "Vérifié le 2026-10-13 : la brochure de l'Assurance retraite « Ma retraite : à quel âge ? » indique 166 trimestres pour les assurés nés de 1955 à 1957 (« une personne née en 1957 doit réunir 166 trimestres ») ; ces générations ne sont pas concernées par la réforme de 2023 ni par sa suspension (qui visent les assurés nés à partir de 1961). La circulaire Cnav 2014-20 précise que les durées des générations 1953-1957 ont été fixées chaque année par décret (circulaires Cnav 2011-20, 2011-66, 2013-14, 2013-57). Date « depuis » indicative (décrets non lus)."
 
   - id: retraites.duree_assurance.generation_1958_1960
     titre: "Trimestres requis pour le taux plein : nés de 1958 à 1960"
@@ -728,11 +728,11 @@ regles:
     valeurs:
       - depuis: "2026-09-01"
         valeur: "1964 : 60 ans 6 mois (170 trim.) ; 1er janv.-31 mars 1965 : 60 ans 9 mois (170) ; 1er avril-30 nov. 1965 : 60 ans 9 mois (171) ; déc. 1965 : 60 ans 8 mois (171) ; 1966 : 60 ans 9 mois (172) ; 1967 : 61 ans (172) ; 1968 : 61 ans 3 mois (172) ; 1969 : 61 ans 6 mois (172) ; 1970 : 61 ans 9 mois (172)"
-        sources: [lar-carriere-longue]
+        sources: [verif-cnav-circ-2026-29, lar-carriere-longue]
         article: "CSS, art. D351-1-1 ; décret n° 2026-345 du 7 mai 2026"
     tags: [carriere_longue, depart_anticipe, suspension]
-    a_verifier: true
-    note: "Tableau de l'Assurance retraite (page consultée le 13/10/2026). Il diffère du tableau 1.5 du rapport du COR de juin 2026 (établi d'après la LFSS, avant le décret : ex. 1964 à 60 ans 3 mois, 1970 à 62 ans). Ambiguïté sur la page elle-même (titre « à partir du 1er septembre 2026 », texte « à partir du 1er janvier 2026 »). À confirmer sur le décret n° 2026-345."
+    a_verifier: false
+    note: "Vérifié le 2026-10-13 : barème identique dans la circulaire Cnav n° 2026-29 du 4 septembre 2026 (« Retraite anticipée pour carrière longue à compter du 1er septembre 2026 », qui remplace la circulaire n° 2026-17 du 12 juin 2026) : pour les nés de 1966 à 1969, départ 2 ans et 6 mois avant l'âge légal ; 1970 : 61 ans 9 mois ; durées cotisées de 170 à 172 trimestres. Applicable aux retraites prenant effet à compter du 1er septembre 2026 (la mention « 1er janvier 2026 » de la page de l'Assurance retraite est une ambiguïté de cette page). Le tableau 1.5 du rapport du COR de juin 2026 (établi avant le décret) différait. Décret n° 2026-345 lui-même non lu (Légifrance inaccessible)."
 
   # ───────── Revalorisation et cotisations ─────────
   - id: retraites.revalorisation.pensions_base

@@ -182,13 +182,13 @@ regles:
     unite: jours
     bornes: [90, 720]
     valeurs:
-      - depuis: "2026-07-27"
+      - depuis: "2026-07-29"
         valeur: 360
-        sources: [cc-2026-906-dc, legi-loi-2026-667]
-        article: "CESEDA, art. L741-7 (rédaction issue de l'article 10 de la loi n° 2026-667 du 27 juillet 2026)"
+        sources: [verif-an-ta315-retention-2026, verif-an-dossier-retention-2026, cc-2026-906-dc, legi-loi-2026-667]
+        article: "CESEDA, art. L741-7, II (rédaction issue de l'article 10 de la loi n° 2026-667 du 27 juillet 2026)"
     tags: [retention, eloignement, reforme_2026]
-    a_verifier: true
-    note: "Date d'entrée en vigueur non établie (loi du 27 juillet 2026, publiée au Journal officiel du 28 juillet 2026 selon la décision du Conseil constitutionnel) ; valeur attestée au 2026-07-27. Contenu connu uniquement par la décision n° 2026-906 DC qui l'a validé ; la fiche service-public sur la rétention est en cours de mise à jour. Durée cumulée portée à 540 jours pour les étrangers liés au terrorisme ou condamnés pour certains crimes ou délits graves. Délai de 48 heures minimum entre deux placements."
+    a_verifier: false
+    note: "Vérifié le 2026-10-13 : le texte définitif (Assemblée nationale, T.A. n° 315 du 16 juin 2026, art. 10) fixe la durée cumulée des périodes de rétention pour une même mesure d'éloignement à « trois cent soixante jours », portée à 540 jours pour l'étranger dont la rétention a été prolongée au titre de l'art. L742-6 (terrorisme, menace d'une particulière gravité) ; cinq placements au plus ; délai de 48 heures entre deux placements. Disposition validée par la décision n° 2026-906 DC. Loi promulguée le 27 juillet 2026 et publiée au JO du 28 juillet 2026 (dossier législatif de l'Assemblée nationale) ; le texte ne prévoyant pas d'entrée en vigueur différée, date retenue = lendemain de la publication (code civil, art. 1er). La fiche service-public sur la rétention est en cours de mise à jour."
 
   # ---------------------------------------------------------------------------
   # Obligation de quitter le territoire (OQTF) et interdiction de retour
@@ -311,4 +311,4 @@ regles:
         sources: [sp-f33314, legi-ceseda-l553-1-a-l553-3]
     tags: [asile, ada, allocation, accueil]
     a_verifier: true
-    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-04-01. Avec le montant supplémentaire (absence d'hébergement gratuit) : 14,20 € par jour pour une personne seule ; 10,20 € par jour pour 2 personnes. À vérifier : la fiche service-public est en cours de mise à jour après les décrets de juin à octobre 2026 liés au pacte européen, qui modifient les conditions matérielles d'accueil ; le site de l'OFII n'a pas pu être consulté (protection anti-robot)."
+    note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-04-01. Avec le montant supplémentaire (absence d'hébergement gratuit) : 14,20 € par jour pour une personne seule ; 10,20 € par jour pour 2 personnes. À vérifier : la fiche service-public est en cours de mise à jour après les décrets de juin à octobre 2026 liés au pacte européen, qui modifient les conditions matérielles d'accueil ; le site de l'OFII n'a pas pu être consulté (protection anti-robot). Nouvelle tentative le 2026-10-13 : la fiche F33314 (toujours « Vérifié le 01 avril 2026 », mention « en cours de mise à jour ») affiche encore 6,80 € ; selon des résultats de recherche (non vérifiés), le décret n° 2026-463 du 9 juin 2026 relatif aux conditions matérielles d'accueil a actualisé le barème de l'annexe 8 du CESEDA, avec un total qui resterait de 6,80 € pour une personne seule, mais ce texte n'a pas pu être lu (Légifrance inaccessible ; portail etrangers-en-france.interieur.gouv.fr non lisible)."

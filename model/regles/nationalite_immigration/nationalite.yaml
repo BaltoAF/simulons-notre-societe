@@ -54,16 +54,16 @@ regles:
     type: choix
     choix: ["aucun", "A1", "A2", "B1", "B2", "C1", "C2"]
     valeurs:
-      - depuis: "2025-10-27"
+      - depuis: "2024-11-21"
         valeur: "B1"
-        sources: [gisti-addendum-guide-nationalite-2025]
+        sources: [verif-senat-rapport-144-2024-immigration, gisti-addendum-guide-nationalite-2025]
       - depuis: "2026-01-01"
         valeur: "B2"
         sources: [sp-f11926, legi-decret-2025-648, legi-cc-21-14-1-a-21-25-1]
         article: "Code civil, art. 21-24 ; décret n° 93-1362 du 30 décembre 1993 modifié par le décret n° 2025-648 du 15 juillet 2025"
     tags: [naturalisation, langue, integration, reforme_2026]
-    a_verifier: true
-    note: "Valeur actuelle (B2) confirmée sur service-public (fiche vérifiée le 1er janvier 2026). Seule la valeur antérieure (B1) repose sur une source non officielle (GISTI, valeur attestée au 2025-10-27, date d'entrée en vigueur du B1 non établie). Relèvement opéré par le décret n° 2025-648 du 15 juillet 2025, applicable au 1er janvier 2026. Dispense possible pour raison de santé ou handicap, et pour les réfugiés ou apatrides de plus de 70 ans résidant en France depuis au moins 15 ans."
+    a_verifier: false
+    note: "Vérifié le 2026-10-13. Valeur actuelle (B2) confirmée sur service-public (fiche vérifiée le 1er janvier 2026). Valeur antérieure (B1) désormais attestée par une source officielle : rapport général du Sénat n° 144 (21/11/2024), selon lequel la loi du 26 janvier 2024 fait passer le niveau « de B1 à B2 pour la naturalisation » ; date d'entrée en vigueur du B1 non établie (date retenue = date du rapport ; GISTI l'atteste aussi au 2025-10-27). Relèvement opéré par le décret n° 2025-648 du 15 juillet 2025, applicable au 1er janvier 2026. Dispense possible pour raison de santé ou handicap, et pour les réfugiés ou apatrides de plus de 70 ans résidant en France depuis au moins 15 ans."
 
   - id: nationalite_immigration.naturalisation.examen_civique_obligatoire
     titre: "Naturalisation : réussite obligatoire à l'examen civique"
@@ -173,16 +173,16 @@ regles:
     type: choix
     choix: ["aucun", "A1", "A2", "B1", "B2", "C1", "C2"]
     valeurs:
-      - depuis: "2025-10-27"
+      - depuis: "2022-12-15"
         valeur: "B1"
-        sources: [gisti-addendum-guide-nationalite-2025]
+        sources: [verif-sp-a16221, gisti-addendum-guide-nationalite-2025]
       - depuis: "2026-01-01"
         valeur: "B2"
         sources: [sp-f11926, legi-decret-2025-648, legi-cc-21-1-a-21-6]
         article: "Code civil, art. 21-2 ; décret n° 93-1362 du 30 décembre 1993 modifié par le décret n° 2025-648 du 15 juillet 2025"
     tags: [mariage, langue, integration, reforme_2026]
-    a_verifier: true
-    note: "Valeur actuelle (B2) confirmée sur service-public (fiche vérifiée le 1er janvier 2026), identique à celle de la naturalisation. Seule la valeur antérieure (B1) repose sur une source non officielle (GISTI, valeur attestée au 2025-10-27, date d'entrée en vigueur du B1 non établie). Contrairement à la naturalisation, la fiche service-public sur le mariage ne mentionne pas d'examen civique."
+    a_verifier: false
+    note: "Vérifié le 2026-10-13. Valeur actuelle (B2) confirmée sur service-public (fiche vérifiée le 1er janvier 2026), identique à celle de la naturalisation. Valeur antérieure (B1) désormais attestée par une source officielle : actualité service-public A16221 du 15/12/2022 (niveau « au moins équivalent au niveau b1 oral et écrit ») ; date d'entrée en vigueur du B1 non établie (date retenue = date de l'actualité ; GISTI l'atteste aussi au 2025-10-27). Contrairement à la naturalisation, la fiche service-public sur le mariage ne mentionne pas d'examen civique."
 
   # ---------------------------------------------------------------------------
   # Droit du sol (enfant né en France de parents étrangers)

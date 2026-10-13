@@ -22,12 +22,12 @@ regles:
     explication: "Non : en France, voter est un droit, pas une obligation, et l'abstention n'est pas sanctionnée. Seuls les « grands électeurs » qui élisent les sénateurs sont obligés de voter."
     type: booleen
     valeurs:
-      - depuis: "2026-10-13"
+      - depuis: "2020-12-29"
         valeur: false
-        sources: [senat-mode-election-senateurs, an-fiche-1-caracteres-generaux-parlement]
+        sources: [verif-an-qe-15-31242, senat-mode-election-senateurs, an-fiche-1-caracteres-generaux-parlement]
     tags: [vote, abstention]
-    a_verifier: true
-    note: "Aucune source officielle lue n'énonce explicitement l'absence d'obligation de vote pour les électeurs ordinaires ; les sources lues ne mentionnent qu'une obligation pour les grands électeurs sénatoriaux (art. L. 318 du code électoral, amende de 100 € en cas d'abstention non justifiée, selon le Sénat). Date d'entrée en vigueur non établie ; date retenue = date de consultation."
+    a_verifier: false
+    note: "Vérifié le 2026-10-13 : réponse du ministère de l'intérieur (JO du 29/12/2020) : « le vote n'est pas une obligation pour les élections au suffrage universel » ; il « n'est obligatoire que pour l'élection des sénateurs » (art. L. 318 du code électoral, amende de 100 €). Aucune loi instituant le vote obligatoire n'a été relevée depuis. Date d'entrée en vigueur non établie (principe bien antérieur) ; date retenue = date de la réponse ministérielle."
 
   - id: institutions.vote.blanc_compte_dans_exprimes
     titre: "Le vote blanc est-il compté dans les suffrages exprimés ?"

@@ -269,13 +269,13 @@ regles:
     unite: ans
     bornes: [0, 10]
     valeurs:
-      - depuis: "2026-10-03"
+      - depuis: "2025-06-18"
         valeur: 10
-        sources: [wikipedia-blanchiment-argent]
+        sources: [verif-senat-rap-757-2025, wikipedia-blanchiment-argent]
         article: "Code pénal, art. 324-2"
     tags: [peine, delit, blanchiment, economie]
-    a_verifier: true
-    note: "Valeur trouvée uniquement sur Wikipédia (article 324-2 cité : 10 ans et 750 000 €). La peine du blanchiment simple (art. 324-1) n'a pas été lue sur une source. Date d'entrée en vigueur non établie ; valeur attestée au 2026-10-03."
+    a_verifier: false
+    note: "Vérifié le 2026-10-13 : le rapport de la commission d'enquête du Sénat sur la délinquance financière (n° 757, juin 2025) indique pour le blanchiment (art. 324-1 et suivants) 5 ans d'emprisonnement « (10 ans si aggravé, notamment en bande organisée) » et 375 000 € d'amende. L'amende de 750 000 € du blanchiment aggravé n'est attestée que par Wikipédia. Rédaction consolidée non lue (Légifrance inaccessible). Date d'entrée en vigueur non établie ; valeur attestée au 2025-06-18."
 
   - id: justice_penale.abus_biens_sociaux.prison_max
     titre: "Abus de biens sociaux : peine maximale de prison"
@@ -286,11 +286,11 @@ regles:
     valeurs:
       - depuis: "2026-06-14"
         valeur: 5
-        sources: [wikipedia-abus-de-biens-sociaux]
+        sources: [wikipedia-abus-de-biens-sociaux, verif-senat-rap-722-2013, verif-justice-circ-2014-01-23]
         article: "Code de commerce, art. L241-3 et L242-6"
     tags: [peine, delit, abus_de_biens_sociaux, entreprises, economie]
     a_verifier: true
-    note: "Valeur trouvée uniquement sur Wikipédia, aucune page officielle lue ne la cite. Date d'entrée en vigueur non établie ; valeur attestée au 2026-06-14."
+    note: "Valeur attestée par une source officielle ancienne : rapport du Sénat n° 722 (3 juillet 2013) : l'abus de biens sociaux « fait déjà encourir à son auteur une peine de cinq ans de prison et 375 000 euros d'amende ». La loi n° 2013-1117 du 6 décembre 2013 a créé une forme aggravée (7 ans et 500 000 €, montages à l'étranger) selon la circulaire Justice du 23 janvier 2014. Aucune source officielle postérieure à 2014 trouvée le 2026-10-13 (Légifrance inaccessible ; economie.gouv.fr bloqué ; recherches Sénat, Assemblée nationale, Conseil constitutionnel, justice.gouv.fr infructueuses). Date d'entrée en vigueur non établie ; valeur attestée au 2026-06-14 par Wikipédia."
 
   - id: justice_penale.abus_biens_sociaux.amende_max
     titre: "Abus de biens sociaux : amende maximale"
@@ -301,8 +301,8 @@ regles:
     valeurs:
       - depuis: "2026-06-14"
         valeur: 375000
-        sources: [wikipedia-abus-de-biens-sociaux]
+        sources: [wikipedia-abus-de-biens-sociaux, verif-senat-rap-722-2013, verif-justice-circ-2014-01-23]
         article: "Code de commerce, art. L241-3 et L242-6"
     tags: [peine, amende, delit, abus_de_biens_sociaux, entreprises, economie]
     a_verifier: true
-    note: "Valeur trouvée uniquement sur Wikipédia, aucune page officielle lue ne la cite. Date d'entrée en vigueur non établie ; valeur attestée au 2026-06-14."
+    note: "Valeur attestée par une source officielle ancienne : rapport du Sénat n° 722 (3 juillet 2013) : cinq ans de prison et 375 000 euros d'amende. Forme aggravée créée par la loi n° 2013-1117 du 6 décembre 2013 (7 ans et 500 000 €). Aucune source officielle postérieure à 2014 trouvée le 2026-10-13 (Légifrance inaccessible ; economie.gouv.fr bloqué ; recherches Sénat, Assemblée nationale, Conseil constitutionnel, justice.gouv.fr infructueuses). Date d'entrée en vigueur non établie ; valeur attestée au 2026-06-14 par Wikipédia."
