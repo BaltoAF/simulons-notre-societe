@@ -498,7 +498,10 @@ MODELES = [mod_smic, mod_eti, mod_tva, mod_allegements, mod_participation, mod_r
 
 # Effets sur l'offre de travail : des personnes choisissent de travailler (ou non) selon ce que le travail leur rapporte.
 # Contrairement aux pertes d'emploi subies (licenciements), ce sont des choix : ils réduisent la production, pas le bien-être.
-OFFRE_TRAVAIL = ("emploi_incitations", "emploi_revenu_universel")
+OFFRE_TRAVAIL = ("emploi_incitations", "emploi_revenu_universel", "emploi_seniors")
+# coût du travail d'un emploi concerné, en multiple du SMIC chargé : peu qualifié pour les incitations, salaire moyen
+# pour les seniors qui partent plus tôt ou plus tard en retraite
+PRODUCTIVITE_SMIC = {"emploi_incitations": 1.0, "emploi_revenu_universel": 1.0, "emploi_seniors": 2.5}
 
 
 def mod_multiplicateur(ctx: Contexte, soldes: dict, inds: list[Indicateur] | None = None) -> list[Indicateur]:
@@ -522,7 +525,7 @@ def mod_multiplicateur(ctx: Contexte, soldes: dict, inds: list[Indicateur] | Non
     if offre:
         from ..engine.openfisca_engine import ENGINE
         prod_emploi = ENGINE._smic_mensuel() * 12 * 1.07 * 0.85 / 1e9
-        d_prod = d_offre * prod_emploi
+        d_prod = sum(i.valeur * prod_emploi * PRODUCTIVITE_SMIC.get(i.id, 1.0) for i in offre)
         calcul += [f"Personnes en emploi en plus ou en moins (choix de travailler) : {fr(d_offre, 0)}",
                    f"Production d'un emploi au SMIC (0,85 temps plein, coût du travail) : {fr(prod_emploi * 1e9, 0)} € par an",
                    f"Effet par le travail : {d_prod:+.1f} Md€"]

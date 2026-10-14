@@ -538,6 +538,7 @@ def list_societies(store, user: dict | None = None, tri: str = "recent", q: str 
 
 # Changements ajoutés pour respecter les équilibres (financement, climat) : reconnus à leur justification
 JUSTIFICATIONS_EQUILIBRE = ("Équilibrer la proposition", "Financer la réforme", "Compenser les émissions")
+AGE_LEGAL = "retraites.age_legal.generation_"
 
 
 def est_equilibrage(prov: dict | None) -> bool:
@@ -571,6 +572,12 @@ def resume_mesures(sid: str, diff: list[dict]) -> dict:
     principales = [d for d in diff if not est_equilibrage(prov.get(d["regle"]))]
     equilibrage = [d for d in diff if est_equilibrage(prov.get(d["regle"]))]
     missions = [d for d in principales if d["regle"].startswith("budget.etat.mission.")]
+    # l'âge légal est découpé par génération : une seule mesure, dite par la génération « à terme » (nés à partir de 1969)
+    ages = [d for d in principales if d["regle"].startswith(AGE_LEGAL)]
+    if len(ages) > 1:
+        tete = next((d for d in ages if d["regle"] == AGE_LEGAL + "1969_et_apres"), ages[-1])
+        tete = {**tete, "titre": "Âge légal de départ à la retraite"}
+        principales = [tete if d is ages[0] else d for d in principales if d is ages[0] or not d["regle"].startswith(AGE_LEGAL)]
     mesures = [d for d in principales if not d["regle"].startswith("budget.etat.mission.")][:3]
     if missions:
         delta = sum(float(d["apres"] or 0) - float(d["avant"] or 0) for d in missions)

@@ -1,3 +1,4 @@
+import { createPortal } from 'react-dom'
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import {
@@ -46,25 +47,27 @@ export function ConfidenceBadge({ c, align = 'left', compact = false }: { c: Con
   return (
     <span className="popover-wrap" ref={ref}>
       <button type="button" className={`conf ${c.niveau}`} onClick={() => setOpen((o) => !o)}
-        aria-expanded={open} title={`Confiance ${CONFIANCE_FEMININ[c.niveau]} (${c.score}/100) — cliquez pour comprendre`}>
+        aria-expanded={open} aria-label={`Fiabilité ${CONFIANCE_FEMININ[c.niveau]} : cliquer pour comprendre`} title={`Fiabilité ${CONFIANCE_FEMININ[c.niveau]} — cliquez pour comprendre`}>
         <span className="dots" aria-hidden>{[1, 2, 3, 4].map((i) => <i key={i} className={i <= n ? 'on' : ''} />)}</span>
         {compact ? null : <>Confiance {CONFIANCE_FEMININ[c.niveau]}</>}
       </button>
       {open && (
         <div className={`popover ${align === 'right' ? 'right' : ''}`} role="dialog">
-          <div className="row between" style={{ marginBottom: 8 }}>
-            <strong>Confiance {CONFIANCE_FEMININ[c.niveau]}</strong>
-            <span className="badge">{c.score}/100</span>
-          </div>
-          <p className="muted small" style={{ marginBottom: 10 }}>{c.description}</p>
-          {c.facteurs.map((f, i) => (
-            <div key={i} style={{ marginBottom: 10 }}>
-              <div className="row between small"><strong>{f.nom}</strong><span className="muted">{Math.round(f.valeur * 100)} %</span></div>
-              <div className="bar-track" style={{ margin: '4px 0' }}><div className="bar-fill" style={{ width: `${Math.max(3, f.valeur * 100)}%` }} /></div>
-              <div className="small muted">{f.explication}</div>
-            </div>
-          ))}
-          <div className="small"><Link to="/methode#confiance">Comment est calculé l'indice de confiance ?</Link></div>
+          <strong style={{ display: 'block', marginBottom: 6 }}>Fiabilité {CONFIANCE_FEMININ[c.niveau]}</strong>
+          <p className="small" style={{ marginBottom: 10 }}>{c.description}</p>
+          {c.facteurs.length > 0 && (
+            <details className="curieux small" style={{ marginBottom: 8 }}>
+              <summary>Le détail ({c.score}/100)</summary>
+              {c.facteurs.map((f, i) => (
+                <div key={i} style={{ margin: '8px 0' }}>
+                  <div className="row between small"><strong>{f.nom}</strong><span className="muted">{Math.round(f.valeur * 100)} %</span></div>
+                  <div className="bar-track" style={{ margin: '4px 0' }}><div className="bar-fill" style={{ width: `${Math.max(3, f.valeur * 100)}%` }} /></div>
+                  <div className="small muted">{f.explication}</div>
+                </div>
+              ))}
+            </details>
+          )}
+          <div className="small"><Link to="/methode#confiance">Comment on mesure la fiabilité</Link></div>
         </div>
       )}
     </span>
@@ -100,16 +103,39 @@ export function SourceItem({ s }: { s: Source }) {
   )
 }
 
-/** Fenêtre : un seul défilement (le contenu), et un pied facultatif toujours visible (boutons d'action). */
+const FOCUSABLES = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+
+/** Fenêtre : un seul défilement (le contenu), et un pied facultatif toujours visible (boutons d'action).
+ *  Accessible au clavier : le focus entre dans la fenêtre, y reste (Tab / Maj+Tab), et revient au bouton d'ouverture. */
 export function Modal({ title, onClose, children, width, footer }: { title: string; onClose: () => void; children: ReactNode; width?: number; footer?: ReactNode }) {
+  const boite = useRef<HTMLDivElement>(null)
+  const fermer = useRef(onClose)
+  fermer.current = onClose
   useEffect(() => {
-    const h = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
+    const avant = document.activeElement as HTMLElement | null
+    const root = document.getElementById('root')
+    root?.setAttribute('inert', '')                       // rien derrière le voile n'est atteignable
+    const premier = boite.current?.querySelector<HTMLElement>('.modal-corps ' + FOCUSABLES) ?? boite.current?.querySelector<HTMLElement>(FOCUSABLES)
+    premier?.focus()
+    const h = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') { fermer.current(); return }
+      if (e.key !== 'Tab' || !boite.current) return
+      const els = Array.from(boite.current.querySelectorAll<HTMLElement>(FOCUSABLES)).filter((x) => x.offsetParent !== null)
+      if (!els.length) return
+      const [prem, dern] = [els[0], els[els.length - 1]]
+      if (e.shiftKey && document.activeElement === prem) { e.preventDefault(); dern.focus() }
+      else if (!e.shiftKey && document.activeElement === dern) { e.preventDefault(); prem.focus() }
+    }
     document.addEventListener('keydown', h)
-    return () => document.removeEventListener('keydown', h)
-  }, [onClose])
-  return (
+    return () => {
+      document.removeEventListener('keydown', h)
+      root?.removeAttribute('inert')
+      avant?.focus?.()
+    }
+  }, [])
+  return createPortal(
     <div className="modal-backdrop" onMouseDown={(e) => { if (e.target === e.currentTarget) onClose() }}>
-      <div className="modal" role="dialog" aria-modal="true" aria-label={title} style={width ? { width: `min(${width}px, 100%)` } : undefined}>
+      <div className="modal" role="dialog" aria-modal="true" aria-label={title} ref={boite} style={width ? { width: `min(${width}px, 100%)` } : undefined}>
         <div className="modal-tete">
           <h2 style={{ margin: 0, fontSize: '1.3rem' }}>{title}</h2>
           <button className="icon-btn" onClick={onClose} aria-label="Fermer"><X size={20} /></button>
@@ -117,7 +143,7 @@ export function Modal({ title, onClose, children, width, footer }: { title: stri
         <div className="modal-corps">{children}</div>
         {footer && <div className="modal-pied">{footer}</div>}
       </div>
-    </div>
+    </div>, document.body
   )
 }
 

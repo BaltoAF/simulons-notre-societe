@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router-dom'
 import type { Regle } from '../lib/api'
-import { valeur } from '../lib/format'
+import { valeur, date } from '../lib/format'
 import { useFetch } from '../lib/state'
 import { DomainIcon, ErrorBox, Loading } from '../components/ui'
 import { RegleLigne } from './Regles'
@@ -42,7 +42,7 @@ export default function Domaine() {
                 {data.metriques.slice(0, 15).map((m) => (
                   <li key={m.id}>
                     <div className="small" style={{ fontWeight: 600 }}>{m.titre}</div>
-                    <div className="row between small"><span className="muted">{m.derniere?.date}</span><strong>{m.derniere ? valeur(m.derniere.valeur, m.unite) : '—'}</strong></div>
+                    <div className="row between small"><span className="muted">{m.derniere?.date ? date(m.derniere.date) : ''}</span><strong>{m.derniere ? valeur(m.derniere.valeur, m.unite) : '—'}</strong></div>
                   </li>
                 ))}
               </ul>

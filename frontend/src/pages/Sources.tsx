@@ -23,9 +23,9 @@ export default function Sources() {
         </form>
       </div>
       <div className="choices" style={{ marginBottom: 16 }}>
-        <button className={`choice ${!type ? 'on' : ''}`} onClick={() => { p.delete('type'); setP(p) }}>Toutes</button>
+        <button className={`choice ${!type ? 'on' : ''}`} aria-pressed={!type} onClick={() => { p.delete('type'); setP(p) }}>Toutes</button>
         {Object.entries(LIBELLE_TYPE_SOURCE).filter(([k]) => data?.par_type?.[k]).map(([k, l]) => (
-          <button key={k} className={`choice ${type === k ? 'on' : ''}`} onClick={() => { p.set('type', k); setP(p) }}>{l} <span className="badge">{nombre(data?.par_type?.[k] ?? 0, 0)}</span></button>
+          <button key={k} className={`choice ${type === k ? 'on' : ''}`} aria-pressed={type === k} onClick={() => { p.set('type', k); setP(p) }}>{l} <span className="badge">{nombre(data?.par_type?.[k] ?? 0, 0)}</span></button>
         ))}
       </div>
       {loading ? <Loading /> : (

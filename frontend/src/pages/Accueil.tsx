@@ -27,9 +27,8 @@ export default function Accueil() {
         <div className="container">
           <span className="badge primary" style={{ marginBottom: 14 }}><GitFork size={14} /> Les règles de la France, ouvertes à tous</span>
           <h1>Comprenez les règles de la France. <em>Imaginez les vôtres.</em></h1>
-          <p className="lead">Impôts, aides, retraites, travail, climat… Société 2.0 rassemble les règles de la France, chacune prouvée par un texte officiel.
-            Vous pouvez voir ce qu'elles vous donnent, puis imaginer les vôtres et découvrir ce que ça changerait, pour vous et pour le pays.
-            Chaque chiffre dit d'où il vient et à quel point on peut s'y fier.</p>
+          <p className="lead">Impôts, aides, retraites, climat : voyez ce que la loi vous donne, puis testez vos idées et leurs effets, pour vous et pour le pays.
+            Chaque chiffre est prouvé et dit à quel point on peut s'y fier.</p>
           <div className="grid cols-3" style={{ marginTop: 26 }}>
             <Link to="/mes-droits" className="card link" style={{ borderColor: 'var(--primary)' }}>
               <Calculator size={26} color="var(--primary)" />

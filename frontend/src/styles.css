@@ -64,7 +64,7 @@
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
 body {
-  background: var(--bg); color: var(--ink); font-family: var(--font); font-size: 16px; line-height: 1.55;
+  background: var(--bg); color: var(--ink); font-family: var(--font); font-size: 17px; line-height: 1.55;
   -webkit-font-smoothing: antialiased;
 }
 a { color: var(--primary); text-decoration: none; }
@@ -115,7 +115,7 @@ code, .mono { font-family: var(--mono); font-size: .85em; }
 .header .container { display: flex; align-items: center; gap: 18px; height: 62px; }
 .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; color: var(--ink); font-size: 1.1rem; white-space: nowrap; }
 .logo:hover { text-decoration: none; }
-.logo .tag { font-size: .7rem; font-weight: 700; background: var(--accent-soft); color: var(--accent); padding: 2px 7px; border-radius: 99px; }
+.logo .tag { font-size: .72rem; font-weight: 700; background: var(--accent-soft); color: var(--ink); padding: 2px 7px; border-radius: 99px; }
 .nav { display: flex; gap: 4px; flex: 1; overflow-x: auto; scrollbar-width: none; }
 .nav a { color: var(--ink-2); padding: 8px 12px; border-radius: 99px; font-weight: 600; font-size: .93rem; white-space: nowrap; }
 .nav a:hover { background: var(--surface-2); text-decoration: none; color: var(--ink); }
@@ -318,7 +318,7 @@ details.pourquoi > div { margin-top: 6px; padding: 10px 12px; background: var(--
 .etapes { display: flex; gap: 6px; flex-wrap: wrap; margin: 6px 0 18px; padding: 0; list-style: none; }
 .etapes li { display: flex; align-items: center; gap: 8px; padding: 6px 12px 6px 6px; border-radius: 99px; background: var(--surface-2); color: var(--ink-3); font-weight: 650; font-size: .88rem; }
 .etapes li .n { width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: var(--surface-3); color: var(--ink-2); font-size: .8rem; }
-.etapes li.fait { color: var(--gain); }
+.etapes li.fait { color: var(--ink-2); }
 .etapes li.fait .n { background: var(--gain); color: #fff; }
 .etapes li.actif { background: var(--primary-soft); color: var(--primary); }
 .etapes li.actif .n { background: var(--primary); color: var(--primary-ink); }
@@ -391,4 +391,30 @@ button.lien { background: none; border: 0; padding: 0; color: var(--primary); fo
   .pied-budget { flex-direction: column; align-items: stretch; gap: 8px; }
   .pied-budget .resume { font-size: .85rem; line-height: 1.35; }
   .modal-pied { margin-top: 8px; padding-top: 8px; }
+}
+
+/* Lien d'évitement : invisible jusqu'à ce qu'on y arrive au clavier */
+.lien-evitement { position: absolute; left: 12px; top: -60px; z-index: 100; background: var(--primary); color: var(--primary-ink, #fff);
+  padding: 10px 16px; border-radius: 10px; font-weight: 700; }
+.lien-evitement:focus { top: 12px; text-decoration: none; }
+main:focus { outline: none; }
+/* Choix sélectionné : coche visible, pas seulement une couleur */
+.choice.on::before { content: '✓ '; font-weight: 800; }
+@media (max-width: 640px) {
+  body { font-size: 16px; }
+  /* bulle d'explication : en bas de l'écran, jamais coupée sur les côtés */
+  .terme-bulle { position: fixed; left: 12px; right: 12px; bottom: 12px; top: auto; transform: none; width: auto; }
+}
+.table.comparaison th[scope="row"] { font-weight: 650; white-space: nowrap; color: var(--ink-2); }
+.table.comparaison td { min-width: 180px; }
+
+.etape-mobile { display: none; margin: 4px 0 14px; color: var(--ink-2); }
+@media (max-width: 640px) {
+  .etapes { display: none; }
+  .etape-mobile { display: block; }
+  /* bandeaux avec bouton : le bouton passe dessous */
+  .notice { flex-wrap: wrap; }
+  .notice > .btn, .notice > a.btn { margin-left: 0; }
+  select { max-width: 100%; }
+  label.row { flex-wrap: nowrap; align-items: flex-start; }
 }

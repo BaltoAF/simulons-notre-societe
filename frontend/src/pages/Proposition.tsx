@@ -48,8 +48,8 @@ export default function Proposition() {
                 <div key={c.regle} className="change-chip">
                   <Link to={`/regles/r/${c.regle}`}><strong>{p.changements?.find((x) => x.regle === c.regle)?.titre ?? c.regle}</strong></Link>
                   <div className="choices" style={{ marginTop: 8 }}>
-                    <button className={`choice ${res[c.regle] === 'cible' ? 'on' : ''}`} disabled={!peutFusionner} onClick={() => setRes({ ...res, [c.regle]: 'cible' })}>Garder la valeur actuelle : {valeur(c.cible)}</button>
-                    <button className={`choice ${res[c.regle] === 'source' ? 'on' : ''}`} disabled={!peutFusionner} onClick={() => setRes({ ...res, [c.regle]: 'source' })}>Adopter la suggestion : {valeur(c.source)}</button>
+                    <button className={`choice ${res[c.regle] === 'cible' ? 'on' : ''}`} aria-pressed={res[c.regle] === 'cible'} disabled={!peutFusionner} onClick={() => setRes({ ...res, [c.regle]: 'cible' })}>Garder la valeur actuelle : {valeur(c.cible)}</button>
+                    <button className={`choice ${res[c.regle] === 'source' ? 'on' : ''}`} aria-pressed={res[c.regle] === 'source'} disabled={!peutFusionner} onClick={() => setRes({ ...res, [c.regle]: 'source' })}>Adopter la suggestion : {valeur(c.source)}</button>
                   </div>
                 </div>
               ))}

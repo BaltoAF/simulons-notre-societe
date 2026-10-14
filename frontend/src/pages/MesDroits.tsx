@@ -4,7 +4,7 @@ import { ArrowLeft, ArrowRight, Calculator, GitFork, Lock, Minus, Plus, RotateCc
 import { api, type Confiance, type Regle } from '../lib/api'
 import { euros } from '../lib/format'
 import { PRESETS, resoudrePreset } from '../lib/presets'
-import { situationVersMenage, useApp, useFetch, type AdulteSaisie, type SituationSaisie } from '../lib/state'
+import { resumeSituation, situationVersMenage, useApp, useFetch, type AdulteSaisie, type SituationSaisie } from '../lib/state'
 import { ConfidenceBadge, ErrorBox, Loading, Notice } from '../components/ui'
 import { DroitsNonMonetaires } from '../components/DroitsNonMonetaires'
 import { Terme } from '../components/Terme'
@@ -15,13 +15,23 @@ type Resultat = {
   niveau_de_vie: number
   lignes: { id: string; libelle: string; montant: number; nature: string }[]
   confiance: Confiance
+  decote_annuelle?: number
 }
 
 const ADULTE: AdulteSaisie = { age: 35, activite: 'salarie', montant_net: 1600, cadre: false, handicap: false }
 const DEFAUT: SituationSaisie = { couple: 'seul', adultes: [ADULTE], enfants: [], logement: 'locataire_prive', loyer_mensuel: 600, zone: 2, revenus_capital_annuels: 0 }
 
 // Règles qui « expliquent » chaque ligne du résultat.
+// À qui demander chaque aide (le site calcule des droits théoriques ; la demande se fait auprès de l'organisme)
+const DEMANDER: Record<string, string> = {
+  rsa: 'auprès de la CAF (caf.fr) ou de la MSA pour les agriculteurs', prime_activite: 'auprès de la CAF (caf.fr) ou de la MSA',
+  aides_logement: 'auprès de la CAF (caf.fr) ou de la MSA', allocations_familiales: 'auprès de la CAF : elles sont en général versées automatiquement',
+  aspa: 'auprès de votre caisse de retraite', aah: 'auprès de la MDPH de votre département, puis de la CAF',
+  complement_familial: 'auprès de la CAF', asf: 'auprès de la CAF', paje: 'auprès de la CAF', ars: 'auprès de la CAF : elle est en général versée automatiquement',
+}
+
 const POURQUOI: Record<string, { regles: string[]; texte: ReactNode }> = {
+  aides_logement_zero: { regles: ['prestations.aides_logement.forfait_charges'], texte: 'L\'aide au logement baisse quand les ressources du foyer augmentent : pour votre loyer, votre zone et vos revenus, elle tombe à zéro.' },
   rsa: { regles: ['prestations.rsa.montant_forfaitaire'], texte: 'Le RSA complète vos ressources jusqu\'à un montant garanti qui dépend de la composition du foyer.' },
   prime_activite: { regles: ['prestations.prime_activite.montant_forfaitaire', 'prestations.prime_activite.part_revenus_activite', 'prestations.prime_activite.bonification_max'], texte: 'La prime d\'activité soutient les revenus des travailleurs modestes.' },
   aides_logement: { regles: ['prestations.aides_logement.forfait_charges'], texte: 'L\'aide au logement dépend du loyer, de la zone, de la composition du foyer et des ressources.' },
@@ -34,16 +44,6 @@ const POURQUOI: Record<string, { regles: string[]; texte: ReactNode }> = {
   pfu: { regles: ['fiscalite.capital.pfu_taux_ir'], texte: 'Impôt forfaitaire de 12,8 % sur les intérêts et dividendes.' },
   epargne: { regles: ['fiscalite.capital.pfu_taux_ir'], texte: 'Sur les intérêts et dividendes de votre épargne (hors livret A et autres livrets réglementés) : un impôt de 12,8 % et des prélèvements sociaux de 17,2 %.' },
   impot_revenu_zero: { regles: ['fiscalite.impot_revenu.bareme', 'fiscalite.impot_revenu.decote.taux'], texte: <>Le revenu du foyer est divisé en <Terme id="part_fiscale">parts</Terme> (une part par adulte, une demi-part par enfant). Par part, il reste sous le seuil où l'impôt commence, ou bien l'impôt calculé est si faible qu'une réduction automatique, la <Terme id="decote">décote</Terme>, l'annule. C'est le cas d'environ la moitié des foyers.</> },
-}
-
-/** « couple marié, 2 enfants (8 et 12 ans), salaires 2 100 € + 1 850 € nets/mois, propriétaire » */
-function resumeSituation(s: SituationSaisie): string {
-  const foyer = s.adultes.length > 1 ? `couple ${s.couple === 'marie' ? 'marié' : s.couple === 'pacse' ? 'pacsé' : 'en union libre'}` : 'personne seule'
-  const enfants = s.enfants.length ? `, ${s.enfants.length} enfant${s.enfants.length > 1 ? 's' : ''} (${s.enfants.join(' et ')} ans)` : ''
-  const nature: Record<string, string> = { salarie: 'salaire', chomeur: 'chômage', retraite: 'retraite', etudiant: 'étudiant', inactif: 'sans activité' }
-  const revenus = s.adultes.map((a) => (['salarie', 'chomeur', 'retraite'].includes(a.activite) ? `${nature[a.activite]} ${euros(a.montant_net)}` : nature[a.activite])).join(' + ')
-  const logement: Record<string, string> = { locataire_prive: 'locataire', locataire_social: 'locataire HLM', proprietaire: 'propriétaire', heberge: 'hébergé' }
-  return `${foyer}${enfants}, ${revenus} nets/mois, ${logement[s.logement] ?? ''}`
 }
 
 function Stepper({ step }: { step: number }) {
@@ -110,7 +110,9 @@ export default function MesDroits() {
 
   if (step === 3 && (res || loading || err)) {
     const revenus = res?.lignes.filter((l) => l.nature === 'revenu') ?? []
-    const prest = res?.lignes.filter((l) => l.nature === 'prestation') ?? []
+    const prestBrut = res?.lignes.filter((l) => l.nature === 'prestation') ?? []
+    const prest: Resultat['lignes'] = s.logement.startsWith('locataire') && !prestBrut.some((l) => l.id === 'aides_logement')
+      ? [...prestBrut, { id: 'aides_logement_zero', libelle: 'Aides au logement', montant: 0, nature: 'prestation' }] : prestBrut
     // Impôts : toujours une ligne « Impôt sur le revenu » (même à 0 €), et les petits impôts sur l'épargne regroupés
     const brut = res?.lignes.filter((l) => l.nature === 'prelevement') ?? []
     const ir = brut.find((l) => l.id === 'impot_revenu')
@@ -134,7 +136,7 @@ export default function MesDroits() {
               <div className="card">
                 <div className="card-head">
                   <div>
-                    <div className="kpi-label"><Terme id="revenu_disponible">Ce qui reste au foyer chaque mois</Terme></div>
+                    <div className="kpi-label">Ce qui reste au foyer chaque mois</div>
                     <div className="kpi big">{euros(res.revenu_disponible)} <span className="muted" style={{ fontSize: '1rem', fontWeight: 600 }}>/ mois</span></div>
                     <div className="small muted">Revenus + aides − impôts.{s.adultes.length + s.enfants.length > 1 && <> Votre foyer vit aussi bien qu'une personne seule qui aurait {euros(res.niveau_de_vie)} par mois (c'est votre <Terme id="niveau_vie">niveau de vie</Terme> : à plusieurs, on partage le logement et les dépenses).</>}</div>
                     <div className="small" style={{ marginTop: 6 }}>Calcul pour : {resumeSituation(s)} · <button className="lien" onClick={() => setStep(0)}>modifier</button></div>
@@ -156,7 +158,12 @@ export default function MesDroits() {
                             {POURQUOI[l.id] && (
                               <details className="explain" style={{ marginTop: 6, paddingTop: 6 }}>
                                 <summary>{l.montant === 0 ? 'Pourquoi 0 € ?' : 'Pourquoi ce montant ?'}</summary>
-                                <p className="small ink2" style={{ marginBottom: 6 }}>{POURQUOI[l.id].texte}</p>
+                                <p className="small ink2" style={{ marginBottom: 6 }}>{l.id === 'impot_revenu_zero'
+                                  ? ((res.decote_annuelle ?? 0) > 0
+                                    ? <>Votre impôt aurait été d'environ {euros(res.decote_annuelle!, 0)} par an, mais la <Terme id="decote">décote</Terme>, une réduction automatique pour les petits impôts, l'annule entièrement.</>
+                                    : <>Le revenu du foyer est divisé en <Terme id="part_fiscale">parts</Terme> (une part par adulte, une demi-part par enfant) : par part, il reste sous le seuil où l'impôt commence.</>)
+                                  : POURQUOI[l.id].texte}</p>
+                                {DEMANDER[l.id] && l.montant > 0 && <div className="small" style={{ marginBottom: 6 }}><strong>La demander :</strong> {DEMANDER[l.id]}.</div>}
                                 <div className="small">Règles en jeu : {POURQUOI[l.id].regles.map((r, i) => <span key={r}>{i ? ' · ' : ''}<Link to={`/regles/r/${r}`}>{regles?.regles.find((x) => x.id === r)?.titre ?? r}</Link></span>)}</div>
                               </details>
                             )}
@@ -205,7 +212,7 @@ export default function MesDroits() {
   return (
     <div className="container page" style={{ maxWidth: 760 }}>
       <h1>Calculer mes droits</h1>
-      <p className="lead ink2">Trois questions pour connaître vos aides, votre impôt et votre revenu disponible selon les règles actuelles. Sans compte, sans enregistrement.</p>
+      <p className="lead ink2">En trois étapes, vos aides, votre impôt et ce qui vous reste chaque mois selon les règles actuelles. Sans compte, sans enregistrement.</p>
       <Stepper step={step} />
       {step === 0 && (
         <div className="card soft" style={{ marginBottom: 14, padding: 14 }}>
@@ -225,15 +232,15 @@ export default function MesDroits() {
           <div>
             <label className="field"><span>Vous vivez…</span></label>
             <div className="choices" style={{ marginBottom: 16 }}>
-              <button className={`choice ${!enCouple ? 'on' : ''}`} onClick={() => up({ couple: 'seul', adultes: [s.adultes[0]] })}>Seul(e)</button>
-              <button className={`choice ${enCouple ? 'on' : ''}`} onClick={() => up({ couple: s.couple === 'seul' ? 'marie' : s.couple, adultes: [s.adultes[0], s.adultes[1] ?? { ...ADULTE, age: 34 }] })}>En couple</button>
+              <button className={`choice ${!enCouple ? 'on' : ''}`} aria-pressed={!enCouple} onClick={() => up({ couple: 'seul', adultes: [s.adultes[0]] })}>Seul(e)</button>
+              <button className={`choice ${enCouple ? 'on' : ''}`} aria-pressed={enCouple} onClick={() => up({ couple: s.couple === 'seul' ? 'marie' : s.couple, adultes: [s.adultes[0], s.adultes[1] ?? { ...ADULTE, age: 34 }] })}>En couple</button>
             </div>
             {enCouple && (
               <>
                 <label className="field"><span>Votre union</span></label>
                 <div className="choices" style={{ marginBottom: 16 }}>
                   {([['marie', 'Mariés'], ['pacse', 'Pacsés'], ['concubin', 'Union libre']] as const).map(([v, l]) => (
-                    <button key={v} className={`choice ${s.couple === v ? 'on' : ''}`} onClick={() => up({ couple: v })}>{l}</button>
+                    <button key={v} className={`choice ${s.couple === v ? 'on' : ''}`} aria-pressed={s.couple === v} onClick={() => up({ couple: v })}>{l}</button>
                   ))}
                 </div>
               </>
@@ -293,17 +300,17 @@ export default function MesDroits() {
             <label className="field"><span>Votre logement</span></label>
             <div className="choices" style={{ marginBottom: 16 }}>
               {([['locataire_prive', 'Locataire (parc privé)'], ['locataire_social', 'Locataire HLM'], ['proprietaire', 'Propriétaire'], ['heberge', 'Hébergé(e) gratuitement']] as const).map(([v, l]) => (
-                <button key={v} className={`choice ${s.logement === v ? 'on' : ''}`} onClick={() => up({ logement: v })}>{l}</button>
+                <button key={v} className={`choice ${s.logement === v ? 'on' : ''}`} aria-pressed={s.logement === v} onClick={() => up({ logement: v })}>{l}</button>
               ))}
             </div>
             {s.logement.startsWith('locataire') && (
               <label className="field"><span>Loyer mensuel (hors charges)</span>
-                <div className="input-suffix"><input type="number" min={0} step={10} value={s.loyer_mensuel} onChange={(e) => up({ loyer_mensuel: Number(e.target.value) })} /><span className="suffix">€ / mois</span></div></label>
+                <div className="input-suffix"><input type="number" min={0} step={10} placeholder="ex. 600" value={s.loyer_mensuel || ''} onChange={(e) => up({ loyer_mensuel: Number(e.target.value) })} /><span className="suffix">€ / mois</span></div></label>
             )}
             <label className="field"><span>Vous habitez…</span></label>
             <div className="choices">
               {([[1, 'Paris et sa proche banlieue'], [2, 'Une grande ville'], [3, 'Une ville moyenne ou la campagne']] as const).map(([v, l]) => (
-                <button key={v} className={`choice ${s.zone === v ? 'on' : ''}`} onClick={() => up({ zone: v })}>{l}</button>
+                <button key={v} className={`choice ${s.zone === v ? 'on' : ''}`} aria-pressed={s.zone === v} onClick={() => up({ zone: v })}>{l}</button>
               ))}
             </div>
           </div>
@@ -311,7 +318,8 @@ export default function MesDroits() {
         <div className="row between" style={{ marginTop: 22 }}>
           {step > 0 ? <button className="btn" onClick={() => setStep(step - 1)}><ArrowLeft size={16} /> Précédent</button> : <span />}
           {step < 2 ? <button className="btn primary" onClick={() => setStep(step + 1)}>Suivant <ArrowRight size={16} /></button>
-            : <button className="btn primary" onClick={() => calculer()} disabled={loading}><Calculator size={16} /> {loading ? 'Calcul…' : 'Calculer mes droits'}</button>}
+            : <button className="btn primary" onClick={() => calculer()} disabled={loading || (s.logement.startsWith('locataire') && !s.loyer_mensuel)}
+                title={s.logement.startsWith('locataire') && !s.loyer_mensuel ? 'Indiquez votre loyer' : undefined}><Calculator size={16} /> {loading ? 'Calcul…' : 'Calculer mes droits'}</button>}
         </div>
       </div>
       <p className="small muted" style={{ marginTop: 14 }}><Lock size={13} /> Vos réponses restent dans votre navigateur. Le calcul applique la législation du mois en cours.</p>

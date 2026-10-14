@@ -1,5 +1,5 @@
 // « En bref » et « Les équilibres » : le résultat d'une réforme raconté en phrases simples.
-import { useState } from 'react'
+import { useState, type ReactNode } from 'react'
 import { CheckCircle2, Coins, Globe2, Heart, Landmark, Leaf, ShieldAlert, Users, Wallet } from 'lucide-react'
 import { api, type Equilibre, type OptionCompensation, type Pilier, type Rapport, type Valeur } from '../lib/api'
 import { euros, nombre } from '../lib/format'
@@ -26,6 +26,26 @@ const VERDICT: Record<Pilier['verdict'], { txt: string; cls: string }> = {
 
 export type Contexte = 'reforme' | 'societe'
 
+// Expressions difficiles des phrases du résumé, reliées au lexique (soulignées en pointillé, explication au survol)
+const TERMES: [RegExp, string][] = [
+  [/seuil de pauvreté/i, 'pauvrete'], [/richesse produite/i, 'richesse'], [/inégalités/i, 'gini'], [/niveau de vie/i, 'niveau_vie'],
+  [/\b\d+e dixième\b|plus modestes/i, 'decile'],
+]
+
+/** Une phrase avec ses mots difficiles cliquables (le premier de chaque sorte seulement, pour ne pas surcharger). */
+function avecTermes(texte: string): ReactNode {
+  let morceaux: ReactNode[] = [texte]
+  for (const [re, id] of TERMES) {
+    morceaux = morceaux.flatMap((m): ReactNode[] => {
+      if (typeof m !== 'string') return [m]
+      const r = m.match(re)
+      if (!r || r.index === undefined) return [m]
+      return [m.slice(0, r.index), <Terme key={id} id={id}>{r[0]}</Terme>, m.slice(r.index + r[0].length)]
+    })
+  }
+  return <>{morceaux}</>
+}
+
 /** La pauvreté (relative) recule alors que presque personne ne gagne : effet de seuil à expliquer, sinon le lecteur croit à une erreur. */
 function paradoxePauvrete(p: Pilier): boolean {
   const pauv = p.indicateurs.find((i) => i.id === 'pauvrete')
@@ -47,7 +67,7 @@ export function EnBref({ r, contexte = 'reforme' }: { r: Rapport; contexte?: Con
           </div>
         </div>
       )}
-      <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(230px, 1fr))' }}>
+      <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(min(340px, 100%), 1fr))' }}>
         {r.bilan.map((p) => {
           const I = ICONES[p.pilier]
           const v = VERDICT[p.verdict]
@@ -64,7 +84,7 @@ export function EnBref({ r, contexte = 'reforme' }: { r: Rapport; contexte?: Con
                   {p.indicateurs.slice(0, 3).map((i) => (
                     <div key={i.id} className="ligne-phrase small">
                       <span className={`puce-sens ${i.sens}`} />
-                      <span>{i.id === 'gagnants' && i.perdants != null ? `${nombre(i.valeur, 0)} % des ménages y gagnent, ${nombre(i.perdants, 0)} % y perdent (au moins 1 € par mois).` : phrase(i.id, i.valeur, i.unite)}</span>
+                      <span>{avecTermes(i.id === 'gagnants' && i.perdants != null ? `${nombre(i.valeur, 0)} % des ménages y gagnent, ${nombre(i.perdants, 0)} % y perdent (au moins 1 € par mois).` : phrase(i.id, i.valeur, i.unite))}</span>
                     </div>
                   ))}
                 </div>
@@ -145,11 +165,11 @@ function Titre({ e }: { e: Equilibre }) {
   if (budget) {
     if (e.statut === 'a_compenser') return <>Il manque <span className="delta neg">{milliards(e.manque)}</span> par an.</>
     if (e.statut === 'assume') return <>Financé par l'emprunt : <span className="delta neg">{milliards(e.effet)}</span> de dette en plus chaque année.</>
-    if (e.statut === 'a_surveiller') return <>Coût estimé : {milliards(e.effet)} par an (à confirmer).</>
+    if (e.statut === 'a_surveiller') return <>Coût estimé : environ <span className="delta neg">{milliards(Math.abs(e.effet))}</span> par an (estimation incertaine).</>
     return e.effet > 0.05 ? <>C'est financé, et ça rapporte <span className="delta pos">{milliards(e.effet)}</span> par an.</> : <>C'est financé. <CheckCircle2 size={20} color="var(--gain)" style={{ verticalAlign: -3 }} /></>
   }
   if (e.statut === 'a_compenser') return <><span className="delta neg">{tonnes(e.manque)}</span> de trop par an.</>
-  if (e.statut === 'a_surveiller') return <>Hausse estimée de {tonnes(e.effet)} par an (à confirmer).</>
+  if (e.statut === 'a_surveiller') return <>Hausse estimée d'environ {tonnes(Math.abs(e.effet))} par an (estimation incertaine).</>
   if (e.statut === 'information') return <>{e.effet > 0 ? 'Hausse' : 'Baisse'} de {tonnes(e.effet)} par an.</>
   return e.effet < -0.005 ? <>Les émissions baissent de <span className="delta pos">{tonnes(e.effet)}</span> par an. <CheckCircle2 size={20} color="var(--gain)" style={{ verticalAlign: -3 }} /></> : <>Dans les clous. <CheckCircle2 size={20} color="var(--gain)" style={{ verticalAlign: -3 }} /></>
 }
@@ -181,7 +201,7 @@ export function EquilibresPanel({ r, overrides, onAppliquer, contexte = 'reforme
                   ? (budget ? "Cette proposition n'est pas entièrement financée : elle a été enregistrée avant cette vérification, ou la loi a changé depuis." : "Cette proposition dépasse le plafond d'émissions : elle a été enregistrée avant cette vérification, ou la loi a changé depuis.")
                   : (budget ? 'Il faut trouver cet argent ailleurs avant de pouvoir enregistrer votre réforme.' : 'Il faut compenser ces émissions ailleurs avant de pouvoir enregistrer votre réforme.')}</div></div>
             )}
-            {e.statut === 'a_surveiller' && <div className="notice warn small" style={{ marginTop: 10 }}><ShieldAlert size={16} /><div>Estimation trop incertaine pour exiger une compensation : à surveiller.</div></div>}
+            {e.statut === 'a_surveiller' && <div className="notice warn small" style={{ marginTop: 10 }}><ShieldAlert size={16} /><div>Cette estimation est trop incertaine pour être exigée. Vous pouvez quand même choisir une solution ci-dessous.</div></div>}
             <Pourquoi titre={budget ? 'Pourquoi faut-il financer ?' : 'Pourquoi faut-il compenser ?'}>
               {budget ? (
                 <>La France dépense déjà plus qu'elle ne gagne : son <Terme id="deficit">déficit</Terme> dépasse la <Terme id="limite3">limite européenne de 3 %</Terme>.

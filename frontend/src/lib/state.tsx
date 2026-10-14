@@ -2,6 +2,7 @@
 // Le brouillon et la situation restent dans le navigateur : rien n'est stocké côté serveur sans action explicite.
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react'
 import { api, type Meta, type Utilisateur, type Valeur } from './api'
+import { euros } from './format'
 
 type Ctx = {
   user: Utilisateur | null
@@ -141,4 +142,15 @@ export function useFetch<T>(path: string | null, deps: unknown[] = []) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [path, tick, ...deps])
   return { data, error, loading, reload: () => setTick((t) => t + 1), setData }
+}
+
+/** « couple marié, 2 enfants (8 et 12 ans), salaires 2 100 € + 1 850 € nets/mois, propriétaire » */
+export function resumeSituation(s: SituationSaisie): string {
+  const foyer = s.adultes.length > 1 ? `couple ${s.couple === 'marie' ? 'marié' : s.couple === 'pacse' ? 'pacsé' : 'en union libre'}` : 'personne seule'
+  const enfants = s.enfants.length ? `, ${s.enfants.length} enfant${s.enfants.length > 1 ? 's' : ''} (${s.enfants.join(' et ')} ans)` : ''
+  const nature: Record<string, string> = { salarie: 'salaire', chomeur: 'chômage', retraite: 'retraite', etudiant: 'étudiant', inactif: 'sans activité' }
+  const revenus = s.adultes.map((a) => (['salarie', 'chomeur', 'retraite'].includes(a.activite) ? `${nature[a.activite]} ${euros(a.montant_net)}` : nature[a.activite])).join(' + ')
+  const logement: Record<string, string> = { locataire_prive: 'locataire', locataire_social: 'locataire HLM', proprietaire: 'propriétaire', heberge: 'hébergé' }
+  const epargne = s.revenus_capital_annuels > 0 ? `, épargne rapportant ${euros(s.revenus_capital_annuels)} par an` : ''
+  return `${foyer}${enfants}, ${revenus} nets/mois${epargne}, ${logement[s.logement] ?? ''}`
 }

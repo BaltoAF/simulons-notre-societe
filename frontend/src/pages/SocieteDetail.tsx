@@ -37,7 +37,7 @@ function Historique({ sid, branche }: { sid: string; branche: string }) {
       {(data?.commits ?? []).map((c, i) => (
         <li key={c.id} className={`${c.auteur_systeme ? 'system' : ''} ${i === 0 ? 'current' : ''}`}>
           <div className="row between"><strong>{c.message}</strong>{i === 0 && <span className="badge primary">version actuelle</span>}</div>
-          <div className="small muted">{c.auteur_systeme ? 'Mise à jour automatique (la loi a changé)' : c.auteur} · {relatif(c.created_at)}{c.second_parent_id ? ' · suggestion intégrée' : ''}</div>
+          <div className="small muted">{c.auteur_systeme ? 'Mise à jour automatique (la loi a changé)' : c.auteur} · {relatif(c.created_at)}{c.second_parent_id ? ' · reprend les changements suggérés par une autre proposition' : ''}</div>
           {c.changes.length > 0 && c.changes.length <= 12 && (
             <details className="explain" style={{ marginTop: 6, paddingTop: 6 }}>
               <summary>Voir {c.changes.length > 1 ? `les ${c.changes.length} changements` : 'le changement'}</summary>
@@ -264,7 +264,7 @@ function SyncModal({ s, branche, onClose, onDone }: { s: SD; branche: string; on
   const go = async () => {
     try {
       const r = await api<{ statut: string; message?: string; changements?: any[] }>(`/api/societes/${s.id}/synchroniser`, { body: { branche, resolutions: res } })
-      onDone(r.statut === 'a_jour' ? r.message! : `Proposition mise à jour : ${r.changements?.length ?? 0} règle(s) actualisée(s) selon la loi.`)
+      onDone(r.statut === 'a_jour' ? r.message! : `Proposition mise à jour selon la loi : ${r.changements?.length ?? 0} règle${(r.changements?.length ?? 0) > 1 ? 's' : ''} actualisée${(r.changements?.length ?? 0) > 1 ? 's' : ''}.`)
     } catch (e: any) {
       if (e.status === 409) setConflits(e.data?.conflits ?? []); else setErr(e.message)
     }
@@ -276,8 +276,8 @@ function SyncModal({ s, branche, onClose, onDone }: { s: SD; branche: string; on
         <div key={c.regle} className="change-chip">
           <strong>{c.titre}</strong>
           <div className="choices" style={{ marginTop: 8 }}>
-            <button className={`choice ${res[c.regle] === 'cible' ? 'on' : ''}`} onClick={() => setRes({ ...res, [c.regle]: 'cible' })}>Garder ma valeur : {valeur(c.cible)}</button>
-            <button className={`choice ${res[c.regle] === 'source' ? 'on' : ''}`} onClick={() => setRes({ ...res, [c.regle]: 'source' })}>Adopter la nouvelle loi : {valeur(c.source)}</button>
+            <button className={`choice ${res[c.regle] === 'cible' ? 'on' : ''}`} aria-pressed={res[c.regle] === 'cible'} onClick={() => setRes({ ...res, [c.regle]: 'cible' })}>Garder ma valeur : {valeur(c.cible)}</button>
+            <button className={`choice ${res[c.regle] === 'source' ? 'on' : ''}`} aria-pressed={res[c.regle] === 'source'} onClick={() => setRes({ ...res, [c.regle]: 'source' })}>Adopter la nouvelle loi : {valeur(c.source)}</button>
           </div>
         </div>
       ))}

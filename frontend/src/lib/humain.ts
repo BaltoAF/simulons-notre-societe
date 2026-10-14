@@ -64,6 +64,11 @@ export function phrase(id: string, v: number, unite: string): string {
     return v < 0 ? `≈ ${n} personnes de moins au travail : reprendre un emploi rapporterait moins qu'aujourd'hui (estimation incertaine).`
       : `≈ ${n} personnes de plus au travail : travailler rapporterait davantage (estimation incertaine).`
   }
+  if (id === 'emploi_seniors') {
+    const n = nombre(Math.abs(Math.round(v / 1000) * 1000), 0)
+    return v < 0 ? `≈ ${n} seniors de moins au travail : ils partent plus tôt à la retraite (à terme).`
+      : `≈ ${n} seniors de plus au travail : ils partent plus tard à la retraite (à terme).`
+  }
   if (id.startsWith('emploi_')) return `≈ ${nombre(Math.abs(Math.round(v / 1000) * 1000), 0)} emplois ${v > 0 ? 'en plus' : 'en moins'}.`
   if (id === 'gini') return Math.abs(v) < 0.02 ? 'Inégalités inchangées.' : `Les inégalités ${v < 0 ? 'baissent' : 'augmentent'} ${qualif(v, 0.1, 0.5)}.`
   if (id === 'pauvrete') return Math.abs(v) < 0.02 ? 'Pauvreté inchangée.' : `La pauvreté ${v < 0 ? 'recule' : 'progresse'} ${qualif(v, 0.1, 0.5)} : ≈ ${nombre(Math.round(Math.abs(v) / 100 * HABITANTS / 1000) * 1000, 0)} personnes ${v < 0 ? 'de moins' : 'de plus'} sous le seuil de pauvreté.`

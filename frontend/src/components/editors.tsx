@@ -3,6 +3,7 @@ import { Plus, Search, Trash2 } from 'lucide-react'
 import type { Regle, Tranche, Valeur } from '../lib/api'
 import { DOMAINE_TITRE, nombre, unite, valeur as fmt } from '../lib/format'
 import { useFetch } from '../lib/state'
+import { chercherRegles } from '../lib/recherche'
 import { Loading, Modal } from './ui'
 
 /** Éditeur de valeur adapté au type de la règle (nombre + curseur, oui/non, choix, barème). */
@@ -11,8 +12,8 @@ export function ValueEditor({ rule, value, onChange }: { rule: Regle; value: Val
   if (rule.type === 'booleen') {
     return (
       <div className="choices">
-        <button type="button" className={`choice ${value === true ? 'on' : ''}`} onClick={() => onChange(true)}>Oui</button>
-        <button type="button" className={`choice ${value === false ? 'on' : ''}`} onClick={() => onChange(false)}>Non</button>
+        <button type="button" className={`choice ${value === true ? 'on' : ''}`} aria-pressed={value === true} onClick={() => onChange(true)}>Oui</button>
+        <button type="button" className={`choice ${value === false ? 'on' : ''}`} aria-pressed={value === false} onClick={() => onChange(false)}>Non</button>
       </div>
     )
   }
@@ -55,7 +56,7 @@ export function ValueEditor({ rule, value, onChange }: { rule: Regle; value: Val
       {(rapides.length > 0 || num !== cur) && (
         <div className="row" style={{ gap: 6, marginTop: 6 }}>
           {rapides.map(([l, v]) => <button key={l} type="button" className="btn small" onClick={() => onChange(v)}>{l}</button>)}
-          {num !== cur && <button type="button" className="btn small ghost" onClick={() => onChange(cur)}>Valeur d'aujourd'hui</button>}
+          {num !== cur && <button type="button" className="btn small ghost" onClick={() => onChange(cur)}>↺ Revenir à aujourd'hui</button>}
         </div>
       )}
     </div>
@@ -94,12 +95,8 @@ export function RulePicker({ onPick, onClose, exclude, domaine = '' }: { onPick:
   const [q, setQ] = useState('')
   const [dom, setDom] = useState(domaine)
   const [seulementSimulables, setSeulementSimulables] = useState(true)
-  const list = useMemo(() => {
-    const ql = q.toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '')
-    return (data?.regles ?? []).filter((r) => r.levier && !exclude.includes(r.id)
-      && (!dom || r.domaine === dom) && (!seulementSimulables || r.simulable)
-      && (!ql || (r.titre + ' ' + r.theme + ' ' + r.explication).toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '').includes(ql)))
-  }, [data, q, dom, seulementSimulables, exclude])
+  const list = useMemo(() => chercherRegles((data?.regles ?? []).filter((r) => r.levier && !exclude.includes(r.id)
+      && (!dom || r.domaine === dom) && (!seulementSimulables || r.simulable)), q), [data, q, dom, seulementSimulables, exclude])
   const domaines = useMemo(() => Array.from(new Set((data?.regles ?? []).map((r) => r.domaine))), [data])
   return (
     <Modal title="Quelle règle voulez-vous changer ?" onClose={onClose} width={820}>

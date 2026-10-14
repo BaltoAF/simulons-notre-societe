@@ -132,6 +132,23 @@ def resume_regle(store, r: dict, couverts: set[str]) -> dict:
     }
 
 
+# Règles que le grand public cherche le plus : affichées en tête de leur thème et des recherches
+REGLES_CLES = ["travail.smic.horaire_brut", "prestations.rsa.montant_forfaitaire", "prestations.prime_activite.montant_forfaitaire",
+               "retraites.age_legal.generation_1969_et_apres", "fiscalite.impot_revenu.bareme", "fiscalite.tva.taux_normal",
+               "fiscalite.csg.salaires_taux", "travail.duree.legale_hebdomadaire", "prestations.famille.af_nombre_enfants_minimum",
+               "transports.vitesse_max.autoroute"]
+
+
+def cle_tri(texte: str) -> str:
+    """Clé de tri insensible aux accents et à la casse : « Âge » se range avec les « A », pas après le Z."""
+    import unicodedata
+    return "".join(c for c in unicodedata.normalize("NFD", texte or "") if unicodedata.category(c) != "Mn").lower()
+
+
+def rang_regle(r: dict) -> tuple:
+    return (REGLES_CLES.index(r["id"]) if r["id"] in REGLES_CLES else len(REGLES_CLES), cle_tri(r["titre"]))
+
+
 @app.get("/api/regles")
 def list_regles(domaine: str | None = None, q: str | None = None, simulable: bool | None = None,
                 limit: int = 500, offset: int = 0):
@@ -141,12 +158,12 @@ def list_regles(domaine: str | None = None, q: str | None = None, simulable: boo
     if domaine:
         items = [r for r in items if r["domaine"] == domaine]
     if q:
-        ql = q.lower()
-        items = [r for r in items if ql in r["titre"].lower() or ql in r["id"].lower()
-                 or ql in (r.get("explication") or "").lower() or ql in r["theme"].lower()]
+        # tous les mots, dans n'importe quel ordre, sans tenir compte des accents
+        mots = cle_tri(q).split()
+        items = [r for r in items if all(m in cle_tri(" ".join([r["titre"], r["id"], r.get("explication") or "", r["theme"]])) for m in mots)]
     if simulable is not None:
         items = [r for r in items if (r["id"] in couverts) == simulable]
-    items.sort(key=lambda r: (r["domaine"], r["theme"], r["titre"]))
+    items.sort(key=lambda r: (r["domaine"], cle_tri(r["theme"]), *rang_regle(r)))
     return {"total": len(items), "regles": [resume_regle(store, r, couverts) for r in items[offset:offset + limit]]}
 
 
@@ -183,7 +200,7 @@ def get_domaine(did: str):
     if not d:
         raise HTTPException(404, "Domaine introuvable")
     couverts = _modeles_couverts(store)
-    regles = sorted((r for r in store.regles.values() if r["domaine"] == did), key=lambda r: (r["theme"], r["titre"]))
+    regles = sorted((r for r in store.regles.values() if r["domaine"] == did), key=lambda r: (cle_tri(r["theme"]), *rang_regle(r)))
     themes: dict[str, list] = {}
     for r in regles:
         themes.setdefault(r["theme"], []).append(resume_regle(store, r, couverts))
@@ -341,7 +358,39 @@ def menage_depuis_saisie(payload: dict, montants: str) -> tuple[Menage, list[str
                     a[champ] = 0
         adultes.append(a)
     data["adultes"] = adultes
-    return Menage.from_dict(data), sorted(set(approximations))
+    m = Menage.from_dict(data)
+    if montants == "net":
+        m = _ajuster_au_net(m, payload)
+    return m, sorted(set(approximations))
+
+
+def _ajuster_au_net(m: Menage, payload: dict, tours: int = 2) -> Menage:
+    """La conversion net → brut se fait sur un cas type ; mais la CSG d'une pension dépend du revenu de tout le foyer.
+    On corrige donc le brut jusqu'à ce que le moteur retrouve exactement les montants nets saisis par la personne."""
+    from dataclasses import replace
+    cibles = {}
+    for kind, champ, sortie in (("salaire", "salaire_net_mensuel", "salaire_net"), ("retraite", "retraite_nette_mensuelle", "retraite_nette"),
+                                ("chomage", "chomage_net_mensuel", "chomage_net")):
+        total = sum(float(a.get(champ, 0) or 0) for a in payload.get("adultes", [])[:2])
+        if total > 0:
+            cibles[kind] = (total, sortie)
+    brut_attr = {"salaire": "salaire_brut_mensuel", "retraite": "retraite_brute_mensuelle", "chomage": "chomage_brut_mensuel"}
+    for _ in range(tours):
+        if not cibles:
+            break
+        res = ENGINE.compute([m])
+        adultes = list(m.adultes)
+        bouge = False
+        for kind, (cible, sortie) in cibles.items():
+            obtenu = float(res[sortie][0])
+            if obtenu > 0 and abs(obtenu - cible) > 0.5:
+                f = cible / obtenu
+                adultes = [replace(a, **{brut_attr[kind]: round(getattr(a, brut_attr[kind]) * f, 2)}) for a in adultes]
+                bouge = True
+        if not bouge:
+            break
+        m = replace(m, adultes=adultes)
+    return m
 
 
 @app.post("/api/simulation/menage")

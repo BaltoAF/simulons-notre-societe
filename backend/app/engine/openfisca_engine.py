@@ -59,6 +59,7 @@ COMPOSANTES_FOYER = [
     ("impot_revenu", "impot_revenu_restant_a_payer", "Y"),
     ("pfu", "prelevement_forfaitaire_unique_ir", "Y"),
     ("prelevements_sociaux_capital", "prelevements_sociaux_revenus_capital", "Y"),
+    ("decote", "decote_gain_fiscal", "Y"),          # réduction d'impôt pour les petits impôts (sert à expliquer un impôt nul)
 ]
 
 PRESTATIONS = ["rsa", "prime_activite", "aides_logement", "allocations_familiales", "complement_familial",

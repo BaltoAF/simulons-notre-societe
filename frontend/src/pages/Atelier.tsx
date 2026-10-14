@@ -2,11 +2,12 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { ArrowRight, Calculator, CheckCircle2, GitBranch, GitFork, Landmark, Lightbulb, Plus, Save, Trash2, Undo2, User } from 'lucide-react'
 import { api, type Rapport, type Regle, type SocieteDetail, type Valeur } from '../lib/api'
-import { nombre, valeur } from '../lib/format'
+import { ecartLisible, euros, valeur } from '../lib/format'
 import { milliards, tonnes } from '../lib/humain'
 import { infoMission } from '../lib/missions'
 import { PRESETS, resoudrePreset } from '../lib/presets'
-import { BROUILLON_VIDE, situationVersMenage, useApp, useFetch } from '../lib/state'
+import { AGE_TERME, agesPourTous, estAgeLegal, GENERATIONS, nomGeneration } from '../lib/retraite'
+import { BROUILLON_VIDE, resumeSituation, situationVersMenage, useApp, useFetch } from '../lib/state'
 import { RulePicker, ValueEditor } from '../components/editors'
 import { BudgetEditor } from '../components/BudgetEditor'
 import { PROFILS } from '../lib/profils'
@@ -95,6 +96,7 @@ export default function Atelier() {
   }
   const aJour = rapport !== null && !rapport.partiel && rapportPour === JSON.stringify(draft.overrides)
   const desequilibres = aJour ? (rapport?.equilibres ?? []).filter((e) => e.statut === 'a_compenser') : []
+  const aSurveiller = aJour ? (rapport?.equilibres ?? []).filter((e) => e.statut === 'a_surveiller') : []
   const etape = changes.length === 0 ? 1 : !aJour ? (rapport || loading ? 3 : 2) : desequilibres.length ? 4 : 5
 
   useEffect(() => {
@@ -114,10 +116,20 @@ export default function Atelier() {
   const setVal = (id: string, v: Valeur) => setDraft((d) => ({ ...d, overrides: { ...d.overrides, [id]: v } }))
   const retirer = (id: string) => setDraft((d) => { const o = { ...d.overrides }; delete o[id]; return { ...d, overrides: o } })
   const retirerMissions = () => setDraft((d) => { const o = { ...d.overrides }; for (const k of Object.keys(o)) if (estMission(k)) delete o[k]; return { ...d, overrides: o } })
-  const ajouter = (r: Regle) => { setVal(r.id, r.valeur); setPicker(false) }
+  // une génération de l'âge légal choisie dans la liste : on ouvre le réglage commun à toutes les générations
+  const ajouter = (r: Regle) => {
+    if (estAgeLegal(r.id)) { if (!(AGE_TERME in draft.overrides) && regles[AGE_TERME]) setVal(AGE_TERME, regles[AGE_TERME].valeur) }
+    else setVal(r.id, r.valeur)
+    setPicker(false)
+  }
+  const actuelles = useMemo(() => Object.fromEntries((rdata?.regles ?? []).map((r) => [r.id, r.valeur])), [rdata])
+  const setAges = (x: number) => setDraft((d) => {
+    const o = Object.fromEntries(Object.entries(d.overrides).filter(([k]) => !estAgeLegal(k)))
+    return { ...d, overrides: { ...o, ...agesPourTous(x, actuelles) } }
+  })
+  const retirerAges = () => setDraft((d) => ({ ...d, overrides: Object.fromEntries(Object.entries(d.overrides).filter(([k]) => !estAgeLegal(k))) }))
   const appliquerPreset = (pid: string) => {
     const p = PRESETS.find((x) => x.id === pid)!
-    const actuelles = Object.fromEntries((rdata?.regles ?? []).map((r) => [r.id, r.valeur]))
     setDraft((d) => ({ ...d, overrides: { ...d.overrides, ...resoudrePreset(p, actuelles) } }))
     setPresets(false)
   }
@@ -127,7 +139,9 @@ export default function Atelier() {
     const ref = base?.overrides ?? {}
     const out: any[] = []
     for (const id of changes) {
-      if (!same(draft.overrides[id], ref[id])) out.push({ regle: id, valeur: draft.overrides[id], justification: draft.justifications[id] || '' })
+      // les générations de l'âge légal partagent la raison donnée pour l'âge à terme
+      const justif = draft.justifications[id] || (estAgeLegal(id) ? draft.justifications[AGE_TERME] : '') || ''
+      if (!same(draft.overrides[id], ref[id])) out.push({ regle: id, valeur: draft.overrides[id], justification: justif })
     }
     for (const id of Object.keys(ref)) {
       if (!changes.includes(id)) out.push({ regle: id, retablir: true })
@@ -139,7 +153,10 @@ export default function Atelier() {
   // Les missions du budget sont regroupées en une seule carte : elles se règlent ensemble, dans l'éditeur du budget
   const missionsModifiees = changes.filter(estMission)
   const deltaMissions = missionsModifiees.reduce((a, id) => a + (Number(draft.overrides[id]) - Number(regles[id].valeur)), 0)
-  const nbChangements = changes.length - missionsModifiees.length + (missionsModifiees.length ? 1 : 0)
+  // de même pour l'âge légal de départ, fixé génération par génération : une seule carte, réglée par l'âge à terme
+  const agesIds = ids.filter(estAgeLegal)
+  const agesModifies = changes.filter(estAgeLegal)
+  const nbChangements = changes.length - missionsModifiees.length + (missionsModifiees.length ? 1 : 0) - agesModifies.length + (agesModifies.length ? 1 : 0)
   // les 3 plus grands mouvements (≥ 0,5 Md€), le reste résumé en « petits ajustements » (compensation automatique)
   const mouvements = missionsModifiees.map((id) => ({ nom: infoMission(id, regles[id].titre).nom, d: Number(draft.overrides[id]) - Number(regles[id].valeur) }))
     .sort((a, b) => Math.abs(b.d) - Math.abs(a.d))
@@ -171,7 +188,7 @@ export default function Atelier() {
 
           <div className="card">
             <div className="card-head"><h3 style={{ margin: 0 }}>Votre réforme</h3><span className="badge primary">{nbChangements} changement{nbChangements > 1 ? 's' : ''}</span></div>
-            {changes.length === 0 && <p className="small muted">Rien n'est encore changé. Choisissez un thème à droite, partez d'une idée, ou changez une règle précise.</p>}
+            {changes.length === 0 && <p className="small muted">Rien n'est encore changé. Choisissez un thème, partez d'une idée, ou changez une règle précise.</p>}
             {missionsModifiees.length > 0 && (
               <div className="change-chip">
                 <div className="row between top" style={{ flexWrap: 'nowrap' }}>
@@ -183,7 +200,47 @@ export default function Atelier() {
                 <button className="btn ghost small" style={{ marginTop: 6, paddingLeft: 0 }} onClick={retirerMissions}><Trash2 size={14} /> Revenir au budget voté</button>
               </div>
             )}
-            {ids.filter((id) => !estMission(id)).map((id) => {
+            {agesIds.length > 0 && regles[AGE_TERME] && (() => {
+              const r = regles[AGE_TERME]
+              const v = Number(draft.overrides[AGE_TERME] ?? r.valeur)
+              const avant = Number(r.valeur)
+              const detail = GENERATIONS.filter((id) => agesModifies.includes(id) && regles[id])
+              return (
+                <div className="change-chip">
+                  <Link to={`/regles/r/${AGE_TERME}`} style={{ fontWeight: 700, color: 'var(--ink)' }}>Âge légal de départ à la retraite</Link>
+                  <div className="row small" style={{ gap: 6, marginTop: 4 }}>
+                    <span className="muted">Aujourd'hui : {valeur(avant, r.unite, r.type)} (à terme)</span>
+                    {v !== avant && <>
+                      <ArrowRight size={13} />
+                      <strong>Votre choix : {valeur(v, r.unite, r.type)}</strong>
+                      <span className={`badge ${v > avant ? 'accent' : 'primary'}`}>{ecartLisible(avant, v, r.unite)}</span>
+                    </>}
+                  </div>
+                  <div className="small muted" style={{ marginTop: 4 }}>
+                    {v < avant ? `Personne ne partira plus tard que ${valeur(v, r.unite, r.type)}, quelle que soit sa date de naissance.`
+                      : v > avant ? `Pour les personnes nées à partir de 1969 ; les générations précédentes gardent leur âge actuel.`
+                        : `L'âge choisi vaudra pour toutes les générations : personne ne partira plus tard.`}
+                  </div>
+                  <div style={{ marginTop: 10 }}><ValueEditor rule={r} value={v} onChange={(x) => setAges(Number(x))} /></div>
+                  {detail.length > 0 && (
+                    <details className="curieux small" style={{ marginTop: 6 }}>
+                      <summary>Le détail par génération ({detail.length})</summary>
+                      <ul className="list small">{detail.map((id) => (
+                        <li key={id} className="list-row"><span>{nomGeneration(regles[id].titre)}</span>
+                          <span>{valeur(regles[id].valeur, 'ans')} → <strong>{valeur(draft.overrides[id], 'ans')}</strong></span></li>
+                      ))}</ul>
+                    </details>
+                  )}
+                  {v === avant && <div className="small muted" style={{ marginTop: 6 }}>Changez la valeur ci-dessus.</div>}
+                  {v !== avant && (
+                    <input type="text" placeholder="Pourquoi ? (facultatif)" style={{ marginTop: 8, fontSize: '.88rem' }}
+                      value={draft.justifications[AGE_TERME] ?? ''} onChange={(e) => setDraft((d) => ({ ...d, justifications: { ...d.justifications, [AGE_TERME]: e.target.value } }))} />
+                  )}
+                  <button className="btn ghost small" style={{ marginTop: 6, paddingLeft: 0 }} onClick={retirerAges}><Trash2 size={14} /> {agesModifies.length ? 'Annuler ce changement' : 'Retirer'}</button>
+                </div>
+              )
+            })()}
+            {ids.filter((id) => !estMission(id) && !estAgeLegal(id)).map((id) => {
               const r = regles[id]
               if (!r) return <div key={id} className="small muted">Chargement…</div>
               const v = draft.overrides[id]
@@ -197,11 +254,13 @@ export default function Atelier() {
                     {modifie && <>
                       <ArrowRight size={13} />
                       <strong>Votre choix : {valeur(v, r.unite, r.type)}</strong>
-                      {r.unite === 'pourcent' && typeof v === 'number' && typeof r.valeur === 'number'
-                        ? <span className={`badge ${v > r.valeur ? 'accent' : 'primary'}`}>{v > r.valeur ? '+' : '−'}{nombre(Math.abs(v - r.valeur), 2)} point{Math.abs(v - r.valeur) >= 2 ? 's' : ''}</span>
-                        : pct !== null && Math.abs(pct) >= 0.05 && <span className={`badge ${pct > 0 ? 'accent' : 'primary'}`}>{pct > 0 ? '+' : '−'}{nombre(Math.abs(pct), 1)} %</span>}
+                      {typeof v === 'number' && typeof r.valeur === 'number' && (pct === null || Math.abs(pct) >= 0.05) && v !== r.valeur
+                        && <span className={`badge ${v > r.valeur ? 'accent' : 'primary'}`}>{ecartLisible(r.valeur, v, r.unite)}</span>}
                     </>}
                   </div>
+                  {id === 'travail.smic.horaire_brut' && typeof v === 'number' && (
+                    <div className="small muted" style={{ marginTop: 4 }}>Soit environ {euros(v * 151.67, 0)} brut, ≈ {euros(v * 151.67 * 0.79, 0)} net par mois à temps plein.</div>
+                  )}
                   <div style={{ marginTop: 10 }}><ValueEditor rule={r} value={v} onChange={(x) => setVal(id, x)} /></div>
                   {!modifie && <div className="small muted" style={{ marginTop: 6 }}>Changez la valeur ci-dessus.</div>}
                   {modifie && (
@@ -224,6 +283,7 @@ export default function Atelier() {
               <input type="checkbox" checked={avecFoyer && !!situation} disabled={!situation} onChange={(e) => setAvecFoyer(e.target.checked)} />
               <span><User size={15} /> Voir aussi l'effet sur mon foyer</span>
             </label>
+            {situation && avecFoyer && <div className="small muted" style={{ marginTop: 4, marginLeft: 26 }}>{resumeSituation(situation)} · <Link to="/mes-droits">modifier</Link></div>}
             {!situation && (
               <div className="small muted" style={{ marginTop: 6 }}>Décrivez votre situation dans <Link to="/mes-droits">Mes droits</Link>, ou choisissez un foyer qui vous ressemble :
                 <div className="pill-list" style={{ marginTop: 6 }}>{PROFILS.map((p) => <button key={p.titre} className="badge" style={{ cursor: 'pointer' }} onClick={() => { setSituation(p.s); setAvecFoyer(true) }}>{p.titre}</button>)}</div>
@@ -264,7 +324,12 @@ export default function Atelier() {
             <div className="notice warn" style={{ marginBottom: 12 }}><div>Vous avez modifié votre réforme depuis le dernier calcul : les résultats ci-dessous ne sont plus à jour.{' '}
               <button className="btn small" onClick={() => simuler()}>Recalculer les effets</button></div></div>
           )}
-          {aJour && !loading && changes.length > 0 && desequilibres.length === 0 && (
+          {aJour && !loading && desequilibres.length === 0 && aSurveiller.length > 0 && (
+            <div className="notice warn" style={{ marginBottom: 12 }}><div>
+              <strong>À surveiller :</strong> {aSurveiller.map((e) => e.id === 'budget' ? `cette réforme coûterait environ ${milliards(Math.abs(e.effet))} par an` : `elle augmenterait les émissions d'environ ${tonnes(Math.abs(e.effet))} par an`).join(', et ')}.
+              {' '}L'estimation est trop incertaine pour être exigée : vous pouvez enregistrer, mais il est conseillé de {aSurveiller[0].id === 'budget' ? 'la financer' : 'compenser'}. <a href="#equilibres">Voir les solutions ↓</a></div></div>
+          )}
+          {aJour && !loading && changes.length > 0 && desequilibres.length === 0 && aSurveiller.length === 0 && (
             <div className="notice ok" style={{ marginBottom: 12 }}><CheckCircle2 size={18} style={{ flexShrink: 0 }} />
               <div className="grow"><strong>Votre réforme est équilibrée.</strong> Vous pouvez l'enregistrer pour la partager.</div>
               {!user ? <Link className="btn primary small" to="/connexion?retour=/atelier">Se connecter pour enregistrer</Link>
@@ -333,13 +398,16 @@ function ecrireSession(cle: string, v: unknown) {
 function Etapes({ etape }: { etape: number }) {
   const noms = ['Choisir ce qui change', 'Régler', 'Voir les effets', 'Équilibrer', 'Enregistrer et partager']
   return (
-    <ol className="etapes" aria-label="Les étapes">
-      {noms.map((n, i) => (
-        <li key={n} className={i + 1 < etape ? 'fait' : i + 1 === etape ? 'actif' : ''} aria-current={i + 1 === etape ? 'step' : undefined}>
-          <span className="n">{i + 1 < etape ? '✓' : i + 1}</span><span className="lib">{n}</span>
-        </li>
-      ))}
-    </ol>
+    <>
+      <ol className="etapes" aria-label="Les étapes">
+        {noms.map((n, i) => (
+          <li key={n} className={i + 1 < etape ? 'fait' : i + 1 === etape ? 'actif' : ''} aria-current={i + 1 === etape ? 'step' : undefined}>
+            <span className="n">{i + 1 < etape ? '✓' : i + 1}</span><span className="lib">{n}</span>
+          </li>
+        ))}
+      </ol>
+      <div className="etape-mobile" aria-hidden="true">Étape {etape} sur {noms.length} : <strong>{noms[etape - 1]}</strong></div>
+    </>
   )
 }
 
@@ -397,8 +465,8 @@ function SaveModal({ proprietaire, base, changements, nomDefaut, onClose, onDone
     <Modal title="Enregistrer votre proposition" onClose={onClose}>
       {proprietaire && (
         <div className="choices" style={{ marginBottom: 14 }}>
-          <button className={`choice ${mode === 'commit' ? 'on' : ''}`} onClick={() => setMode('commit')}>Mettre à jour « {base!.societe.nom} »</button>
-          <button className={`choice ${mode === 'fork' ? 'on' : ''}`} onClick={() => setMode('fork')}>Créer une nouvelle proposition</button>
+          <button className={`choice ${mode === 'commit' ? 'on' : ''}`} aria-pressed={mode === 'commit'} onClick={() => setMode('commit')}>Mettre à jour « {base!.societe.nom} »</button>
+          <button className={`choice ${mode === 'fork' ? 'on' : ''}`} aria-pressed={mode === 'fork'} onClick={() => setMode('fork')}>Créer une nouvelle proposition</button>
         </div>
       )}
       {mode === 'fork' && (

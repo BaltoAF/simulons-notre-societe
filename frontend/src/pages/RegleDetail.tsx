@@ -7,6 +7,12 @@ import { ConfidenceBadge, ErrorBox, Loading, SourceItem } from '../components/ui
 import { Pourquoi, Terme } from '../components/Terme'
 import { infoMission } from '../lib/missions'
 
+// « CSS, art. L161-17-2 » → « Code de la sécurité sociale, art. L161-17-2 »
+const CODES: Record<string, string> = { CSS: 'Code de la sécurité sociale', CGI: 'Code général des impôts', CT: 'Code du travail',
+  CASF: "Code de l'action sociale et des familles", CCH: "Code de la construction et de l'habitation", CP: 'Code pénal',
+  CPP: 'Code de procédure pénale', CSP: 'Code de la santé publique', CE: "Code de l'environnement" }
+const codesEnClair = (t: string) => t.replace(/\b(CSS|CGI|CASF|CCH|CPP|CSP|CT|CP|CE)\b/g, (m) => CODES[m] ?? m)
+
 function Bareme({ t }: { t: Tranche[] }) {
   const rows = [...t].sort((a, b) => a.seuil - b.seuil)
   return (
@@ -54,7 +60,7 @@ export default function RegleDetail() {
               <Bareme t={r.valeur as Tranche[]} />
               <Pourquoi titre="Comment lire ce barème ?">Chaque taux ne s'applique qu'à la partie du revenu comprise dans sa tranche. Exemple : passer dans une tranche supérieure ne fait pas payer plus sur tout le revenu, seulement sur ce qui dépasse le seuil.</Pourquoi>
             </> : <div className="value-big">{valeur(r.valeur, r.unite, r.type)}</div>}
-            {r.article && <div className="small muted" style={{ marginTop: 4 }}>{r.article}</div>}
+            {r.article && <div className="small muted" style={{ marginTop: 4 }}>{codesEnClair(r.article)}</div>}
             {r.prochaine_valeur && <div className="notice" style={{ marginTop: 12 }}>Évolution déjà prévue : {valeur(r.prochaine_valeur.valeur, r.unite, r.type)} à partir du {date(r.prochaine_valeur.depuis)}.</div>}
             {r.a_verifier && <div className="notice warn" style={{ marginTop: 12 }}><AlertTriangle size={18} /> Cette valeur n'a pas encore pu être confirmée sur une source officielle.</div>}
             {(r.controles ?? []).map((c, i) => (

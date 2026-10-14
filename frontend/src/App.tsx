@@ -33,7 +33,9 @@ function MenuComprendre() {
   useEffect(() => setOpen(false), [pathname])
   const actif = ['/regles', '/preuves', '/sources', '/systeme', '/methode', '/glossaire'].some((p) => pathname.startsWith(p))
   return (
-    <div className="popover-wrap" ref={ref}>
+    <div className="popover-wrap" ref={ref}
+      onKeyDown={(e) => { if (e.key === 'Escape' && open) { setOpen(false); (ref.current?.querySelector('button') as HTMLElement | null)?.focus() } }}
+      onBlur={(e) => { if (!ref.current?.contains(e.relatedTarget as Node)) setOpen(false) }}>
       <button className={`btn small ghost ${actif ? 'active' : ''}`} onClick={() => setOpen((o) => !o)} aria-expanded={open}
         style={actif ? { background: 'var(--primary-soft)', color: 'var(--primary)' } : undefined}>
         Comprendre <ChevronDown size={14} />
@@ -59,6 +61,8 @@ function Header() {
   const { pathname } = useLocation()
   useEffect(() => setMenu(false), [pathname])
   return (
+    <>
+    <a className="lien-evitement" href="#contenu">Aller au contenu</a>
     <header className="header">
       <div className="container">
         <Link to="/" className="logo" aria-label="Société 2.0, accueil">
@@ -75,7 +79,7 @@ function Header() {
         <div className={`user ${menu ? 'ouvert' : ''}`}>
           {user ? (
             <>
-              <Link to={`/societes?auteur=${encodeURIComponent(user.pseudo)}`} className="btn small ghost" title="Mes sociétés"><User size={15} /> {user.pseudo}</Link>
+              <Link to={`/societes?auteur=${encodeURIComponent(user.pseudo)}`} className="btn small ghost" title="Mes propositions"><User size={15} /> {user.pseudo}</Link>
               <button className="icon-btn" title="Se déconnecter" onClick={async () => { await api('/api/auth/deconnexion', { method: 'POST' }); setUser(null); nav('/') }}><LogOut size={17} /></button>
             </>
           ) : (
@@ -84,6 +88,7 @@ function Header() {
         </div>
       </div>
     </header>
+    </>
   )
 }
 
@@ -119,7 +124,7 @@ export default function App() {
     <>
       <ScrollTop />
       <Header />
-      <main>
+      <main id="contenu" tabIndex={-1}>
         <Suspense fallback={<div className="container page"><Loading /></div>}>
           <Routes>
             <Route path="/" element={<Accueil />} />

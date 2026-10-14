@@ -78,8 +78,13 @@ function SectionMenage({ s }: { s: Section }) {
 function SectionCasTypes({ s }: { s: Section }) {
   const cas = s.donnees.cas as { libelle: string; avant: number; apres: number; delta: number; delta_pct: number | null }[]
   return (
-    <DivergingBars data={cas.map((c) => ({ label: c.libelle, value: c.delta, sub: `${euros(c.avant)} → ${euros(c.apres)} / mois` }))}
-      format={(v) => (v > 0 ? '+' : v < 0 ? '−' : '') + euros(Math.abs(v))} />
+    <>
+      <DivergingBars data={cas.filter((c) => Math.abs(c.delta) >= 0.5).map((c) => ({ label: c.libelle, value: c.delta, sub: `${euros(c.avant)} → ${euros(c.apres)} / mois` }))}
+        format={(v) => (v > 0 ? '+' : v < 0 ? '−' : '') + euros(Math.abs(v))} />
+      {cas.some((c) => Math.abs(c.delta) < 0.5) && (
+        <div className="small muted" style={{ marginTop: 8 }}>Inchangés : {cas.filter((c) => Math.abs(c.delta) < 0.5).map((c) => c.libelle).join(' · ')}</div>
+      )}
+    </>
   )
 }
 
@@ -235,7 +240,7 @@ export function ReportView({ r, overrides, onAppliquer, contexte = 'reforme' }: 
           {syn.solde_public_annuel_md !== null && budget && Math.abs(syn.solde_public_annuel_md - budget.effet) > 0.05 && (
             <details className="explain" style={{ marginTop: 8 }}>
               <summary>Pourquoi un autre chiffre plus loin ?</summary>
-              <p className="small" style={{ marginBottom: 0 }}>Le montant à financer ({milliards(Math.abs(budget.effet))}) est le coût sûr, calculé règle par règle. Si l'on ajoute les réactions
+              <p className="small" style={{ marginBottom: 0 }}>Le montant ci-dessus ({milliards(Math.abs(budget.effet))}) est {budget.statut === 'a_surveiller' ? 'une estimation de l\'effet direct de la réforme' : 'le coût direct, calculé règle par règle'}. Si l'on ajoute les réactions
                 des ménages et des entreprises et l'effet sur l'activité, le coût {syn.solde_public_annuel_md >= 0 ? 'deviendrait un gain' : 'serait plutôt'} d'environ {milliards(Math.abs(syn.solde_public_annuel_md))} par an :
                 c'est une estimation incertaine, donc on ne s'en sert pas pour décider si la réforme est financée.</p>
             </details>
@@ -248,7 +253,7 @@ export function ReportView({ r, overrides, onAppliquer, contexte = 'reforme' }: 
       {r.erreurs.length > 0 && (
         <div className="notice warn small">Certains modules n'ont pas pu être calculés : {r.erreurs.map((e) => e.module).join(', ')}.</div>
       )}
-      {r.duree_secondes >= 0.5 && <div className="small muted">Calcul réalisé en {nombre(r.duree_secondes, 0)} secondes.</div>}
+      {r.duree_secondes >= 0.5 && <div className="small muted">Calcul réalisé en {nombre(r.duree_secondes, 0)} seconde{Math.round(r.duree_secondes) >= 2 ? 's' : ''}.</div>}
     </div>
   )
 }

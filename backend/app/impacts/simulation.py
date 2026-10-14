@@ -124,10 +124,15 @@ def simuler(store, overrides: dict, menage=None, approximations: list[str] | Non
 
 def _avertissements(ctx) -> list[str]:
     from .microsim import avertissements_couverture
+    out = []
+    if "travail.smic.horaire_brut" in ctx.overrides:
+        out.append("Les salaires au niveau du SMIC suivent sa hausse (ceux juste au-dessus sont relevés au nouveau SMIC) ; "
+                   "les salaires plus élevés ne changent pas dans ce calcul, et le surcoût pour les employeurs (y compris l'État "
+                   "employeur) n'est pas compté dans les finances publiques.")
     try:
-        return avertissements_couverture(ctx)
+        return out + avertissements_couverture(ctx)
     except Exception:  # un avertissement ne doit jamais faire échouer le rapport
-        return []
+        return out
 
 
 def _pour_vous(sections: list[Section]) -> dict | None:

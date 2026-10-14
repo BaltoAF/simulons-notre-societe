@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import threading
 from concurrent.futures import Future
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 
 import numpy as np
 
@@ -82,6 +82,35 @@ class Contexte:
         res["niveau_de_vie"] = res["revenu_disponible"] / uc
         return res
 
+    def ajuster_salaires(self, menages: list[Menage]) -> list[Menage]:
+        """Une hausse (ou baisse) du SMIC s'applique aux salaires qui en dépendent : les salariés payés au SMIC (y compris
+        à temps partiel, au prorata) suivent le nouveau taux, et ceux payés entre l'ancien et le nouveau SMIC y sont
+        relevés. Les salaires plus élevés ne bougent pas (l'effet de diffusion sur la hiérarchie salariale est ignoré)."""
+        rid = "travail.smic.horaire_brut"
+        if rid not in self.overrides:
+            return menages
+        ancien, nouveau = float(self.store.rule_value(rid) or 0), float(self.overrides[rid] or 0)
+        if ancien <= 0 or nouveau <= 0 or abs(nouveau - ancien) < 1e-9:
+            return menages
+        m_ancien, m_nouveau = ancien * 151.67, nouveau * 151.67      # mensuel brut à temps plein
+        out = []
+        for m in menages:
+            adultes = []
+            change = False
+            for a in m.adultes:
+                b = a.salaire_brut_mensuel
+                if b > 0 and a.activite == "salarie":
+                    if b <= m_ancien * 1.001:            # payé au SMIC (temps plein ou partiel) : même nombre d'heures
+                        b = b * nouveau / ancien
+                    elif b < m_nouveau:                  # entre l'ancien et le nouveau SMIC : relevé au nouveau minimum
+                        b = m_nouveau
+                if b != a.salaire_brut_mensuel:
+                    change = True
+                    a = replace(a, salaire_brut_mensuel=round(b, 2))
+                adultes.append(a)
+            out.append(replace(m, adultes=adultes) if change else m)
+        return out
+
     def calculer(self, menages: list[Menage], reforme: bool) -> dict:
         """Résultats du moteur pour des ménages, avec ou sans la réforme (dispositifs virtuels inclus).
 
@@ -100,6 +129,7 @@ class Contexte:
                         _BASE_CACHE.pop(next(iter(_BASE_CACHE)))
             res = {k: v.copy() for k, v in base.items()}
         else:
+            menages = self.ajuster_salaires(menages)
             # mémorisé aussi : le calcul rapide (foyer, ménages types) puis le calcul complet demandent les mêmes résultats
             # (les deux appels arrivent ensemble : le second attend le résultat du premier au lieu de recalculer)
             key = _menages_key(menages) + "|" + self.spec.key

@@ -1,6 +1,7 @@
 // Idées de réformes prêtes à tester : chacune est un ensemble de valeurs de règles.
 // Elles illustrent des propositions qui circulent dans le débat public, sans prendre parti.
 import type { Valeur } from './api'
+import { AGE_TERME, GENERATIONS } from './retraite'
 
 export type Preset = {
   id: string
@@ -13,6 +14,13 @@ export type Preset = {
 const IR_BAREME = 'fiscalite.impot_revenu.bareme'
 
 export const PRESETS: Preset[] = [
+  {
+    id: 'retraite-62',
+    titre: 'Retour de la retraite à 62 ans',
+    description: "L'âge légal de départ revient à 62 ans pour toutes les générations.",
+    overrides: Object.fromEntries(GENERATIONS.map((id) => [id, (v: number) => Math.min(v, 62)])),
+    tags: ['retraites'],
+  },
   {
     id: 'rsa-800',
     titre: 'Porter le RSA à 800 € par mois',
@@ -88,7 +96,9 @@ export const PRESETS: Preset[] = [
 export function resoudrePreset(p: Preset, valeursActuelles: Record<string, Valeur>): Record<string, Valeur> {
   const out: Record<string, Valeur> = {}
   for (const [k, v] of Object.entries(p.overrides)) {
-    out[k] = typeof v === 'function' ? (v as (x: any) => Valeur)(valeursActuelles[k]) : v
+    const nv = typeof v === 'function' ? (v as (x: any) => Valeur)(valeursActuelles[k]) : v
+    // une valeur identique à la loi actuelle ne change rien : on ne l'ajoute pas (sauf l'âge à terme, qui porte le réglage)
+    if (k === AGE_TERME || JSON.stringify(nv) !== JSON.stringify(valeursActuelles[k])) out[k] = nv
   }
   return out
 }

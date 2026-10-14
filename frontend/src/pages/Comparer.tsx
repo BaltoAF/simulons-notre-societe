@@ -1,36 +1,157 @@
+// Comparer deux propositions : ce qu'elles changent, puis leurs effets côte à côte (calculés pour les deux), puis le
+// détail règle par règle. Le choix des deux propositions est libre (la loi actuelle comprise).
+import { useEffect, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
-import type { Changement } from '../lib/api'
+import { api, type Changement, type Rapport, type Societe } from '../lib/api'
 import { DOMAINE_TITRE, valeur } from '../lib/format'
-import { useFetch } from '../lib/state'
-import { ErrorBox, Loading } from '../components/ui'
+import { milliards, parMenageMois, phrase, tonnes } from '../lib/humain'
+import { resumeSituation, situationVersMenage, useApp, useFetch } from '../lib/state'
+import { diffBareme, nomCourt } from '../components/DiffSociete'
+import { ErrorBox } from '../components/ui'
+
+type Effets = { rapport: Rapport | null; erreur?: string }
+
+function indicateur(r: Rapport | null, id: string) {
+  return r?.bilan.flatMap((p) => p.indicateurs).find((i) => i.id === id || i.id.startsWith(id))
+}
+
+/** Une ligne du tableau des effets : le même indicateur, dit en clair, pour chacune des deux propositions. */
+const LIGNES: { titre: string; rendu: (r: Rapport | null) => string }[] = [
+  {
+    titre: "L'argent public", rendu: (r) => {
+      const e = r?.equilibres.find((x) => x.id === 'budget')
+      if (!e) return '—'
+      if (Math.abs(e.effet) < 0.05) return 'Pas d\'effet notable'
+      return e.effet > 0 ? `Rapporte ${milliards(e.effet)} par an` : `Coûte ${milliards(Math.abs(e.effet))} par an (≈ ${parMenageMois(e.effet)} par mois et par ménage)${e.statut === 'a_compenser' ? ', non financé' : ''}`
+    },
+  },
+  {
+    titre: 'Le climat', rendu: (r) => {
+      const e = r?.equilibres.find((x) => x.id === 'carbone')
+      if (!e || Math.abs(e.effet) < 0.005) return 'Pas d\'effet direct notable'
+      return `${e.effet > 0 ? 'Hausse' : 'Baisse'} des émissions : ${tonnes(Math.abs(e.effet))} par an`
+    },
+  },
+  {
+    titre: 'Votre porte-monnaie', rendu: (r) => {
+      const pv = r?.pour_vous
+      if (!pv) return 'Décrivez votre foyer dans « Mes droits » pour le voir'
+      return Math.abs(pv.delta_mois) < 0.5 ? 'Rien ne change' : `${pv.delta_mois > 0 ? '+' : '−'}${Math.abs(Math.round(pv.delta_mois))} € par mois`
+    },
+  },
+  { titre: 'La pauvreté', rendu: (r) => { const i = indicateur(r, 'pauvrete'); return i ? phrase(i.id, i.valeur, i.unite) : '—' } },
+  { titre: 'Les inégalités', rendu: (r) => { const i = indicateur(r, 'gini'); return i ? phrase(i.id, i.valeur, i.unite) : '—' } },
+  {
+    titre: 'Gagnants et perdants', rendu: (r) => {
+      const i = indicateur(r, 'gagnants')
+      return i ? `${Math.round(i.valeur)} % des ménages y gagnent${i.perdants != null ? `, ${Math.round(i.perdants)} % y perdent` : ''}` : '—'
+    },
+  },
+  { titre: "L'activité économique", rendu: (r) => { const i = indicateur(r, 'pib'); return i ? phrase(i.id, i.valeur, i.unite) : '—' } },
+]
+
+function mesures(s: Societe | undefined) {
+  if (!s) return []
+  if (s.reference) return ['La loi telle qu\'elle est aujourd\'hui']
+  return (s.mesures ?? []).map((m) => m.budget_resume
+    ? `Budget de l'État : ${Number(m.apres) >= 0 ? `${milliards(Number(m.apres))} de dépenses en plus` : `${milliards(Math.abs(Number(m.apres)))} d'économies`}`
+    : (diffBareme(m.avant, m.apres) ?? []).sort((x, y) => Number(y.startsWith('Nouvelle')) - Number(x.startsWith('Nouvelle')))[0]
+      ?? `${nomCourt(m.titre)} : ${valeur(m.apres, m.unite, m.type)} (aujourd'hui ${valeur(m.avant, m.unite, m.type)})`)
+}
 
 export default function Comparer() {
-  const [p] = useSearchParams()
-  const qs = p.toString()
-  const { data, loading, error } = useFetch<{ a: { id: string; nom: string }; b: { id: string; nom: string }; differences: Changement[] }>(p.get('a') && p.get('b') ? `/api/comparer?${qs}` : null)
-  if (!p.get('a') || !p.get('b')) return <div className="container page"><ErrorBox message="Indiquez deux propositions à comparer." /></div>
-  if (loading) return <div className="container page"><Loading /></div>
-  if (error || !data) return <div className="container page"><ErrorBox message={error ?? 'Erreur'} /></div>
+  const [p, setP] = useSearchParams()
+  const { situation } = useApp()
+  const a = p.get('a') ?? 'france', b = p.get('b') ?? ''
+  const { data: liste } = useFetch<{ societes: Societe[] }>('/api/societes?tri=populaire')
+  const { data: diff } = useFetch<{ differences: Changement[] }>(a && b ? `/api/comparer?a=${a}&b=${b}` : null)
+  const [effets, setEffets] = useState<Record<string, Effets>>({})
+  const socs = liste?.societes ?? []
+  const sa = socs.find((s) => s.id === a), sb = socs.find((s) => s.id === b)
+
+  // effets des deux propositions, calculés en parallèle (avec votre foyer s'il est renseigné)
+  useEffect(() => {
+    if (!a || !b) return
+    setEffets({})
+    const menage = situation ? situationVersMenage(situation) : null
+    for (const id of [a, b]) {
+      api<Rapport>('/api/simulation/reforme', { body: { societe: id, menage, montants: 'net' } })
+        .then((r) => setEffets((e) => ({ ...e, [id]: { rapport: r } })))
+        .catch((x) => setEffets((e) => ({ ...e, [id]: { rapport: null, erreur: x.message } })))
+    }
+  }, [a, b, situation])
+
+  const choisir = (cle: 'a' | 'b', v: string) => { p.set(cle, v); setP(p, { replace: true }) }
+  const enCours = a && b && (!effets[a] || !effets[b])
+
   return (
     <div className="container page">
       <h1>Comparer deux propositions</h1>
-      <div className="card">
-        <div className="table-wrap">
-          <table className="table">
-            <thead><tr><th>Règle</th><th><Link to={`/societes/${data.a.id}`}>{data.a.nom}</Link></th><th><Link to={`/societes/${data.b.id}`}>{data.b.nom}</Link></th></tr></thead>
-            <tbody>
-              {data.differences.map((d) => (
-                <tr key={d.regle}>
-                  <td><Link to={`/regles/r/${d.regle}`}>{d.titre ?? d.regle}</Link><div className="small muted">{d.domaine ? DOMAINE_TITRE[d.domaine] : ''}</div></td>
-                  <td>{valeur(d.avant, d.unite, d.type)}</td>
-                  <td><strong>{valeur(d.apres, d.unite, d.type)}</strong></td>
-                </tr>
-              ))}
-              {data.differences.length === 0 && <tr><td colSpan={3} className="muted">Ces deux propositions sont identiques.</td></tr>}
-            </tbody>
-          </table>
-        </div>
+      <div className="grid cols-2" style={{ marginBottom: 18 }}>
+        {(['a', 'b'] as const).map((cle) => (
+          <label key={cle} className="field"><span>{cle === 'a' ? 'Première proposition' : 'Deuxième proposition'}</span>
+            <select value={cle === 'a' ? a : b} onChange={(e) => choisir(cle, e.target.value)}>
+              {cle === 'b' && !b && <option value="">Choisir…</option>}
+              {socs.map((s) => <option key={s.id} value={s.id}>{s.nom}</option>)}
+            </select>
+          </label>
+        ))}
       </div>
+      {!b ? <div className="card soft">Choisissez la deuxième proposition à comparer.</div> : a === b ? <ErrorBox message="Choisissez deux propositions différentes." /> : (
+        <div className="stack">
+          <div className="card">
+            <h2 style={{ fontSize: '1.25rem' }}>Ce qu'elles changent</h2>
+            <div className="grid cols-2">
+              {[sa, sb].map((s, k) => (
+                <div key={k}>
+                  <Link to={`/societes/${s?.id ?? ''}`} style={{ fontWeight: 700 }}>{s?.nom ?? '…'}</Link>
+                  <ul className="small" style={{ margin: '6px 0 0', paddingLeft: 18 }}>{mesures(s).map((m) => <li key={m}>{m}</li>)}</ul>
+                  {(s?.nb_equilibrage ?? 0) > 0 && <div className="small muted" style={{ marginTop: 4 }}>+ {s!.nb_equilibrage} changement{s!.nb_equilibrage! > 1 ? 's' : ''} pour l'équilibrer</div>}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="card">
+            <h2 style={{ fontSize: '1.25rem' }}>Leurs effets</h2>
+            {enCours && <p className="small muted">Calcul des effets des deux propositions (jusqu'à une minute)…</p>}
+            <div className="table-wrap">
+              <table className="table comparaison">
+                <thead><tr><th></th><th>{sa?.nom ?? '…'}</th><th>{sb?.nom ?? '…'}</th></tr></thead>
+                <tbody>
+                  {LIGNES.map((l) => (
+                    <tr key={l.titre}>
+                      <th scope="row">{l.titre}</th>
+                      {[a, b].map((id) => <td key={id}>{effets[id] ? (effets[id].erreur ? <span className="muted">indisponible</span> : l.rendu(effets[id].rapport)) : <span className="spinner" style={{ width: 14, height: 14, borderWidth: 2 }} />}</td>)}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            {situation && <p className="small muted">« Votre porte-monnaie » : calculé pour {resumeSituation(situation)} (<Link to="/mes-droits">modifier</Link>).</p>}
+            <p className="small muted" style={{ marginBottom: 0 }}>Le détail et la fiabilité de chaque chiffre sont sur la page de chaque proposition, onglet « Ses effets ».</p>
+          </div>
+
+          <details className="card curieux">
+            <summary>Les différences règle par règle ({diff?.differences.length ?? '…'})</summary>
+            <div className="table-wrap" style={{ marginTop: 10 }}>
+              <table className="table">
+                <thead><tr><th>Règle</th><th>{sa?.nom ?? 'Première'}</th><th>{sb?.nom ?? 'Deuxième'}</th></tr></thead>
+                <tbody>
+                  {(diff?.differences ?? []).map((d) => (
+                    <tr key={d.regle}>
+                      <td><Link to={`/regles/r/${d.regle}`}>{d.titre ?? d.regle}</Link><div className="small muted">{d.domaine ? DOMAINE_TITRE[d.domaine] : ''}</div></td>
+                      <td>{valeur(d.avant, d.unite, d.type)}</td>
+                      <td>{valeur(d.apres, d.unite, d.type)}</td>
+                    </tr>
+                  ))}
+                  {diff && diff.differences.length === 0 && <tr><td colSpan={3} className="muted">Ces deux propositions sont identiques.</td></tr>}
+                </tbody>
+              </table>
+            </div>
+          </details>
+        </div>
+      )}
     </div>
   )
 }

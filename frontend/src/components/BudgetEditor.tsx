@@ -101,7 +101,7 @@ export function BudgetEditor({ regles, overrides, onClose, onApply }: {
       ? <div className="muted">Utilisez + et − pour dépenser plus ou moins.</div>
       : ecartTotal > 0
         ? <div><strong className="delta neg">+{milliards(ecartTotal)} de dépenses par an</strong>{Math.abs(ecartTotal) >= 0.4 && <> (≈ {parMenageMois(ecartTotal)} par mois et par ménage)</>}. Il faudra les financer : à l'étape suivante, le site vous proposera comment.</div>
-        : <div><strong className="delta pos">{milliards(Math.abs(ecartTotal))} d'économies par an</strong>{Math.abs(ecartTotal) >= 0.4 && <> (≈ {parMenageMois(ecartTotal)} par mois et par ménage)</>} : le déficit diminue.</div>
+        : <div><strong className="delta pos">{milliards(Math.abs(ecartTotal))} d'économies par an</strong>{Math.abs(ecartTotal) >= 0.4 && <> (≈ {parMenageMois(ecartTotal)} par mois et par ménage)</>}. Elles réduisent le déficit, ou financent vos autres mesures.</div>
   )
 
   return (

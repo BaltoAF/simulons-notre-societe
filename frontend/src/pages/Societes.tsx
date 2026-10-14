@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
-import { GitFork, Search, ShieldCheck, Star } from 'lucide-react'
+import { GitFork, Scale, Search, ShieldCheck, Star } from 'lucide-react'
 import type { Societe } from '../lib/api'
 import { relatif, valeur } from '../lib/format'
 import { milliards } from '../lib/humain'
@@ -22,7 +22,10 @@ export default function Societes() {
           <h1>{auteur ? `Les propositions de ${auteur}` : 'Les propositions'}</h1>
           <p className="ink2" style={{ maxWidth: 720 }}>Chaque proposition est une idée de France, imaginée par quelqu'un : la loi d'aujourd'hui, avec quelques règles changées. Explorez-les, comparez-les, ou partez de celle qui vous plaît pour faire la vôtre.</p>
         </div>
-        <Link to="/atelier" className="btn primary"><GitFork size={16} /> Créer la mienne</Link>
+        <div className="row">
+          <Link to="/comparer" className="btn"><Scale size={16} /> Comparer deux propositions</Link>
+          <Link to="/atelier" className="btn primary"><GitFork size={16} /> Créer la mienne</Link>
+        </div>
       </div>
       <div className="row" style={{ margin: '12px 0 18px' }}>
         <form className="input-suffix grow" style={{ maxWidth: 420 }} onSubmit={(e) => { e.preventDefault(); params.set('q', q); setParams(params) }}>
@@ -30,8 +33,8 @@ export default function Societes() {
           <span className="suffix"><Search size={16} /></span>
         </form>
         <div className="choices">
-          <button className={`choice ${tri === 'recent' ? 'on' : ''}`} onClick={() => { params.set('tri', 'recent'); setParams(params) }}>Récentes</button>
-          <button className={`choice ${tri === 'populaire' ? 'on' : ''}`} onClick={() => { params.set('tri', 'populaire'); setParams(params) }}>Populaires</button>
+          <button className={`choice ${tri === 'recent' ? 'on' : ''}`} aria-pressed={tri === 'recent'} onClick={() => { params.set('tri', 'recent'); setParams(params) }}>Récentes</button>
+          <button className={`choice ${tri === 'populaire' ? 'on' : ''}`} aria-pressed={tri === 'populaire'} onClick={() => { params.set('tri', 'populaire'); setParams(params) }}>Populaires</button>
         </div>
         {auteur && <Link to="/societes" className="small">Voir toutes les propositions</Link>}
       </div>

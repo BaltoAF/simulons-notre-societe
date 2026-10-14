@@ -47,7 +47,9 @@ function BudgetEtat({ missions, depenseTotale }: { missions: { id: string; titre
     <div className="card" id="budget-etat" style={{ marginTop: 20, scrollMarginTop: 80 }}>
       <h2 style={{ fontSize: '1.3rem', marginBottom: 4 }}><Landmark size={20} /> Le budget de l'État, et comment le changer</h2>
       <p className="small ink2" style={{ marginTop: 0 }}>Sur les {milliards(depenseTotale)} d'argent public, l'État en gère environ <strong>{milliards(totalEtat)}</strong>.
-        Le reste, c'est surtout la Sécurité sociale (retraites, santé, familles) et les communes, départements et régions.</p>
+        Le reste, c'est surtout la Sécurité sociale (retraites, santé, familles) et les communes, départements et régions.
+        Les montants ci-dessous sont ceux du budget de l'État voté pour l'année ; plus haut, « Où va l'argent public » compte toutes les
+        administrations, sur la dernière année publiée : c'est pourquoi un même domaine (la défense, par exemple) n'a pas le même chiffre.</p>
       <div className="notice small" style={{ marginBottom: 10 }}><Lock size={16} style={{ flexShrink: 0 }} /><div><strong>Pourquoi des cadenas ?</strong> Ces dépenses ne se décident pas d'un coup de crayon :
         elles découlent d'engagements déjà pris (les intérêts de la dette) ou des règles d'impôt. On ne peut pas les baisser directement ;
         on agit sur leurs causes : moins de déficit, d'autres règles d'impôt.</div></div>
@@ -183,8 +185,8 @@ export default function Budget() {
 
       <div className="section-title" id="et-vous" style={{ scrollMarginTop: 80 }}><h2><Wallet size={22} /> Et vous ?</h2></div>
       <div className="row" style={{ marginBottom: 12 }}>
-        {situation && <button className={`choice ${titreProfil.startsWith('Votre') ? 'on' : ''}`} onClick={() => { setProfil(situation); setTitreProfil('Votre foyer (renseigné dans « Mes droits »)') }}>Mon foyer</button>}
-        {PROFILS.map((p) => <button key={p.titre} className={`choice ${titreProfil === p.titre ? 'on' : ''}`} onClick={() => { setProfil(p.s); setTitreProfil(p.titre) }}>{p.titre}</button>)}
+        {situation && <button className={`choice ${titreProfil.startsWith('Votre') ? 'on' : ''}`} aria-pressed={titreProfil.startsWith('Votre')} onClick={() => { setProfil(situation); setTitreProfil('Votre foyer (renseigné dans « Mes droits »)') }}>Mon foyer</button>}
+        {PROFILS.map((p) => <button key={p.titre} className={`choice ${titreProfil === p.titre ? 'on' : ''}`} aria-pressed={titreProfil === p.titre} onClick={() => { setProfil(p.s); setTitreProfil(p.titre) }}>{p.titre}</button>)}
         {!situation && <Link to="/mes-droits" className="small">Renseigner mon propre foyer</Link>}
       </div>
       {!profil && <div className="card soft">Choisissez un profil ci-dessus, ou renseignez votre situation dans <Link to="/mes-droits">Mes droits</Link>.</div>}

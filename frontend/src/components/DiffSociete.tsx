@@ -3,9 +3,10 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight, Bot, GitCommit, Quote } from 'lucide-react'
 import type { Changement, Tranche, Valeur } from '../lib/api'
-import { DOMAINE_TITRE, nombre, relatif, valeur } from '../lib/format'
+import { DOMAINE_TITRE, ecartLisible, nombre, relatif, valeur } from '../lib/format'
 import { milliards } from '../lib/humain'
 import { infoMission } from '../lib/missions'
+import { AGE_TERME, estAgeLegal, GENERATIONS, nomGeneration } from '../lib/retraite'
 import { Terme } from './Terme'
 
 export type Diff = Changement & {
@@ -13,6 +14,7 @@ export type Diff = Changement & {
   lignes?: string[] // lignes de barème à afficher (quand un barème est réparti entre l'idée et l'équilibrage)
   provenance?: { commit: string; auteur: string | null; auteur_systeme: boolean; date: string; message: string; justification: string } | null
   variation_pct?: number | null
+  generations?: Diff[] // âge légal : les générations regroupées sous l'âge à terme
 }
 
 /** Changement d'un barème dit en clair : « Nouvelle tranche à 50 % au-delà de 250 000 € », « 30 % → 32 % dès 29 579 € ». */
@@ -102,7 +104,11 @@ export function DiffSociete({ items, vide }: { items: Diff[]; vide: string }) {
 function ListeDiff({ items: tous, vide, pastilles }: { items: Diff[]; vide: string; pastilles: boolean }) {
   if (!tous.length) return <div className="small muted">{vide}</div>
   const missions = tous.filter((d) => d.regle.startsWith('budget.etat.mission.'))
-  const items = missions.length >= 3 ? tous.filter((d) => !missions.includes(d)) : tous
+  // les générations de l'âge légal : une seule ligne, dite par l'âge à terme, le détail replié
+  const ages = tous.filter((d) => estAgeLegal(d.regle))
+  const tete = ages.length > 1 ? (ages.find((d) => d.regle === AGE_TERME) ?? ages[ages.length - 1]) : null
+  const items = tous.filter((d) => !(missions.length >= 3 && missions.includes(d)) && !(tete && ages.includes(d) && d !== tete))
+    .map((d) => d === tete ? { ...d, titre: 'Âge légal de départ à la retraite', generations: ages } : d)
   const parDomaine: Record<string, Diff[]> = {}
   for (const d of items) (parDomaine[d.domaine ?? 'autre'] ??= []).push(d)
   if (missions.length >= 3) parDomaine.budget = parDomaine.budget ?? []
@@ -123,10 +129,8 @@ function ListeDiff({ items: tous, vide, pastilles }: { items: Diff[]; vide: stri
                 <li key={c.regle}>
                   <div className="row between top" style={{ flexWrap: 'nowrap' }}>
                     <Link to={`/regles/r/${c.regle}`} style={{ fontWeight: 650 }}>{c.titre ?? c.regle}</Link>
-                    {c.unite === 'pourcent' && typeof c.avant === 'number' && typeof c.apres === 'number' ? (
-                      <span className={`badge ${hausse ? 'accent' : 'primary'}`}>{c.apres > c.avant ? '+' : '−'}{nombre(Math.abs(c.apres - c.avant), 2)} point{Math.abs(c.apres - c.avant) >= 2 ? 's' : ''}</span>
-                    ) : c.variation_pct !== undefined && c.variation_pct !== null && Math.abs(c.variation_pct) >= 0.05 && (
-                      <span className={`badge ${hausse ? 'accent' : 'primary'}`}>{c.variation_pct > 0 ? '+' : '−'}{nombre(Math.abs(c.variation_pct), 1)} %</span>
+                    {typeof c.avant === 'number' && typeof c.apres === 'number' && c.avant !== c.apres && (
+                      <span className={`badge ${hausse ? 'accent' : 'primary'}`}>{ecartLisible(c.avant, c.apres, c.unite ?? '')}</span>
                     )}
                   </div>
                   {(c.lignes ?? diffBareme(c.avant, c.apres)) ? (
@@ -140,6 +144,14 @@ function ListeDiff({ items: tous, vide, pastilles }: { items: Diff[]; vide: stri
                       <ArrowRight size={14} className="arrow" />
                       <strong>Cette proposition : {valeur(c.apres, c.unite, c.type)}</strong>
                     </div>
+                  )}
+                  {c.generations && (
+                    <details className="curieux small" style={{ marginTop: 4 }}><summary>Le détail par génération ({c.generations.length})</summary>
+                      <ul className="list small">{[...c.generations].sort((x, y) => GENERATIONS.indexOf(x.regle) - GENERATIONS.indexOf(y.regle)).map((g) => (
+                        <li key={g.regle} className="list-row"><Link to={`/regles/r/${g.regle}`}>{nomGeneration(g.titre ?? g.regle)}</Link>
+                          <span>{valeur(g.avant, 'ans')} → <strong>{valeur(g.apres, 'ans')}</strong></span></li>
+                      ))}</ul>
+                    </details>
                   )}
                   {c.provenance && (
                     <div className="small muted" style={{ marginTop: 4 }}>

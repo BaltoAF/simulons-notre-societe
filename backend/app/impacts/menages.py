@@ -117,7 +117,7 @@ def section_cas_types(ctx: Contexte) -> Section | None:
     conf = confiance_moteur()
     ind = [Indicateur("cas_types_gagnants", "Ménages types gagnants", gagnants, "menages", confiance=conf,
                       explication=f"Sur {len(rows)} ménages types, {gagnants} gagnent et {perdants} perdent du revenu disponible."),
-           Indicateur("cas_types_perdants", "Ménages types perdants", perdants, "menages", confiance=conf)]
+           Indicateur("cas_types_perdants", "Ménages types qui y perdent", perdants, "menages", confiance=conf)]
     return Section("cas_types", "Pour des ménages types", "Qui gagne, qui perd, parmi des situations courantes",
                    ind, conf,
                    "Mêmes calculs que pour votre foyer, appliqués à des situations représentatives "
@@ -135,4 +135,5 @@ def simuler_menage_seul(store, menage: Menage, approximations: list[str] | None 
         "lignes": detail_menage(res, 0),
         "confiance": confiance_moteur(approximations).to_dict(),
         "unites_consommation": menage.unites_consommation,
+        "decote_annuelle": round(abs(float(res.get("decote", [0])[0])) * 12, 0),
     }

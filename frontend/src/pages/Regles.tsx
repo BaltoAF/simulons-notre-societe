@@ -4,6 +4,7 @@ import { BadgeCheck, Calculator, Search } from 'lucide-react'
 import type { Regle } from '../lib/api'
 import { DOMAINE_TITRE, nombre, valeur } from '../lib/format'
 import { useApp, useFetch } from '../lib/state'
+import { chercherRegles } from '../lib/recherche'
 import { DomainIcon, Loading, SourceType } from '../components/ui'
 
 export function RegleLigne({ r }: { r: Regle }) {
@@ -36,20 +37,19 @@ export default function Regles() {
   const { data, loading } = useFetch<{ regles: Regle[] }>('/api/regles?limit=5000')
   const res = useMemo(() => {
     if (q.trim().length < 2) return []
-    const norm = (t: string) => t.toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '')
-    const ql = norm(q)
-    return (data?.regles ?? []).filter((r) => norm(r.titre + ' ' + r.explication + ' ' + r.theme).includes(ql)).slice(0, 80)
+    return chercherRegles(data?.regles ?? [], q).slice(0, 80)
   }, [q, data])
   const s = meta?.stats
   return (
     <div className="container page">
       <h1>Les règles en vigueur aujourd'hui</h1>
-      <p className="lead ink2" style={{ maxWidth: 780 }}>La France d'aujourd'hui, traduite en paramètres. Chaque règle indique sa valeur en vigueur, son historique et le texte qui la prouve.</p>
-      {s && <div className="row small" style={{ marginBottom: 18 }}>
+      <p className="lead ink2" style={{ maxWidth: 780 }}>La France d'aujourd'hui, traduite en règles chiffrées. Chaque règle indique sa valeur en vigueur, son historique et le texte qui la prouve.</p>
+      {/* hauteur réservée : la ligne arrive après le chargement, sans faire bouger le champ de recherche */}
+      <div style={{ minHeight: 34, marginBottom: 18 }}>{s && <div className="row small">
         <span className="badge gain"><BadgeCheck size={13} /> {nombre(s.regles_texte_officiel, 0)} règles prouvées par un texte officiel</span>
         <span className="badge">{nombre(s.regles, 0)} règles au total</span>
         {s.regles_a_verifier > 0 && <span className="badge warn">{s.regles_a_verifier} à vérifier</span>}
-      </div>}
+      </div>}</div>
       <div className="input-suffix" style={{ maxWidth: 640, marginBottom: 24 }}>
         <input type="search" placeholder="Rechercher une règle : SMIC, majorité, TVA, garde à vue, RSA…" value={q} onChange={(e) => setQ(e.target.value)} aria-label="Rechercher une règle" />
         <span className="suffix"><Search size={16} /></span>

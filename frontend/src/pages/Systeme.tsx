@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Bot, Database, GitCommit, RefreshCw, ShieldAlert } from 'lucide-react'
 import type { Commit } from '../lib/api'
-import { DOMAINE_TITRE, nombre, relatif, valeur } from '../lib/format'
+import { DOMAINE_TITRE, nombre, relatif, valeur, date } from '../lib/format'
 import { useApp, useFetch } from '../lib/state'
 import { LineChart } from '../components/charts'
 import { Loading } from '../components/ui'
@@ -139,7 +139,7 @@ export default function Systeme() {
             <li key={x.id}>
               <button className="preset" style={{ border: 0, padding: '2px 0', background: 'transparent' }} onClick={() => setOpen(open === x.id ? null : x.id)}>
                 <div className="row between"><span style={{ fontWeight: 600 }}>{x.titre}</span>
-                  <span><strong>{x.derniere ? valeur(x.derniere.valeur, x.unite) : '—'}</strong> <span className="small muted">{x.derniere?.date}{x.derniere?.statut && x.derniere.statut !== 'definitif' ? ` · ${x.derniere.statut}` : ''}</span></span></div>
+                  <span><strong>{x.derniere ? valeur(x.derniere.valeur, x.unite) : '—'}</strong> <span className="small muted">{x.derniere?.date ? date(x.derniere.date) : ''}{x.derniere?.statut && x.derniere.statut !== 'definitif' ? ` · ${x.derniere.statut}` : ''}</span></span></div>
               </button>
               {open === x.id && <MetriqueView id={x.id} />}
             </li>

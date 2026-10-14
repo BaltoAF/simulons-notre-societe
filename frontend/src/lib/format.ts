@@ -17,6 +17,26 @@ export function signe(x: number, txt: string): string {
   return txt.replace('-', '−')
 }
 
+/** 62,75 → « 62 ans et 9 mois » ; 64 → « 64 ans » (une décimale d'année ne veut rien dire pour la plupart des gens). */
+export function anEtMois(v: number): string {
+  const ans = Math.floor(v + 1e-9)
+  const mois = Math.round((v - ans) * 12)
+  if (mois === 12) return `${ans + 1} an${ans + 1 >= 2 ? 's' : ''}`
+  if (ans === 0) return `${mois} mois` // « 3 mois », pas « 0 an et 3 mois »
+  return `${ans} an${ans >= 2 ? 's' : ''}${mois ? ` et ${mois} mois` : ''}`
+}
+
+/** Écart entre deux valeurs d'une règle, dans l'unité la plus parlante : « −2 ans », « +0,5 point », « +15 % ». */
+export function ecartLisible(avant: number, apres: number, u: string): string {
+  const d = apres - avant
+  const s = d > 0 ? '+' : '−'
+  if (u === 'pourcent') return `${s}${nombre(Math.abs(d), 2)} point${Math.abs(d) >= 2 ? 's' : ''}`
+  if (u === 'ans') return `${s}${anEtMois(Math.abs(d))}`
+  if (u === 'mois' || u === 'jours' || u === 'heures' || u === 'trimestres' || u === 'semaines') return `${s}${nombre(Math.abs(d), 0)} ${uniteLisible(u)}`
+  if (!avant) return `${s}${nombre(Math.abs(d), 2)}`
+  return `${s}${nombre(Math.abs(d / avant * 100), 1)} %`
+}
+
 const UNITES: Record<string, (v: number) => string> = {
   euros: (v) => euros(v, Number.isInteger(v) ? 0 : 2),
   euros_mois: (v) => euros(v, 0) + ' / mois',
@@ -26,7 +46,7 @@ const UNITES: Record<string, (v: number) => string> = {
   pourcent_part: (v) => nombre(v, 1) + ' %',
   points: (v) => nombre(v, 2) + ' pt',
   points_pib: (v) => nombre(v, 2) + ' pt de PIB',
-  ans: (v) => nombre(v, 1) + (v >= 2 ? ' ans' : ' an'),
+  ans: (v) => anEtMois(v),
   mois: (v) => nombre(v, 1) + ' mois',
   jours: (v) => nombre(v, 0) + (v >= 2 ? ' jours' : ' jour'),
   heures: (v) => nombre(v, 0) + ' h',
@@ -93,7 +113,8 @@ export function date(d?: string | null): string {
   if (!d) return '—'
   const dt = new Date(d.length === 10 ? d + 'T00:00:00' : d.replace(' ', 'T') + (d.includes('T') || d.length === 10 ? '' : 'Z'))
   if (Number.isNaN(dt.getTime())) return d
-  return dt.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })
+  const txt = dt.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })
+  return dt.getDate() === 1 ? txt.replace(/^1 /, '1er ') : txt
 }
 
 export function dateCourte(d?: string | null): string {
