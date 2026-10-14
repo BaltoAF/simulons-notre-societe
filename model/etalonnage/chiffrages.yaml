@@ -1,0 +1,210 @@
+# Banc d'essai du Système : réformes chiffrées par des institutions publiques, décrites par les règles qu'elles
+# changent (au besoin relativement à la loi en vigueur, voir backend/app/etalonnage.py), puis rejouées par le moteur.
+# valeur_md : rendement (+) ou coût (−) annuel pour les finances publiques, en milliards d'euros.
+# perimetre : statique (comportements inchangés), avec_comportements, ou constate (exécution réelle).
+# comparabilite : bonne (même réforme, même champ) ou moyenne (année, champ ou législation de référence différents).
+# Rejouer : backend/.venv/Scripts/python system/etalonnage.py
+references:
+  # ─────────────────────────────── Retraites ───────────────────────────────
+  - id: retraite_age_63_solde_retraites
+    domaine: retraites
+    reforme: "Âge légal de départ ramené à 63 ans (au lieu de 64)"
+    overrides:
+      "retraites.age_legal.generation_*": {max: 63}
+    valeur_md: -5.8
+    fourchette_md: null
+    perimetre: statique
+    annee: 2035
+    comparabilite: bonne
+    source_id: cdc_retraites_2025
+    citation: "représenterait une dépense supplémentaire pour le système des retraites de 5,8 Md€ en 2035"
+    note: "Tous régimes, en euros 2024, effet sur le solde des retraites (pensions et cotisations). La Cour chiffre le coût complet pour l'ensemble des finances publiques à 13 milliards € (ligne suivante). L'effet baisse ensuite (4,3 milliards € en 2045), car les pensions liquidées plus tard sont plus élevées."
+
+  - id: retraite_age_63_finances_publiques
+    domaine: retraites
+    reforme: "Âge légal ramené à 63 ans : coût complet pour les finances publiques (pensions, impôts et cotisations perdus)"
+    overrides:
+      "retraites.age_legal.generation_*": {max: 63}
+    valeur_md: -13.0
+    fourchette_md: null
+    perimetre: avec_comportements
+    annee: 2035
+    comparabilite: bonne
+    source_id: cdc_retraites_2025
+    citation: "aurait un coût complet de 13 Md€ sur les finances publiques pour l'exercice 2035"
+    note: "5,8 milliards € pour le système de retraite et 7,2 milliards € de recettes publiques perdues (impôts et cotisations des autres branches), parce que les seniors qui partent plus tôt ne travaillent plus (chiffrage DG Trésor et Cnav repris par la Cour)."
+
+  - id: retraite_age_65_solde_retraites
+    domaine: retraites
+    reforme: "Âge légal reculé à 65 ans (au lieu de 64)"
+    overrides:
+      "retraites.age_legal.generation_1969_et_apres": 65
+    valeur_md: 8.4
+    fourchette_md: null
+    perimetre: statique
+    annee: 2035
+    comparabilite: moyenne
+    source_id: cdc_retraites_2025
+    citation: "Son recul d'un an (65 ans au lieu de 64) rapporterait jusqu'à 8,4 Md€ en 2035"
+    note: "Tous régimes. La Cour applique le recul à partir de la génération 1968 ; le site, aux personnes nées à partir de 1969. L'effet atteint aussi 8,4 milliards € en 2045."
+
+  - id: retraite_age_65_finances_publiques
+    domaine: retraites
+    reforme: "Âge légal reculé à 65 ans : gain complet pour les finances publiques"
+    overrides:
+      "retraites.age_legal.generation_1969_et_apres": 65
+    valeur_md: 17.7
+    fourchette_md: null
+    perimetre: avec_comportements
+    annee: 2035
+    comparabilite: moyenne
+    source_id: cdc_retraites_2025
+    citation: "Cette dernière se traduirait par un gain total de 17,7 Md€ pour l'ensemble des finances publiques sur l'exercice 2035"
+    note: "8,4 milliards € pour les retraites et 9,3 milliards € de recettes publiques en plus, grâce aux seniors qui restent en emploi. Le site retient un effet sur l'emploi plus faible que la DG Trésor : +12 points de taux d'emploi pour les personnes concernées (synthèse des études françaises et étrangères), contre environ 390 000 emplois pour deux ans d'âge selon la DG Trésor."
+
+  - id: retraite_retour_62_ans_age_seul
+    domaine: retraites
+    reforme: "Retour de l'âge légal à 62 ans pour toutes les générations (âge seul, durée de cotisation inchangée)"
+    overrides:
+      "retraites.age_legal.generation_*": {max: 62}
+    valeur_md: -12.6
+    fourchette_md: [-15.7, -10.0]
+    perimetre: statique
+    annee: 2030
+    comparabilite: moyenne
+    source_id: an_rapport_613_abrogation
+    citation: "3,4 milliards d'euros en 2025, 6,6 milliards d'euros en 2026 et 12,6 milliards d'euros en 2030 par la Caisse nationale d'assurance vieillesse"
+    note: "Chiffrage Cnav des mesures d'âge de la réforme de 2023 (passage de 62 à 64 ans) ; le retour à 62 ans en est le symétrique. Le pic est atteint en 2032 (15,7 milliards €). La Cour des comptes estime l'effet net de toute la réforme de 2023 à 10 milliards € en 2030 tous régimes. Pas de chiffrage officiel d'une abrogation complète."
+
+  # ─────────────────────────────── Travail ───────────────────────────────
+  - id: smic_plus_1_pourcent
+    domaine: travail
+    reforme: "Hausse de 1 % du SMIC (« coup de pouce »), à emploi inchangé"
+    overrides:
+      travail.smic.horaire_brut: {fois: 1.01}
+    valeur_md: -0.24
+    fourchette_md: [-0.40, -0.10]
+    perimetre: statique
+    annee: 2017
+    comparabilite: moyenne
+    source_id: gex_smic_2017
+    citation: "Une augmentation de 1 % du SMIC dégraderait le solde public de 240 M€"
+    note: "Chiffrage du modèle Saphir de la DG Trésor (législation 2017) : allègements de cotisations nets −400 millions €, cotisations salariales et CSG +240, salaires des agents publics −260, prestations +110, impôt sur le revenu +70, avec une diffusion jusqu'à 1,7 SMIC. Le barème des allègements a beaucoup changé depuis (réduction générale jusqu'à 3 SMIC en 2026)."
+
+  # ─────────────────────────────── Fiscalité ───────────────────────────────
+  - id: tva_tous_taux_plus_1_point
+    domaine: fiscalite
+    reforme: "TVA : +1 point sur les quatre taux (20 → 21 %, 10 → 11 %, 5,5 → 6,5 %, 2,1 → 3,1 %)"
+    overrides:
+      fiscalite.tva.taux_normal: {plus: 1}
+      fiscalite.tva.taux_intermediaire: {plus: 1}
+      fiscalite.tva.taux_reduit: {plus: 1}
+      fiscalite.tva.taux_particulier: {plus: 1}
+    valeur_md: 11.0
+    fourchette_md: [10.7, 11.4]
+    perimetre: statique
+    annee: 2025
+    comparabilite: bonne
+    source_id: ipp_2025_ch2
+    citation: "Une hausse d'un point de TVA augmenterait les recettes d'environ 13 Md€."
+    note: "13,0 milliards € de recettes, dont 2,0 milliards € payés par les administrations publiques elles-mêmes sur leurs achats : 11,0 milliards € pour les finances publiques (10,7 milliards € si la hausse n'est répercutée qu'à 80 % dans les prix ; 11,4 milliards € selon la DG Trésor, Trésor-Éco n° 371). La revalorisation des retraites et prestations indexées sur les prix réduirait encore le gain, à 8,2 milliards €."
+
+  - id: csg_activite_plus_1_point
+    domaine: fiscalite
+    reforme: "CSG sur les revenus d'activité : +1 point"
+    overrides:
+      fiscalite.csg.salaires_taux: {plus: 1}
+    valeur_md: 10.1
+    fourchette_md: null
+    perimetre: statique
+    annee: 2024
+    comparabilite: bonne
+    source_id: ipp_2025_ch2
+    citation: "dont 10,1 Md€ issus de la CSG activité, 3,2 Md€ de la CSG remplacement et 1,3 Md€ de la CSG capital."
+    note: "Point de CSG non déductible de l'impôt sur le revenu. S'il était déductible, l'impôt sur le revenu baisserait d'environ 16 % du produit."
+
+  - id: csg_toutes_assiettes_plus_1_point
+    domaine: fiscalite
+    reforme: "CSG : +1 point sur les revenus d'activité, de remplacement (taux plein) et du capital"
+    overrides:
+      fiscalite.csg.salaires_taux: {plus: 1}
+      fiscalite.csg.retraites_taux_plein: {plus: 1}
+      fiscalite.csg.revenus_capital_taux: {plus: 1}
+    valeur_md: 14.6
+    fourchette_md: null
+    perimetre: statique
+    annee: 2024
+    comparabilite: moyenne
+    source_id: ipp_2025_ch2
+    citation: "Cette hausse générerait un produit supplémentaire de 14,6 Md€"
+    note: "10,1 milliards € sur l'activité, 3,2 sur les revenus de remplacement (tous les taux, pas seulement le taux plein), 1,3 sur le capital. Le site ne relève que le taux plein des pensions."
+
+  - id: ir_tous_taux_plus_1_point
+    domaine: fiscalite
+    reforme: "Impôt sur le revenu : +1 point sur chaque taux du barème (11/30/41/45 → 12/31/42/46 %)"
+    overrides:
+      fiscalite.impot_revenu.bareme: {taux: {11: 12, 30: 31, 41: 42, 45: 46}}
+    valeur_md: 6.4
+    fourchette_md: null
+    perimetre: statique
+    annee: 2025
+    comparabilite: bonne
+    source_id: ipp_2025_ch2
+    citation: "Cette mesure générerait 6,4 Md€ supplémentaires de recettes fiscales."
+    note: "Seuils inchangés, sans réaction des contribuables."
+
+  - id: ir_taux_30_41_45_plus_1_point
+    domaine: fiscalite
+    reforme: "Impôt sur le revenu : +1 point sur les taux de 30, 41 et 45 % (le taux de 11 % ne change pas)"
+    overrides:
+      fiscalite.impot_revenu.bareme: {taux: {30: 31, 41: 42, 45: 46}}
+    valeur_md: 2.2
+    fourchette_md: null
+    perimetre: statique
+    annee: 2025
+    comparabilite: bonne
+    source_id: ipp_2025_ch2
+    citation: "Cette mesure générerait 2,2 Md€ supplémentaires de recettes fiscales"
+    note: "Sans réaction des contribuables."
+
+  - id: ir_tranche_45_a_46
+    domaine: fiscalite
+    reforme: "Impôt sur le revenu : dernière tranche de 45 % à 46 %"
+    overrides:
+      fiscalite.impot_revenu.bareme: {taux: {45: 46}}
+    valeur_md: 0.15
+    fourchette_md: null
+    perimetre: statique
+    annee: 2025
+    comparabilite: bonne
+    source_id: ipp_2025_ch2
+    citation: "Cette mesure générerait 150 M€ supplémentaires de recettes fiscales"
+    note: "Test des très hauts revenus, peu nombreux dans une population simulée : c'est là que l'incertitude du site est la plus grande."
+
+  - id: quotient_familial_plafond_moins_25_pourcent
+    domaine: fiscalite
+    reforme: "Plafond de l'avantage par demi-part du quotient familial abaissé d'un quart (comme en 2014 : 2 000 € → 1 500 €)"
+    overrides:
+      fiscalite.impot_revenu.quotient_familial.plafond_demi_part: {fois: 0.75}
+    valeur_md: 1.0
+    fourchette_md: [1.0, 1.03]
+    perimetre: statique
+    annee: 2014
+    comparabilite: moyenne
+    source_id: senat_rg_plf2014_t2
+    citation: "permettre un gain budgétaire d'environ 1 milliard d'euros"
+    note: "Réforme de 2014 (revenus 2013), 1,26 million de foyers plafonnés. Rejouée sur le plafond de 2026 (1 807 € → 1 355 €) : la législation et les revenus ont changé depuis. Le site trouve environ 3,5 millions de foyers touchés : sa population simulée compte sans doute trop de familles aisées avec enfants (elle est calée sur l'impôt payé par tranche de revenu, pas encore sur la composition des foyers aisés)."
+
+  - id: accise_gazole_plus_2_centimes
+    domaine: environnement_energie
+    reforme: "Taxe sur le gazole : +2 centimes par litre (comme au 1er janvier 2015)"
+    overrides:
+      environnement_energie.accise.gazole: {plus: 2}
+    valeur_md: 0.807
+    fourchette_md: [0.7, 0.85]
+    perimetre: statique
+    annee: 2015
+    comparabilite: moyenne
+    source_id: senat_avis109_2014_energie
+    citation: "à hauteur de 807 millions d'euros pour 2015"
+    note: "Produit affecté à l'Agence de financement des infrastructures de transport, hors TVA. Volumes de gazole de 2015 : la consommation a baissé depuis, d'où une fourchette basse plus faible."

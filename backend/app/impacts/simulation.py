@@ -126,9 +126,9 @@ def _avertissements(ctx) -> list[str]:
     from .microsim import avertissements_couverture
     out = []
     if "travail.smic.horaire_brut" in ctx.overrides:
-        out.append("Les salaires au niveau du SMIC suivent sa hausse (ceux juste au-dessus sont relevés au nouveau SMIC) ; "
-                   "les salaires plus élevés ne changent pas dans ce calcul, et le surcoût pour les employeurs (y compris l'État "
-                   "employeur) n'est pas compté dans les finances publiques.")
+        out.append("Les salaires au SMIC suivent sa hausse, et ceux jusqu'à 1,8 SMIC en partie (de moins en moins en montant) ; "
+                   "les allègements de cotisations patronales suivent le SMIC, et le coût pour les employeurs publics est compté. "
+                   "Le surcoût pour les entreprises n'est pas une dépense publique, mais il pèse sur l'emploi (voir « Emploi »).")
     try:
         return out + avertissements_couverture(ctx)
     except Exception:  # un avertissement ne doit jamais faire échouer le rapport

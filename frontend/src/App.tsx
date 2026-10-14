@@ -22,6 +22,7 @@ const Sources = lazy(() => import('./pages/Sources'))
 const SourceDetail = lazy(() => import('./pages/SourceDetail'))
 const Systeme = lazy(() => import('./pages/Systeme'))
 const Methode = lazy(() => import('./pages/Methode'))
+const Fiabilite = lazy(() => import('./pages/Fiabilite'))
 const Connexion = lazy(() => import('./pages/Connexion'))
 const Glossaire = lazy(() => import('./pages/Glossaire'))
 
@@ -45,6 +46,7 @@ function MenuComprendre() {
           <Link to="/regles">Toutes les règles<small>Ce que dit la loi aujourd'hui, prouvé par les textes</small></Link>
           <Link to="/preuves">Ce que disent les études<small>Comment on estime les effets sur l'emploi, les prix…</small></Link>
           <Link to="/methode">Comment ça marche<small>La méthode et l'indice de confiance</small></Link>
+          <Link to="/fiabilite">Nos chiffres sont-ils justes ?<small>Comparés aux chiffrages officiels des mêmes réformes</small></Link>
           <Link to="/glossaire">Le petit lexique<small>Tous les mots expliqués simplement</small></Link>
           <Link to="/sources">Les sources<small>Textes officiels, statistiques, études</small></Link>
           <Link to="/systeme">Les mises à jour automatiques<small>Comment la loi actuelle est tenue à jour (le « Système »)</small></Link>
@@ -144,6 +146,7 @@ export default function App() {
             <Route path="/sources/:id" element={<SourceDetail />} />
             <Route path="/systeme" element={<Systeme />} />
             <Route path="/methode" element={<Methode />} />
+            <Route path="/fiabilite" element={<Fiabilite />} />
             <Route path="/connexion" element={<Connexion />} />
             <Route path="/glossaire" element={<Glossaire />} />
             <Route path="*" element={<div className="container page"><h1>Page introuvable</h1><Link to="/">Retour à l'accueil</Link></div>} />

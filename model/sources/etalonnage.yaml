@@ -1,0 +1,162 @@
+# Sources des chiffrages officiels du banc d'essai (model/etalonnage/). Chiffres lus dans la source primaire
+# (PDF téléchargés et relus) par l'agent de recherche du Système le 14/10/2026.
+sources:
+  - id: cdc_retraites_2025
+    type: rapport_institutionnel
+    editeur: "Cour des comptes"
+    titre: "Situation financière et perspectives du système de retraites (communication au Premier ministre)"
+    url: "https://www.ccomptes.fr/sites/default/files/2025-03/20250220-Situation-financiere-et-perspectives-du-systeme-de%20retraites.pdf"
+    auteurs: []
+    date_publication: "2025-02-20"
+    consulte_le: "2026-10-14"
+
+  - id: an_rapport_613_abrogation
+    type: rapport_institutionnel
+    editeur: "Assemblée nationale, commission des affaires sociales"
+    titre: "Rapport n° 613 sur la proposition de loi d'abrogation de la retraite à 64 ans (rapporteur U. Bernalicis)"
+    url: "https://www.assemblee-nationale.fr/dyn/17/rapports/cion-soc/l17b0613_rapport-fond.pdf"
+    auteurs: []
+    date_publication: "2024-11-20"
+    consulte_le: "2026-10-14"
+    note: "Reproduit le chiffrage des mesures d'âge de la réforme de 2023 par la Cnav (prestations, cotisations, solde, 2025-2040)."
+
+  - id: ei_plfrss_2023
+    type: texte_officiel
+    editeur: "Gouvernement (annexe au PLFRSS 2023, Assemblée nationale n° 760)"
+    titre: "Annexe 2 : fiches d'évaluation préalable des articles du projet de loi de financement rectificative de la sécurité sociale pour 2023"
+    url: "https://www.assemblee-nationale.fr/dyn/16/textes/l16b0760_etude-impact"
+    auteurs: []
+    date_publication: "2023-01-23"
+    consulte_le: "2026-10-14"
+
+  - id: an_avis_1546_2018
+    type: rapport_institutionnel
+    editeur: "Assemblée nationale, commission des finances"
+    titre: "Avis n° 1546 sur le projet de loi portant mesures d'urgence économiques et sociales (rapporteur É. Alauzet)"
+    url: "https://www.assemblee-nationale.fr/dyn/15/rapports/cion_fin/l15b1546_rapport-avis.pdf"
+    auteurs: []
+    date_publication: "2018-12-19"
+    consulte_le: "2026-10-14"
+
+  - id: an_rapport_1473_af
+    type: rapport_institutionnel
+    editeur: "Assemblée nationale, commission des affaires sociales"
+    titre: "Rapport n° 1473 sur la proposition de loi visant à accorder le versement des allocations familiales dès le premier enfant (rapporteur É. Bénard)"
+    url: "https://www.assemblee-nationale.fr/dyn/17/rapports/cion-soc/l17b1473_rapport-fond.pdf"
+    auteurs: []
+    date_publication: "2025-05-28"
+    consulte_le: "2026-10-14"
+
+  - id: ipp_rapport18_revenu_base
+    type: etude_academique
+    editeur: "Institut des politiques publiques (IPP)"
+    titre: "Rapport IPP n° 18 : revenu de base, simulations en vue d'une expérimentation (synthèse)"
+    url: "https://www.ipp.eu/wp-content/uploads/2018/06/synthese-revenu-de-base-experimentation-rapport-IPP-juin2018.pdf"
+    auteurs: []
+    date_publication: "2018-06-01"
+    consulte_le: "2026-10-14"
+
+  # ── SMIC et coût du travail ──
+  - id: gex_smic_2017
+    type: rapport_institutionnel
+    editeur: "Groupe d'experts sur le SMIC (secrétariat DG Trésor, Dares, Insee)"
+    titre: "Salaire minimum interprofessionnel de croissance – Rapport du groupe d'experts (2017)"
+    url: "https://www.tresor.economie.gouv.fr/Articles/284b121f-b187-4280-b327-05f18064c3fa/files/2463e652-7de5-4cd4-b7da-6756e7c1374b"
+    auteurs: []
+    date_publication: "2017-12-01"
+    consulte_le: "2026-10-14"
+    note: "Chiffrage Saphir d'un point de SMIC : solde public −240 M€ (allègements nets −400, cotisations salariales et CSG +240, masse salariale publique −260, prestations +110, impôt sur le revenu +70), diffusion jusqu'à 1,7 SMIC."
+
+  - id: gex_smic_2025
+    type: rapport_institutionnel
+    editeur: "Groupe d'experts sur le SMIC (secrétariat DG Trésor, Dares, Insee)"
+    titre: "Salaire minimum interprofessionnel de croissance – Rapport du groupe d'experts (2025)"
+    url: "https://www.tresor.economie.gouv.fr/Articles/284b121f-b187-4280-b327-05f18064c3fa/files/1d1d1848-48bb-40a9-a14f-585b8072e716"
+    auteurs: []
+    date_publication: "2025-11-25"
+    consulte_le: "2026-10-14"
+
+  - id: ofce_heyer_plane_2012
+    type: think_tank
+    editeur: "OFCE (É. Heyer, M. Plane)"
+    titre: "Quelles conséquences économiques du coup de pouce au Smic ?"
+    url: "https://www.ofce.fr/pdf/revue/2012/12-2012-1.pdf"
+    auteurs: ["Éric Heyer", "Mathieu Plane"]
+    date_publication: "2012-07-01"
+    consulte_le: "2026-10-14"
+
+  - id: insee_koubi_lhommeau_2007
+    type: statistique_publique
+    editeur: "Insee (Les salaires en France, édition 2007)"
+    titre: "Les effets de diffusion de court terme des hausses du Smic dans les grilles salariales des entreprises de dix salariés ou plus sur la période 2000-2005"
+    url: "https://www.insee.fr/fr/statistiques/fichier/1373191/salfra07ae.pdf"
+    auteurs: ["Malik Koubi", "Bertrand Lhommeau"]
+    date_publication: "2007-01-01"
+    consulte_le: "2026-10-14"
+
+  - id: insee_goarant_muller_2011
+    type: statistique_publique
+    editeur: "Insee (Emploi et salaires, édition 2011)"
+    titre: "Les effets des hausses du Smic sur les salaires mensuels dans les entreprises de 10 salariés ou plus de 2006 à 2009"
+    url: "https://www.insee.fr/fr/statistiques/fichier/1373824/empsal11f.pdf"
+    auteurs: ["Catherine Goarant", "Laurent Muller"]
+    date_publication: "2011-01-01"
+    consulte_le: "2026-10-14"
+
+  # ── Fiscalité ──
+  - id: ipp_2025_ch2
+    type: etude_academique
+    editeur: "Institut des politiques publiques (IPP)"
+    titre: "Chapitre 2 – Effets budgétaires et redistributifs des mesures socio-fiscales (Perspectives budgétaires, juin 2025)"
+    url: "https://www.ipp.eu/wp-content/uploads/2025/06/chapitre_2_fiscalite_web.pdf"
+    auteurs: ["H. Darricau", "S. Duchesne", "B. Garbinti", "L. Josseran", "F. Reutzel"]
+    date_publication: "2025-06-01"
+    consulte_le: "2026-10-14"
+    note: "Microsimulation TAXIPP 2.4.1 et OpenFisca (fiscalité indirecte), législation 2024-2025, effets statiques."
+
+  - id: senat_rg_plf2014_t2
+    type: rapport_institutionnel
+    editeur: "Sénat, commission des finances (rapport général n° 156, 2013-2014, tome II)"
+    titre: "Projet de loi de finances pour 2014 : les conditions générales de l'équilibre financier (première partie)"
+    url: "https://www.senat.fr/rap/l13-156-2-1-1/l13-156-2-1-1_mono.html"
+    auteurs: []
+    date_publication: "2013-11-21"
+    consulte_le: "2026-10-14"
+
+  - id: senat_avis109_2014_energie
+    type: rapport_institutionnel
+    editeur: "Sénat, commission des affaires économiques (avis n° 109, 2014-2015, tome II)"
+    titre: "Projet de loi de finances pour 2015 : Écologie, développement et mobilité durables – énergie"
+    url: "https://www.senat.fr/rap/a14-109-2/a14-109-26.html"
+    auteurs: []
+    date_publication: "2014-11-20"
+    consulte_le: "2026-10-14"
+
+  - id: ofce_2017_fiche6_is
+    type: etude_academique
+    editeur: "OFCE (S. Guillou, L. Nesta, E. Salies)"
+    titre: "Mesure 6. La réforme de l'impôt sur les sociétés (fiches mesures OFCE)"
+    url: "https://www.ofce.fr/pdf/pbrief/2017/OFCE-Fiche6-Reforme-IS-12-07.pdf"
+    auteurs: ["Sarah Guillou", "Lionel Nesta", "Evens Salies"]
+    date_publication: "2017-07-12"
+    consulte_le: "2026-10-14"
+
+  - id: ccss_oct2026
+    type: rapport_institutionnel
+    editeur: "Commission des comptes de la sécurité sociale (direction de la Sécurité sociale)"
+    titre: "Rapport à la Commission des comptes de la Sécurité sociale – Résultats 2025, prévisions 2026 et 2027 (octobre 2026)"
+    url: "https://www.securite-sociale.fr/files/live/sites/SSFR/files/medias/CCSS/2026/CCSS-octobre-2026_assemble_VDEF.pdf"
+    auteurs: []
+    date_publication: "2026-10-01"
+    consulte_le: "2026-10-14"
+    note: "Tableau 1, rendement de la CSG par assiette en 2025 (M€) : activité 110 670, remplacement 28 260, capital (patrimoine et placements) 17 590, jeux 690 ; total 157 207. Jour exact de publication non trouvé."
+
+  - id: senat_plfss2026_nl_205
+    type: rapport_institutionnel
+    editeur: "Sénat, commission des affaires sociales (rapport n° 205, 2025-2026, nouvelle lecture)"
+    titre: "Projet de loi de financement de la sécurité sociale pour 2026"
+    url: "https://www.senat.fr/rap/l25-205/l25-20512.html"
+    auteurs: []
+    date_publication: "2025-12-10"
+    consulte_le: "2026-10-14"
+    note: "Hausse de 1,4 point de la CSG sur une partie des revenus du capital (article 6 bis) : rendement de 1,5 Md€ dans la version votée par l'Assemblée, contre 2,8 Md€ dans la version initiale."

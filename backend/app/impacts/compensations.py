@@ -103,9 +103,11 @@ def options_budget(store, overrides: dict, manque: float) -> list[dict]:
     # 2. Recettes
     tva, _, _ = metrique(store, "fiscalite.tva.recettes_brutes_totales", "finances_publiques.recettes.tva")
     part, _, _ = metrique(store, "fiscalite.tva.part_recettes_taux_normal")
+    # même rendement que le calcul des effets (module TVA) : celui d'un point chiffré par la DG Trésor, sinon la part du taux
+    par_pt_tresor, _, _ = metrique(store, "fiscalite.tva.rendement_net_point_taux_normal")
     taux_tva = _valeur(store, overrides, "fiscalite.tva.taux_normal")
-    if tva and part and taux_tva:
-        par_pt = tva * part / 100 / float(taux_tva)
+    if (par_pt_tresor or (tva and part)) and taux_tva:
+        par_pt = par_pt_tresor or tva * part / 100 / float(taux_tva)
         d = _arrondi(manque / par_pt, 0.1)
         out.append({"id": "tva", "famille": "recettes", "titre": f"Relever la TVA normale de {g(taux_tva)} % à {g(float(taux_tva) + d)} %",
                     "description": "Simple et rapide ; mais pèse plus lourd, en proportion, sur les ménages modestes (ils dépensent tout leur revenu).",

@@ -25,7 +25,7 @@ REGLES_COUVERTES = {
     "retraites.age_legal.generation_1969_et_apres", "retraites.age_legal.generation_1968", "retraites.age_legal.generation_1967",
     "retraites.age_legal.generation_1966", "transports.vitesse_max.route_bidirectionnelle", "transports.vitesse_max.autoroute",
     "transports.vitesse_max.voie_rapide", "transports.vitesse_max.agglomeration", "sante.tabac.accise_cigarettes_taux",
-    "sante.tabac.accise_cigarettes_tarif",
+    "sante.tabac.accise_cigarettes_tarif", "fiscalite.csg.revenus_capital_taux", "fiscalite.csg.revenus_capital_taux_derogatoire",
 }
 
 
@@ -71,6 +71,10 @@ def ecart(ctx: Contexte, rid: str):
 
 
 # ───────────────────────── modèles ─────────────────────────
+# coût d'un point de SMIC pour les employeurs publics (Md€, 2017) et SMIC horaire brut de 2017 (groupe d'experts 2017)
+COUT_PUBLIC_POINT_SMIC_2017, SMIC_HORAIRE_2017 = 0.26, 9.76
+
+
 def mod_smic(ctx: Contexte) -> list[Indicateur]:
     rid = "travail.smic.horaire_brut"
     if not ctx.modifie(rid):
@@ -82,6 +86,20 @@ def mod_smic(ctx: Contexte) -> list[Indicateur]:
     out = [Indicateur("smic_gain", "Salaire brut d'un salarié au SMIC à temps plein", (new - old) * 151.67, "euros_mois",
                       old * 151.67, new * 151.67, Confiance(92, [Facteur("Calcul direct", 0.95, "SMIC horaire × 151,67 heures.")], "Calcul direct"),
                       "Variation du salaire brut mensuel pour 35 heures par semaine.")]
+    # L'État, les collectivités et les hôpitaux emploient aussi des agents payés au niveau du SMIC (une indemnité
+    # différentielle complète leur traitement) : environ 260 M€ par point de SMIC en 2017 selon le groupe d'experts sur
+    # le SMIC, 300 M€ selon l'IGF (2010), revalorisés ici comme le SMIC lui-même.
+    cout = -COUT_PUBLIC_POINT_SMIC_2017 * (old / SMIC_HORAIRE_2017) * d * 100
+    out.append(Indicateur(
+        "solde_public_remunerations_publiques", "Salaires des agents publics payés au niveau du SMIC (par an)", cout, "milliards_euros",
+        confiance=Confiance(55, [Facteur("Sources", 0.85, "Groupe d'experts sur le SMIC (2017) : 260 M€ par point ; IGF (2010) : 300 M€."),
+                                 Facteur("Transposition", 0.6, "Montant de 2017 revalorisé comme le SMIC ; nombre d'agents concernés supposé stable.")],
+                            "Coût pour les employeurs publics"),
+        explication="Les agents publics dont le traitement est inférieur au SMIC reçoivent une indemnité pour l'atteindre : une hausse du SMIC "
+                    "augmente la masse salariale de l'État, des collectivités et des hôpitaux.",
+        calcul=[f"{COUT_PUBLIC_POINT_SMIC_2017 * 1000:.0f} M€ par point de SMIC en 2017 × (SMIC {old:.2f} € / {SMIC_HORAIRE_2017:.2f} € en 2017)",
+                f"× {d * 100:+.2f} points = {cout:+.2f} Md€"],
+        sources=["gex_smic_2017", "ofce_heyer_plane_2012"], sens="favorable" if cout > 0 else "defavorable"))
     elas, conf_e, syn = valeur_ou_defaut(ctx.store, "emploi_smic_elasticite", -0.18)
     part, src_p, conf_p = metrique(ctx.store, "travail.salaries_concernes_revalorisation_smic_part")
     prive, src_s, conf_s = metrique(ctx.store, "emploi.salaries.secteur_prive")
@@ -146,26 +164,42 @@ def mod_tva(ctx: Contexte) -> list[Indicateur]:
     parts = {k: metrique(store, f"fiscalite.tva.part_recettes_taux_{k}") for k in TVA_LEVIERS.values()}
     p, conf_p, syn = valeur_ou_defaut(store, "tva_repercussion_prix", 50)
     out = []
-    if tva and all(parts[TVA_LEVIERS[r]][0] is not None for r in touches):
+    # un taux dont la part dans les recettes n'est pas documentée n'empêche pas de chiffrer les autres : il est signalé
+    chiffrables = [r for r in touches if parts[TVA_LEVIERS[r]][0] is not None
+                   or metrique(store, f"fiscalite.tva.rendement_net_point_taux_{TVA_LEVIERS[r]}")[0] is not None]
+    if tva and chiffrables:
         drec, dprix_num, poids = 0.0, 0.0, 0.0
         calc = [f"Recettes de TVA : {tva:.1f} Md€"]
+        calc += [f"Taux {TVA_LEVIERS[r]} : part des recettes inconnue, changement non compté" for r in touches if r not in chiffrables]
+        sources_tva: list[str] = []
         for r, k in TVA_LEVIERS.items():
             share = parts[k][0]
-            if share is None:
+            rendement, src_r, _ = metrique(store, f"fiscalite.tva.rendement_net_point_taux_{k}")
+            if share is None and rendement is None:
                 continue
             old, new = ecart(ctx, r)
             if not old:
                 continue
-            drec += tva * share / 100 * (new / old - 1)
-            c = share / old  # poids de consommation ∝ recettes / taux
-            dprix_num += c * (new - old) / (100 + old)
-            poids += c
-            if r in touches:
+            # de préférence, le rendement d'un point chiffré par la DG Trésor (net de la TVA payée par les administrations) ;
+            # sinon, la part du taux dans la TVA collectée (qui surestime le poids du taux normal, collecté entre entreprises)
+            if rendement is not None:
+                drec += rendement * (new - old)
+                if r in touches:
+                    calc.append(f"Taux {k} : 1 point rapporte {rendement:.1f} Md€ nets (DG Trésor) × {new - old:+g} point")
+                if src_r:
+                    sources_tva.append(src_r)
+            else:
+                drec += tva * share / 100 * (new / old - 1)
+            if share is not None:
+                c = share / old  # poids de consommation ∝ recettes / taux
+                dprix_num += c * (new - old) / (100 + old)
+                poids += c
+            if r in touches and rendement is None:
                 calc.append(f"Taux {k} : {old:g} % → {new:g} % ; {share:.1f} % des recettes")
-        conf = chaine(conf_t, *(parts[TVA_LEVIERS[r]][2] for r in touches), hypothese(55, "Assiette inchangée (effet statique)"))
+        conf = chaine(conf_t, *(parts[TVA_LEVIERS[r]][2] for r in chiffrables if parts[TVA_LEVIERS[r]][2]), hypothese(55, "Assiette inchangée (effet statique)"))
         out.append(Indicateur("solde_public_tva", "Recettes de TVA (par an, assiette inchangée)", drec, "milliards_euros", confiance=conf,
                               explication="Variation des recettes si la consommation taxée restait identique.",
-                              calcul=calc, sources=[s for s in [src_t] + [parts[TVA_LEVIERS[r]][1] for r in touches] if s],
+                              calcul=calc, sources=list(dict.fromkeys(s for s in [src_t] + sources_tva + [parts[TVA_LEVIERS[r]][1] for r in chiffrables] if s)),
                               sens="favorable" if drec > 0 else "defavorable"))
         rel = drec / tva  # variation relative de la TVA payée, à consommation inchangée
         for dec, lib in ((1, "des 10 % les plus modestes"), (10, "des 10 % les plus aisés")):
@@ -351,6 +385,12 @@ def mod_ifi(ctx: Contexte) -> list[Indicateur]:
     ]
 
 
+# Part des nouveaux retraités dont le départ suit l'âge légal (ceux qui partent à l'âge légal, avec décote, ou entre
+# l'ancien et le nouvel âge). Calée pour retrouver l'effet moyen d'un an d'âge chiffré par la Cour des comptes en 2025
+# (7,1 Md€ : moyenne de 5,8 Md€ pour 63 ans et de 8,4 Md€ pour 65 ans, en 2035) ; voir model/etalonnage/.
+PART_DEPARTS_CONCERNES = 0.40
+
+
 def mod_retraite_age(ctx: Contexte) -> list[Indicateur]:
     gens = [r for r in ctx.overrides if r.startswith("retraites.age_legal.")]
     if not gens:
@@ -382,9 +422,10 @@ def mod_retraite_age(ctx: Contexte) -> list[Indicateur]:
         # 12,1 % des nouveaux retraités du régime général partent EXACTEMENT à l'âge légal au taux plein ; un report touche
         # aussi ceux qui partent avec décote ou entre l'ancien et le nouvel âge : on retient la moitié des départs (hypothèse),
         # avec la statistique observée comme borne basse.
-        part_v = 0.5
+        part_v = PART_DEPARTS_CONCERNES
         borne_basse = part / 100 if part else 0.1
-        conf_part = hypothese(25, "Part des départs concernés par le report supposée égale à la moitié (borne basse : départs exactement à l'âge légal)")
+        conf_part = hypothese(45, "Part des départs concernés calée sur les chiffrages de la Cour des comptes (2025) : 5,8 Md€ pour un an "
+                                  "d'âge en moins et 8,4 Md€ pour un an de plus, en 2035 (borne basse : départs exactement à l'âge légal)")
         eco = dage * nouveaux * part_v * pension * 12 / 1e9
         out.append(Indicateur("solde_public_retraites", "Effet sur le solde : pensions de retraite (régime permanent, par an)", eco, "milliards_euros",
                               confiance=chaine(conf_n, conf_m, conf_part, hypothese(40, "Hors cotisations supplémentaires et hors dépenses de chômage, d'invalidité et de minima sociaux")),
@@ -492,7 +533,32 @@ def mod_carburants(ctx: Contexte) -> list[Indicateur]:
     return out
 
 
-MODELES = [mod_smic, mod_eti, mod_tva, mod_allegements, mod_participation, mod_revenu_universel, mod_aides_logement,
+def mod_csg_capital(ctx: Contexte) -> list[Indicateur]:
+    """CSG sur les revenus du capital (hors moteur, faute de revenus du capital détaillés dans la population simulée) :
+    rendement d'un point déduit des recettes observées et du chiffrage de la hausse de 2026."""
+    rdc, rder = "fiscalite.csg.revenus_capital_taux", "fiscalite.csg.revenus_capital_taux_derogatoire"
+    if not (ctx.modifie(rdc) or ctx.modifie(rder)):
+        return []
+    rec, src_r, conf_r = metrique(ctx.store, "fiscalite.csg.recettes_capital")
+    pt_dc, src_d, conf_d = metrique(ctx.store, "fiscalite.csg.rendement_point_capital_droit_commun")
+    if not rec or not pt_dc:
+        return []
+    pt_total = rec / 9.2  # en 2025, toutes ces assiettes étaient à 9,2 %
+    pt_der = max(pt_total - pt_dc, 0.0)
+    calc, drec = [f"Recettes 2025 : {rec:.1f} Md€ à 9,2 %, soit {pt_total:.2f} Md€ par point",
+                  f"Dont taux de droit commun : {pt_dc:.2f} Md€ par point (hausse de 2026) ; taux maintenu : {pt_der:.2f} Md€"], 0.0
+    for rid, pt, lib in ((rdc, pt_dc, "droit commun"), (rder, pt_der, "taux maintenu")):
+        if ctx.modifie(rid):
+            old, new = ecart(ctx, rid)
+            drec += pt * (new - old)
+            calc.append(f"Taux {lib} : {old:g} % → {new:g} % ({new - old:+.2f} point × {pt:.2f} Md€)")
+    conf = chaine(conf_r, conf_d, hypothese(55, "Revenus du capital inchangés (effet statique)"))
+    return [Indicateur("solde_public_csg_capital", "CSG sur les revenus du capital (par an, revenus inchangés)", drec, "milliards_euros",
+                       confiance=conf, explication="Recettes en plus (ou en moins) si les revenus du patrimoine et des placements restaient identiques.",
+                       calcul=calc, sources=[s for s in (src_r, src_d) if s], sens="favorable" if drec > 0 else "defavorable")]
+
+
+MODELES = [mod_smic, mod_eti, mod_tva, mod_csg_capital, mod_allegements, mod_participation, mod_revenu_universel, mod_aides_logement,
            mod_is, mod_ifi, mod_retraite_age, mod_chomage_duree, mod_duree_legale, mod_carburants]
 
 
@@ -501,12 +567,14 @@ MODELES = [mod_smic, mod_eti, mod_tva, mod_allegements, mod_participation, mod_r
 OFFRE_TRAVAIL = ("emploi_incitations", "emploi_revenu_universel", "emploi_seniors")
 # coût du travail d'un emploi concerné, en multiple du SMIC chargé : peu qualifié pour les incitations, salaire moyen
 # pour les seniors qui partent plus tôt ou plus tard en retraite
-PRODUCTIVITE_SMIC = {"emploi_incitations": 1.0, "emploi_revenu_universel": 1.0, "emploi_seniors": 2.5}
+PRODUCTIVITE_SMIC = {"emploi_incitations": 1.0, "emploi_revenu_universel": 1.0, "emploi_seniors": 2.5,
+                     "emploi_smic": 1.0, "emploi_allegements": 1.1, "emploi_duree_legale": 2.0}
 
 
 def mod_multiplicateur(ctx: Contexte, soldes: dict, inds: list[Indicateur] | None = None) -> list[Indicateur]:
     s = sum(v for v, _ in soldes.values())
-    offre = [i for i in (inds or []) if i.id in OFFRE_TRAVAIL and i.valeur]
+    # tous les emplois gagnés ou perdus, choisis (offre de travail) ou subis (coût du travail), changent la production
+    offre = [i for i in (inds or []) if i.id.startswith("emploi_") and i.unite == "emplois" and i.valeur]
     d_offre = sum(i.valeur for i in offre)
     if abs(s) < 0.05 and abs(d_offre) < 500:
         return []
@@ -529,33 +597,52 @@ def mod_multiplicateur(ctx: Contexte, soldes: dict, inds: list[Indicateur] | Non
         calcul += [f"Personnes en emploi en plus ou en moins (choix de travailler) : {fr(d_offre, 0)}",
                    f"Production d'un emploi au SMIC (0,85 temps plein, coût du travail) : {fr(prod_emploi * 1e9, 0)} € par an",
                    f"Effet par le travail : {d_prod:+.1f} Md€"]
-    dpib = d_demande + d_prod
-    calcul.append(f"Effet total : {dpib:+.1f} Md€, soit {dpib / pib * 100:+.2f} % du PIB ({pib:.0f} Md€)")
+    # Deux horizons, comme les modèles macroéconomiques publics (Mésange de la DG Trésor, par exemple) : à court
+    # terme, l'activité suit surtout la demande (l'argent public injecté ou retiré) ; à long terme, cet effet de
+    # demande s'estompe (une mesure permanente finit par être financée) et il reste l'effet sur le nombre de personnes
+    # qui travaillent. Les additionner mélangerait deux moments différents.
     conf_s = moyenne_ponderee(list(soldes.values()), "Effet budgétaire de la réforme") if soldes else None
-    # le « pourquoi » du chiffre, avec l'ordre de grandeur de chaque mécanisme (affiché sous la phrase du résumé)
-    morceaux = []
     md = lambda v: fr(v, 0 if abs(v) >= 10 else 1)  # noqa: E731
+    out = []
     if d_demande:
+        calcul.append(f"Effet à court terme : {d_demande:+.1f} Md€, soit {d_demande / pib * 100:+.2f} % du PIB ({pib:.0f} Md€)")
         # dit sans présumer de la cause (impôt, cotisation, aide, dépense) : c'est le solde public qui compte ici
-        morceaux.append(f"L'argent public rendu aux ménages et aux entreprises (dépenses ou aides en plus, impôts ou cotisations en moins) "
-                        f"soutient la consommation : environ {md(d_demande)} milliards € d'activité en plus."
-                        if d_demande > 0 else
-                        f"L'argent qui rentre en plus dans les caisses publiques (impôts ou cotisations en plus, aides ou dépenses en moins) "
-                        f"ne sert plus à consommer : environ {md(-d_demande)} milliards € d'activité en moins.")
+        pourquoi = (f"L'argent public rendu aux ménages et aux entreprises (dépenses ou aides en plus, impôts ou cotisations en moins) "
+                    f"soutient la consommation : environ {md(d_demande)} milliards € d'activité en plus."
+                    if d_demande > 0 else
+                    f"L'argent qui rentre en plus dans les caisses publiques (impôts ou cotisations en plus, aides ou dépenses en moins) "
+                    f"ne sert plus à consommer : environ {md(-d_demande)} milliards € d'activité en moins.")
+        out.append(Indicateur("pib", "Effet sur l'activité à court terme (PIB, à 1-2 ans)", d_demande / pib * 100, "pourcent",
+                              confiance=chaine(conf_m, *[c for c in (conf_s,) if c]), explication=pourquoi, calcul=calcul,
+                              sources=[src_p] if src_p else [], preuves=["multiplicateur_budgetaire"],
+                              sens="favorable" if d_demande > 0 else "defavorable",
+                              fourchette=fourchette(syn, lambda x: -x * s / pib * 100)))
     if d_prod:
-        morceaux.append(f"Moins de personnes au travail, c'est moins de production : environ {md(-d_prod)} milliards € en moins." if d_prod < 0
-                        else f"Plus de personnes au travail, c'est plus de production : environ {md(d_prod)} milliards € en plus.")
-    out = [Indicateur("pib", "Effet sur l'activité (PIB, à 1-2 ans)", dpib / pib * 100, "pourcent",
-                      confiance=chaine(conf_m, *[c for c in (conf_s,) if c], *[i.confiance for i in offre if i.confiance]),
-                      explication=" ".join(morceaux), calcul=calcul,
-                      sources=[src_p] if src_p else [], preuves=["multiplicateur_budgetaire"] + [p for i in offre for p in i.preuves],
-                      sens="favorable" if dpib > 0 else "defavorable", fourchette=fourchette(syn, lambda x: (-x * s if d_demande else 0) / pib * 100 + d_prod / pib * 100))]
-    if po:
-        retour = dpib * po / 100
-        out.append(Indicateur("solde_public_retour_croissance", "Effet en retour de l'activité sur les recettes publiques", retour, "milliards_euros",
+        pourquoi = (f"{'Moins' if d_prod < 0 else 'Plus'} de personnes au travail (environ {fr(abs(round(d_offre, -3)), 0)}), "
+                    f"c'est {'moins' if d_prod < 0 else 'plus'} de production : environ {md(abs(d_prod))} milliards € par an"
+                    f"{' en moins' if d_prod < 0 else ' en plus'}, durablement.")
+        out.append(Indicateur("pib_long_terme", "Effet sur l'activité à long terme (PIB, une dizaine d'années)", d_prod / pib * 100, "pourcent",
+                              confiance=chaine(*[i.confiance for i in offre if i.confiance]) if any(i.confiance for i in offre) else None,
+                              explication=pourquoi, calcul=[c for c in calcul if not c.startswith(("Impulsion", "Multiplicateur", "Effet par la demande", "Effet à court"))]
+                              + [f"Effet à long terme : {d_prod:+.1f} Md€, soit {d_prod / pib * 100:+.2f} % du PIB"],
+                              sources=[src_p] if src_p else [], preuves=[p for i in offre for p in i.preuves],
+                              sens="favorable" if d_prod > 0 else "defavorable"))
+    if po and d_prod:
+        # chaque emploi en plus ou en moins, c'est des impôts et des cotisations en plus ou en moins (à long terme) : la Cour
+        # des comptes les compte dans le « coût complet » d'une réforme des retraites (7,2 Md€ pour un an d'âge en moins)
+        rec = d_prod * po / 100
+        out.append(Indicateur("solde_public_comportement_emploi", "Impôts et cotisations des emplois gagnés ou perdus (à long terme, par an)", rec,
+                              "milliards_euros", confiance=chaine(*[i.confiance for i in offre if i.confiance], conf_o) if conf_o else None,
+                              explication="Plus de personnes au travail, c'est plus d'impôts et de cotisations (et inversement).",
+                              calcul=[f"{d_prod:+.1f} Md€ de production × taux de prélèvements obligatoires {po:.1f} %"],
+                              sources=[src_o] if src_o else [], preuves=[p for i in offre for p in i.preuves],
+                              sens="favorable" if rec > 0 else "defavorable"))
+    if po and d_demande:
+        retour = d_demande * po / 100
+        out.append(Indicateur("solde_public_retour_croissance", "Effet en retour de l'activité sur les recettes publiques (court terme)", retour, "milliards_euros",
                               confiance=chaine(conf_m, conf_s, conf_o),
                               explication="Plus d'activité, c'est plus de recettes fiscales et sociales (et inversement) : une partie du coût ou du gain initial se compense.",
-                              calcul=[f"{dpib:+.1f} Md€ de PIB × taux de prélèvements obligatoires {po:.1f} %"], sources=[src_o] if src_o else [],
+                              calcul=[f"{d_demande:+.1f} Md€ de PIB × taux de prélèvements obligatoires {po:.1f} %"], sources=[src_o] if src_o else [],
                               preuves=["multiplicateur_budgetaire"], sens="favorable" if retour > 0 else "defavorable"))
     return out
 

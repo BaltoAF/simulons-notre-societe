@@ -58,7 +58,10 @@ export function phrase(id: string, v: number, unite: string): string {
     return `${v > 0 ? 'Hausse' : 'Baisse'} des émissions : ${tonnes(v)} par an (${equivalentCarbone(v)}).`
   }
   if (id === 'impact_emissions_activite') return `Effet indirect via l'activité : ${tonnes(v, true)} par an (incertain).`
-  if (id === 'pib') return Math.abs(v) < 0.01 ? 'Activité économique quasiment inchangée.' : `L'activité économique ${v > 0 ? 'progresse' : 'recule'} ${qualif(v, 0.05, 0.3)} (${v > 0 ? '+' : '−'}${nombre(Math.abs(v), 2)} % de la richesse produite en France, soit ${milliards(Math.abs(v) / 100 * PIB_MD)} ${v > 0 ? 'de plus' : 'de moins'} par an).`
+  if (id === 'pib' || id === 'pib_long_terme') {
+    const quand = id === 'pib' ? 'À court terme (1 à 2 ans)' : 'À long terme'
+    return Math.abs(v) < 0.01 ? `${quand}, activité économique quasiment inchangée.` : `${quand}, l'activité économique ${v > 0 ? 'progresse' : 'recule'} ${qualif(v, 0.05, 0.3)} (${v > 0 ? '+' : '−'}${nombre(Math.abs(v), 2)} % de la richesse produite en France, soit ${milliards(Math.abs(v) / 100 * PIB_MD)} ${v > 0 ? 'de plus' : 'de moins'} par an).`
+  }
   if (id === 'emploi_incitations' || id === 'emploi_revenu_universel') {
     const n = nombre(Math.abs(Math.round(v / 1000) * 1000), 0)
     return v < 0 ? `≈ ${n} personnes de moins au travail : reprendre un emploi rapporterait moins qu'aujourd'hui (estimation incertaine).`

@@ -47,7 +47,13 @@ const LIGNES: { titre: string; rendu: (r: Rapport | null) => string; foyer?: boo
       return i ? `${Math.round(i.valeur)} % des ménages y gagnent${i.perdants != null ? `, ${Math.round(i.perdants)} % y perdent` : ''}` : '—'
     },
   },
-  { titre: "L'activité économique", rendu: (r) => { const i = indicateur(r, 'pib'); return i ? phrase(i.id, i.valeur, i.unite) : '—' } },
+  {
+    // court et long terme : deux moments différents, dits séparément
+    titre: "L'activité économique", rendu: (r) => {
+      const items = r?.bilan.flatMap((p) => p.indicateurs).filter((i) => i.id === 'pib' || i.id === 'pib_long_terme') ?? []
+      return items.length ? items.map((i) => phrase(i.id, i.valeur, i.unite)).join(' ') : '—'
+    },
+  },
 ]
 
 function mesures(s: Societe | undefined) {

@@ -1,0 +1,222 @@
+{
+ "genere_le": "2026-10-14T23:47:10",
+ "moteur": "176.1.2",
+ "resultats": [
+  {
+   "id": "retraite_age_63_solde_retraites",
+   "simule_md": -7.021,
+   "direct_md": -7.021,
+   "total_md": -9.366,
+   "officiel_md": -5.8,
+   "ecart_md": -1.221,
+   "ecart_pct": -21.1,
+   "verdict": "proche",
+   "regles": [
+    "retraites.age_legal.generation_1966",
+    "retraites.age_legal.generation_1967",
+    "retraites.age_legal.generation_1968",
+    "retraites.age_legal.generation_1969_et_apres"
+   ],
+   "duree": 0.0
+  },
+  {
+   "id": "retraite_age_63_finances_publiques",
+   "simule_md": -9.366,
+   "direct_md": -7.021,
+   "total_md": -9.366,
+   "officiel_md": -13.0,
+   "ecart_md": 3.634,
+   "ecart_pct": 28.0,
+   "verdict": "proche",
+   "regles": [
+    "retraites.age_legal.generation_1966",
+    "retraites.age_legal.generation_1967",
+    "retraites.age_legal.generation_1968",
+    "retraites.age_legal.generation_1969_et_apres"
+   ],
+   "duree": 0.0
+  },
+  {
+   "id": "retraite_age_65_solde_retraites",
+   "simule_md": 7.021,
+   "direct_md": 7.021,
+   "total_md": 9.366,
+   "officiel_md": 8.4,
+   "ecart_md": -1.379,
+   "ecart_pct": -16.4,
+   "verdict": "proche",
+   "regles": [
+    "retraites.age_legal.generation_1969_et_apres"
+   ],
+   "duree": 0.0
+  },
+  {
+   "id": "retraite_age_65_finances_publiques",
+   "simule_md": 9.366,
+   "direct_md": 7.021,
+   "total_md": 9.366,
+   "officiel_md": 17.7,
+   "ecart_md": -8.334,
+   "ecart_pct": -47.1,
+   "verdict": "ecart",
+   "regles": [
+    "retraites.age_legal.generation_1969_et_apres"
+   ],
+   "duree": 0.0
+  },
+  {
+   "id": "retraite_retour_62_ans_age_seul",
+   "simule_md": -14.042,
+   "direct_md": -14.042,
+   "total_md": -18.722,
+   "officiel_md": -12.6,
+   "ecart_md": -1.442,
+   "ecart_pct": -11.4,
+   "verdict": "concordant",
+   "regles": [
+    "retraites.age_legal.generation_1962",
+    "retraites.age_legal.generation_1963",
+    "retraites.age_legal.generation_1964",
+    "retraites.age_legal.generation_1966",
+    "retraites.age_legal.generation_1967",
+    "retraites.age_legal.generation_1968",
+    "retraites.age_legal.generation_1969_et_apres",
+    "retraites.age_legal.generation_avril_dec_1965",
+    "retraites.age_legal.generation_janv_mars_1965",
+    "retraites.age_legal.generation_sept_dec_1961"
+   ],
+   "duree": 0.0
+  },
+  {
+   "id": "smic_plus_1_pourcent",
+   "simule_md": -0.331,
+   "direct_md": -0.331,
+   "total_md": -0.373,
+   "officiel_md": -0.24,
+   "ecart_md": -0.091,
+   "ecart_pct": -37.9,
+   "verdict": "concordant",
+   "regles": [
+    "travail.smic.horaire_brut"
+   ],
+   "duree": 30.8
+  },
+  {
+   "id": "tva_tous_taux_plus_1_point",
+   "simule_md": 11.5,
+   "direct_md": 11.5,
+   "total_md": 11.501,
+   "officiel_md": 11.0,
+   "ecart_md": 0.5,
+   "ecart_pct": 4.5,
+   "verdict": "concordant",
+   "regles": [
+    "fiscalite.tva.taux_intermediaire",
+    "fiscalite.tva.taux_normal",
+    "fiscalite.tva.taux_particulier",
+    "fiscalite.tva.taux_reduit"
+   ],
+   "duree": 14.4
+  },
+  {
+   "id": "csg_activite_plus_1_point",
+   "simule_md": 9.171,
+   "direct_md": 9.171,
+   "total_md": 9.171,
+   "officiel_md": 10.1,
+   "ecart_md": -0.929,
+   "ecart_pct": -9.2,
+   "verdict": "concordant",
+   "regles": [
+    "fiscalite.csg.salaires_taux"
+   ],
+   "duree": 13.5
+  },
+  {
+   "id": "csg_toutes_assiettes_plus_1_point",
+   "simule_md": 10.868,
+   "direct_md": 10.868,
+   "total_md": 10.87,
+   "officiel_md": 14.6,
+   "ecart_md": -3.732,
+   "ecart_pct": -25.6,
+   "verdict": "proche",
+   "regles": [
+    "fiscalite.csg.retraites_taux_plein",
+    "fiscalite.csg.revenus_capital_taux",
+    "fiscalite.csg.salaires_taux"
+   ],
+   "duree": 17.6
+  },
+  {
+   "id": "ir_tous_taux_plus_1_point",
+   "simule_md": 6.609,
+   "direct_md": 6.609,
+   "total_md": 5.874,
+   "officiel_md": 6.4,
+   "ecart_md": 0.209,
+   "ecart_pct": 3.3,
+   "verdict": "concordant",
+   "regles": [
+    "fiscalite.impot_revenu.bareme"
+   ],
+   "duree": 16.8
+  },
+  {
+   "id": "ir_taux_30_41_45_plus_1_point",
+   "simule_md": 1.923,
+   "direct_md": 1.923,
+   "total_md": 1.705,
+   "officiel_md": 2.2,
+   "ecart_md": -0.277,
+   "ecart_pct": -12.6,
+   "verdict": "concordant",
+   "regles": [
+    "fiscalite.impot_revenu.bareme"
+   ],
+   "duree": 16.3
+  },
+  {
+   "id": "ir_tranche_45_a_46",
+   "simule_md": 0.097,
+   "direct_md": 0.097,
+   "total_md": 0.08,
+   "officiel_md": 0.15,
+   "ecart_md": -0.053,
+   "ecart_pct": -35.3,
+   "verdict": "concordant",
+   "regles": [
+    "fiscalite.impot_revenu.bareme"
+   ],
+   "duree": 15.6
+  },
+  {
+   "id": "quotient_familial_plafond_moins_25_pourcent",
+   "simule_md": 2.414,
+   "direct_md": 2.414,
+   "total_md": 2.262,
+   "officiel_md": 1.0,
+   "ecart_md": 1.414,
+   "ecart_pct": 141.4,
+   "verdict": "ecart",
+   "regles": [
+    "fiscalite.impot_revenu.quotient_familial.plafond_demi_part"
+   ],
+   "duree": 13.3
+  },
+  {
+   "id": "accise_gazole_plus_2_centimes",
+   "simule_md": 0.609,
+   "direct_md": 0.609,
+   "total_md": 0.609,
+   "officiel_md": 0.807,
+   "ecart_md": -0.198,
+   "ecart_pct": -24.5,
+   "verdict": "concordant",
+   "regles": [
+    "environnement_energie.accise.gazole"
+   ],
+   "duree": 0.0
+  }
+ ]
+}

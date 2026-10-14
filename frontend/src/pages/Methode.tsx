@@ -21,6 +21,7 @@ export default function Methode() {
           <li><strong>Votre foyer</strong> est calculé avec le même moteur que celui utilisé par l'Assemblée nationale : c'est le chiffre le plus sûr.</li>
           <li><strong>Les effets sur le pays</strong> (emploi, croissance…) s'appuient sur les études disponibles ; quand elles divergent, le site retient une valeur et le dit.</li>
           <li><strong>Chaque chiffre a une fiabilité</strong>, de « très faible » à « très élevée » : cliquez sur le badge pour savoir pourquoi.</li>
+          <li><strong>Le site est vérifié</strong> : il chiffre des réformes déjà chiffrées par des institutions publiques, et les écarts sont publiés (<Link to="/fiabilite">nos chiffres face aux chiffrages officiels</Link>).</li>
         </ul>
         <p className="small muted" style={{ marginBottom: 0 }}>Le détail, pour les curieux, ci-dessous.</p>
       </div>

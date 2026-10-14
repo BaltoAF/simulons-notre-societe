@@ -66,6 +66,7 @@ class ModelStore:
     issues: list[Issue] = field(default_factory=list)
     citations: dict[str, list[dict]] = field(default_factory=dict)  # source_id -> qui la cite
     controles: list[dict] = field(default_factory=list)  # contrôles croisés entre sources indépendantes
+    etalonnage: list[dict] = field(default_factory=list)  # réformes chiffrées par des institutions, rejouées par le moteur
 
     # ───────────────────────── chargement ─────────────────────────
     @classmethod
@@ -77,6 +78,7 @@ class ModelStore:
         store._load_moteur(model_dir)
         store._load_metriques(model_dir)
         store._load_preuves(model_dir)
+        store._load_etalonnage(model_dir)
         store._check_references()
         store._controles_croises(model_dir)
         return store
@@ -267,6 +269,21 @@ class ModelStore:
             q["regles_liees"] = [r for r in dict.fromkeys(liees) if r in self.regles]
             self.preuves[str(q["id"])] = q
 
+    def _load_etalonnage(self, d: Path):
+        """Banc d'essai : réformes chiffrées par des institutions publiques (model/etalonnage/*.yaml)."""
+        vus = set()
+        for path in sorted((d / "etalonnage").glob("*.yaml")):
+            data = self._read(path) or {}
+            for ref in data.get("references", []) or []:
+                if not isinstance(ref, dict) or not ref.get("id") or "valeur_md" not in ref or not ref.get("overrides"):
+                    self.issues.append(Issue("erreur", self._rel(path), f"Référence d'étalonnage incomplète : {ref.get('id') if isinstance(ref, dict) else ref}"))
+                    continue
+                if ref["id"] in vus:
+                    self.issues.append(Issue("erreur", self._rel(path), f"Référence d'étalonnage en double : {ref['id']}"))
+                    continue
+                vus.add(ref["id"])
+                self.etalonnage.append({**copy.deepcopy(ref), "fichier": self._rel(path)})
+
     def _cite(self, sid: str, kind: str, ref: str, fichier: str):
         if sid not in self.sources:
             self.issues.append(Issue("erreur", fichier, f"Source inconnue « {sid} » citée par {kind} « {ref} »", ref))
@@ -293,6 +310,9 @@ class ModelStore:
                 sid = e.get("source")
                 if sid:
                     self._cite(str(sid), "preuve", qid, q["fichier"])
+        for ref in self.etalonnage:
+            if ref.get("source_id"):
+                self._cite(str(ref["source_id"]), "etalonnage", ref["id"], ref["fichier"])
 
     # ───────────────────────── accès ─────────────────────────
     def snapshot(self) -> dict[str, Any]:

@@ -399,6 +399,10 @@ leviers:
         formule: "v"
       - chemin: marche_travail.salaire_minimum.smic.smic_b_mensuel
         formule: "v * 151.67"
+      # Les allègements de cotisations patronales se calculent sur le SMIC du 1er janvier (gelé à 12,02 € pour 2026,
+      # décret n° 2026-509) : une hausse durable du SMIC les relève d'autant, en gardant l'écart de 2026.
+      - chemin: prelevements_sociaux.reductions_cotisations_sociales.allegement_general.ensemble_des_entreprises.smic_reference
+        formule: "base * v / v0"
     type: nombre
     unite: euros
     bornes: [5, 30]

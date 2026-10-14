@@ -96,6 +96,66 @@ metriques:
         source: cpl-dgfip-tva-secteurs-taux-2025
         statut: estimation
 
+  - id: fiscalite.tva.rendement_net_point_taux_normal
+    titre: "Rendement net d'un point de TVA au taux de 20 % (2025)"
+    explication: "Recettes supplémentaires pour les finances publiques d'une hausse d'un point du taux de 20 %, à consommation inchangée, une fois déduite la TVA que les administrations publiques paient elles-mêmes sur leurs achats (rendement brut : 8,9 Md€). Tableaux 1 et 2 du Trésor-Éco n° 371."
+    unite: milliards_euros
+    serie:
+      - date: "2025-12-31"
+        valeur: 7.5
+        source: cpl-tresor-eco-371
+        statut: estimation
+
+  - id: fiscalite.tva.rendement_net_point_taux_intermediaire
+    titre: "Rendement net d'un point de TVA au taux de 10 % (2025)"
+    explication: "Recettes supplémentaires pour les finances publiques d'une hausse d'un point du taux de 10 %, à consommation inchangée, une fois déduite la TVA que les administrations publiques paient elles-mêmes sur leurs achats (rendement brut : 1,9 Md€). Tableaux 1 et 2 du Trésor-Éco n° 371."
+    unite: milliards_euros
+    serie:
+      - date: "2025-12-31"
+        valeur: 1.6
+        source: cpl-tresor-eco-371
+        statut: estimation
+
+  - id: fiscalite.tva.rendement_net_point_taux_reduit
+    titre: "Rendement net d'un point de TVA au taux de 5,5 % (2025)"
+    explication: "Recettes supplémentaires pour les finances publiques d'une hausse d'un point du taux de 5,5 %, à consommation inchangée, une fois déduite la TVA que les administrations publiques paient elles-mêmes sur leurs achats (rendement brut : 2,4 Md€). Tableaux 1 et 2 du Trésor-Éco n° 371."
+    unite: milliards_euros
+    serie:
+      - date: "2025-12-31"
+        valeur: 2.0
+        source: cpl-tresor-eco-371
+        statut: estimation
+
+  - id: fiscalite.tva.rendement_net_point_taux_particulier
+    titre: "Rendement net d'un point de TVA au taux de 2,1 % (2025)"
+    explication: "Recettes supplémentaires pour les finances publiques d'une hausse d'un point du taux de 2,1 %, à consommation inchangée, une fois déduite la TVA que les administrations publiques paient elles-mêmes sur leurs achats (rendement brut : 0,4 Md€). Tableaux 1 et 2 du Trésor-Éco n° 371."
+    unite: milliards_euros
+    serie:
+      - date: "2025-12-31"
+        valeur: 0.4
+        source: cpl-tresor-eco-371
+        statut: estimation
+
+  - id: fiscalite.csg.recettes_capital
+    titre: "Recettes de CSG sur les revenus du capital (patrimoine et placements)"
+    explication: "CSG prélevée sur les revenus du patrimoine (revenus fonciers, plus-values…) et des placements (intérêts, dividendes, assurance-vie), tous affectataires. En 2025, le taux était de 9,2 % sur toutes ces assiettes."
+    unite: milliards_euros
+    serie:
+      - date: "2025-12-31"
+        valeur: 17.59
+        source: ccss_oct2026
+        statut: provisoire
+
+  - id: fiscalite.csg.rendement_point_capital_droit_commun
+    titre: "Rendement d'un point de CSG sur les revenus du capital au taux de droit commun"
+    explication: "Recettes d'un point de CSG sur les revenus du capital soumis au taux de droit commun (dividendes, intérêts, plus-values mobilières…), déduites du chiffrage de la hausse de 1,4 point de la LFSS 2026 (1,5 Md€ dans la version votée, soit environ 1,07 Md€ par point)."
+    unite: milliards_euros
+    serie:
+      - date: "2026-12-31"
+        valeur: 1.07
+        source: senat_plfss2026_nl_205
+        statut: estimation
+
   # ---------------------------------------------------------------------------
   # CONSOMMATION - poids de la TVA selon le niveau de vie
   # ---------------------------------------------------------------------------

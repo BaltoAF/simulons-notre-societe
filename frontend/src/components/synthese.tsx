@@ -1,5 +1,6 @@
 // « En bref » et « Les équilibres » : le résultat d'une réforme raconté en phrases simples.
 import { useMemo, useState, type ReactNode } from 'react'
+import { Link } from 'react-router-dom'
 import { CheckCircle2, Coins, Globe2, Heart, Landmark, Leaf, ShieldAlert, Users, Wallet } from 'lucide-react'
 import { api, type Equilibre, type OptionCompensation, type Pilier, type Rapport, type Regle, type Valeur } from '../lib/api'
 import { euros, nombre, valeur } from '../lib/format'
@@ -121,7 +122,7 @@ export function EnBref({ r, contexte = 'reforme', overrides }: { r: Rapport; con
                       <span className={`puce-sens ${i.sens}`} />
                       <span>{avecTermes(i.id === 'gagnants' && i.perdants != null ? `${nombre(i.valeur, 0)} % des ménages y gagnent, ${nombre(i.perdants, 0)} % y perdent (au moins 1 € par mois).` : phrase(i.id, i.valeur, i.unite))}
                         {/* l'activité résulte de plusieurs mécanismes de sens contraires : on dit lesquels, sinon le chiffre semble contredire les autres */}
-                        {i.id === 'pib' && i.explication && Math.abs(i.valeur) >= 0.01 && <span className="muted"> Pourquoi : {i.explication}</span>}</span>
+                        {(i.id === 'pib' || i.id === 'pib_long_terme') && i.explication && Math.abs(i.valeur) >= 0.01 && <span className="muted"> Pourquoi : {i.explication}</span>}</span>
                     </div>
                   ))}
                 </div>
@@ -228,6 +229,13 @@ export function EquilibresPanel({ r, overrides, onAppliquer, contexte = 'reforme
             </div>
             <div className="phrase-xl" style={{ margin: '6px 0' }}><Titre e={e} /></div>
             {budget && alerte && <div className="small muted">soit environ {parMenageMois(e.manque)} par mois et par ménage.</div>}
+            {/* la même mesure chiffrée par une institution : à côté de notre chiffre, pour que chacun juge */}
+            {budget && r.reference_officielle && (
+              <div className="small" style={{ marginTop: 4 }}>Pour comparer : {r.reference_officielle.source.editeur ?? 'une institution publique'} chiffre la même mesure à{' '}
+                <strong>{r.reference_officielle.valeur_md >= 0 ? '+' : '−'}{milliards(Math.abs(r.reference_officielle.valeur_md))} par an</strong>
+                {' '}({r.reference_officielle.annee}{r.reference_officielle.perimetre === 'statique' ? ', à comportements inchangés' : ''}).{' '}
+                <Link to="/fiabilite">Tous les chiffrages comparés</Link></div>
+            )}
             {!budget && Math.abs(e.effet) >= 0.005 && <div className="small muted">{equivalentCarbone(e.effet)}.</div>}
             {!budget && Math.abs(indirect) >= 0.005 && (
               <div className="small muted">Effet indirect, par l'activité économique : {tonnes(indirect, true)} par an. Trop incertain pour être compté dans le plafond.</div>

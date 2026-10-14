@@ -113,6 +113,8 @@ export type Rapport = {
   duree_secondes: number
   equilibres: Equilibre[]
   bilan: Pilier[]
+  reference_officielle?: { id: string; valeur_md: number; annee: number; perimetre: string; fourchette_md: [number, number] | null
+    source: { editeur?: string; titre?: string; url?: string } } | null
   pour_vous: { delta_mois: number; avant: number; apres: number; confiance: Confiance | null
     detail?: { id: string; libelle: string; delta_mois: number; nature: string }[] } | null
   partiel?: boolean

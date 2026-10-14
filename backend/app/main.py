@@ -433,7 +433,17 @@ def simuler_reforme(body: ReformeIn, user: dict | None = Depends(auth.current_us
     menage, approx = (None, [])
     if body.menage:
         menage, approx = menage_depuis_saisie(body.menage, body.montants)
-    return simulation.simuler(store, overrides, menage, approx, body.modules)
+    rapport = simulation.simuler(store, overrides, menage, approx, body.modules)
+    # la même réforme a-t-elle été chiffrée par une institution ? (banc d'essai) : on l'affiche à côté de notre chiffre
+    from . import etalonnage
+    return {**rapport, "reference_officielle": etalonnage.reference_pour(store, overrides)}
+
+
+@app.get("/api/etalonnage")
+def etalonnage_vue():
+    """Le banc d'essai : nos chiffres comparés aux chiffrages officiels des mêmes réformes."""
+    from . import etalonnage
+    return etalonnage.vue(get_store())
 
 
 @app.get("/api/budget/national")

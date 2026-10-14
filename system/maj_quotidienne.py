@@ -9,7 +9,9 @@
      publication en cas d'erreur.
   5. Publication : enregistre une nouvelle version de la Société 1.0 si des règles ont changé (y compris
      les règles dont la date d'entrée en vigueur est arrivée), puis met à jour les forks sans conflit.
-  6. Sources : vérifie qu'une partie des liens des sources répond encore (rotation quotidienne).
+  6. Banc d'essai : si le moteur, la population, les modèles d'impact ou les chiffrages officiels ont changé, rejoue
+     les réformes chiffrées par des institutions publiques et publie l'écart (page « Nos chiffres sont-ils justes ? »).
+  7. Sources : vérifie qu'une partie des liens des sources répond encore (rotation quotidienne).
 
 Usage : backend/.venv/Scripts/python system/maj_quotidienne.py [--json] [--sans-moteur] [--sans-liens]
 La dernière ligne affichée avec --json est un résumé JSON (lu par le planificateur du serveur).
@@ -122,6 +124,28 @@ def etape_population(resume: dict):
     resume["population"] = "recalée" if r.returncode == 0 else f"échec : {r.stderr[-300:]}"
 
 
+def etape_etalonnage(resume: dict):
+    m = ROOT / "model"
+    fichiers = sorted((m / "etalonnage").glob("*.yaml")) + [m / "population" / "population.json", m / "moteur" / "openfisca_leviers.yaml"]         + sorted((ROOT / "backend" / "app" / "impacts").glob("*.py")) + [ROOT / "backend" / "app" / "etalonnage.py"]
+    h = sha(*fichiers) + version_installee()
+    res = m / "etalonnage" / "resultats.json"
+    try:
+        if json.loads(res.read_text(encoding="utf-8")).get("empreinte") == h:
+            resume["etalonnage"] = "à jour"
+            return
+    except (OSError, json.JSONDecodeError):
+        pass
+    r = subprocess.run([PY, str(ROOT / "system" / "etalonnage.py"), "--json"], cwd=ROOT, capture_output=True, text=True,
+                       encoding="utf-8", env=ENV, timeout=3600)
+    if r.returncode != 0:
+        resume["etalonnage"] = f"échec : {r.stderr[-300:]}"
+        return
+    data = json.loads(res.read_text(encoding="utf-8"))
+    data["empreinte"] = h
+    res.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
+    resume["etalonnage"] = json.loads((r.stdout.strip().splitlines() or ["{}"])[-1]).get("bilan")
+
+
 def etape_publication(resume: dict) -> bool:
     from app import db, vcs
     from app.model_store import ModelStore
@@ -185,6 +209,11 @@ def main():
             except Exception as e:  # une étape défaillante n'empêche pas les suivantes
                 resume[nom] = f"échec : {type(e).__name__}: {e}"
     ok = etape_publication(resume)
+    if ok:
+        try:
+            etape_etalonnage(resume)
+        except Exception as e:
+            resume["etalonnage"] = f"échec : {type(e).__name__}: {e}"
     if not args.sans_liens:
         try:
             etape_liens(resume)

@@ -17,6 +17,10 @@ RU_IMPOSABLE = "prestations.revenu_universel.remplace_rsa_prime_activite"
 LEVIERS_EXTENSION = {RU_MONTANT, RU_AGE, RU_IMPOSABLE}
 
 
+# au-delà de ce multiple de l'ancien SMIC, une hausse du SMIC ne se diffuse plus aux salaires (voir ajuster_salaires)
+PLAFOND_DIFFUSION = 1.8
+
+
 @dataclass
 class Contexte:
     store: object
@@ -85,7 +89,9 @@ class Contexte:
     def ajuster_salaires(self, menages: list[Menage]) -> list[Menage]:
         """Une hausse (ou baisse) du SMIC s'applique aux salaires qui en dépendent : les salariés payés au SMIC (y compris
         à temps partiel, au prorata) suivent le nouveau taux, et ceux payés entre l'ancien et le nouveau SMIC y sont
-        relevés. Les salaires plus élevés ne bougent pas (l'effet de diffusion sur la hiérarchie salariale est ignoré)."""
+        relevés. Au-dessus, la hausse se diffuse en partie dans la grille des salaires : presque entièrement juste
+        au-dessus du SMIC, de moins en moins ensuite, plus du tout au-delà de 1,8 SMIC (Koubi et Lhommeau, Insee 2007 ;
+        Goarant et Muller, Insee 2011 ; hypothèse de la DG Trésor citée par le groupe d'experts sur le SMIC, 2017)."""
         rid = "travail.smic.horaire_brut"
         if rid not in self.overrides:
             return menages
@@ -102,8 +108,11 @@ class Contexte:
                 if b > 0 and a.activite == "salarie":
                     if b <= m_ancien * 1.001:            # payé au SMIC (temps plein ou partiel) : même nombre d'heures
                         b = b * nouveau / ancien
-                    elif b < m_nouveau:                  # entre l'ancien et le nouveau SMIC : relevé au nouveau minimum
-                        b = m_nouveau
+                    elif nouveau > ancien and b < m_ancien * PLAFOND_DIFFUSION:
+                        # diffusion d'une hausse : part de la hausse retrouvée dans le salaire, de 1 au SMIC à 0 au plafond
+                        # (une baisse du SMIC, elle, ne réduit pas les salaires déjà au-dessus)
+                        part = 1 - (b / m_ancien - 1) / (PLAFOND_DIFFUSION - 1)
+                        b = max(b * (1 + part * (nouveau / ancien - 1)), m_nouveau)
                 if b != a.salaire_brut_mensuel:
                     change = True
                     a = replace(a, salaire_brut_mensuel=round(b, 2))

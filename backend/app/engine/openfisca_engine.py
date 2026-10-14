@@ -97,8 +97,9 @@ LIBELLES = {
 # Ensemble de leviers (règles) que ce moteur sait appliquer : rempli par Engine.supported_rules().
 
 
-def _safe_eval(formula: str, v: float) -> float:
-    """Évalue une formule arithmétique simple en fonction de v (pas d'appel, pas de nom autre que v)."""
+def _safe_eval(formula: str, v: float, noms: dict | None = None) -> float:
+    """Évalue une formule arithmétique simple en fonction de v (pas d'appel ; seuls noms permis : v, et ceux de
+    `noms`, par exemple « base » et « v0 », les valeurs actuelles du paramètre écrit et du levier)."""
     ops = {ast.Add: operator.add, ast.Sub: operator.sub, ast.Mult: operator.mul, ast.Div: operator.truediv,
            ast.USub: operator.neg, ast.UAdd: operator.pos}
 
@@ -109,6 +110,8 @@ def _safe_eval(formula: str, v: float) -> float:
             return float(node.value)
         if isinstance(node, ast.Name) and node.id == "v":
             return float(v)
+        if isinstance(node, ast.Name) and noms and node.id in noms:
+            return float(noms[node.id])
         if isinstance(node, ast.BinOp) and type(node.op) in ops:
             return ops[type(node.op)](ev(node.left), ev(node.right))
         if isinstance(node, ast.UnaryOp) and type(node.op) in ops:
@@ -198,8 +201,19 @@ class Engine:
                 value = 1.0 if value else 0.0
             v = float(value) / facteur
             for e in ecritures:
-                params[e["chemin"]] = round(_safe_eval(e.get("formule", "v"), v), 10)
+                f = e.get("formule", "v")
+                # « base » / « v0 » : un paramètre lié suit le levier en proportion (ex. le SMIC de référence des
+                # allègements suit le SMIC, en gardant l'écart fixé par la loi)
+                noms = {"base": self.valeur_parametre(e["chemin"]), "v0": self.valeur_parametre(moteur.get("lecture") or moteur["openfisca"])}                     if ("base" in f or "v0" in f) else None
+                params[e["chemin"]] = round(_safe_eval(f, v, noms), 10)
         return ReformSpec(params), unsupported
+
+    def valeur_parametre(self, chemin: str) -> float:
+        """Valeur actuelle (législation de l'année de référence) d'un paramètre OpenFisca."""
+        node = self.tbs.parameters
+        for part in chemin.split("."):
+            node = node.children[part]
+        return float(node(f"{int(config.ANNEE_REFERENCE)}-{config.TODAY.month:02d}-01"))
 
     def _reform(self, spec: ReformSpec):
         if not spec:
