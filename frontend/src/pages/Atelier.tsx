@@ -386,6 +386,7 @@ export default function Atelier() {
 
       {picker !== false && <RulePicker onPick={ajouter} onClose={() => setPicker(false)} exclude={ids} domaine={picker} />}
       {budgetEd && rdata && <BudgetEditor regles={rdata.regles} overrides={draft.overrides} onClose={() => setBudgetEd(false)}
+        onRegle={(id) => { setBudgetEd(false); if (regles[id]) ajouter(regles[id]) }}
         onApply={(o) => { setDraft((d) => { const ov = { ...d.overrides }; for (const k of Object.keys(ov)) if (estMission(k)) delete ov[k]; return { ...d, overrides: { ...ov, ...o } } }); setBudgetEd(false) }} />}
       {presets && (
         <Modal title="Des idées de réformes" onClose={() => setPresets(false)}>

@@ -5,12 +5,24 @@ import { Lock, Minus, Plus, RotateCcw, Search, Scale, TrendingUp } from 'lucide-
 import type { Regle, Valeur } from '../lib/api'
 import { milliards, parMenageMois } from '../lib/humain'
 import { infoMission } from '../lib/missions'
+import { AGE_TERME } from '../lib/retraite'
 import { Modal } from './ui'
 
 type Mode = 'repartir' | 'total'
 
-export function BudgetEditor({ regles, overrides, onClose, onApply }: {
+// ce que l'on cherche souvent dans le budget de l'État alors que c'est payé ailleurs (Sécurité sociale) : on y renvoie
+const RENVOIS: { motif: RegExp; texte: string; lien: string; regle: string }[] = [
+  { motif: /hopita|sante|soin|medec|medic|maladie/, regle: 'budget.secu.ondam.total', lien: "Dépenser plus (ou moins) pour l'hôpital et les soins",
+    texte: "L'hôpital, les médecins et les médicaments sont payés surtout par la Sécurité sociale (environ 274 milliards € par an), pas par le budget de l'État." },
+  { motif: /retraite|pension/, regle: AGE_TERME, lien: "Changer l'âge de départ à la retraite",
+    texte: "Les retraites sont payées par la Sécurité sociale et les caisses de retraite, pas par le budget de l'État." },
+  { motif: /rsa|allocation|familial|chomage/, regle: 'prestations.rsa.montant_forfaitaire', lien: 'Changer le montant du RSA',
+    texte: 'Le RSA, les allocations familiales et le chômage dépendent surtout de leurs règles (montants, durées), pas de ce budget.' },
+]
+
+export function BudgetEditor({ regles, overrides, onClose, onApply, onRegle }: {
   regles: Regle[]; overrides: Record<string, Valeur>; onClose: () => void; onApply: (o: Record<string, Valeur>) => void
+  onRegle?: (id: string) => void // ouvrir le réglage d'une autre règle (renvoi vers la Sécurité sociale)
 }) {
   const missions = useMemo(() => regles.filter((r) => r.id.startsWith('budget.etat.mission.') && typeof r.valeur === 'number')
     .sort((a, b) => (b.valeur as number) - (a.valeur as number)), [regles])
@@ -78,6 +90,7 @@ export function BudgetEditor({ regles, overrides, onClose, onApply }: {
         <div className="grow">
           <div style={{ fontWeight: 650 }}>{lock && <Lock size={14} color="var(--ink-2)" />} {i.nom}{lock && <span className="badge" style={{ marginLeft: 6 }}>obligatoire</span>}</div>
           <div className="small muted">{i.description}</div>
+          {m.id === 'budget.etat.mission.sante' && onRegle && <button className="lien small" onClick={() => onRegle(RENVOIS[0].regle)}>{RENVOIS[0].lien} →</button>}
           {lock && <div className="small" style={{ color: 'var(--ink-2)', marginTop: 2 }}>{i.verrou}</div>}
         </div>
         <div className="row" style={{ flexWrap: 'nowrap', gap: 6 }}>
@@ -137,6 +150,10 @@ export function BudgetEditor({ regles, overrides, onClose, onApply }: {
             <input type="search" placeholder="Chercher : école, armée, police…" value={q} onChange={(e) => setQ(e.target.value)} aria-label="Chercher un domaine" />
             <span className="suffix"><Search size={16} /></span>
           </div>
+          {q && onRegle && RENVOIS.filter((r) => r.motif.test(norm(q))).map((r) => (
+            <div key={r.regle} className="notice small" style={{ margin: '6px 0 10px' }}><div>{r.texte}{' '}
+              <button className="lien" onClick={() => onRegle(r.regle)}>{r.lien} →</button></div></div>
+          ))}
           {libres.map(ligne)}
           {bloquees.length > 0 && (
             <div style={{ marginTop: 14 }}>

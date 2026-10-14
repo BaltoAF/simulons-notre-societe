@@ -263,7 +263,7 @@ regles:
     note: "Le Fonds de solidarité vieillesse n'a plus de recettes ni de dépenses à partir de 2026 (annexe de la LFSS). Exécution 2025 (régimes de base + FSV, annexe du PLFSS 2027) : -21,6 Md€. Le PLFSS 2027 révise le solde 2026 à -21,8 Md€ et prévoit -12,7 Md€ en 2027."
   # ---------------------------------------------------------------- ONDAM
   - id: budget.secu.ondam.total
-    titre: "Objectif national de dépenses d'assurance maladie (ONDAM) 2026"
+    titre: "Dépenses de santé remboursées (hôpital, médecins, médicaments) : objectif 2026 (ONDAM)"
     explication: "Enveloppe de dépenses de santé remboursées (soins de ville, hôpital, établissements médico-sociaux) votée pour l'année."
     type: nombre
     unite: milliards_euros

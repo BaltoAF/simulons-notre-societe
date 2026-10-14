@@ -536,9 +536,12 @@ def mod_multiplicateur(ctx: Contexte, soldes: dict, inds: list[Indicateur] | Non
     morceaux = []
     md = lambda v: fr(v, 0 if abs(v) >= 10 else 1)  # noqa: E731
     if d_demande:
-        morceaux.append(f"L'argent dépensé en plus (ou les impôts en moins) soutient la consommation : environ {md(d_demande)} milliards € d'activité en plus."
+        # dit sans présumer de la cause (impôt, cotisation, aide, dépense) : c'est le solde public qui compte ici
+        morceaux.append(f"L'argent public rendu aux ménages et aux entreprises (dépenses ou aides en plus, impôts ou cotisations en moins) "
+                        f"soutient la consommation : environ {md(d_demande)} milliards € d'activité en plus."
                         if d_demande > 0 else
-                        f"Les impôts en plus (ou les dépenses en moins) freinent la consommation : environ {md(-d_demande)} milliards € d'activité en moins.")
+                        f"L'argent qui rentre en plus dans les caisses publiques (impôts ou cotisations en plus, aides ou dépenses en moins) "
+                        f"ne sert plus à consommer : environ {md(-d_demande)} milliards € d'activité en moins.")
     if d_prod:
         morceaux.append(f"Moins de personnes au travail, c'est moins de production : environ {md(-d_prod)} milliards € en moins." if d_prod < 0
                         else f"Plus de personnes au travail, c'est plus de production : environ {md(d_prod)} milliards € en plus.")

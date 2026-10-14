@@ -60,15 +60,19 @@ export function EnBref({ r, contexte = 'reforme', overrides }: { r: Rapport; con
   const { situation } = useApp()
   // l'âge de départ ne change pas le budget du mois : on dit plutôt quand le foyer pourra partir
   const ages = Object.keys(overrides ?? {}).filter(estAgeLegal)
-  const { data: rd } = useFetch<{ regles: Regle[] }>(ages.length && situation && pv ? '/api/regles?limit=5000' : null)
+  const { data: rd } = useFetch<{ regles: Regle[] }>((ages.length || overrides?.['travail.smic.horaire_brut'] !== undefined) && situation && pv ? '/api/regles?limit=5000' : null)
   const departs = useMemo(() => {
     if (!rd || !situation) return []
     const actuelles = Object.fromEntries(rd.regles.map((x) => [x.id, x.valeur]))
     return departsDuFoyer(situation.adultes, situation.mois_naissance ?? 1, actuelles, { ...actuelles, ...overrides }).filter((d) => d.apres !== d.avant)
   }, [rd, situation, overrides])
-  // SMIC relevé, salaire du foyer inchangé : le dire, sinon une baisse de la prime d'activité paraît absurde
-  const smicSansEffet = !!overrides?.['travail.smic.horaire_brut'] && !!situation?.adultes.some((a) => a.activite === 'salarie')
-    && !(pv?.detail ?? []).some((l) => l.id === 'salaire_net')
+  // SMIC relevé : la prime d'activité peut baisser à salaire égal, ce qui paraît absurde si on ne dit pas pourquoi.
+  // Son bonus individuel atteint son maximum à 138 fois le SMIC horaire de revenus nets (paramètre OpenFisca
+  // ppa.pa_m.bonification.seuil_max_bonification, depuis avril 2026) : relever le SMIC relève ce seuil.
+  const smicActuel = Number(rd?.regles.find((x) => x.id === 'travail.smic.horaire_brut')?.valeur ?? 0)
+  const smicChange = overrides?.['travail.smic.horaire_brut'] !== undefined
+  const primeBaisse = smicChange && (pv?.detail ?? []).some((l) => l.id === 'prime_activite' && l.delta_mois < 0)
+  const salaireInchange = smicChange && !!situation?.adultes.some((a) => a.activite === 'salarie') && !(pv?.detail ?? []).some((l) => l.id === 'salaire_net')
   return (
     <div className="card" style={{ borderColor: 'var(--primary)' }}>
       <h2 style={{ fontSize: '1.35rem', marginBottom: 12 }}>{contexte === 'societe' ? 'Ce que change cette proposition' : 'Ce que change votre réforme'}</h2>
@@ -85,7 +89,12 @@ export function EnBref({ r, contexte = 'reforme', overrides }: { r: Rapport; con
                 ? `${l.libelle} ${l.delta_mois > 0 ? '+' : '−'}${euros(Math.abs(l.delta_mois))} à payer`
                 : `${l.libelle} ${l.delta_mois > 0 ? '+' : '−'}${euros(Math.abs(l.delta_mois))}`).join(' · ')}.</div>
             )}
-            {smicSansEffet && <div className="small muted" style={{ marginTop: 2 }}>Votre salaire est au-dessus du nouveau SMIC : il ne change pas dans ce calcul. Les aides qui dépendent du SMIC, comme la prime d'activité, peuvent baisser.</div>}
+            {salaireInchange && !primeBaisse && <div className="small muted" style={{ marginTop: 2 }}>Votre salaire est au-dessus du nouveau SMIC : il ne change pas dans ce calcul.</div>}
+            {primeBaisse && (
+              <div className="small muted" style={{ marginTop: 2 }}>Pourquoi la prime d'activité baisse : elle comprend un bonus pour chaque personne qui travaille, qui atteint son
+                maximum à un salaire fixé en proportion du SMIC{smicActuel ? ` (environ ${euros(Math.round(138 * smicActuel / 10) * 10, 0)} net par mois aujourd'hui)` : ''}.
+                Si le SMIC monte, ce seuil monte aussi : à salaire égal, le bonus est plus petit.{salaireInchange ? ' Votre salaire, lui, ne change pas dans ce calcul : il est déjà au-dessus du nouveau SMIC.' : ''}</div>
+            )}
             {departs.map((d) => (
               <div key={d.qui} className="small" style={{ marginTop: 4 }}><strong>{d.qui === 'Vous' ? 'Votre départ' : 'Le départ de votre conjoint(e)'} à la retraite : à {valeur(d.apres, 'ans')}, en {d.dateApres}</strong>
                 <span className="muted"> (au lieu de {valeur(d.avant, 'ans')}, en {d.dateAvant}).</span></div>

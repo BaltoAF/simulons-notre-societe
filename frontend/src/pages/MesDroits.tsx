@@ -213,6 +213,11 @@ export default function MesDroits() {
                             : <button className="btn small" onClick={() => tester(p.id)}>Tester sur mon foyer</button>}
                           {r && !r.loading && <button className="btn small ghost" onClick={() => ouvrirAtelier(p.id)}>Effets sur le pays <ArrowRight size={13} /></button>}
                         </div>
+                        {/* +100 € sur le montant de base, mais davantage pour un foyer : le dire, sinon l'écart semble une erreur */}
+                        {p.id === 'prime-activite-plus' && r && !r.loading && r.delta > 110 && (
+                          <div className="small muted" style={{ marginTop: 4 }}>Plus que 100 € pour votre foyer : le montant de base est majoré pour chaque personne du foyer (conjoint, enfants),
+                            et le bonus de chaque personne qui travaille, calculé sur ce montant, augmente aussi.</div>
+                        )}
                       </li>
                     )
                   })}

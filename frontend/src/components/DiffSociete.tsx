@@ -91,13 +91,16 @@ export function ligneMesure(m: Mesure): string {
       }
     }
     const lignes = diffBareme(m.avant, m.apres) ?? []
-    return lignes.sort((x, y) => Number(y.startsWith('Nouvelle')) - Number(x.startsWith('Nouvelle')))[0] ?? nomCourt(m.titre)
+    // dans une liste courte, « par part » n'est pas expliqué : on le dit pour le cas le plus simple
+    const l = lignes.sort((x, y) => Number(y.startsWith('Nouvelle')) - Number(x.startsWith('Nouvelle')))[0]
+    return l ? l.replace(' € par part', ' € par an pour une personne seule') : nomCourt(m.titre)
   }
   if (m.regle.startsWith('environnement_energie.accise.') && Number.isFinite(av) && Number.isFinite(ap)) {
-    // €/hectolitre → centimes par litre, TVA comprise (le prix à la pompe)
-    const c = (ap - av) * 1.2
-    const carburant = m.regle.includes('gazole') ? 'de gazole' : "d'essence"
-    return `Prix du litre ${carburant} : ${c > 0 ? '+' : '−'}${nombre(Math.abs(c), 0)} centime${Math.abs(c) >= 1.5 ? 's' : ''} (taxe relevée)`
+    // €/hectolitre = centimes par litre ; à la pompe, la TVA (20 %) s'ajoute : on donne les deux, comme le détail de la règle
+    const c = ap - av
+    const carburant = m.regle.includes('gazole') ? 'le gazole' : "l'essence"
+    const cts = (x: number) => `${nombre(Math.abs(x), Number.isInteger(Math.round(x * 10) / 10) ? 0 : 1)} centime${Math.abs(x) >= 2 ? 's' : ''}`
+    return `Taxe sur ${carburant} : ${c > 0 ? '+' : '−'}${cts(c)} par litre (${c > 0 ? '+' : '−'}${cts(Math.round(c * 1.2))} à la pompe, TVA comprise)`
   }
   return `${nomCourt(m.titre)} : ${valeur(m.apres, m.unite, m.type)} (aujourd'hui ${valeur(m.avant, m.unite, m.type)})`
 }

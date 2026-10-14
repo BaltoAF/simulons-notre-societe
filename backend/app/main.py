@@ -761,4 +761,6 @@ if FRONTEND_DIST.exists():
         f = FRONTEND_DIST / path
         if path and f.is_file():
             return FileResponse(f)
-        return FileResponse(FRONTEND_DIST / "index.html")
+        # la page d'entrée doit être relue à chaque visite : après une mise à jour du site, elle pointe vers les
+        # nouveaux fichiers (dont les noms changent) ; ceux-ci, eux, peuvent rester en cache
+        return FileResponse(FRONTEND_DIST / "index.html", headers={"Cache-Control": "no-cache"})
