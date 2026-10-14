@@ -113,7 +113,8 @@ export type Rapport = {
   duree_secondes: number
   equilibres: Equilibre[]
   bilan: Pilier[]
-  pour_vous: { delta_mois: number; avant: number; apres: number; confiance: Confiance | null } | null
+  pour_vous: { delta_mois: number; avant: number; apres: number; confiance: Confiance | null
+    detail?: { id: string; libelle: string; delta_mois: number; nature: string }[] } | null
   partiel?: boolean
   avertissements?: string[] // limites du calcul à connaître pour lire ce rapport // vrai pendant le 1er temps du calcul (foyer et ménages types seulement)
 }
@@ -139,7 +140,7 @@ export type Pilier = {
   pilier: 'economie' | 'social' | 'ecologie' | 'bien_etre'
   titre: string
   verdict: 'amelioration' | 'degradation' | 'contraste' | 'neutre' | 'non_mesure' | 'incertain'
-  indicateurs: { id: string; libelle: string; valeur: number; unite: string; sens: string; section: string; confiance: Confiance | null; perdants?: number | null }[]
+  indicateurs: { id: string; libelle: string; valeur: number; unite: string; sens: string; section: string; confiance: Confiance | null; perdants?: number | null; explication?: string | null }[]
 }
 
 export type OptionCompensation = {
@@ -181,9 +182,12 @@ export type Societe = {
   parent_id: string | null; parent_nom?: string | null; parent_commit: string | null; visibilite: string
   reference: boolean; created_at: string; updated_at: string; etoiles: number
   nb_differences?: number | null; propositions_ouvertes?: number
-  mesures?: { regle: string; titre: string; unite: string; type: string; avant: Valeur; apres: Valeur; budget_resume?: boolean }[]
+  mesures?: Mesure[]
+  financement?: Mesure[] // ce qui a été ajouté pour l'équilibrer
   nb_mesures?: number; nb_equilibrage?: number
 }
+
+export type Mesure = { regle: string; titre: string; unite: string; type: string; avant: Valeur; apres: Valeur; budget_resume?: boolean; ajuste?: boolean }
 
 export type SocieteDetail = Societe & {
   branche: string; head: Commit; branches: { nom: string; head: string; message: string; commit_date: string }[]

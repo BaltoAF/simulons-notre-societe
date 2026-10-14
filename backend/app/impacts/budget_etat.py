@@ -76,8 +76,12 @@ def section_budget_etat(ctx: Contexte) -> Section | None:
     ctx.cache.setdefault("soldes", {})["credits"] = (-total, conf)
     dette_ind, dette_data = indicateurs_dette(ctx.store, -total)
     ind += dette_ind
+    # qui dépense : l'État (missions), la Sécurité sociale (ONDAM, branches), ou les deux
+    secu = any(l["regle"].startswith("budget.secu.") for l in lignes)
+    etat = any(not l["regle"].startswith("budget.secu.") for l in lignes)
+    qui = "Dépenses publiques" if secu and etat else "Dépenses de la Sécurité sociale" if secu else "Dépenses de l'État"
     return Section("budget_etat", "Budget de l'État et de la Sécurité sociale",
-                   f"Dépenses de l'État : {'hausse' if total > 0 else 'baisse'} de {fr(abs(total))} milliard{'s' if round(abs(total), 1) >= 2 else ''} € par an",
+                   f"{qui} : {'hausse' if total > 0 else 'baisse'} de {fr(abs(total))} milliard{'s' if round(abs(total), 1) >= 2 else ''} € par an",
                    ind, conf,
                    "Différence entre les crédits de votre société et ceux votés dans la loi de finances et la loi de "
                    "financement de la Sécurité sociale en vigueur.",

@@ -2,9 +2,8 @@ import { useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { GitFork, Scale, Search, ShieldCheck, Star } from 'lucide-react'
 import type { Societe } from '../lib/api'
-import { relatif, valeur } from '../lib/format'
-import { milliards } from '../lib/humain'
-import { diffBareme, nomCourt } from '../components/DiffSociete'
+import { relatif } from '../lib/format'
+import { ligneMesure } from '../components/DiffSociete'
 import { useFetch } from '../lib/state'
 import { Empty, Loading } from '../components/ui'
 
@@ -51,13 +50,11 @@ export default function Societes() {
                   <div className="kpi-label" style={{ marginBottom: 2 }}>Ce qu'elle change</div>
                   <ul style={{ margin: 0, paddingLeft: 18 }}>
                     {(s.mesures ?? []).map((mm) => (
-                      <li key={mm.regle}>{mm.budget_resume
-                        ? <>Budget de l'État : {Number(mm.apres) >= 0 ? `${milliards(Number(mm.apres))} de dépenses en plus` : `${milliards(Math.abs(Number(mm.apres)))} d'économies`} par an</>
-                        : (diffBareme(mm.avant, mm.apres) ?? []).sort((x, y) => Number(y.startsWith('Nouvelle')) - Number(x.startsWith('Nouvelle')))[0] ?? <>{nomCourt(mm.titre)} : {valeur(mm.apres, mm.unite, mm.type)} <span className="muted">(aujourd'hui {valeur(mm.avant, mm.unite, mm.type)})</span></>}</li>
+                      <li key={mm.regle}>{ligneMesure(mm)}</li>
                     ))}
                     {(s.nb_mesures ?? 0) > (s.mesures ?? []).length && <li className="muted">et {(s.nb_mesures ?? 0) - (s.mesures ?? []).length} autre{(s.nb_mesures ?? 0) - (s.mesures ?? []).length > 1 ? 's' : ''}</li>}
                   </ul>
-                  {(s.nb_equilibrage ?? 0) > 0 && <div className="muted" style={{ marginTop: 2 }}>+ {s.nb_equilibrage} changement{(s.nb_equilibrage ?? 0) > 1 ? 's' : ''} pour l'équilibrer (financement, climat)</div>}
+                  {(s.financement ?? []).length > 0 && <div className="muted" style={{ marginTop: 4 }}>Pour l'équilibrer : {s.financement!.map(ligneMesure).join(' ; ')}</div>}
                 </div>
               ) : s.description && <p className="small ink2" style={{ margin: '6px 0' }}>{s.description.length > 180 ? s.description.slice(0, 177) + '…' : s.description}</p>}
               <div className="small muted">

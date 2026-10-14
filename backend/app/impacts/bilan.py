@@ -35,7 +35,9 @@ def _negligeable(item: dict) -> bool:
 def _item(i, section: Section) -> dict:
     return {"id": i.id, "libelle": i.libelle, "valeur": i.valeur, "unite": i.unite, "sens": i.sens, "section": section.id,
             "confiance": i.confiance.to_dict() if i.confiance else None,
-            "perdants": section.donnees.get("perdants_pct") if i.id == "gagnants" else None}
+            "perdants": section.donnees.get("perdants_pct") if i.id == "gagnants" else None,
+            # l'activité mêle des mécanismes de sens contraires : le résumé dit lesquels
+            "explication": i.explication if i.id == "pib" else None}
 
 
 def construire(sections: list[Section], equilibres: list[dict]) -> list[dict]:

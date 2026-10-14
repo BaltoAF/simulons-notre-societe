@@ -49,7 +49,7 @@ export function ConfidenceBadge({ c, align = 'left', compact = false }: { c: Con
       <button type="button" className={`conf ${c.niveau}`} onClick={() => setOpen((o) => !o)}
         aria-expanded={open} aria-label={`Fiabilité ${CONFIANCE_FEMININ[c.niveau]} : cliquer pour comprendre`} title={`Fiabilité ${CONFIANCE_FEMININ[c.niveau]} — cliquez pour comprendre`}>
         <span className="dots" aria-hidden>{[1, 2, 3, 4].map((i) => <i key={i} className={i <= n ? 'on' : ''} />)}</span>
-        {compact ? null : <>Confiance {CONFIANCE_FEMININ[c.niveau]}</>}
+        {compact ? null : <>Fiabilité {CONFIANCE_FEMININ[c.niveau]}</>}
       </button>
       {open && (
         <div className={`popover ${align === 'right' ? 'right' : ''}`} role="dialog">

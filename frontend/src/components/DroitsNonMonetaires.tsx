@@ -3,21 +3,24 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, BookOpen, ChevronDown, GitCompare } from 'lucide-react'
-import { api, type Societe } from '../lib/api'
+import { api, type Regle, type Societe } from '../lib/api'
 import { useFetch } from '../lib/state'
+import { nomCourt } from './DiffSociete'
 import { Loading } from './ui'
 
 type Reponse = { theme: string; question: string; reponse: string; regles: string[]; autre?: string | null; change?: boolean }
 
-export function DroitsNonMonetaires({ age }: { age: number }) {
+export function DroitsNonMonetaires({ age, mois: mois0 = 1, onMois }: { age: number; mois?: number; onMois?: (m: number) => void }) {
   const annee0 = new Date().getFullYear() - age
   const [annee, setAnnee] = useState(annee0)
-  const [mois, setMois] = useState(1)
+  const [mois, setMoisLocal] = useState(mois0)
+  const setMois = (m: number) => { setMoisLocal(m); onMois?.(m) } // mémorisé avec la situation du foyer
   const [societe, setSociete] = useState('')
   const [rep, setRep] = useState<Reponse[] | null>(null)
   const [nomSoc, setNomSoc] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
   const { data: socs } = useFetch<{ societes: Societe[] }>('/api/societes?tri=populaire')
+  const { data: titres } = useFetch<{ regles: Regle[] }>('/api/regles?limit=5000')
 
   useEffect(() => {
     setLoading(true)
@@ -26,6 +29,11 @@ export function DroitsNonMonetaires({ age }: { age: number }) {
       .finally(() => setLoading(false))
   }, [annee, mois, societe])
 
+  // les liens vers les règles portent leur nom (« l'âge légal », « la durée de cotisation »), pas un numéro
+  const nomRegle = (id: string) => {
+    const t = titres?.regles.find((x) => x.id === id)?.titre
+    return t ? nomCourt(t).replace(/^./, (c) => c.toLowerCase()) : id.split('.').slice(-1)[0].replace(/_/g, ' ')
+  }
   const themes = Array.from(new Set((rep ?? []).map((r) => r.theme)))
   const nbChange = (rep ?? []).filter((r) => r.change).length
   return (
@@ -37,8 +45,8 @@ export function DroitsNonMonetaires({ age }: { age: number }) {
           {['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'].map((m, i) => <option key={m} value={i + 1}>{m}</option>)}
         </select></label>
         <input type="number" value={annee} min={1920} max={2025} onChange={(e) => setAnnee(Number(e.target.value))} style={{ width: 100 }} aria-label="Année de naissance" />
-        <label className="small row" style={{ gap: 6 }}><GitCompare size={15} /> Comparer avec une proposition
-          <select value={societe} onChange={(e) => setSociete(e.target.value)} style={{ width: 'auto' }}>
+        <label className="small" style={{ display: 'block', width: '100%' }}><GitCompare size={15} /> Comparer avec une proposition
+          <select value={societe} onChange={(e) => setSociete(e.target.value)} style={{ display: 'block', width: '100%', maxWidth: 420, marginTop: 4 }}>
             <option value="">— aucune —</option>
             {(socs?.societes ?? []).filter((s) => !s.reference).map((s) => <option key={s.id} value={s.id}>{s.nom}</option>)}
           </select>
@@ -73,7 +81,7 @@ export function DroitsNonMonetaires({ age }: { age: number }) {
                       {r.regles.length > 0 && (
                         <div className="small muted" style={{ marginTop: 6 }}><BookOpen size={12} />{' '}
                           {r.regles.length === 1 ? <Link to={`/regles/r/${r.regles[0]}`}>Voir la règle</Link>
-                            : <>Voir les règles : {r.regles.slice(0, 3).map((x, i) => <span key={x}>{i ? ' · ' : ''}<Link to={`/regles/r/${x}`}>{i + 1}</Link></span>)}</>}
+                            : <>Voir les règles : {r.regles.slice(0, 3).map((x, i) => <span key={x}>{i ? ' · ' : ''}<Link to={`/regles/r/${x}`}>{nomRegle(x)}</Link></span>)}</>}
                         </div>
                       )}
                     </div>

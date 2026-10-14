@@ -140,7 +140,11 @@ def _pour_vous(sections: list[Section]) -> dict | None:
     if not s or not s.indicateurs:
         return None
     i = s.indicateurs[0]
-    return {"delta_mois": i.valeur, "avant": i.avant, "apres": i.apres, "confiance": i.confiance.to_dict() if i.confiance else None}
+    # ce qui bouge dans le budget du foyer (les 3 plus gros écarts, en € par mois) : explique un montant surprenant
+    lignes = sorted((l for l in s.donnees.get("lignes", []) if abs(l["delta"]) >= 1), key=lambda l: -abs(l["delta"]))[:3]
+    detail = [{"id": l["id"], "libelle": l["libelle"], "delta_mois": l["delta"], "nature": l["nature"]} for l in lignes]
+    return {"delta_mois": i.valeur, "avant": i.avant, "apres": i.apres, "confiance": i.confiance.to_dict() if i.confiance else None,
+            "detail": detail}
 
 
 def synthese_globale(sections: list[Section]) -> dict:

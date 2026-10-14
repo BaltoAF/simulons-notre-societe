@@ -21,7 +21,7 @@ export function parMenageMois(md: number): string {
 export function tonnes(mt: number, signe = false): string {
   const a = Math.abs(mt)
   const s = signe ? (mt > 0 ? '+' : mt < 0 ? '−' : '') : ''
-  if (a >= 1) return `${s}${nombre(a, 1)} million${a >= 2 ? 's' : ''} de tonnes de CO₂`
+  if (a >= 1) return `${s}${nombre(a, 1)} million${Math.round(a * 10) / 10 >= 2 ? 's' : ''} de tonnes de CO₂` // « 2 millions », même pour 1,96
   return `${s}${nombre(Math.round(a * 1000) * 1000, 0)} tonnes de CO₂`
 }
 

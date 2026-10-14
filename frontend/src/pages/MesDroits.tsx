@@ -2,7 +2,8 @@ import { useEffect, useState, type ReactNode } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { ArrowLeft, ArrowRight, Calculator, GitFork, Lock, Minus, Plus, RotateCcw } from 'lucide-react'
 import { api, type Confiance, type Regle } from '../lib/api'
-import { euros } from '../lib/format'
+import { euros, valeur } from '../lib/format'
+import { departsDuFoyer, estAgeLegal, type Depart } from '../lib/retraite'
 import { PRESETS, resoudrePreset } from '../lib/presets'
 import { resumeSituation, situationVersMenage, useApp, useFetch, type AdulteSaisie, type SituationSaisie } from '../lib/state'
 import { ConfidenceBadge, ErrorBox, Loading, Notice } from '../components/ui'
@@ -66,7 +67,7 @@ export default function MesDroits() {
   const [res, setRes] = useState<Resultat | null>(null)
   const [err, setErr] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
-  const [etSi, setEtSi] = useState<Record<string, { delta: number; loading?: boolean }>>({})
+  const [etSi, setEtSi] = useState<Record<string, { delta: number; loading?: boolean; departs?: Depart[] }>>({})
   const { data: regles } = useFetch<{ regles: Regle[] }>('/api/regles?simulable=true&limit=2000')
   const nav = useNavigate()
 
@@ -91,6 +92,12 @@ export default function MesDroits() {
   const tester = async (pid: string) => {
     const p = PRESETS.find((x) => x.id === pid)!
     const actuelles = Object.fromEntries((regles?.regles ?? []).map((r) => [r.id, r.valeur]))
+    // l'âge de départ ne change pas le budget du mois : on montre ce qui compte, la date de départ
+    if (Object.keys(p.overrides).some(estAgeLegal)) {
+      const departs = departsDuFoyer(s.adultes, s.mois_naissance ?? 1, actuelles, { ...actuelles, ...resoudrePreset(p, actuelles) })
+      setEtSi((x) => ({ ...x, [pid]: { delta: 0, departs } }))
+      return
+    }
     setEtSi((x) => ({ ...x, [pid]: { delta: 0, loading: true } }))
     try {
       const rap = await api<any>('/api/simulation/reforme', { body: { overrides: resoudrePreset(p, actuelles), menage: situationVersMenage(s), montants: 'net', modules: ['menage'] } })
@@ -155,6 +162,9 @@ export default function MesDroits() {
                               <span>{l.libelle}</span>
                               <strong className={`delta ${(sg as number) > 0 ? (l.nature === 'prestation' ? 'pos' : '') : l.montant > 0 ? 'neg' : ''}`}>{(sg as number) > 0 || l.montant === 0 ? '' : '−'}{euros(l.montant)}</strong>
                             </div>
+                            {/* où la demander, et pourquoi pas d'aide au logement : visible tout de suite, sans ouvrir le détail */}
+                            {DEMANDER[l.id] && l.montant > 0 && <div className="small muted" style={{ marginTop: 2 }}>À demander {DEMANDER[l.id]}.</div>}
+                            {l.id === 'aides_logement_zero' && <div className="small muted" style={{ marginTop: 2 }}>Vos revenus dépassent le plafond pour votre loyer et votre zone.</div>}
                             {POURQUOI[l.id] && (
                               <details className="explain" style={{ marginTop: 6, paddingTop: 6 }}>
                                 <summary>{l.montant === 0 ? 'Pourquoi 0 € ?' : 'Pourquoi ce montant ?'}</summary>
@@ -163,8 +173,7 @@ export default function MesDroits() {
                                     ? <>Votre impôt aurait été d'environ {euros(res.decote_annuelle!, 0)} par an, mais la <Terme id="decote">décote</Terme>, une réduction automatique pour les petits impôts, l'annule entièrement.</>
                                     : <>Le revenu du foyer est divisé en <Terme id="part_fiscale">parts</Terme> (une part par adulte, une demi-part par enfant) : par part, il reste sous le seuil où l'impôt commence.</>)
                                   : POURQUOI[l.id].texte}</p>
-                                {DEMANDER[l.id] && l.montant > 0 && <div className="small" style={{ marginBottom: 6 }}><strong>La demander :</strong> {DEMANDER[l.id]}.</div>}
-                                <div className="small">Règles en jeu : {POURQUOI[l.id].regles.map((r, i) => <span key={r}>{i ? ' · ' : ''}<Link to={`/regles/r/${r}`}>{regles?.regles.find((x) => x.id === r)?.titre ?? r}</Link></span>)}</div>
+                                <div className="small">Les règles qui fixent ce montant : {POURQUOI[l.id].regles.map((r, i) => <span key={r}>{i ? ' · ' : ''}<Link to={`/regles/r/${r}`}>{regles?.regles.find((x) => x.id === r)?.titre ?? r}</Link></span>)}</div>
                               </details>
                             )}
                           </li>
@@ -175,7 +184,8 @@ export default function MesDroits() {
                 ))}
                 <Notice>Ce sont vos <strong>droits théoriques</strong> selon la législation en vigueur, calculés par le moteur public OpenFisca-France. Pour une démarche officielle, utilisez les simulateurs de l'administration (mesdroitssociaux.gouv.fr, impots.gouv.fr).</Notice>
               </div>
-              <DroitsNonMonetaires age={s.adultes[0]?.age ?? 35} />
+              <DroitsNonMonetaires age={s.adultes[0]?.age ?? 35} mois={s.mois_naissance ?? 1}
+                onMois={(m) => { const sit = { ...s, mois_naissance: m }; setS(sit); setSituation(sit) }} />
             </div>
             <div className="stack sticky">
               <div className="card">
@@ -187,8 +197,17 @@ export default function MesDroits() {
                     return (
                       <li key={p.id}>
                         <div className="small" style={{ fontWeight: 650 }}>{p.titre}</div>
+                        {r?.departs && (
+                          <div className="small" style={{ marginTop: 4 }}>
+                            {r.departs.length === 0 ? <span className="muted">Ne change rien pour vous : personne dans votre foyer n'est concerné (déjà à la retraite).</span>
+                              : r.departs.map((d) => <div key={d.qui}>{d.apres === d.avant
+                                ? <>{d.qui} : rien ne change, départ à {valeur(d.avant, 'ans')} ({d.dateAvant}).</>
+                                : <><strong>{d.qui} : départ possible à {valeur(d.apres, 'ans')}, en {d.dateApres}</strong> <span className="muted">(au lieu de {valeur(d.avant, 'ans')}, en {d.dateAvant})</span>.</>}</div>)}
+                            {r.departs.length > 0 && !s.mois_naissance && <div className="muted">Pour une date exacte, indiquez votre mois de naissance plus bas (« Vos droits au-delà de l'argent »).</div>}
+                          </div>
+                        )}
                         <div className="row between" style={{ marginTop: 4 }}>
-                          {r ? (r.loading ? <span className="small muted"><span className="spinner" style={{ width: 14, height: 14, verticalAlign: -2 }} /> calcul…</span>
+                          {r?.departs ? <span /> : r ? (r.loading ? <span className="small muted"><span className="spinner" style={{ width: 14, height: 14, verticalAlign: -2 }} /> calcul…</span>
                             : Number.isNaN(r.delta) ? <span className="small muted">indisponible</span>
                               : <span className={`delta ${r.delta > 0.5 ? 'pos' : r.delta < -0.5 ? 'neg' : 'zero'}`}>{r.delta > 0.5 ? '+' : r.delta < -0.5 ? '−' : '±'}{euros(Math.abs(r.delta))} / mois</span>)
                             : <button className="btn small" onClick={() => tester(p.id)}>Tester sur mon foyer</button>}

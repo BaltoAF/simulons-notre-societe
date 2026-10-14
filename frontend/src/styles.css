@@ -83,7 +83,7 @@ code, .mono { font-family: var(--mono); font-size: .85em; }
 
 /* ── mise en page ── */
 .container { max-width: var(--maxw); margin: 0 auto; padding: 0 20px; }
-.page { padding: 28px 0 64px; }
+.page { padding-top: 28px; padding-bottom: 64px; } /* sans écraser les marges latérales de .container */
 .stack > * + * { margin-top: 16px; }
 .row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
 .row.between { justify-content: space-between; }
@@ -417,4 +417,16 @@ main:focus { outline: none; }
   .notice > .btn, .notice > a.btn { margin-left: 0; }
   select { max-width: 100%; }
   label.row { flex-wrap: nowrap; align-items: flex-start; }
+}
+
+/* Comparer, sur téléphone : une carte par critère, les deux propositions l'une sous l'autre (pas de tableau tronqué) */
+@media (max-width: 640px) {
+  .table.comparaison thead { display: none; }
+  .table.comparaison, .table.comparaison tbody, .table.comparaison tr, .table.comparaison th, .table.comparaison td { display: block; width: 100%; }
+  .table.comparaison tr { border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; margin-bottom: 10px; }
+  .table.comparaison th[scope="row"] { white-space: normal; border: 0; padding: 0 0 4px; }
+  .table.comparaison td { min-width: 0; border: 0; padding: 4px 0; }
+  .table.comparaison td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: 650; color: var(--ink-3); }
+  /* montant et badge de fiabilité : le badge passe sous le montant */
+  .card-head { flex-wrap: wrap; }
 }

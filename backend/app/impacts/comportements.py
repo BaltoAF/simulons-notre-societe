@@ -532,12 +532,16 @@ def mod_multiplicateur(ctx: Contexte, soldes: dict, inds: list[Indicateur] | Non
     dpib = d_demande + d_prod
     calcul.append(f"Effet total : {dpib:+.1f} Md€, soit {dpib / pib * 100:+.2f} % du PIB ({pib:.0f} Md€)")
     conf_s = moyenne_ponderee(list(soldes.values()), "Effet budgétaire de la réforme") if soldes else None
+    # le « pourquoi » du chiffre, avec l'ordre de grandeur de chaque mécanisme (affiché sous la phrase du résumé)
     morceaux = []
+    md = lambda v: fr(v, 0 if abs(v) >= 10 else 1)  # noqa: E731
     if d_demande:
-        morceaux.append("La réforme injecte de l'argent dans l'économie (dépenses en plus ou impôts en moins), ce qui soutient l'activité."
-                        if d_demande > 0 else "La réforme retire de l'argent de l'économie (impôts en plus ou dépenses en moins), ce qui freine l'activité.")
+        morceaux.append(f"L'argent dépensé en plus (ou les impôts en moins) soutient la consommation : environ {md(d_demande)} milliards € d'activité en plus."
+                        if d_demande > 0 else
+                        f"Les impôts en plus (ou les dépenses en moins) freinent la consommation : environ {md(-d_demande)} milliards € d'activité en moins.")
     if d_prod:
-        morceaux.append("Moins de personnes au travail, c'est moins de production." if d_prod < 0 else "Plus de personnes au travail, c'est plus de production.")
+        morceaux.append(f"Moins de personnes au travail, c'est moins de production : environ {md(-d_prod)} milliards € en moins." if d_prod < 0
+                        else f"Plus de personnes au travail, c'est plus de production : environ {md(d_prod)} milliards € en plus.")
     out = [Indicateur("pib", "Effet sur l'activité (PIB, à 1-2 ans)", dpib / pib * 100, "pourcent",
                       confiance=chaine(conf_m, *[c for c in (conf_s,) if c], *[i.confiance for i in offre if i.confiance]),
                       explication=" ".join(morceaux), calcul=calcul,

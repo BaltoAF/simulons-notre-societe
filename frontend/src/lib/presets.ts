@@ -72,8 +72,8 @@ export const PRESETS: Preset[] = [
   },
   {
     id: 'prime-activite-plus',
-    titre: 'Prime d\'activité plus généreuse (+100 €)',
-    description: 'Hausse du montant forfaitaire de la prime d\'activité.',
+    titre: 'Prime d\'activité : +100 € sur le montant de base',
+    description: 'Le montant de base est celui d\'une personne seule : un couple ou une famille avec enfants reçoit davantage.',
     overrides: { 'prestations.prime_activite.montant_forfaitaire': (v: number) => Math.round((v + 100) * 100) / 100 },
     tags: ['travail', 'pouvoir d\'achat'],
   },

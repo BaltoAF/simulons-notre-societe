@@ -7,7 +7,7 @@ import { euros } from '../lib/format'
 import { situationVersMenage, useApp, useFetch, type SituationSaisie } from '../lib/state'
 import { PROFILS } from '../lib/profils'
 import { ErrorBox, Loading } from '../components/ui'
-import { Pourquoi, Terme } from '../components/Terme'
+import { Terme } from '../components/Terme'
 import { milliards, parMenageMois } from '../lib/humain'
 import { infoMission } from '../lib/missions'
 
@@ -35,6 +35,12 @@ type VueMenage = {
 
 function Barre({ part, couleur = 'var(--primary)' }: { part: number; couleur?: string }) {
   return <div className="bar-track" style={{ height: 10 }}><div className="bar-fill" style={{ width: `${Math.max(0.5, part * 100)}%`, background: couleur }} /></div>
+}
+
+// Domaines de la dépense publique qu'on peut changer directement par une règle : [règle, libellé du lien]
+const LEVIERS_FONCTION: Record<string, [string, string]> = {
+  sante: ['budget.secu.ondam.total', "Dépenser plus (ou moins) pour l'hôpital et les soins"],
+  protection_sociale: ['retraites.age_legal.generation_1969_et_apres', "Changer l'âge de départ à la retraite"],
 }
 
 // Le budget de l'État, domaine par domaine : ce qu'on peut changer, ce qui est verrouillé (et pourquoi), et comment le modifier.
@@ -90,10 +96,16 @@ function BudgetEtat({ missions, depenseTotale }: { missions: { id: string; titre
             <div className="small ink2">Le <Terme id="deficit">déficit</Terme> baisse, et avec lui la dette. En contrepartie, les services concernés (école, police…) ont moins de moyens.</div>
           </div>
           <Link className="btn primary" to="/atelier?budget=1">Modifier le budget de l'État <ArrowRight size={15} /></Link>
-          <Pourquoi titre="Et la Sécurité sociale, les retraites, les aides ?">
-            Elles dépendent surtout de règles (montant du RSA, âge de départ, taux de cotisation…) plutôt que d'un budget voté. Pour les changer,
-            modifiez ces règles dans « Changer les règles » : le site calcule ce que cela coûte ou rapporte.
-          </Pourquoi>
+          <div className="card flat" style={{ padding: 12 }}>
+            <strong>Et l'hôpital, les retraites, les aides ?</strong>
+            <div className="small ink2">Ils relèvent de la Sécurité sociale, pas du budget de l'État. On les change par leurs règles : l'objectif de
+              dépenses de santé, l'âge de départ, le montant du RSA… Le site calcule ce que cela coûte ou rapporte.</div>
+            <div className="row small" style={{ marginTop: 6, gap: 12 }}>
+              <Link to="/atelier?regle=budget.secu.ondam.total">Dépenser plus pour l'hôpital et les soins →</Link>
+              <Link to="/atelier?regle=retraites.age_legal.generation_1969_et_apres">Changer l'âge de départ →</Link>
+              <Link to="/atelier?regle=prestations.rsa.montant_forfaitaire">Changer le RSA →</Link>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -145,7 +157,8 @@ export default function Budget() {
       <div className="split even">
         <div className="card">
           <h3><Landmark size={18} /> Où va l'argent public</h3>
-          <p className="small muted">Toutes les administrations (État, Sécurité sociale, collectivités), par grand domaine, en {n.fonctions[0]?.annee} (le dernier détail publié). Cliquez sur un domaine pour le détail.</p>
+          <p className="small muted">Toutes les administrations (État, Sécurité sociale, collectivités), par grand domaine, en {n.fonctions[0]?.annee} (le dernier détail publié). Cliquez sur un domaine pour le détail.
+            Ailleurs sur le site, les montants votés pour 2026 (budget de l'État, objectif de dépenses de santé) sont un peu différents : autre année, autre périmètre.</p>
           {(toutesFonctions ? n.fonctions : n.fonctions.slice(0, 5)).map((f) => (
             <div key={f.id} style={{ marginBottom: 12 }}>
               <button className="row between" onClick={() => setOuvert(ouvert === f.id ? null : f.id)} aria-expanded={ouvert === f.id}
@@ -154,6 +167,7 @@ export default function Budget() {
                 <span className="small" style={{ whiteSpace: 'nowrap', textAlign: 'right' }}><strong>{milliards(f.md)}</strong><br /><span className="muted">{euros(f.par_habitant_an)}/hab.</span></span>
               </button>
               <Barre part={f.md / maxF} />
+              {LEVIERS_FONCTION[f.id] && <Link className="small" to={`/atelier?regle=${LEVIERS_FONCTION[f.id][0]}`}>{LEVIERS_FONCTION[f.id][1]} →</Link>}
               {ouvert === f.id && f.detail && (
                 <ul className="list small" style={{ marginLeft: 12 }}>
                   {f.detail.map((d) => <li key={d.id} className="list-row" style={{ padding: '5px 0' }}><span>{d.titre}</span><span>{milliards(d.md)} · {euros(d.par_habitant_an)}/hab.</span></li>)}
@@ -204,7 +218,9 @@ export default function Budget() {
             <div className="kpi">{euros(m.total_recu)}</div>
             {m.recu.length ? <ul className="list small">{m.recu.map((r) => <li key={r.id} className="list-row"><span>{r.titre}</span><strong>{euros(r.montant)}</strong></li>)}</ul>
               : <div className="small muted">Aucune prestation monétaire.</div>}
-            <p className="small muted" style={{ marginTop: 10 }}>À cela s'ajoutent les services publics gratuits ou remboursés : l'école, l'hôpital, les routes, la police… coûtent en moyenne {euros(m.depense_publique_moyenne_foyer)} par an pour un foyer de {m.personnes} personne{m.personnes > 1 ? 's' : ''}.</p>
+            <p className="small muted" style={{ marginTop: 10 }}>À cela s'ajoutent les services publics gratuits ou remboursés : école, hôpital, routes, police…
+              Toute la dépense publique, retraites comprises, représente en moyenne {euros(n.par_habitant.depense ?? 0)} par habitant et par an ;
+              chacun en profite très différemment selon son âge et sa situation.</p>
           </div>
           <div className="card">
             <div className="kpi-label">Ce que finance sa contribution</div>

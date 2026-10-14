@@ -14,6 +14,17 @@ export default function Methode() {
       <h1>Méthode</h1>
       <p className="lead ink2">Comment Société 2.0 construit la Société 1.0, calcule les impacts et décide de l'indice de confiance. Tout est public et contestable : le code et les données sont ouverts.</p>
 
+      <div className="card soft" style={{ marginBottom: 16 }}>
+        <h2 style={{ fontSize: '1.2rem', marginTop: 0 }}>En bref</h2>
+        <ul style={{ margin: 0, paddingLeft: 20 }}>
+          <li><strong>Les règles</strong> viennent des textes officiels (Légifrance, Journal officiel, impôts) : chaque valeur affiche sa source.</li>
+          <li><strong>Votre foyer</strong> est calculé avec le même moteur que celui utilisé par l'Assemblée nationale : c'est le chiffre le plus sûr.</li>
+          <li><strong>Les effets sur le pays</strong> (emploi, croissance…) s'appuient sur les études disponibles ; quand elles divergent, le site retient une valeur et le dit.</li>
+          <li><strong>Chaque chiffre a une fiabilité</strong>, de « très faible » à « très élevée » : cliquez sur le badge pour savoir pourquoi.</li>
+        </ul>
+        <p className="small muted" style={{ marginBottom: 0 }}>Le détail, pour les curieux, ci-dessous.</p>
+      </div>
+
       <div className="card stack" id="societe">
         <h2><ShieldCheck size={22} /> 1. La Société 1.0 : un miroir prouvé de la loi</h2>
         <p>Chaque règle (un taux, un montant, une durée, un âge, un seuil…) est un paramètre avec sa valeur en vigueur, son historique et ses <strong>sources</strong>. Une valeur sans source n'est pas acceptée. Les règles fiscales et sociales sont adossées à <strong>OpenFisca-France</strong>, le modèle public de la législation socio-fiscale (utilisé par l'Assemblée nationale via LexImpact), dont le Système extrait automatiquement les valeurs et les références légales. Les autres domaines (justice, institutions, travail, retraites…) sont collectés par les agents du Système, qui lisent les textes officiels et marquent « à vérifier » ce qu'ils n'ont pas pu confirmer.</p>
@@ -64,18 +75,18 @@ export default function Methode() {
       <div className="card stack" id="equilibres" style={{ marginTop: 16 }}>
         <h2>6. Les équilibres et le bilan en quatre piliers</h2>
         <p>Chaque réforme est évaluée sur <strong>quatre dimensions</strong> : économie (finances publiques, activité, emploi), social (inégalités, pauvreté), écologie (émissions de gaz à effet de serre) et bien-être (satisfaction dans la vie, santé, sécurité, temps libre). Ces dimensions reposent sur des sources différentes : comptes publics, enquêtes de l'INSEE sur le bien-être, inventaires d'émissions du CITEPA et du SDES, études de santé publique. Aucune note globale n'est calculée : les arbitrages vous appartiennent.</p>
-        <p>Deux <strong>équilibres</strong> doivent être respectés, car ils sont déjà « bloqués » : les <strong>finances publiques</strong> (le déficit dépasse la limite européenne de 3 % du PIB, et l'article 40 de la Constitution interdit de créer une charge publique sans compensation) et le <strong>budget carbone</strong> (les émissions de la France dépassent le budget légal de la stratégie nationale bas-carbone). Une réforme qui dégrade l'un d'eux doit être compensée ailleurs ; le Système propose des compensations chiffrées. Une société peut aussi décider d'assumer un déficit, de façon transparente : ce choix devient une règle de cette société.</p>
+        <p>Deux <strong>équilibres</strong> doivent être respectés, car ils sont déjà « bloqués » : les <strong>finances publiques</strong> (le déficit dépasse la limite européenne de 3 % du PIB, et l'article 40 de la Constitution interdit de créer une charge publique sans compensation) et le <strong>budget carbone</strong> (les émissions de la France dépassent le budget légal de la stratégie nationale bas-carbone). Une réforme qui dégrade l'un d'eux doit être compensée ailleurs ; le Système propose des compensations chiffrées. Une proposition peut aussi assumer un déficit, de façon transparente : ce choix devient une règle de cette proposition.</p>
         <p>Un dépassement dont l'estimation est de confiance « Très faible » est signalé « à surveiller », sans bloquer l'enregistrement.</p>
       </div>
 
       <div className="card stack" id="mises-a-jour" style={{ marginTop: 16 }}>
         <h2>7. La mise à jour invisible</h2>
-        <p>Chaque nuit, le Système vérifie le moteur de calcul (nouvelle version d'OpenFisca-France, installée seulement si elle passe les contrôles), les données, la cohérence du modèle et une partie des liens des sources. Si la loi a changé, il publie une nouvelle version de la Société 1.0. À minuit, les règles dont la date d'entrée en vigueur arrive s'appliquent d'elles-mêmes. Les sociétés des utilisateurs sont mises à jour automatiquement pour toutes les règles qu'elles n'ont pas modifiées ; si la loi change une règle que l'auteur avait aussi changée, rien n'est imposé : c'est lui qui choisit.</p>
+        <p>Chaque nuit, le Système vérifie le moteur de calcul (nouvelle version d'OpenFisca-France, installée seulement si elle passe les contrôles), les données, la cohérence du modèle et une partie des liens des sources. Si la loi a changé, il publie une nouvelle version de la Société 1.0. À minuit, les règles dont la date d'entrée en vigueur arrive s'appliquent d'elles-mêmes. Les propositions des utilisateurs sont mises à jour automatiquement pour toutes les règles qu'elles n'ont pas modifiées ; si la loi change une règle que l'auteur avait aussi changée, rien n'est imposé : c'est lui qui choisit.</p>
       </div>
 
       <div className="card stack" id="forks" style={{ marginTop: 16 }}>
         <h2><GitFork size={22} /> 8. Versions, variantes et suggestions</h2>
-        <p>Une société, c'est la loi actuelle avec quelques règles changées. Chacun peut <strong>créer sa version</strong> d'une société existante, l'original ne change pas. Chaque modification est enregistrée comme une nouvelle <strong>version</strong>, signée et datée : on peut toujours voir qui a changé quoi, et pourquoi. Une <strong>variante</strong> permet d'essayer une autre piste sans toucher à la version principale. Une <strong>suggestion</strong> permet de proposer ses changements à l'auteur d'une autre société, qui en discute puis décide de les intégrer ou non.</p>
+        <p>Une proposition, c'est la loi actuelle avec quelques règles changées. Chacun peut <strong>partir d'une proposition</strong> existante pour faire la sienne, l'original ne change pas. Chaque modification est enregistrée comme une nouvelle <strong>version</strong>, signée et datée : on peut toujours voir qui a changé quoi, et pourquoi. Une <strong>variante</strong> permet d'essayer une autre piste sans toucher à la version principale. Une <strong>suggestion</strong> permet de proposer ses changements à l'auteur d'une autre proposition, qui en discute puis décide de les intégrer ou non.</p>
         <p className="small muted">Pour les informaticiens : c'est le fonctionnement de git (fork, commit, branche, pull request), appliqué aux règles de la société.</p>
         <p>Tester est libre et anonyme. Proposer (enregistrer, publier, commenter) nécessite d'être identifié.</p>
       </div>

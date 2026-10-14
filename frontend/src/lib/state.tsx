@@ -38,6 +38,7 @@ export type SituationSaisie = {
   loyer_mensuel: number
   zone: 1 | 2 | 3
   revenus_capital_annuels: number
+  mois_naissance?: number // du premier adulte (1 à 12) : sert à dater le départ à la retraite
 }
 
 export const BROUILLON_VIDE: Brouillon = { overrides: {}, justifications: {}, societe: null, branche: 'principale' }

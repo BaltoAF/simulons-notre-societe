@@ -6,7 +6,7 @@ import { api, type Changement, type Rapport, type Societe } from '../lib/api'
 import { DOMAINE_TITRE, valeur } from '../lib/format'
 import { milliards, parMenageMois, phrase, tonnes } from '../lib/humain'
 import { resumeSituation, situationVersMenage, useApp, useFetch } from '../lib/state'
-import { diffBareme, nomCourt } from '../components/DiffSociete'
+import { estTaxeConsommation, ligneMesure } from '../components/DiffSociete'
 import { ErrorBox } from '../components/ui'
 
 type Effets = { rapport: Rapport | null; erreur?: string }
@@ -16,7 +16,7 @@ function indicateur(r: Rapport | null, id: string) {
 }
 
 /** Une ligne du tableau des effets : le même indicateur, dit en clair, pour chacune des deux propositions. */
-const LIGNES: { titre: string; rendu: (r: Rapport | null) => string }[] = [
+const LIGNES: { titre: string; rendu: (r: Rapport | null) => string; foyer?: boolean }[] = [
   {
     titre: "L'argent public", rendu: (r) => {
       const e = r?.equilibres.find((x) => x.id === 'budget')
@@ -33,7 +33,7 @@ const LIGNES: { titre: string; rendu: (r: Rapport | null) => string }[] = [
     },
   },
   {
-    titre: 'Votre porte-monnaie', rendu: (r) => {
+    titre: 'Votre porte-monnaie', foyer: true, rendu: (r) => {
       const pv = r?.pour_vous
       if (!pv) return 'Décrivez votre foyer dans « Mes droits » pour le voir'
       return Math.abs(pv.delta_mois) < 0.5 ? 'Rien ne change' : `${pv.delta_mois > 0 ? '+' : '−'}${Math.abs(Math.round(pv.delta_mois))} € par mois`
@@ -42,7 +42,7 @@ const LIGNES: { titre: string; rendu: (r: Rapport | null) => string }[] = [
   { titre: 'La pauvreté', rendu: (r) => { const i = indicateur(r, 'pauvrete'); return i ? phrase(i.id, i.valeur, i.unite) : '—' } },
   { titre: 'Les inégalités', rendu: (r) => { const i = indicateur(r, 'gini'); return i ? phrase(i.id, i.valeur, i.unite) : '—' } },
   {
-    titre: 'Gagnants et perdants', rendu: (r) => {
+    titre: 'Gagnants et perdants', foyer: true, rendu: (r) => {
       const i = indicateur(r, 'gagnants')
       return i ? `${Math.round(i.valeur)} % des ménages y gagnent${i.perdants != null ? `, ${Math.round(i.perdants)} % y perdent` : ''}` : '—'
     },
@@ -53,11 +53,11 @@ const LIGNES: { titre: string; rendu: (r: Rapport | null) => string }[] = [
 function mesures(s: Societe | undefined) {
   if (!s) return []
   if (s.reference) return ['La loi telle qu\'elle est aujourd\'hui']
-  return (s.mesures ?? []).map((m) => m.budget_resume
-    ? `Budget de l'État : ${Number(m.apres) >= 0 ? `${milliards(Number(m.apres))} de dépenses en plus` : `${milliards(Math.abs(Number(m.apres)))} d'économies`}`
-    : (diffBareme(m.avant, m.apres) ?? []).sort((x, y) => Number(y.startsWith('Nouvelle')) - Number(x.startsWith('Nouvelle')))[0]
-      ?? `${nomCourt(m.titre)} : ${valeur(m.apres, m.unite, m.type)} (aujourd'hui ${valeur(m.avant, m.unite, m.type)})`)
+  return (s.mesures ?? []).map(ligneMesure)
 }
+
+/** Une hausse de TVA ou de taxe sur les carburants n'est pas comptée foyer par foyer : on le signale à côté du chiffre. */
+const horsTaxes = (s: Societe | undefined) => [...(s?.mesures ?? []), ...(s?.financement ?? [])].some((m) => estTaxeConsommation(m.regle))
 
 export default function Comparer() {
   const [p, setP] = useSearchParams()
@@ -82,6 +82,8 @@ export default function Comparer() {
   }, [a, b, situation])
 
   const choisir = (cle: 'a' | 'b', v: string) => { p.set(cle, v); setP(p, { replace: true }) }
+  const missions = (diff?.differences ?? []).filter((d) => d.regle.startsWith('budget.etat.mission.'))
+  const autres = (diff?.differences ?? []).filter((d) => !d.regle.startsWith('budget.etat.mission.'))
   const enCours = a && b && (!effets[a] || !effets[b])
 
   return (
@@ -106,7 +108,12 @@ export default function Comparer() {
                 <div key={k}>
                   <Link to={`/societes/${s?.id ?? ''}`} style={{ fontWeight: 700 }}>{s?.nom ?? '…'}</Link>
                   <ul className="small" style={{ margin: '6px 0 0', paddingLeft: 18 }}>{mesures(s).map((m) => <li key={m}>{m}</li>)}</ul>
-                  {(s?.nb_equilibrage ?? 0) > 0 && <div className="small muted" style={{ marginTop: 4 }}>+ {s!.nb_equilibrage} changement{s!.nb_equilibrage! > 1 ? 's' : ''} pour l'équilibrer</div>}
+                  {(s?.financement ?? []).length > 0 && (
+                    <div className="small" style={{ marginTop: 6 }}>
+                      <span className="muted">Pour l'équilibrer (financement, climat) :</span>
+                      <ul style={{ margin: '2px 0 0', paddingLeft: 18 }}>{s!.financement!.map((m) => <li key={m.regle + (m.ajuste ? '#' : '')}>{ligneMesure(m)}</li>)}</ul>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
@@ -122,23 +129,37 @@ export default function Comparer() {
                   {LIGNES.map((l) => (
                     <tr key={l.titre}>
                       <th scope="row">{l.titre}</th>
-                      {[a, b].map((id) => <td key={id}>{effets[id] ? (effets[id].erreur ? <span className="muted">indisponible</span> : l.rendu(effets[id].rapport)) : <span className="spinner" style={{ width: 14, height: 14, borderWidth: 2 }} />}</td>)}
+                      {[[a, sa], [b, sb]].map(([id, s]) => (
+                        <td key={id as string} data-label={(s as Societe | undefined)?.nom ?? ''}>{effets[id as string]
+                          ? (effets[id as string].erreur ? <span className="muted">indisponible</span>
+                            : <>{l.rendu(effets[id as string].rapport)}{l.foyer && horsTaxes(s as Societe | undefined) && ' *'}</>)
+                          : <span className="spinner" style={{ width: 14, height: 14, borderWidth: 2 }} />}</td>
+                      ))}
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
+            {(horsTaxes(sa) || horsTaxes(sb)) && <p className="small muted">* Sans compter la hausse ou la baisse des taxes sur la consommation (TVA, carburants, tabac) : elle n'est pas calculée foyer par foyer.</p>}
             {situation && <p className="small muted">« Votre porte-monnaie » : calculé pour {resumeSituation(situation)} (<Link to="/mes-droits">modifier</Link>).</p>}
             <p className="small muted" style={{ marginBottom: 0 }}>Le détail et la fiabilité de chaque chiffre sont sur la page de chaque proposition, onglet « Ses effets ».</p>
           </div>
 
           <details className="card curieux">
-            <summary>Les différences règle par règle ({diff?.differences.length ?? '…'})</summary>
+            <summary>Le détail règle par règle ({diff ? autres.length + (missions.length ? 1 : 0) : '…'})</summary>
             <div className="table-wrap" style={{ marginTop: 10 }}>
               <table className="table">
                 <thead><tr><th>Règle</th><th>{sa?.nom ?? 'Première'}</th><th>{sb?.nom ?? 'Deuxième'}</th></tr></thead>
                 <tbody>
-                  {(diff?.differences ?? []).map((d) => (
+                  {missions.length > 0 && (
+                    // les domaines du budget de l'État : une seule ligne, le total (le détail est sur la page de chaque proposition)
+                    <tr>
+                      <td><strong>Budget de l'État</strong><div className="small muted">{missions.length} domaines différents</div></td>
+                      <td>{valeur(missions.reduce((x, d) => x + Number(d.avant), 0), 'milliards_euros')}</td>
+                      <td>{valeur(missions.reduce((x, d) => x + Number(d.apres), 0), 'milliards_euros')}</td>
+                    </tr>
+                  )}
+                  {autres.map((d) => (
                     <tr key={d.regle}>
                       <td><Link to={`/regles/r/${d.regle}`}>{d.titre ?? d.regle}</Link><div className="small muted">{d.domaine ? DOMAINE_TITRE[d.domaine] : ''}</div></td>
                       <td>{valeur(d.avant, d.unite, d.type)}</td>

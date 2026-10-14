@@ -150,7 +150,7 @@ function SectionBudgetEtat({ s }: { s: Section }) {
       {lignes.map((l) => (
         <li key={l.regle} className="list-row">
           <Link to={`/regles/r/${l.regle}`}>{l.titre}</Link>
-          <span>{nombre(l.avant, 2)} → {nombre(l.apres, 2)} Md€ <span className={`delta ${l.delta > 0 ? 'neg' : 'pos'}`}>({l.delta > 0 ? '+' : '−'}{nombre(Math.abs(l.delta), 2)})</span></span>
+          <span>{nombre(l.avant, 2)} → {nombre(l.apres, 2)} milliards € <span className={`delta ${l.delta > 0 ? 'neg' : 'pos'}`}>({l.delta > 0 ? '+' : '−'}{nombre(Math.abs(l.delta), 2)})</span></span>
         </li>
       ))}
     </ul>
@@ -224,12 +224,12 @@ export function ReportView({ r, overrides, onAppliquer, contexte = 'reforme' }: 
   }
   return (
     <div className="stack">
-      {r.bilan && <EnBref r={r} contexte={contexte} />}
+      {r.bilan && <EnBref r={r} contexte={contexte} overrides={overrides} />}
       {(r.avertissements ?? []).map((a) => (
         <div key={a} className="small muted" style={{ marginTop: -6 }}><strong>À noter :</strong> {a}
-          <Pourquoi titre="Pourquoi ?">Les très hauts revenus sont rares : la simulation les représente par quelques dizaines de foyers fictifs, calés sur
+          {/très hauts revenus/i.test(a) && <Pourquoi titre="Pourquoi ?">Les très hauts revenus sont rares : la simulation les représente par quelques dizaines de foyers fictifs, calés sur
             les statistiques fiscales officielles. Mais on ne sait pas, en données ouvertes, quelle part de leurs revenus vient des salaires
-            et quelle part de l'épargne : ce qu'une tranche d'impôt très haute rapporterait est donc incertain.</Pourquoi>
+            et quelle part de l'épargne : ce qu'une tranche d'impôt très haute rapporterait est donc incertain.</Pourquoi>}
         </div>
       ))}
       {r.equilibres && (

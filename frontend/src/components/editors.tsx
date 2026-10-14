@@ -4,6 +4,7 @@ import type { Regle, Tranche, Valeur } from '../lib/api'
 import { DOMAINE_TITRE, nombre, unite, valeur as fmt } from '../lib/format'
 import { useFetch } from '../lib/state'
 import { chercherRegles } from '../lib/recherche'
+import { AGE_TERME, estAgeLegal } from '../lib/retraite'
 import { Loading, Modal } from './ui'
 
 /** Éditeur de valeur adapté au type de la règle (nombre + curseur, oui/non, choix, barème). */
@@ -89,14 +90,30 @@ export function BaremeEditor({ value, onChange }: { value: Tranche[]; onChange: 
   )
 }
 
+// règles rangées dans le budget mais qu'on cherche aussi par thème (l'hôpital est dans « La santé » pour tout le monde)
+const AUSSI_DANS: Record<string, string[]> = {
+  sante: ['budget.secu.ondam.total'],
+  retraites: ['budget.secu.objectif_depenses.vieillesse'],
+}
+
 /** Fenêtre de recherche d'une règle à modifier. */
 export function RulePicker({ onPick, onClose, exclude, domaine = '' }: { onPick: (r: Regle) => void; onClose: () => void; exclude: string[]; domaine?: string }) {
   const { data, loading } = useFetch<{ regles: Regle[] }>('/api/regles?limit=2000')
   const [q, setQ] = useState('')
   const [dom, setDom] = useState(domaine)
   const [seulementSimulables, setSeulementSimulables] = useState(true)
-  const list = useMemo(() => chercherRegles((data?.regles ?? []).filter((r) => r.levier && !exclude.includes(r.id)
-      && (!dom || r.domaine === dom) && (!seulementSimulables || r.simulable)), q), [data, q, dom, seulementSimulables, exclude])
+  const list = useMemo(() => {
+    const base = (data?.regles ?? []).filter((r) => r.levier && (!dom || r.domaine === dom || AUSSI_DANS[dom]?.includes(r.id))
+      && (!seulementSimulables || r.simulable))
+    // l'âge légal, fixé génération par génération : une seule entrée, qui règle toutes les générations
+    const ages = base.filter((r) => estAgeLegal(r.id))
+    const tete = ages.find((r) => r.id === AGE_TERME)
+    const entrees = tete
+      ? [...base.filter((r) => !estAgeLegal(r.id)), { ...tete, titre: 'Âge légal de départ à la retraite (toutes générations)', mots: `retraite ${ages.map((a) => a.titre).join(' ')}` }]
+      : base
+    return chercherRegles(entrees, q)
+  }, [data, q, dom, seulementSimulables])
+  const deja = (id: string) => exclude.includes(id) || (estAgeLegal(id) && exclude.some(estAgeLegal))
   const domaines = useMemo(() => Array.from(new Set((data?.regles ?? []).map((r) => r.domaine))), [data])
   return (
     <Modal title="Quelle règle voulez-vous changer ?" onClose={onClose} width={820}>
@@ -118,10 +135,10 @@ export function RulePicker({ onPick, onClose, exclude, domaine = '' }: { onPick:
         <ul className="list" style={{ maxHeight: '58vh', overflowY: 'auto' }}>
           {list.slice(0, 200).map((r) => (
             <li key={r.id}>
-              <button className="preset" onClick={() => onPick(r)} style={{ border: 0, padding: '6px 4px' }}>
+              <button className="preset" onClick={() => (deja(r.id) ? onClose() : onPick(r))} style={{ border: 0, padding: '6px 4px' }}>
                 <div className="row between">
                   <strong style={{ display: 'inline' }}>{r.titre}</strong>
-                  <span className="badge">{fmt(r.valeur, r.unite, r.type)}</span>
+                  {deja(r.id) ? <span className="badge primary">déjà dans votre réforme</span> : <span className="badge">{fmt(r.valeur, r.unite, r.type)}</span>}
                 </div>
                 {r.explication && <div className="small ink2">{r.explication.length > 130 ? r.explication.slice(0, 127).replace(/\s+\S*$/, '') + '…' : r.explication}</div>}
                 <div className="small muted">{DOMAINE_TITRE[r.domaine] ?? r.domaine} · {r.theme}{r.simulable ? '' : ' · effets pas encore calculés'}</div>

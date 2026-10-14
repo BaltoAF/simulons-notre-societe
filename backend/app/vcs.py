@@ -587,8 +587,19 @@ def resume_mesures(sid: str, diff: list[dict]) -> dict:
         d["regle"].startswith("budget.etat.mission.") for d in equilibrage) else 0)
     # une règle de l'auteur ensuite ajustée pour équilibrer (ex. tous les taux d'impôt relevés) compte aussi comme ajout
     dernier = provenance(sid, BRANCHE_PRINCIPALE, {d["regle"] for d in principales}) if principales else {}
-    n_eq += sum(1 for d in principales if est_equilibrage(dernier.get(d["regle"])))
-    return {"mesures": mesures[:3], "nb_mesures": len(principales) - len(missions) + (1 if missions else 0), "nb_equilibrage": n_eq}
+    ajustees = [d for d in principales if est_equilibrage(dernier.get(d["regle"]))]
+    n_eq += len(ajustees)
+    # ce qui finance la proposition, dit en clair (les domaines du budget comptant pour un)
+    eq_missions = [d for d in equilibrage if d["regle"].startswith("budget.etat.mission.")]
+    financement = [d for d in equilibrage if not d["regle"].startswith("budget.etat.mission.")][:3]
+    financement += [{**d, "ajuste": True} for d in ajustees]
+    if eq_missions:
+        financement.append({"regle": "budget.etat", "titre": "Budget de l'État", "unite": "milliards_euros", "type": "nombre",
+                            "avant": round(sum(float(d["avant"] or 0) for d in eq_missions), 3),
+                            "apres": round(sum(float(d["apres"] or 0) - float(d["avant"] or 0) for d in eq_missions), 3),
+                            "budget_resume": True})
+    return {"mesures": mesures[:3], "nb_mesures": len(principales) - len(missions) + (1 if missions else 0), "nb_equilibrage": n_eq,
+            "financement": financement[:4]}
 
 
 def toggle_star(user: dict, sid: str) -> dict:

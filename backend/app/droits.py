@@ -78,7 +78,9 @@ def repondre(state: dict, profil: dict) -> list[dict]:
     r_age, r_trim = _tranche(AGE_LEGAL, ym), _tranche(TRIMESTRES, ym)
     if r_age and g(r_age) is not None:
         al = float(g(r_age))
-        txt = f"Âge légal de départ : {_ans_mois(al)}, soit à partir de {_date_plus(naissance, al)}."
+        quand = _date_plus(naissance, al)
+        de = "d'" if quand[0] in "aeiou" else "de "  # « à partir d'octobre », « de juin »
+        txt = f"Âge légal de départ : {_ans_mois(al)}, soit à partir {de}{quand}."
         if r_trim and g(r_trim) is not None:
             txt += f" Pour une retraite à taux plein, il faut {int(g(r_trim))} trimestres de cotisation"
             if g("retraites.taux_plein.age_automatique") is not None:

@@ -101,8 +101,20 @@ export default function Atelier() {
 
   useEffect(() => {
     if (params.get('budget') && rdata) { setBudgetEd(true); params.delete('budget'); setParams(params, { replace: true }) }
+    // ?regle=… : arriver directement sur le réglage d'une règle (ex. « Dépenser plus pour l'hôpital » depuis le budget)
+    const rid = params.get('regle')
+    if (rid && rdata) {
+      if (regles[rid]) ajouter(regles[rid])
+      params.delete('regle'); setParams(params, { replace: true })
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rdata])
+
+  // plus aucun changement : les anciens résultats n'ont plus de sens, on revient à l'écran de départ
+  useEffect(() => {
+    if (rdata && changes.length === 0 && !loading && (rapport || rapportPour)) { setRapport(null); setRapportPour(null) }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [rdata, changes.length])
 
   useEffect(() => {
     if (params.get('lancer') && !lance.current && rdata && Object.keys(draft.overrides).length) {
@@ -188,7 +200,7 @@ export default function Atelier() {
 
           <div className="card">
             <div className="card-head"><h3 style={{ margin: 0 }}>Votre réforme</h3><span className="badge primary">{nbChangements} changement{nbChangements > 1 ? 's' : ''}</span></div>
-            {changes.length === 0 && <p className="small muted">Rien n'est encore changé. Choisissez un thème, partez d'une idée, ou changez une règle précise.</p>}
+            {changes.length === 0 && ids.length === 0 && <p className="small muted">Rien n'est encore changé. Choisissez un thème, partez d'une idée, ou changez une règle précise.</p>}
             {missionsModifiees.length > 0 && (
               <div className="change-chip">
                 <div className="row between top" style={{ flexWrap: 'nowrap' }}>

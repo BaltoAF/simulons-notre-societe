@@ -2,7 +2,7 @@
 // regroupées par domaine, avec leur ampleur, leur auteur et leur justification.
 import { Link } from 'react-router-dom'
 import { ArrowRight, Bot, GitCommit, Quote } from 'lucide-react'
-import type { Changement, Tranche, Valeur } from '../lib/api'
+import type { Changement, Mesure, Tranche, Valeur } from '../lib/api'
 import { DOMAINE_TITRE, ecartLisible, nombre, relatif, valeur } from '../lib/format'
 import { milliards } from '../lib/humain'
 import { infoMission } from '../lib/missions'
@@ -64,6 +64,42 @@ function BudgetResume({ items }: { items: Diff[] }) {
 /** Nom court d'une règle pour une liste : « RSA », « CSG sur les revenus d'activité », « TVA ». */
 export function nomCourt(titre: string): string {
   return titre.split(' : ')[0].replace(/\s*\([^)]*\)\s*$/, '').trim()
+}
+
+// règles dont l'effet sur les prix n'est pas compté foyer par foyer (« votre porte-monnaie », gagnants et perdants)
+export const TAXES_CONSOMMATION = ['fiscalite.tva.', 'environnement_energie.accise.', 'sante.tabac.']
+export const estTaxeConsommation = (id: string) => TAXES_CONSOMMATION.some((p) => id.startsWith(p))
+
+/** Une mesure d'une proposition en une ligne simple : « RSA : 800 € (aujourd'hui 651,69 €) », « Taxe sur le gazole :
+ *  +11 centimes par litre », « Impôt sur le revenu : +1,8 point sur chaque tranche ». */
+export function ligneMesure(m: Mesure): string {
+  const av = Number(m.avant), ap = Number(m.apres)
+  if (m.budget_resume) {
+    const pct = av ? ` (${ap > 0 ? '+' : '−'}${nombre(Math.abs(ap / av * 100), 1)} % sur les ministères)` : ''
+    return `Budget de l'État : ${ap >= 0 ? `${milliards(ap)} de dépenses en plus` : `${milliards(Math.abs(ap))} d'économies`} par an${pct}`
+  }
+  if (Array.isArray(m.avant) && Array.isArray(m.apres)) {
+    const a = m.avant as Tranche[], b = m.apres as Tranche[]
+    if (m.ajuste) {
+      // barème relevé pour équilibrer : l'écart de taux, tranche par tranche
+      const ecarts = b.map((t) => { const o = a.find((x) => Math.abs(x.seuil - t.seuil) < 0.5); return o ? t.taux - o.taux : null })
+        .filter((d): d is number => d !== null && Math.abs(d) > 1e-9)
+      if (ecarts.length) {
+        const mn = Math.min(...ecarts), mx = Math.max(...ecarts)
+        const pt = (d: number) => `${d > 0 ? '+' : '−'}${nombre(Math.abs(d), 1)} point${Math.abs(d) >= 2 ? 's' : ''}`
+        return `Impôt sur le revenu : ${Math.abs(mx - mn) < 0.05 ? `${pt(mx)} sur chaque tranche` : `taux relevés de ${pt(mn)} à ${pt(mx)}`}`
+      }
+    }
+    const lignes = diffBareme(m.avant, m.apres) ?? []
+    return lignes.sort((x, y) => Number(y.startsWith('Nouvelle')) - Number(x.startsWith('Nouvelle')))[0] ?? nomCourt(m.titre)
+  }
+  if (m.regle.startsWith('environnement_energie.accise.') && Number.isFinite(av) && Number.isFinite(ap)) {
+    // €/hectolitre → centimes par litre, TVA comprise (le prix à la pompe)
+    const c = (ap - av) * 1.2
+    const carburant = m.regle.includes('gazole') ? 'de gazole' : "d'essence"
+    return `Prix du litre ${carburant} : ${c > 0 ? '+' : '−'}${nombre(Math.abs(c), 0)} centime${Math.abs(c) >= 1.5 ? 's' : ''} (taxe relevée)`
+  }
+  return `${nomCourt(m.titre)} : ${valeur(m.apres, m.unite, m.type)} (aujourd'hui ${valeur(m.avant, m.unite, m.type)})`
 }
 
 export function DiffSociete({ items, vide }: { items: Diff[]; vide: string }) {

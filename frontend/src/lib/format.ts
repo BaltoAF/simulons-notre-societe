@@ -40,8 +40,8 @@ export function ecartLisible(avant: number, apres: number, u: string): string {
 const UNITES: Record<string, (v: number) => string> = {
   euros: (v) => euros(v, Number.isInteger(v) ? 0 : 2),
   euros_mois: (v) => euros(v, 0) + ' / mois',
-  milliards_euros: (v) => nombre(v, Math.abs(v) < 10 ? 2 : 1) + ' Md€',
-  millions_euros: (v) => nombre(v, 0) + ' M€',
+  milliards_euros: (v) => nombre(v, Math.abs(v) < 10 ? 2 : 1) + (Math.abs(v) >= 2 ? ' milliards €' : ' milliard €'),
+  millions_euros: (v) => nombre(v, 0) + (Math.abs(v) >= 2 ? ' millions €' : ' million €'),
   pourcent: (v) => nombre(v, 2) + ' %',
   pourcent_part: (v) => nombre(v, 1) + ' %',
   points: (v) => nombre(v, 2) + ' pt',
@@ -75,7 +75,7 @@ export function uniteLisible(u: string): string {
 
 export function unite(u: string): string {
   const map: Record<string, string> = {
-    euros: '€', euros_mois: '€/mois', milliards_euros: 'Md€', pourcent: '%', ans: 'ans', mois: 'mois', jours: 'jours',
+    euros: '€', euros_mois: '€/mois', milliards_euros: 'milliards €', pourcent: '%', ans: 'ans', mois: 'mois', jours: 'jours',
     heures: 'h', smic: 'SMIC', parts: 'parts', enfants: 'enfants',
   }
   return map[u] ?? uniteLisible(u)

@@ -13,7 +13,7 @@ export const GLOSSAIRE: Record<string, Entree> = {
   enregistrement: { terme: 'Version enregistrée', definition: "Chaque fois que vous enregistrez des changements, une nouvelle version de votre proposition est créée, avec la date, l'auteur et la raison. On peut toujours revenir en arrière." },
   suggestion: { terme: 'Suggestion', definition: "Proposer vos changements à l'auteur d'une autre proposition. Il peut les accepter (les intégrer) ou les refuser." },
   regle: { terme: 'Règle', definition: 'Une valeur qui fixe le fonctionnement du pays : un taux d\'impôt, un montant d\'aide, un âge, une durée, une limitation de vitesse…' },
-  confiance: { terme: 'Indice de confiance', definition: 'Dit à quel point un chiffre est solide, sur 4 niveaux : très faible, faible, élevée, très élevée. Il dépend de la qualité des sources et de l\'accord entre les études.' },
+  confiance: { terme: 'Fiabilité (indice de confiance)', definition: 'Dit à quel point un chiffre est solide, sur 4 niveaux : très faible, faible, élevée, très élevée. Il dépend de la qualité des sources et de l\'accord entre les études.' },
   milliard: { terme: 'Milliard d\'euros (Md€)', definition: 'Mille millions d\'euros. Pour se représenter : 1 milliard d\'euros par an, c\'est environ 2,70 € par mois et par ménage en France.' },
   deficit: { terme: 'Déficit public', definition: 'Ce que l\'État, la Sécurité sociale et les collectivités dépensent en plus de ce qu\'ils gagnent dans l\'année. Il est comblé en empruntant, ce qui augmente la dette.' },
   dette: { terme: 'Dette publique', definition: 'Le total de ce qui a été emprunté au fil des années et pas encore remboursé. Chaque année, il faut en payer les intérêts.' },

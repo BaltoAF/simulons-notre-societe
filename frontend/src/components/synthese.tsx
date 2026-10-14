@@ -1,8 +1,10 @@
 // « En bref » et « Les équilibres » : le résultat d'une réforme raconté en phrases simples.
-import { useState, type ReactNode } from 'react'
+import { useMemo, useState, type ReactNode } from 'react'
 import { CheckCircle2, Coins, Globe2, Heart, Landmark, Leaf, ShieldAlert, Users, Wallet } from 'lucide-react'
-import { api, type Equilibre, type OptionCompensation, type Pilier, type Rapport, type Valeur } from '../lib/api'
-import { euros, nombre } from '../lib/format'
+import { api, type Equilibre, type OptionCompensation, type Pilier, type Rapport, type Regle, type Valeur } from '../lib/api'
+import { euros, nombre, valeur } from '../lib/format'
+import { departsDuFoyer, estAgeLegal } from '../lib/retraite'
+import { useApp, useFetch } from '../lib/state'
 import { CONFIANCE_FEMININ, equivalentCarbone, milliards, parMenageMois, phrase, tonnes } from '../lib/humain'
 import { Pourquoi, Terme } from './Terme'
 import { ConfidenceBadge, ErrorBox, Loading } from './ui'
@@ -53,17 +55,41 @@ function paradoxePauvrete(p: Pilier): boolean {
   return !!pauv && !!gagnants && pauv.valeur <= -0.02 && gagnants.valeur < 10 && (gagnants.perdants ?? 0) > 30
 }
 
-export function EnBref({ r, contexte = 'reforme' }: { r: Rapport; contexte?: Contexte }) {
+export function EnBref({ r, contexte = 'reforme', overrides }: { r: Rapport; contexte?: Contexte; overrides?: Record<string, Valeur> }) {
   const pv = r.pour_vous
+  const { situation } = useApp()
+  // l'âge de départ ne change pas le budget du mois : on dit plutôt quand le foyer pourra partir
+  const ages = Object.keys(overrides ?? {}).filter(estAgeLegal)
+  const { data: rd } = useFetch<{ regles: Regle[] }>(ages.length && situation && pv ? '/api/regles?limit=5000' : null)
+  const departs = useMemo(() => {
+    if (!rd || !situation) return []
+    const actuelles = Object.fromEntries(rd.regles.map((x) => [x.id, x.valeur]))
+    return departsDuFoyer(situation.adultes, situation.mois_naissance ?? 1, actuelles, { ...actuelles, ...overrides }).filter((d) => d.apres !== d.avant)
+  }, [rd, situation, overrides])
+  // SMIC relevé, salaire du foyer inchangé : le dire, sinon une baisse de la prime d'activité paraît absurde
+  const smicSansEffet = !!overrides?.['travail.smic.horaire_brut'] && !!situation?.adultes.some((a) => a.activite === 'salarie')
+    && !(pv?.detail ?? []).some((l) => l.id === 'salaire_net')
   return (
     <div className="card" style={{ borderColor: 'var(--primary)' }}>
       <h2 style={{ fontSize: '1.35rem', marginBottom: 12 }}>{contexte === 'societe' ? 'Ce que change cette proposition' : 'Ce que change votre réforme'}</h2>
       {pv && (
         <div className="row" style={{ marginBottom: 14, flexWrap: 'nowrap', alignItems: 'flex-start' }}>
           <Wallet size={22} color="var(--primary)" style={{ flexShrink: 0, marginTop: 4 }} />
-          <div className="phrase-xl">
-            {Math.abs(pv.delta_mois) < 0.5 ? <>Pour votre porte-monnaie : <span className="muted">rien ne change.</span></>
-              : <>Pour votre porte-monnaie : <span className={`delta ${pv.delta_mois > 0 ? 'pos' : 'neg'}`}>{pv.delta_mois > 0 ? '+' : '−'}{euros(Math.abs(pv.delta_mois))} par mois</span>.</>}
+          <div>
+            <div className="phrase-xl">
+              {Math.abs(pv.delta_mois) < 0.5 ? <>Pour votre porte-monnaie : <span className="muted">rien ne change.</span></>
+                : <>Pour votre porte-monnaie : <span className={`delta ${pv.delta_mois > 0 ? 'pos' : 'neg'}`}>{pv.delta_mois > 0 ? '+' : '−'}{euros(Math.abs(pv.delta_mois))} par mois</span>.</>}
+            </div>
+            {Math.abs(pv.delta_mois) >= 0.5 && (pv.detail ?? []).length > 0 && (
+              <div className="small ink2" style={{ marginTop: 2 }}>Ce qui bouge : {pv.detail!.map((l) => l.nature === 'prelevement'
+                ? `${l.libelle} ${l.delta_mois > 0 ? '+' : '−'}${euros(Math.abs(l.delta_mois))} à payer`
+                : `${l.libelle} ${l.delta_mois > 0 ? '+' : '−'}${euros(Math.abs(l.delta_mois))}`).join(' · ')}.</div>
+            )}
+            {smicSansEffet && <div className="small muted" style={{ marginTop: 2 }}>Votre salaire est au-dessus du nouveau SMIC : il ne change pas dans ce calcul. Les aides qui dépendent du SMIC, comme la prime d'activité, peuvent baisser.</div>}
+            {departs.map((d) => (
+              <div key={d.qui} className="small" style={{ marginTop: 4 }}><strong>{d.qui === 'Vous' ? 'Votre départ' : 'Le départ de votre conjoint(e)'} à la retraite : à {valeur(d.apres, 'ans')}, en {d.dateApres}</strong>
+                <span className="muted"> (au lieu de {valeur(d.avant, 'ans')}, en {d.dateAvant}).</span></div>
+            ))}
           </div>
         </div>
       )}
@@ -84,7 +110,9 @@ export function EnBref({ r, contexte = 'reforme' }: { r: Rapport; contexte?: Con
                   {p.indicateurs.slice(0, 3).map((i) => (
                     <div key={i.id} className="ligne-phrase small">
                       <span className={`puce-sens ${i.sens}`} />
-                      <span>{avecTermes(i.id === 'gagnants' && i.perdants != null ? `${nombre(i.valeur, 0)} % des ménages y gagnent, ${nombre(i.perdants, 0)} % y perdent (au moins 1 € par mois).` : phrase(i.id, i.valeur, i.unite))}</span>
+                      <span>{avecTermes(i.id === 'gagnants' && i.perdants != null ? `${nombre(i.valeur, 0)} % des ménages y gagnent, ${nombre(i.perdants, 0)} % y perdent (au moins 1 € par mois).` : phrase(i.id, i.valeur, i.unite))}
+                        {/* l'activité résulte de plusieurs mécanismes de sens contraires : on dit lesquels, sinon le chiffre semble contredire les autres */}
+                        {i.id === 'pib' && i.explication && Math.abs(i.valeur) >= 0.01 && <span className="muted"> Pourquoi : {i.explication}</span>}</span>
                     </div>
                   ))}
                 </div>
