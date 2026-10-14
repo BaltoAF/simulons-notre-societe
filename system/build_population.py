@@ -40,6 +40,8 @@ OUT = ROOT / "model" / "population" / "population.json"
 
 # ───────────────────────── hauts revenus ─────────────────────────
 SEUIL_HAUTS_REVENUS = 100_000
+# part de la masse des pensions versée à des retraités vivant à l'étranger (calcul Société 2.0 : effectifs DREES × pensions moyennes)
+PART_PENSIONS_ETRANGER = 0.017
 
 
 def rfr_approche(m: Menage) -> float:
@@ -161,6 +163,21 @@ class Generateur:
         self.sig_d = np.log(self.sal_d9 / self.sal_med) / 1.2816
         self.part_temps_partiel = m("emploi.part_temps_partiel", 17.7) / 100
         self.pension_moy = m("retraites.pension_moyenne_nette", 1541)
+        # Distribution des pensions de droit direct par sexe (déciles tirés de l'histogramme DREES de fin 2020), actualisée
+        # par l'évolution de la pension moyenne (2020 → dernière année publiée) : loi log-normale à deux pentes, comme les salaires.
+        moy = store.metriques.get("retraites.pension_dd_brute_moyenne_avec_majoration", {}).get("serie") or []
+        actu = (moy[-1]["valeur"] / moy[0]["valeur"]) if len(moy) >= 2 else 1.14
+        self.pensions = {}
+        for femme, sexe in ((True, "femmes"), (False, "hommes")):
+            d1, med, d9 = (m(f"retraites.pension_dd_brute_{k}_{sexe}", v) for k, v in
+                           zip(("d1", "mediane", "d9"), (281, 1012, 2241) if femme else (874, 1746, 3251)))
+            sig_g, sig_d = np.log(med / d1) / 1.2816, np.log(d9 / med) / 1.2816
+            # la forme vient des déciles ; le niveau est ajusté pour retrouver la pension moyenne officielle de la dernière année
+            # (une loi log-normale sous-estime le haut de la distribution : 8 % des retraités touchent plus de 3 000 € bruts)
+            z = np.random.default_rng(0).standard_normal(200_000)
+            moyenne_forme = float(np.mean(np.exp(np.where(z < 0, sig_g, sig_d) * z)))
+            cible = m(f"retraites.pension_dd_brute_moyenne_{sexe}", None)
+            self.pensions[femme] = ((cible / moyenne_forme) if cible else med * actu, sig_g, sig_d)
         self.loyer_prive = m("logement.loyer_mensuel_moyen_parc_prive", 594)
         self.loyer_social = m("logement.loyer_mensuel_moyen_parc_social", 403)
         smic = Menage(adultes=[Adulte(age=40, salaire_brut_mensuel=ENGINE._smic_mensuel())], logement="heberge")
@@ -176,15 +193,18 @@ class Generateur:
             eqtp *= self.rng.choice([0.5, 0.6, 0.8], p=[0.4, 0.2, 0.4])
         return float(eqtp)
 
-    def pension_nette(self, age: int, femme: bool) -> float:
-        # écart femmes-hommes des pensions de droit direct (DREES) ; dispersion modérée, plancher proche du minimum contributif
-        med = self.pension_moy * (0.82 if femme else 1.2) * (0.94 if age >= 80 else 1.0)
-        p = med * np.exp(0.30 * self.rng.standard_normal())
-        if femme and age >= 75 and self.rng.random() < 0.45:
-            p += 380  # pension de réversion (veuves), ordre de grandeur DREES
-        if self.rng.random() < 0.05:  # carrières très incomplètes : petites pensions, souvent complétées par l'ASPA
-            return float(self.rng.uniform(250, 850))
-        return float(max(900.0, p))
+    def pension_brute(self, age: int, femme: bool) -> float:
+        """Pension brute mensuelle : droit direct tiré de la distribution DREES par sexe, plus une éventuelle réversion."""
+        med, sig_g, sig_d = self.pensions[femme]
+        z = self.rng.standard_normal()
+        p = med * np.exp((sig_g if z < 0 else sig_d) * z)
+        # pension de réversion : surtout des veuves, de plus en plus fréquente avec l'âge. Calée pour retrouver l'écart entre
+        # pension totale et pension de droit direct publié par la DREES (fin 2024 : +285 € en moyenne pour les femmes, +30 € pour
+        # les hommes ; 41 Md€ de réversions par an)
+        proba = (0.05 if age < 65 else 0.15 if age < 75 else 0.40 if age < 85 else 0.65) if femme else 0.04
+        if self.rng.random() < proba:
+            p += (750 if femme else 550) * np.exp(0.4 * self.rng.standard_normal())
+        return float(max(60.0, p))
 
     def chomage_net(self) -> float:
         return float(max(650.0, 1220 * np.exp(0.33 * self.rng.standard_normal())))
@@ -215,7 +235,7 @@ class Generateur:
         elif act == "chomeur":
             a.chomage_brut_mensuel = ENGINE.net_to_brut("chomage", self.chomage_net())
         elif act == "retraite":
-            a.retraite_brute_mensuelle = ENGINE.net_to_brut("retraite", self.pension_nette(age, femme))
+            a.retraite_brute_mensuelle = round(self.pension_brute(age, femme), 2)
         elif act == "inactif" and 20 <= age < 65 and self.rng.random() < 0.40:
             a.handicap = True
         return a
@@ -363,6 +383,11 @@ def main():
     add("actifs_occupes", [sum(1 for a in x.adultes if a.activite == "salarie") for x in menages], m("emploi.actifs_occupes"))
     add("retraites", [sum(1 for a in x.adultes if a.activite == "retraite") for x in menages],
         m("emploi.retraites_droit_direct_residant_france"))
+    # masse des pensions versées aux résidents (DREES, moins ~1,7 % versés à l'étranger) : sans elle, les autres marges
+    # (niveaux de vie, minimum vieillesse) tirent les pensions vers le bas et la CSG des retraités est sous-estimée d'un tiers
+    if "retraites.masse_pensions" in store.metriques:
+        add("pensions_versees", [sum(a.retraite_brute_mensuelle for a in x.adultes) * 12 for x in menages],
+            m("retraites.masse_pensions") * 1e9 * (1 - PART_PENSIONS_ETRANGER))
     # Alignement sur les bénéficiaires de prestations : effectifs CNAF/DREES divisés par le taux de recours
     # (les montants versés restent des contrôles indépendants de la qualité de la simulation).
     from app.impacts.microsim import taux_recours
@@ -425,6 +450,12 @@ def main():
     ir_total = float((res["impot_revenu"] * 12 * w).sum())
     print(f"Contrôle : impôt sur le revenu (barème) simulé {ir_total / 1e9:.1f} Md€ (officiel DGFiP : {m('impot.ir.impot_net_total') / 1e9:.1f} Md€) ; "
           f"prélèvement forfaitaire sur l'épargne {float((res['pfu'] * 12 * w).sum()) / 1e9:.1f} Md€")
+    # retraites : masse des pensions et CSG prélevée dessus (contrôles indépendants, non imposés au calage)
+    pensions = np.array([sum(a.retraite_brute_mensuelle for a in x.adultes) for x in menages]) * 12
+    csg_pens = np.array([abs(float(c)) for c in res["csg_remplacement"]]) * 12 * (pensions > 0)
+    print(f"Contrôle retraites : pensions versées {float(pensions @ w) / 1e9:.1f} Md€ (officiel DREES "
+          f"{m('retraites.masse_pensions') or 0:.1f} Md€, dont ~1,7 % à l'étranger) ; CSG sur les pensions {float(csg_pens @ w) / 1e9:.1f} Md€ "
+          f"(officiel CCSS {m('fiscalite.csg.recettes_retraites') or 0:.1f} Md€)")
     if hauts:
         for t, (nb, ir_t) in controle_tmi.items():
             print(f"Contrôle tranche {t} % : {float(nb @ w):,.0f} foyers (officiel {m(f'impot.ir.taux_marginal_{t}.nombre_foyers'):,.0f}), "

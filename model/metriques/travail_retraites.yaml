@@ -500,6 +500,138 @@ metriques:
         source: drees-donnees-retraites-2024
         statut: provisoire
 
+  - id: retraites.pension_dd_brute_moyenne_avec_majoration
+    titre: "Pension moyenne de droit direct brute mensuelle, majoration pour enfants comprise (retraités résidant en France)"
+    explication: "Montant moyen mensuel brut de la retraite acquise par sa propre carrière, tous régimes, y compris la majoration pour trois enfants ou plus, en décembre. Sert à actualiser la distribution des pensions de 2020."
+    unite: euros
+    serie:
+      - date: "2020-12-31"
+        valeur: 1532
+        source: drees_rr2026_f05
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 1752
+        source: drees_rr2026_f05
+        statut: provisoire
+
+  - id: retraites.pension_dd_brute_moyenne_femmes
+    titre: "Pension moyenne de droit direct brute mensuelle des femmes retraitées résidant en France (majoration comprise)"
+    explication: "Fin 2024, tous régimes. Écart femmes-hommes : −36,7 % (−24,7 % en comptant la réversion)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 1383
+        source: drees_rr2026_f05
+        statut: provisoire
+
+  - id: retraites.pension_dd_brute_moyenne_hommes
+    titre: "Pension moyenne de droit direct brute mensuelle des hommes retraités résidant en France (majoration comprise)"
+    explication: "Fin 2024, tous régimes. Écart femmes-hommes : −36,7 % (−24,7 % en comptant la réversion)."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 2186
+        source: drees_rr2026_f05
+        statut: provisoire
+
+  - id: retraites.pension_totale_brute_moyenne
+    titre: "Pension moyenne totale brute mensuelle (droit direct, réversion et majoration), retraités résidant en France"
+    explication: "Pension de droit direct, plus la pension de réversion éventuelle et la majoration pour enfants. Femmes : 1 668 € ; hommes : 2 216 €."
+    unite: euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 1920
+        source: drees_rr2026_f05
+        statut: provisoire
+
+  - id: retraites.pension_dd_brute_d1_femmes
+    titre: "Pension de droit direct brute mensuelle des femmes retraitées résidant en France : 1er décile (10 % touchent moins)"
+    explication: "Calcul Société 2.0 par interpolation linéaire dans l'histogramme de la DREES (tranches de 100 €, fin 2020, majoration pour enfants comprise ; la DREES ne publie pas de déciles). Les valeurs très basses du bas de la distribution viennent des carrières courtes ou en partie à l'étranger : seules les pensions des régimes français comptent, sans minimum vieillesse. Précision : environ 50 €."
+    unite: euros
+    serie:
+      - date: "2020-12-31"
+        valeur: 281
+        source: drees_rr2026_f05
+        statut: estimation
+
+  - id: retraites.pension_dd_brute_mediane_femmes
+    titre: "Pension de droit direct brute mensuelle des femmes retraitées résidant en France : médiane"
+    explication: "Calcul Société 2.0 par interpolation linéaire dans l'histogramme de la DREES (tranches de 100 €, fin 2020, majoration pour enfants comprise ; la DREES ne publie pas de déciles). Les valeurs très basses du bas de la distribution viennent des carrières courtes ou en partie à l'étranger : seules les pensions des régimes français comptent, sans minimum vieillesse. Précision : environ 50 €."
+    unite: euros
+    serie:
+      - date: "2020-12-31"
+        valeur: 1012
+        source: drees_rr2026_f05
+        statut: estimation
+
+  - id: retraites.pension_dd_brute_d9_femmes
+    titre: "Pension de droit direct brute mensuelle des femmes retraitées résidant en France : 9e décile (10 % touchent plus)"
+    explication: "Calcul Société 2.0 par interpolation linéaire dans l'histogramme de la DREES (tranches de 100 €, fin 2020, majoration pour enfants comprise ; la DREES ne publie pas de déciles). Les valeurs très basses du bas de la distribution viennent des carrières courtes ou en partie à l'étranger : seules les pensions des régimes français comptent, sans minimum vieillesse. Précision : environ 50 €."
+    unite: euros
+    serie:
+      - date: "2020-12-31"
+        valeur: 2241
+        source: drees_rr2026_f05
+        statut: estimation
+
+  - id: retraites.pension_dd_brute_d1_hommes
+    titre: "Pension de droit direct brute mensuelle des hommes retraités résidant en France : 1er décile (10 % touchent moins)"
+    explication: "Calcul Société 2.0 par interpolation linéaire dans l'histogramme de la DREES (tranches de 100 €, fin 2020, majoration pour enfants comprise ; la DREES ne publie pas de déciles). Les valeurs très basses du bas de la distribution viennent des carrières courtes ou en partie à l'étranger : seules les pensions des régimes français comptent, sans minimum vieillesse. Précision : environ 50 €."
+    unite: euros
+    serie:
+      - date: "2020-12-31"
+        valeur: 874
+        source: drees_rr2026_f05
+        statut: estimation
+
+  - id: retraites.pension_dd_brute_mediane_hommes
+    titre: "Pension de droit direct brute mensuelle des hommes retraités résidant en France : médiane"
+    explication: "Calcul Société 2.0 par interpolation linéaire dans l'histogramme de la DREES (tranches de 100 €, fin 2020, majoration pour enfants comprise ; la DREES ne publie pas de déciles). Les valeurs très basses du bas de la distribution viennent des carrières courtes ou en partie à l'étranger : seules les pensions des régimes français comptent, sans minimum vieillesse. Précision : environ 50 €."
+    unite: euros
+    serie:
+      - date: "2020-12-31"
+        valeur: 1746
+        source: drees_rr2026_f05
+        statut: estimation
+
+  - id: retraites.pension_dd_brute_d9_hommes
+    titre: "Pension de droit direct brute mensuelle des hommes retraités résidant en France : 9e décile (10 % touchent plus)"
+    explication: "Calcul Société 2.0 par interpolation linéaire dans l'histogramme de la DREES (tranches de 100 €, fin 2020, majoration pour enfants comprise ; la DREES ne publie pas de déciles). Les valeurs très basses du bas de la distribution viennent des carrières courtes ou en partie à l'étranger : seules les pensions des régimes français comptent, sans minimum vieillesse. Précision : environ 50 €."
+    unite: euros
+    serie:
+      - date: "2020-12-31"
+        valeur: 3251
+        source: drees_rr2026_f05
+        statut: estimation
+
+  - id: retraites.masse_pensions
+    titre: "Masse des pensions de retraite versées (droits directs et dérivés, tous régimes obligatoires)"
+    explication: "Pensions versées par les régimes de base et complémentaires, majoration pour enfants comprise, hors retraite supplémentaire et minimum vieillesse : 354,2 Md€ de droit direct et 41,1 Md€ de réversion. Environ 1,7 % sont versés à des retraités vivant à l'étranger."
+    unite: milliards_euros
+    serie:
+      - date: "2023-12-31"
+        valeur: 370.5
+        source: drees_rr2026_f10
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 395.3
+        source: drees_rr2026_f10
+        statut: provisoire
+
+  - id: fiscalite.csg.recettes_retraites
+    titre: "Recettes de CSG sur les pensions de retraite"
+    explication: "CSG prélevée sur les pensions des régimes de retraite (90,6 % de la CSG sur les revenus de remplacement), tous affectataires."
+    unite: milliards_euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 24.812
+        source: ccss_oct2025
+        statut: definitif
+      - date: "2026-12-31"
+        valeur: 26.356
+        source: ccss_oct2025
+        statut: prevision
+
   - id: retraites.pension_moyenne_nette
     titre: "Pension moyenne de droit direct nette mensuelle, tous régimes (retraités résidant en France, fin d'année)"
     explication: "Montant moyen mensuel de la retraite de droit direct après prélèvements sociaux (CSG, CRDS, Casa, cotisation maladie sur les complémentaires), y compris majoration pour trois enfants ou plus. La valeur nette de fin 2024 n'a pas encore été publiée par la DREES."

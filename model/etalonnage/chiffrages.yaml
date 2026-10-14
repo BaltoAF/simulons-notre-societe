@@ -115,13 +115,13 @@ references:
     overrides:
       fiscalite.csg.salaires_taux: {plus: 1}
     valeur_md: 10.1
-    fourchette_md: null
+    fourchette_md: [8.5, 10.1]
     perimetre: statique
     annee: 2024
     comparabilite: bonne
     source_id: ipp_2025_ch2
     citation: "dont 10,1 Md€ issus de la CSG activité, 3,2 Md€ de la CSG remplacement et 1,3 Md€ de la CSG capital."
-    note: "Point de CSG non déductible de l'impôt sur le revenu. S'il était déductible, l'impôt sur le revenu baisserait d'environ 16 % du produit."
+    note: "10,1 milliards € pour un point non déductible de l'impôt sur le revenu. Le site, lui, rend le point supplémentaire déductible (comme la hausse de 2018) : l'impôt sur le revenu baisse alors, et l'IPP chiffre le gain net environ 16 % plus bas (soit environ 8,5 milliards € sur l'activité ; calcul Société 2.0 à partir de la variante déductible de l'IPP)."
 
   - id: csg_toutes_assiettes_plus_1_point
     domaine: fiscalite
@@ -131,13 +131,13 @@ references:
       fiscalite.csg.retraites_taux_plein: {plus: 1}
       fiscalite.csg.revenus_capital_taux: {plus: 1}
     valeur_md: 14.6
-    fourchette_md: null
+    fourchette_md: [12.3, 14.6]
     perimetre: statique
     annee: 2024
     comparabilite: moyenne
     source_id: ipp_2025_ch2
     citation: "Cette hausse générerait un produit supplémentaire de 14,6 Md€"
-    note: "10,1 milliards € sur l'activité, 3,2 sur les revenus de remplacement (tous les taux, pas seulement le taux plein), 1,3 sur le capital. Le site ne relève que le taux plein des pensions."
+    note: "10,1 milliards € sur l'activité, 3,2 sur les revenus de remplacement (tous les taux, pas seulement le taux plein), 1,3 sur le capital, pour un point non déductible. Si le point est déductible de l'impôt sur le revenu, comme le suppose le site, l'impôt baisse de 2,3 milliards € et le gain net tombe à 12,3 milliards € (variante de l'IPP). Le site ne relève que le taux plein des pensions."
 
   - id: ir_tous_taux_plus_1_point
     domaine: fiscalite
@@ -193,7 +193,7 @@ references:
     comparabilite: moyenne
     source_id: senat_rg_plf2014_t2
     citation: "permettre un gain budgétaire d'environ 1 milliard d'euros"
-    note: "Réforme de 2014 (revenus 2013), 1,26 million de foyers plafonnés. Rejouée sur le plafond de 2026 (1 807 € → 1 355 €) : la législation et les revenus ont changé depuis. Le site trouve environ 3,5 millions de foyers touchés : sa population simulée compte sans doute trop de familles aisées avec enfants (elle est calée sur l'impôt payé par tranche de revenu, pas encore sur la composition des foyers aisés)."
+    note: "Réforme de 2014 (revenus 2013), 1,26 million de foyers plafonnés. Rejouée sur le plafond de 2026 (1 807 € → 1 355 €) : la législation et les revenus ont changé depuis. Le site trouve environ 2,8 millions de foyers touchés, dont 2 millions avec un seul enfant : sa population simulée compte sans doute trop de familles aisées avec enfants (elle est calée sur l'impôt payé par tranche de revenu, pas encore sur la composition des foyers aisés)."
 
   - id: accise_gazole_plus_2_centimes
     domaine: environnement_energie

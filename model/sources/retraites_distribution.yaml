@@ -1,0 +1,40 @@
+# Sources de la distribution des pensions (calage de la population simulée) — recherche du Système du 15/10/2026.
+sources:
+  - id: drees_rr2026_f05
+    type: statistique_publique
+    editeur: "DREES"
+    titre: "Les retraités et les retraites – Édition 2026, fiche 05 « Le niveau des pensions » (PDF et fichier de données)"
+    url: "https://drees.solidarites-sante.gouv.fr/sites/default/files/2026-10/RR2026%20-%20Fiche%2005%20-%20Le%20niveau%20des%20pensions.xlsx"
+    auteurs: []
+    date_publication: "2026-10-14"
+    consulte_le: "2026-10-15"
+    note: "Pensions moyennes fin 2024 (droit direct 1 752 € bruts, pension totale 1 920 €) ; histogramme 2020 de la pension de droit direct par tranches de 100 €, par sexe (onglet F05_Graphique 4), dont le Système a tiré les déciles."
+
+  - id: drees_rr2026_f04
+    type: statistique_publique
+    editeur: "DREES"
+    titre: "Les retraités et les retraites – Édition 2026, fiche 04 « La revalorisation des pensions individuelles », encadré 2"
+    url: "https://drees.solidarites-sante.gouv.fr/sites/default/files/2026-10/RR2026%20-%20Fiche%2004%20-%20La%20revalorisation%20des%20pensions%20individuelles.pdf"
+    auteurs: []
+    date_publication: "2026-10-14"
+    consulte_le: "2026-10-15"
+    note: "Retraités de droit direct selon leur taux de CSG en 2020 : 36 % taux plein, 26 % taux médian, 15 % taux réduit, 23 % exonérés (résidents en France ou à l'étranger)."
+
+  - id: drees_rr2026_f10
+    type: statistique_publique
+    editeur: "DREES"
+    titre: "Les retraités et les retraites – Édition 2026, fiche 10 « Les masses financières relatives aux pensions de retraite »"
+    url: "https://drees.solidarites-sante.gouv.fr/sites/default/files/2026-10/RR2026%20-%20Fiche%2010%20-%20Les%20masses%20financi%C3%A8res%20relatives%20aux%20pensions%20de%20retraite.pdf"
+    auteurs: []
+    date_publication: "2026-10-14"
+    consulte_le: "2026-10-15"
+
+  - id: ccss_oct2025
+    type: rapport_institutionnel
+    editeur: "Commission des comptes de la Sécurité sociale (direction de la Sécurité sociale)"
+    titre: "Les comptes de la Sécurité sociale – Résultats 2024, prévisions 2025 et 2026 (octobre 2025), fiche 1.3 « La CSG »"
+    url: "https://www.securite-sociale.fr/files/live/sites/SSFR/files/CCSS-octobre%202025.pdf"
+    auteurs: []
+    date_publication: "2025-10-01"
+    consulte_le: "2026-10-15"
+    note: "Tableau 3 : CSG sur les revenus de remplacement en 2024 (M€) : 27 353, dont retraites 24 812, invalidité et indemnités journalières 1 838, chômage et activité partielle 561, autres 142. Prévision 2026 : 29 028, dont retraites 26 356. Jour de publication non trouvé."

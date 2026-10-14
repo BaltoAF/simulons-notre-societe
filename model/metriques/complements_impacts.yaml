@@ -136,6 +136,16 @@ metriques:
         source: cpl-tresor-eco-371
         statut: estimation
 
+  - id: fiscalite.csg.recettes_activite_remplacement
+    titre: "Recettes de CSG sur les revenus d'activité et de remplacement (hors capital et jeux)"
+    explication: "CSG sur les salaires et revenus d'activité (110,67 Md€) et sur les pensions, allocations chômage et indemnités journalières (28,26 Md€) en 2025, tous affectataires : la part calculée foyer par foyer dans la population simulée (la CSG sur le capital est comptée avec les prélèvements sur l'épargne)."
+    unite: milliards_euros
+    serie:
+      - date: "2025-12-31"
+        valeur: 138.93
+        source: ccss_oct2026
+        statut: provisoire
+
   - id: fiscalite.csg.recettes_capital
     titre: "Recettes de CSG sur les revenus du capital (patrimoine et placements)"
     explication: "CSG prélevée sur les revenus du patrimoine (revenus fonciers, plus-values…) et des placements (intérêts, dividendes, assurance-vie), tous affectataires. En 2025, le taux était de 9,2 % sur toutes ces assiettes."

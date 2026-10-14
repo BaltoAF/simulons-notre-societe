@@ -27,7 +27,8 @@ _LOCK = threading.Lock()
 # Postes budgétaires : (clé moteur, libellé, nature, métrique officielle de contrôle, facteur appliqué à la métrique)
 POSTES = [
     ("impot_revenu+pfu", "Impôt sur le revenu (y c. prélèvement forfaitaire)", "recette", "finances_publiques.recettes.impot_revenu", 1e9),
-    ("csg", "CSG", "recette", "finances_publiques.recettes.csg", 1e9),
+    # la CSG sur le capital est dans les prélèvements sur l'épargne : on compare avec la CSG d'activité et de remplacement
+    ("csg", "CSG", "recette", "fiscalite.csg.recettes_activite_remplacement", 1e9),
     ("crds", "CRDS", "recette", "impot.crds.recettes_nettes", 1.0),
     ("cotisations", "Cotisations sociales (salariales et patronales, nettes des allègements)", "recette",
      "finances_publiques.recettes.cotisations_sociales_effectives", 1e9),
