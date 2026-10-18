@@ -81,10 +81,13 @@ TRANCHES_HAUTS_REVENUS = [
 
 
 # Trois configurations de foyer par tranche (le nombre de parts change le taux marginal à revenu égal)
-FOYERS_HAUTS = ("couple_enfant", "couple", "seul")
+# configurations des foyers à hauts revenus, et leur dosage de départ (le calage l'ajuste) : couples avec 1, 2 ou 3 enfants
+# dans les proportions nationales des familles (Insee, recensement 2023 : 45 %, 39 %, 16 %), couples sans enfant, personnes seules
+FOYERS_HAUTS = ("couple_1enf", "couple_2enf", "couple_3enf", "couple", "seul")
+DOSAGE_HAUTS = {"couple_1enf": 0.454 / 3, "couple_2enf": 0.386 / 3, "couple_3enf": 0.16 / 3, "couple": 1 / 3, "seul": 1 / 3}
 
 
-def _menage_haut(rfr: float, bareme: float, foyer: str = "couple_enfant", age: int = 55) -> Menage:
+def _menage_haut(rfr: float, bareme: float, foyer: str = "couple_1enf", age: int = 55) -> Menage:
     """Foyer à haut revenu : revenus soumis au barème (en salaires de cadres) et le reste en revenus de l'épargne."""
     brut = max(0.0, bareme) / 0.70                             # retour au brut annuel (cotisations et abattement)
     epargne = round(max(0.0, rfr - bareme), 0)
@@ -94,13 +97,13 @@ def _menage_haut(rfr: float, bareme: float, foyer: str = "couple_enfant", age: i
     else:
         m = Menage(adultes=[Adulte(age=age, salaire_brut_mensuel=round(brut * 0.65 / 12, 2), cadre=True),
                             Adulte(age=age - 2, salaire_brut_mensuel=round(brut * 0.35 / 12, 2), cadre=True)],
-                   couple="marie", enfants=[12] if foyer == "couple_enfant" else [], logement="proprietaire",
+                   couple="marie", enfants=[14, 11, 8][:int(foyer[7])] if foyer.startswith("couple_") else [], logement="proprietaire",
                    revenus_capital_annuels=epargne)
     m.libelle = "hauts_revenus"
     return m
 
 
-def part_bareme_calee(rfr: float, impot_cible: float, foyer: str = "couple_enfant") -> float:
+def part_bareme_calee(rfr: float, impot_cible: float, foyer: str = "couple_1enf") -> float:
     """Part du revenu soumise au barème telle que l'impôt calculé par le moteur égale l'impôt moyen publié par la DGFiP
     pour la tranche (le reste étant taxé à part, comme l'épargne). Recherche sur une grille, en un seul calcul."""
     grille = np.linspace(0.0, 1.0, 41)
@@ -141,7 +144,7 @@ def menages_hauts_revenus(store: ModelStore, rng: np.random.Generator) -> list[t
             parts[foyer] = part_bareme_calee(rfr_moyen, impot / n, foyer)
             for rfr in niveaux:
                 out.append((_menage_haut(rfr, rfr * parts[foyer], foyer, age=int(rng.integers(45, 65))),
-                            float(n / (len(FOYERS_HAUTS) * len(niveaux)))))
+                            float(n * DOSAGE_HAUTS[foyer] / len(niveaux))))
         print(f"   tranche {lo:>9,} € : {n:>9,.0f} foyers, RFR moyen {rfr_moyen:>12,.0f} €, impôt moyen {impot / n:>10,.0f} €, part au barème "
               + " / ".join(f"{parts[f]:.0%}" for f in FOYERS_HAUTS))
     n_tot = sum(w for _, w in out)
@@ -287,13 +290,13 @@ class Generateur:
         elif t == "couple_avec":
             age = self.age_tranche([(22, 34), (35, 44), (45, 59)], [0.3, 0.4, 0.3])
             age2 = int(np.clip(age + self.rng.integers(-5, 4), 18, 70))
-            n = int(self.rng.choice([1, 2, 3, 4], p=[0.42, 0.40, 0.14, 0.04]))
+            n = int(self.rng.choice([1, 2, 3, 4, 5], p=[0.42, 0.37, 0.13, 0.06, 0.02]))
             m = Menage(adultes=[self.adulte(age, False), self.adulte(age2, True)],
                        couple=str(self.rng.choice(["marie", "pacse", "concubin"], p=[0.6, 0.14, 0.26])),
                        enfants=self.enfants(n, min(age, age2)))
         else:
             age = self.age_tranche([(20, 34), (35, 44), (45, 60)], [0.3, 0.4, 0.3])
-            n = int(self.rng.choice([1, 2, 3], p=[0.55, 0.32, 0.13]))
+            n = int(self.rng.choice([1, 2, 3, 4], p=[0.54, 0.31, 0.11, 0.04]))
             m = Menage(adultes=[self.adulte(age, True)], couple="seul", enfants=self.enfants(n, age))
         proxy = sum(a.salaire_brut_mensuel * 0.78 + a.retraite_brute_mensuelle * 0.9 + a.chomage_brut_mensuel * 0.9
                     for a in m.adultes)
@@ -383,6 +386,17 @@ def main():
     add("actifs_occupes", [sum(1 for a in x.adultes if a.activite == "salarie") for x in menages], m("emploi.actifs_occupes"))
     add("retraites", [sum(1 for a in x.adultes if a.activite == "retraite") for x in menages],
         m("emploi.retraites_droit_direct_residant_france"))
+    # familles selon le nombre d'enfants mineurs (Insee) : ce nombre fait les allocations familiales et l'avantage du
+    # quotient familial ; sans ces marges, les familles d'un seul enfant étaient trop nombreuses
+    mineurs = [sum(1 for e in x.enfants if e < 18) for x in menages]
+    if all(f"menages.familles.{c}" in store.metriques for c in ("1_enfant_mineur", "2_enfants_mineurs", "3_enfants_mineurs_ou_plus",
+                                                                   "4_enfants_mineurs_ou_plus")):
+        # 3 et 4 enfants ou plus séparés : les familles de 4 enfants touchent environ deux fois plus d'allocations que celles de 3
+        cibles = {1: m("menages.familles.1_enfant_mineur"), 2: m("menages.familles.2_enfants_mineurs"),
+                  3: m("menages.familles.3_enfants_mineurs_ou_plus") - m("menages.familles.4_enfants_mineurs_ou_plus"),
+                  4: m("menages.familles.4_enfants_mineurs_ou_plus")}
+        for k, cible in cibles.items():
+            add(f"familles_{k}{'+' if k == 4 else ''}_enfants_mineurs", [1.0 if (n == k if k < 4 else n >= 4) else 0.0 for n in mineurs], cible)
     # masse des pensions versées aux résidents (DREES, moins ~1,7 % versés à l'étranger) : sans elle, les autres marges
     # (niveaux de vie, minimum vieillesse) tirent les pensions vers le bas et la CSG des retraités est sous-estimée d'un tiers
     if "retraites.masse_pensions" in store.metriques:

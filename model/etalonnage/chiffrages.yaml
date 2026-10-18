@@ -193,7 +193,7 @@ references:
     comparabilite: moyenne
     source_id: senat_rg_plf2014_t2
     citation: "permettre un gain budgétaire d'environ 1 milliard d'euros"
-    note: "Réforme de 2014 (revenus 2013), 1,26 million de foyers plafonnés. Rejouée sur le plafond de 2026 (1 807 € → 1 355 €) : la législation et les revenus ont changé depuis. Le site trouve environ 2,8 millions de foyers touchés, dont 2 millions avec un seul enfant : sa population simulée compte sans doute trop de familles aisées avec enfants (elle est calée sur l'impôt payé par tranche de revenu, pas encore sur la composition des foyers aisés)."
+    note: "Réforme de 2014 (revenus 2013), 1,26 million de foyers plafonnés. Rejouée sur le plafond de 2026 (1 807 € → 1 355 €) : la législation et les revenus ont changé depuis. Ce n'est qu'un ordre de grandeur : le plafond de 2026 vaut déjà, en euros d'aujourd'hui, celui fixé en 2014 ; le baisser encore d'un quart touche les foyers plafonnés depuis 2014 en plus des nouveaux (le site en trouve environ 2,3 millions)."
 
   - id: accise_gazole_plus_2_centimes
     domaine: environnement_energie
