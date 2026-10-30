@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Installe « Simulons notre société » sur un serveur Ubuntu ou Debian neuf (Scaleway, OVH…). À lancer une seule fois, en root :
+# Installe « Simulons notre société » sur un serveur Ubuntu (24.04 ou 26.04) ou Debian neuf (Scaleway, OVH…). À lancer une seule fois, en root :
 #
 #   curl -fsSL https://raw.githubusercontent.com/BaltoAF/simulons-notre-societe/main/deploy/installer.sh | bash -s -- mon-domaine.fr
 #

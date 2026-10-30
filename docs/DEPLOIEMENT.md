@@ -19,7 +19,8 @@
 
 ## 1. Le serveur (une fois, environ 20 minutes)
 
-1. Louez un serveur virtuel (VPS) sous **Ubuntu 24.04**, avec **au moins 4 Go de mémoire** et 2 processeurs, chez OVHcloud
+1. Louez un serveur virtuel (VPS) sous **Ubuntu 24.04 ou 26.04** (« distribution uniquement » : ni Plesk, ni cPanel, ni
+   application préinstallée, le script installe tout), avec **au moins 4 Go de mémoire** et 2 processeurs, chez OVHcloud
    (gamme VPS : le VPS-1 suffit pour démarrer, le VPS-2 donne de la marge) ou Scaleway (Instances). Notez son adresse IP. Le site occupe environ 1,4 Go au repos et près de 2 Go pendant
    une simulation de réforme. Sur un serveur de 8 Go, ajoutez `SOCIETE_WORKERS=3` dans `/opt/simulons/deploy/.env` : les
    réformes se calculent alors environ trois fois plus vite.
