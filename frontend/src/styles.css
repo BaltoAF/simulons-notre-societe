@@ -561,3 +561,78 @@ html.texte-grand body { font-size: 19px; }
 .frequentation-barres { display: flex; align-items: flex-end; gap: 3px; height: 140px; margin-top: 8px; }
 .frequentation-barre { flex: 1; height: 100%; display: flex; align-items: flex-end; }
 .frequentation-barre span { display: block; width: 100%; min-height: 2px; background: var(--primary); border-radius: 3px 3px 0 0; }
+
+/* ═══════════ Material Design 3 : l'élévation fait la hiérarchie ═══════════
+   Niveau 0 : la page. Niveau 1 : les cartes (une ombre, aucune bordure). Ce qui est DANS une carte est posé à plat sur un
+   fond teinté : jamais une carte dans une carte. Ce qui est cliquable se reconnaît : il s'élève au survol (cartes) ou a la
+   forme d'un bouton (plein = action principale, tonal = secondaire, texte = mineure). Les étiquettes d'information sont
+   plates et rectangulaires, pour ne pas passer pour des boutons. */
+:root {
+  --e1: 0 1px 2px rgba(22, 27, 46, .16), 0 1px 3px 1px rgba(22, 27, 46, .08);
+  --e2: 0 1px 2px rgba(22, 27, 46, .18), 0 3px 8px 3px rgba(22, 27, 46, .10);
+  --e3: 0 4px 12px 4px rgba(22, 27, 46, .12), 0 1px 3px rgba(22, 27, 46, .18);
+  --conteneur: #f1f4fa;          /* fond d'une zone posée dans une carte */
+  --contour: #8a92a5;            /* bord des champs et des boutons « contour » */
+  --sur-tonal: #173c9c;          /* texte sur fond bleu clair */
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --e1: 0 1px 2px rgba(0, 0, 0, .45), 0 1px 3px 1px rgba(0, 0, 0, .25);
+    --e2: 0 1px 2px rgba(0, 0, 0, .5), 0 3px 8px 3px rgba(0, 0, 0, .3);
+    --e3: 0 4px 12px 4px rgba(0, 0, 0, .35), 0 1px 3px rgba(0, 0, 0, .5);
+    --conteneur: #1b2440; --contour: #8f99ae; --sur-tonal: #dbe4ff;
+  }
+}
+:root[data-theme="dark"] {
+  --e1: 0 1px 2px rgba(0, 0, 0, .45), 0 1px 3px 1px rgba(0, 0, 0, .25);
+  --e2: 0 1px 2px rgba(0, 0, 0, .5), 0 3px 8px 3px rgba(0, 0, 0, .3);
+  --e3: 0 4px 12px 4px rgba(0, 0, 0, .35), 0 1px 3px rgba(0, 0, 0, .5);
+  --conteneur: #1b2440; --contour: #8f99ae; --sur-tonal: #dbe4ff;
+}
+
+/* surfaces */
+.card { border: 0; box-shadow: var(--e1); border-radius: 16px; }
+.card.flat, .card.soft { box-shadow: none; background: var(--conteneur); }
+.card .card, .change-chip, .card .mission, .soutien { border: 0; box-shadow: none; background: var(--conteneur); border-radius: 12px; }
+.card.link, .preset { cursor: pointer; transition: box-shadow .15s ease, background-color .15s ease; }
+.card.link:hover, .preset:hover { transform: none; box-shadow: var(--e2); background-color: color-mix(in srgb, var(--primary) 4%, var(--surface)); }
+.preset { border: 0; box-shadow: var(--e1); border-radius: 14px; background: var(--surface); }
+.list .preset { box-shadow: none; background: transparent; }                  /* une liste de choix dans une fenêtre */
+.list .preset:hover { box-shadow: none; background: color-mix(in srgb, var(--primary) 8%, transparent); }
+/* les liserés de couleur des thèmes restent (ils passaient avant la règle « sans bordure » ci-dessus) */
+.card.carte-teinte, .preset.carte-teinte { border-top: 4px solid var(--t); }
+.card.kpi-teinte { border-top: 3px solid var(--t, var(--line)); }
+.card.en-bref { border-left: 5px solid var(--t, var(--primary)); }
+.modal { box-shadow: var(--e3); border: 0; }
+.menu-deroulant, .popover { border: 0; box-shadow: var(--e2); }
+.bouton-avis { border: 0; box-shadow: var(--e3); background: var(--primary-soft); color: var(--sur-tonal); opacity: 1; }
+.header { box-shadow: 0 1px 0 var(--line); border-bottom: 0; }
+
+/* boutons : plein, tonal (par défaut), contour, texte */
+.btn { border: 0; background: var(--primary-soft); color: var(--sur-tonal); min-height: 40px; padding: 8px 18px;
+  transition: background-color .15s ease, box-shadow .15s ease; }
+.btn:hover { background: color-mix(in srgb, var(--primary) 18%, var(--surface)); box-shadow: var(--e1); }
+.btn.primary { background: var(--primary); color: var(--primary-ink); }
+.btn.primary:hover { background: var(--primary-hover); box-shadow: var(--e1); }
+.btn.outline { background: transparent; border: 1px solid var(--contour); color: var(--primary); }
+.btn.ghost { background: transparent; color: var(--primary); box-shadow: none; }
+.btn.ghost:hover { background: color-mix(in srgb, var(--primary) 9%, transparent); box-shadow: none; }
+.btn.danger { background: transparent; color: var(--c-tres-faible); }
+.btn.small { min-height: 34px; padding: 5px 13px; }
+.btn.large { min-height: 48px; padding: 12px 26px; }
+.btn:disabled, .btn:disabled:hover { box-shadow: none; background: color-mix(in srgb, var(--ink) 8%, transparent); color: color-mix(in srgb, var(--ink) 45%, transparent); opacity: 1; }
+
+/* puces de choix (« Seul(e) / En couple »…) : des puces, pas des boutons ni des cartes */
+.choice { border: 1px solid var(--contour); border-radius: 8px; background: var(--surface); min-height: 40px; }
+.choice:hover { background: color-mix(in srgb, var(--primary) 6%, var(--surface)); border-color: var(--contour); }
+.choice.on { background: var(--primary-soft); color: var(--sur-tonal); border-color: transparent; }
+
+/* champs de saisie « contour » : le bord, plus marqué, dit qu'on peut écrire */
+input[type=text], input[type=number], input[type=email], input[type=password], input[type=search], select, textarea {
+  border-color: color-mix(in srgb, var(--contour) 75%, transparent); border-radius: 8px; }
+input:focus, select:focus, textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 1px var(--primary); }
+
+/* étiquettes d'information : plates, rectangulaires, discrètes */
+.badge { border: 0; border-radius: 6px; padding: 2px 8px; font-weight: 650; }
+.badge.beta { border-radius: 99px; }   /* celle-ci est cliquable */
+
