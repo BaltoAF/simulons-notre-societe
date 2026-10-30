@@ -5,10 +5,10 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
 
 ## À faire
 
-- **Fiabilité du minimum vieillesse** (vu en testant l'idée « Minimum vieillesse : +100 € ») : dépense simulée 3,1 Md€
-  contre 4,6 Md€ versés (DREES, 2024), d'où une confiance « très faible ». Cause probable : le taux de recours appliqué
-  (54 %) est compté en personnes, alors que ceux qui ne le demandent pas ont souvent de petits montants. Chercher une
-  source officielle du non-recours en montant (DREES) ou caler sur le nombre d'allocataires, plutôt qu'un coefficient au jugé.
+- **Fiabilité du minimum vieillesse, suite** : avec le recours en montant (fait le 30/10), dépense simulée 3,6 Md€ contre
+  4,6 Md€ versés (écart −22 %). Reste probablement la population synthétique : caler les retraités modestes sur les
+  allocataires de la DREES (fin 2023 : 723 020, dont 77 % seuls, âge moyen 74 ans ; fiche 26 des « Retraités et les
+  retraites », édition 2025) ; couples et 60-64 ans inaptes au travail sont peut-être sous-représentés.
 - **« Revaloriser les pensions »** : la règle `retraites.revalorisation.pensions_base` n'est reliée à aucun calcul (l'atelier
   le dit désormais). La relier au montant des pensions des ménages et de la population.
 - **Si la fréquentation augmente** (à soumettre au responsable) : la mémoire est déjà protégée, car un seul calcul de
@@ -25,6 +25,8 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
 
 ## Fait
 
+- 30/10/2026 (soir) : minimum vieillesse, le taux de recours appliqué à la dépense est compté en montant (DREES, Dossier
+  n° 97 : environ 38 % des sommes dues non versées, contre 50 % des personnes) ; écart au chiffre officiel de −32 % à −22 %.
 - 30/10/2026 (routine du jour, avis n° 1) : sur téléphone, menu « En savoir plus » lisible dans le menu ouvert ; bouton « A+ »
   rangé dans le menu avec le compte.
 - 30/10/2026 (soir) : atelier en une seule carte, un changement par ligne ; trois idées pour les retraités actuels

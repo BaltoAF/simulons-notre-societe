@@ -110,21 +110,27 @@ def _agreger(res: dict) -> dict[str, np.ndarray]:
 
 
 def taux_recours(store) -> dict[str, tuple[float, str]]:
-    """Taux de recours par prestation : depuis la fiche de preuves « non_recours_prestations » si elle existe."""
+    """Taux de recours par prestation : depuis la fiche de preuves « non_recours_prestations » si elle existe.
+    Il s'applique à une dépense : une estimation du non-recours « en montant » (part des sommes dues non versées) est donc
+    préférée à une estimation en personnes, qui le surestime quand les non-recourants ont de petits droits."""
     out = {k: (v, "valeur conventionnelle") for k, v in RECOURS_DEFAUT.items()}
     q = store.preuves.get("non_recours_prestations")
     if not q:
         return out
     for key, mots in MOTS_RECOURS.items():
-        vals = []
+        vals, en_montant = [], []
         for e in q.get("estimations", []):
             champ = (e.get("champ") or "").lower()
             debut = champ.split("—")[0]  # la prestation est nommée en tête du champ
             if isinstance(e.get("valeur"), (int, float)) and any(mo in debut or mo in champ[:60] for mo in mots):
-                vals.append(float(e["valeur"]))
+                (en_montant if "en montant" in debut else vals).append(float(e["valeur"]))
+        if en_montant:
+            vals, quoi = en_montant, "du non-recours en montant"
+        else:
+            quoi = "du non-recours"
         if vals:
             nr = float(np.median(vals))
-            out[key] = (max(0.05, min(1.0, 1 - nr / 100)), f"médiane de {len(vals)} estimation(s) du non-recours (fiche non_recours_prestations)")
+            out[key] = (max(0.05, min(1.0, 1 - nr / 100)), f"médiane de {len(vals)} estimation(s) {quoi} (fiche non_recours_prestations)")
     return out
 
 

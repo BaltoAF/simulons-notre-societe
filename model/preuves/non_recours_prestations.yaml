@@ -90,6 +90,16 @@ question:
       type_etude: descriptif
       revue_par_les_pairs: false
       note: "54 % fin 2012 avec la même méthode. Les hypothèses retenues tendent plutôt à majorer le recours, donc le non-recours réel pourrait être un peu plus élevé. Le non-recours est de 77 % quand le montant dû est inférieur à 100 €/mois. Les couples ne sont pas couverts."
+    - source: drees-dd97-non-recours-minimum-vieillesse
+      valeur: 37.8
+      intervalle_95: null
+      methode: "Même étude. Part des montants dus qui ne sont pas versés : 790 M€ non versés / (1 300 M€ versés aux allocataires + 790 M€), calcul du Système à partir des deux montants publiés (p. 15)"
+      champ: "Minimum vieillesse (ASPA/ASV), en montant — personnes seules de 65 ans ou plus résidant en France, hors liquidations de l'année, fin 2016"
+      pays: FR
+      annee_donnees: 2016
+      type_etude: descriptif
+      revue_par_les_pairs: false
+      note: "Les non-recourants auraient droit à 205 €/mois en moyenne, contre 337 €/mois perçus par les allocataires (tableau 4, p. 12) : ceux qui ne demandent pas l'allocation ont souvent de petits droits, donc le non-recours est plus faible en montant (environ 38 %) qu'en personnes (50 %). C'est ce taux en montant que le simulateur applique à la dépense. Les couples ne sont pas couverts."
     - source: cnav-broutin-niyomwungere-2021
       valeur: 41.5
       intervalle_95: null
