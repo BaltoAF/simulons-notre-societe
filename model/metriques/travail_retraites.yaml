@@ -618,6 +618,16 @@ metriques:
         source: drees_rr2026_f10
         statut: provisoire
 
+  - id: retraites.part_regimes_base_masse_pensions
+    titre: "Part des pensions versées par des régimes qui suivent la revalorisation des pensions de base (2024)"
+    explication: "Masse des pensions de 2024 (395,3 Md€) moins la part versée par les régimes complémentaires de salariés (Agirc-Arrco, Ircantec… : 26 %), qui fixent leur propre revalorisation. Les 6 % versés aux non-salariés mêlent base et complémentaire : ils sont comptés ici avec la base, ce qui surestime un peu la part concernée. Sert à appliquer une autre revalorisation des pensions de base aux retraites des ménages."
+    unite: pourcent
+    serie:
+      - date: "2024-12-31"
+        valeur: 74
+        source: drees_rr2026_f10
+        statut: estimation
+
   - id: fiscalite.csg.recettes_retraites
     titre: "Recettes de CSG sur les pensions de retraite"
     explication: "CSG prélevée sur les pensions des régimes de retraite (90,6 % de la CSG sur les revenus de remplacement), tous affectataires."

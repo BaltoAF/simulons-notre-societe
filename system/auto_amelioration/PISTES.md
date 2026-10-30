@@ -9,8 +9,6 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   4,6 Md€ versés (écart −22 %). Reste probablement la population synthétique : caler les retraités modestes sur les
   allocataires de la DREES (fin 2023 : 723 020, dont 77 % seuls, âge moyen 74 ans ; fiche 26 des « Retraités et les
   retraites », édition 2025) ; couples et 60-64 ans inaptes au travail sont peut-être sous-représentés.
-- **« Revaloriser les pensions »** : la règle `retraites.revalorisation.pensions_base` n'est reliée à aucun calcul (l'atelier
-  le dit désormais). La relier au montant des pensions des ménages et de la population.
 - **Test Kevin** (24 ans, livreur auto-entrepreneur, téléphone seul ; notes 3 / 2 / 3 sur 5, 30/10/2026). Fait : le statut
   d'auto-entrepreneur, les aides annoncées en tête de « Mes droits », âge et salaire non pré-remplis, prime d'activité
   expliquée simplement, « Pourquoi ce montant ? » à 44 px ; « Le budget » commence par « Sur 100 € d'argent public » en
@@ -36,6 +34,10 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
 
 ## Fait
 
+- 30/10/2026 (soir) : la revalorisation des pensions de base est chiffrée : appliquée à la part des retraites versée par
+  des régimes qui la suivent (74 %, DREES fiche 10, 2024 ; les complémentaires de salariés, 26 %, ont leur propre
+  revalorisation), pour les ménages et la population ; nouveau poste « Retraites versées » dans le budget simulé
+  (−1,7 % du chiffre officiel) ; idée toute prête « Geler les pensions de base » (projet de loi 2026, retiré).
 - 30/10/2026 (soir, test Kevin) : « Mes droits » accepte les auto-entrepreneurs (micro-entreprise : vente, services,
   libéral) : cotisations aux taux de Service Public Entreprendre (12,3 %, 21,2 %, 25,6 % du chiffre d'affaires, règles
   travail.micro_entreprise.*), impôt et aides calculés par le moteur sur le chiffre d'affaires déclaré.

@@ -20,6 +20,11 @@ LEVIERS_EXTENSION = {RU_MONTANT, RU_AGE, RU_IMPOSABLE}
 # au-delà de ce multiple de l'ancien SMIC, une hausse du SMIC ne se diffuse plus aux salaires (voir ajuster_salaires)
 PLAFOND_DIFFUSION = 1.8
 
+# revalorisation des pensions de base au 1er janvier : elle ne touche que la part « de base » des retraites (le reste vient
+# des régimes complémentaires, revalorisés à part) ; cette part est une métrique sourcée (DREES)
+REVALO_PENSIONS = "retraites.revalorisation.pensions_base"
+PART_BASE = "retraites.part_regimes_base_masse_pensions"
+
 
 @dataclass
 class Contexte:
@@ -60,7 +65,7 @@ class Contexte:
 
     @property
     def touche_moteur(self) -> bool:
-        return bool(self.spec) or bool(self.cache.get("extensions"))
+        return bool(self.spec) or bool(self.cache.get("extensions")) or REVALO_PENSIONS in self.overrides
 
     # ── extensions (dispositifs virtuels) ──
     def appliquer_extensions(self, res: dict, menages: list[Menage]) -> dict:
@@ -120,12 +125,32 @@ class Contexte:
             out.append(replace(m, adultes=adultes) if change else m)
         return out
 
+    def ajuster_pensions(self, menages: list[Menage]) -> list[Menage]:
+        """Une autre revalorisation des pensions de base change la part « de base » des retraites saisies (la retraite
+        complémentaire, revalorisée par ses propres régimes, ne bouge pas) : pension × (1 + part de base × écart de
+        revalorisation). La part de base est celle de la masse des pensions (DREES)."""
+        if REVALO_PENSIONS not in self.overrides:
+            return menages
+        ancien, nouveau = float(self.store.rule_value(REVALO_PENSIONS) or 0), float(self.overrides[REVALO_PENSIONS] or 0)
+        part = self.store.metric_value(PART_BASE)
+        if part is None or abs(nouveau - ancien) < 1e-9:
+            return menages
+        part = part / 100 if part > 1 else part
+        f = 1 + part * ((1 + nouveau / 100) / (1 + ancien / 100) - 1)
+        out = []
+        for m in menages:
+            if any(a.retraite_brute_mensuelle > 0 for a in m.adultes):
+                m = replace(m, adultes=[replace(a, retraite_brute_mensuelle=round(a.retraite_brute_mensuelle * f, 2))
+                                        if a.retraite_brute_mensuelle > 0 else a for a in m.adultes])
+            out.append(m)
+        return out
+
     def calculer(self, menages: list[Menage], reforme: bool) -> dict:
         """Résultats du moteur pour des ménages, avec ou sans la réforme (dispositifs virtuels inclus).
 
         La situation de référence (sans réforme) ne dépend que des ménages : elle est mise en cache.
         """
-        if not reforme or not self.spec:
+        if not reforme or not (self.spec or REVALO_PENSIONS in self.overrides):
             key = _menages_key(menages)
             with _BASE_LOCK:
                 base = _BASE_CACHE.get(key)
@@ -138,10 +163,10 @@ class Contexte:
                         _BASE_CACHE.pop(next(iter(_BASE_CACHE)))
             res = {k: v.copy() for k, v in base.items()}
         else:
-            menages = self.ajuster_salaires(menages)
+            menages = self.ajuster_pensions(self.ajuster_salaires(menages))
             # mémorisé aussi : le calcul rapide (foyer, ménages types) puis le calcul complet demandent les mêmes résultats
             # (les deux appels arrivent ensemble : le second attend le résultat du premier au lieu de recalculer)
-            key = _menages_key(menages) + "|" + self.spec.key
+            key = _menages_key(menages) + "|" + (self.spec.key if self.spec else "")
             with _BASE_LOCK:
                 cache = _REFORME_CACHE.get(key)
                 en_cours = _EN_COURS.get(key) if cache is None else None
@@ -152,7 +177,7 @@ class Contexte:
                 cache = en_cours.result()
             elif cache is None:
                 try:
-                    cache = ENGINE.compute(menages, self.spec)
+                    cache = ENGINE.compute(menages, self.spec if self.spec else None)
                     en_cours.set_result(cache)
                 except BaseException as e:
                     en_cours.set_exception(e)

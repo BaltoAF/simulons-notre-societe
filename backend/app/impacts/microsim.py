@@ -40,6 +40,7 @@ POSTES = [
     ("autres_famille", "Autres prestations familiales (CF, ASF, PAJE, ARS, bourses)", "depense", None, 1.0),
     ("aah", "Allocation aux adultes handicapés", "depense", "prestations.aah.montant_annuel", 1.0),
     ("aspa", "Minimum vieillesse (ASPA)", "depense", "prestations.minimum_vieillesse.montant_annuel", 1.0),
+    ("retraites", "Retraites versées (régimes de base et complémentaires)", "depense", "retraites.masse_pensions", 1e9),
     ("revenu_universel", "Revenu universel", "depense", None, 1.0),
 ]
 # Taux de recours par défaut (part des personnes éligibles qui demandent l'aide), si la base de preuves ne les fournit pas.
@@ -106,6 +107,7 @@ def _agreger(res: dict) -> dict[str, np.ndarray]:
         "allocations_familiales": res["allocations_familiales"],
         "autres_famille": res["complement_familial"] + res["asf"] + res["paje"] + res["ars"] + res["bourses"],
         "aah": res["aah"], "aspa": res["aspa"], "revenu_universel": res.get("revenu_universel", np.zeros_like(res["rsa"])),
+        "retraites": res.get("retraite_brute", np.zeros_like(res["rsa"])),
     }
 
 

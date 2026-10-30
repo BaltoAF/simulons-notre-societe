@@ -426,6 +426,7 @@ class Engine:
             out[k] = -out[k]
         out["revenus_capital"] = np.array([m.revenus_capital_annuels / 12 for m in menages])
         out["pension_alimentaire"] = np.array([m.pension_alimentaire_mensuelle for m in menages])
+        out["retraite_brute"] = np.array([sum(a.retraite_brute_mensuelle for a in m.adultes) for m in menages])   # dépense des caisses
         # micro-entrepreneurs : ce qui reste du chiffre d'affaires après les cotisations sociales (avant les frais réels)
         out["cotisations_micro"] = np.array([sum(a.ca_micro_mensuel * a.taux_cotisations_micro for a in m.adultes) for m in menages])
         out["revenu_micro"] = np.array([sum(a.ca_micro_mensuel for a in m.adultes) for m in menages]) - out["cotisations_micro"]

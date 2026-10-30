@@ -84,6 +84,8 @@ def simuler(store, overrides: dict, menage=None, approximations: list[str] | Non
     couvertes = {rid for rid in ctx.overrides if rid not in ctx.hors_moteur}
     # règles qui encadrent les équilibres (article 40, limite de déficit, budgets carbone) : traitées par les équilibres
     couvertes |= {rid for rid in ctx.overrides if rid.startswith(("budget.regles.", "environnement_energie.budget_carbone."))}
+    # la revalorisation des pensions de base s'applique aux retraites des ménages (Contexte.ajuster_pensions)
+    couvertes |= {rid for rid in ctx.overrides if rid == "retraites.revalorisation.pensions_base"}
     for mod in _modules():
         if modules and getattr(mod, "SECTION_ID", mod.__name__.replace("section_", "")) not in modules:
             continue

@@ -92,6 +92,13 @@ export const PRESETS: Preset[] = [
     tags: ['retraités', 'pauvreté'],
   },
   {
+    id: 'gel-pensions',
+    titre: 'Geler les pensions de retraite de base pendant un an',
+    description: "Pas de revalorisation au 1er janvier : prévu par le projet de budget de la Sécurité sociale pour 2026, puis retiré par les députés.",
+    overrides: { 'retraites.revalorisation.pensions_base': 0 },
+    tags: ['retraités', 'Sécurité sociale'],
+  },
+  {
     id: 'csg-retraites-6-6',
     titre: 'CSG des retraités : le taux plein ramené de 8,3 % à 6,6 %',
     description: "Le taux de CSG le plus élevé sur les pensions revient à son niveau d'avant 2018.",
