@@ -58,6 +58,20 @@ echo "SOCIETE_LIEN_DON=https://ko-fi.com/votre-page" >> /opt/simulons/deploy/.en
 
 Sans ce lien, le site ne propose aucun don.
 
+## La fréquentation
+
+Le site compte lui-même ses visites, sans outil tiers ni cookie, et sans garder d'adresse IP. Les robots et les navigateurs
+qui demandent à ne pas être suivis sont écartés. La page « Fréquentation » est privée : son lien, avec sa clé secrète, est
+affiché à la fin de l'installation. Si le serveur a été installé avant cette fonction, créez la clé puis affichez le lien :
+
+```bash
+cd /opt/simulons/deploy && echo "SOCIETE_CLE_FREQUENTATION=$(openssl rand -hex 16)" >> .env && ./suivre_github.sh --forcer
+```
+
+```bash
+. /opt/simulons/deploy/.env && echo "https://$DOMAINE/frequentation?cle=$SOCIETE_CLE_FREQUENTATION"
+```
+
 ## Au quotidien
 
 | Pour… | Où regarder |

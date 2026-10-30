@@ -30,6 +30,7 @@ const Connexion = lazy(() => import('./pages/Connexion'))
 const Glossaire = lazy(() => import('./pages/Glossaire'))
 const VosAvis = lazy(() => import('./pages/VosAvis'))
 const Soutenir = lazy(() => import('./pages/Soutenir'))
+const Frequentation = lazy(() => import('./pages/Frequentation'))
 
 function MenuPlus({ onVisite }: { onVisite: () => void }) {
   const [open, setOpen] = useState(false)
@@ -125,6 +126,7 @@ function Footer() {
         <div style={{ maxWidth: 560 }}>
           <div className="logo" style={{ marginBottom: 6 }}><GitFork size={18} /> Simulons notre société</div>
           <p className="small">Un bien commun numérique : code sous licence AGPL, données sous Licence Ouverte. Chaque chiffre est relié à ses sources.
+            Visites comptées de façon anonyme, par le site lui-même : ni cookie, ni outil tiers.
             Simulons notre société est un projet indépendant ; il ne représente aucune administration.</p>
         </div>
         <div className="small" style={{ display: 'grid', gap: 4 }}>
@@ -139,6 +141,21 @@ function Footer() {
       </div>
     </footer>
   )
+}
+
+/** Mesure d'audience maison : à chaque page, un signal anonyme au serveur du site (aucun outil tiers, aucun cookie). */
+function CompterVisite() {
+  const { pathname } = useLocation()
+  useEffect(() => {
+    if (pathname.startsWith('/frequentation')) return
+    const corps = JSON.stringify({ page: pathname, provenance: document.referrer })
+    try {
+      if (!navigator.sendBeacon?.('/api/visite', new Blob([corps], { type: 'application/json' }))) {
+        fetch('/api/visite', { method: 'POST', body: corps, headers: { 'Content-Type': 'application/json' }, keepalive: true }).catch(() => {})
+      }
+    } catch { /* la mesure ne doit jamais gêner la visite */ }
+  }, [pathname])
+  return null
 }
 
 function ScrollTop() {
@@ -162,6 +179,7 @@ export default function App() {
   return (
     <>
       <ScrollTop />
+      <CompterVisite />
       <Header onVisite={() => setVisite(true)} />
       {visite && <Bienvenue onClose={() => setVisite(false)} />}
       <main id="contenu" tabIndex={-1}>
@@ -191,6 +209,7 @@ export default function App() {
             <Route path="/glossaire" element={<Glossaire />} />
             <Route path="/vos-avis" element={<VosAvis />} />
             <Route path="/soutenir" element={<Soutenir />} />
+            <Route path="/frequentation" element={<Frequentation />} />
             <Route path="*" element={<div className="container page"><h1>Page introuvable</h1><Link to="/">Retour à l'accueil</Link></div>} />
           </Routes>
         </Suspense>

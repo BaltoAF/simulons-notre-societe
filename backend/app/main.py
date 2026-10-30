@@ -13,7 +13,7 @@ from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
-from . import auth, db, planificateur, retours, vcs
+from . import auth, db, frequentation, planificateur, retours, vcs
 from . import config
 from .config import FRONTEND_DIST, REFERENCE_SOCIETY_ID
 from .engine.household import Menage
@@ -30,6 +30,7 @@ log = logging.getLogger("societe")
 async def lifespan(_app: FastAPI):
     db.init_db()
     retours.init()
+    frequentation.init()
     store = get_store()
     # une nouvelle version déployée publie la loi actuelle mise à jour, puis met à jour les propositions sans conflit
     if vcs.ensure_reference(store).get("message"):
@@ -836,6 +837,31 @@ def avis_decider(decisions: list[DecisionIn], request: Request):
         except ValueError as e:
             erreurs.append({"id": d.id, "erreur": str(e)})
     return {"enregistrees": len(decisions) - len(erreurs), "erreurs": erreurs}
+
+
+class VisiteIn(BaseModel):
+    page: str = "/"
+    provenance: str = ""
+
+
+@app.post("/api/visite", status_code=204)
+def visite(body: VisiteIn, request: Request):
+    """Une page vue, comptée de façon anonyme (voir frequentation.py) ; ne renvoie rien."""
+    h = request.headers
+    frequentation.compter(body.page, body.provenance, _ip_visiteur(request), h.get("user-agent", ""), h.get("host", ""),
+                          h.get("dnt") == "1" or h.get("sec-gpc") == "1")
+    return Response(status_code=204)
+
+
+@app.get("/api/frequentation")
+def voir_frequentation(cle: str = "", jours: int = 30):
+    """Fréquentation des derniers jours. Privée : il faut la clé SOCIETE_CLE_FREQUENTATION du serveur (lien donné à
+    l'installation) ; sans cette clé configurée, la page n'existe pas."""
+    import secrets
+    attendue = os.environ.get("SOCIETE_CLE_FREQUENTATION", "")
+    if not attendue or not secrets.compare_digest(attendue, cle or ""):
+        raise HTTPException(404, "Ressource inconnue")
+    return frequentation.bilan(max(7, min(jours, 365)))
 
 
 @app.get("/api/avis/decisions")

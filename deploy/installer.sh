@@ -46,6 +46,8 @@ DOMAINE=$DOMAINE
 SOCIETE_JETON_AVIS=$(openssl rand -hex 32)
 FIN
 fi
+# clé de la page privée « Fréquentation » (mesure d'audience maison, anonyme)
+grep -q '^SOCIETE_CLE_FREQUENTATION=' .env || echo "SOCIETE_CLE_FREQUENTATION=$(openssl rand -hex 16)" >> .env
 mkdir -p donnees && chown 1000:1000 donnees
 chmod +x suivre_github.sh
 
@@ -67,3 +69,6 @@ echo "Pour la routine d'auto-amélioration, sur claude.ai (voir docs/DEPLOIEMENT
 echo "  SOCIETE_SITE_URL=https://$DOMAINE"
 echo "  SOCIETE_JETON_AVIS=$SOCIETE_JETON_AVIS"
 echo "(Pour les revoir plus tard : cat $DOSSIER/deploy/.env)"
+echo
+echo "Fréquentation du site (page privée, à garder dans vos favoris) :"
+echo "  https://$DOMAINE/frequentation?cle=$SOCIETE_CLE_FREQUENTATION"

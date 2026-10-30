@@ -556,3 +556,8 @@ html.texte-grand body { font-size: 19px; }
 .badge.beta { background: var(--accent-soft); color: var(--accent); border-color: transparent; cursor: pointer; font: inherit;
   font-size: .72rem; font-weight: 750; vertical-align: 3px; margin-left: 6px; }
 .badge.beta:hover { text-decoration: underline; }
+
+/* Fréquentation : barres des visiteurs par jour */
+.frequentation-barres { display: flex; align-items: flex-end; gap: 3px; height: 140px; margin-top: 8px; }
+.frequentation-barre { flex: 1; height: 100%; display: flex; align-items: flex-end; }
+.frequentation-barre span { display: block; width: 100%; min-height: 2px; background: var(--primary); border-radius: 3px 3px 0 0; }
