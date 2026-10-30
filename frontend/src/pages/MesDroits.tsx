@@ -8,6 +8,7 @@ import { PRESETS, resoudrePreset } from '../lib/presets'
 import { resumeSituation, situationVersMenage, useApp, useFetch, type AdulteSaisie, type SituationSaisie } from '../lib/state'
 import { ConfidenceBadge, ErrorBox, Loading, Notice } from '../components/ui'
 import { DroitsNonMonetaires } from '../components/DroitsNonMonetaires'
+import { ProchaineEtape } from '../components/Parcours'
 import { Terme } from '../components/Terme'
 import { PROFILS } from '../lib/profils'
 
@@ -61,7 +62,7 @@ function Stepper({ step }: { step: number }) {
 }
 
 export default function MesDroits() {
-  const { situation, setSituation, setDraft } = useApp()
+  const { situation, setSituation, setDraft, marquer } = useApp()
   const [s, setS] = useState<SituationSaisie>(situation ?? DEFAUT)
   const [step, setStep] = useState(situation ? 3 : 0)
   const [res, setRes] = useState<Resultat | null>(null)
@@ -79,7 +80,7 @@ export default function MesDroits() {
     try {
       setSituation(sit)
       const r = await api<Resultat>('/api/simulation/menage', { body: { menage: situationVersMenage(sit), montants: 'net' } })
-      setRes(r); setStep(3)
+      setRes(r); setStep(3); marquer('droits')
     } catch (e: any) { setErr(e.message) } finally { setLoading(false) }
   }
 
@@ -184,6 +185,7 @@ export default function MesDroits() {
                 ))}
                 <Notice>Ce sont vos <strong>droits théoriques</strong> selon la législation en vigueur, calculés par le moteur public OpenFisca-France. Pour une démarche officielle, utilisez les simulateurs de l'administration (mesdroitssociaux.gouv.fr, impots.gouv.fr).</Notice>
               </div>
+              <ProchaineEtape apres="droits" />
               <DroitsNonMonetaires age={s.adultes[0]?.age ?? 35} mois={s.mois_naissance ?? 1}
                 onMois={(m) => { const sit = { ...s, mois_naissance: m }; setS(sit); setSituation(sit) }} />
             </div>

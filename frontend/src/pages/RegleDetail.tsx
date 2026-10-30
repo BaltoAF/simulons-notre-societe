@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { AlertTriangle, BadgeCheck, Calculator, Cpu, FileCode2, GitFork } from 'lucide-react'
 import type { RegleDetail as RD, Tranche } from '../lib/api'
@@ -6,6 +7,7 @@ import { useApp, useFetch } from '../lib/state'
 import { ConfidenceBadge, ErrorBox, Loading, SourceItem } from '../components/ui'
 import { Pourquoi, Terme } from '../components/Terme'
 import { infoMission } from '../lib/missions'
+import { ProchaineEtape } from '../components/Parcours'
 
 // « CSS, art. L161-17-2 » → « Code de la sécurité sociale, art. L161-17-2 »
 const CODES: Record<string, string> = { CSS: 'Code de la sécurité sociale', CGI: 'Code général des impôts', CT: 'Code du travail',
@@ -28,8 +30,9 @@ function Bareme({ t }: { t: Tranche[] }) {
 export default function RegleDetail() {
   const { id } = useParams()
   const { data: r, loading, error } = useFetch<RD>(`/api/regles/${id}`)
-  const { setDraft } = useApp()
+  const { setDraft, marquer } = useApp()
   const nav = useNavigate()
+  useEffect(() => { marquer('source') }, [marquer])
   if (loading) return <div className="container page"><Loading /></div>
   if (error || !r) return <div className="container page"><ErrorBox message={error ?? 'Introuvable'} /></div>
   const srcById = Object.fromEntries(r.sources.map((s) => [s.id, s]))
@@ -75,6 +78,7 @@ export default function RegleDetail() {
             {r.virtuel && <div className="notice" style={{ marginTop: 12 }}>Ce dispositif n'existe pas aujourd'hui : il est proposé pour que chacun puisse l'essayer dans sa proposition et en mesurer les effets.</div>}
           </div>
 
+          <ProchaineEtape apres="source" />
           <div className="card">
             <h3>D'où vient cette valeur ?</h3>
             <p className="small muted">Les textes officiels qui la fixent : cliquez pour les consulter.</p>

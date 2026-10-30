@@ -266,8 +266,17 @@ def _metric_summary(m: dict) -> dict:
 
 
 @app.get("/api/metriques")
-def list_metriques(q: str | None = None, prefixe: str | None = None):
+def list_metriques(q: str | None = None, prefixe: str | None = None, ids: str | None = None):
     store = get_store()
+    if ids:
+        # plusieurs statistiques d'un coup (pages « Les grandes questions »), avec la source de la dernière valeur
+        out = []
+        for mid in ids.split(","):
+            m = store.metriques.get(mid.strip())
+            if m:
+                src = store.sources.get((m.get("derniere") or {}).get("source") or "", {})
+                out.append({**_metric_summary(m), "source": {k: src.get(k) for k in ("id", "titre", "editeur", "url")} if src else None})
+        return {"total": len(out), "metriques": out}
     items = sorted(store.metriques.values(), key=lambda m: m["id"])
     if prefixe:
         items = [m for m in items if m["id"].startswith(prefixe)]

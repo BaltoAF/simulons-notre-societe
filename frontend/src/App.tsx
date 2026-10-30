@@ -4,6 +4,7 @@ import { ChevronDown, GitFork, LogIn, LogOut, Menu, User, X } from 'lucide-react
 import { api } from './lib/api'
 import { useApp } from './lib/state'
 import { Loading, useClickOutside } from './components/ui'
+import { Bienvenue } from './components/Bienvenue'
 import Accueil from './pages/Accueil'
 
 const MesDroits = lazy(() => import('./pages/MesDroits'))
@@ -23,26 +24,28 @@ const SourceDetail = lazy(() => import('./pages/SourceDetail'))
 const Systeme = lazy(() => import('./pages/Systeme'))
 const Methode = lazy(() => import('./pages/Methode'))
 const Fiabilite = lazy(() => import('./pages/Fiabilite'))
+const Comprendre = lazy(() => import('./pages/Comprendre'))
 const Connexion = lazy(() => import('./pages/Connexion'))
 const Glossaire = lazy(() => import('./pages/Glossaire'))
 
-function MenuComprendre() {
+function MenuPlus({ onVisite }: { onVisite: () => void }) {
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
   const { pathname } = useLocation()
   useClickOutside(ref, () => setOpen(false))
   useEffect(() => setOpen(false), [pathname])
-  const actif = ['/regles', '/preuves', '/sources', '/systeme', '/methode', '/glossaire'].some((p) => pathname.startsWith(p))
+  const actif = ['/regles', '/preuves', '/sources', '/systeme', '/methode', '/glossaire', '/fiabilite'].some((p) => pathname.startsWith(p))
   return (
     <div className="popover-wrap" ref={ref}
       onKeyDown={(e) => { if (e.key === 'Escape' && open) { setOpen(false); (ref.current?.querySelector('button') as HTMLElement | null)?.focus() } }}
       onBlur={(e) => { if (!ref.current?.contains(e.relatedTarget as Node)) setOpen(false) }}>
       <button className={`btn small ghost ${actif ? 'active' : ''}`} onClick={() => setOpen((o) => !o)} aria-expanded={open}
         style={actif ? { background: 'var(--primary-soft)', color: 'var(--primary)' } : undefined}>
-        Comprendre <ChevronDown size={14} />
+        En savoir plus <ChevronDown size={14} />
       </button>
       {open && (
         <div className="menu-deroulant">
+          <button className="menu-item" onClick={() => { setOpen(false); onVisite() }}>Visite guidée<small>Revoir la prise en main du site, pas à pas</small></button>
           <Link to="/regles">Toutes les règles<small>Ce que dit la loi aujourd'hui, prouvé par les textes</small></Link>
           <Link to="/preuves">Ce que disent les études<small>Comment on estime les effets sur l'emploi, les prix…</small></Link>
           <Link to="/methode">Comment ça marche<small>La méthode et l'indice de confiance</small></Link>
@@ -56,7 +59,7 @@ function MenuComprendre() {
   )
 }
 
-function Header() {
+function Header({ onVisite }: { onVisite: () => void }) {
   const { user, setUser } = useApp()
   const nav = useNavigate()
   const [menu, setMenu] = useState(false)
@@ -73,10 +76,11 @@ function Header() {
         <button className="icon-btn menu-mobile" onClick={() => setMenu((m) => !m)} aria-label="Menu" aria-expanded={menu}>{menu ? <X size={22} /> : <Menu size={22} />}</button>
         <nav className={`nav ${menu ? 'ouvert' : ''}`} aria-label="Navigation principale">
           <NavLink to="/mes-droits">Mes droits</NavLink>
+          <NavLink to="/comprendre">Comprendre</NavLink>
           <NavLink to="/budget">Le budget</NavLink>
           <NavLink to="/atelier">Changer les règles</NavLink>
           <NavLink to="/societes">Les propositions</NavLink>
-          <MenuComprendre />
+          <MenuPlus onVisite={onVisite} />
         </nav>
         <div className={`user ${menu ? 'ouvert' : ''}`}>
           {user ? (
@@ -122,10 +126,12 @@ function ScrollTop() {
 }
 
 export default function App() {
+  const [visite, setVisite] = useState(false)
   return (
     <>
       <ScrollTop />
-      <Header />
+      <Header onVisite={() => setVisite(true)} />
+      {visite && <Bienvenue onClose={() => setVisite(false)} />}
       <main id="contenu" tabIndex={-1}>
         <Suspense fallback={<div className="container page"><Loading /></div>}>
           <Routes>
@@ -147,6 +153,8 @@ export default function App() {
             <Route path="/systeme" element={<Systeme />} />
             <Route path="/methode" element={<Methode />} />
             <Route path="/fiabilite" element={<Fiabilite />} />
+            <Route path="/comprendre" element={<Comprendre />} />
+            <Route path="/comprendre/:id" element={<Comprendre />} />
             <Route path="/connexion" element={<Connexion />} />
             <Route path="/glossaire" element={<Glossaire />} />
             <Route path="*" element={<div className="container page"><h1>Page introuvable</h1><Link to="/">Retour à l'accueil</Link></div>} />

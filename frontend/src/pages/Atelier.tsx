@@ -12,6 +12,7 @@ import { RulePicker, ValueEditor } from '../components/editors'
 import { BudgetEditor } from '../components/BudgetEditor'
 import { PROFILS } from '../lib/profils'
 import { ReportView } from '../components/report'
+import { ProchaineEtape } from '../components/Parcours'
 import { Terme } from '../components/Terme'
 import { ErrorBox, Modal, Notice } from '../components/ui'
 
@@ -19,7 +20,7 @@ const same = (a: unknown, b: unknown) => JSON.stringify(a) === JSON.stringify(b)
 const estMission = (id: string) => id.startsWith('budget.etat.mission.')
 
 export default function Atelier() {
-  const { draft, setDraft, situation, setSituation, user } = useApp()
+  const { draft, setDraft, situation, setSituation, user, marquer } = useApp()
   const [params, setParams] = useSearchParams()
   const nav = useNavigate()
   const { data: rdata } = useFetch<{ regles: Regle[] }>('/api/regles?limit=5000')
@@ -87,6 +88,7 @@ export default function Atelier() {
       const r = await total
       setRapport(r)
       setRapportPour(JSON.stringify(ov))
+      marquer('idee')
     } catch (e: any) { setErr(e.message) } finally { setLoading(false); setPhase(0) }
   }
   const appliquerCompensation = (o: Record<string, Valeur>) => {
@@ -356,6 +358,7 @@ export default function Atelier() {
               {' '}<a href="#equilibres">Choisir une solution ↓</a></div></div>
           )}
           {rapport && (!loading || rapport.partiel) && <ReportView r={rapport} overrides={draft.overrides} onAppliquer={appliquerCompensation} />}
+          {aJour && !loading && <div style={{ marginTop: 16 }}><ProchaineEtape apres="idee" /></div>}
           {!loading && !rapport && changes.length > 0 && (
             <div className="card soft" style={{ textAlign: 'center', padding: 32 }}>
               <Calculator size={36} color="var(--primary)" />

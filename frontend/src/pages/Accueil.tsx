@@ -1,5 +1,9 @@
 import { Link, useNavigate } from 'react-router-dom'
-import { ArrowRight, BadgeCheck, Calculator, GitFork, Landmark, Scale, Search, ShieldCheck } from 'lucide-react'
+import { ArrowRight, BadgeCheck, Calculator, GitFork, HelpCircle, Landmark, PlayCircle, Scale, Search, ShieldCheck } from 'lucide-react'
+import { useState } from 'react'
+import { Bienvenue } from '../components/Bienvenue'
+import { ParcoursDecouverte } from '../components/Parcours'
+import { QUESTIONS } from '../lib/questions'
 import { useApp, useFetch } from '../lib/state'
 import { PRESETS, resoudrePreset } from '../lib/presets'
 import type { Regle, Societe } from '../lib/api'
@@ -8,7 +12,9 @@ import { DomainIcon } from '../components/ui'
 import { Terme } from '../components/Terme'
 
 export default function Accueil() {
-  const { meta, setDraft } = useApp()
+  const { meta, setDraft, parcours } = useApp()
+  // première visite : la prise en main s'ouvre d'elle-même (une seule fois) ; ensuite, depuis le bouton ou le menu
+  const [visite, setVisite] = useState(!parcours.bienvenue_vue)
   const nav = useNavigate()
   const { data: soc } = useFetch<{ societes: Societe[] }>('/api/societes?tri=populaire')
   const { data: regles } = useFetch<{ regles: Regle[] }>('/api/regles?simulable=true&limit=2000')
@@ -29,6 +35,7 @@ export default function Accueil() {
           <h1>Comprenez les règles de la France. <em>Imaginez les vôtres.</em></h1>
           <p className="lead">Impôts, aides, retraites, climat : voyez ce que la loi vous donne, puis testez vos idées et leurs effets, pour vous et pour le pays.
             Chaque chiffre est prouvé et dit à quel point on peut s'y fier.</p>
+          <button className="btn" style={{ marginTop: 6 }} onClick={() => setVisite(true)}><PlayCircle size={17} /> Découvrir le site en 1 minute</button>
           <div className="grid cols-3" style={{ marginTop: 26 }}>
             <Link to="/mes-droits" className="card link" style={{ borderColor: 'var(--primary)' }}>
               <Calculator size={26} color="var(--primary)" />
@@ -46,6 +53,24 @@ export default function Accueil() {
               <p className="small ink2" style={{ margin: 0 }}>Testez une idée : ce qu'elle change pour vous, pour les finances publiques, le climat et le bien-être.</p>
             </Link>
           </div>
+        </div>
+      </section>
+
+      {visite && <Bienvenue onClose={() => setVisite(false)} />}
+
+      <section className="container" style={{ marginTop: 22 }}>
+        <ParcoursDecouverte />
+      </section>
+
+      <section className="container">
+        <div className="section-title"><h2><HelpCircle size={22} /> Comprendre en quelques minutes</h2><Link to="/comprendre">Toutes les questions <ArrowRight size={14} /></Link></div>
+        <div className="grid cols-3">
+          {QUESTIONS.map((q) => (
+            <Link key={q.id} to={`/comprendre/${q.id}`} className="card link" style={{ padding: 14 }}>
+              <strong>{q.titre}</strong>
+              <span className="small muted" style={{ display: 'block', marginTop: 4 }}>Les chiffres officiels, expliqués simplement <ArrowRight size={12} /></span>
+            </Link>
+          ))}
         </div>
       </section>
 

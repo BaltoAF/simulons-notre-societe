@@ -3,7 +3,8 @@
 import { Link } from 'react-router-dom'
 import { CheckCircle2, CircleAlert, CircleDot, ExternalLink } from 'lucide-react'
 import { date, nombre } from '../lib/format'
-import { useFetch } from '../lib/state'
+import { useEffect } from 'react'
+import { useApp, useFetch } from '../lib/state'
 import { ErrorBox, Loading } from '../components/ui'
 
 type Resultat = { simule_md: number; officiel_md: number; ecart_md: number; ecart_pct: number | null; verdict: 'concordant' | 'proche' | 'ecart'; erreur?: string }
@@ -29,6 +30,8 @@ const montant = (v: number) => `${v >= 0 ? 'Rapporte' : 'Coûte'} ${nombre(Math.
 
 export default function Fiabilite() {
   const { data, loading, error } = useFetch<Vue>('/api/etalonnage')
+  const { marquer } = useApp()
+  useEffect(() => { marquer('source') }, [marquer])
   if (loading) return <div className="container page"><Loading /></div>
   if (error || !data) return <div className="container page"><ErrorBox message={error ?? 'Indisponible'} /></div>
   const faits = data.references.filter((r) => r.resultat && !r.resultat.erreur)

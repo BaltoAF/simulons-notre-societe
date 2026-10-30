@@ -12,7 +12,16 @@ type Ctx = {
   setDraft: (d: Brouillon | ((d: Brouillon) => Brouillon)) => void
   situation: SituationSaisie | null
   setSituation: (s: SituationSaisie | null) => void
+  parcours: Parcours
+  marquer: (etape: EtapeParcours) => void
+  setParcours: (p: Parcours | ((p: Parcours) => Parcours)) => void
 }
+
+// Parcours de découverte : quatre missions concrètes, cochées toutes seules quand le visiteur les fait.
+// Gardé dans le navigateur (simple confort) : rien n'est envoyé au serveur.
+export type EtapeParcours = 'droits' | 'question' | 'idee' | 'source'
+export type Parcours = { bienvenue_vue: boolean; faites: EtapeParcours[]; masque: boolean }
+export const PARCOURS_VIDE: Parcours = { bienvenue_vue: false, faites: [], masque: false }
 
 export type Brouillon = {
   overrides: Record<string, Valeur>
@@ -65,6 +74,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [meta, setMeta] = useState<Meta | null>(null)
   const [draft, setDraftState] = useState<Brouillon>(() => load('societe.brouillon', BROUILLON_VIDE))
   const [situation, setSituationState] = useState<SituationSaisie | null>(() => migrerSituation(load('societe.situation', null)))
+  const [parcours, setParcoursState] = useState<Parcours>(() => ({ ...PARCOURS_VIDE, ...load('societe.parcours', PARCOURS_VIDE) }))
 
   useEffect(() => {
     api<{ utilisateur: Utilisateur | null }>('/api/auth/moi').then((r) => setUser(r.utilisateur)).catch(() => {})
@@ -83,8 +93,19 @@ export function AppProvider({ children }: { children: ReactNode }) {
     save('societe.situation', s)
   }, [])
 
-  const value = useMemo(() => ({ user, setUser, meta, draft, setDraft, situation, setSituation }),
-    [user, meta, draft, setDraft, situation, setSituation])
+  const setParcours = useCallback((p: Parcours | ((p: Parcours) => Parcours)) => {
+    setParcoursState((prev) => {
+      const next = typeof p === 'function' ? (p as (x: Parcours) => Parcours)(prev) : p
+      save('societe.parcours', next)
+      return next
+    })
+  }, [])
+  const marquer = useCallback((etape: EtapeParcours) => {
+    setParcours((p) => (p.faites.includes(etape) ? p : { ...p, faites: [...p.faites, etape] }))
+  }, [setParcours])
+
+  const value = useMemo(() => ({ user, setUser, meta, draft, setDraft, situation, setSituation, parcours, marquer, setParcours }),
+    [user, meta, draft, setDraft, situation, setSituation, parcours, marquer, setParcours])
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>
 }
 

@@ -1,8 +1,9 @@
+import { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { ExternalLink } from 'lucide-react'
 import type { Source } from '../lib/api'
 import { date, nombre } from '../lib/format'
-import { useFetch } from '../lib/state'
+import { useApp, useFetch } from '../lib/state'
 import { ErrorBox, Loading, SourceType } from '../components/ui'
 
 type D = Source & { citee_par: { type: string; id: string; titre: string }[]; fichier: string }
@@ -15,6 +16,8 @@ const LIB: Record<string, string> = { regle: 'Règle', preuve: 'Fiche d\'études
 export default function SourceDetail() {
   const { id } = useParams()
   const { data: s, loading, error } = useFetch<D>(`/api/sources/${encodeURIComponent(id ?? '')}`)
+  const { marquer } = useApp()
+  useEffect(() => { marquer('source') }, [marquer])
   if (loading) return <div className="container page"><Loading /></div>
   if (error || !s) return <div className="container page"><ErrorBox message={error ?? 'Introuvable'} /></div>
   return (

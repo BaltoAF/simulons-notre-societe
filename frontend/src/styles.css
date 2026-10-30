@@ -369,7 +369,7 @@ details.curieux[open] > summary { margin-bottom: 4px; }
 .modal { display: flex; flex-direction: column; max-height: 88vh; }
 .modal-tete { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 12px; flex-shrink: 0; }
 .modal-tete h2 { flex: 1; }
-.modal-corps { overflow-y: auto; min-height: 0; margin: 0 -4px; padding: 0 4px; }
+.modal-corps { overflow-y: auto; overflow-x: hidden; min-height: 0; margin: 0 -4px; padding: 0 4px; }
 .modal-pied { flex-shrink: 0; border-top: 1px solid var(--line); margin-top: 12px; padding-top: 12px; }
 @media (max-width: 640px) {
   .modal-backdrop { padding: 8px; }
@@ -429,4 +429,40 @@ main:focus { outline: none; }
   .table.comparaison td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: 650; color: var(--ink-3); }
   /* montant et badge de fiabilité : le badge passe sous le montant */
   .card-head { flex-wrap: wrap; }
+}
+
+/* Menu « En savoir plus » : l'entrée « Visite guidée » est un bouton, présenté comme les liens */
+.menu-deroulant .menu-item { all: unset; box-sizing: border-box; display: block; padding: 9px 12px; border-radius: 8px; color: var(--ink); font-weight: 600; cursor: pointer; }
+.menu-deroulant .menu-item:hover, .menu-deroulant .menu-item:focus-visible { background: var(--surface-2); outline: 2px solid var(--primary); outline-offset: -2px; }
+.menu-deroulant .menu-item small { display: block; color: var(--ink-3); font-weight: 400; }
+
+/* Prise en main (première visite) */
+.bienvenue { text-align: center; padding: 6px 4px 0; }
+.bienvenue-icone { display: inline-flex; align-items: center; justify-content: center; width: 64px; height: 64px; border-radius: 50%;
+  background: var(--primary-soft); color: var(--primary); }
+.bienvenue .points { display: flex; justify-content: center; gap: 8px; margin-top: 18px; }
+.bienvenue .points span { width: 9px; height: 9px; border-radius: 50%; background: var(--line-2); }
+.bienvenue .points span.on { background: var(--primary); width: 22px; border-radius: 6px; }
+
+/* Parcours de découverte */
+.parcours { border-color: var(--primary); }
+.barre-progres { height: 8px; border-radius: 6px; background: var(--surface-2); margin: 12px 0 8px; overflow: hidden; }
+.barre-progres span { display: block; height: 100%; background: var(--gain); border-radius: 6px; transition: width .3s; }
+.missions { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr)); }
+.mission { display: flex; gap: 10px; align-items: flex-start; padding: 10px; border-radius: 10px; border: 1px solid var(--line); color: var(--ink); height: 100%; }
+.mission:hover { text-decoration: none; background: var(--surface-2); }
+.missions li.active .mission { border-color: var(--primary); background: var(--primary-soft); }
+.missions li.faite .mission-etat { color: var(--gain); }
+.missions li.faite strong { text-decoration: line-through; text-decoration-color: var(--ink-3); }
+.mission-etat { color: var(--ink-3); flex-shrink: 0; margin-top: 1px; }
+
+/* Les grandes questions */
+.question-icone { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 12px;
+  background: var(--primary-soft); color: var(--primary); flex-shrink: 0; }
+.question-icone.grande { width: 54px; height: 54px; border-radius: 14px; }
+.prochaine-etape { align-items: center; }
+@media (max-width: 640px) { .prochaine-etape { flex-wrap: wrap; } }
+.kpi.kpi-long { font-size: 1.35rem; line-height: 1.25; }
+@media (max-width: 640px) {
+  .question-icone.grande { display: none; } /* sur téléphone, la place va au titre */
 }
