@@ -13,9 +13,9 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   le dit désormais). La relier au montant des pensions des ménages et de la population.
 - **Test Kevin** (24 ans, livreur auto-entrepreneur, téléphone seul ; notes 3 / 2 / 3 sur 5, 30/10/2026). Fait : le statut
   d'auto-entrepreneur, les aides annoncées en tête de « Mes droits », âge et salaire non pré-remplis, prime d'activité
-  expliquée simplement, « Pourquoi ce montant ? » à 44 px. Reste : « Le budget » : commencer par « Et vous ? » et nommer
-  les postes concrètement (retraites, hôpital) ; « cadenas », « COFOG », « MSA », « moteur » ; mots du lexique trop petits
-  à toucher ; intérêts de la dette 65 Md€ (Comprendre) contre 60 Md€
+  expliquée simplement, « Pourquoi ce montant ? » à 44 px ; « Le budget » commence par « Sur 100 € d'argent public » en
+  mots courants (retraites, santé, école…) et met « Et vous ? » en premier, sans « cadenas » ni « COFOG ». Reste :
+  « MSA », « moteur » ; mots du lexique trop petits à toucher ; intérêts de la dette 65 Md€ (Comprendre) contre 60 Md€
   (Budget) à expliquer ; vrai/faux « la moitié des Français ne paie pas d'impôts » : donner la part qui ne paie pas
   l'impôt sur le revenu.
 - **Si la fréquentation augmente** (à soumettre au responsable) : la mémoire est déjà protégée, car un seul calcul de

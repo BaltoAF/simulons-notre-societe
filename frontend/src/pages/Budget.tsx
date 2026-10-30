@@ -37,6 +37,43 @@ function Barre({ part, couleur = 'var(--primary)' }: { part: number; couleur?: s
   return <div className="bar-track" style={{ height: 10 }}><div className="bar-fill" style={{ width: `${Math.max(0.5, part * 100)}%`, background: couleur }} /></div>
 }
 
+// « Sur 100 € d'argent public » : les grands postes avec des mots de tous les jours (test Kevin : « services publics généraux »,
+// « affaires économiques » ne parlent à personne, et les retraites étaient cachées dans « protection sociale »). Les montants
+// viennent des données (comptes publics par fonction) ; seuls les noms sont choisis ici.
+const POSTES_CONCRETS: { nom: string; ids: string[] }[] = [
+  { nom: 'Retraites', ids: ['protection_sociale_vieillesse', 'protection_sociale_survivants'] },
+  { nom: 'Santé : hôpitaux, soins et médicaments remboursés', ids: ['sante'] },
+  { nom: 'Familles, chômage, invalidité, aides au logement et minima sociaux', ids: ['protection_sociale_maladie_invalidite', 'protection_sociale_famille',
+    'protection_sociale_chomage', 'protection_sociale_logement', 'protection_sociale_exclusion'] },
+  { nom: "Fonctionnement de l'État, des communes, et intérêts de la dette", ids: ['services_generaux'] },
+  { nom: 'Transports, énergie, agriculture, aides aux entreprises', ids: ['affaires_economiques'] },
+  { nom: 'École et université', ids: ['enseignement'] },
+  { nom: 'Armée, police, gendarmerie et justice', ids: ['defense', 'ordre_securite'] },
+  { nom: 'Logement, culture, sport et environnement', ids: ['logement_equipements', 'loisirs_culture', 'environnement'] },
+]
+
+function SurCent({ fonctions }: { fonctions: Fonction[] }) {
+  const md = new Map<string, number>()
+  for (const f of fonctions) { md.set(f.id, f.md); for (const d of f.detail ?? []) md.set(d.id, d.md) }
+  const total = fonctions.reduce((a, f) => a + f.md, 0)
+  const postes = POSTES_CONCRETS.map((p) => ({ nom: p.nom, md: p.ids.reduce((a, id) => a + (md.get(id) ?? 0), 0) })).filter((p) => p.md > 0).sort((a, b) => b.md - a.md)
+  if (!total || !postes.length) return null
+  const max = Math.max(...postes.map((p) => p.md))
+  return (
+    <div className="card" style={{ marginBottom: 20 }}>
+      <h2 style={{ fontSize: '1.25rem', marginBottom: 4 }}>Sur 100 € d'argent public dépensés</h2>
+      <p className="small muted" style={{ marginTop: 0 }}>Toutes les administrations : État, Sécurité sociale, collectivités ({fonctions[0]?.annee}).</p>
+      {postes.map((p) => (
+        <div key={p.nom} style={{ marginBottom: 8 }}>
+          <div className="row between small" style={{ flexWrap: 'nowrap', gap: 10 }}><span>{p.nom}</span><strong style={{ whiteSpace: 'nowrap' }}>{Math.round((p.md / total) * 100)} €</strong></div>
+          <Barre part={p.md / max} />
+        </div>
+      ))}
+      <p className="small muted" style={{ marginBottom: 0 }}>Le détail officiel, domaine par domaine, est plus bas.</p>
+    </div>
+  )
+}
+
 // Domaines de la dépense publique qu'on peut changer directement par une règle : [règle, libellé du lien]
 const LEVIERS_FONCTION: Record<string, [string, string]> = {
   sante: ['budget.secu.ondam.total', "Dépenser plus (ou moins) pour l'hôpital et les soins"],
@@ -143,9 +180,12 @@ export default function Budget() {
       <h1>Le budget de la France… et le vôtre</h1>
       <p className="lead ink2" style={{ maxWidth: 820 }}>D'où vient l'argent public, où il va, et quelle est votre part. Toutes les dépenses publiques sont comptées : État, Sécurité sociale et collectivités locales.</p>
       <div className="row" style={{ marginBottom: 16 }}>
-        <a className="btn small" href="#budget-etat"><Lock size={14} /> Les cadenas, et comment changer le budget ↓</a>
-        <a className="btn small" href="#et-vous"><Wallet size={14} /> Et vous ? ↓</a>
+        <a className="btn small primary" href="#et-vous"><Wallet size={14} /> Et vous : combien vous payez, ce que vous recevez ↓</a>
+        <a className="btn small" href="#budget-etat"><Landmark size={14} /> Changer le budget de l'État ↓</a>
       </div>
+
+      {/* la question qu'on se pose en arrivant (« où va mon argent ? ») avant les grands totaux */}
+      <SurCent fonctions={n.fonctions} />
 
       <div className="grid cols-3" style={{ marginBottom: 20 }}>
         <div className="card"><div className="kpi-label">L'argent public dépensé en {n.depenses?.date?.slice(0, 4)}</div><div className="kpi">{milliards(dep)}</div>
@@ -191,7 +231,7 @@ export default function Budget() {
             </div>
           ))}
           {!toutesFonctions && n.fonctions.length > 5 && <button className="btn ghost small" onClick={() => setToutesFonctions(true)}>Voir {n.fonctions.length - 5 > 1 ? `les ${n.fonctions.length - 5} autres domaines` : "l'autre domaine"}</button>}
-          <div className="small muted">Source : Eurostat / INSEE, comptes des administrations publiques (nomenclature internationale COFOG).</div>
+          <div className="small muted">Source : Eurostat / INSEE, comptes des administrations publiques, classés par grande fonction selon une règle commune à tous les pays.</div>
         </div>
         <div className="card">
           <h3><PiggyBank size={18} /> D'où vient l'argent</h3>
