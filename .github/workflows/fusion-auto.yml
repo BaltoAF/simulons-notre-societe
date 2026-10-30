@@ -19,7 +19,8 @@ jobs:
       startsWith(github.event.workflow_run.head_branch, 'claude/auto-amelioration-') &&
       github.event.workflow_run.head_repository.full_name == github.repository
     runs-on: ubuntu-latest
-    concurrency: fusion-main
+    # pas de file d'attente partagée : GitHub n'y garde qu'une tâche en attente et annule les autres ;
+    # si une autre publication passe juste avant, on refait simplement la fusion par-dessus (boucle ci-dessous)
     steps:
       - uses: actions/checkout@v4
         with:
@@ -44,8 +45,12 @@ jobs:
             exit 1
           fi
           # la branche a pu avancer depuis le test : on ne fusionne que ce qui a été testé
-          git merge --no-ff "$SHA" -m "Mise en ligne de l'auto-amélioration ($BRANCHE)"
-          git push origin main
+          for essai in 1 2 3 4 5; do
+            git fetch -q origin main && git reset -q --hard origin/main
+            git merge --no-ff "$SHA" -m "Mise en ligne de l'auto-amélioration ($BRANCHE)" && git push origin main && break
+            [ "$essai" = 5 ] && { echo "::error::Fusion impossible (conflit avec main)"; exit 1; }
+            sleep 20
+          done
           git push origin --delete "$BRANCHE" || true
           # les publications faites par GitHub Actions ne relancent pas les tests d'elles-mêmes : le serveur attend ce contrôle
           gh workflow run tests.yml --ref main

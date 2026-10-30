@@ -11,7 +11,7 @@ permissions:
   contents: write
   actions: write
 
-concurrency: fusion-main
+concurrency: systeme-nuit   # une seule mise à jour à la fois ; propre à ce workflow, pour ne bloquer aucune fusion
 
 jobs:
   systeme:
@@ -49,6 +49,10 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add model backend/requirements.txt
           git commit -q -m "Système : mise à jour du $(date +%d/%m/%Y)" -m "$(git diff --cached --stat | tail -1)"
-          git pull -q --rebase origin main
-          git push origin main
+          # si une amélioration est publiée au même moment, on se remet par-dessus et on réessaie
+          for essai in 1 2 3 4 5; do
+            git pull -q --rebase origin main && git push origin main && break
+            [ "$essai" = 5 ] && { echo "::error::Publication impossible (conflit avec main)"; exit 1; }
+            sleep 20
+          done
           gh workflow run tests.yml --ref main
