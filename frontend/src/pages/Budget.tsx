@@ -184,7 +184,7 @@ export default function Budget() {
           {(toutesRecettes ? n.recettes : n.recettes.slice(0, 5)).map((r) => (
             <div key={r.id} style={{ marginBottom: 12 }}>
               <div className="row between small"><strong>{r.titre}</strong><span>{milliards(r.md)} · {euros(r.par_habitant_an)}/hab.</span></div>
-              <Barre part={r.md / Math.max(...n.recettes.map((x) => x.md))} couleur="var(--accent)" />
+              <Barre part={r.md / Math.max(...n.recettes.map((x) => x.md))} couleur="var(--t8)" />
             </div>
           ))}
           {!toutesRecettes && n.recettes.length > 5 && <button className="btn ghost small" onClick={() => setToutesRecettes(true)}>Voir {n.recettes.length - 5 > 1 ? `les ${n.recettes.length - 5} autres recettes` : "l'autre recette"}</button>}

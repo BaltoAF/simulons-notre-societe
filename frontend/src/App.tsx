@@ -75,7 +75,7 @@ function Header({ onVisite }: { onVisite: () => void }) {
     <header className="header">
       <div className="container">
         <Link to="/" className="logo" aria-label="Simulons notre société, accueil">
-          <img src="/favicon.svg?v=2" alt="" width={30} height={30} /> Simulons notre société <span className="tag">bêta</span>
+          <img src="/favicon.svg?v=3" alt="" width={30} height={30} /> Simulons notre société <span className="tag">bêta</span>
         </Link>
         <button className="icon-btn menu-mobile" onClick={() => setMenu((m) => !m)} aria-label={menu ? 'Fermer le menu' : 'Ouvrir le menu'} aria-expanded={menu}>{menu ? <X size={22} /> : <Menu size={22} />}<span className="menu-libelle" aria-hidden="true">{menu ? 'Fermer' : 'Menu'}</span></button>
         <nav className={`nav ${menu ? 'ouvert' : ''}`} aria-label="Navigation principale">

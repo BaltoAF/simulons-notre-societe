@@ -1,22 +1,24 @@
 /* Simulons notre société — système de design. Lisible, accessible (contrastes AA), clair et sombre.
-   Couleurs : une « mosaïque » de 8 teintes de même intensité, réparties sur tout le cercle des couleurs ; chaque thème a la
-   sienne et aucune ne domine, pour qu'aucune ne fasse penser à un parti plutôt qu'à un autre. Boutons et liens : pétrole. */
+   Identité bleu-blanc-rouge (le sujet, c'est la société française) : fond blanc, bleu pour les actions, rouge pour les accents.
+   Bleu et rouge restent distincts de ceux des sites de l'État : le site est indépendant et ne doit pas s'y confondre.
+   Les thèmes gardent chacun une teinte (« mosaïque » de 8 teintes) pour les icônes et les liserés des cartes. */
 :root {
-  --bg: #f8f6f1;
+  --bg: #ffffff;
   --surface: #ffffff;
-  --surface-2: #f3f0e9;
-  --surface-3: #e9e4da;
-  --ink: #1c2230;
-  --ink-2: #444b5b;
-  --ink-3: #5d6576;
-  --line: #e7e2d8;
-  --line-2: #d5cec1;
-  --primary: #0b6b75;
+  --surface-2: #f4f6fb;
+  --surface-3: #e9edf6;
+  --ink: #161b2e;
+  --ink-2: #3f475e;
+  --ink-3: #5a627a;
+  --line: #e4e8f1;
+  --line-2: #cdd4e3;
+  --primary: #1f4fc4;        /* bleu */
   --primary-ink: #ffffff;
-  --primary-soft: #dff0ef;
-  --primary-hover: #08555d;
-  --accent: #b45309;
-  --accent-soft: #fdf0d9;
+  --primary-soft: #e8eefc;
+  --primary-hover: #183f9e;
+  --accent: #d6283b;         /* rouge */
+  --accent-soft: #fdebed;
+  --blanc: #ffffff;
   /* la mosaïque : couleur vive (icônes, bordures) et fond teinté */
   --t1: #0e7c7e; --t1-soft: #dcf1ef;   /* sarcelle */
   --t2: #2a62c4; --t2-soft: #e3ecfb;   /* azur */
@@ -40,8 +42,8 @@
   --c-tres-faible-soft: #fee2e2;
   --radius: 14px;
   --radius-sm: 9px;
-  --shadow: 0 1px 2px rgba(28, 34, 48, .06), 0 4px 16px rgba(28, 34, 48, .06);
-  --shadow-lg: 0 10px 40px rgba(28, 34, 48, .14);
+  --shadow: 0 1px 2px rgba(22, 27, 46, .06), 0 4px 16px rgba(22, 27, 46, .06);
+  --shadow-lg: 0 10px 40px rgba(22, 27, 46, .14);
   --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --maxw: 1180px;
@@ -50,13 +52,13 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #12161d; --surface: #1a1f28; --surface-2: #222833; --surface-3: #2b3240;
-    --ink: #eef0f3; --ink-2: #bfc5cf; --ink-3: #939aa7; --line: #2c333f; --line-2: #3b4351;
-    --primary: #5cc8cf; --primary-ink: #0d1418; --primary-soft: #183238; --primary-hover: #84d9de;
+    --bg: #0e1424; --surface: #151d31; --surface-2: #1c2640; --surface-3: #25304d;
+    --ink: #eef1f8; --ink-2: #c0c8db; --ink-3: #94a0b8; --line: #27324d; --line-2: #36425f;
+    --primary: #8aa8ff; --primary-ink: #0e1424; --primary-soft: #1d2b52; --primary-hover: #a9c0ff; --blanc: #eef1f8;
     --t1: #4fc9c6; --t1-soft: #15302f; --t2: #7ea6f5; --t2-soft: #1b2741; --t3: #a990f5; --t3-soft: #262043;
     --t4: #f07aaa; --t4-soft: #3a1a29; --t5: #f6906d; --t5-soft: #3a2119; --t6: #f2c055; --t6-soft: #372a12;
     --t7: #b4d36a; --t7-soft: #26301a; --t8: #5fd39a; --t8-soft: #15301f;
-    --accent: #fbbf24; --accent-soft: #3a2f12;
+    --accent: #ff6b7a; --accent-soft: #3d1a22;
     --gain: #4ade80; --gain-soft: #12301f; --loss: #fb923c; --loss-soft: #3a2210;
     --c-tres-eleve: #4ade80; --c-eleve: #22d3ee; --c-faible: #fbbf24; --c-tres-faible: #f87171;
     --c-tres-eleve-soft: #12301f; --c-eleve-soft: #0d2f36; --c-faible-soft: #3a2f12; --c-tres-faible-soft: #3b1414;
@@ -65,13 +67,13 @@
   }
 }
 :root[data-theme="dark"] {
-  --bg: #12161d; --surface: #1a1f28; --surface-2: #222833; --surface-3: #2b3240;
-  --ink: #eef0f3; --ink-2: #bfc5cf; --ink-3: #939aa7; --line: #2c333f; --line-2: #3b4351;
-  --primary: #5cc8cf; --primary-ink: #0d1418; --primary-soft: #183238; --primary-hover: #84d9de;
+  --bg: #0e1424; --surface: #151d31; --surface-2: #1c2640; --surface-3: #25304d;
+  --ink: #eef1f8; --ink-2: #c0c8db; --ink-3: #94a0b8; --line: #27324d; --line-2: #36425f;
+  --primary: #8aa8ff; --primary-ink: #0e1424; --primary-soft: #1d2b52; --primary-hover: #a9c0ff; --blanc: #eef1f8;
   --t1: #4fc9c6; --t1-soft: #15302f; --t2: #7ea6f5; --t2-soft: #1b2741; --t3: #a990f5; --t3-soft: #262043;
   --t4: #f07aaa; --t4-soft: #3a1a29; --t5: #f6906d; --t5-soft: #3a2119; --t6: #f2c055; --t6-soft: #372a12;
   --t7: #b4d36a; --t7-soft: #26301a; --t8: #5fd39a; --t8-soft: #15301f;
-  --accent: #fbbf24; --accent-soft: #3a2f12;
+  --accent: #ff6b7a; --accent-soft: #3d1a22;
   --gain: #4ade80; --gain-soft: #12301f; --loss: #fb923c; --loss-soft: #3a2210;
   --c-tres-eleve: #4ade80; --c-eleve: #22d3ee; --c-faible: #fbbf24; --c-tres-faible: #f87171;
   --c-tres-eleve-soft: #12301f; --c-eleve-soft: #0d2f36; --c-faible-soft: #3a2f12; --c-tres-faible-soft: #3b1414;
@@ -250,14 +252,9 @@ table.table { width: 100%; border-collapse: collapse; font-size: .93rem; }
 .table-wrap { overflow-x: auto; }
 
 /* ── héros ── */
-.hero { padding: 56px 0 40px; background:      /* des halos de plusieurs teintes : aucune ne domine */
-  radial-gradient(38rem 20rem at 6% 0%, color-mix(in srgb, var(--t1) 13%, transparent), transparent 70%),
-  radial-gradient(34rem 18rem at 94% 6%, color-mix(in srgb, var(--t4) 11%, transparent), transparent 70%),
-  radial-gradient(40rem 22rem at 55% 108%, color-mix(in srgb, var(--t6) 12%, transparent), transparent 72%),
-  radial-gradient(30rem 18rem at 100% 90%, color-mix(in srgb, var(--t3) 10%, transparent), transparent 70%); }
+.hero { padding: 56px 0 40px; }
 .hero h1 { font-size: clamp(2.1rem, 5vw, 3.6rem); max-width: 860px; }
-.hero h1 em { font-style: normal; color: var(--primary);
-  background: linear-gradient(90deg, var(--t1), var(--t3) 50%, var(--t5)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero h1 em { font-style: normal; color: var(--accent); }
 .hero .lead { font-size: 1.2rem; color: var(--ink-2); max-width: 720px; }
 .steps { counter-reset: s; }
 .step-num { width: 34px; height: 34px; border-radius: 50%; background: var(--t, var(--primary)); color: var(--primary-ink);
@@ -534,10 +531,9 @@ main:focus { outline: none; }
 .teinte-6 { --t: var(--t6); --t-soft: var(--t6-soft); }
 .teinte-7 { --t: var(--t7); --t-soft: var(--t7-soft); }
 .teinte-8 { --t: var(--t8); --t-soft: var(--t8-soft); }
-/* la signature du site : une fine bande des 8 teintes, en haut et en bas */
-.header::before, .footer::before { content: ""; display: block; height: 4px;
-  background: linear-gradient(90deg, var(--t1) 0 12.5%, var(--t2) 12.5% 25%, var(--t3) 25% 37.5%, var(--t4) 37.5% 50%,
-    var(--t5) 50% 62.5%, var(--t6) 62.5% 75%, var(--t7) 75% 87.5%, var(--t8) 87.5% 100%); }
+/* la signature du site : une fine bande bleu-blanc-rouge, en haut et en bas */
+.header::before, .footer::before { content: ""; display: block; height: 5px;
+  background: linear-gradient(90deg, var(--primary) 0 33.34%, var(--blanc) 33.34% 66.67%, var(--accent) 66.67% 100%); }
 .footer { padding-top: 0; }
 .footer::before { margin-bottom: 32px; }
 /* cartes de couleur : un liseré en haut et l'icône de la teinte */
