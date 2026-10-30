@@ -164,3 +164,53 @@ aides:
       ou:
         - { age_max: 30, logement: [locataire_prive, locataire_social, heberge] }
         - { activite: [salarie], salaire_max: 1710, logement: [heberge] }
+
+  - id: exoneration_taxe_fonciere
+    nom: "Exonération de taxe foncière (plus de 75 ans, Aspa, AAH)"
+    en_bref: "Plus de taxe foncière sur votre résidence principale si vous avez plus de 75 ans et des revenus modestes, ou si vous touchez le minimum vieillesse ou l'AAH."
+    pourquoi_vous: "Vous êtes propriétaire et, d'après votre âge et vos revenus (ou votre droit au minimum vieillesse ou à l'AAH), vous remplissez peut-être les conditions. Le site estime vos revenus : le revenu fiscal de référence exact figure sur votre avis d'impôt."
+    pour_qui: "Propriétaires de leur résidence principale qui avaient plus de 75 ans au 1er janvier 2026 et un revenu fiscal de référence 2025 d'au plus 12 793 € pour une part (16 209 € pour une part et demie, 19 625 € pour deux parts, puis 3 416 € de plus par demi-part ; plafonds plus élevés outre-mer). Quel que soit l'âge : les personnes qui touchent le minimum vieillesse (Aspa) ou l'allocation supplémentaire d'invalidité (ASI), sans condition de revenus, et celles qui touchent l'AAH, sous les mêmes plafonds. Depuis 2023, vivre avec d'autres personnes n'empêche plus l'exonération."
+    ce_que_ca_apporte: "Vous ne payez plus la taxe foncière de votre résidence principale. La taxe d'enlèvement des ordures ménagères, sur le même avis, reste à payer. Si vous perdez le droit, l'exonération continue 2 ans, puis la taxe revient en deux étapes."
+    ou_la_demander: "En principe, rien à faire : elle est accordée de plein droit d'après votre déclaration de revenus et apparaît sur votre avis de taxe foncière. Si elle n'y figure pas alors que vous remplissez les conditions, contactez le centre des Finances publiques indiqué sur l'avis (cadre « Vos démarches »). En maison de retraite, votre ancien logement peut rester exonéré s'il n'est ni loué ni prêté : demandez-le à ce même centre."
+    url_officielle: "https://www.service-public.gouv.fr/particuliers/vosdroits/F59"
+    source_id: sp-f59
+    sources_complementaires: [impots-exonerations-degrevements, impots-faq-age-taxe-fonciere, bofip-boi-if-tfb-10-55-10, bofip-boi-if-tfb-10-55-20]
+    criteres:
+      logement: [proprietaire]
+      ou:
+        - { age_min: 75, rfr_par_uc_max: 12793 }
+        - { calculee: aspa }
+        - { calculee: aah, rfr_par_uc_max: 12793 }
+    rappel:
+      criteres: { calculee: aspa, age_max: 75 }
+      texte: "Avant 75 ans, c'est le fait de toucher le minimum vieillesse qui donne droit à l'exonération : si vous ne le touchez pas encore, demandez-le d'abord (voir « Minimum vieillesse »)."
+
+  - id: reduction_taxe_fonciere_65_75
+    nom: "Réduction de 100 € de taxe foncière (65 à 75 ans)"
+    en_bref: "100 € de moins chaque année sur la taxe foncière de votre résidence principale, entre 65 et 75 ans, si vos revenus sont modestes."
+    pourquoi_vous: "Vous êtes propriétaire, vous avez entre 65 et 75 ans et vos revenus semblent sous le plafond (12 793 € de revenu fiscal de référence pour une part). Le site l'estime : le chiffre exact figure sur votre avis d'impôt."
+    pour_qui: "Propriétaires de leur résidence principale qui avaient entre 65 et 75 ans au 1er janvier 2026, avec un revenu fiscal de référence 2025 d'au plus 12 793 € pour une part (19 625 € pour deux parts, puis 3 416 € de plus par demi-part ; plafonds plus élevés outre-mer). Pour un couple marié ou pacsé, il faut que le logement soit commun, ou qu'il appartienne à celui des deux qui a l'âge requis."
+    ce_que_ca_apporte: "100 € de moins sur la taxe foncière, chaque année (toute la taxe si elle fait moins de 100 €). Une seule réduction par logement, même à plusieurs propriétaires."
+    ou_la_demander: "Rien à faire : la réduction est accordée d'office et figure sur votre avis de taxe foncière. Si elle manque alors que vous remplissez les conditions, contactez le centre des Finances publiques indiqué sur l'avis (cadre « Vos démarches »)."
+    url_officielle: "https://www.service-public.gouv.fr/particuliers/vosdroits/F59"
+    source_id: sp-f59
+    sources_complementaires: [impots-exonerations-degrevements, bofip-boi-if-tfb-10-55-40]
+    criteres: { age_min: 65, age_max: 75, logement: [proprietaire], rfr_par_uc_max: 12793 }
+    rappel:
+      criteres: { calculee: aspa }
+      texte: "Si vous touchez le minimum vieillesse (Aspa), ce ne sont pas 100 € de moins : vous ne payez plus du tout la taxe foncière de votre résidence principale."
+
+  - id: maprimeadapt
+    nom: "MaPrimeAdapt' (adapter son logement à l'âge)"
+    en_bref: "L'Anah paie 50 % ou 70 % des travaux pour adapter votre logement à l'âge ou au handicap : douche à la place de la baignoire, monte-escalier, rampe d'accès…"
+    pourquoi_vous: "Vous (ou une personne de votre foyer) avez 70 ans ou plus et les revenus du foyer semblent sous le plafond (22 259 € de revenu fiscal de référence par an pour une personne seule hors Île-de-France). Le site l'estime : le chiffre exact figure sur votre avis d'impôt."
+    pour_qui: "Propriétaires qui habitent leur logement, et locataires du parc privé avec l'accord du propriétaire, quand une personne du foyer a 70 ans ou plus, ou de 60 à 69 ans avec une perte d'autonomie évaluée par un professionnel, ou un taux d'incapacité d'au moins 50 %, ou la prestation de compensation du handicap. Les revenus de tout le foyer s'additionnent : en 2026, au plus 22 259 € par an pour une personne seule hors Île-de-France (32 553 € pour deux), 29 253 € en Île-de-France. Le logement doit être la résidence principale, occupée au moins 8 mois par an."
+    ce_que_ca_apporte: "70 % du coût des travaux pour les revenus « très modestes » (jusqu'à 17 363 € par an pour une personne seule hors Île-de-France), 50 % pour les revenus « modestes », sur 22 000 € HT de travaux au plus. L'Anah paie aussi au moins 600 € de l'accompagnateur obligatoire, et une avance allant jusqu'à 30 % de l'aide est possible."
+    ou_la_demander: "Commencez par un conseiller France Rénov', gratuit : 0 808 800 700. Il vous oriente vers un accompagnateur (« assistant à maîtrise d'ouvrage »), obligatoire : celui-ci vient chez vous faire le diagnostic et dépose la demande sur monprojet.anah.gouv.fr. Ne commencez pas les travaux avant l'accord de l'Anah : l'aide est versée sur factures, une fois les travaux faits."
+    url_officielle: "https://www.service-public.gouv.fr/particuliers/vosdroits/F37501"
+    source_id: sp-f37501
+    sources_complementaires: [anah-guide-maprimeadapt-2026]
+    criteres: { age_min: 70, logement: [proprietaire, locataire_prive], rfr_par_uc_max: 22259 }
+    rappel:
+      criteres: { logement: [locataire_prive] }
+      texte: "Locataire : prévenez votre propriétaire et obtenez son accord avant les travaux. C'est vous qui les payez et qui recevez l'aide."

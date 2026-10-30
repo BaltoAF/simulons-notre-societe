@@ -5,9 +5,6 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
 
 ## À faire
 
-- **Pistes pour les propriétaires âgés aux revenus modestes** (test débutants, Bernard, 72 ans). L'allègement de taxe foncière
-  pour les 65-75 ans et l'exonération après 75 ans, ainsi que MaPrimeAdapt' : de nouvelles fiches dans
-  `model/aides/oubliees.yaml`, avec leurs sources officielles (service-public.gouv.fr, anah.gouv.fr).
 - **Idées toutes prêtes pour les retraités actuels** (test débutants). Aucune ne les concerne directement : par exemple
   « Minimum vieillesse + 100 € » ou « Revaloriser les pensions ». Elles doivent rester équilibrées (financement indiqué).
 - **« Se connecter » en haut de page** déroute, alors que la visite promet « sans compte » (test débutants) : dire que c'est
@@ -20,6 +17,9 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
 
 - **« Avez-vous pensé à… ? »**, les aides souvent oubliées dans « Mes droits » (depuis le 30/10/2026). Bilan possible à
   partir du 13/11/2026.
+
+- **Taxe foncière (exonération, réduction de 100 €) et MaPrimeAdapt'** dans « Avez-vous pensé à… ? » (depuis le
+  30/10/2026, test débutants : Bernard, 72 ans). Bilan possible à partir du 13/11/2026.
 
 ## Fait
 

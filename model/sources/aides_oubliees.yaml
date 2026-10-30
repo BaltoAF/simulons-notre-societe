@@ -171,3 +171,77 @@ sources:
     date_publication: "2026-04-01"
     consulte_le: "2026-10-30"
     note: "200,78 €/mois et par enfant depuis le 1er avril 2026 ; un titre de la fiche porte « 201,78 € » (coquille probable). CSS L523-1 à L523-3, R523-1 à R523-8."
+
+  # ── Propriétaires âgés (taxe foncière, MaPrimeAdapt'), relues le 30/10/2026 ──
+  - id: sp-f59
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Taxe foncière sur les propriétés bâties (TFPB)"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F59"
+    auteurs: []
+    date_publication: "2026-09-25"
+    consulte_le: "2026-10-30"
+    note: "Date = « Vérifié le ». TFPB 2026 (revenus 2025), métropole : 12 793 € (1 part), 14 501 € (1,25), 16 209 € (1,5), 19 625 € (2), 26 457 € (3) ; + 3 416 € par demi-part, + 1 708 € par quart de part. Âge au 1er janvier 2026. Plus de 75 ans : exonération de la résidence principale (Aspa sans condition ; AAH sous plafond) ; 65-75 ans : réduction de 100 €. Maintien 2 ans puis abattement. TEOM non exonérée. Cite CGI 1389 à 1391 E et BOI-IF-TFB-10-55."
+  - id: impots-exonerations-degrevements
+    type: texte_officiel
+    editeur: "impots.gouv.fr (DGFiP)"
+    titre: "Exonérations et dégrèvements"
+    url: "https://www.impots.gouv.fr/particulier/exonerations-et-degrevements"
+    auteurs: []
+    date_publication: "2026-01-07"
+    consulte_le: "2026-10-30"
+    note: "TFPB : exonération de plein droit de la résidence principale (Aspa, ASI, AAH, plus de 75 ans sous la limite de l'article 1417-I) ; dégrèvement d'office de 100 € (65 à 75 ans), sans démarche ; condition de cohabitation supprimée depuis les impositions de 2023 ; TEOM non exonérée."
+  - id: impots-faq-age-taxe-fonciere
+    type: texte_officiel
+    editeur: "impots.gouv.fr (DGFiP)"
+    titre: "Mon âge me permet-il d'être exonéré de taxe foncière ?"
+    url: "https://www.impots.gouv.fr/particulier/questions/mon-age-me-permet-il-detre-exonere-de-taxe-fonciere-0"
+    auteurs: []
+    date_publication: "2026-07-20"
+    consulte_le: "2026-10-30"
+    note: "Plus de 75 ans au 1er janvier, RFR N-1 sous le plafond de l'article 1417-I (la page affiche encore les plafonds 2025) ; pas de condition de revenus pour l'Aspa et l'ASI ; Ehpad : demande au centre des Finances publiques indiqué sur l'avis."
+  - id: bofip-boi-if-tfb-10-55-10
+    type: texte_officiel
+    editeur: "BOFiP-Impôts (DGFiP)"
+    titre: "BOI-IF-TFB-10-55-10 : exonérations et dégrèvement d'office en faveur des personnes de condition modeste, titulaires de certaines allocations"
+    url: "https://bofip.impots.gouv.fr/bofip/11008-PGP.html"
+    auteurs: []
+    date_publication: "2023-06-27"
+    consulte_le: "2026-10-30"
+    note: "CGI art. 1390, I : titulaires de l'Aspa et de l'ASI exonérés pour leur habitation principale, sans condition de revenus ; exonération étendue aux titulaires de l'AAH dont le RFR n'excède pas la limite de l'article 1417-I."
+  - id: bofip-boi-if-tfb-10-55-20
+    type: texte_officiel
+    editeur: "BOFiP-Impôts (DGFiP)"
+    titre: "BOI-IF-TFB-10-55-20 : exonération des personnes de plus de 75 ans"
+    url: "https://bofip.impots.gouv.fr/bofip/11009-PGP.html/identifiant=BOI-IF-TFB-10-55-20-20230627"
+    auteurs: []
+    date_publication: "2023-06-27"
+    consulte_le: "2026-10-30"
+    note: "CGI art. 1391, I : plus de 75 ans au 1er janvier de l'année d'imposition, RFR de l'année précédente sous la limite de l'article 1417-I ; condition d'occupation supprimée par l'article 102 de la loi n° 2022-1726 du 30 décembre 2022."
+  - id: bofip-boi-if-tfb-10-55-40
+    type: texte_officiel
+    editeur: "BOFiP-Impôts (DGFiP)"
+    titre: "BOI-IF-TFB-10-55-40 : dégrèvement d'office de 100 € en faveur des personnes de plus de 65 ans"
+    url: "https://bofip.impots.gouv.fr/bofip/11011-PGP.html/identifiant=BOI-IF-TFB-10-55-40-20230627"
+    auteurs: []
+    date_publication: "2023-06-27"
+    consulte_le: "2026-10-30"
+    note: "CGI art. 1391 B : 100 € (limité à la cotisation), plus de 65 ans et 75 ans au plus au 1er janvier, résidence principale, RFR sous la limite de l'article 1417-I ; un seul dégrèvement par logement ; en principe aucune réclamation à faire."
+  - id: sp-f37501
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "MaPrimeAdapt' : travaux d'adaptation du logement à la perte d'autonomie"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F37501"
+    auteurs: []
+    date_publication: "2026-01-01"
+    consulte_le: "2026-10-30"
+    note: "Date = « Vérifié le ». 70 ans ou plus ; 60-69 ans classé en GIR ; incapacité ≥ 50 % ou PCH. Hors Île-de-France, 1 pers. : 17 363 € (très modestes), 22 259 € (modestes) ; Île-de-France : 24 031 €, 29 253 €. 70 % / 50 % de 22 000 € HT. Logement occupé au moins 8 mois par an. Demande sur monprojet.anah.gouv.fr, pas de travaux avant l'accord ; France Rénov' 0 808 800 700. Décret n° 2023-1258 du 22 décembre 2023."
+  - id: anah-guide-maprimeadapt-2026
+    type: texte_officiel
+    editeur: "Anah / France Rénov'"
+    titre: "MaPrimeAdapt' : le mode d'emploi"
+    url: "https://www.anah.gouv.fr/sites/default/files/2026-07/202602_guide-mode-emploi-MPA_WEBA.pdf"
+    auteurs: []
+    date_publication: "2026-02-01"
+    consulte_le: "2026-10-30"
+    note: "Édition février 2026. Barème 2026 : hors Île-de-France 17 363 / 22 259 € (1 pers.), 25 393 / 32 553 € (2 pers.) ; Île-de-France 24 031 / 29 253 € (1 pers.). 70 % ou 50 % de 22 000 € HT ; accompagnateur obligatoire, pris en charge à hauteur de 600 € au moins (jusqu'à 800 €) ; avance jusqu'à 30 % de l'aide."
