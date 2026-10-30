@@ -41,5 +41,8 @@ export const GLOSSAIRE: Record<string, Entree> = {
   population_synthetique: { terme: 'Population simulée', definition: 'Pour chiffrer une réforme à l\'échelle du pays, le Système calcule ses effets sur 5 000 foyers fictifs mais représentatifs des 31 millions de ménages français.' },
   non_recours: { terme: 'Non-recours', definition: 'Une partie des personnes qui ont droit à une aide ne la demandent pas (méconnaissance, complexité…). Le Système en tient compte pour le coût budgétaire.' },
   etudes: { terme: 'Études', definition: 'Des travaux de chercheurs et d\'institutions qui mesurent l\'effet réel d\'une mesure (sur l\'emploi, les prix, la santé…). Quand ils se contredisent, le Système retient une valeur et indique sa confiance.' },
+  cotisations: { terme: 'Cotisations sociales', definition: "Des sommes prélevées sur les salaires pour payer la retraite, l'assurance chômage, la santé et la famille. Une part est retenue sur la fiche de paie (part « salariale ») ; l'employeur en paie une autre en plus du salaire (part « patronale »)." },
+  reversion: { terme: 'Pension de réversion', definition: "Une partie de la retraite d'une personne décédée, versée à son veuf ou à sa veuve (s'ils étaient mariés)." },
+  bmaf: { terme: 'BMAF', definition: "La « base mensuelle de calcul des allocations familiales » : un montant de référence, revalorisé chaque année. La plupart des aides de la CAF en sont un pourcentage." },
   systeme: { terme: 'Le Système', definition: 'Les programmes et agents automatiques qui tiennent à jour la loi actuelle : ils lisent les textes officiels et les statistiques, vérifient tout et publient chaque changement.' },
 }

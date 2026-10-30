@@ -230,7 +230,7 @@ export default function Budget() {
               {LEVIERS_FONCTION[f.id] && <Link className="small" to={`/atelier?regle=${LEVIERS_FONCTION[f.id][0]}`}>{LEVIERS_FONCTION[f.id][1]} →</Link>}
               {ouvert === f.id && f.detail && (
                 <ul className="list small" style={{ marginLeft: 12 }}>
-                  {f.detail.map((d) => <li key={d.id} className="list-row" style={{ padding: '5px 0' }}><span>{d.titre}</span><span>{milliards(d.md)} · {euros(d.par_habitant_an)}/hab.</span></li>)}
+                  {f.detail.map((d) => <li key={d.id} className="list-row" style={{ padding: '5px 0' }}><span>{d.id === 'protection_sociale_survivants' ? <>Pensions de réversion (pour le veuf ou la veuve)</> : d.titre}</span><span>{milliards(d.md)} · {euros(d.par_habitant_an)}/hab.</span></li>)}
                   {/* le détail publié ne couvre pas tout : la différence s'affiche, pour que la somme tombe juste */}
                   {(() => { const reste = f.md - f.detail.reduce((a, d) => a + d.md, 0); return reste > 0.5
                     ? <li className="list-row" style={{ padding: '5px 0' }}><span className="muted">Autres dépenses de ce domaine</span><span className="muted">{milliards(reste)}</span></li> : null })()}
@@ -274,7 +274,7 @@ export default function Budget() {
             <div className="kpi-label">{titreProfil} paie chaque année</div>
             <div className="kpi">{euros(m.total_paye)}</div>
             <ul className="list small">{m.paye.map((p) => <li key={p.id}><div className="list-row"><span>{p.titre}</span><strong>{euros(p.montant)}</strong></div>{p.note && <div className="muted" style={{ fontSize: '.78rem' }}>{p.note}</div>}</li>)}</ul>
-            {m.cotisations_employeur > 0 && <div className="small muted">En plus, l'employeur verse {euros(m.cotisations_employeur)} de cotisations patronales sur les salaires.</div>}
+            {m.cotisations_employeur > 0 && <div className="small muted">En plus, l'employeur verse {euros(m.cotisations_employeur)} de <Terme id="cotisations">cotisations patronales</Terme> sur les salaires.</div>}
           </div>
           <div className="card">
             <div className="kpi-label">… et reçoit de l'argent public</div>

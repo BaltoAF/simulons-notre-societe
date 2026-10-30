@@ -33,8 +33,8 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
     et parent seul jusqu'aux 12 ans ; crédit d'impôt de 50 %). Reste : le calcul par le moteur (heures, coût horaire).
   - Complémentaire santé solidaire : n'afficher que le plafond du foyer (les plafonds génériques prêtent à confusion).
   - Arrondis (200,78 € × 2 ≠ 404 €, 429 € / 426,87 €).
-  - Lexique : « CRDS », « part salariale », « cotisations patronales », « pensions de réversion », « BMAF »,
-    « juge aux affaires familiales » ; « Et vous ? » en € par mois comme « Mes droits ».
+  - Lexique fait (cotisations salariales et patronales, pension de réversion, BMAF, juge aux affaires familiales). Reste :
+    « Et vous ? » en € par mois comme « Mes droits ».
 - **Si la fréquentation augmente** (à soumettre au responsable) : la mémoire est déjà protégée, car un seul calcul de
   population tourne à la fois (`SOCIETE_WORKERS=1`) et les résultats identiques sont gardés en cache. Seule l'attente
   s'allonge : passer alors au VPS-2 avec `SOCIETE_WORKERS=3`, ou dire au visiteur combien de calculs passent avant le sien.

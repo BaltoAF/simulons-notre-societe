@@ -116,7 +116,7 @@ def vue_menage(store, m: Menage) -> dict:
     payes = [
         {"id": "impot_revenu", "titre": "Impôt sur le revenu", "montant": g("impot_revenu"), "nature": "direct"},
         {"id": "csg_crds", "titre": "CSG et CRDS", "montant": g("csg_salaire") + g("csg_remplacement") + g("crds"), "nature": "direct"},
-        {"id": "cotisations", "titre": "Cotisations sociales (part salariale)", "montant": g("cotisations_salariales"), "nature": "direct"},
+        {"id": "cotisations", "titre": "Cotisations retenues sur le salaire (retraite, chômage…)", "montant": g("cotisations_salariales"), "nature": "direct"},
         # micro-entrepreneur : ses cotisations (sécurité sociale, retraite, CSG et CRDS comprises) sont un pourcentage du chiffre d'affaires
         {"id": "cotisations_micro", "titre": "Cotisations sociales d'auto-entrepreneur (CSG et CRDS comprises)", "montant": g("cotisations_micro"), "nature": "direct"},
         {"id": "prelevements_capital", "titre": "Impôts sur l'épargne", "montant": g("pfu") + g("prelevements_sociaux_capital"), "nature": "direct"},
