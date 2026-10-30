@@ -37,6 +37,7 @@ class Menage:
     loyer_mensuel: float = 0.0
     zone: int = 2                                     # zone des aides au logement (1 = Paris… 3 = rural)
     revenus_capital_annuels: float = 0.0              # intérêts et dividendes soumis au PFU
+    pension_alimentaire_mensuelle: float = 0.0        # reçue par le premier adulte pour les enfants (réduit l'ASF)
     poids: float = 1.0                                # pondération (population synthétique)
     libelle: str = ""
 

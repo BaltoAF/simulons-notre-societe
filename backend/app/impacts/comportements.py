@@ -155,6 +155,54 @@ TVA_LEVIERS = {"fiscalite.tva.taux_normal": "normal", "fiscalite.tva.taux_interm
                "fiscalite.tva.taux_reduit": "reduit", "fiscalite.tva.taux_particulier": "particulier"}
 
 
+def _rendement_tva(ctx: Contexte, store, tva: float, parts: dict, touches: list[str]):
+    """Variation des recettes de TVA (Md€, assiette inchangée) et poids de consommation de chaque taux modifié."""
+    drec, dprix_num, poids = 0.0, 0.0, 0.0
+    calc: list[str] = []
+    sources_tva: list[str] = []
+    for r, k in TVA_LEVIERS.items():
+        share = parts[k][0]
+        rendement, src_r, _ = metrique(store, f"fiscalite.tva.rendement_net_point_taux_{k}")
+        if share is None and rendement is None:
+            continue
+        old, new = ecart(ctx, r)
+        if not old:
+            continue
+        # de préférence, le rendement d'un point chiffré par la DG Trésor (net de la TVA payée par les administrations) ;
+        # sinon, la part du taux dans la TVA collectée (qui surestime le poids du taux normal, collecté entre entreprises)
+        if rendement is not None:
+            drec += rendement * (new - old)
+            if r in touches:
+                calc.append(f"Taux {k} : 1 point rapporte {rendement:.1f} Md€ nets (DG Trésor) × {new - old:+g} point")
+            if src_r:
+                sources_tva.append(src_r)
+        else:
+            drec += tva * share / 100 * (new / old - 1)
+        if share is not None:
+            c = share / old  # poids de consommation ∝ recettes / taux
+            dprix_num += c * (new - old) / (100 + old)
+            poids += c
+        if r in touches and rendement is None:
+            calc.append(f"Taux {k} : {old:g} % → {new:g} % ; {share:.1f} % des recettes")
+    return drec, dprix_num, poids, calc, sources_tva
+
+
+def variation_tva(ctx: Contexte) -> tuple[float, float, Confiance] | None:
+    """Si un taux de TVA change : variation relative de la TVA payée (consommation inchangée), part répercutée dans les
+    prix (%) et confiance. Sert à ajouter la TVA au pouvoir d'achat des ménages, qu'OpenFisca ne calcule pas."""
+    touches = [r for r in TVA_LEVIERS if ctx.modifie(r)]
+    if not touches:
+        return None
+    store = ctx.store
+    tva, _, conf_t = metrique(store, "fiscalite.tva.recettes_brutes_totales", "finances_publiques.recettes.tva")
+    if not tva:
+        return None
+    parts = {k: metrique(store, f"fiscalite.tva.part_recettes_taux_{k}") for k in TVA_LEVIERS.values()}
+    drec = _rendement_tva(ctx, store, tva, parts, touches)[0]
+    p, conf_p, _ = valeur_ou_defaut(store, "tva_repercussion_prix", 50)
+    return drec / tva, p, chaine(conf_t, conf_p, hypothese(60, "TVA payée par le foyer estimée d'après les ménages de niveau de vie comparable (INSEE)"))
+
+
 def mod_tva(ctx: Contexte) -> list[Indicateur]:
     touches = [r for r in TVA_LEVIERS if ctx.modifie(r)]
     if not touches:
@@ -168,34 +216,9 @@ def mod_tva(ctx: Contexte) -> list[Indicateur]:
     chiffrables = [r for r in touches if parts[TVA_LEVIERS[r]][0] is not None
                    or metrique(store, f"fiscalite.tva.rendement_net_point_taux_{TVA_LEVIERS[r]}")[0] is not None]
     if tva and chiffrables:
-        drec, dprix_num, poids = 0.0, 0.0, 0.0
-        calc = [f"Recettes de TVA : {tva:.1f} Md€"]
-        calc += [f"Taux {TVA_LEVIERS[r]} : part des recettes inconnue, changement non compté" for r in touches if r not in chiffrables]
-        sources_tva: list[str] = []
-        for r, k in TVA_LEVIERS.items():
-            share = parts[k][0]
-            rendement, src_r, _ = metrique(store, f"fiscalite.tva.rendement_net_point_taux_{k}")
-            if share is None and rendement is None:
-                continue
-            old, new = ecart(ctx, r)
-            if not old:
-                continue
-            # de préférence, le rendement d'un point chiffré par la DG Trésor (net de la TVA payée par les administrations) ;
-            # sinon, la part du taux dans la TVA collectée (qui surestime le poids du taux normal, collecté entre entreprises)
-            if rendement is not None:
-                drec += rendement * (new - old)
-                if r in touches:
-                    calc.append(f"Taux {k} : 1 point rapporte {rendement:.1f} Md€ nets (DG Trésor) × {new - old:+g} point")
-                if src_r:
-                    sources_tva.append(src_r)
-            else:
-                drec += tva * share / 100 * (new / old - 1)
-            if share is not None:
-                c = share / old  # poids de consommation ∝ recettes / taux
-                dprix_num += c * (new - old) / (100 + old)
-                poids += c
-            if r in touches and rendement is None:
-                calc.append(f"Taux {k} : {old:g} % → {new:g} % ; {share:.1f} % des recettes")
+        drec, dprix_num, poids, calc, sources_tva = _rendement_tva(ctx, store, tva, parts, touches)
+        calc = [f"Recettes de TVA : {tva:.1f} Md€"] + [f"Taux {TVA_LEVIERS[r]} : part des recettes inconnue, changement non compté"
+                                                      for r in touches if r not in chiffrables] + calc
         conf = chaine(conf_t, *(parts[TVA_LEVIERS[r]][2] for r in chiffrables if parts[TVA_LEVIERS[r]][2]), hypothese(55, "Assiette inchangée (effet statique)"))
         out.append(Indicateur("solde_public_tva", "Recettes de TVA (par an, assiette inchangée)", drec, "milliards_euros", confiance=conf,
                               explication="Variation des recettes si la consommation taxée restait identique.",

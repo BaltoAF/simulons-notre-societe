@@ -9,7 +9,7 @@
   --surface-3: #e9edf6;
   --ink: #161b2e;
   --ink-2: #3f475e;
-  --ink-3: #5a627a;
+  --ink-3: #4f5770;
   --line: #e4e8f1;
   --line-2: #cdd4e3;
   --primary: #1f4fc4;        /* bleu */
@@ -93,7 +93,7 @@ h1 { font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 800; }
 h2 { font-size: 1.5rem; font-weight: 750; }
 h3 { font-size: 1.15rem; font-weight: 700; }
 p { margin: 0 0 .9em; }
-small, .small { font-size: .9rem; }
+small, .small { font-size: .93rem; }
 .muted { color: var(--ink-3); }
 .ink2 { color: var(--ink-2); }
 code, .mono { font-family: var(--mono); font-size: .85em; }
@@ -509,11 +509,13 @@ main:focus { outline: none; }
 .vrai-faux { display: flex; flex-direction: column; justify-content: space-between; }
 
 /* « Donner mon avis » : bouton discret, toujours accessible ; rond sur téléphone pour ne pas cacher le contenu */
-.bouton-avis { position: fixed; right: 16px; bottom: 16px; z-index: 35; display: inline-flex; align-items: center; gap: 8px; min-height: 44px;
-  padding: 0 16px; border-radius: 99px; border: 1px solid var(--line-2); background: var(--surface); color: var(--primary); font-weight: 650;
-  box-shadow: var(--shadow-lg); cursor: pointer; }
-.bouton-avis:hover { background: var(--primary-soft); }
-@media (max-width: 640px) { .bouton-avis { width: 48px; height: 48px; padding: 0; justify-content: center; } .bouton-avis span { display: none; } }
+.bouton-avis { position: fixed; right: 14px; bottom: 14px; z-index: 35; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-width: 44px; height: 44px; padding: 0 12px; border-radius: 99px; border: 1px solid var(--line-2); background: var(--surface);
+  color: var(--primary); font-weight: 650; box-shadow: var(--shadow-lg); cursor: pointer; opacity: .92; }
+.bouton-avis span { display: none; }   /* pastille ronde : elle ne cache presque rien */
+.bouton-avis:hover, .bouton-avis:focus-visible { background: var(--primary-soft); opacity: 1; }
+.bouton-avis:hover span, .bouton-avis:focus-visible span { display: inline; }
+@media (max-width: 1260px) { .bouton-avis { display: none; } }   /* téléphone et tablette : dans le menu et le pied de page */
 @media print { .bouton-avis { display: none; } }
 .footer { padding-bottom: 76px; } /* le bouton d'avis ne cache pas les liens du pied de page */
 .champ-piege { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
@@ -542,3 +544,10 @@ main:focus { outline: none; }
 .carte-teinte .icone-teinte { color: var(--t); }
 .puce-teinte { display: inline-block; width: 10px; height: 10px; border-radius: 3px; background: var(--t); margin-right: 8px; vertical-align: 1px; }
 .kpi-teinte { border-top: 3px solid var(--t, var(--line)); }
+
+/* Texte agrandi (bouton « A+ ») : toutes les tailles en rem suivent la racine */
+html.texte-grand { font-size: 112.5%; }
+html.texte-grand body { font-size: 19px; }
+.header .taille-texte { order: 2; margin-left: 6px; }   /* tout à droite sur ordinateur ; à côté de « Menu » sur téléphone */
+.taille-texte { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; font-weight: 800; color: var(--ink); border: 1px solid var(--line); border-radius: 10px; }
+.taille-texte[aria-pressed="true"] { background: var(--primary-soft); color: var(--primary); border-color: var(--primary); }

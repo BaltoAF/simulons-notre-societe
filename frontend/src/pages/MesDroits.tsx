@@ -87,6 +87,25 @@ function Stepper({ step }: { step: number }) {
   )
 }
 
+/** Aucune aide calculée : dire pourquoi, plutôt que laisser croire à un oubli (test débutants : « rien, et aucune explication »). */
+function AucuneAide({ s, totalRevenus, plafondAspa }: { s: SituationSaisie; totalRevenus: number; plafondAspa: number | null }) {
+  const retraite = s.adultes.every((a) => a.activite === 'retraite')
+  return (
+    <div className="card">
+      <h3 style={{ marginBottom: 6 }}>Pourquoi aucune aide ?</h3>
+      {retraite && s.adultes.length === 1 && plafondAspa != null && totalRevenus > plafondAspa ? (
+        <p className="small ink2" style={{ margin: 0 }}>Votre pension ({euros(totalRevenus)} par mois) dépasse le plafond du minimum vieillesse
+          ({euros(plafondAspa, 2)} pour une personne seule) : il ne s'ajoute donc pas. Les aides au logement aident à payer un loyer (ou,
+          dans certains cas, un prêt immobilier) : un propriétaire qui ne rembourse plus de prêt n'y a pas droit.</p>
+      ) : (
+        <p className="small ink2" style={{ margin: 0 }}>Les aides calculées par le site (RSA, prime d'activité, aides au logement, allocations familiales,
+          minimum vieillesse…) dépendent des revenus, du loyer et de la composition du foyer : pour votre situation, vous dépassez leurs plafonds.</p>
+      )}
+      <p className="small muted" style={{ margin: '6px 0 0' }}>D'autres aides, que le site ne calcule pas, peuvent vous concerner : voyez « Avez-vous pensé à… ? » ci-dessous.</p>
+    </div>
+  )
+}
+
 export default function MesDroits() {
   const { situation, setSituation, setDraft, marquer } = useApp()
   const [s, setS] = useState<SituationSaisie>(situation ?? DEFAUT)
@@ -103,7 +122,7 @@ export default function MesDroits() {
   const upA = (i: number, patch: Partial<AdulteSaisie>) => setS((x) => ({ ...x, adultes: x.adultes.map((a, j) => (j === i ? { ...a, ...patch } : a)) }))
 
   const calculer = async (sit = s) => {
-    setLoading(true); setErr(null); setEtSi({})
+    setLoading(true); setErr(null); setEtSi({}); setStep(3); window.scrollTo(0, 0)
     try {
       setSituation(sit)
       const r = await api<Resultat>('/api/simulation/menage', { body: { menage: situationVersMenage(sit), montants: 'net' } })
@@ -207,8 +226,8 @@ export default function MesDroits() {
                     <div className="kpi big">{euros(res.revenu_disponible)} <span className="muted" style={{ fontSize: '1rem', fontWeight: 600 }}>/ mois</span></div>
                     <div className="small muted">Revenus + aides − impôts.{s.adultes.length + s.enfants.length > 1 && <> Votre foyer vit aussi bien qu'une personne seule qui aurait {euros(res.niveau_de_vie)} par mois (c'est votre <Terme id="niveau_vie">niveau de vie</Terme> : à plusieurs, on partage le logement et les dépenses).</>}</div>
                     {totalAides > 0.5 && (
-                      <div className="small" style={{ marginTop: 6 }}>Dont <strong>{euros(totalAides)}</strong> d'aides. Elles ne sont versées que si on les demande :
-                        si vous ne les touchez pas encore, il vous reste aujourd'hui {euros(res.revenu_disponible - totalAides)}. Où les demander est indiqué sous chaque aide.</div>
+                      <div className="small" style={{ marginTop: 6 }}>Dont <strong>{euros(totalAides)}</strong> d'aides. La plupart ne sont versées que si on les demande :
+                        si vous ne les touchez pas encore, il vous reste aujourd'hui {euros(res.revenu_disponible - totalAides)}. Comment les obtenir est indiqué sous chaque aide.</div>
                     )}
                     {loyer > 0 && (
                       <div className="small" style={{ marginTop: 4 }}>Après avoir payé le loyer ({euros(loyer)}) : {apresLoyer >= 0
@@ -236,6 +255,8 @@ export default function MesDroits() {
                             {/* où la demander, et pourquoi pas d'aide au logement : visible tout de suite, sans ouvrir le détail */}
                             {DEMANDER[l.id] && l.montant > 0 && <div className="small muted" style={{ marginTop: 2 }}>À demander {DEMANDER[l.id]}.</div>}
                             {l.id === 'aides_logement_zero' && <div className="small muted" style={{ marginTop: 2 }}>Vos revenus dépassent le plafond pour votre loyer et votre zone.</div>}
+                            {/* versée une fois par an : le montant mensuel est une moyenne, à ne pas attendre chaque mois */}
+                            {l.id === 'ars' && l.montant > 0 && <div className="small muted" style={{ marginTop: 2 }}>Moyenne par mois : elle est versée en une fois, fin août, soit environ {euros(l.montant * 12)} par an.</div>}
                             {POURQUOI[l.id] && (
                               <details className="explain" style={{ marginTop: 6, paddingTop: 6 }}>
                                 <summary>{l.montant === 0 ? 'Pourquoi 0 € ?' : 'Pourquoi ce montant ?'}</summary>
@@ -251,6 +272,7 @@ export default function MesDroits() {
                 ))}
                 <Notice>Ce sont vos <strong>droits théoriques</strong> selon la législation en vigueur, calculés par le moteur public OpenFisca-France. Pour une démarche officielle, utilisez les simulateurs de l'administration (mesdroitssociaux.gouv.fr, impots.gouv.fr).</Notice>
               </div>
+              {prestBrut.length === 0 && <AucuneAide s={s} totalRevenus={totalRevenus} plafondAspa={plafondAspa} />}
               <AvezVousPense s={s} lignes={res.lignes} />
               {/* pas de demande d'argent à un foyer qui vient d'apprendre ses droits aux minima ou aux aides */}
               <ProposerSoutien masquer={prestBrut.length > 0} />
@@ -394,6 +416,12 @@ export default function MesDroits() {
                 </div>
               </div>
             ))}
+            {!enCouple && s.enfants.length > 0 && (
+              <label className="field"><span>Pension alimentaire versée par l'autre parent, par mois</span>
+                <div className="input-suffix"><input type="number" min={0} step={10} value={s.pension_alimentaire || ''} placeholder="0"
+                  onChange={(e) => up({ pension_alimentaire: Number(e.target.value) })} /><span className="suffix">€ / mois</span></div>
+                <span className="hint">0 si l'autre parent ne verse rien ou pas régulièrement : la CAF peut alors verser l'allocation de soutien familial.</span></label>
+            )}
             <label className="field"><span>Revenus de l'épargne (intérêts, dividendes) par an</span>
               <div className="input-suffix"><input type="number" min={0} step={100} value={s.revenus_capital_annuels} onChange={(e) => up({ revenus_capital_annuels: Number(e.target.value) })} /><span className="suffix">€ / an</span></div>
               <span className="hint">Hors livrets réglementés (livret A…), qui ne sont pas imposés.</span></label>
@@ -420,13 +448,16 @@ export default function MesDroits() {
           </div>
         )}
         <div className="row between" style={{ marginTop: 22 }}>
-          {step > 0 ? <button className="btn" onClick={() => setStep(step - 1)}><ArrowLeft size={16} /> Précédent</button> : <span />}
+          {step > 0 ? <button className="btn" onClick={() => { setStep(step - 1); window.scrollTo(0, 0) }}><ArrowLeft size={16} /> Précédent</button> : <span />}
           {step < 2 ? <span className="row" style={{ gap: 10 }}>
               {step === 1 && montantManquant && <span className="small muted">Indiquez le montant pour continuer.</span>}
-              <button className="btn primary" disabled={step === 1 && montantManquant} onClick={() => setStep(step + 1)}>Suivant <ArrowRight size={16} /></button>
+              <button className="btn primary" disabled={step === 1 && montantManquant} onClick={() => { setStep(step + 1); window.scrollTo(0, 0) }}>Suivant <ArrowRight size={16} /></button>
             </span>
-            : <button className="btn primary" onClick={() => { setExemple(null); calculer() }} disabled={loading || (s.logement.startsWith('locataire') && !s.loyer_mensuel)}
-                title={s.logement.startsWith('locataire') && !s.loyer_mensuel ? 'Indiquez votre loyer' : undefined}><Calculator size={16} /> {loading ? 'Calcul…' : 'Calculer mes droits'}</button>}
+            : <span className="row" style={{ gap: 10 }}>
+                {s.logement.startsWith('locataire') && !s.loyer_mensuel && <span className="small muted">Indiquez votre loyer pour continuer.</span>}
+                <button className="btn primary" onClick={() => { setExemple(null); calculer() }} disabled={loading || (s.logement.startsWith('locataire') && !s.loyer_mensuel)}>
+                  <Calculator size={16} /> {loading ? 'Calcul…' : 'Calculer mes droits'}</button>
+              </span>}
         </div>
       </div>
       <p className="small muted" style={{ marginTop: 14 }}><Lock size={13} /> Vos réponses restent dans votre navigateur. Le calcul applique la législation du mois en cours.</p>

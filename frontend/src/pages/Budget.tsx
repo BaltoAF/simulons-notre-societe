@@ -113,7 +113,9 @@ function BudgetEtat({ missions, depenseTotale }: { missions: { id: string; titre
 }
 
 export default function Budget() {
-  const { situation } = useApp()
+  const { situation, marquer } = useApp()
+  // « Où va l'argent public ? » est la première grande question : la page du budget compte pour cette étape de la découverte
+  useEffect(() => { marquer('question') }, [marquer])
   const { data: n, loading, error } = useFetch<National>('/api/budget/national')
   const [profil, setProfil] = useState<SituationSaisie | null>(situation)
   const [titreProfil, setTitreProfil] = useState<string>(situation ? 'Votre foyer (renseigné dans « Mes droits »)' : '')

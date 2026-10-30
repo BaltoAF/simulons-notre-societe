@@ -5,7 +5,7 @@ import { api } from './lib/api'
 import { useApp } from './lib/state'
 import { Loading, useClickOutside } from './components/ui'
 import { Bienvenue } from './components/Bienvenue'
-import { DonnerAvis } from './components/DonnerAvis'
+import { DonnerAvis, ouvrirAvis } from './components/DonnerAvis'
 import Accueil from './pages/Accueil'
 
 const MesDroits = lazy(() => import('./pages/MesDroits'))
@@ -48,6 +48,7 @@ function MenuPlus({ onVisite }: { onVisite: () => void }) {
       </button>
       {open && (
         <div className="menu-deroulant">
+          <button className="menu-item" onClick={() => { setOpen(false); ouvrirAvis() }}>Donner mon avis<small>Une idée, une erreur, un mot pas clair : le site s'améliore chaque jour</small></button>
           <button className="menu-item" onClick={() => { setOpen(false); onVisite() }}>Visite guidée<small>Revoir la prise en main du site, pas à pas</small></button>
           <Link to="/regles">Toutes les règles<small>Ce que dit la loi aujourd'hui, prouvé par les textes</small></Link>
           <Link to="/preuves">Ce que disent les études<small>Comment on estime les effets sur l'emploi, les prix…</small></Link>
@@ -60,6 +61,19 @@ function MenuPlus({ onVisite }: { onVisite: () => void }) {
         </div>
       )}
     </div>
+  )
+}
+
+/** « A+ » : agrandit tout le texte du site (mémorisé dans le navigateur), pour les personnes qui lisent mal les petits caractères. */
+function TailleTexte() {
+  const [grand, setGrand] = useState(() => { try { return localStorage.getItem('societe.texte') === 'grand' } catch { return false } })
+  useEffect(() => {
+    document.documentElement.classList.toggle('texte-grand', grand)
+    try { localStorage.setItem('societe.texte', grand ? 'grand' : 'normal') } catch { /* navigation privée */ }
+  }, [grand])
+  return (
+    <button className="icon-btn taille-texte" aria-pressed={grand} onClick={() => setGrand((g) => !g)}
+      title={grand ? 'Revenir à la taille de texte normale' : 'Agrandir le texte'} aria-label={grand ? 'Taille de texte normale' : 'Agrandir le texte'}>A+</button>
   )
 }
 
@@ -77,6 +91,7 @@ function Header({ onVisite }: { onVisite: () => void }) {
         <Link to="/" className="logo" aria-label="Simulons notre société, accueil">
           <img src="/favicon.svg?v=3" alt="" width={30} height={30} /> Simulons notre société <span className="tag">bêta</span>
         </Link>
+        <TailleTexte />
         <button className="icon-btn menu-mobile" onClick={() => setMenu((m) => !m)} aria-label={menu ? 'Fermer le menu' : 'Ouvrir le menu'} aria-expanded={menu}>{menu ? <X size={22} /> : <Menu size={22} />}<span className="menu-libelle" aria-hidden="true">{menu ? 'Fermer' : 'Menu'}</span></button>
         <nav className={`nav ${menu ? 'ouvert' : ''}`} aria-label="Navigation principale">
           <NavLink to="/mes-droits">Mes droits</NavLink>
@@ -116,6 +131,7 @@ function Footer() {
           <Link to="/methode">Méthode et indice de confiance</Link>
           <Link to="/sources">Registre des sources</Link>
           <Link to="/systeme">Journal des mises à jour</Link>
+          <button className="lien" style={{ textAlign: 'left', color: 'var(--ink-2)', textDecoration: 'none' }} onClick={ouvrirAvis}>Donner mon avis</button>
           <Link to="/vos-avis">Ce que vos avis ont changé</Link>
           {meta?.soutien?.lien && <Link to="/soutenir">Soutenir le projet ☕</Link>}
           {meta && <span>Législation au {new Date(meta.date_reference).toLocaleDateString('fr-FR')} · moteur {meta.moteur.nom} {meta.moteur.version ?? ''}</span>}

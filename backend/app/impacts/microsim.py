@@ -228,12 +228,14 @@ def _gini(x, w):
 
 
 def section_redistribution(ctx: Contexte) -> Section | None:
-    if not ctx.touche_moteur:
+    from . import prix_tva
+    if not ctx.touche_moteur and prix_tva.variation_tva(ctx) is None:
         return None
     r = _resultats(ctx)
     if r is None:
         return None
     menages, poids, meta, base, ref = r
+    ref, conf_tva = prix_tva.appliquer(ctx, base, ref)  # la TVA payée à chaque achat compte aussi dans le niveau de vie
     taille = np.array([m.taille for m in menages], dtype=float)
     wp = poids * taille  # pondération par personne (convention INSEE)
     nv0, nv1 = base["niveau_de_vie"], ref["niveau_de_vie"]
@@ -267,6 +269,8 @@ def section_redistribution(ctx: Contexte) -> Section | None:
     conf_d = Confiance(70, [Facteur("Calage des déciles", 0.9, "Les déciles de niveau de vie de la population synthétique sont calés sur ceux de l'INSEE."),
                             Facteur("Concept de revenu", 0.6, "Le niveau de vie simulé n'inclut pas tous les revenus (patrimoine, transferts privés…).")],
                        "Variation par décile")
+    if conf_tva is not None:
+        conf_d = Confiance.maillon_faible(conf_d, conf_tva, resume="Variation par décile, TVA comprise")
     srcs = [store.metriques[m]["derniere"].get("source") for m in ("revenus.niveau_vie.indice_gini", "revenus.pauvrete.taux_seuil_60") if m in store.metriques]
     ind = [
         Indicateur("gini", "Inégalités (indice de Gini)", (g1 - g0) * 100, "points", g0 * 100, g1 * 100, conf_g,

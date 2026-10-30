@@ -71,6 +71,7 @@ LIBELLES = {
     "chomage_net": "Allocation chômage nette",
     "retraite_nette": "Pension de retraite nette",
     "revenus_capital": "Revenus de l'épargne",
+    "pension_alimentaire": "Pension alimentaire reçue",
     "aah": "Allocation aux adultes handicapés (AAH)",
     "rsa": "RSA",
     "prime_activite": "Prime d'activité",
@@ -302,6 +303,9 @@ class Engine:
                 if a.handicap:
                     ind["handicap"] = {mo: True for mo in mois}
                     ind["taux_incapacite"] = {mo: 0.8 for mo in mois}
+                if j == 0 and m.pension_alimentaire_mensuelle > 0:
+                    # l'ASF ne complète que ce qui manque ; la pension compte aussi pour le RSA, la prime d'activité, l'impôt
+                    ind["pensions_alimentaires_percues"] = {mo: round(m.pension_alimentaire_mensuelle, 2) for mo in mois}
                 individus[pid] = ind
             kids = []
             for k, age in enumerate(m.enfants):
@@ -410,9 +414,10 @@ class Engine:
         for k in ("cotisations_salariales", "cotisations_employeur", "csg_salaire", "csg_remplacement", "crds"):
             out[k] = -out[k]
         out["revenus_capital"] = np.array([m.revenus_capital_annuels / 12 for m in menages])
+        out["pension_alimentaire"] = np.array([m.pension_alimentaire_mensuelle for m in menages])
         out["prestations"] = sum(out[k] for k in PRESTATIONS)
         out["revenu_disponible"] = (out["salaire_net"] + out["chomage_net"] + out["retraite_nette"]
-                                    + out["revenus_capital"] + out["prestations"]
+                                    + out["revenus_capital"] + out["pension_alimentaire"] + out["prestations"]
                                     - out["impot_revenu"] - out["pfu"] - out["prelevements_sociaux_capital"])
         uc = np.array([m.unites_consommation for m in menages])
         out["niveau_de_vie"] = out["revenu_disponible"] / uc
