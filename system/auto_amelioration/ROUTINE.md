@@ -9,6 +9,8 @@ Réglages de la routine cloud (https://claude.ai/code/routines) qui exécute cha
 | Dépôt | https://github.com/BaltoAF/simulons-notre-societe |
 | Modèle | Claude Sonnet 5.5 (Opus 5.5 possible pour un jugement plus fin, au prix d'un quota plus élevé) |
 | Outils | Bash, Read, Write, Edit, Glob, Grep, WebFetch, WebSearch |
+| Connecteurs | **aucun** : claude.ai en attache certains d'office (Gmail…) ; ils ont été retirés, car la routine lit des textes écrits par n'importe qui. À revérifier si la routine est recréée. |
+| Identifiant | `trig_01StTHEpybcFGHtpywieHNAk`, créée désactivée le 30/10/2026 |
 | Variables de l'environnement | `SOCIETE_SITE_URL`, `SOCIETE_JETON_AVIS` (affichées par `deploy/installer.sh`) |
 | Réseau de l'environnement | l'adresse du site, GitHub, PyPI et npm |
 
