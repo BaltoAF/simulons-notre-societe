@@ -65,6 +65,10 @@ const POURQUOI: Record<string, { regles: string[]; texte: ReactNode }> = {
   aides_logement: { regles: ['prestations.aides_logement.forfait_charges'], texte: 'L\'aide au logement dépend du loyer, de la zone, de la composition du foyer et des ressources.' },
   allocations_familiales: { regles: ['prestations.famille.bmaf', 'prestations.famille.af_taux_deux_enfants', 'prestations.famille.af_nombre_enfants_minimum'], texte: 'Versées à partir de 2 enfants, modulées selon les revenus.' },
   impot_revenu: { regles: ['fiscalite.impot_revenu.bareme', 'fiscalite.impot_revenu.decote.taux', 'fiscalite.impot_revenu.quotient_familial.plafond_demi_part'], texte: 'Impôt progressif calculé sur le revenu du foyer, divisé par le nombre de parts.' },
+  // test Samira : avec une petite pension alimentaire, le foyer touchait moins qu'avec aucune ; c'est la règle (la pension
+  // compte en entier dans les ressources de la prime d'activité, l'ASF seulement pour un forfait), il faut la dire
+  asf: { regles: [], texte: "Quand l'autre parent ne verse pas la pension, la CAF verse l'allocation de soutien familial entière, puis se fait rembourser par lui. S'il verse une pension plus petite, la CAF complète la différence. Attention : pour la prime d'activité, une pension compte en entier dans vos ressources, alors que l'allocation de soutien familial ne compte que pour un petit montant fixe. C'est pourquoi une petite pension peut faire baisser la prime d'activité plus qu'elle ne rapporte." },
+  ars: { regles: [], texte: "Versée une fois par an, fin août, pour chaque enfant de 6 à 18 ans scolarisé, sous condition de ressources. Son montant dépend de l'âge de l'enfant." },
   aspa: { regles: ['prestations.aspa.montant_personne_seule'], texte: 'Le minimum vieillesse garantit un revenu minimal aux personnes âgées.' },
   aah: { regles: ['prestations.aah.montant'], texte: 'Allocation pour les personnes en situation de handicap aux ressources modestes.' },
   salaire_net: { regles: ['fiscalite.csg.salaires_taux'], texte: 'Salaire brut moins les cotisations sociales, la CSG et la CRDS.' },
@@ -302,7 +306,7 @@ export default function MesDroits() {
                               <details className="explain" style={{ marginTop: 6, paddingTop: 6 }}>
                                 <summary>{l.montant === 0 ? 'Pourquoi 0 € ?' : 'Pourquoi ce montant ?'}</summary>
                                 <p className="small ink2" style={{ marginBottom: 6 }}>{pourquoi(l)}</p>
-                                <div className="small">Les règles qui fixent ce montant : {POURQUOI[l.id].regles.map((r, i) => <span key={r}>{i ? ' · ' : ''}<Link to={`/regles/r/${r}`}>{regles?.regles.find((x) => x.id === r)?.titre ?? r}</Link></span>)}</div>
+                                {POURQUOI[l.id].regles.length > 0 && <div className="small">Les règles qui fixent ce montant : {POURQUOI[l.id].regles.map((r, i) => <span key={r}>{i ? ' · ' : ''}<Link to={`/regles/r/${r}`}>{regles?.regles.find((x) => x.id === r)?.titre ?? r}</Link></span>)}</div>}
                               </details>
                             )}
                           </li>
@@ -473,7 +477,7 @@ export default function MesDroits() {
               <label className="field"><span>Pension alimentaire versée par l'autre parent, par mois</span>
                 <div className="input-suffix"><input type="number" min={0} step={10} value={s.pension_alimentaire || ''} placeholder="0"
                   onChange={(e) => up({ pension_alimentaire: Number(e.target.value) })} /><span className="suffix">€ / mois</span></div>
-                <span className="hint">0 si l'autre parent ne verse rien ou pas régulièrement : la CAF peut alors verser l'allocation de soutien familial.</span></label>
+                <span className="hint">Ce que l'autre parent vous verse vraiment, en moyenne par mois (0 s'il ne verse rien). S'il ne paie pas ou paie mal, la CAF peut verser l'allocation de soutien familial à sa place, puis se faire rembourser par lui.</span></label>
             )}
             <label className="field"><span>Revenus de l'épargne (intérêts, dividendes) par an</span>
               <div className="input-suffix"><input type="number" min={0} step={100} value={s.revenus_capital_annuels} onChange={(e) => up({ revenus_capital_annuels: Number(e.target.value) })} /><span className="suffix">€ / an</span></div>

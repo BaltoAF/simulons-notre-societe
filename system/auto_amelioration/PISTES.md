@@ -25,14 +25,14 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   remplacée par « 10 % de plus » et la règle prévient ; plus de « −50 % » pour « 2 enfants → 1 » ; loyer « avant l'aide au
   logement » (en HLM l'aide est souvent versée au bailleur : saisie après aide, elle était comptée deux fois) ;
   allocations familiales et de rentrée « sans démarche en général » ; « Votre part » dans le budget. Reste :
-  - **À vérifier dans les textes (fiabilité)** : avec 150 € de pension alimentaire, le foyer touche 188 € de moins
-    qu'avec 0 € (prime d'activité 69 € au lieu de 219 €, ASF 254 € au lieu de 404 €). Le moteur compte la pension dans
-    les ressources de la prime d'activité, mais pas l'ASF ? Vérifier sur les textes (CSS, ressources de la prime
-    d'activité) avant toute correction ; demander si la pension est versée « tous les mois, certains mois, jamais ».
+  - Pension alimentaire : avec 150 € de pension, le foyer touche 188 € de moins qu'avec 0 €. C'est la règle appliquée par
+    le moteur (OpenFisca, ppa_base_ressources_prestations_familiales : la pension compte en entier, l'ASF seulement pour
+    son forfait « rsa_forfait_asf ») : expliqué dans « Pourquoi ce montant ? » de l'ASF, et la consigne ne pousse plus à
+    déclarer 0 quand la pension est versée. Reste à citer l'article du code de la sécurité sociale qui fixe ce forfait.
   - **Garde d'enfants** : aucune question ni aide (complément de libre choix du mode de garde, crèche) alors que c'est
     souvent la première question d'un parent d'enfant de moins de 6 ans ; à ajouter (moteur ou « Avez-vous pensé à… »).
   - Complémentaire santé solidaire : n'afficher que le plafond du foyer (les plafonds génériques prêtent à confusion).
-  - « Pourquoi ce montant ? » pour l'ASF et l'allocation de rentrée ; arrondis (200,78 € × 2 ≠ 404 €, 429 € / 426,87 €).
+  - Arrondis (200,78 € × 2 ≠ 404 €, 429 € / 426,87 €).
   - Lexique : « CRDS », « part salariale », « cotisations patronales », « pensions de réversion », « BMAF »,
     « juge aux affaires familiales » ; « Et vous ? » en € par mois comme « Mes droits ».
 - **Si la fréquentation augmente** (à soumettre au responsable) : la mémoire est déjà protégée, car un seul calcul de
