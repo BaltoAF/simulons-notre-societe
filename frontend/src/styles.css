@@ -121,7 +121,7 @@ code, .mono { font-family: var(--mono); font-size: .85em; }
 .nav a:hover { background: var(--surface-2); text-decoration: none; color: var(--ink); }
 .nav a.active { background: var(--primary-soft); color: var(--primary); }
 .header .user { display: flex; gap: 8px; align-items: center; }
-.header .menu-mobile { display: none; margin-left: auto; }
+.header .menu-mobile { display: none; margin-left: auto; min-width: 44px; min-height: 44px; align-items: center; justify-content: center; gap: 6px; font-weight: 650; color: var(--ink); border: 1px solid var(--line); }
 .nav { overflow: visible; }
 @media (max-width: 1260px) { /* nom du site + six entrées + compte : le menu se replie avant de déborder */
   .header { position: static; }
@@ -267,6 +267,11 @@ details.explain summary::-webkit-details-marker { display: none; }
 details.explain[open] summary { margin-bottom: 8px; }
 .aide-non-recours { display: flex; gap: 6px; align-items: flex-start; margin: 6px 0 0; color: var(--ink-2); font-weight: 600; }
 .aide-non-recours svg { flex-shrink: 0; margin-top: 2px; }
+@media (max-width: 400px) { .header .menu-libelle { display: none; } }
+/* chiffre pas encore chargé dans une phrase */
+.attente-chiffre { display: inline-block; width: 3.6em; height: .9em; vertical-align: -1px; border-radius: 4px; background: var(--surface-2); animation: attente 1.2s ease-in-out infinite alternate; }
+@keyframes attente { from { opacity: .45; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .attente-chiffre { animation: none; } }
 .pill-list { display: flex; flex-wrap: wrap; gap: 6px; }
 .breadcrumb { font-size: .88rem; color: var(--ink-3); margin-bottom: 12px; display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
 .breadcrumb a { color: var(--ink-2); }
@@ -471,7 +476,7 @@ main:focus { outline: none; }
 
 /* « Où vous situez-vous ? » : règle graduée des niveaux de vie */
 .situe { margin: 14px 0 6px; }
-.situe-regle { position: relative; height: 12px; border-radius: 6px; background: linear-gradient(90deg, var(--surface-2), var(--primary-soft)); margin: 30px 6px 0; }
+.situe-regle { position: relative; height: 12px; border-radius: 6px; background: linear-gradient(90deg, var(--surface-2), var(--primary-soft)); margin: 46px 6px 0; } /* place pour l'étiquette « Vous » au-dessus */
 .situe-zone.pauvre { position: absolute; left: 0; top: 0; bottom: 0; background: color-mix(in srgb, var(--loss) 22%, transparent); border-radius: 6px 0 0 6px; }
 .situe-repere, .situe-vous { position: absolute; top: -4px; width: 2px; height: 20px; background: var(--ink-3); transform: translateX(-1px); }
 .situe-repere > span, .situe-vous > span { position: absolute; top: 22px; left: 50%; transform: translateX(-50%); font-size: .72rem; line-height: 1.15;

@@ -2,7 +2,7 @@
 // (Cour des comptes, COR, DG Trésor, lois de finances…) et par le site. Les écarts sont publiés, pas cachés.
 import { Link } from 'react-router-dom'
 import { CheckCircle2, CircleAlert, CircleDot, ExternalLink } from 'lucide-react'
-import { date, nombre } from '../lib/format'
+import { date, natureLien, nombre } from '../lib/format'
 import { useEffect } from 'react'
 import { useApp, useFetch } from '../lib/state'
 import { ErrorBox, Loading } from '../components/ui'
@@ -86,7 +86,7 @@ export default function Fiabilite() {
                 <span className="muted">la réforme officielle portait sur une autre année ou un champ un peu différent : un écart peut s'expliquer par là.</span></div>}
               {r.note && <p className="small ink2" style={{ margin: '8px 0 0' }}>{r.note}</p>}
               <div className="small muted" style={{ marginTop: 6 }}>
-                Source : {r.source.url ? <a href={r.source.url} target="_blank" rel="noreferrer">{r.source.editeur ? `${r.source.editeur}, ` : ''}{r.source.titre ?? r.source.id} <ExternalLink size={12} /></a>
+                Source : {r.source.url ? <a href={r.source.url} target="_blank" rel="noreferrer">{r.source.editeur ? `${r.source.editeur}, ` : ''}{r.source.titre ?? r.source.id}{natureLien(r.source.url)} <ExternalLink size={12} /></a>
                   : `${r.source.editeur ?? ''} ${r.source.titre ?? r.source.id}`}
                 {r.citation && <> — « {r.citation} »</>}
               </div>

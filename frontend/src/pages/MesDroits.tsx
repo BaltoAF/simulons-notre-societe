@@ -2,7 +2,8 @@ import { useEffect, useState, type ReactNode } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { ArrowLeft, ArrowRight, Calculator, GitFork, Lock, Minus, Plus, RotateCcw } from 'lucide-react'
 import { api, type Confiance, type Regle } from '../lib/api'
-import { euros, valeur } from '../lib/format'
+import { euros, insecable, valeur } from '../lib/format'
+import { estRattache } from '../lib/aidesOubliees'
 import { departsDuFoyer, estAgeLegal, type Depart } from '../lib/retraite'
 import { PRESETS, resoudrePreset } from '../lib/presets'
 import { resumeSituation, situationVersMenage, useApp, useFetch, type AdulteSaisie, type SituationSaisie } from '../lib/state'
@@ -24,10 +25,20 @@ type Resultat = {
 }
 
 /** Le taux de CSG vraiment appliqué à une pension, dit en clair (il dépend du revenu du foyer). */
-function phraseCsgPension(t: number): string {
-  if (t < 1) return "Votre pension n'est soumise ni à la CSG, ni à la CRDS, ni à la Casa : les revenus de votre foyer sont sous le seuil d'exonération."
+function phraseCsgPension(t: number): ReactNode {
+  if (t < 1) return <>Votre pension n'est soumise ni à la <Terme id="csg">CSG</Terme>, ni à la <Terme id="crds">CRDS</Terme>, ni à la <Terme id="casa">Casa</Terme> : les revenus de votre foyer sont sous le seuil d'exonération.</>
   const nom = t < 5 ? 'le taux réduit (3,8 %)' : t < 7.5 ? 'le taux médian (6,6 %)' : 'le taux plein (8,3 %)'
-  return `Votre pension est soumise à la CSG à ${nom}, qui dépend du revenu de votre foyer, plus la CRDS et la Casa : c'est la différence entre votre pension brute et votre pension nette.`
+  // la Casa ne s'applique qu'aux pensions soumises à la CSG au taux médian ou plein
+  return <>Votre pension est soumise à la <Terme id="csg">CSG</Terme> à {nom}, qui dépend du revenu de votre foyer, plus la <Terme id="crds">CRDS</Terme>
+    {t >= 5 && <> et la <Terme id="casa">Casa</Terme></>} : c'est la différence entre votre pension brute et votre pension nette.</>
+}
+
+/** Ce qu'il faut saisir pour chaque situation, dit avec les mots du document que la personne a sous les yeux. */
+const AIDE_MONTANT: Record<string, string> = {
+  salarie: 'Le montant qui figure en bas de votre fiche de paie, avant prélèvement à la source.',
+  chomeur: 'Le montant versé chaque mois par France Travail, avant prélèvement à la source.',
+  retraite: 'Le montant versé chaque mois sur votre compte, toutes vos retraites additionnées (base et complémentaire), avant prélèvement à la source.',
+  etudiant: "Une personne étudiante n'a droit à la prime d'activité que si elle gagne au moins 78 % du SMIC environ. Les bourses ne sont pas calculées par le site, mais le résultat vous dira comment les demander.",
 }
 
 const ADULTE: AdulteSaisie = { age: 35, activite: 'salarie', montant_net: 1600, cadre: false, handicap: false }
@@ -82,6 +93,7 @@ export default function MesDroits() {
   const [err, setErr] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
   const [etSi, setEtSi] = useState<Record<string, { delta: number; loading?: boolean; departs?: Depart[] }>>({})
+  const [exemple, setExemple] = useState<string | null>(null) // résultat d'un foyer exemple, pas encore ajusté par la personne
   const { data: regles } = useFetch<{ regles: Regle[] }>('/api/regles?simulable=true&limit=2000')
   const nav = useNavigate()
 
@@ -143,12 +155,44 @@ export default function MesDroits() {
       ...(epargne.length ? [{ id: 'epargne', libelle: 'Impôts sur votre épargne', montant: epargne.reduce((a, l) => a + l.montant, 0), nature: 'prelevement' }] : []),
       ...brut.filter((l) => l.id !== 'impot_revenu' && !epargne.includes(l)),
     ] : []
+    // ce que le chiffre principal contient : des aides peut-être pas encore demandées, et le loyer pas encore payé
+    const totalAides = prestBrut.reduce((a, l) => a + l.montant, 0)
+    const loyer = s.logement.startsWith('locataire') ? s.loyer_mensuel : 0
+    const apresLoyer = (res?.revenu_disponible ?? 0) - loyer
+    const totalRevenus = revenus.reduce((a, l) => a + l.montant, 0)
+    const etudiantRattache = s.adultes.length === 1 && estRattache(s.adultes[0])
+    // la règle donne le plafond annuel : ramené au mois, tronqué au centime comme dans les barèmes (1 043,59 €)
+    const aspaAn = regles?.regles.find((r) => r.id === 'prestations.aspa.montant_personne_seule')?.valeur
+    const plafondAspa = typeof aspaAn === 'number' ? Math.floor((aspaAn / 12) * 100) / 100 : null
+    /** « Pourquoi ce montant ? » avec le calcul de la personne quand on sait le faire en une ligne. */
+    const pourquoi = (l: Resultat['lignes'][number]): ReactNode => {
+      if (l.id === 'impot_revenu_zero') {
+        if (totalRevenus < 1) return "Vous n'avez pas de revenus imposables : il n'y a pas d'impôt à payer."
+        return (res?.decote_annuelle ?? 0) > 0
+          ? <>Votre impôt aurait été d'environ {euros(res!.decote_annuelle!, 0)} par an, mais la <Terme id="decote">décote</Terme>, une réduction automatique pour les petits impôts, l'annule entièrement.</>
+          : <>Le revenu du foyer est divisé en <Terme id="part_fiscale">parts</Terme> (une part par adulte, une demi-part par enfant) : par part, il reste sous le seuil où l'impôt commence.</>
+      }
+      if (l.id === 'retraite_nette' && res?.taux_csg_pension != null) return phraseCsgPension(res.taux_csg_pension)
+      if (l.id === 'aspa' && s.adultes.length === 1 && typeof plafondAspa === 'number') {
+        return <>Le minimum vieillesse complète vos ressources jusqu'à {euros(plafondAspa, 2)} par mois pour une personne seule.
+          Pour vous : {euros(plafondAspa, 2)} − {euros(totalRevenus)} de revenus ≈ <strong>{euros(l.montant)}</strong>.</>
+      }
+      if (l.id === 'aides_logement' && loyer > 0) {
+        return <>Pour un loyer de {euros(loyer)}, l'aide est de {euros(l.montant)} : il vous reste <strong>{euros(Math.max(0, loyer - l.montant))}</strong> de loyer à payer chaque mois.
+          Elle dépend du loyer (retenu jusqu'à un plafond selon la zone), de la taille du foyer et de ses ressources.</>
+      }
+      return POURQUOI[l.id].texte
+    }
     return (
       <div className="container page">
         <div className="row between" style={{ marginBottom: 10 }}>
           <h1 style={{ margin: 0 }}>Vos droits aujourd'hui</h1>
           <button className="btn" onClick={() => { setStep(0); setRes(null) }}><RotateCcw size={16} /> Modifier ma situation</button>
         </div>
+        {exemple && res && (
+          <Notice>C'est le résultat de l'exemple « {exemple} » ({resumeSituation(s)}). Pour votre propre situation :{' '}
+            <button className="lien" onClick={() => { setStep(1); setRes(null) }}>mettre vos vrais montants</button>.</Notice>
+        )}
         {loading && <Loading label="Le moteur calcule vos droits…" />}
         {err && <ErrorBox message={err} />}
         {res && (
@@ -160,11 +204,21 @@ export default function MesDroits() {
                     <div className="kpi-label">Ce qui reste au foyer chaque mois</div>
                     <div className="kpi big">{euros(res.revenu_disponible)} <span className="muted" style={{ fontSize: '1rem', fontWeight: 600 }}>/ mois</span></div>
                     <div className="small muted">Revenus + aides − impôts.{s.adultes.length + s.enfants.length > 1 && <> Votre foyer vit aussi bien qu'une personne seule qui aurait {euros(res.niveau_de_vie)} par mois (c'est votre <Terme id="niveau_vie">niveau de vie</Terme> : à plusieurs, on partage le logement et les dépenses).</>}</div>
+                    {totalAides > 0.5 && (
+                      <div className="small" style={{ marginTop: 6 }}>Dont <strong>{euros(totalAides)}</strong> d'aides. Elles ne sont versées que si on les demande :
+                        si vous ne les touchez pas encore, il vous reste aujourd'hui {euros(res.revenu_disponible - totalAides)}. Où les demander est indiqué sous chaque aide.</div>
+                    )}
+                    {loyer > 0 && (
+                      <div className="small" style={{ marginTop: 4 }}>Après avoir payé le loyer ({euros(loyer)}) : {apresLoyer >= 0
+                        ? <>il reste <strong>{euros(apresLoyer)}</strong> par mois pour tout le reste.</>
+                        : <><strong className="delta neg">il manque {euros(-apresLoyer)}</strong> chaque mois.</>}</div>
+                    )}
                     <div className="small" style={{ marginTop: 6 }}>Calcul pour : {resumeSituation(s)} · <button className="lien" onClick={() => setStep(0)}>modifier</button></div>
                   </div>
                   <ConfidenceBadge c={res.confiance} align="right" />
                 </div>
-                <OuJeMeSitue niveauVieMensuel={res.niveau_de_vie} />
+                <OuJeMeSitue niveauVieMensuel={res.niveau_de_vie}
+                  note={etudiantRattache ? "Vous êtes rattaché(e) à la déclaration d'impôt de vos parents : ce classement ne compte que vos propres revenus, pas l'aide de votre famille." : undefined} />
                 <hr className="divider" />
                 {[['Vos revenus nets', revenus, 1], ['Aides et prestations', prest, 1], ['Impôts payés', prel, -1]].map(([titre, lignes, sg]) => (
                   (lignes as any[]).length > 0 && (
@@ -183,12 +237,7 @@ export default function MesDroits() {
                             {POURQUOI[l.id] && (
                               <details className="explain" style={{ marginTop: 6, paddingTop: 6 }}>
                                 <summary>{l.montant === 0 ? 'Pourquoi 0 € ?' : 'Pourquoi ce montant ?'}</summary>
-                                <p className="small ink2" style={{ marginBottom: 6 }}>{l.id === 'impot_revenu_zero'
-                                  ? ((res.decote_annuelle ?? 0) > 0
-                                    ? <>Votre impôt aurait été d'environ {euros(res.decote_annuelle!, 0)} par an, mais la <Terme id="decote">décote</Terme>, une réduction automatique pour les petits impôts, l'annule entièrement.</>
-                                    : <>Le revenu du foyer est divisé en <Terme id="part_fiscale">parts</Terme> (une part par adulte, une demi-part par enfant) : par part, il reste sous le seuil où l'impôt commence.</>)
-                                  : l.id === 'retraite_nette' && res.taux_csg_pension != null ? phraseCsgPension(res.taux_csg_pension)
-                                  : POURQUOI[l.id].texte}</p>
+                                <p className="small ink2" style={{ marginBottom: 6 }}>{pourquoi(l)}</p>
                                 <div className="small">Les règles qui fixent ce montant : {POURQUOI[l.id].regles.map((r, i) => <span key={r}>{i ? ' · ' : ''}<Link to={`/regles/r/${r}`}>{regles?.regles.find((x) => x.id === r)?.titre ?? r}</Link></span>)}</div>
                               </details>
                             )}
@@ -214,7 +263,7 @@ export default function MesDroits() {
                     const r = etSi[p.id]
                     return (
                       <li key={p.id}>
-                        <div className="small" style={{ fontWeight: 650 }}>{p.titre}</div>
+                        <div className="small" style={{ fontWeight: 650 }}>{insecable(p.titre)}</div>
                         {r?.departs && (
                           <div className="small" style={{ marginTop: 4 }}>
                             {r.departs.length === 0 ? <span className="muted">Ne change rien pour vous : personne dans votre foyer n'est concerné (déjà à la retraite).</span>
@@ -251,6 +300,8 @@ export default function MesDroits() {
   }
 
   const enCouple = s.adultes.length > 1
+  // un salaire, une allocation chômage ou une pension à 0 € : presque toujours un oubli
+  const montantManquant = s.adultes.some((a) => ['salarie', 'chomeur', 'retraite'].includes(a.activite) && !(a.montant_net > 0))
   return (
     <div className="container page" style={{ maxWidth: 760 }}>
       <h1>Calculer mes droits</h1>
@@ -261,7 +312,7 @@ export default function MesDroits() {
           <div style={{ fontWeight: 700, marginBottom: 8 }}>Le plus rapide : choisissez un foyer qui vous ressemble</div>
           <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 8 }}>
             {PROFILS.map((p) => (
-              <button key={p.titre} className="preset" onClick={() => { setS(p.s); calculer(p.s) }}>
+              <button key={p.titre} className="preset" onClick={() => { setS(p.s); setExemple(p.titre); calculer(p.s) }}>
                 <strong>{p.titre}</strong><span className="small muted">{resumeSituation(p.s)}</span>
               </button>
             ))}
@@ -311,7 +362,11 @@ export default function MesDroits() {
                 <div className="grid cols-2">
                   <label className="field"><span>Âge</span><input type="number" min={16} max={110} value={a.age} onChange={(e) => upA(i, { age: Number(e.target.value) })} /></label>
                   <label className="field"><span>Situation</span>
-                    <select value={a.activite} onChange={(e) => upA(i, { activite: e.target.value as AdulteSaisie['activite'] })}>
+                    {/* changer de situation vide le montant : une pension de 850 € ne doit pas devenir un salaire d'étudiant */}
+                    <select value={a.activite} onChange={(e) => {
+                      const activite = e.target.value as AdulteSaisie['activite']
+                      upA(i, { activite, montant_net: 0, rattache: activite === 'etudiant' ? a.age < 25 : undefined })
+                    }}>
                       <option value="salarie">Salarié(e)</option>
                       <option value="chomeur">Au chômage, indemnisé(e)</option>
                       <option value="retraite">Retraité(e)</option>
@@ -323,14 +378,14 @@ export default function MesDroits() {
                   <label className="field">
                     <span>{a.activite === 'salarie' ? 'Salaire net mensuel (avant impôt)' : a.activite === 'chomeur' ? 'Allocation chômage nette mensuelle'
                       : a.activite === 'etudiant' ? "Salaire d'un petit boulot, net par mois (0 si vous n'en avez pas)" : 'Pension de retraite nette mensuelle'}</span>
-                    <div className="input-suffix"><input type="number" min={0} step={50} value={a.montant_net} onChange={(e) => upA(i, { montant_net: Number(e.target.value) })} /><span className="suffix">€ / mois</span></div>
-                    <span className="hint">{a.activite === 'etudiant'
-                      ? "Une personne étudiante n'a droit à la prime d'activité que si elle gagne au moins 78 % du SMIC environ. Les bourses ne sont pas calculées par le site, mais le résultat vous dira comment les demander."
-                      : 'Le montant qui figure en bas de votre fiche de paie ou de votre relevé, avant prélèvement à la source.'}</span>
+                    <div className="input-suffix"><input type="number" min={0} step={50} value={a.montant_net || ''} placeholder={a.activite === 'etudiant' ? '0' : 'ex. 1 200'}
+                      onChange={(e) => upA(i, { montant_net: Number(e.target.value) })} /><span className="suffix">€ / mois</span></div>
+                    <span className="hint">{AIDE_MONTANT[a.activite]}</span>
                   </label>
                 )}
                 <div className="row" style={{ gap: 18 }}>
                   {a.activite === 'salarie' && <label className="row small" style={{ cursor: 'pointer' }}><input type="checkbox" checked={a.cadre} onChange={(e) => upA(i, { cadre: e.target.checked })} /> Cadre</label>}
+                  {a.activite === 'etudiant' && !enCouple && <label className="row small" style={{ cursor: 'pointer' }}><input type="checkbox" checked={estRattache(a)} onChange={(e) => upA(i, { rattache: e.target.checked })} /> Mes parents me comptent encore dans leur déclaration d'impôt</label>}
                   <label className="row small" style={{ cursor: 'pointer' }}><input type="checkbox" checked={a.handicap} onChange={(e) => upA(i, { handicap: e.target.checked })} /> Handicap reconnu (taux ≥ 80 %)</label>
                 </div>
               </div>
@@ -362,8 +417,11 @@ export default function MesDroits() {
         )}
         <div className="row between" style={{ marginTop: 22 }}>
           {step > 0 ? <button className="btn" onClick={() => setStep(step - 1)}><ArrowLeft size={16} /> Précédent</button> : <span />}
-          {step < 2 ? <button className="btn primary" onClick={() => setStep(step + 1)}>Suivant <ArrowRight size={16} /></button>
-            : <button className="btn primary" onClick={() => calculer()} disabled={loading || (s.logement.startsWith('locataire') && !s.loyer_mensuel)}
+          {step < 2 ? <span className="row" style={{ gap: 10 }}>
+              {step === 1 && montantManquant && <span className="small muted">Indiquez le montant pour continuer.</span>}
+              <button className="btn primary" disabled={step === 1 && montantManquant} onClick={() => setStep(step + 1)}>Suivant <ArrowRight size={16} /></button>
+            </span>
+            : <button className="btn primary" onClick={() => { setExemple(null); calculer() }} disabled={loading || (s.logement.startsWith('locataire') && !s.loyer_mensuel)}
                 title={s.logement.startsWith('locataire') && !s.loyer_mensuel ? 'Indiquez votre loyer' : undefined}><Calculator size={16} /> {loading ? 'Calcul…' : 'Calculer mes droits'}</button>}
         </div>
       </div>

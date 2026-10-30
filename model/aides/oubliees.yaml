@@ -12,7 +12,9 @@
 #   logement: [..]          type de logement du foyer
 #   ressources_c2s_max      ressources mensuelles du foyer sous ce plafond (personne seule), multiplié selon la taille du foyer
 #   rfr_par_uc_max          revenu fiscal de référence annuel estimé, par unité de consommation, sous ce plafond
-# rappel : une phrase de plus quand ses propres critères sont remplis (ex. un enfant de 16 à 18 ans pour l'ARS).
+#   hors_rattaches: true    pas pour un étudiant seul rattaché à la déclaration de ses parents (ses revenus ne disent rien du foyer)
+# rappel : une phrase de plus quand ses propres critères sont remplis (ex. un enfant de 16 à 18 ans pour l'ARS) ;
+#   ton: rassurant pour lever une crainte (affiché en vert).
 # versement: annuel        le montant calculé est affiché par an (l'ARS est versée une fois, à la rentrée).
 aides:
   - id: prime_activite
@@ -41,6 +43,10 @@ aides:
     non_recours_source: drees-dd97-non-recours-minimum-vieillesse
     source_id: sp-f16871
     criteres: { calculee: aspa }
+    rappel:
+      criteres: { logement: [proprietaire] }
+      ton: rassurant
+      texte: "Vous êtes propriétaire : votre logement ne vous sera pas repris. Ce qui est versé n'est récupéré qu'après le décès, et seulement sur la part de l'héritage qui dépasse 108 586 € (métropole)."
 
   - id: asf
     nom: "Allocation de soutien familial (ASF)"
@@ -48,7 +54,7 @@ aides:
     pourquoi_vous: "Le site l'a calculée en supposant que l'autre parent ne verse pas de pension alimentaire."
     pour_qui: "Parent qui élève seul son enfant quand l'autre parent ne verse pas de pension alimentaire, ne peut pas la payer, ou verse moins de 200,78 € par mois et par enfant. Il n'y a pas de condition de revenus."
     ce_que_ca_apporte: "200,78 € par mois et par enfant en 2026 (ou la différence avec une pension plus faible). La Caf peut aussi réclamer à l'autre parent jusqu'à deux ans de pensions impayées."
-    ou_la_demander: "À la Caf (ou à la MSA), avec le formulaire cerfa n° 12038 et la déclaration de situation cerfa n° 11423. Sans pension fixée par un juge, elle est versée 4 mois : il faut ensuite saisir le juge aux affaires familiales."
+    ou_la_demander: "À la Caf (ou à la MSA), avec deux formulaires papier (cerfa n° 12038 et n° 11423) à télécharger sur caf.fr ou à demander à l'accueil. Sans pension fixée par un juge, elle est versée 4 mois : il faut ensuite saisir le juge aux affaires familiales."
     url_officielle: "https://www.service-public.gouv.fr/particuliers/vosdroits/F815"
     source_id: sp-f815
     criteres: { calculee: asf }
@@ -72,12 +78,35 @@ aides:
     nom: "Aide au logement des étudiants"
     en_bref: "Une aide pour payer le loyer : ce sont les revenus de l'étudiant qui comptent, pas ceux de ses parents."
     pourquoi_vous: "Le site a calculé que vous y avez droit pour votre loyer."
-    pour_qui: "Étudiants locataires (ou colocataires) d'un logement décent, avec de faibles ressources personnelles. Le propriétaire ne doit pas être un parent proche. Depuis le 1er juillet 2026, les étudiants venus de pays hors Union européenne, EEE et Suisse doivent être boursiers, travailler ou être en alternance."
+    pour_qui: "Étudiants locataires (ou colocataires) d'un logement décent, avec de faibles ressources personnelles. Le propriétaire ne doit pas être un parent proche. Depuis le 1er juillet 2026, les étudiants venus d'un pays extérieur à l'Union européenne (sauf Islande, Liechtenstein, Norvège et Suisse) doivent être boursiers, travailler ou être en alternance."
     ce_que_ca_apporte: "Une aide chaque mois qui réduit le loyer. Attention : l'étudiant n'est alors plus à la charge de ses parents pour les prestations familiales, qui peuvent baisser."
     ou_la_demander: "En ligne sur caf.fr (« Aide au logement étudiant : demande en ligne »), dès l'entrée dans le logement. Premier versement environ deux mois après la demande. Téléphone : 09 69 32 52 52."
     url_officielle: "https://www.service-public.gouv.fr/particuliers/vosdroits/F1563"
     source_id: sp-f1563
     criteres: { calculee: aides_logement, activite: [etudiant], logement: [locataire_prive, locataire_social] }
+
+  - id: bourse_crous
+    nom: "Bourse étudiante sur critères sociaux (Crous)"
+    en_bref: "De 1 454 € à 6 335 € par an pour les étudiants, selon les revenus de leurs parents."
+    pourquoi_vous: "Vous êtes étudiant(e) et avez moins de 28 ans."
+    pour_qui: "Étudiants de moins de 28 ans à la première demande, inscrits à plein temps, dont la famille a des revenus sous un plafond. Le plafond augmente avec l'éloignement du domicile et le nombre de frères et sœurs."
+    ce_que_ca_apporte: "De 1 454 € à 6 335 € par an en 2026-2027, versés en 10 mois."
+    ou_la_demander: "Avec le « dossier social étudiant » (DSE), le formulaire en ligne unique pour la bourse et le logement du Crous, sur messervices.etudiant.gouv.fr. Il se remplit au printemps pour l'année suivante : pour 2026-2027, c'était du 1er mars au 31 mai 2026 ; les dates du printemps 2027 ne sont pas encore publiées. Après un changement important de situation (perte d'emploi d'un parent, séparation…), une demande en cours d'année est possible auprès du Crous."
+    url_officielle: "https://www.service-public.gouv.fr/particuliers/vosdroits/F12214"
+    source_id: sp-f12214-bourse-criteres-sociaux
+    criteres: { activite: [etudiant], age_max: 28 }
+
+  - id: repas_crous_1_euro
+    nom: "Repas à 1 € au restaurant universitaire"
+    en_bref: "Un repas complet à 1 € dans les restaurants du Crous, pour tous les étudiants depuis le 4 mai 2026."
+    pourquoi_vous: "Vous êtes étudiant(e) : boursier ou non, vous y avez droit."
+    pour_qui: "Tous les étudiants, boursiers ou non, ainsi que les apprentis et alternants, les doctorants et les volontaires en service civique."
+    ce_que_ca_apporte: "Un plat et deux à-côtés pour 1 €, le midi et, dans les restaurants ouverts le soir, le soir. Avant mai 2026, les étudiants non boursiers payaient 3,30 €."
+    ou_la_demander: "Aucune démarche : activez Izly, le porte-monnaie du Crous (une application et votre carte d'étudiant), et payez avec lui au restaurant universitaire. Sans Izly, c'est le tarif normal."
+    url_officielle: "https://www.etudiant.gouv.fr/fr/comment-beneficier-du-repas-crous-1-eu-3123"
+    source_id: etudiant-gouv-repas-1-euro
+    sources_complementaires: [sp-a18811]
+    criteres: { activite: [etudiant] }
 
   - id: c2s
     nom: "Complémentaire santé solidaire (C2S)"
@@ -85,13 +114,13 @@ aides:
     pourquoi_vous: "Les ressources de votre foyer semblent sous le plafond (1 172 € par mois pour une personne seule, davantage à plusieurs)."
     pour_qui: "Personnes qui vivent en France depuis plus de 3 mois avec des revenus modestes. Elle est gratuite sous un premier plafond (868 € par mois pour une personne seule) et coûte au plus 1 € par jour sous un second (1 172 €). Elle est attribuée d'office avec le RSA."
     ce_que_ca_apporte: "Une complémentaire santé qui ne coûte rien, ou de 8 € à 30 € par mois et par personne selon l'âge (8 € jusqu'à 29 ans, 30 € à partir de 70 ans)."
-    ou_la_demander: "À l'Assurance maladie : en ligne sur votre compte ameli (« Mes démarches »), ou avec le formulaire cerfa n° 12504. Sans réponse sous deux mois, la demande est acceptée."
+    ou_la_demander: "À l'Assurance maladie : en ligne sur votre compte ameli (« Mes démarches »), ou avec le formulaire papier (cerfa n° 12504) que votre caisse peut vous envoyer. Sans réponse sous deux mois, la demande est acceptée."
     url_officielle: "https://www.service-public.gouv.fr/particuliers/vosdroits/F10027"
     non_recours: "Près d'une personne sur deux qui y a droit ne la demande pas (44 % en 2021)."
     non_recours_source: drees-cp-css-non-recours-2022
     source_id: sp-f10027
     sources_complementaires: [ameli-c2s-beneficiaires, ameli-c2s-demande]
-    criteres: { ressources_c2s_max: 1172.40 }
+    criteres: { ressources_c2s_max: 1172.40, hors_rattaches: true }
 
   - id: cheque_energie
     nom: "Chèque énergie"
@@ -105,7 +134,7 @@ aides:
     non_recours_source: senat-rapport-l25-139-cheque-energie
     source_id: sp-f33667
     sources_complementaires: [sp-a17885, mefsin-cp-526-cheque-energie-2026]
-    criteres: { rfr_par_uc_max: 11000 }
+    criteres: { rfr_par_uc_max: 11000, hors_rattaches: true }
 
   - id: pension_reversion
     nom: "Pension de réversion"
@@ -118,29 +147,6 @@ aides:
     source_id: sp-f13104
     sources_complementaires: [info-retraite-reversion, agirc-arrco-demande-reversion]
     criteres: { seul: true, age_min: 55 }
-
-  - id: bourse_crous
-    nom: "Bourse étudiante sur critères sociaux (Crous)"
-    en_bref: "De 1 454 € à 6 335 € par an pour les étudiants, selon les revenus de leurs parents."
-    pourquoi_vous: "Vous êtes étudiant(e) et avez moins de 28 ans."
-    pour_qui: "Étudiants de moins de 28 ans à la première demande, inscrits à plein temps, dont la famille a des revenus sous un plafond. Le plafond augmente avec l'éloignement du domicile et le nombre de frères et sœurs."
-    ce_que_ca_apporte: "De 1 454 € à 6 335 € par an en 2026-2027, versés en 10 mois."
-    ou_la_demander: "Dossier social étudiant (DSE) sur messervices.etudiant.gouv.fr, au printemps pour l'année suivante (du 1er mars au 31 mai en 2026). Après un changement important de situation, une demande hors délai est possible auprès du Crous."
-    url_officielle: "https://www.service-public.gouv.fr/particuliers/vosdroits/F12214"
-    source_id: sp-f12214-bourse-criteres-sociaux
-    criteres: { activite: [etudiant], age_max: 28 }
-
-  - id: repas_crous_1_euro
-    nom: "Repas à 1 € au restaurant universitaire"
-    en_bref: "Un repas complet à 1 € dans les restaurants du Crous, pour tous les étudiants depuis le 4 mai 2026."
-    pourquoi_vous: "Vous êtes étudiant(e) : boursier ou non, vous y avez droit."
-    pour_qui: "Tous les étudiants, boursiers ou non, ainsi que les apprentis et alternants, les doctorants et les volontaires en service civique."
-    ce_que_ca_apporte: "Un plat et deux à-côtés pour 1 €, le midi et, dans les restaurants ouverts le soir, le soir. Avant mai 2026, les étudiants non boursiers payaient 3,30 €."
-    ou_la_demander: "Aucune démarche : activez votre compte Izly et payez avec lui au restaurant du Crous. Sans Izly, c'est le tarif normal."
-    url_officielle: "https://www.etudiant.gouv.fr/fr/comment-beneficier-du-repas-crous-1-eu-3123"
-    source_id: etudiant-gouv-repas-1-euro
-    sources_complementaires: [sp-a18811]
-    criteres: { activite: [etudiant] }
 
   - id: visale
     nom: "Garantie Visale"

@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { ExternalLink } from 'lucide-react'
 import type { Source } from '../lib/api'
-import { date, nombre } from '../lib/format'
+import { date, natureLien, nombre } from '../lib/format'
 import { useApp, useFetch } from '../lib/state'
 import { ErrorBox, Loading, SourceType } from '../components/ui'
 
@@ -28,7 +28,7 @@ export default function SourceDetail() {
       <h1 style={{ fontSize: '1.7rem', marginTop: 8 }}>{s.titre}</h1>
       <div className="ink2">{s.editeur}{s.auteurs?.length ? ' · ' + s.auteurs.join(', ') : ''}</div>
       <div className="small muted" style={{ marginTop: 6 }}>{s.date_publication ? `Publiée le ${date(s.date_publication)} · ` : ''}Consultée le {date(s.consulte_le)} · fiabilité intrinsèque {nombre((s.fiabilite ?? 0) * 100, 0)} %</div>
-      {s.url && <a className="btn" href={s.url} target="_blank" rel="noreferrer noopener" style={{ marginTop: 14 }}><ExternalLink size={16} /> Consulter la source originale</a>}
+      {s.url && <a className="btn" href={s.url} target="_blank" rel="noreferrer noopener" style={{ marginTop: 14 }}><ExternalLink size={16} /> Consulter la source originale{natureLien(s.url)}</a>}
       {s.note && <p className="small muted" style={{ marginTop: 12 }}>{s.note}</p>}
       <div className="card" style={{ marginTop: 18 }}>
         <h3>Utilisée par</h3>

@@ -15,6 +15,7 @@ export type Criteres = {
   logement?: SituationSaisie['logement'][]
   ressources_c2s_max?: number
   rfr_par_uc_max?: number
+  hors_rattaches?: boolean
   ou?: Criteres[]
 }
 
@@ -30,13 +31,18 @@ export type AideOubliee = {
   non_recours?: string
   versement?: 'annuel'
   criteres: Criteres
-  rappel?: { criteres: Criteres; texte: string }
+  rappel?: { criteres: Criteres; texte: string; ton?: 'rassurant' }
   source: SourceCourte | null
   non_recours_source: SourceCourte | null
   sources_complementaires: SourceCourte[]
 }
 
-type Ligne = { id: string; montant: number; nature: string }
+type Ligne = { id: string; montant: number; nature: string; libelle?: string }
+
+/** Étudiant compté dans la déclaration d'impôt de ses parents (par défaut oui avant 25 ans) : ses propres revenus ne disent rien du foyer. */
+export function estRattache(a: AdulteSaisie): boolean {
+  return a.activite === 'etudiant' && (a.rattache ?? a.age < 25)
+}
 
 /** Plafond de la C2S selon la taille du foyer : +50 % pour la 2e personne, +30 % pour la 3e et la 4e, +40 % au-delà (barème ameli). */
 function coefC2s(n: number): number {
@@ -58,6 +64,7 @@ function correspond(c: Criteres, s: SituationSaisie, lignes: Ligne[]): boolean {
   if (c.ou && !c.ou.some((x) => correspond(x, s, lignes))) return false
   if (c.calculee && !lignes.some((l) => l.id === c.calculee && l.montant > 0.5)) return false
   if (c.seul && s.adultes.length !== 1) return false
+  if (c.hors_rattaches && s.adultes.length === 1 && estRattache(s.adultes[0])) return false
   if (c.logement && !c.logement.includes(s.logement)) return false
   if (c.enfant_age && !s.enfants.some((a) => a >= c.enfant_age![0] && a <= c.enfant_age![1])) return false
   const parAdulte = c.activite || c.age_min != null || c.age_max != null || c.salaire_max != null
@@ -73,13 +80,15 @@ function correspond(c: Criteres, s: SituationSaisie, lignes: Ligne[]): boolean {
   return true
 }
 
-export type AideProposee = AideOubliee & { montant: number | null; rappelVisible: boolean }
+export type AideProposee = AideOubliee & { montant: number | null; libelle: string; rappelVisible: boolean }
 
 /** Les aides à proposer : d'abord celles que le site a calculées (du plus gros montant au plus petit), puis les pistes à vérifier. */
 export function aidesPourVous(aides: AideOubliee[], s: SituationSaisie, lignes: Ligne[]): AideProposee[] {
   const out = aides.filter((a) => correspond(a.criteres, s, lignes)).map((a) => {
     const l = a.criteres.calculee ? lignes.find((x) => x.id === a.criteres.calculee) : undefined
-    return { ...a, montant: l ? l.montant * (a.versement === 'annuel' ? 12 : 1) : null, rappelVisible: !!a.rappel && correspond(a.rappel.criteres, s, lignes) }
+    // une aide déjà calculée porte le même nom que dans le résultat, pour ne pas croire à deux aides
+    return { ...a, montant: l ? l.montant * (a.versement === 'annuel' ? 12 : 1) : null, libelle: l?.libelle ?? a.nom,
+      rappelVisible: !!a.rappel && correspond(a.rappel.criteres, s, lignes) }
   })
   const calculees = out.filter((a) => a.montant != null).sort((x, y) => y.montant! / (y.versement === 'annuel' ? 12 : 1) - x.montant! / (x.versement === 'annuel' ? 12 : 1))
   return [...calculees, ...out.filter((a) => a.montant == null)]

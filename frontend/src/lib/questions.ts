@@ -25,6 +25,7 @@ export type Question = {
   titre: string
   icone: string
   accroche: string
+  sousTitre?: string // une ligne pour la carte de l'accueil
   chiffres: Chiffre[]
   texte: string[]
   enBref?: string // la réponse directe à la question, en une ou deux phrases
@@ -56,6 +57,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'depenses-publiques',
     titre: "Où va l'argent public ?",
+    sousTitre: "Retraites, santé, école : à quoi sert l'argent public",
     icone: 'Landmark',
     accroche: "Plus de la moitié de la richesse produite chaque année passe par l'État, la Sécurité sociale et les collectivités. La plus grosse part revient aux ménages : retraites, santé, aides.",
     chiffres: [
@@ -81,6 +83,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'qui-paie',
     titre: "D'où vient l'argent public ? Qui paie ?",
+    sousTitre: "TVA, cotisations, impôt sur le revenu : qui paie quoi",
     icone: 'Coins',
     accroche: "Tout le monde paie : la TVA à chaque achat, les cotisations et la CSG sur les salaires et les pensions. L'impôt sur le revenu, le plus discuté, n'en rapporte qu'une petite part.",
     enBref: "Tout le monde paie, même sans impôt sur le revenu : la TVA ({tva}) rapporte deux fois plus que l'impôt sur le revenu ({ir}), et les cotisations sur les salaires encore davantage ({cotisations}).",
@@ -109,11 +112,12 @@ export const QUESTIONS: Question[] = [
   {
     id: 'dette',
     titre: 'La dette publique, c\'est grave ?',
+    sousTitre: "Ce que la France doit, et ce que coûtent les intérêts",
     icone: 'TrendingDown',
     accroche: "La France emprunte chaque année pour payer une partie de ses dépenses. La dette accumulée coûte des intérêts : de l'argent qui ne finance ni l'école ni l'hôpital.",
     chiffres: [
       { cle: 'dette', libelle: 'Dette publique', format: 'md', metrique: 'finances_publiques.dette_maastricht' },
-      { cle: 'interets', libelle: 'Intérêts payés chaque année', format: 'md', metrique: 'finances_publiques.charge_interets_apu' },
+      { cle: 'interets', libelle: 'Intérêts payés en un an par toutes les administrations publiques', format: 'md', metrique: 'finances_publiques.charge_interets_apu' },
       { cle: 'deficit', libelle: 'Déficit de la dernière année', format: 'md', metrique: 'finances_publiques.solde_public', absolu: true },
       { cle: 'dette_pct', libelle: 'Dette en part du PIB', format: 'pct_pib', metrique: 'finances_publiques.dette_maastricht_pct_pib', cache: true },
       { cle: 'deficit_pct', libelle: 'Déficit en part du PIB', format: 'pct_pib', metrique: 'finances_publiques.solde_public_pct_pib', absolu: true, cache: true },
@@ -125,7 +129,7 @@ export const QUESTIONS: Question[] = [
     texte: [
       "Chaque année, les administrations publiques dépensent plus qu'elles ne gagnent : le dernier déficit a atteint {deficit}, soit {deficit_pct}. Ce qui manque est emprunté.",
       "Les emprunts accumulés forment la dette : {dette}, soit {dette_pct}, ou environ {dette_hab} par habitant.",
-      "Une dette ne se rembourse pas d'un coup : l'État emprunte à nouveau pour rembourser les anciens prêts. Le vrai coût, ce sont les intérêts : {interets} par an, et ils augmentent quand les taux montent.",
+      "Une dette ne se rembourse pas d'un coup : l'État emprunte à nouveau pour rembourser les anciens prêts. Le vrai coût, ce sont les intérêts : {interets} par an pour l'ensemble des administrations publiques (État, Sécurité sociale, collectivités), et ils augmentent quand les taux montent. Le budget de l'État n'en montre qu'une partie : les intérêts de sa propre dette.",
       "Les règles européennes demandent un déficit sous 3 % du PIB et une dette sous 60 % : la France est au-dessus des deux.",
     ],
     aSavoir: "Sur ce site, toute dépense nouvelle doit être financée par une économie ou une recette ailleurs, ou l'emprunt doit être assumé clairement.",
@@ -137,12 +141,14 @@ export const QUESTIONS: Question[] = [
   {
     id: 'retraites',
     titre: 'Comment marchent les retraites ?',
+    sousTitre: "Qui paie les pensions, et pourquoi on en débat",
     icone: 'Hourglass',
     accroche: "Les cotisations de ceux qui travaillent paient les pensions des retraités d'aujourd'hui. Avec moins de travailleurs par retraité, l'équilibre devient plus difficile.",
-    enBref: "Il y a aujourd'hui {ratio} personnes qui cotisent pour un retraité. Quand ce nombre baisse, il faut choisir : cotiser plus, verser moins, ou partir plus tard.",
+    enBref: "Il y a aujourd'hui environ {cotisants_4} personnes qui travaillent et cotisent pour 4 retraités. Quand ce nombre baisse, il faut choisir : cotiser plus, verser moins, ou partir plus tard.",
     chiffres: [
       { cle: 'nb', libelle: 'Retraités', format: 'personnes', metrique: 'retraites.nombre_retraites' },
       { cle: 'ratio', libelle: 'Cotisants pour un retraité', format: 'ratio', metrique: 'retraites.ratio_cotisants_retraites' },
+      { cle: 'cotisants_4', libelle: 'Cotisants pour 4 retraités', format: 'entier', calcul: (v) => (v.ratio ? v.ratio * 4 : null), cache: true },
       { cle: 'age', libelle: 'Âge moyen de départ', format: 'ans', metrique: 'retraites.age_moyen_depart' },
       { cle: 'depenses', libelle: 'Coût du système', format: 'md', metrique: 'retraites.depenses_totales_md', cache: true },
       { cle: 'depenses_pct', libelle: 'Part du PIB', format: 'pct_pib', metrique: 'retraites.depenses_pct_pib', cache: true },
@@ -151,18 +157,20 @@ export const QUESTIONS: Question[] = [
     ],
     texte: [
       "La France compte {nb} à la retraite. Leurs pensions sont payées par les cotisations de ceux qui travaillent aujourd'hui : c'est la « retraite par répartition ».",
-      "On compte {ratio} cotisants pour un retraité. Quand ce nombre baisse, il n'y a que trois leviers : cotiser plus, verser des pensions moins élevées, ou partir plus tard.",
+      "On compte environ {cotisants_4} cotisants pour 4 retraités ({ratio} pour un). Quand ce nombre baisse, il n'y a que trois leviers : cotiser plus, verser des pensions moins élevées, ou partir plus tard.",
       "Le système coûte {depenses} par an ({depenses_pct}). On part en moyenne à {age}.",
       "La pension moyenne avant prélèvements (hors pension de réversion) est de {pension_h} par mois pour les hommes et de {pension_f} pour les femmes, dont les carrières ont souvent été plus courtes ou moins payées.",
     ],
     actions: [
       { libelle: 'À quel âge pourrai-je partir ?', lien: '/mes-droits' },
+      { libelle: 'Déjà retraité(e) avec une petite pension ? Vérifiez le minimum vieillesse et vos aides', lien: '/mes-droits' },
       { libelle: 'Tester la retraite à 62 ans', preset: 'retraite-62' },
     ],
   },
   {
     id: 'inegalites',
     titre: 'Les inégalités en France',
+    sousTitre: "Écarts de revenus et pauvreté : où en est-on ?",
     icone: 'Users',
     accroche: "La moitié des Français vit avec moins de {mediane} (pour une personne seule). Les impôts et les aides réduisent les écarts, sans les supprimer.",
     chiffres: [
@@ -173,7 +181,7 @@ export const QUESTIONS: Question[] = [
       { cle: 'privation', libelle: 'Privation matérielle et sociale', format: 'pct', metrique: 'bien_etre.nir.pauvrete_conditions_vie', cache: true },
     ],
     texte: [
-      "Le niveau de vie « du milieu » (médian) est de {mediane} pour une personne seule : la moitié de la population a moins, l'autre moitié plus. Pour un foyer de plusieurs personnes, on divise le revenu en tenant compte de la taille du foyer.",
+      "Le niveau de vie « du milieu » (médian) est de {mediane} pour une personne seule : la moitié de la population a moins, l'autre moitié plus. Pour un foyer de plusieurs personnes, on divise le revenu en tenant compte de la taille du foyer. Il peut dépasser le salaire « du milieu » : il compte aussi les pensions, les aides et l'épargne, après impôts, et à plusieurs on partage le logement et les dépenses.",
       "On est dit pauvre sous 60 % de ce niveau, soit {seuil} pour une personne seule : c'est le cas de {pauvres}. Et {privation} de la population ne peut pas faire face à certaines dépenses de base (chauffer son logement, remplacer un meuble abîmé…).",
       "L'indice de Gini mesure les écarts : 0 si tout le monde avait autant, 100 si une seule personne avait tout. La France est à {gini}.",
       "Les aides (RSA, prime d'activité, aides au logement…) et les impôts progressifs réduisent ces écarts : pour chaque réforme, le site calcule s'ils augmentent ou diminuent.",
@@ -186,6 +194,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'climat',
     titre: 'Le climat : où en est la France ?',
+    sousTitre: "Combien de gaz à effet de serre la France émet",
     icone: 'Leaf',
     accroche: "La France émet de moins en moins de gaz à effet de serre sur son sol. Mais en comptant ce que nous importons, notre empreinte reste bien plus lourde.",
     chiffres: [
@@ -208,6 +217,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'travail',
     titre: 'Le travail : salaires et chômage',
+    sousTitre: "Salaire du milieu, SMIC, chômage : les repères",
     icone: 'Briefcase',
     accroche: "La moitié des salariés du privé gagne moins de {median} nets par mois à temps plein, et {chomage} des actifs sont au chômage.",
     chiffres: [
@@ -235,6 +245,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'ecole',
     titre: "L'école : combien ça coûte, est-ce que ça marche ?",
+    sousTitre: "Ce que coûte un élève, et ce qu'il apprend",
     icone: 'GraduationCap',
     accroche: "La France consacre {depense} par an à l'éducation, soit environ {par_eleve} par élève ou étudiant.",
     chiffres: [
@@ -259,6 +270,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'sante',
     titre: 'La santé : combien ça coûte ?',
+    sousTitre: "Ce que coûtent les soins, et qui les rembourse",
     icone: 'HeartPulse',
     accroche: "Les soins coûtent cher, mais l'Assurance maladie et les complémentaires en paient l'essentiel : chacun paie lui-même en moyenne {reste} par an.",
     chiffres: [

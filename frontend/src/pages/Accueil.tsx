@@ -68,7 +68,7 @@ export default function Accueil() {
           {QUESTIONS.map((q) => (
             <Link key={q.id} to={`/comprendre/${q.id}`} className="card link" style={{ padding: 14 }}>
               <strong>{q.titre}</strong>
-              <span className="small muted" style={{ display: 'block', marginTop: 4 }}>Les chiffres officiels, expliqués simplement <ArrowRight size={12} /></span>
+              <span className="small muted" style={{ display: 'block', marginTop: 4 }}>{q.sousTitre ?? 'Les chiffres officiels, expliqués simplement'} <ArrowRight size={12} /></span>
             </Link>
           ))}
         </div>

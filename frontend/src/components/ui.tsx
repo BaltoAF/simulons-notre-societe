@@ -6,7 +6,7 @@ import {
   Landmark, Leaf, Scale, Stethoscope, Users, Vote, X,
 } from 'lucide-react'
 import type { Confiance, Source } from '../lib/api'
-import { date } from '../lib/format'
+import { date, natureLien } from '../lib/format'
 import { CONFIANCE_FEMININ } from '../lib/humain'
 
 const ICONES: Record<string, typeof Coins> = {
@@ -97,7 +97,7 @@ export function SourceItem({ s }: { s: Source }) {
             {s.date_publication ? ' · ' + date(s.date_publication) : ''}
           </div>
         </div>
-        {s.url ? <a className="icon-btn" href={s.url} target="_blank" rel="noreferrer noopener" title="Ouvrir la source"><ExternalLink size={16} /></a> : null}
+        {s.url ? <a className="icon-btn" href={s.url} target="_blank" rel="noreferrer noopener" title={`Ouvrir la source${natureLien(s.url)}`}><ExternalLink size={16} /></a> : null}
       </div>
     </li>
   )

@@ -143,3 +143,14 @@ export const DOMAINE_TITRE: Record<string, string> = {
   environnement_energie: 'Environnement et énergie', justice_penale: 'Justice pénale', droit_civil: 'Famille et droit civil',
   institutions: 'Institutions', nationalite_immigration: 'Nationalité et immigration', transports: 'Transports et route',
 }
+
+/** Prévenir quand un lien de source télécharge un fichier au lieu d'ouvrir une page (« (fichier Excel) »). */
+export function natureLien(url?: string | null): string {
+  const ext = url?.toLowerCase().match(/\.([a-z0-9]+)(?:[?#].*)?$/)?.[1]
+  return ext === 'xlsx' || ext === 'xls' ? ' (fichier Excel)' : ext === 'csv' ? ' (fichier CSV)' : ext === 'pdf' ? ' (PDF)' : ext === 'zip' ? ' (archive ZIP)' : ''
+}
+
+/** Espaces insécables dans les nombres et devant % et € : « 250 000 € » ou « 9 % » ne se coupent pas en fin de ligne. */
+export function insecable(t: string): string {
+  return t.replace(/(\d) (?=\d{3}\b)/g, '$1\u202f').replace(/ (%|€)/g, '\u00a0$1')
+}

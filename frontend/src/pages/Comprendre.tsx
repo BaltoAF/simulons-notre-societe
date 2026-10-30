@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState, type ReactNode } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { ArrowRight, Briefcase, Coins, ExternalLink, GraduationCap, HeartPulse, Hourglass, Info, Landmark, Leaf, TrendingDown, Users } from 'lucide-react'
 import { api, type Regle } from '../lib/api'
+import { natureLien } from '../lib/format'
 import { PRESETS, resoudrePreset } from '../lib/presets'
 import { QUESTIONS, VRAI_FAUX, formater, type Chiffre, type Question, type VraiFaux } from '../lib/questions'
 import { useApp, useFetch } from '../lib/state'
@@ -51,7 +52,10 @@ function avecChiffres(texte: string, q: Question, v: Record<string, number>, gra
   let pibExplique = false
   return morceaux.map((m, i) => {
     const cle = m.match(/^\{([a-z0-9_]+)\}$/)?.[1]
-    const txt = cle ? (() => { const c = q.chiffres.find((x) => x.cle === cle); return c && v[cle] != null ? formater(v[cle], c.format, c.absolu) : '…' })() : m
+    const c = cle ? q.chiffres.find((x) => x.cle === cle) : undefined
+    // chiffre pas encore chargé : un repère discret plutôt qu'une phrase à trous
+    if (cle && (!c || v[cle] == null)) return <span key={i} className="attente-chiffre" role="img" aria-label="chiffre en cours de chargement" />
+    const txt = cle && c ? formater(v[cle], c.format, c.absolu) : m
     const parts = txt.split(/(PIB)/)
     const rendu = parts.map((p, k) => (p === 'PIB' && !pibExplique ? ((pibExplique = true), <Terme key={k} id="pib">PIB</Terme>) : p))
     return cle && gras ? <strong key={i}>{rendu}</strong> : <span key={i}>{rendu}</span>
@@ -63,10 +67,13 @@ function Liste() {
   const cites = QUESTIONS.flatMap((q) => (q.accroche.match(/\{([a-z0-9_]+)\}/g) ?? []).map((k) => q.chiffres.find((c) => c.cle === k.slice(1, -1))))
   const ids = [...new Set(cites.map((c) => c?.metrique).filter(Boolean))].join(',')
   const { data } = useFetch<{ metriques: Stat[] }>(ids ? `/api/metriques?ids=${ids}` : null)
-  const accroche = (q: Question) => q.accroche.replace(/\{([a-z0-9_]+)\}/g, (_, k: string) => {
+  const accroche = (q: Question) => q.accroche.split(/(\{[a-z0-9_]+\})/).map((morceau, i) => {
+    const k = morceau.match(/^\{([a-z0-9_]+)\}$/)?.[1]
+    if (!k) return morceau
     const c = q.chiffres.find((x) => x.cle === k)
     const m = data?.metriques.find((x) => x.id === c?.metrique)
-    return c && m?.derniere ? formater(Number(m.derniere.valeur), c.format, c.absolu) : '…'
+    return c && m?.derniere ? formater(Number(m.derniere.valeur), c.format, c.absolu)
+      : <span key={i} className="attente-chiffre" role="img" aria-label="chiffre en cours de chargement" />
   })
   return (
     <div className="container page" style={{ maxWidth: 1000 }}>
@@ -215,7 +222,7 @@ function Detail({ q }: { q: Question }) {
                 <div className="small muted">
                   {s?.derniere?.date && <>{s.derniere.date.slice(0, 4)} · </>}
                   {s?.source ? (s.source.url
-                    ? <a href={s.source.url} target="_blank" rel="noreferrer">{s.source.editeur ?? s.source.titre} <ExternalLink size={11} /></a>
+                    ? <a href={s.source.url} target="_blank" rel="noreferrer">{s.source.editeur ?? s.source.titre}{natureLien(s.source.url)} <ExternalLink size={11} /></a>
                     : <Link to={`/sources/${s.source.id}`}>{s.source.editeur ?? s.source.titre}</Link>)
                     : c.regle && reglesCitees[c.regle] ? <Link to={`/regles/r/${c.regle}`}>la règle et son texte officiel</Link> : null}
                 </div>

@@ -1,12 +1,12 @@
 // « Avez-vous pensé à… ? » : sous le résultat de « Mes droits », les aides souvent oubliées qui correspondent au foyer,
 // avec ce qu'elles apportent, comment les demander et la fiche officielle.
 import { Link } from 'react-router-dom'
-import { AlertCircle, ExternalLink, Lightbulb, Users } from 'lucide-react'
+import { AlertCircle, CheckCircle2, ExternalLink, Lightbulb, Users } from 'lucide-react'
 import { aidesPourVous, type AideOubliee } from '../lib/aidesOubliees'
 import { date, euros } from '../lib/format'
 import { useFetch, type SituationSaisie } from '../lib/state'
 
-type Ligne = { id: string; montant: number; nature: string }
+type Ligne = { id: string; montant: number; nature: string; libelle?: string }
 
 export function AvezVousPense({ s, lignes }: { s: SituationSaisie; lignes: Ligne[] }) {
   const { data } = useFetch<{ aides: AideOubliee[] }>('/api/aides-oubliees')
@@ -22,15 +22,17 @@ export function AvezVousPense({ s, lignes }: { s: SituationSaisie; lignes: Ligne
         {aides.map((a) => (
           <li key={a.id} className="aide-oubliee">
             <div className="list-row" style={{ alignItems: 'flex-start', flexWrap: 'wrap' }}>
-              <strong>{a.nom}</strong>
+              <strong>{a.libelle}</strong>
               {a.montant != null
-                ? <span className="badge gain">Calculée pour vous : {euros(a.montant)} {a.versement === 'annuel' ? 'par an' : '/ mois'}</span>
+                ? <span className="badge gain">Déjà comptée ci-dessus{a.versement === 'annuel' ? ` (${euros(a.montant)} par an)` : ` : ${euros(a.montant)} / mois`}</span>
                 : <span className="badge">Piste à vérifier</span>}
             </div>
             <p className="small" style={{ margin: '4px 0 0' }}>{a.en_bref}</p>
             <p className="small muted" style={{ margin: '4px 0 0' }}>{a.pourquoi_vous}</p>
             {a.non_recours && <p className="small aide-non-recours"><Users size={14} aria-hidden="true" /> {a.non_recours}</p>}
-            {a.rappelVisible && a.rappel && <div className="notice warn small" style={{ marginTop: 8 }}><AlertCircle size={16} style={{ flexShrink: 0 }} /> {a.rappel.texte}</div>}
+            {a.rappelVisible && a.rappel && (a.rappel.ton === 'rassurant'
+              ? <div className="notice ok small" style={{ marginTop: 8 }}><CheckCircle2 size={16} style={{ flexShrink: 0 }} /> {a.rappel.texte}</div>
+              : <div className="notice warn small" style={{ marginTop: 8 }}><AlertCircle size={16} style={{ flexShrink: 0 }} /> {a.rappel.texte}</div>)}
             <details className="explain">
               <summary>Comment la demander</summary>
               <p className="small" style={{ marginTop: 0 }}>{a.ou_la_demander}</p>

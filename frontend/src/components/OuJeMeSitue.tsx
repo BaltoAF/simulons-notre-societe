@@ -1,5 +1,6 @@
 // « Où je me situe ? » : le niveau de vie du foyer placé parmi les Français, sur une règle graduée (seuil de pauvreté,
 // niveau du milieu, 10 % les plus aisés), d'après les déciles de niveau de vie de l'Insee.
+import type { ReactNode } from 'react'
 import { euros, nombre } from '../lib/format'
 import { useFetch } from '../lib/state'
 import { Terme } from './Terme'
@@ -16,7 +17,7 @@ function rang(v: number, deciles: number[]): number {
   return Math.min(99, 90 + 10 * (v - deciles[8]) / deciles[8]) // au-delà du 9e décile : simple ordre de grandeur
 }
 
-export function OuJeMeSitue({ niveauVieMensuel }: { niveauVieMensuel: number }) {
+export function OuJeMeSitue({ niveauVieMensuel, note }: { niveauVieMensuel: number; note?: ReactNode }) {
   const { data } = useFetch<{ metriques: Stat[] }>(`/api/metriques?ids=${IDS.join(',')}`)
   const val = (id: string) => data?.metriques.find((m) => m.id === id)?.derniere?.valeur
   const deciles = [1, 2, 3, 4, 5, 6, 7, 8, 9].map((k) => val(`revenus.niveau_vie.d${k}`))
@@ -34,6 +35,7 @@ export function OuJeMeSitue({ niveauVieMensuel }: { niveauVieMensuel: number }) 
     <div className="situe">
       <div className="kpi-label">Où vous situez-vous ?</div>
       <p style={{ margin: '4px 0 10px', fontWeight: 650 }}>{phrase}</p>
+      {note && <p className="small muted" style={{ margin: '-4px 0 10px' }}>{note}</p>}
       <div className="situe-regle" aria-hidden="true">
         <span className="situe-zone pauvre" style={{ width: pos(seuil * 12) }} />
         <span className="situe-repere" style={{ left: pos(seuil * 12) }}><span>Seuil de pauvreté<br />{euros(seuil, 0)}</span></span>

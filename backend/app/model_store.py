@@ -288,7 +288,7 @@ class ModelStore:
 
     AIDE_CHAMPS = ("id", "nom", "en_bref", "pourquoi_vous", "ce_que_ca_apporte", "ou_la_demander", "url_officielle", "source_id", "criteres")
     AIDE_CRITERES = {"calculee", "activite", "age_min", "age_max", "salaire_max", "seul", "enfant_age", "logement",
-                     "ressources_c2s_max", "rfr_par_uc_max", "ou"}
+                     "ressources_c2s_max", "rfr_par_uc_max", "hors_rattaches", "ou"}
 
     def _load_aides(self, d: Path):
         """Aides souvent non demandées, proposées selon le profil dans « Mes droits » (model/aides/*.yaml)."""

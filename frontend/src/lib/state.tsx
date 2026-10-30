@@ -37,6 +37,7 @@ export type AdulteSaisie = {
   montant_net: number
   cadre: boolean
   handicap: boolean
+  rattache?: boolean // étudiant compté dans la déclaration d'impôt de ses parents
 }
 
 export type SituationSaisie = {
