@@ -19,7 +19,7 @@
 aides:
   - id: prime_activite
     nom: "Prime d'activité"
-    en_bref: "Un complément de revenu, chaque mois, pour les personnes qui travaillent avec un salaire modeste."
+    en_bref: "Un complément de revenu, chaque mois, pour les personnes qui travaillent et gagnent peu, salariées ou à leur compte."
     pourquoi_vous: "Le site a calculé que votre foyer y a droit."
     pour_qui: "Personnes de 18 ans ou plus qui travaillent (salariés, fonctionnaires, indépendants) avec des revenus modestes : elle n'est plus versée au-delà d'environ 2 000 € nets par mois pour une personne seule. Les étudiants et apprentis y ont droit s'ils gagnent plus de 1 144 € par mois."
     ce_que_ca_apporte: "Un versement chaque mois, calculé à partir d'un montant de base de 638,28 € pour une personne seule depuis le 1er avril 2026."
@@ -154,7 +154,7 @@ aides:
   - id: visale
     nom: "Garantie Visale"
     en_bref: "Une caution gratuite pour louer un logement quand on n'a personne pour se porter garant."
-    pourquoi_vous: "Vous avez moins de 30 ans, ou un salaire modeste : si vous cherchez un logement à louer, Action Logement peut se porter garant pour vous."
+    pourquoi_vous: "Vous avez moins de 30 ans, ou de petits revenus : si vous cherchez un logement à louer, Action Logement peut se porter garant pour vous."
     pour_qui: "Jeunes de moins de 30 ans (étudiants, alternants, salariés, sans emploi) et salariés plus âgés qui viennent d'être embauchés ou qui gagnent au plus 1 710 € nets par mois. Loyer charges comprises au plus 1 575 € (1 940 € en Île-de-France)."
     ce_que_ca_apporte: "Action Logement garantit gratuitement jusqu'à 36 mois de loyers impayés dans le parc privé (9 mois en HLM). Le propriétaire n'a plus besoin d'un garant dans votre famille."
     ou_la_demander: "Sur visale.fr, avant de signer le bail : vous obtenez un visa en quelques jours, puis le propriétaire l'enregistre en ligne."

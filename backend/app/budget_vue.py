@@ -160,5 +160,5 @@ def vue_menage(store, m: Menage) -> dict:
         "depense_publique_moyenne_foyer": (nat["par_habitant"]["depense"] or 0) * personnes,
         "personnes": personnes,
         "note": "Montants annuels. La TVA et la taxe foncière sont estimées à partir de moyennes ; la répartition de votre contribution "
-                "suit celle de la dépense publique totale (fonctions COFOG).",
+                "suit celle de la dépense publique totale, par grand domaine.",
     }

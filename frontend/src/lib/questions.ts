@@ -304,8 +304,8 @@ export const VRAI_FAUX: VraiFaux[] = [
   {
     id: 'impots',
     affirmation: 'La moitié des Français ne paie pas d\'impôts.',
-    verdict: 'faux',
-    explication: "C'est vrai pour l'impôt sur le revenu : seuls {part_imposes} des foyers fiscaux le paient. Mais tout le monde paie la TVA à chaque achat ({tva} par an au total), et la CSG est prélevée sur presque tous les salaires, pensions et allocations ({csg}).",
+    verdict: 'nuance',
+    explication: "Pour l'impôt sur le revenu, c'est à peu près vrai : seules {part_imposes} des déclarations de revenus donnent un impôt à payer. Mais tout le monde paie la TVA à chaque achat ({tva} par an au total), et la CSG est prélevée sur presque tous les salaires, pensions et allocations ({csg}).",
     chiffres: [
       { cle: 'foyers', libelle: 'Foyers fiscaux', format: 'entier', metrique: 'impot.ir.nombre_foyers_fiscaux', cache: true },
       { cle: 'imposes', libelle: "Foyers qui paient l'impôt sur le revenu", format: 'entier', metrique: 'impot.ir.nombre_foyers_imposes', cache: true },

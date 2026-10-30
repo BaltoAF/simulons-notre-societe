@@ -670,3 +670,5 @@ button.change-tete:hover { background: color-mix(in srgb, var(--primary) 7%, tra
 }
 /* sur téléphone, les « Pourquoi ce montant ? » et « Comment la demander » se touchent du doigt sans viser (44 px) */
 @media (max-width: 640px) { details.explain > summary, details.curieux > summary { padding: 12px 0; } }
+/* cases à cocher : plus grandes sur téléphone, pour ne pas en cocher une sans le vouloir */
+@media (max-width: 640px) { input[type=checkbox] { width: 22px; height: 22px; flex-shrink: 0; } }

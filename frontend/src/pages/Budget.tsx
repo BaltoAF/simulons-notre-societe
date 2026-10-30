@@ -52,6 +52,14 @@ const POSTES_CONCRETS: { nom: string; ids: string[] }[] = [
   { nom: 'Logement, culture, sport et environnement', ids: ['logement_equipements', 'loisirs_culture', 'environnement'] },
 ]
 
+// les mêmes mots pour les grands domaines (« Ce que finance sa contribution ») que dans l'encadré des 100 €
+const NOM_DOMAINE: Record<string, string> = {
+  protection_sociale: 'Retraites, familles, chômage, invalidité, logement', sante: 'Santé : hôpitaux, soins et médicaments',
+  services_generaux: "Fonctionnement de l'État, des communes, et intérêts de la dette", affaires_economiques: 'Transports, énergie, agriculture, aides aux entreprises',
+  enseignement: 'École et université', defense: 'Armée', ordre_securite: 'Police, gendarmerie et justice', loisirs_culture: 'Culture, sport et loisirs',
+  logement_equipements: 'Logement et équipements des communes', environnement: 'Environnement',
+}
+
 function SurCent({ fonctions }: { fonctions: Fonction[] }) {
   const md = new Map<string, number>()
   for (const f of fonctions) { md.set(f.id, f.md); for (const d of f.detail ?? []) md.set(d.id, d.md) }
@@ -283,7 +291,7 @@ export default function Budget() {
             <ul className="list small">
               {m.finance.map((f) => (
                 <li key={f.id}>
-                  <div className="list-row"><span>{f.titre}</span><strong>{euros(f.montant)}</strong></div>
+                  <div className="list-row"><span>{NOM_DOMAINE[f.id] ?? f.titre}</span><strong>{euros(f.montant)}</strong></div>
                   <Barre part={m.total_paye ? f.montant / m.total_paye : 0} />
                   {f.detail && <div className="muted" style={{ fontSize: '.78rem', marginTop: 4 }}>{f.detail.slice(0, 4).map((d) => `${d.titre} ${euros(d.montant)}`).join(' · ')}</div>}
                 </li>

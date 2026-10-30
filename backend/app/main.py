@@ -385,6 +385,8 @@ def menage_depuis_saisie(payload: dict, montants: str) -> tuple[Menage, list[str
             nature = a.get("activite_micro") if a.get("activite_micro") in ("vente", "services", "liberal") else "services"
             a["activite_micro"] = nature
             a["taux_cotisations_micro"] = float(store.regles[f"travail.micro_entreprise.cotisations_{nature}"]["valeur"]) / 100
+            approximations.append("Auto-entrepreneur : frais réels non déduits du revenu affiché, et option pour le versement "
+                                  "libératoire de l'impôt non prise en compte.")
         if montants == "net":
             for champ, kind in (("salaire_brut_mensuel", "salaire"), ("chomage_brut_mensuel", "chomage"),
                                 ("retraite_brute_mensuelle", "retraite")):

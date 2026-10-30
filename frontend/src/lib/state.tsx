@@ -180,7 +180,8 @@ export function resumeSituation(s: SituationSaisie): string {
   const nature: Record<string, string> = { salarie: 'salaire', chomeur: 'chômage', retraite: 'retraite', etudiant: 'étudiant', inactif: 'sans activité' }
   const revenus = s.adultes.map((a) => (a.activite === 'independant' ? `auto-entrepreneur, chiffre d'affaires ${euros(a.montant_net)}/mois`
     : ['salarie', 'chomeur', 'retraite'].includes(a.activite) ? `${nature[a.activite]} ${euros(a.montant_net)} nets/mois`
-    : a.activite === 'etudiant' && a.montant_net > 0 ? `étudiant avec un petit boulot de ${euros(a.montant_net)} nets/mois` : nature[a.activite])).join(' + ')
+    : a.activite === 'etudiant' && a.montant_net > 0 ? `étudiant avec un petit boulot de ${euros(a.montant_net)} nets/mois` : nature[a.activite])
+    + (a.handicap ? ', handicap reconnu' : '')).join(' + ')
   const logement: Record<string, string> = { locataire_prive: 'locataire', locataire_social: 'locataire HLM', proprietaire: 'propriétaire', heberge: 'hébergé' }
   const epargne = s.revenus_capital_annuels > 0 ? `, épargne rapportant ${euros(s.revenus_capital_annuels)} par an` : ''
   return `${foyer}${enfants}, ${revenus}${epargne}, ${logement[s.logement] ?? ''}`

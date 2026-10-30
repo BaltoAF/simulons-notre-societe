@@ -51,8 +51,8 @@ const DEFAUT: SituationSaisie = { couple: 'seul', adultes: [ADULTE], enfants: []
 // Règles qui « expliquent » chaque ligne du résultat.
 // À qui demander chaque aide (le site calcule des droits théoriques ; la demande se fait auprès de l'organisme)
 const DEMANDER: Record<string, string> = {
-  rsa: 'auprès de la CAF (caf.fr) ou de la MSA pour les agriculteurs', prime_activite: 'auprès de la CAF (caf.fr) ou de la MSA',
-  aides_logement: 'auprès de la CAF (caf.fr) ou de la MSA', allocations_familiales: 'auprès de la CAF : elles sont en général versées automatiquement',
+  rsa: 'auprès de la CAF (caf.fr), ou de la MSA si vous êtes agriculteur', prime_activite: 'auprès de la CAF (caf.fr), ou de la MSA si vous êtes agriculteur',
+  aides_logement: 'auprès de la CAF (caf.fr), ou de la MSA si vous êtes agriculteur', allocations_familiales: 'auprès de la CAF : elles sont en général versées automatiquement',
   aspa: 'auprès de votre caisse de retraite', aah: 'auprès de la MDPH de votre département, puis de la CAF',
   complement_familial: 'auprès de la CAF', asf: 'auprès de la CAF', paje: 'auprès de la CAF', ars: 'auprès de la CAF : elle est en général versée automatiquement',
 }
@@ -121,7 +121,9 @@ export default function MesDroits() {
   const [loading, setLoading] = useState(false)
   const [etSi, setEtSi] = useState<Record<string, { delta: number; loading?: boolean; departs?: Depart[] }>>({})
   const [exemple, setExemple] = useState<string | null>(null) // résultat d'un foyer exemple, pas encore ajusté par la personne
-  const { data: regles } = useFetch<{ regles: Regle[] }>('/api/regles?simulable=true&limit=2000')
+  // toutes les règles (et pas seulement celles que le moteur sait faire varier) : « Pourquoi ce montant ? » cite par leur titre
+  // des règles du site comme les cotisations des auto-entrepreneurs, au lieu de leur identifiant technique
+  const { data: regles } = useFetch<{ regles: Regle[] }>('/api/regles?limit=5000')
   const nav = useNavigate()
   const [params] = useSearchParams()
   // venu de l'atelier pour décrire son foyer : un bouton y ramène, la réforme est gardée
@@ -204,6 +206,13 @@ export default function MesDroits() {
         return (res?.decote_annuelle ?? 0) > 0
           ? <>Votre impôt aurait été d'environ {euros(res!.decote_annuelle!, 0)} par an, mais la <Terme id="decote">décote</Terme>, une réduction automatique pour les petits impôts, l'annule entièrement.</>
           : <>Le revenu du foyer est divisé en <Terme id="part_fiscale">parts</Terme> (une part par adulte, une demi-part par enfant) : par part, il reste sous le seuil où l'impôt commence.</>
+      }
+      if (l.id === 'revenu_micro') {
+        const ca = s.adultes.filter((a) => a.activite === 'independant').reduce((t, a) => t + a.montant_net, 0)
+        if (ca > 0) return <>Votre chiffre d'affaires ({euros(ca, 0)}) moins vos cotisations sociales : {euros(ca - l.montant, 0)} par mois,
+          soit {(Math.round(((ca - l.montant) / ca) * 1000) / 10).toLocaleString('fr-FR')} % de ce que vous facturez (retraite, maladie, CSG et CRDS comprises).
+          Vos frais (vélo, téléphone, carburant…) ne sont pas déduits : à vous de les retirer. Pour l'impôt et les aides, l'administration
+          retire elle-même une part forfaitaire de votre chiffre d'affaires pour tenir compte de ces frais.</>
       }
       if (l.id === 'impot_revenu' && (res?.decote_annuelle ?? 0) > 0) {
         const paye = Math.round(l.montant * 12)
