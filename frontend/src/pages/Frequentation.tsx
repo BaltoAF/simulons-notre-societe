@@ -45,7 +45,7 @@ function SanteServeur({ s }: { s: Serveur }) {
 const NOMS: [RegExp, string][] = [
   [/^\/$/, 'Accueil'], [/^\/mes-droits/, 'Mes droits'], [/^\/comprendre\/(.+)/, 'Grande question : $1'], [/^\/comprendre$/, 'Les grandes questions'],
   [/^\/budget/, 'Le budget'], [/^\/atelier/, 'Changer les règles'], [/^\/societes/, 'Les propositions'], [/^\/regles\/r\/(.+)/, 'Règle : $1'],
-  [/^\/regles/, 'Les règles'], [/^\/vos-avis/, 'Ce que vos avis ont changé'], [/^\/soutenir/, 'Soutenir le projet'], [/^\/tester/, 'Tester le site'],
+  [/^\/regles/, 'Les règles'], [/^\/vos-avis/, 'Ce que vos avis ont changé'], [/^\/soutenir/, 'Soutenir le projet'], [/^\/tester/, 'Tester le site'], [/^\/qui-fait-ce-site/, 'Qui fait ce site ?'],
 ]
 const nomPage = (p: string) => { for (const [re, nom] of NOMS) if (re.test(p)) return p.replace(re, nom); return p }
 

@@ -54,8 +54,8 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
     de l'impôt sur le revenu payée par les plus aisés, niveau des dépenses publiques comparé à l'Europe…) ; ajouter une
     proposition d'exemple qui fait des économies (les trois exemples sont « solidaires »).
   - « Comprendre » : un encadré « Ce qui fait débat » (ex. la dette) ; la comparaison avec la Défense à sourcer.
-  - Une page « Qui fait ce site ? » (projet indépendant, amélioré chaque jour par une IA sous une charte publique, financé
-    par les dons) : le nom du responsable est à décider par lui.
+  - Page « Qui fait ce site ? » faite (/qui-fait-ce-site : sources, rôle et limites de l'IA, code ouvert, financement).
+    Reste à décider par le responsable : y figurer nommément ou non.
 - **Si la fréquentation augmente** (à soumettre au responsable) : la mémoire est déjà protégée, car un seul calcul de
   population tourne à la fois (`SOCIETE_WORKERS=1`) et les résultats identiques sont gardés en cache. Seule l'attente
   s'allonge : passer alors au VPS-2 avec `SOCIETE_WORKERS=3`, ou dire au visiteur combien de calculs passent avant le sien.

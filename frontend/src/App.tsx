@@ -31,6 +31,7 @@ const Glossaire = lazy(() => import('./pages/Glossaire'))
 const VosAvis = lazy(() => import('./pages/VosAvis'))
 const Soutenir = lazy(() => import('./pages/Soutenir'))
 const Tester = lazy(() => import('./pages/Tester'))
+const QuiFait = lazy(() => import('./pages/QuiFait'))
 const Frequentation = lazy(() => import('./pages/Frequentation'))
 
 function MenuPlus({ onVisite }: { onVisite: () => void }) {
@@ -131,6 +132,7 @@ function Footer() {
             Simulons notre société est un projet indépendant ; il ne représente aucune administration.</p>
         </div>
         <div className="small" style={{ display: 'grid', gap: 4 }}>
+          <Link to="/qui-fait-ce-site">Qui fait ce site ?</Link>
           <Link to="/methode">Méthode et indice de confiance</Link>
           <Link to="/sources">Registre des sources</Link>
           <Link to="/systeme">Journal des mises à jour</Link>
@@ -212,6 +214,7 @@ export default function App() {
             <Route path="/vos-avis" element={<VosAvis />} />
             <Route path="/soutenir" element={<Soutenir />} />
             <Route path="/tester" element={<Tester />} />
+            <Route path="/qui-fait-ce-site" element={<QuiFait />} />
             <Route path="/frequentation" element={<Frequentation />} />
             <Route path="*" element={<div className="container page"><h1>Page introuvable</h1><Link to="/">Retour à l'accueil</Link></div>} />
           </Routes>
