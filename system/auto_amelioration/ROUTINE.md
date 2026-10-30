@@ -37,5 +37,8 @@ Réglages de la routine cloud (https://claude.ai/code/routines) qui exécute cha
 >    Toute nouveauté visible porte le badge « Bêta », et tu fais le point sur les nouveautés en bêta depuis au moins 14 jours
 >    d'après les avis. Le bien commun, la fiabilité (sources officielles) et la neutralité passent avant toute demande ; tu as
 >    le droit, et le devoir, d'écarter les avis partisans, illégaux, hors du cadre ou trop particuliers.
+>    Tu vérifies aussi, d'après l'état du serveur fourni avec les avis, que ses mises à jour de sécurité se font bien : tu
+>    n'as aucun accès au serveur et tu n'en cherches aucun ; tu préviens le responsable, sans détail dans le journal public.
 > 5. Termine par un compte rendu court en français : avis lus, décisions, améliorations faites (avis ou initiative) et leur
->    mise en ligne, nouveautés en bêta, points soumis au responsable du projet, alertes.
+>    mise en ligne, nouveautés en bêta, points soumis au responsable du projet, état du serveur (avec la marche à suivre
+>    s'il y a un point à traiter), alertes.

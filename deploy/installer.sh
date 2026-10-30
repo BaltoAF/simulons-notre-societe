@@ -6,6 +6,7 @@
 # Sans nom de domaine, le site prend une adresse gratuite du type 51-15-12-34.sslip.io (HTTPS compris).
 # Le script : installe Docker, ferme le pare-feu sauf SSH/HTTP/HTTPS, récupère le code, crée deploy/.env avec un jeton secret
 # tiré au hasard (pour la routine d'auto-amélioration), met le site en ligne et le fait suivre GitHub toutes les 5 minutes.
+# Les mises à jour de sécurité du serveur s'installent ensuite seules chaque nuit (deploy/maintenance_serveur.sh).
 set -euo pipefail
 DEPOT="${DEPOT:-https://github.com/BaltoAF/simulons-notre-societe.git}"
 DOSSIER=/opt/simulons
@@ -54,7 +55,8 @@ fi
 # clé de la page privée « Fréquentation » (mesure d'audience maison, anonyme)
 grep -q '^SOCIETE_CLE_FREQUENTATION=' .env || echo "SOCIETE_CLE_FREQUENTATION=$(openssl rand -hex 16)" >> .env
 mkdir -p donnees && chown 1000:1000 donnees
-chmod +x suivre_github.sh
+chmod +x suivre_github.sh maintenance_serveur.sh
+./maintenance_serveur.sh --forcer   # mises à jour de sécurité automatiques, fail2ban, état du serveur
 
 cp suivre-github.service suivre-github.timer /etc/systemd/system/
 systemctl daemon-reload

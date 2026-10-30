@@ -10,3 +10,8 @@
 		X-Frame-Options "DENY"
 	}
 }
+
+# www.<domaine> renvoie vers l'adresse principale
+www.{$DOMAINE} {
+	redir https://{$DOMAINE}{uri} permanent
+}

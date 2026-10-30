@@ -13,7 +13,7 @@ from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
-from . import auth, db, frequentation, planificateur, retours, vcs
+from . import auth, db, frequentation, planificateur, retours, serveur, vcs
 from . import journal as journal_erreurs  # « journal » est déjà la route du journal des versions
 from . import config
 from .config import FRONTEND_DIST, REFERENCE_SOCIETY_ID
@@ -817,8 +817,9 @@ def _jeton_routine(request: Request):
 def avis_a_traiter(request: Request):
     """Réservé à la routine d'auto-amélioration : avis non examinés (texte complet, données personnelles déjà masquées)."""
     _jeton_routine(request)
-    # avec les erreurs du site des 7 derniers jours : la routine corrige d'abord celles qui gênent des visiteurs
-    return {**retours.paquet_a_traiter(), "erreurs_recentes": journal_erreurs.recentes(7)}
+    # avec les erreurs du site des 7 derniers jours (la routine corrige d'abord celles qui gênent des visiteurs) et l'état
+    # du serveur (mises à jour de sécurité…), qu'elle signale au responsable sans pouvoir y toucher
+    return {**retours.paquet_a_traiter(), "erreurs_recentes": journal_erreurs.recentes(7), "serveur": serveur.etat()}
 
 
 class DecisionIn(BaseModel):
@@ -864,7 +865,7 @@ def voir_frequentation(cle: str = "", jours: int = 30):
     attendue = os.environ.get("SOCIETE_CLE_FREQUENTATION", "")
     if not attendue or not secrets.compare_digest(attendue, cle or ""):
         raise HTTPException(404, "Ressource inconnue")
-    return frequentation.bilan(max(7, min(jours, 365)))
+    return {**frequentation.bilan(max(7, min(jours, 365))), "serveur": serveur.etat()}
 
 
 @app.get("/api/avis/decisions")

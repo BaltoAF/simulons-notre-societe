@@ -1,6 +1,6 @@
 // Fréquentation du site (page privée : le lien contient la clé du serveur). Mesure maison, anonyme, sans cookie.
 import { useLocation } from 'react-router-dom'
-import { BarChart3, Lock, Monitor, Smartphone } from 'lucide-react'
+import { BarChart3, Lock, Monitor, Server, Smartphone } from 'lucide-react'
 import { nombre } from '../lib/format'
 import { useFetch } from '../lib/state'
 import { Loading } from '../components/ui'
@@ -11,6 +11,35 @@ type Bilan = {
   appareils: Record<string, number>
   provenances: { domaine: string; visites: number }[]
   total_vues: number
+  serveur: Serveur
+}
+type Serveur = {
+  statut: 'ok' | 'a_surveiller' | 'a_traiter' | 'inconnu'
+  alertes: { niveau: 'info' | 'a_surveiller' | 'a_traiter'; texte: string }[]
+  date?: string
+  systeme?: { nom: string | null }
+  mises_a_jour?: { securite: number | null; derniere_execution: string | null }
+  disque_utilise_pct?: number
+  derniere_sauvegarde?: string | null
+  version_site?: string | null
+}
+const STATUTS = { ok: ['gain', 'Tout va bien'], a_surveiller: ['warn', 'À surveiller'], a_traiter: ['accent', 'À traiter'], inconnu: ['', 'Inconnu'] } as const
+const quand = (iso?: string | null) => iso ? new Date(iso).toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'short' }) : 'jamais'
+
+// Santé du serveur : relevée toutes les 30 minutes par deploy/maintenance_serveur.sh ; la routine quotidienne la lit aussi.
+function SanteServeur({ s }: { s: Serveur }) {
+  const [classe, libelle] = STATUTS[s.statut] ?? STATUTS.inconnu
+  return (
+    <div className="card" style={{ marginBottom: 16 }}>
+      <div className="card-head"><h3 style={{ margin: 0 }}><Server size={18} /> Santé du serveur</h3><span className={`badge ${classe}`}>{libelle}</span></div>
+      {s.alertes.length > 0
+        ? <ul className="list">{s.alertes.map((a) => <li key={a.texte} className="list-row small"><span>{a.texte}</span>
+            {a.niveau !== 'info' && <span className={`badge ${STATUTS[a.niveau][0]}`}>{STATUTS[a.niveau][1]}</span>}</li>)}</ul>
+        : <p className="small" style={{ margin: '8px 0' }}>Les mises à jour de sécurité s'installent seules chaque nuit ; pare-feu, protection des connexions et sauvegarde du jour : en place.</p>}
+      {s.date && <div className="small muted">{s.systeme?.nom} · dernière mise à jour automatique : {quand(s.mises_a_jour?.derniere_execution)}
+        {' '}· sauvegarde : {quand(s.derniere_sauvegarde)} · disque utilisé : {nombre(s.disque_utilise_pct ?? 0, 0)} % · version {s.version_site} · relevé le {quand(s.date)}</div>}
+    </div>
+  )
 }
 
 const NOMS: [RegExp, string][] = [
@@ -65,6 +94,7 @@ export default function Frequentation() {
             : <p className="small muted">Pas encore de visiteur venu d'un autre site (lien direct ou favori).</p>}
         </div>
       </div>
+      <div style={{ marginTop: 16 }}>{data.serveur && <SanteServeur s={data.serveur} />}</div>
     </div>
   )
 }

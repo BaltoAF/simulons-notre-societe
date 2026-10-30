@@ -83,6 +83,43 @@ avant ce réglage, une seule commande suffit :
 mkdir -p /etc/systemd/journald.conf.d && printf '[Journal]\nMaxRetentionSec=30day\n' > /etc/systemd/journald.conf.d/simulons.conf && systemctl restart systemd-journald
 ```
 
+## Les mises à jour du serveur (sécurité)
+
+Le serveur s'entretient seul, sans que personne ait à s'y connecter :
+- chaque nuit, il installe les mises à jour de sécurité d'Ubuntu et de Docker ; quand l'une d'elles l'exige (noyau), il
+  redémarre à 4 h 30, heure de Paris, et le site repart tout seul ;
+- chaque semaine, entre 2 h et 4 h, il rafraîchit les images de base du site (Debian, Python, Caddy) ;
+- fail2ban bloque les adresses qui essaient des mots de passe SSH à la chaîne.
+
+Toutes les 30 minutes, il relève son état : mises à jour en attente, redémarrage, pare-feu, disque, sauvegardes. Cet état
+s'affiche en bas de la page privée « Fréquentation ». La routine le lit aussi chaque matin : elle n'a aucun accès au serveur,
+donc elle ne fait que prévenir. Les points à traiter figurent dans son compte rendu, sur claude.ai, avec la marche à suivre,
+et jamais en détail dans le journal public. Tout cela est réglé par `deploy/maintenance_serveur.sh`, que le serveur relance
+chaque jour : un serveur installé avant cette fonction s'y met de lui-même. Pour tout refaire à la main :
+
+```bash
+sudo /opt/simulons/deploy/maintenance_serveur.sh --forcer
+```
+
+Ce qui reste au responsable : le passage à la version suivante d'Ubuntu, avant la fin de ses mises à jour de sécurité
+(en 2031 pour la 26.04), et celui de Python dans le `Dockerfile`. La page « Fréquentation » et la routine le rappellent un
+an avant pour Ubuntu, six mois avant pour Python.
+
+## Changer d'adresse (nom de domaine)
+
+1. Chez le vendeur du domaine, dans sa zone DNS, faites pointer le domaine et `www` vers le serveur : un enregistrement **A**
+   vers son adresse IPv4 et un **AAAA** vers son adresse IPv6, pour `@` et pour `www`. Supprimez les anciens A et AAAA, par
+   exemple ceux d'une page « en construction ».
+2. Quand le domaine répond (`nslookup mon-domaine.fr`), changez l'adresse sur le serveur :
+
+   ```bash
+   sudo sed -i 's/^DOMAINE=.*/DOMAINE=mon-domaine.fr/' /opt/simulons/deploy/.env && cd /opt/simulons/deploy && sudo docker compose up -d
+   ```
+
+   Caddy obtient alors le certificat HTTPS tout seul. `www.mon-domaine.fr` renvoie vers `mon-domaine.fr`.
+3. Sur claude.ai, mettez à jour `SOCIETE_SITE_URL` dans l'environnement de la routine. Le lien de la page « Fréquentation »
+   change aussi d'adresse, mais garde la même clé.
+
 ## Au quotidien
 
 | Pour… | Où regarder |
@@ -94,6 +131,7 @@ mkdir -p /etc/systemd/journald.conf.d && printf '[Journal]\nMaxRetentionSec=30da
 | Mettre la routine en pause | https://claude.ai/code/routines |
 | Suivre les mises en ligne sur le serveur | `journalctl -u suivre-github -n 50` |
 | Retrouver une sauvegarde de la base | `/opt/simulons-sauvegardes/` (14 jours) |
+| Vérifier la santé du serveur | le bas de la page privée « Fréquentation », ou le compte rendu de la routine |
 
 Ce qui reste à décider par le responsable du projet, et que la routine ne fait jamais seule : la charte, les valeurs de la loi
 actuelle, les méthodes de calcul, la sécurité, les dépendances. Ces sujets apparaissent dans la rubrique « À soumettre au

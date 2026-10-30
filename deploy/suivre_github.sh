@@ -2,7 +2,9 @@
 # Sur le serveur, toutes les 5 minutes (deploy/suivre-github.timer) :
 #  - si une nouvelle version est arrivée sur la branche main de GitHub ET que les tests de GitHub l'ont validée,
 #    le site est reconstruit et remis en ligne (quelques secondes de coupure) ;
-#  - une fois par jour, la base (comptes, propositions, avis) est sauvegardée (14 jours gardés).
+#  - une fois par jour, la base (comptes, propositions, avis) est sauvegardée (14 jours gardés) ;
+#  - la sécurité du serveur est entretenue (deploy/maintenance_serveur.sh : mises à jour automatiques, état du serveur) ;
+#  - une fois par semaine, la nuit, les images de base (Python, Caddy) sont rafraîchies pour leurs correctifs de sécurité.
 # Usage : deploy/suivre_github.sh [--forcer]   (--forcer : reconstruit même sans nouvelle version)
 set -euo pipefail
 exec 9>/tmp/simulons-suivi.lock
@@ -25,12 +27,22 @@ src.backup(dst); dst.close()" && mv deploy/donnees/sauvegarde.sqlite3 "$SAUV/soc
   find "$SAUV" -name 'societe-*.sqlite3' -mtime +14 -delete
 fi
 
+# ── sécurité du serveur : mises à jour automatiques, état lu par le site et la routine ──
+bash deploy/maintenance_serveur.sh || journal "maintenance du serveur : échec (voir ci-dessus)"
+
+# ── une fois par semaine, entre 2 h et 4 h (avant le redémarrage éventuel de 4 h 30) : images de base rafraîchies ──
+REPERE_IMAGES=/var/lib/simulons/images-rafraichies
+RAFRAICHIR=""
+if [ "$(date +%H)" -ge 2 ] && [ "$(date +%H)" -lt 4 ] && { [ ! -f "$REPERE_IMAGES" ] || [ -n "$(find "$REPERE_IMAGES" -mtime +6)" ]; }; then
+  RAFRAICHIR=1
+fi
+
 # ── nouvelle version sur GitHub ? ──
 DEPOT=$(git remote get-url origin | sed -E 's#^(https://github.com/|git@github.com:)##; s#\.git$##')
 git fetch -q origin main
 LOCAL=$(git rev-parse HEAD)
 DISTANT=$(git rev-parse origin/main)
-if [ "$LOCAL" = "$DISTANT" ] && [ "${1:-}" != "--forcer" ]; then
+if [ "$LOCAL" = "$DISTANT" ] && [ "${1:-}" != "--forcer" ] && [ -z "$RAFRAICHIR" ]; then
   exit 0
 fi
 
@@ -43,15 +55,26 @@ if not runs or any(r["status"] != "completed" for r in runs):
     print("attente")
 else:
     print("ok" if any(r["conclusion"] == "success" for r in runs) else "echec")')
-  if [ "$ETAT" != "ok" ]; then
+  if [ "$ETAT" = "ok" ]; then
+    git merge -q --ff-only origin/main
+    journal "nouvelle version ${DISTANT:0:7} validée par les tests : mise en ligne"
+  else
     [ "$ETAT" = "echec" ] && journal "version ${DISTANT:0:7} refusée : les tests de GitHub ont échoué"
-    exit 0
+    # la version actuelle est tout de même reconstruite si on le demande (installation, images à rafraîchir)
+    [ "${1:-}" = "--forcer" ] || [ -n "$RAFRAICHIR" ] || exit 0
   fi
-  git merge -q --ff-only origin/main
-  journal "nouvelle version ${DISTANT:0:7} validée par les tests : mise en ligne"
 fi
 
+mkdir -p "$(dirname "$REPERE_IMAGES")"
+if [ -n "$RAFRAICHIR" ] || [ ! -f "$REPERE_IMAGES" ]; then
+  # images de base à jour : la première construction les télécharge, puis chaque semaine
+  $COMPOSE pull -q caddy
+  $COMPOSE build -q --pull site
+  touch "$REPERE_IMAGES"
+  journal "images de base rafraîchies (correctifs de sécurité de Debian, Python et Caddy)"
+fi
 $COMPOSE up -d --build --remove-orphans
+$COMPOSE exec -T caddy caddy reload --config /etc/caddy/Caddyfile >/dev/null 2>&1 || true   # Caddyfile modifié
 docker image prune -f >/dev/null
 docker builder prune -f --filter until=72h >/dev/null   # le disque ne se remplit pas au fil des reconstructions
 journal "site en ligne : version $(git rev-parse --short HEAD)"

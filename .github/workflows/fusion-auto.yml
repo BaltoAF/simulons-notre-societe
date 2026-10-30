@@ -37,7 +37,7 @@ jobs:
           git fetch origin "$BRANCHE"
           # garde-fous de la charte (règle 5), appliqués ici quoi qu'ait fait la routine : ces fichiers ne changent que
           # par le responsable du projet ; une branche qui les touche n'est jamais mise en ligne automatiquement
-          PROTEGES='^(system/auto_amelioration/(CHARTE|TACHE|ROUTINE)\.md|\.github/|deploy/|Dockerfile|\.dockerignore|\.gitattributes|\.gitignore|backend/requirements\.txt|frontend/package(-lock)?\.json|backend/app/(auth|db|retours|config)\.py)'
+          PROTEGES='^(system/auto_amelioration/(CHARTE|TACHE|ROUTINE)\.md|\.github/|deploy/|Dockerfile|\.dockerignore|\.gitattributes|\.gitignore|backend/requirements\.txt|frontend/package(-lock)?\.json|backend/app/(auth|db|retours|config|serveur)\.py)'
           INTERDITS=$(git diff --name-only "$(git merge-base origin/main "$SHA")" "$SHA" | grep -E "$PROTEGES" || true)
           if [ -n "$INTERDITS" ]; then
             echo "::error::Fusion refusée : fichiers protégés modifiés par la routine :"
