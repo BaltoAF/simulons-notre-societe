@@ -19,8 +19,10 @@
 
 ## 1. Le serveur (une fois, environ 20 minutes)
 
-1. Louez un serveur virtuel (VPS) sous **Ubuntu 24.04**, avec **au moins 2 Go de mémoire** (4 Go conseillés), chez OVHcloud
-   (gamme VPS) ou Scaleway (Instances). Notez son adresse IP.
+1. Louez un serveur virtuel (VPS) sous **Ubuntu 24.04**, avec **au moins 4 Go de mémoire** et 2 processeurs, chez OVHcloud
+   (gamme VPS) ou Scaleway (Instances). Notez son adresse IP. Le site occupe environ 1,4 Go au repos et près de 2 Go pendant
+   une simulation de réforme. Sur un serveur de 8 Go, ajoutez `SOCIETE_WORKERS=3` dans `/opt/simulons/deploy/.env` : les
+   réformes se calculent alors environ trois fois plus vite.
 2. *Facultatif :* achetez un nom de domaine (par exemple chez OVHcloud), puis créez un enregistrement DNS **A** qui pointe vers
    l'IP du serveur. Sans domaine, le site aura une adresse gratuite du type `https://51-15-12-34.sslip.io`.
 3. Connectez-vous au serveur (`ssh root@IP`, ou `ssh ubuntu@IP` puis `sudo -i`) et lancez, en remplaçant le domaine (ou en
