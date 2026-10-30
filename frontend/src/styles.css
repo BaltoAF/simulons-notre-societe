@@ -551,3 +551,8 @@ html.texte-grand body { font-size: 19px; }
 .header .taille-texte { order: 2; margin-left: 6px; }   /* tout à droite sur ordinateur ; à côté de « Menu » sur téléphone */
 .taille-texte { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; font-weight: 800; color: var(--ink); border: 1px solid var(--line); border-radius: 10px; }
 .taille-texte[aria-pressed="true"] { background: var(--primary-soft); color: var(--primary); border-color: var(--primary); }
+
+/* Badge « Bêta » : une nouveauté en test (un clic ouvre « Donner mon avis ») */
+.badge.beta { background: var(--accent-soft); color: var(--accent); border-color: transparent; cursor: pointer; font: inherit;
+  font-size: .72rem; font-weight: 750; vertical-align: 3px; margin-left: 6px; }
+.badge.beta:hover { text-decoration: underline; }

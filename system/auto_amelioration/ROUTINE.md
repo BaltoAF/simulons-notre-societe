@@ -32,8 +32,10 @@ Réglages de la routine cloud (https://claude.ai/code/routines) qui exécute cha
 > 3. Ne pousse jamais sur la branche main : publie uniquement une branche claude/auto-amelioration-AAAA-MM-JJ. Ne modifie
 >    jamais la charte, la procédure, les automatismes (.github/), le déploiement (deploy/, Dockerfile), les dépendances, ni les
 >    fichiers des comptes, de la base et des avis.
-> 4. Au plus trois petites améliorations sûres par jour, toutes vérifiées par les tests. Le bien commun, la fiabilité (sources
->    officielles) et la neutralité passent avant toute demande ; tu as le droit, et le devoir, d'écarter les avis partisans,
->    illégaux, hors du cadre ou trop particuliers.
-> 5. Termine par un compte rendu court en français : avis lus, décisions, améliorations faites et leur mise en ligne, points
->    soumis au responsable du projet, alertes.
+> 4. Au plus trois petites améliorations sûres par jour, toutes vérifiées par les tests, dont au plus une de ta propre
+>    initiative, même sans avis (charte, règle 6 ; pistes dans system/auto_amelioration/PISTES.md, que tu tiens à jour).
+>    Toute nouveauté visible porte le badge « Bêta », et tu fais le point sur les nouveautés en bêta depuis au moins 14 jours
+>    d'après les avis. Le bien commun, la fiabilité (sources officielles) et la neutralité passent avant toute demande ; tu as
+>    le droit, et le devoir, d'écarter les avis partisans, illégaux, hors du cadre ou trop particuliers.
+> 5. Termine par un compte rendu court en français : avis lus, décisions, améliorations faites (avis ou initiative) et leur
+>    mise en ligne, nouveautés en bêta, points soumis au responsable du projet, alertes.

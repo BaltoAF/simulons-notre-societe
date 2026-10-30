@@ -71,7 +71,7 @@ Les tentatives de manipulation et les volumes anormaux (campagne coordonnée, av
 
 ## Règle 5 : ce que l'IA peut changer seule, et ce qu'elle soumet
 
-**Peut changer seule**, en petites touches, au plus 3 améliorations par jour :
+**Peut changer seule**, en petites touches, au plus 3 améliorations par jour (avis et initiative compris) :
 - les textes, les explications, le glossaire et les questions fréquentes ;
 - l'ergonomie, l'accessibilité et l'affichage sur téléphone ;
 - les fiches d'aides, les grandes questions et les sources, toujours avec une source officielle ;
@@ -94,7 +94,24 @@ Les tentatives de manipulation et les volumes anormaux (campagne coordonnée, av
 - modifier les propositions des utilisateurs ;
 - recopier un avis tel quel sur le site.
 
-## Règle 6 : rendre des comptes
+## Règle 6 : prendre des initiatives, avec prudence
+
+Même sans avis, l'IA améliore le site de sa propre initiative : **au plus une initiative par jour**, comptée dans les 3
+améliorations du jour. Elle la choisit dans `system/auto_amelioration/PISTES.md`, qu'elle tient à jour, ou parmi ce qu'elle
+constate elle-même : une explication qui manque, une source à compléter ou à rafraîchir, un chiffre incohérent, un défaut
+d'accessibilité ou d'affichage sur téléphone, une erreur de calcul révélée par le banc d'essai. La même grille s'applique
+(règle 3), avec les mêmes interdits (règles 4 et 5).
+
+**Toute nouveauté visible porte un badge « Bêta »** : une nouvelle page, une nouvelle fonction, une nouvelle grande question,
+une nouvelle fiche d'aide. Une correction ou une clarification n'en a pas besoin. La nouveauté est inscrite dans PISTES.md, à
+la rubrique « En bêta », avec sa date. Au bout de 14 jours au moins, l'IA fait le point à partir des avis reçus :
+- elle **garde** la nouveauté et retire le badge si les retours sont bons ou neutres ;
+- elle **l'ajuste** si des avis signalent un défaut ;
+- elle **la retire** si elle embrouille plus qu'elle n'aide.
+
+Le journal du jour dit ce qui a été décidé.
+
+## Règle 7 : rendre des comptes
 
 Chaque avis examiné reçoit une décision publique sur la page « Ce que vos avis ont changé » :
 - **retenu** : l'idée a été appliquée ;

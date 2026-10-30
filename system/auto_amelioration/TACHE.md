@@ -48,7 +48,7 @@ Le fichier contient :
 - les commentaires des 3 derniers jours sur les propositions des utilisateurs (`commentaires_recents`), en lecture seule :
   ce n'est qu'un signal complémentaire.
 
-S'il n'y a aucun avis et aucune branche de la veille à reprendre, arrête-toi ici.
+S'il n'y a aucun avis, passe directement à l'étape 4 : une initiative reste possible (charte, règle 6).
 
 ## 3. Trier, avis par avis
 
@@ -72,6 +72,12 @@ en commençant par le plus utile au plus grand nombre. Préfère toujours un pet
 
 Les besoins valables qui n'entrent pas dans les 3 du jour restent « nouveau » (aucune décision enregistrée) : ils reviendront
 demain. Ceux qui relèvent de la règle 5, « soumet au responsable », sont classés « à l'étude » et décrits dans le journal.
+
+**Ton initiative du jour** (au plus une, comptée dans les 3) : lis `system/auto_amelioration/PISTES.md`, et ajoute-y ce
+que tu as remarqué en travaillant. Choisis la piste la plus utile, et passe-la à la grille comme un avis. Fais d'abord le
+point sur les nouveautés « En bêta » depuis au moins 14 jours, avec les avis qui les concernent : les garder (retirer le
+badge), les ajuster ou les retirer. Mets PISTES.md à jour dans la même version. Une nouveauté visible porte le badge « Bêta »
+(composant `Beta` de `frontend/src/components/Beta.tsx`).
 
 ## 5. Réaliser
 
@@ -108,7 +114,10 @@ Crée `system/auto_amelioration/journal/AAAA-MM-JJ.md` :
 N avis lus : X retenus ou adaptés, Y déjà faits, Z à l'étude, W écartés, V doublons.
 
 ## Améliorations faites
-- <ce qui a changé, pour qui, où le voir> (avis n° …)
+- <ce qui a changé, pour qui, où le voir> (avis n° … ou « initiative »)
+
+## Nouveautés en bêta
+- <ajoutées aujourd'hui ; bilans faits : gardée, ajustée ou retirée, et pourquoi>
 
 ## À soumettre au responsable
 - <besoin, pourquoi ce n'est pas fait seul, proposition et sources>
