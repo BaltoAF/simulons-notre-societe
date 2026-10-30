@@ -29,8 +29,8 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
     le moteur (OpenFisca, ppa_base_ressources_prestations_familiales : la pension compte en entier, l'ASF seulement pour
     son forfait « rsa_forfait_asf ») : expliqué dans « Pourquoi ce montant ? » de l'ASF, et la consigne ne pousse plus à
     déclarer 0 quand la pension est versée. Reste à citer l'article du code de la sécurité sociale qui fixe ce forfait.
-  - **Garde d'enfants** : aucune question ni aide (complément de libre choix du mode de garde, crèche) alors que c'est
-    souvent la première question d'un parent d'enfant de moins de 6 ans ; à ajouter (moteur ou « Avez-vous pensé à… »).
+  - Garde d'enfants : deux fiches ajoutées dans « Avez-vous pensé à… ? » (complément de mode de garde, réforme de 2025
+    et parent seul jusqu'aux 12 ans ; crédit d'impôt de 50 %). Reste : le calcul par le moteur (heures, coût horaire).
   - Complémentaire santé solidaire : n'afficher que le plafond du foyer (les plafonds génériques prêtent à confusion).
   - Arrondis (200,78 € × 2 ≠ 404 €, 429 € / 426,87 €).
   - Lexique : « CRDS », « part salariale », « cotisations patronales », « pensions de réversion », « BMAF »,
@@ -40,6 +40,12 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   s'allonge : passer alors au VPS-2 avec `SOCIETE_WORKERS=3`, ou dire au visiteur combien de calculs passent avant le sien.
 
 ## En bêta
+
+- **Garde d'enfants dans « Avez-vous pensé à… ? »** (complément de mode de garde, crédit d'impôt ; depuis le 30/10/2026,
+  test Samira). Bilan possible à partir du 13/11/2026.
+
+- **Page « Tester le site en 10 minutes »** (/tester, depuis le 30/10/2026), à envoyer à de vrais testeurs. Bilan possible
+  à partir du 13/11/2026 : combien de visites, combien d'avis.
 
 - **« Avez-vous pensé à… ? »**, les aides souvent oubliées dans « Mes droits » (depuis le 30/10/2026). Bilan possible à
   partir du 13/11/2026.

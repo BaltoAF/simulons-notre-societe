@@ -245,3 +245,32 @@ sources:
     date_publication: "2026-02-01"
     consulte_le: "2026-10-30"
     note: "Édition février 2026. Barème 2026 : hors Île-de-France 17 363 / 22 259 € (1 pers.), 25 393 / 32 553 € (2 pers.) ; Île-de-France 24 031 / 29 253 € (1 pers.). 70 % ou 50 % de 22 000 € HT ; accompagnateur obligatoire, pris en charge à hauteur de 600 € au moins (jusqu'à 800 €) ; avance jusqu'à 30 % de l'aide."
+
+  # ── Garde des jeunes enfants (complément de mode de garde, crédit d'impôt, crèche), lues le 30/10/2026 ──
+  - id: sp-f39152
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Complément de libre choix du mode de garde (CMG) : assistant maternel ou garde à domicile"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F39152"
+    auteurs: []
+    date_publication: "2026-06-26"
+    consulte_le: "2026-10-30"
+    note: "Date = « Vérifié le ». Enfant de moins de 6 ans ; parent isolé (sans nouveau conjoint) jusqu'aux 12 ans de l'enfant. Il faut travailler (ou le conjoint) ; indemnités journalières, chômage indemnisé, formation rémunérée comptent comme un travail ; exceptions (étudiants, AAH, RSA, ASS…). Cotisations prises en charge : 100 % (assistant maternel), 50 % (garde à domicile), dans une limite. Déclaration du salaire sur Pajemploi."
+  - id: sp-actu-a18360
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Complément de libre choix du mode de garde : ce qui change au 1er septembre 2025"
+    url: "https://www.service-public.gouv.fr/particuliers/actualites/A18360"
+    auteurs: []
+    date_publication: "2025-06-18"
+    consulte_le: "2026-10-30"
+    note: "Depuis le 1er septembre 2025 : montant calculé selon les ressources, le nombre d'enfants, le coût horaire et le nombre d'heures de garde, comme en crèche ; fin de la règle des 15 % du coût laissés à la charge des parents ; familles monoparentales aidées jusqu'aux 12 ans de l'enfant (contre 6 ans auparavant)."
+  - id: sp-f8
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Crédit d'impôt pour frais de garde des enfants de moins de 6 ans"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F8"
+    auteurs: []
+    date_publication: "2026-04-15"
+    consulte_le: "2026-10-30"
+    note: "Date = « Vérifié le ». Garde hors du domicile (assistant maternel, crèche, garderie…) d'un enfant de moins de 6 ans au 1er janvier : 50 % des sommes versées, dans la limite de 3 500 € de dépenses par enfant (1 750 € en garde alternée), CMG déduit ; l'excédent est restitué à ceux qui ne paient pas d'impôt ; acompte de 60 % en janvier."

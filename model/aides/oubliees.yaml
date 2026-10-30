@@ -214,3 +214,30 @@ aides:
     rappel:
       criteres: { logement: [locataire_prive] }
       texte: "Locataire : prévenez votre propriétaire et obtenez son accord avant les travaux. C'est vous qui les payez et qui recevez l'aide."
+
+  - id: cmg_garde_enfant
+    nom: "Aide de la CAF pour faire garder votre enfant (complément de mode de garde)"
+    en_bref: "La CAF paie une partie du salaire d'une assistante maternelle ou d'une garde à domicile, et leurs cotisations, quand vous travaillez."
+    pourquoi_vous: "Vous travaillez et vous avez un enfant de moins de 6 ans (ou de moins de 12 ans si vous élevez seul(e) vos enfants) : si une assistante maternelle ou une garde à domicile s'en occupe, ou si vous y pensez, cette aide peut beaucoup réduire ce que vous payez."
+    pour_qui: "Les parents qui travaillent (ou dont le conjoint travaille ; les indemnités journalières, le chômage indemnisé et une formation rémunérée comptent aussi) et qui font garder un enfant de moins de 6 ans par une assistante maternelle agréée ou une garde à domicile. Depuis septembre 2025, un parent qui élève seul ses enfants, sans nouveau conjoint, est aidé jusqu'aux 12 ans de l'enfant. Il existe des exceptions à la condition de travail (études, AAH, RSA…)."
+    ce_que_ca_apporte: "Depuis septembre 2025, la CAF calcule l'aide comme pour une crèche : selon vos ressources, le nombre d'enfants, le prix de l'heure et le nombre d'heures de garde ; la règle qui laissait au moins 15 % du coût à votre charge a disparu. Les cotisations sont prises en charge à 100 % pour une assistante maternelle, à 50 % pour une garde à domicile (dans une limite). Avec une micro-crèche, une autre aide de la CAF peut couvrir une partie des frais."
+    ou_la_demander: "Sur caf.fr (« Mes démarches », puis « Faire une demande de prestation »). Vous déclarez ensuite chaque mois le salaire de la personne qui garde votre enfant sur Pajemploi. Pour estimer ce qui vous restera à payer, l'Urssaf propose un simulateur (lien depuis la fiche officielle)."
+    url_officielle: "https://www.service-public.gouv.fr/particuliers/vosdroits/F39152"
+    source_id: sp-f39152
+    sources_complementaires: [sp-actu-a18360]
+    criteres:
+      ou:
+        - { enfant_age: [0, 5], activite: [salarie, independant] }
+        - { seul: true, enfant_age: [6, 11], activite: [salarie, independant] }
+
+  - id: credit_impot_garde
+    nom: "Crédit d'impôt pour la garde d'un enfant de moins de 6 ans"
+    en_bref: "L'État rembourse la moitié de ce que vous payez pour la crèche, l'assistante maternelle ou la garderie d'un enfant de moins de 6 ans, même si vous ne payez pas d'impôt."
+    pourquoi_vous: "Vous avez un enfant de moins de 6 ans : s'il est gardé hors de chez vous (crèche, assistante maternelle, garderie), la moitié de ce que vous payez vous revient, même sans impôt à payer."
+    pour_qui: "Les parents d'un enfant de moins de 6 ans au 1er janvier, gardé hors du domicile : crèche, halte-garderie, assistante maternelle agréée, garderie scolaire. La garde à domicile relève d'un autre crédit d'impôt (emploi à domicile)."
+    ce_que_ca_apporte: "50 % des sommes payées, dans la limite de 3 500 € de dépenses par enfant et par an (1 750 € en garde alternée), soit jusqu'à 1 750 € rendus. Les aides de la CAF pour la garde sont d'abord retirées des dépenses. Si vous ne payez pas d'impôt, l'argent vous est versé ; une avance de 60 % arrive en janvier."
+    ou_la_demander: "Dans votre déclaration de revenus, au printemps (rubrique des frais de garde des jeunes enfants). Gardez les attestations de la crèche ou de l'assistante maternelle."
+    url_officielle: "https://www.service-public.gouv.fr/particuliers/vosdroits/F8"
+    source_id: sp-f8
+    sources_complementaires: []
+    criteres: { enfant_age: [0, 5] }
