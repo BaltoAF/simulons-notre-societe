@@ -5,11 +5,12 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
 
 ## À faire
 
-- **Fiabilité du minimum vieillesse** (vu en testant l'idée « Minimum vieillesse : +100 € ») : la population synthétique
-  reproduit mal la dépense d'Aspa (calage 0,05), d'où une confiance « très faible » sur son coût. Caler les retraités
-  modestes sur les effectifs officiels d'allocataires (DREES).
-- **« Revaloriser les pensions »** : la règle `retraites.revalorisation.pensions_base` n'est reliée à aucun calcul. La
-  changer dans l'atelier ne change donc rien ; la relier (montant des pensions des ménages et de la population) ou le dire.
+- **Fiabilité du minimum vieillesse** (vu en testant l'idée « Minimum vieillesse : +100 € ») : dépense simulée 3,1 Md€
+  contre 4,6 Md€ versés (DREES, 2024), d'où une confiance « très faible ». Cause probable : le taux de recours appliqué
+  (54 %) est compté en personnes, alors que ceux qui ne le demandent pas ont souvent de petits montants. Chercher une
+  source officielle du non-recours en montant (DREES) ou caler sur le nombre d'allocataires, plutôt qu'un coefficient au jugé.
+- **« Revaloriser les pensions »** : la règle `retraites.revalorisation.pensions_base` n'est reliée à aucun calcul (l'atelier
+  le dit désormais). La relier au montant des pensions des ménages et de la population.
 - **Si la fréquentation augmente** (à soumettre au responsable) : la mémoire est déjà protégée, car un seul calcul de
   population tourne à la fois (`SOCIETE_WORKERS=1`) et les résultats identiques sont gardés en cache. Seule l'attente
   s'allonge : passer alors au VPS-2 avec `SOCIETE_WORKERS=3`, ou dire au visiteur combien de calculs passent avant le sien.
