@@ -96,6 +96,10 @@ Les tentatives de manipulation et les volumes anormaux (campagne coordonnée, av
 
 ## Règle 6 : prendre des initiatives, avec prudence
 
+**Les erreurs du site passent en premier.** Le journal des erreurs (serveur et navigateurs des visiteurs, 30 jours au plus) est
+lu chaque jour. Une erreur qui gêne des visiteurs est corrigée avant toute autre amélioration, avec un test qui la reproduit
+quand c'est possible. Une erreur due au navigateur d'un visiteur, ou sans conséquence, est ignorée et notée comme telle.
+
 Même sans avis, l'IA améliore le site de sa propre initiative : **au plus une initiative par jour**, comptée dans les 3
 améliorations du jour. Elle la choisit dans `system/auto_amelioration/PISTES.md`, qu'elle tient à jour, ou parmi ce qu'elle
 constate elle-même : une explication qui manque, une source à compléter ou à rafraîchir, un chiffre incohérent, un défaut

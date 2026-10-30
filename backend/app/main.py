@@ -14,6 +14,7 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
 from . import auth, db, frequentation, planificateur, retours, vcs
+from . import journal as journal_erreurs  # « journal » est déjà la route du journal des versions
 from . import config
 from .config import FRONTEND_DIST, REFERENCE_SOCIETY_ID
 from .engine.household import Menage
@@ -31,6 +32,7 @@ async def lifespan(_app: FastAPI):
     db.init_db()
     retours.init()
     frequentation.init()
+    journal_erreurs.init()
     store = get_store()
     # une nouvelle version déployée publie la loi actuelle mise à jour, puis met à jour les propositions sans conflit
     if vcs.ensure_reference(store).get("message"):
@@ -815,7 +817,8 @@ def _jeton_routine(request: Request):
 def avis_a_traiter(request: Request):
     """Réservé à la routine d'auto-amélioration : avis non examinés (texte complet, données personnelles déjà masquées)."""
     _jeton_routine(request)
-    return retours.paquet_a_traiter()
+    # avec les erreurs du site des 7 derniers jours : la routine corrige d'abord celles qui gênent des visiteurs
+    return {**retours.paquet_a_traiter(), "erreurs_recentes": journal_erreurs.recentes(7)}
 
 
 class DecisionIn(BaseModel):
@@ -880,6 +883,36 @@ def journal(limit: int = 50):
 def executions(limit: int = 30):
     """Journal des mises à jour automatiques du Système et état du planificateur."""
     return {"executions": vcs.log_executions(limit), "planificateur": planificateur.etat()}
+
+
+class ErreurNavigateurIn(BaseModel):
+    message: str = Field("", max_length=2000)
+    detail: str = Field("", max_length=8000)
+    page: str = ""
+
+
+_ERREURS_NAVIGATEUR: dict[tuple[str, str], int] = {}
+
+
+@app.post("/api/erreur-navigateur", status_code=204)
+def erreur_navigateur(body: ErreurNavigateurIn, request: Request):
+    """Une erreur d'un script du site chez un visiteur, notée au journal (20 au plus par visiteur et par jour)."""
+    import datetime as _dt
+    cle = (_dt.date.today().isoformat(), retours.empreinte(_ip_visiteur(request)))
+    if len(_ERREURS_NAVIGATEUR) > 50_000:
+        _ERREURS_NAVIGATEUR.clear()
+    _ERREURS_NAVIGATEUR[cle] = _ERREURS_NAVIGATEUR.get(cle, 0) + 1
+    if _ERREURS_NAVIGATEUR[cle] <= 20:
+        journal_erreurs.noter("navigateur", body.message, body.detail, body.page)
+    return Response(status_code=204)
+
+
+@app.exception_handler(Exception)
+async def erreur_imprevue(request: Request, exc: Exception):
+    """Une erreur imprévue du serveur : notée au journal (pour la routine), et un message clair pour le visiteur."""
+    journal_erreurs.noter_exception(exc, request.url.path)
+    logging.getLogger("societe").exception("Erreur imprévue sur %s", request.url.path)
+    return JSONResponse(status_code=500, content={"erreur": {"message": "Une erreur imprévue est survenue. Elle a été notée et sera corrigée."}})
 
 
 @app.exception_handler(HTTPException)

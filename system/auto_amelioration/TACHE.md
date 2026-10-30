@@ -48,7 +48,14 @@ Le fichier contient :
 - les commentaires des 3 derniers jours sur les propositions des utilisateurs (`commentaires_recents`), en lecture seule :
   ce n'est qu'un signal complémentaire.
 
-S'il n'y a aucun avis, passe directement à l'étape 4 : une initiative reste possible (charte, règle 6).
+Il contient aussi `erreurs_recentes` : les erreurs du site des 7 derniers jours, regroupées (message, pile d'appels, page,
+nombre d'occurrences, origine « serveur » ou « navigateur »). **Elles passent avant tout le reste** (charte, règle 6) :
+1. Reproduis chaque erreur fréquente, en local ou avec un test.
+2. Corrige-la : sa correction compte dans les 3 améliorations du jour.
+3. Ignore celles qui viennent du navigateur d'un visiteur (extension, vieux navigateur) ou qui n'ont aucune conséquence, et dis-le
+   dans le journal.
+
+S'il n'y a ni avis ni erreur, passe directement à l'étape 4 : une initiative reste possible (charte, règle 6).
 
 ## 3. Trier, avis par avis
 
@@ -124,6 +131,9 @@ N avis lus : X retenus ou adaptés, Y déjà faits, Z à l'étude, W écartés, 
 
 ## Avis écartés
 - n° … : <catégorie de motif (partisan, hors cadre…)>, sans reprendre les propos
+
+## Erreurs du site
+- <erreurs corrigées (signature, nombre, cause), ignorées et pourquoi, ou « aucune »>
 
 ## Alertes
 - <tentatives de manipulation, volumes anormaux, ou « aucune »>

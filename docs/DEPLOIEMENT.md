@@ -72,6 +72,17 @@ cd /opt/simulons/deploy && echo "SOCIETE_CLE_FREQUENTATION=$(openssl rand -hex 1
 . /opt/simulons/deploy/.env && echo "https://$DOMAINE/frequentation?cle=$SOCIETE_CLE_FREQUENTATION"
 ```
 
+## Les journaux (30 jours au plus)
+
+Les erreurs du site, celles du serveur comme celles des navigateurs des visiteurs, sont notées dans un journal. Elles y sont
+regroupées et anonymes, et effacées au bout de 30 jours. La routine le lit chaque matin et corrige d'abord ce qui gêne des
+visiteurs. Les journaux techniques de Docker sont limités en taille, et ceux du système à 30 jours. Sur un serveur installé
+avant ce réglage, une seule commande suffit :
+
+```bash
+mkdir -p /etc/systemd/journald.conf.d && printf '[Journal]\nMaxRetentionSec=30day\n' > /etc/systemd/journald.conf.d/simulons.conf && systemctl restart systemd-journald
+```
+
 ## Au quotidien
 
 | Pour… | Où regarder |

@@ -30,6 +30,11 @@ if [ ! -f /swapfile ] && [ "$(awk '/MemTotal/ {print $2}' /proc/meminfo)" -lt 75
   echo '/swapfile none swap sw 0 0' >> /etc/fstab
 fi
 
+# journaux du système (dont les mises en ligne) gardés 30 jours au plus
+mkdir -p /etc/systemd/journald.conf.d
+printf '[Journal]\nMaxRetentionSec=30day\n' > /etc/systemd/journald.conf.d/simulons.conf
+systemctl restart systemd-journald
+
 ufw allow OpenSSH >/dev/null
 ufw allow 80/tcp >/dev/null
 ufw allow 443/tcp >/dev/null

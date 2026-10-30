@@ -39,12 +39,13 @@ def a_traiter(chemin: str | None, distant: str | None):
     if distant:
         sortie = _distant(distant, "/api/systeme/avis/a-traiter")
     else:
-        from app import retours
-        sortie = retours.paquet_a_traiter()
+        from app import journal, retours
+        sortie = {**retours.paquet_a_traiter(), "erreurs_recentes": journal.recentes(7)}
     texte = json.dumps(sortie, ensure_ascii=False, indent=2)
     if chemin:
         Path(chemin).write_text(texte, encoding="utf-8")
-        print(f"{len(sortie['avis'])} avis et {len(sortie['commentaires_recents'])} commentaires écrits dans {chemin}")
+        print(f"{len(sortie['avis'])} avis, {len(sortie['commentaires_recents'])} commentaires et "
+              f"{len(sortie.get('erreurs_recentes', []))} erreurs du site écrits dans {chemin}")
     else:
         print(texte)
 
@@ -85,9 +86,10 @@ def main():
         print(__doc__)
         sys.exit(2)
     if not distant:
-        from app import db, retours
+        from app import db, journal, retours
         db.init_db()
         retours.init()
+        journal.init()
     if args[0] == "a-traiter":
         a_traiter(args[1] if len(args) > 1 else None, distant)
     elif args[0] == "decider":

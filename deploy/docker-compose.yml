@@ -6,6 +6,9 @@ services:
       context: ..
       dockerfile: Dockerfile
     restart: unless-stopped
+    logging: &journaux        # journaux techniques limités (les erreurs utiles sont dans le journal du site, 30 jours)
+      driver: json-file
+      options: { max-size: "10m", max-file: "3" }
     env_file: .env
     volumes:
       - ./donnees:/app/backend/data   # comptes, propositions, avis : conservés d'une version à l'autre
@@ -15,6 +18,7 @@ services:
   caddy:
     image: caddy:2
     restart: unless-stopped
+    logging: *journaux
     ports:
       - "80:80"
       - "443:443"
