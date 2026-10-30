@@ -56,17 +56,18 @@ fi
 grep -q '^SOCIETE_CLE_FREQUENTATION=' .env || echo "SOCIETE_CLE_FREQUENTATION=$(openssl rand -hex 16)" >> .env
 mkdir -p donnees && chown 1000:1000 donnees
 chmod +x suivre_github.sh maintenance_serveur.sh
-./maintenance_serveur.sh --forcer   # mises à jour de sécurité automatiques, fail2ban, état du serveur
+# (lancé par « curl | bash », ce script est lu sur l'entrée standard : les commandes qui pourraient la lire reçoivent /dev/null)
+./maintenance_serveur.sh --forcer </dev/null   # mises à jour de sécurité automatiques, fail2ban, état du serveur
 
 cp suivre-github.service suivre-github.timer /etc/systemd/system/
 systemctl daemon-reload
 echo "Construction et mise en ligne du site (5 à 10 minutes la première fois)…"
-./suivre_github.sh --forcer
+./suivre_github.sh --forcer </dev/null
 systemctl enable --now suivre-github.timer >/dev/null
 
 # propositions d'exemple (comptes au mot de passe aléatoire : personne ne peut s'y connecter)
 sleep 20
-docker compose -f docker-compose.yml exec -T site python backend/seed_demo.py >/dev/null 2>&1 || true
+docker compose -f docker-compose.yml exec -T site python backend/seed_demo.py </dev/null >/dev/null 2>&1 || true
 
 source .env
 echo
