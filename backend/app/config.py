@@ -11,7 +11,7 @@ DATA_DIR.mkdir(parents=True, exist_ok=True)
 DB_PATH = DATA_DIR / "societe.sqlite3"
 FRONTEND_DIST = ROOT / "frontend" / "dist"
 
-# Date de référence de la Société 1.0 (« législation en vigueur ») : elle avance chaque jour, sans redémarrage,
+# Date de référence de la loi actuelle (« législation en vigueur ») : elle avance chaque jour, sans redémarrage,
 # pour que les règles dont la date d'entrée en vigueur arrive s'appliquent automatiquement.
 # Période de calcul : mois courant pour les prestations (versées mensuellement), année civile pour l'impôt.
 TODAY: dt.date

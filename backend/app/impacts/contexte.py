@@ -32,7 +32,7 @@ class Contexte:
 
     @classmethod
     def creer(cls, store, overrides: dict, menage: Menage | None = None) -> "Contexte":
-        # on ne garde que les règles réellement modifiées par rapport à la Société 1.0
+        # on ne garde que les règles réellement modifiées par rapport à la loi actuelle
         effectives = {}
         for rid, v in (overrides or {}).items():
             r = store.regles.get(rid)

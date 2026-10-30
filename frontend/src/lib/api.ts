@@ -1,4 +1,4 @@
-// Client de l'API Société 2.0 et types partagés.
+// Client de l'API Simulons notre société et types partagés.
 
 export type Valeur = number | boolean | string | Tranche[] | null
 export type Tranche = { seuil: number; taux: number }

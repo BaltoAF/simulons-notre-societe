@@ -1,6 +1,6 @@
 """« Vos droits au-delà de l'argent » : interroger une société pour connaître ses droits et obligations.
 
-Les réponses sont calculées à partir des RÈGLES (Société 1.0 ou n'importe quel fork) et du profil de la
+Les réponses sont calculées à partir des RÈGLES (loi actuelle ou n'importe quel fork) et du profil de la
 personne. Comparer deux sociétés permet de prévoir ce qu'un changement de règles changerait pour soi.
 """
 from __future__ import annotations

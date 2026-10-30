@@ -121,7 +121,7 @@ references:
     comparabilite: bonne
     source_id: ipp_2025_ch2
     citation: "dont 10,1 Md€ issus de la CSG activité, 3,2 Md€ de la CSG remplacement et 1,3 Md€ de la CSG capital."
-    note: "10,1 milliards € pour un point non déductible de l'impôt sur le revenu. Le site, lui, rend le point supplémentaire déductible (comme la hausse de 2018) : l'impôt sur le revenu baisse alors, et l'IPP chiffre le gain net environ 16 % plus bas (soit environ 8,5 milliards € sur l'activité ; calcul Société 2.0 à partir de la variante déductible de l'IPP)."
+    note: "10,1 milliards € pour un point non déductible de l'impôt sur le revenu. Le site, lui, rend le point supplémentaire déductible (comme la hausse de 2018) : l'impôt sur le revenu baisse alors, et l'IPP chiffre le gain net environ 16 % plus bas (soit environ 8,5 milliards € sur l'activité ; calcul du site à partir de la variante déductible de l'IPP)."
 
   - id: csg_toutes_assiettes_plus_1_point
     domaine: fiscalite

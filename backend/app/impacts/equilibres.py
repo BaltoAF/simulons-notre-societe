@@ -52,7 +52,7 @@ def effet_emissions_direct(sections: list[Section]) -> tuple[float, Confiance | 
 
 
 def _regle(ctx, rid, defaut=None):
-    """Valeur de la règle dans la société simulée (surcharge éventuelle), sinon dans la Société 1.0."""
+    """Valeur de la règle dans la société simulée (surcharge éventuelle), sinon dans la loi actuelle."""
     if rid in ctx.overrides:
         return ctx.overrides[rid]
     return ctx.store.rule_value(rid, defaut)

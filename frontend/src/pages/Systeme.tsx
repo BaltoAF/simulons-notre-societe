@@ -38,7 +38,7 @@ export default function Systeme() {
   return (
     <div className="container page">
       <h1><Bot size={28} /> Le Système</h1>
-      <p className="lead ink2" style={{ maxWidth: 820 }}>La Société 1.0 n'est modifiée par personne d'autre que le Système : des programmes et des agents qui collectent les textes officiels,
+      <p className="lead ink2" style={{ maxWidth: 820 }}>La loi actuelle, telle que le site la reproduit, n'est modifiée par personne d'autre que le Système : des programmes et des agents qui collectent les textes officiels,
         les statistiques publiques et les études, vérifient leur cohérence, puis publient une nouvelle version. Chaque mise à jour est datée et consultable par tous.</p>
 
       {s && (
@@ -76,7 +76,7 @@ export default function Systeme() {
 
       <div className="grid cols-2" style={{ alignItems: 'start' }}>
         <div className="card">
-          <h3><GitCommit size={18} /> Journal des versions de la Société 1.0</h3>
+          <h3><GitCommit size={18} /> Journal des versions de la loi actuelle</h3>
           {loading ? <Loading /> : (
             <ul className="timeline">
               {(j?.commits ?? []).map((c, i) => (

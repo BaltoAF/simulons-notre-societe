@@ -195,7 +195,7 @@ export default function Atelier() {
           <div className="card">
             <div className="small muted" style={{ marginBottom: 4 }}>Vous partez de</div>
             <div className="row between">
-              <strong><GitBranch size={15} /> {base && !base.societe.reference ? base.societe.nom : <>la France d'aujourd'hui (<Terme id="societe_1_0">Société 1.0</Terme>)</>}</strong>
+              <strong><GitBranch size={15} /> {base && !base.societe.reference ? base.societe.nom : <>la France d'aujourd'hui (la <Terme id="societe_1_0">loi actuelle</Terme>)</>}</strong>
               {base && !base.societe.reference && <Link className="small" to={`/societes/${base.societe.id}`}>voir</Link>}
             </div>
           </div>

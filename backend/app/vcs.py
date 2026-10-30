@@ -1,8 +1,8 @@
 """Gestion de versions des sociétés, sur le modèle de git.
 
-- La Société 1.0 (« france ») est une société de référence, en lecture seule pour les utilisateurs :
+- La loi actuelle (« france ») est une société de référence, en lecture seule pour les utilisateurs :
   seul le Système y crée des commits, chaque fois que le modèle (model/) change.
-- Un fork est une société dont l'état = un instantané de la Société 1.0 + des « surcharges »
+- Un fork est une société dont l'état = un instantané de la loi actuelle + des « surcharges »
   (règle -> nouvelle valeur). Chaque commit stocke l'état complet de ses surcharges et la liste
   des changements par rapport à son parent.
 - Les branches pointent vers un commit. Les propositions (pull requests) fusionnent une branche
@@ -113,16 +113,16 @@ def diff_states(a: dict, b: dict, store=None) -> list[dict]:
     return out
 
 
-# ───────────────────────── Société 1.0 (référence) ─────────────────────────
+# ───────────────────────── Loi actuelle (société de référence) ─────────────────────────
 def ensure_reference(store) -> dict:
-    """Crée la Société 1.0 si besoin et enregistre un commit du Système si le modèle a changé."""
+    """Crée la loi actuelle si besoin et enregistre un commit du Système si le modèle a changé."""
     conn = db.connect()
     snap = store.snapshot()
     h = save_snapshot(snap)
     soc = conn.execute("SELECT * FROM societies WHERE id = ?", (REFERENCE_SOCIETY_ID,)).fetchone()
     description = ("Les règles en vigueur aujourd'hui, chacune prouvée par un texte officiel ou une statistique publique. "
                    "Elle se met à jour automatiquement quand la loi change. Pour essayer d'autres règles, partez-en pour créer votre proposition.")
-    nom = "La loi actuelle (Société 1.0)"
+    nom = "La loi actuelle"
     if soc and (soc["description"] != description or soc["nom"] != nom):
         with db.transaction() as c:
             c.execute("UPDATE societies SET description = ?, nom = ? WHERE id = ?", (description, nom, REFERENCE_SOCIETY_ID))
@@ -131,7 +131,7 @@ def ensure_reference(store) -> dict:
             c.execute("INSERT INTO societies (id, nom, description, reference) VALUES (?, ?, ?, 1)",
                       (REFERENCE_SOCIETY_ID, nom, description))
         cid = _insert_commit(REFERENCE_SOCIETY_ID, None, None,
-                             f"Création de la Société 1.0 ({len(snap)} règles)", h, {}, [], systeme=True)
+                             f"Création de la loi actuelle ({len(snap)} règles)", h, {}, [], systeme=True)
         with db.transaction() as c:
             c.execute("INSERT INTO branches (society_id, nom, head) VALUES (?, ?, ?)",
                       (REFERENCE_SOCIETY_ID, BRANCHE_PRINCIPALE, cid))
@@ -194,7 +194,7 @@ def list_branches(sid: str) -> list[dict]:
 def _check_owner(sid: str, user: dict):
     soc = get_society(sid)
     if soc["reference"]:
-        raise HTTPException(403, "La Société 1.0 est maintenue uniquement par le Système. Forkez-la pour la modifier.")
+        raise HTTPException(403, "La loi actuelle est maintenue uniquement par le Système. Forkez-la pour la modifier.")
     if soc["owner_id"] != user["id"]:
         raise HTTPException(403, "Seul le créateur de cette société peut la modifier directement. "
                                  "Forkez-la ou ouvrez une proposition.")
@@ -385,12 +385,12 @@ def _commit_merged_state(sid, branch, merged_state, base_snapshot, message, auth
 
 
 def sync_with_reference(user: dict, store, sid: str, branch: str, resolutions: dict | None = None) -> dict:
-    """Intègre dans un fork les dernières mises à jour de la Société 1.0 (évolutions de la loi)."""
+    """Intègre dans un fork les dernières mises à jour de la loi actuelle (évolutions de la loi)."""
     _check_owner(sid, user)
     head = branch_head(sid, branch)
     ref = reference_head()
     if ref in set(_ancestors(head)):
-        return {"statut": "a_jour", "message": "Cette branche intègre déjà la dernière version de la Société 1.0."}
+        return {"statut": "a_jour", "message": "Cette branche intègre déjà la dernière version de la loi actuelle."}
     base_cid = merge_base(head, ref)
     base = state_of(base_cid) if base_cid else {}
     merged, conflicts = three_way(base, state_of(head), state_of(ref))
@@ -411,7 +411,7 @@ def sync_with_reference(user: dict, store, sid: str, branch: str, resolutions: d
                                   "conflits": unresolved})
     ref_commit = get_commit(ref)
     cid, changes = _commit_merged_state(sid, branch, merged, ref_commit["base_snapshot"],
-                                        "Intègre les dernières mises à jour de la Société 1.0", user["id"], ref, store)
+                                        "Intègre les dernières mises à jour de la loi actuelle", user["id"], ref, store)
     return {"statut": "fusionne", "commit": commit_view(cid), "changements": changes}
 
 
@@ -420,7 +420,7 @@ def create_proposal(user: dict, source: str, source_branch: str, target: str, ta
                     titre: str, description: str) -> dict:
     tgt = get_society(target)
     if tgt["reference"]:
-        raise HTTPException(403, "La Société 1.0 ne reçoit pas de propositions : elle reflète la loi en vigueur. "
+        raise HTTPException(403, "La loi actuelle ne reçoit pas de propositions : elle reflète les textes en vigueur. "
                                  "Proposez vos changements à un fork.")
     get_society(source)
     branch_head(source, source_branch)
@@ -645,7 +645,7 @@ def list_comments(cible_type: str, cible_id: str) -> list[dict]:
 
 # ───────────────────────── mise à jour automatique des forks ─────────────────────────
 def auto_sync_forks(store) -> dict:
-    """Après une nouvelle version de la Société 1.0, met à jour en silence toutes les branches des forks.
+    """Après une nouvelle version de la loi actuelle, met à jour en silence toutes les branches des forks.
 
     Sans conflit, le Système intègre les évolutions de la loi par un commit automatique. En cas de conflit
     (le fork a modifié une règle que la loi vient aussi de changer), rien n'est imposé : le conflit est
@@ -682,7 +682,7 @@ def auto_sync_forks(store) -> dict:
         parts = [p for p in (f"{modifs} règle(s) modifiée(s) par la loi" if modifs else "",
                              f"{ajouts} règle(s) nouvellement numérisée(s)" if ajouts else "") if p]
         _commit_merged_state(sid, branch, merged, ref_commit["base_snapshot"],
-                             "Mise à jour automatique : " + (", ".join(parts) if parts else "nouvelle version de la Société 1.0"),
+                             "Mise à jour automatique : " + (", ".join(parts) if parts else "nouvelle version de la loi actuelle"),
                              None, ref, store, systeme=True)
         with db.transaction() as c:
             c.execute("DELETE FROM synchronisations WHERE society_id = ? AND branche = ?", (sid, branch))

@@ -154,7 +154,7 @@ export default function SocieteDetail() {
           <div className="card">
             <div className="row between"><h3 style={{ margin: 0 }}>Ce qui change par rapport à la loi actuelle</h3>
               {!s.reference && <span className="badge primary">{nbChangements(s.differences_reference)} changement{nbChangements(s.differences_reference) > 1 ? "s" : ""}</span>}</div>
-            <p className="small muted">Chaque différence avec la loi actuelle (la <Terme id="societe_1_0">Société 1.0</Terme>) : de combien, qui l'a décidée et pourquoi.</p>
+            <p className="small muted">Chaque différence avec la <Terme id="societe_1_0">loi actuelle</Terme> : de combien, qui l'a décidée et pourquoi.</p>
             <DiffSociete items={s.differences_reference as Diff[]} vide={s.reference ? 'C\'est la référence : la loi en vigueur.' : 'Aucune différence avec la loi actuelle pour l\'instant.'} />
             {s.differences_reference.length > 0 && <button className="btn primary" style={{ marginTop: 12 }} onClick={calculer}><Calculator size={16} /> Voir les effets de ces changements</button>}
           </div>

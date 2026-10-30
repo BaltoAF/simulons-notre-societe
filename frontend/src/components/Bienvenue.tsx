@@ -10,7 +10,7 @@ const ECRANS = [
   {
     Icone: Sparkles,
     titre: 'Bienvenue !',
-    texte: "Société 2.0 explique les règles de la France (impôts, aides, retraites, climat…) avec des mots simples et des chiffres officiels. "
+    texte: "Simulons notre société explique les règles de la France (impôts, aides, retraites, climat…) avec des mots simples et des chiffres officiels. "
       + "Aucune connaissance n'est nécessaire : on vous guide. C'est gratuit, sans compte et sans publicité.",
   },
   {
@@ -43,7 +43,7 @@ export function Bienvenue({ onClose }: { onClose: () => void }) {
   const aller = (lien: string) => { fermer(); nav(lien) }
 
   return (
-    <Modal title={fin ? 'Par où commencer ?' : 'Découvrir Société 2.0'} onClose={fermer} width={620} footer={
+    <Modal title={fin ? 'Par où commencer ?' : 'Découvrir le site'} onClose={fermer} width={620} footer={
       <div className="row between" style={{ width: '100%', flexWrap: 'wrap', gap: 8 }}>
         <button className="btn ghost small" onClick={fermer}>{fin ? 'Je découvre par moi-même' : 'Passer la visite'}</button>
         <div className="row" style={{ flexWrap: 'nowrap', gap: 8 }}>

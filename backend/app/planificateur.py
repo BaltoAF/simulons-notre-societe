@@ -1,11 +1,11 @@
-"""Mise à jour invisible de la Société 1.0, au fil de l'eau.
+"""Mise à jour invisible de la loi actuelle, au fil de l'eau.
 
 Un fil d'exécution en arrière-plan, lancé avec le serveur :
   - chaque minute, il vérifie si la date a changé (une règle dont la date d'entrée en vigueur arrive
     s'applique alors automatiquement) ou si le modèle (model/) a été modifié par le Système ;
   - chaque nuit (par défaut à 4 h 30), il lance la mise à jour complète (system/maj_quotidienne.py) :
     nouvelle version d'OpenFisca-France, contrôles, population, publication ;
-  - après chaque changement, il recharge le modèle, publie un commit sur la Société 1.0, met à jour
+  - après chaque changement, il recharge le modèle, publie un commit sur la loi actuelle, met à jour
     les forks sans conflit et réchauffe les calculs de référence — sans redémarrage ni action de quiconque.
 
 Variables d'environnement : SOCIETE_MAJ=0 désactive tout ; SOCIETE_MAJ_HEURE="04:30".

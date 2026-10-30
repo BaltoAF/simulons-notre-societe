@@ -1,10 +1,10 @@
-"""Le Système — mise à jour complète de la Société 1.0.
+"""Le Système — mise à jour complète de la loi actuelle.
 
 Enchaîne les étapes automatiques puis publie une nouvelle version (commit du Système) si le modèle a changé :
   1. synchronisation des leviers fiscaux et sociaux depuis OpenFisca-France ;
   2. contrôle de cohérence du modèle (sources citées existantes, identifiants uniques…) ;
   3. reconstruction et recalage de la population synthétique (optionnel : --population) ;
-  4. publication d'un commit sur la Société 1.0.
+  4. publication d'un commit sur la loi actuelle.
 
 La collecte documentaire (textes, statistiques, études) est réalisée par les agents de recherche du Système,
 qui écrivent dans model/ ; ce script consolide et publie.
@@ -50,7 +50,7 @@ def main():
         raise SystemExit("Des erreurs bloquent la publication : corrigez-les avant de publier une nouvelle version.")
     db.init_db()
     res = vcs.ensure_reference(store)
-    print("\n── Publication :", res.get("message") or ("Société 1.0 créée" if res.get("cree") else "aucun changement"),
+    print("\n── Publication :", res.get("message") or ("loi actuelle créée" if res.get("cree") else "aucun changement"),
           f"(commit {res['commit']})")
 
 

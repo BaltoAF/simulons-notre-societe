@@ -1,4 +1,4 @@
-# Format des données de la « Société 1.0 »
+# Format des données de la « loi actuelle »
 
 Toutes les données du modèle de référence vivent dans `model/` sous forme de fichiers YAML (UTF-8).
 Elles sont produites et maintenues **uniquement par le Système** (pipelines automatisés + agents de recherche),

@@ -2,7 +2,7 @@
 export type Entree = { terme: string; definition: string; exemple?: string }
 
 export const GLOSSAIRE: Record<string, Entree> = {
-  societe_1_0: { terme: 'Société 1.0', definition: 'Les règles de la France telles qu\'elles sont aujourd\'hui : impôts, aides, travail, retraites, justice… Chaque valeur est prouvée par un texte officiel. Personne ne la modifie à la main : elle suit la loi.' },
+  societe_1_0: { terme: 'La loi actuelle', definition: 'Les règles de la France telles qu\'elles sont aujourd\'hui, reproduites par le site : impôts, aides, travail, retraites, justice… Chaque valeur est prouvée par un texte officiel. Personne ne la modifie à la main : elle suit la loi.' },
   societe: { terme: 'Proposition', definition: "Une version des règles de la France imaginée par quelqu'un : la loi actuelle, avec quelques règles changées. Chacun peut créer la sienne, la partager et voir ce qu'elle donne." },
   version: { terme: 'Partir d\'une proposition', definition: 'Copier une proposition pour la modifier librement, sans toucher à l\'originale.' },
   prime_activite: { terme: 'Prime d\'activité', definition: 'Une aide mensuelle de la CAF pour les personnes qui travaillent avec des revenus modestes (en gros, jusqu\'à 1,5 SMIC pour une personne seule).' },
@@ -17,7 +17,7 @@ export const GLOSSAIRE: Record<string, Entree> = {
   milliard: { terme: 'Milliard d\'euros (Md€)', definition: 'Mille millions d\'euros. Pour se représenter : 1 milliard d\'euros par an, c\'est environ 2,70 € par mois et par ménage en France.' },
   deficit: { terme: 'Déficit public', definition: 'Ce que l\'État, la Sécurité sociale et les collectivités dépensent en plus de ce qu\'ils gagnent dans l\'année. Il est comblé en empruntant, ce qui augmente la dette.' },
   dette: { terme: 'Dette publique', definition: 'Le total de ce qui a été emprunté au fil des années et pas encore remboursé. Chaque année, il faut en payer les intérêts.' },
-  article40: { terme: 'Article 40 de la Constitution', definition: 'Une règle qui interdit aux parlementaires de proposer une dépense nouvelle ou une baisse d\'impôt sans la financer. Société 2.0 applique la même logique à vos propositions.' },
+  article40: { terme: 'Article 40 de la Constitution', definition: 'Une règle qui interdit aux parlementaires de proposer une dépense nouvelle ou une baisse d\'impôt sans la financer. Le site applique la même logique à vos propositions.' },
   limite3: { terme: 'Limite des 3 %', definition: 'Règle européenne : le déficit ne devrait pas dépasser 3 % de la richesse produite dans l\'année (le PIB). La France est au-dessus.' },
   budget_carbone: { terme: 'Budget carbone', definition: 'La quantité maximale de gaz à effet de serre que la France s\'autorise à émettre chaque année, fixée par la loi (stratégie nationale bas-carbone). La France émet aujourd\'hui plus que ce plafond.' },
   co2: { terme: 'CO₂ (équivalent)', definition: 'Unité qui additionne tous les gaz à effet de serre en les ramenant à l\'effet du dioxyde de carbone. Un Français émet en moyenne un peu plus de 8 tonnes par an (son « empreinte carbone »).' },
@@ -38,5 +38,5 @@ export const GLOSSAIRE: Record<string, Entree> = {
   population_synthetique: { terme: 'Population simulée', definition: 'Pour chiffrer une réforme à l\'échelle du pays, le Système calcule ses effets sur 5 000 foyers fictifs mais représentatifs des 31 millions de ménages français.' },
   non_recours: { terme: 'Non-recours', definition: 'Une partie des personnes qui ont droit à une aide ne la demandent pas (méconnaissance, complexité…). Le Système en tient compte pour le coût budgétaire.' },
   etudes: { terme: 'Études', definition: 'Des travaux de chercheurs et d\'institutions qui mesurent l\'effet réel d\'une mesure (sur l\'emploi, les prix, la santé…). Quand ils se contredisent, le Système retient une valeur et indique sa confiance.' },
-  systeme: { terme: 'Le Système', definition: 'Les programmes et agents automatiques qui tiennent la Société 1.0 à jour : ils lisent les textes officiels et les statistiques, vérifient tout et publient chaque changement.' },
+  systeme: { terme: 'Le Système', definition: 'Les programmes et agents automatiques qui tiennent à jour la loi actuelle : ils lisent les textes officiels et les statistiques, vérifient tout et publient chaque changement.' },
 }

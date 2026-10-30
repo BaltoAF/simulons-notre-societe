@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS sessions (
     expires_at TEXT NOT NULL
 );
 
--- Instantanés de la Société 1.0 (valeurs de toutes les règles), adressés par leur hash.
+-- Instantanés de la loi actuelle (valeurs de toutes les règles), adressés par leur hash.
 CREATE TABLE IF NOT EXISTS snapshots (
     hash TEXT PRIMARY KEY,
     created_at TEXT NOT NULL DEFAULT (datetime('now')),

@@ -1,4 +1,4 @@
-// « Ce qui change par rapport à la loi actuelle » : les différences d'une société avec la Société 1.0,
+// « Ce qui change par rapport à la loi actuelle » : les différences d'une société avec la loi actuelle,
 // regroupées par domaine, avec leur ampleur, leur auteur et leur justification.
 import { Link } from 'react-router-dom'
 import { ArrowRight, Bot, GitCommit, Quote } from 'lucide-react'

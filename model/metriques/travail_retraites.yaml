@@ -546,7 +546,7 @@ metriques:
 
   - id: retraites.pension_dd_brute_d1_femmes
     titre: "Pension de droit direct brute mensuelle des femmes retraitées résidant en France : 1er décile (10 % touchent moins)"
-    explication: "Calcul Société 2.0 par interpolation linéaire dans l'histogramme de la DREES (tranches de 100 €, fin 2020, majoration pour enfants comprise ; la DREES ne publie pas de déciles). Les valeurs très basses du bas de la distribution viennent des carrières courtes ou en partie à l'étranger : seules les pensions des régimes français comptent, sans minimum vieillesse. Précision : environ 50 €."
+    explication: "Calcul du site par interpolation linéaire dans l'histogramme de la DREES (tranches de 100 €, fin 2020, majoration pour enfants comprise ; la DREES ne publie pas de déciles). Les valeurs très basses du bas de la distribution viennent des carrières courtes ou en partie à l'étranger : seules les pensions des régimes français comptent, sans minimum vieillesse. Précision : environ 50 €."
     unite: euros
     serie:
       - date: "2020-12-31"
@@ -556,7 +556,7 @@ metriques:
 
   - id: retraites.pension_dd_brute_mediane_femmes
     titre: "Pension de droit direct brute mensuelle des femmes retraitées résidant en France : médiane"
-    explication: "Calcul Société 2.0 par interpolation linéaire dans l'histogramme de la DREES (tranches de 100 €, fin 2020, majoration pour enfants comprise ; la DREES ne publie pas de déciles). Les valeurs très basses du bas de la distribution viennent des carrières courtes ou en partie à l'étranger : seules les pensions des régimes français comptent, sans minimum vieillesse. Précision : environ 50 €."
+    explication: "Calcul du site par interpolation linéaire dans l'histogramme de la DREES (tranches de 100 €, fin 2020, majoration pour enfants comprise ; la DREES ne publie pas de déciles). Les valeurs très basses du bas de la distribution viennent des carrières courtes ou en partie à l'étranger : seules les pensions des régimes français comptent, sans minimum vieillesse. Précision : environ 50 €."
     unite: euros
     serie:
       - date: "2020-12-31"
@@ -566,7 +566,7 @@ metriques:
 
   - id: retraites.pension_dd_brute_d9_femmes
     titre: "Pension de droit direct brute mensuelle des femmes retraitées résidant en France : 9e décile (10 % touchent plus)"
-    explication: "Calcul Société 2.0 par interpolation linéaire dans l'histogramme de la DREES (tranches de 100 €, fin 2020, majoration pour enfants comprise ; la DREES ne publie pas de déciles). Les valeurs très basses du bas de la distribution viennent des carrières courtes ou en partie à l'étranger : seules les pensions des régimes français comptent, sans minimum vieillesse. Précision : environ 50 €."
+    explication: "Calcul du site par interpolation linéaire dans l'histogramme de la DREES (tranches de 100 €, fin 2020, majoration pour enfants comprise ; la DREES ne publie pas de déciles). Les valeurs très basses du bas de la distribution viennent des carrières courtes ou en partie à l'étranger : seules les pensions des régimes français comptent, sans minimum vieillesse. Précision : environ 50 €."
     unite: euros
     serie:
       - date: "2020-12-31"
@@ -576,7 +576,7 @@ metriques:
 
   - id: retraites.pension_dd_brute_d1_hommes
     titre: "Pension de droit direct brute mensuelle des hommes retraités résidant en France : 1er décile (10 % touchent moins)"
-    explication: "Calcul Société 2.0 par interpolation linéaire dans l'histogramme de la DREES (tranches de 100 €, fin 2020, majoration pour enfants comprise ; la DREES ne publie pas de déciles). Les valeurs très basses du bas de la distribution viennent des carrières courtes ou en partie à l'étranger : seules les pensions des régimes français comptent, sans minimum vieillesse. Précision : environ 50 €."
+    explication: "Calcul du site par interpolation linéaire dans l'histogramme de la DREES (tranches de 100 €, fin 2020, majoration pour enfants comprise ; la DREES ne publie pas de déciles). Les valeurs très basses du bas de la distribution viennent des carrières courtes ou en partie à l'étranger : seules les pensions des régimes français comptent, sans minimum vieillesse. Précision : environ 50 €."
     unite: euros
     serie:
       - date: "2020-12-31"
@@ -586,7 +586,7 @@ metriques:
 
   - id: retraites.pension_dd_brute_mediane_hommes
     titre: "Pension de droit direct brute mensuelle des hommes retraités résidant en France : médiane"
-    explication: "Calcul Société 2.0 par interpolation linéaire dans l'histogramme de la DREES (tranches de 100 €, fin 2020, majoration pour enfants comprise ; la DREES ne publie pas de déciles). Les valeurs très basses du bas de la distribution viennent des carrières courtes ou en partie à l'étranger : seules les pensions des régimes français comptent, sans minimum vieillesse. Précision : environ 50 €."
+    explication: "Calcul du site par interpolation linéaire dans l'histogramme de la DREES (tranches de 100 €, fin 2020, majoration pour enfants comprise ; la DREES ne publie pas de déciles). Les valeurs très basses du bas de la distribution viennent des carrières courtes ou en partie à l'étranger : seules les pensions des régimes français comptent, sans minimum vieillesse. Précision : environ 50 €."
     unite: euros
     serie:
       - date: "2020-12-31"
@@ -596,7 +596,7 @@ metriques:
 
   - id: retraites.pension_dd_brute_d9_hommes
     titre: "Pension de droit direct brute mensuelle des hommes retraités résidant en France : 9e décile (10 % touchent plus)"
-    explication: "Calcul Société 2.0 par interpolation linéaire dans l'histogramme de la DREES (tranches de 100 €, fin 2020, majoration pour enfants comprise ; la DREES ne publie pas de déciles). Les valeurs très basses du bas de la distribution viennent des carrières courtes ou en partie à l'étranger : seules les pensions des régimes français comptent, sans minimum vieillesse. Précision : environ 50 €."
+    explication: "Calcul du site par interpolation linéaire dans l'histogramme de la DREES (tranches de 100 €, fin 2020, majoration pour enfants comprise ; la DREES ne publie pas de déciles). Les valeurs très basses du bas de la distribution viennent des carrières courtes ou en partie à l'étranger : seules les pensions des régimes français comptent, sans minimum vieillesse. Précision : environ 50 €."
     unite: euros
     serie:
       - date: "2020-12-31"

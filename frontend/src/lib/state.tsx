@@ -26,7 +26,7 @@ export const PARCOURS_VIDE: Parcours = { bienvenue_vue: false, faites: [], masqu
 export type Brouillon = {
   overrides: Record<string, Valeur>
   justifications: Record<string, string>
-  societe: string | null   // société de départ (fork), null = Société 1.0
+  societe: string | null   // société de départ (fork), null = loi actuelle
   branche: string
   nomSociete?: string
 }

@@ -1,4 +1,4 @@
-# Correspondances entre des règles de la Société 1.0 définies par les fiches thématiques
+# Correspondances entre des règles de la loi actuelle définies par les fiches thématiques
 # et des paramètres du moteur de calcul (OpenFisca-France), lorsque la règle n'est pas
 # déjà un levier de model/moteur/openfisca_leviers.yaml.
 # Chaque entrée : regle (id), openfisca (chemin lu), ecriture (paramètres modifiés), facteur.

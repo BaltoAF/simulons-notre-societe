@@ -4,7 +4,7 @@
             ┌──────────────── Le Système ────────────────┐
  Agents de  │ sync_openfisca.py   build_population.py    │   Publication :
  recherche ─┤ (leviers + sources) (population calée)     ├─► commit sur la
- (textes,   │            mettre_a_jour.py                │   Société 1.0
+ (textes,   │            mettre_a_jour.py                │   loi actuelle
  stats,     └───────────────────┬────────────────────────┘
  études)                        ▼
                          model/ (YAML)
@@ -25,7 +25,7 @@
  frontend/ (React) ── Mes droits · Atelier de réforme · Règles · Sociétés · Preuves · Sources · Système
 ```
 
-## La Société 1.0
+## La loi actuelle
 
 - Chaque **règle** a un identifiant stable (`domaine.theme.parametre`), un type (nombre, booléen, choix,
   texte, barème), une unité, un historique de valeurs datées et, pour chaque valeur, ses sources.
@@ -41,9 +41,9 @@
   l'état complet de ses surcharges et la liste des changements (avant / après / justification / sources).
 - **Fusion à trois voies** au niveau de chaque règle (ancêtre commun, cible, source) ; les conflits
   sont présentés à l'utilisateur qui choisit règle par règle.
-- **Synchronisation avec la loi** : quand la Société 1.0 évolue, un fork intègre les nouvelles valeurs
+- **Synchronisation avec la loi** : quand la loi actuelle évolue, un fork intègre les nouvelles valeurs
   des règles qu'il n'a pas modifiées ; pour les autres, son propriétaire décide.
-- La Société 1.0 refuse commits et propositions (403) : elle n'est modifiée que par le Système.
+- La loi actuelle refuse commits et propositions (403) : elle n'est modifiée que par le Système.
 
 ## Impacts
 

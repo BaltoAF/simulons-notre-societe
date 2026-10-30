@@ -1,10 +1,10 @@
-# Société 2.0
+# Simulons notre société
 
 **Les règles de la société française, prouvées par leurs sources. Forkez-les, modifiez-les, mesurez les impacts.**
 
-Société 2.0 numérise les règles qui régissent la France (impôts, prestations, travail, retraites, budget,
+Simulons notre société numérise les règles qui régissent la France (impôts, prestations, travail, retraites, budget,
 justice, droit civil, institutions, nationalité, santé, éducation, logement, énergie) sous forme de
-paramètres vérifiables : la **Société 1.0**. Chacun peut en créer sa version (un *fork*, comme sur git),
+paramètres vérifiables : la **loi actuelle**. Chacun peut en créer sa version (un *fork*, comme sur git),
 la faire évoluer, la proposer aux autres, et voir ce que ça change, pour son foyer et pour le pays,
 avec un **indice de confiance** sur chaque chiffre.
 
@@ -12,7 +12,7 @@ avec un **indice de confiance** sur chaque chiffre.
 
 - **Pas de chiffre sans source.** Chaque règle renvoie à son texte officiel (Légifrance, JO, BOFiP…),
   chaque mesure à sa statistique publique, chaque effet à ses études.
-- **La Société 1.0 est maintenue par le Système uniquement** : des programmes et des agents de
+- **La loi actuelle est maintenue par le Système uniquement** : des programmes et des agents de
   recherche qui collectent, vérifient et publient. Les utilisateurs agissent sur des forks.
 - **Trancher avec honnêteté.** Quand les études divergent, le Système calcule une valeur retenue
   (médiane pondérée) et un indice de confiance à 4 niveaux : Très faible, Faible, Élevé, Très élevé.
@@ -61,20 +61,20 @@ Tests de l'API :
 cd backend && .venv/Scripts/python -m pytest -q
 ```
 
-## Le Système : mettre à jour la Société 1.0
+## Le Système : mettre à jour la loi actuelle
 
 ```bash
 backend/.venv/Scripts/python system/mettre_a_jour.py --population
 ```
 
 Synchronise les leviers depuis OpenFisca-France, contrôle la cohérence du modèle, recale la population
-synthétique et publie un commit sur la Société 1.0 (visible dans « Le Système » sur le site).
+synthétique et publie un commit sur la loi actuelle (visible dans « Le Système » sur le site).
 
 ## Organisation
 
 | Dossier | Contenu |
 |---|---|
-| `model/` | La Société 1.0 en YAML : règles, sources, métriques, preuves (voir `docs/FORMAT-DONNEES.md`) |
+| `model/` | La loi actuelle en YAML : règles, sources, métriques, preuves (voir `docs/FORMAT-DONNEES.md`) |
 | `model/moteur/` | Liens entre règles et moteur de calcul, entre études et règles |
 | `model/population/` | Population synthétique calée (générée par le Système) |
 | `system/` | Les pipelines du Système (synchronisation, population, publication) |

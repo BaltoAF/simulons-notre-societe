@@ -1,4 +1,4 @@
-"""API de Société 2.0 (FastAPI) + service du site web compilé."""
+"""API de Simulons notre société (FastAPI) + service du site web compilé."""
 from __future__ import annotations
 
 import logging
@@ -36,7 +36,7 @@ async def lifespan(_app: FastAPI):
     yield
 
 
-app = FastAPI(title="Société 2.0", version="0.1.0", lifespan=lifespan,
+app = FastAPI(title="Simulons notre société", version="0.1.0", lifespan=lifespan,
               description="Numériser les règles de la société française, les forker et mesurer les impacts.")
 app.add_middleware(GZipMiddleware, minimum_size=1000)
 
@@ -480,7 +480,7 @@ class DroitsIn(BaseModel):
 
 @app.post("/api/droits")
 def droits(body: DroitsIn, user: dict | None = Depends(auth.current_user)):
-    """Vos droits au-delà de l'argent, dans la Société 1.0 et, en option, dans une autre société (comparaison)."""
+    """Vos droits au-delà de l'argent, dans la loi actuelle et, en option, dans une autre société (comparaison)."""
     from .droits import comparer, repondre
     store = get_store()
     ref = store.snapshot()
@@ -661,7 +661,7 @@ def get_commit(cid: str):
 
 @app.get("/api/societes/{sid}/etat")
 def etat_societe(sid: str, branche: str = vcs.BRANCHE_PRINCIPALE, user: dict | None = Depends(auth.current_user)):
-    """Surcharges de la branche par rapport à la Société 1.0 actuelle (pour l'atelier de réforme)."""
+    """Surcharges de la branche par rapport à la loi actuelle (pour l'atelier de réforme)."""
     store = get_store()
     _check_visible(vcs.get_society(sid), user)
     st = vcs.state_of(vcs.branch_head(sid, branche))

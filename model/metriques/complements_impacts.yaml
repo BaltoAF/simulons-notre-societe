@@ -68,7 +68,7 @@ metriques:
 
   - id: fiscalite.tva.part_recettes_taux_normal
     titre: "Part du taux normal (20 %) dans la TVA brute collectée par les entreprises"
-    explication: "Part de la TVA facturée au taux de 20 % (ventes en métropole, produits pétroliers et importations) dans le total de la TVA brute collectée en 2025 (943 Md€, avant déduction de la TVA payée par les entreprises sur leurs achats). Calcul Société 2.0 à partir des montants DGFiP : (798 841 + 13 431,2 + 30 311,5) / 943 322 M€. Attention : cette part surestime le poids du taux normal dans les recettes nettes, car la TVA collectée entre entreprises est surtout au taux normal puis déduite. Les recettes nettes par taux ne sont pas observables dans les déclarations (CPO, 2023) ; pour simuler une réforme, la DG Trésor estime qu'un point de TVA rapporte en 2025 : 8,9 Md€ au taux de 20 %, 1,9 Md€ à 10 %, 2,4 Md€ à 5,5 % et 0,4 Md€ à 2,1 % (13,7 Md€ au total, Trésor-Éco n° 371)."
+    explication: "Part de la TVA facturée au taux de 20 % (ventes en métropole, produits pétroliers et importations) dans le total de la TVA brute collectée en 2025 (943 Md€, avant déduction de la TVA payée par les entreprises sur leurs achats). Calcul du site à partir des montants DGFiP : (798 841 + 13 431,2 + 30 311,5) / 943 322 M€. Attention : cette part surestime le poids du taux normal dans les recettes nettes, car la TVA collectée entre entreprises est surtout au taux normal puis déduite. Les recettes nettes par taux ne sont pas observables dans les déclarations (CPO, 2023) ; pour simuler une réforme, la DG Trésor estime qu'un point de TVA rapporte en 2025 : 8,9 Md€ au taux de 20 %, 1,9 Md€ à 10 %, 2,4 Md€ à 5,5 % et 0,4 Md€ à 2,1 % (13,7 Md€ au total, Trésor-Éco n° 371)."
     unite: pourcent
     serie:
       - date: "2025-12-31"
@@ -78,7 +78,7 @@ metriques:
 
   - id: fiscalite.tva.part_recettes_taux_intermediaire
     titre: "Part du taux intermédiaire (10 %) dans la TVA brute collectée par les entreprises"
-    explication: "Part de la TVA facturée au taux de 10 % (restauration, travaux dans les logements, transport de voyageurs…), importations comprises, dans le total de la TVA brute collectée en 2025. Calcul Société 2.0 à partir des montants DGFiP : (32 417,4 + 131,5) / 943 322 M€. Même limite que pour le taux normal : il s'agit de TVA collectée avant déductions, pas des recettes nettes. Repère DG Trésor : un point de TVA au taux de 10 % rapporte 1,9 Md€ bruts en 2025."
+    explication: "Part de la TVA facturée au taux de 10 % (restauration, travaux dans les logements, transport de voyageurs…), importations comprises, dans le total de la TVA brute collectée en 2025. Calcul du site à partir des montants DGFiP : (32 417,4 + 131,5) / 943 322 M€. Même limite que pour le taux normal : il s'agit de TVA collectée avant déductions, pas des recettes nettes. Repère DG Trésor : un point de TVA au taux de 10 % rapporte 1,9 Md€ bruts en 2025."
     unite: pourcent
     serie:
       - date: "2025-12-31"
@@ -88,7 +88,7 @@ metriques:
 
   - id: fiscalite.tva.part_recettes_taux_reduit
     titre: "Part du taux réduit (5,5 %) dans la TVA brute collectée par les entreprises"
-    explication: "Part de la TVA facturée au taux de 5,5 % (alimentation, énergie, travaux de rénovation énergétique…), importations comprises, dans le total de la TVA brute collectée en 2025. Calcul Société 2.0 à partir des montants DGFiP : (48 201,1 + 840,5) / 943 322 M€. Même limite que pour le taux normal. Le reste (environ 2 %) correspond aux taux des DOM, de la Corse, au 2,1 % et aux « autres taux » que la DGFiP ne détaille pas. Repère DG Trésor : un point de TVA au taux de 5,5 % rapporte 2,4 Md€ bruts en 2025."
+    explication: "Part de la TVA facturée au taux de 5,5 % (alimentation, énergie, travaux de rénovation énergétique…), importations comprises, dans le total de la TVA brute collectée en 2025. Calcul du site à partir des montants DGFiP : (48 201,1 + 840,5) / 943 322 M€. Même limite que pour le taux normal. Le reste (environ 2 %) correspond aux taux des DOM, de la Corse, au 2,1 % et aux « autres taux » que la DGFiP ne détaille pas. Repère DG Trésor : un point de TVA au taux de 5,5 % rapporte 2,4 Md€ bruts en 2025."
     unite: pourcent
     serie:
       - date: "2025-12-31"

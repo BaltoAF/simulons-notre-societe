@@ -43,7 +43,7 @@ def test_fork_commit_proposition_fusion():
     with client() as c:
         a = c.post("/api/auth/inscription", json={"pseudo": "alice", "email": "a@ex.fr", "mot_de_passe": "motdepasse1"})
         assert a.status_code == 200, a.text
-        # la Société 1.0 est en lecture seule
+        # la loi actuelle est en lecture seule
         r = c.post("/api/societes/france/commits", json={"changements": [{"regle": "prestations.rsa.montant_forfaitaire", "valeur": 900}]})
         assert r.status_code == 403
         s = c.post("/api/societes", json={"nom": "Société solidaire", "changements": [

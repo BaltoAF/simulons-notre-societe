@@ -1,4 +1,4 @@
-"""Chargement et validation de la Société 1.0 (dossier model/).
+"""Chargement et validation de la loi actuelle (dossier model/).
 
 Le modèle est un ensemble de fichiers YAML produits par le Système. Ce module les charge, les
 normalise, vérifie leur cohérence (sources citées existantes, ids uniques…) et expose un index
@@ -316,7 +316,7 @@ class ModelStore:
 
     # ───────────────────────── accès ─────────────────────────
     def snapshot(self) -> dict[str, Any]:
-        """Valeurs en vigueur de toutes les règles (l'état de la Société 1.0)."""
+        """Valeurs en vigueur de toutes les règles (l'état de la loi actuelle)."""
         return {rid: r["valeur"] for rid, r in sorted(self.regles.items())}
 
     def snapshot_hash(self) -> str:

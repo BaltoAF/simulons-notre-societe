@@ -127,7 +127,7 @@ def section_cas_types(ctx: Contexte) -> Section | None:
 
 
 def simuler_menage_seul(store, menage: Menage, approximations: list[str] | None = None) -> dict:
-    """Droits et impôts d'un foyer dans la Société 1.0 (sans réforme)."""
+    """Droits et impôts d'un foyer dans la loi actuelle (sans réforme)."""
     res = ENGINE.compute([menage])
     return {
         "revenu_disponible": round(float(res["revenu_disponible"][0]), 2),

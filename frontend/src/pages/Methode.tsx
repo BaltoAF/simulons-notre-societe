@@ -12,7 +12,7 @@ export default function Methode() {
   return (
     <div className="container page" style={{ maxWidth: 900 }}>
       <h1>Méthode</h1>
-      <p className="lead ink2">Comment Société 2.0 construit la Société 1.0, calcule les impacts et décide de l'indice de confiance. Tout est public et contestable : le code et les données sont ouverts.</p>
+      <p className="lead ink2">Comment Simulons notre société reproduit la loi actuelle, calcule les impacts et décide de l'indice de confiance. Tout est public et contestable : le code et les données sont ouverts.</p>
 
       <div className="card soft" style={{ marginBottom: 16 }}>
         <h2 style={{ fontSize: '1.2rem', marginTop: 0 }}>En bref</h2>
@@ -27,9 +27,9 @@ export default function Methode() {
       </div>
 
       <div className="card stack" id="societe">
-        <h2><ShieldCheck size={22} /> 1. La Société 1.0 : un miroir prouvé de la loi</h2>
+        <h2><ShieldCheck size={22} /> 1. La loi actuelle : un miroir prouvé des textes</h2>
         <p>Chaque règle (un taux, un montant, une durée, un âge, un seuil…) est un paramètre avec sa valeur en vigueur, son historique et ses <strong>sources</strong>. Une valeur sans source n'est pas acceptée. Les règles fiscales et sociales sont adossées à <strong>OpenFisca-France</strong>, le modèle public de la législation socio-fiscale (utilisé par l'Assemblée nationale via LexImpact), dont le Système extrait automatiquement les valeurs et les références légales. Les autres domaines (justice, institutions, travail, retraites…) sont collectés par les agents du Système, qui lisent les textes officiels et marquent « à vérifier » ce qu'ils n'ont pas pu confirmer.</p>
-        <p>Personne ne modifie la Société 1.0 à la main : <Link to="/systeme">le Système</Link> publie une nouvelle version, datée, quand la loi ou les données changent.</p>
+        <p>Personne ne modifie à la main la loi actuelle du site : <Link to="/systeme">le Système</Link> publie une nouvelle version, datée, quand la loi ou les données changent.</p>
       </div>
 
       <div className="card stack" id="sources" style={{ marginTop: 16 }}>
@@ -82,7 +82,7 @@ export default function Methode() {
 
       <div className="card stack" id="mises-a-jour" style={{ marginTop: 16 }}>
         <h2>7. La mise à jour invisible</h2>
-        <p>Chaque nuit, le Système vérifie le moteur de calcul (nouvelle version d'OpenFisca-France, installée seulement si elle passe les contrôles), les données, la cohérence du modèle et une partie des liens des sources. Si la loi a changé, il publie une nouvelle version de la Société 1.0. À minuit, les règles dont la date d'entrée en vigueur arrive s'appliquent d'elles-mêmes. Les propositions des utilisateurs sont mises à jour automatiquement pour toutes les règles qu'elles n'ont pas modifiées ; si la loi change une règle que l'auteur avait aussi changée, rien n'est imposé : c'est lui qui choisit.</p>
+        <p>Chaque nuit, le Système vérifie le moteur de calcul (nouvelle version d'OpenFisca-France, installée seulement si elle passe les contrôles), les données, la cohérence du modèle et une partie des liens des sources. Si la loi a changé, il publie une nouvelle version de la loi actuelle. À minuit, les règles dont la date d'entrée en vigueur arrive s'appliquent d'elles-mêmes. Les propositions des utilisateurs sont mises à jour automatiquement pour toutes les règles qu'elles n'ont pas modifiées ; si la loi change une règle que l'auteur avait aussi changée, rien n'est imposé : c'est lui qui choisit.</p>
       </div>
 
       <div className="card stack" id="forks" style={{ marginTop: 16 }}>

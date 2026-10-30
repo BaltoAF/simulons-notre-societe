@@ -40,7 +40,7 @@ OUT = ROOT / "model" / "population" / "population.json"
 
 # ───────────────────────── hauts revenus ─────────────────────────
 SEUIL_HAUTS_REVENUS = 100_000
-# part de la masse des pensions versée à des retraités vivant à l'étranger (calcul Société 2.0 : effectifs DREES × pensions moyennes)
+# part de la masse des pensions versée à des retraités vivant à l'étranger (calcul du site : effectifs DREES × pensions moyennes)
 PART_PENSIONS_ETRANGER = 0.017
 
 

@@ -70,8 +70,8 @@ function Header({ onVisite }: { onVisite: () => void }) {
     <a className="lien-evitement" href="#contenu">Aller au contenu</a>
     <header className="header">
       <div className="container">
-        <Link to="/" className="logo" aria-label="Société 2.0, accueil">
-          <img src="/favicon.svg" alt="" width={30} height={30} /> Société 2.0 <span className="tag">bêta</span>
+        <Link to="/" className="logo" aria-label="Simulons notre société, accueil">
+          <img src="/favicon.svg" alt="" width={30} height={30} /> Simulons notre société <span className="tag">bêta</span>
         </Link>
         <button className="icon-btn menu-mobile" onClick={() => setMenu((m) => !m)} aria-label="Menu" aria-expanded={menu}>{menu ? <X size={22} /> : <Menu size={22} />}</button>
         <nav className={`nav ${menu ? 'ouvert' : ''}`} aria-label="Navigation principale">
@@ -104,9 +104,9 @@ function Footer() {
     <footer className="footer">
       <div className="container row between top">
         <div style={{ maxWidth: 560 }}>
-          <div className="logo" style={{ marginBottom: 6 }}><GitFork size={18} /> Société 2.0</div>
+          <div className="logo" style={{ marginBottom: 6 }}><GitFork size={18} /> Simulons notre société</div>
           <p className="small">Un bien commun numérique : code sous licence AGPL, données sous Licence Ouverte. Chaque chiffre est relié à ses sources.
-            Société 2.0 est un projet indépendant ; il ne représente aucune administration.</p>
+            Simulons notre société est un projet indépendant ; il ne représente aucune administration.</p>
         </div>
         <div className="small" style={{ display: 'grid', gap: 4 }}>
           <Link to="/methode">Méthode et indice de confiance</Link>

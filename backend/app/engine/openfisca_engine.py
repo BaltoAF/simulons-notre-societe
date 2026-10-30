@@ -253,7 +253,7 @@ class Engine:
                 return parameters
 
             class _R(Reform):
-                name = "Réforme Société 2.0"
+                name = "Réforme simulée"
 
                 def apply(self):
                     self.modify_parameters(modifier_function=modifier)

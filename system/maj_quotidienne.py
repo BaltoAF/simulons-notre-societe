@@ -7,7 +7,7 @@
   3. Population : recale la population synthétique si les statistiques de calage ont changé.
   4. Contrôles : vérifie la cohérence du modèle (sources, identifiants, contrôles croisés). Bloque la
      publication en cas d'erreur.
-  5. Publication : enregistre une nouvelle version de la Société 1.0 si des règles ont changé (y compris
+  5. Publication : enregistre une nouvelle version de la loi actuelle si des règles ont changé (y compris
      les règles dont la date d'entrée en vigueur est arrivée), puis met à jour les forks sans conflit.
   6. Banc d'essai : si le moteur, la population, les modèles d'impact ou les chiffrages officiels ont changé, rejoue
      les réformes chiffrées par des institutions publiques et publie l'écart (page « Nos chiffres sont-ils justes ? »).
@@ -176,7 +176,7 @@ def etape_liens(resume: dict, n: int = 40):
     bilan = {"ok": 0, "bloque": 0, "introuvable": 0, "injoignable": 0}
     for s in candidats:
         code, statut = None, "injoignable"
-        req = urllib.request.Request(s["url"], method="GET", headers={"User-Agent": "Societe2.0-Systeme/0.2 (verification des sources)"})
+        req = urllib.request.Request(s["url"], method="GET", headers={"User-Agent": "SimulonsNotreSociete-Systeme/0.2 (verification des sources)"})
         try:
             with urllib.request.urlopen(req, timeout=10) as resp:
                 code = resp.status
