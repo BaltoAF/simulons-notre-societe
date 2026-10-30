@@ -85,6 +85,27 @@ export const PRESETS: Preset[] = [
     tags: ['pouvoir d\'achat', 'Sécurité sociale'],
   },
   {
+    id: 'aspa-plus-100',
+    titre: 'Minimum vieillesse : +100 € par mois',
+    description: "Hausse du minimum vieillesse (Aspa) d'une personne seule, versé aux retraités qui ont les plus petites ressources.",
+    overrides: { 'prestations.aspa.montant_personne_seule': (v: number) => Math.round((v + 1200) * 100) / 100 },
+    tags: ['retraités', 'pauvreté'],
+  },
+  {
+    id: 'csg-retraites-6-6',
+    titre: 'CSG des retraités : le taux plein ramené de 8,3 % à 6,6 %',
+    description: "Le taux de CSG le plus élevé sur les pensions revient à son niveau d'avant 2018.",
+    overrides: { 'fiscalite.csg.retraites_taux_plein': (v: number) => Math.min(v, 6.6) },
+    tags: ['retraités', "pouvoir d'achat"],
+  },
+  {
+    id: 'csg-retraites-9-2',
+    titre: 'CSG des retraités : le taux plein aligné sur celui des salaires (9,2 %)',
+    description: 'Le taux plein, payé par les retraités dont les revenus dépassent un plafond, passe de 8,3 % à 9,2 %.',
+    overrides: { 'fiscalite.csg.retraites_taux_plein': (v: number) => Math.max(v, 9.2) },
+    tags: ['retraités', 'Sécurité sociale'],
+  },
+  {
     id: 'flat-tax-30',
     titre: 'Relever la « flat tax » sur le capital (part IR de 12,8 % à 17,8 %)',
     description: 'Hausse de 5 points de la part impôt sur le revenu du prélèvement forfaitaire unique.',

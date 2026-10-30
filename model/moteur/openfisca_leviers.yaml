@@ -29,8 +29,8 @@ leviers:
     domaine: fiscalite
     fichier: impot_revenu
     theme: Impôt sur le revenu
-    titre: "Décote : taux"
-    explication: "La décote réduit l'impôt des foyers modestes pour éviter un passage brutal de 0 à quelques centaines d'euros d'impôt."
+    titre: "Décote (réduction des petits impôts) : pourcentage de l'impôt retranché"
+    explication: "La décote réduit l'impôt des foyers modestes, pour éviter de passer brutalement de 0 à quelques centaines d'euros d'impôt. Elle vaut un montant de départ (règles suivantes) moins ce pourcentage de l'impôt calculé : plus il est élevé, plus la décote s'éteint vite quand l'impôt augmente."
     lecture: impot_revenu.calcul_impot_revenu.plaf_qf.decote.taux
     type: nombre
     unite: pourcent
@@ -41,8 +41,8 @@ leviers:
     domaine: fiscalite
     fichier: impot_revenu
     theme: Impôt sur le revenu
-    titre: "Décote : plafond pour une personne seule"
-    explication: "En dessous de ce montant d'impôt brut, une personne seule bénéficie de la décote."
+    titre: "Décote (réduction des petits impôts) : montant de départ pour une personne seule"
+    explication: "La décote d'une personne seule vaut ce montant moins un pourcentage de son impôt calculé. Elle disparaît quand ce calcul devient nul : plus le montant est élevé, plus la réduction est forte et plus elle touche de foyers."
     lecture: impot_revenu.calcul_impot_revenu.plaf_qf.decote.seuil_celib
     type: nombre
     unite: euros
@@ -52,8 +52,8 @@ leviers:
     domaine: fiscalite
     fichier: impot_revenu
     theme: Impôt sur le revenu
-    titre: "Décote : plafond pour un couple"
-    explication: "En dessous de ce montant d'impôt brut, un couple marié ou pacsé bénéficie de la décote."
+    titre: "Décote (réduction des petits impôts) : montant de départ pour un couple"
+    explication: "La décote d'un couple marié ou pacsé vaut ce montant moins un pourcentage de son impôt calculé. Elle disparaît quand ce calcul devient nul : plus le montant est élevé, plus la réduction est forte et plus elle touche de foyers."
     lecture: impot_revenu.calcul_impot_revenu.plaf_qf.decote.seuil_couple
     type: nombre
     unite: euros

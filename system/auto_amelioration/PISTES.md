@@ -5,11 +5,11 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
 
 ## À faire
 
-- **Idées toutes prêtes pour les retraités actuels** (test débutants). Aucune ne les concerne directement : par exemple
-  « Minimum vieillesse + 100 € » ou « Revaloriser les pensions ». Elles doivent rester équilibrées (financement indiqué).
-- **« Se connecter » en haut de page** déroute, alors que la visite promet « sans compte » (test débutants) : dire que c'est
-  facultatif, et à quoi sert un compte.
-- **Jargon restant** : « Décote : taux », « cerfa n° … ».
+- **Fiabilité du minimum vieillesse** (vu en testant l'idée « Minimum vieillesse : +100 € ») : la population synthétique
+  reproduit mal la dépense d'Aspa (calage 0,05), d'où une confiance « très faible » sur son coût. Caler les retraités
+  modestes sur les effectifs officiels d'allocataires (DREES).
+- **« Revaloriser les pensions »** : la règle `retraites.revalorisation.pensions_base` n'est reliée à aucun calcul. La
+  changer dans l'atelier ne change donc rien ; la relier (montant des pensions des ménages et de la population) ou le dire.
 - **À soumettre au responsable** : limiter le nombre de simulations de réforme simultanées si la fréquentation augmente
   (le serveur de 4 Go met jusqu'à une minute et demie pour la première simulation).
 
@@ -22,6 +22,11 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   30/10/2026, test débutants : Bernard, 72 ans). Bilan possible à partir du 13/11/2026.
 
 ## Fait
+
+- 30/10/2026 (soir) : atelier en une seule carte, un changement par ligne ; trois idées pour les retraités actuels
+  (minimum vieillesse, CSG des pensions dans un sens ou dans l'autre) ; « Se connecter (facultatif) » dans le menu, avec
+  une infobulle sur ordinateur ; « décote » expliquée (et son explication corrigée : le montant indiqué n'était pas un
+  plafond d'impôt) ; « cerfa » remplacé par « formulaire officiel » ; en-tête qui tient sur un portable de 1 280 px.
 
 - 30/10/2026 : la TVA compte dans le pouvoir d'achat des ménages ; la pension alimentaire est demandée aux parents seuls ;
   « Pourquoi aucune aide ? » ; allocation de rentrée scolaire présentée comme annuelle ; bouton « A+ » ; bouton d'avis discret

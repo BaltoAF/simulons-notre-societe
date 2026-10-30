@@ -650,3 +650,11 @@ button.change-tete:hover { background: color-mix(in srgb, var(--primary) 7%, tra
 .change-chevron.ouvert { transform: rotate(180deg); }
 .change-corps { padding: 0 12px 10px; }
 @media (max-width: 960px) { .bureau-seul { display: none; } }
+.header .facultatif { font-weight: 500; opacity: .8; }
+@media (min-width: 1261px) { .header .facultatif { display: none; } }   /* l'en-tête complet n'a pas la place : infobulle */
+/* en-tête complet sur un portable (1 261 à 1 440 px) : resserré pour que tout tienne, bouton « A+ » compris */
+@media (min-width: 1261px) and (max-width: 1440px) {
+  .header .container { gap: 10px; }
+  .nav { gap: 2px; }
+  .nav a, .nav .popover-wrap > .btn { padding: 8px 9px; font-size: .9rem; }
+}

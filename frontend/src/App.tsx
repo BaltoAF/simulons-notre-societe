@@ -109,7 +109,7 @@ function Header({ onVisite }: { onVisite: () => void }) {
               <button className="icon-btn" title="Se déconnecter" onClick={async () => { await api('/api/auth/deconnexion', { method: 'POST' }); setUser(null); nav('/') }}><LogOut size={17} /></button>
             </>
           ) : (
-            <Link to="/connexion" className="btn small"><LogIn size={15} /> Se connecter</Link>
+            <Link to="/connexion" className="btn small" title="Un compte sert seulement à enregistrer et partager vos propositions : tout le reste du site marche sans compte."><LogIn size={15} /> Se connecter <span className="facultatif">(facultatif)</span></Link>
           )}
         </div>
       </div>

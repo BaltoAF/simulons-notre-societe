@@ -54,7 +54,7 @@ aides:
     pourquoi_vous: "Le site l'a calculée d'après la pension alimentaire que vous avez indiquée : elle complète ce que l'autre parent ne verse pas."
     pour_qui: "Parent qui élève seul son enfant quand l'autre parent ne verse pas de pension alimentaire, ne peut pas la payer, ou verse moins de 200,78 € par mois et par enfant. Il n'y a pas de condition de revenus."
     ce_que_ca_apporte: "200,78 € par mois et par enfant en 2026 (ou la différence avec une pension plus faible). La Caf peut aussi réclamer à l'autre parent jusqu'à deux ans de pensions impayées."
-    ou_la_demander: "À la Caf (ou à la MSA), avec deux formulaires papier (cerfa n° 12038 et n° 11423) à télécharger sur caf.fr ou à demander à l'accueil. Sans pension fixée par un juge, elle est versée 4 mois : il faut ensuite saisir le juge aux affaires familiales."
+    ou_la_demander: "À la Caf (ou à la MSA), avec deux formulaires officiels, les n° 12038 et 11423, à télécharger sur caf.fr ou à demander à l'accueil. Sans pension fixée par un juge, elle est versée 4 mois : il faut ensuite saisir le juge aux affaires familiales."
     url_officielle: "https://www.service-public.gouv.fr/particuliers/vosdroits/F815"
     source_id: sp-f815
     criteres: { calculee: asf }
@@ -114,7 +114,7 @@ aides:
     pourquoi_vous: "Les ressources de votre foyer semblent sous le plafond : {plafond_c2s} par mois pour un foyer comme le vôtre."
     pour_qui: "Personnes qui vivent en France depuis plus de 3 mois avec des revenus modestes. Elle est gratuite sous un premier plafond (868 € par mois pour une personne seule) et coûte au plus 1 € par jour sous un second (1 172 €). Elle est attribuée d'office avec le RSA."
     ce_que_ca_apporte: "Une complémentaire santé qui ne coûte rien, ou de 8 € à 30 € par mois et par personne selon l'âge (8 € jusqu'à 29 ans, 30 € à partir de 70 ans)."
-    ou_la_demander: "À l'Assurance maladie : en ligne sur votre compte ameli (« Mes démarches »), ou avec le formulaire papier (cerfa n° 12504) que votre caisse peut vous envoyer. Sans réponse sous deux mois, la demande est acceptée."
+    ou_la_demander: "À l'Assurance maladie : en ligne sur votre compte ameli (« Mes démarches »), ou avec le formulaire officiel n° 12504, que votre caisse peut vous envoyer. Sans réponse sous deux mois, la demande est acceptée."
     url_officielle: "https://www.service-public.gouv.fr/particuliers/vosdroits/F10027"
     non_recours: "Près d'une personne sur deux qui y a droit ne la demande pas (44 % en 2021)."
     non_recours_source: drees-cp-css-non-recours-2022
