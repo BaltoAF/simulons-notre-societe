@@ -164,12 +164,21 @@ def synthese(question: dict, store=None) -> dict:
     f_vol = min(1.0, n_eff / 6.0)
     f_qual = sum(l["qualite"] * l["poids"] for l in num)
     sign = 1 if med > 0 else (-1 if med < 0 else 0)
-    if sign == 0:
-        accord_signe = sum(w for v, w in zip(vals, ws) if abs(v) <= 0.25 * (mean_abs or 1))
+    # un effet « négligeable » défini par la question (ex. moins de 1 % de salaire) : des études qui trouvent toutes un effet
+    # sous ce seuil s'accordent, même si leurs signes diffèrent ; mesurer l'écart à une valeur retenue proche de zéro
+    # faisait croire à un désaccord total (« accord 4 % » pour des études qui convergent vers un effet quasi nul)
+    seuil = question.get("seuil_negligeable")
+    negligeable = bool(seuil) and abs(med) <= float(seuil)
+    if negligeable:
+        accord_signe = sum(w for v, w in zip(vals, ws) if abs(v) <= float(seuil))
+        dispersion = (p90 - p10) / (2 * float(seuil))  # fourchette plausible rapportée à la zone « négligeable »
     else:
-        accord_signe = sum(w for v, w in zip(vals, ws) if v * sign > 0)
-    echelle = max(abs(med), 0.25 * mean_abs, 1e-9)
-    dispersion = (p90 - p10) / echelle  # largeur de la fourchette plausible rapportée à la valeur retenue
+        if sign == 0:
+            accord_signe = sum(w for v, w in zip(vals, ws) if abs(v) <= 0.25 * (mean_abs or 1))
+        else:
+            accord_signe = sum(w for v, w in zip(vals, ws) if v * sign > 0)
+        echelle = max(abs(med), 0.25 * mean_abs, 1e-9)
+        dispersion = (p90 - p10) / echelle  # largeur de la fourchette plausible rapportée à la valeur retenue
     f_acc = accord_signe * (1.0 / (1.0 + dispersion))
     f_pert = sum(l["pertinence"] * l["poids"] for l in num)
     eps = 1e-3
@@ -179,14 +188,19 @@ def synthese(question: dict, store=None) -> dict:
     elif len(num) == 2:
         score = min(score, 49)  # deux études ne suffisent pas à atteindre « Élevé »
     sens = question.get("sens_attendu")
+    disp_txt = f"{dispersion:.1f}".replace(".", ",")   # à la française
     facteurs = [
         Facteur("Volume de preuves", f_vol,
                 f"{len(num)} estimation(s) chiffrée(s), soit l'équivalent de {n_eff:.1f} études indépendantes de même poids (6 ou plus = maximum)."),
         Facteur("Qualité des études", f_qual,
                 "Moyenne pondérée de la qualité : méta-analyses et expériences contrôlées comptent plus que les études descriptives ; la relecture par des pairs et le sérieux de l'éditeur aussi."),
         Facteur("Accord entre les études", f_acc,
-                f"{accord_signe * 100:.0f} % du poids des études va dans le même sens que la valeur retenue ; "
-                f"la fourchette plausible (10e-90e percentile) est {dispersion:.1f} fois plus large que la valeur retenue."),
+                (f"{accord_signe * 100:.0f} % du poids des études trouve un effet négligeable (entre −{seuil} et +{seuil} "
+                 f"{question.get('unite') or ''}) ; la fourchette plausible (10e-90e percentile) fait {disp_txt} fois "
+                 f"la largeur de cette zone." if negligeable else
+                 f"{accord_signe * 100:.0f} % du poids des études va dans le même sens que la valeur retenue ; "
+                 f"la fourchette plausible (10e-90e percentile) est {disp_txt} fois plus large que la valeur retenue.")
+                .replace(".0 %", " %").replace("pourcent", "%")),
         Facteur("Pertinence pour la France", f_pert,
                 "Les études menées en France comptent pleinement, celles d'autres pays européens un peu moins, celles d'ailleurs encore moins."),
     ]

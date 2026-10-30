@@ -41,6 +41,21 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   Pajemploi et les 15 % expliqués ; « CSG et CRDS » et cotisations reliées au lexique. Fait ensuite : « Allocations
   familiales dès le premier enfant (77 € par mois) », dispositif proposé (règle virtuelle, coût simulé 9 Md€ par an ;
   limite : sans effet ici sur la prime d'activité et le RSA). Reste : CO₂ « à compenser » pour une hausse d'allocations, à expliquer.
+- **Test Gérard** (58 ans, ouvrier, méfiant envers les chiffres ; notes 4 / 3 / confiance 2 sur 5, 30/10/2026). Corrigé :
+  une proposition affichait une TVA « changée automatiquement (la loi a changé) » alors que c'était le choix de son auteur
+  (les mises à jour automatiques sont ignorées dans la provenance) ; « Nos chiffres sont-ils justes ? » dit pourquoi un
+  verdict est « concordant » (fourchette officielle, ou moins de 0,2 Md€ d'écart) et l'écart en mots ; l'accord entre
+  études se mesure sur un seuil d'effet négligeable quand la question en définit un (immigration et salaires : 4 % → 60 %) ;
+  « grandes questions » de l'accueil renommées « sujets étudiés ». Reste :
+  - **À soumettre au responsable** : une grande question sur l'immigration (« Qu'est-ce que l'immigration coûte ou
+    rapporte ? ») : sujet très politique, à traiter avec les sources (OCDE, Cour des comptes, Insee) et en disant ce qu'on
+    ignore ; les seuils des quatre niveaux de fiabilité (50/100 s'affiche « élevée », ce qui étonne).
+  - Équilibre : les « Vrai ou faux » démontent surtout des idées d'un même bord ; en ajouter d'autres bords, sourcés (part
+    de l'impôt sur le revenu payée par les plus aisés, niveau des dépenses publiques comparé à l'Europe…) ; ajouter une
+    proposition d'exemple qui fait des économies (les trois exemples sont « solidaires »).
+  - « Comprendre » : un encadré « Ce qui fait débat » (ex. la dette) ; la comparaison avec la Défense à sourcer.
+  - Une page « Qui fait ce site ? » (projet indépendant, amélioré chaque jour par une IA sous une charte publique, financé
+    par les dons) : le nom du responsable est à décider par lui.
 - **Si la fréquentation augmente** (à soumettre au responsable) : la mémoire est déjà protégée, car un seul calcul de
   population tourne à la fois (`SOCIETE_WORKERS=1`) et les résultats identiques sont gardés en cache. Seule l'attente
   s'allonge : passer alors au VPS-2 avec `SOCIETE_WORKERS=3`, ou dire au visiteur combien de calculs passent avant le sien.

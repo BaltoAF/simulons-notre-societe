@@ -165,7 +165,7 @@ export default function Accueil() {
               <div><div className="kpi">{nombre(s.regles, 0)}</div><div className="kpi-label">règles numérisées</div></div>
               <div><div className="kpi">{nombre(s.sources, 0)}</div><div className="kpi-label">sources référencées</div></div>
               <div><div className="kpi">{s.regles ? nombre(s.regles_texte_officiel / s.regles * 100, 0) : 0} %</div><div className="kpi-label">des règles prouvées par un texte officiel</div></div>
-              <div><div className="kpi">{nombre(s.estimations, 0)}</div><div className="kpi-label">résultats d'études, sur {nombre(s.preuves, 0)} grandes questions</div></div>
+              <div><div className="kpi">{nombre(s.estimations, 0)}</div><div className="kpi-label">résultats d'études, sur {nombre(s.preuves, 0)} sujets étudiés (emploi, prix, santé…)</div></div>
             </div>
           </div>
         </section>

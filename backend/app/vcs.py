@@ -700,12 +700,19 @@ def conflits_en_attente(sid: str) -> list[dict]:
 
 # ───────────────────────── provenance des changements ─────────────────────────
 def provenance(sid: str, branch: str, regles: set[str], limit: int = 500) -> dict[str, dict]:
-    """Pour chaque règle modifiée, le commit le plus récent qui l'a changée (auteur, date, message, justification)."""
+    """Pour chaque règle modifiée, le commit le plus récent qui l'a changée (auteur, date, message, justification).
+
+    Les mises à jour automatiques de la loi sont ignorées : elles alignent une proposition sur la loi, elles ne peuvent donc
+    pas être à l'origine d'une valeur qui s'en écarte (une TVA à 20,5 % s'affichait « changée automatiquement »)."""
     out: dict[str, dict] = {}
     cid = branch_head(sid, branch)
     n = 0
     while cid and n < limit and len(out) < len(regles):
         c = commit_view(cid)
+        if c["auteur_systeme"]:
+            cid = c["parent_id"]
+            n += 1
+            continue
         for ch in c["changes"]:
             rid = ch.get("regle")
             if rid in regles and rid not in out:

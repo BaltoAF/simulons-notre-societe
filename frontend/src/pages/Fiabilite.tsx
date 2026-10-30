@@ -17,10 +17,23 @@ type Reference = {
 type Vue = { genere_le: string | null; references: Reference[]; bilan: Record<'concordant' | 'proche' | 'ecart', number> }
 
 const VERDICT = {
-  concordant: { txt: 'Concordant', cls: 'gain', Icone: CheckCircle2, aide: "moins de 15 % d'écart (ou dans la fourchette officielle)" },
+  concordant: { txt: 'Concordant', cls: 'gain', Icone: CheckCircle2, aide: "moins de 15 % d'écart, ou moins de 0,2 milliard d'écart (petites mesures), ou dans la fourchette officielle" },
   proche: { txt: 'Proche', cls: 'warn', Icone: CircleDot, aide: 'entre 15 et 35 % d\'écart' },
   ecart: { txt: 'Écart', cls: 'loss', Icone: CircleAlert, aide: 'plus de 35 % d\'écart, ou pas le même sens' },
 }
+// pourquoi un verdict « concordant » malgré un pourcentage élevé : le dire, sinon on croit à une règle arrangée
+function res_raison(r: Reference): string {
+  const res = r.resultat
+  if (!res || res.verdict !== 'concordant') return ''
+  if (r.fourchette_md) {
+    const [bas, haut] = [...r.fourchette_md].sort((a, b) => a - b)
+    const marge = 0.1 * Math.max(Math.abs(bas), Math.abs(haut))
+    if (res.simule_md >= bas - marge && res.simule_md <= haut + marge) return ' Concordant : dans la fourchette officielle.'
+  }
+  if (Math.abs(res.simule_md - res.officiel_md) <= 0.2) return " Concordant : moins de 0,2 milliard d'écart."
+  return ''
+}
+
 const PERIMETRE: Record<string, string> = {
   statique: 'à comportements inchangés', avec_comportements: 'en tenant compte des réactions', constate: 'constaté après coup',
 }
@@ -77,8 +90,14 @@ export default function Fiabilite() {
                   {r.resultat?.erreur ? <div className="small muted">Pas encore rejoué.</div>
                     : r.resultat ? <>
                       <div style={{ fontWeight: 700 }}>{montant(r.resultat.simule_md)} par an</div>
-                      <div className="small muted">écart : {r.resultat.ecart_md >= 0 ? '+' : '−'}{nombre(Math.abs(r.resultat.ecart_md), 1)} milliard{Math.abs(r.resultat.ecart_md) >= 2 ? 's' : ''} €
-                        {r.resultat.ecart_pct != null && ` (${r.resultat.ecart_pct >= 0 ? '+' : '−'}${nombre(Math.abs(r.resultat.ecart_pct), 0)} %)`}</div>
+                      {/* en mots : « le site trouve 1,2 milliard de plus » (un signe seul se lisait à l'envers pour un coût) */}
+                      <div className="small muted">{(() => {
+                        const res = r.resultat!, d = Math.abs(res.simule_md) - Math.abs(res.officiel_md)
+                        const md = `${nombre(Math.abs(d), 1)} milliard${Math.abs(d) >= 2 ? 's' : ''} €`
+                        const pct = res.ecart_pct != null ? ` (${nombre(Math.abs(res.ecart_pct), 0)} %)` : ''
+                        return Math.abs(d) < 0.05 ? "Même montant que le chiffrage officiel." : `Le site trouve ${md}${pct} ${d > 0 ? 'de plus' : 'de moins'} que le chiffrage officiel.`
+                      })()}
+                        {res_raison(r)}</div>
                     </> : <div className="small muted">Pas encore rejoué.</div>}
                 </div>
               </div>
