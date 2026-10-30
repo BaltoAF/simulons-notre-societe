@@ -74,6 +74,8 @@ export function EnBref({ r, contexte = 'reforme', overrides }: { r: Rapport; con
   const smicChange = overrides?.['travail.smic.horaire_brut'] !== undefined
   const primeBaisse = smicChange && (pv?.detail ?? []).some((l) => l.id === 'prime_activite' && l.delta_mois < 0)
   const salaireInchange = smicChange && !!situation?.adultes.some((a) => a.activite === 'salarie') && !(pv?.detail ?? []).some((l) => l.id === 'salaire_net')
+  // « rien ne change » sans un mot passe pour une panne : on dit pourquoi
+  const csgRetraiteNonConcernee = overrides?.['fiscalite.csg.retraites_taux_plein'] !== undefined && !!situation?.adultes.some((a) => a.activite === 'retraite')
   return (
     <div className="card" style={{ borderColor: 'var(--primary)' }}>
       <h2 style={{ fontSize: '1.35rem', marginBottom: 12 }}>{contexte === 'societe' ? 'Ce que change cette proposition' : 'Ce que change votre réforme'}</h2>
@@ -85,6 +87,11 @@ export function EnBref({ r, contexte = 'reforme', overrides }: { r: Rapport; con
               {Math.abs(pv.delta_mois) < 0.5 ? <>Pour votre porte-monnaie : <span className="muted">rien ne change.</span></>
                 : <>Pour votre porte-monnaie : <span className={`delta ${pv.delta_mois > 0 ? 'pos' : 'neg'}`}>{pv.delta_mois > 0 ? '+' : '−'}{euros(Math.abs(pv.delta_mois))} par mois</span>.</>}
             </div>
+            {Math.abs(pv.delta_mois) < 0.5 && (
+              <div className="small muted" style={{ marginTop: 2 }}>{csgRetraiteNonConcernee
+                ? "Le taux plein de CSG ne concerne que les retraités dont le revenu fiscal de référence dépasse un plafond. Avec vos revenus, vous payez un taux réduit, ou pas de CSG du tout, et ce changement ne le touche pas."
+                : "Les règles changées ne s'appliquent pas à votre situation, ou leur effet fait moins de 50 centimes par mois."}</div>
+            )}
             {Math.abs(pv.delta_mois) >= 0.5 && (pv.detail ?? []).length > 0 && (
               <div className="small ink2" style={{ marginTop: 2 }}>Ce qui bouge : {pv.detail!.map((l) => l.nature === 'prelevement'
                 ? `${l.libelle} ${l.delta_mois > 0 ? '+' : '−'}${euros(Math.abs(l.delta_mois))} à payer`

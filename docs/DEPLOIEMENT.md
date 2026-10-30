@@ -40,9 +40,13 @@
 
 1. **Accès au dépôt** : sur https://claude.ai/code, connectez GitHub et autorisez l'application Claude sur le dépôt
    `BaltoAF/simulons-notre-societe`.
-2. **Environnement** : dans les réglages de l'environnement cloud utilisé par la routine, ajoutez :
-   - les variables `SOCIETE_SITE_URL` et `SOCIETE_JETON_AVIS`, avec les valeurs affichées par le script ;
-   - un accès réseau qui autorise l'adresse du site, ainsi que PyPI et npm pour installer les dépendances.
+2. **Environnement** : dans les réglages de l'environnement cloud utilisé par la routine :
+   - **Secrets réseau** : un secret pour le site (par exemple `mon-domaine.fr`, sans `https://`), en-tête `Authorization`,
+     préfixe `Bearer`, avec pour valeur le jeton `SOCIETE_JETON_AVIS` affiché par le script, seul. Il est ajouté aux
+     requêtes vers le site sans que la routine puisse le lire. Ne le mettez pas dans les variables d'environnement :
+     celles-ci sont lisibles par la session ;
+   - **Variables d'environnement** : `SOCIETE_SITE_URL=https://mon-domaine.fr` ;
+   - **Accès réseau** : le domaine du site, avec les gestionnaires de paquets (PyPI et npm) pour les dépendances.
 3. **Activation** : activez la routine « Auto-amélioration quotidienne » sur https://claude.ai/code/routines, ou demandez à
    Claude de le faire.
 

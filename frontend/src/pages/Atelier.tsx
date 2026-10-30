@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
-import { ArrowRight, BookOpen, Calculator, CheckCircle2, ChevronDown, GitBranch, GitFork, Landmark, Lightbulb, MessageSquare, Plus, Trash2, Undo2, User } from 'lucide-react'
+import { ArrowRight, BookOpen, Calculator, Check, CheckCircle2, ChevronDown, GitBranch, GitFork, Landmark, Lightbulb, MessageSquare, Plus, Trash2, Undo2, User } from 'lucide-react'
 import { api, type Rapport, type Regle, type SocieteDetail, type Valeur } from '../lib/api'
 import { ecartLisible, euros, valeur } from '../lib/format'
 import { milliards, tonnes } from '../lib/humain'
@@ -37,6 +37,18 @@ export default function Atelier() {
   const [base, setBase] = useState<{ societe: SocieteDetail; overrides: Record<string, Valeur> } | null>(null)
   const [saving, setSaving] = useState(false)
   const [ouvert, setOuvert] = useState<string | null>(null) // le changement déplié pour être réglé (les autres tiennent sur une ligne)
+  const [supprime, setSupprime] = useState<typeof draft | null>(null) // « Supprimer ce changement » peut être annulé
+  const supprimer = (faire: () => void) => { setSupprime(draft); faire(); setOuvert(null) }
+  // rétablir ne remet que ce qui a été supprimé : les réglages faits depuis sont gardés
+  const aRetablir = supprime ? Object.keys(supprime.overrides).filter((k) => !(k in draft.overrides)) : []
+  const retablir = () => {
+    setDraft((d) => ({ ...d, overrides: { ...d.overrides, ...Object.fromEntries(aRetablir.map((k) => [k, supprime!.overrides[k]])) } }))
+    setSupprime(null)
+  }
+  // le changement qu'on vient d'ajouter : on l'amène sous les yeux (sur téléphone, la liste des thèmes est en dessous)
+  useEffect(() => {
+    if (ouvert) document.querySelector(`[data-changement="${ouvert}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+  }, [ouvert])
   const lance = useRef(false)
 
   // Charger une société existante comme point de départ (?societe=…&branche=…)
@@ -202,6 +214,10 @@ export default function Atelier() {
             <div className="small muted" style={{ marginBottom: 12 }}>
               À partir de {base && !base.societe.reference ? <>« {base.societe.nom} » (<Link to={`/societes/${base.societe.id}`}>voir</Link>)</>
                 : <>la France d'aujourd'hui (la <Terme id="societe_1_0">loi actuelle</Terme>)</>}</div>
+            {aRetablir.length > 0 && (
+              <div className="notice small" style={{ margin: '0 0 8px' }}><div>Changement supprimé.{' '}
+                <button className="lien" onClick={retablir}>Rétablir</button></div></div>
+            )}
             {changes.length === 0 && ids.length === 0 && <p className="small muted">Rien n'est encore changé. Choisissez un thème, partez d'une idée, ou changez une règle précise.</p>}
             {missionsModifiees.length > 0 && (
               <div className="change-chip">
@@ -220,7 +236,7 @@ export default function Atelier() {
               const avant = Number(r.valeur)
               const detail = GENERATIONS.filter((id) => agesModifies.includes(id) && regles[id])
               return (
-                <Changement key={AGE_TERME} titre="Âge légal de départ à la retraite" avant={`${valeur(avant, r.unite, r.type)} (à terme)`}
+                <Changement key={AGE_TERME} id={AGE_TERME} titre="Âge légal de départ à la retraite" avant={`${valeur(avant, r.unite, r.type)} (à terme)`}
                   apres={v !== avant ? valeur(v, r.unite, r.type) : null}
                   badge={v !== avant && <span className={`badge ${v > avant ? 'accent' : 'primary'}`}>{ecartLisible(avant, v, r.unite)}</span>}
                   ouvert={ouvert === AGE_TERME || v === avant} repliable={v !== avant} onBasculer={() => setOuvert(ouvert === AGE_TERME ? null : AGE_TERME)}>
@@ -229,7 +245,7 @@ export default function Atelier() {
                       : v > avant ? `Pour les personnes nées à partir de 1969 ; les générations précédentes gardent leur âge actuel.`
                         : `L'âge choisi vaudra pour toutes les générations : personne ne partira plus tard.`}
                   </div>
-                  <div style={{ marginTop: 10 }}><ValueEditor rule={r} value={v} onChange={(x) => setAges(Number(x))} /></div>
+                  <div style={{ marginTop: 10 }}><ValueEditor rule={r} value={v} onChange={(x) => { setAges(Number(x)); setOuvert(AGE_TERME) }} /></div>
                   {detail.length > 0 && (
                     <details className="curieux small" style={{ marginTop: 6 }}>
                       <summary>Le détail par génération ({detail.length})</summary>
@@ -239,7 +255,7 @@ export default function Atelier() {
                       ))}</ul>
                     </details>
                   )}
-                  <PiedChangement lien={`/regles/r/${AGE_TERME}`} modifie={v !== avant} onRetirer={retirerAges}
+                  <PiedChangement lien={`/regles/r/${AGE_TERME}`} modifie={v !== avant} onRetirer={() => supprimer(retirerAges)} onFermer={v !== avant ? () => setOuvert(null) : undefined}
                     justification={draft.justifications[AGE_TERME] ?? ''} onJustifier={(t) => setDraft((d) => ({ ...d, justifications: { ...d.justifications, [AGE_TERME]: t } }))} />
                 </Changement>
               )
@@ -250,16 +266,20 @@ export default function Atelier() {
               const v = draft.overrides[id]
               const modifie = !same(v, r.valeur)
               const pct = typeof v === 'number' && typeof r.valeur === 'number' && r.valeur !== 0 ? (v / r.valeur - 1) * 100 : null
+              // un montant annuel (« par an ») se lit mieux par mois
+              const annuel = r.unite === 'euros' && /\(par an\)/i.test(r.titre) && typeof v === 'number' && typeof r.valeur === 'number'
+              const montant = (x: Valeur) => annuel ? `${euros(Number(x) / 12, 0)} par mois` : valeur(x, r.unite, r.type)
               return (
-                <Changement key={id} titre={r.titre} avant={valeur(r.valeur, r.unite, r.type)} apres={modifie ? valeur(v, r.unite, r.type) : null}
+                <Changement key={id} id={id} titre={r.titre} avant={montant(r.valeur)} apres={modifie ? montant(v) : null}
                   badge={modifie && typeof v === 'number' && typeof r.valeur === 'number' && (pct === null || Math.abs(pct) >= 0.05) && v !== r.valeur
                     && <span className={`badge ${v > r.valeur ? 'accent' : 'primary'}`}>{ecartLisible(r.valeur, v, r.unite)}</span>}
                   ouvert={ouvert === id || !modifie} repliable={modifie} onBasculer={() => setOuvert(ouvert === id ? null : id)}>
                   {id === 'travail.smic.horaire_brut' && typeof v === 'number' && (
                     <div className="small muted">Soit environ {euros(v * 151.67, 0)} brut, ≈ {euros(v * 151.67 * 0.79, 0)} net par mois à temps plein.</div>
                   )}
-                  <div style={{ marginTop: 6 }}><ValueEditor rule={r} value={v} onChange={(x) => setVal(id, x)} /></div>
-                  <PiedChangement lien={`/regles/r/${id}`} modifie={modifie} onRetirer={() => retirer(id)}
+                  {annuel && <div className="small muted">Montant annuel : {valeur(v, r.unite, r.type)} par an, soit {euros(Number(v) / 12, 0)} par mois.</div>}
+                  <div style={{ marginTop: 6 }}><ValueEditor rule={r} value={v} onChange={(x) => { setVal(id, x); setOuvert(id) }} /></div>
+                  <PiedChangement lien={`/regles/r/${id}`} modifie={modifie} onRetirer={() => supprimer(() => retirer(id))} onFermer={modifie ? () => setOuvert(null) : undefined}
                     justification={draft.justifications[id] ?? ''} onJustifier={(t) => setDraft((d) => ({ ...d, justifications: { ...d.justifications, [id]: t } }))} />
                 </Changement>
               )
@@ -273,16 +293,19 @@ export default function Atelier() {
               <hr className="divider" />
               <label className="row" style={{ cursor: situation ? 'pointer' : 'default', flexWrap: 'nowrap', alignItems: 'flex-start' }}>
                 <input type="checkbox" checked={avecFoyer && !!situation} disabled={!situation} onChange={(e) => setAvecFoyer(e.target.checked)} style={{ marginTop: 3 }} />
-                <span className="small"><User size={14} /> Calculer aussi l'effet sur mon foyer{situation && avecFoyer && <span className="muted"> ({resumeSituation(situation)} · <Link to="/mes-droits">modifier</Link>)</span>}</span>
+                <span className="small"><User size={14} /> Calculer aussi l'effet sur mon foyer{situation && avecFoyer && <span className="muted"> ({resumeSituation(situation)} · <Link to="/mes-droits?retour=atelier">modifier</Link>)</span>}</span>
               </label>
               {!situation && (
-                <div className="small muted" style={{ marginTop: 6 }}>Décrivez votre situation dans <Link to="/mes-droits">Mes droits</Link>, ou choisissez un foyer qui vous ressemble :
+                <div className="small muted" style={{ marginTop: 6 }}>Décrivez votre situation dans <Link to="/mes-droits?retour=atelier">Mes droits</Link>, ou choisissez un foyer qui vous ressemble :
                   <div className="pill-list" style={{ marginTop: 6 }}>{PROFILS.map((p) => <button key={p.titre} className="btn small" onClick={() => { setSituation(p.s); setAvecFoyer(true) }}>{p.titre}</button>)}</div>
                 </div>
               )}
-              <button className="btn primary large" style={{ width: '100%', marginTop: 14 }} disabled={!changes.length || loading} onClick={() => simuler()}>
-                <Calculator size={18} /> {loading ? 'Calcul en cours…' : rapportPour && !aJour ? 'Recalculer les effets' : 'Voir les effets'}
-              </button>
+              {/* le bouton principal reste visible quand la liste des changements dépasse l'écran */}
+              <div className="cta-collant">
+                <button className="btn primary large" style={{ width: '100%', marginTop: 14 }} disabled={!changes.length || loading} onClick={() => simuler()}>
+                  <Calculator size={18} /> {loading ? 'Calcul en cours…' : rapportPour && !aJour ? 'Recalculer les effets' : 'Voir les effets'}
+                </button>
+              </div>
               {!changes.length && <div className="small muted" style={{ marginTop: 6, textAlign: 'center' }}>Réglez au moins une valeur pour voir ses effets.</div>}
             </>}
           </div>
@@ -311,7 +334,7 @@ export default function Atelier() {
           )}
           {aJour && !loading && desequilibres.length > 0 && (
             <div className="notice warn" style={{ marginBottom: 12 }}><div><strong>Encore une étape :</strong>{' '}
-              {desequilibres.map((e) => e.id === 'budget' ? `il manque ${milliards(e.manque)} par an pour financer votre réforme` : `votre réforme émet ${tonnes(e.manque)} de trop par an`).join(', et ')}.
+              {desequilibres.map((e) => e.id === 'budget' ? `il manque ${milliards(e.manque)} par an pour financer votre réforme` : `votre réforme ajouterait ${tonnes(e.manque)} d'émissions par an, à compenser pour tenir l'objectif climat de la France`).join(', et ')}.
               {' '}<a href="#equilibres">Choisir une solution ↓</a></div></div>
           )}
           {rapport && (!loading || rapport.partiel) && <ReportView r={rapport} overrides={draft.overrides} onAppliquer={appliquerCompensation} />}
@@ -367,8 +390,8 @@ export default function Atelier() {
 
 // Un changement de la réforme : une ligne « avant → après » ; on la déplie pour la régler. Une règle encore à régler
 // reste dépliée (elle n'est pas « repliable »).
-function Changement({ titre, avant, apres, badge, ouvert, repliable, onBasculer, children }: {
-  titre: string; avant: string; apres: string | null; badge?: ReactNode; ouvert: boolean; repliable: boolean
+function Changement({ id, titre, avant, apres, badge, ouvert, repliable, onBasculer, children }: {
+  id: string; titre: string; avant: string; apres: string | null; badge?: ReactNode; ouvert: boolean; repliable: boolean
   onBasculer: () => void; children: ReactNode
 }) {
   const resume = (
@@ -382,7 +405,7 @@ function Changement({ titre, avant, apres, badge, ouvert, repliable, onBasculer,
     </>
   )
   return (
-    <div className={`change-chip ${ouvert ? 'ouvert' : ''}`}>
+    <div className={`change-chip ${ouvert ? 'ouvert' : ''}`} data-changement={id}>
       {repliable ? <button type="button" className="change-tete" aria-expanded={ouvert} onClick={onBasculer}>{resume}</button>
         : <div className="change-tete">{resume}</div>}
       {ouvert && <div className="change-corps">{children}</div>}
@@ -390,8 +413,8 @@ function Changement({ titre, avant, apres, badge, ouvert, repliable, onBasculer,
   )
 }
 
-function PiedChangement({ lien, modifie, onRetirer, justification, onJustifier }: {
-  lien: string; modifie: boolean; onRetirer: () => void; justification: string; onJustifier: (t: string) => void
+function PiedChangement({ lien, modifie, onRetirer, onFermer, justification, onJustifier }: {
+  lien: string; modifie: boolean; onRetirer: () => void; onFermer?: () => void; justification: string; onJustifier: (t: string) => void
 }) {
   const [expliquer, setExpliquer] = useState(!!justification)
   return (
@@ -403,7 +426,8 @@ function PiedChangement({ lien, modifie, onRetirer, justification, onJustifier }
       <div className="row" style={{ marginTop: 8, gap: 2 }}>
         {modifie && !expliquer && <button className="btn ghost small" onClick={() => setExpliquer(true)}><MessageSquare size={14} /> Expliquer mon choix</button>}
         <Link className="btn ghost small" to={lien}><BookOpen size={14} /> La règle en détail</Link>
-        <button className="btn ghost small" onClick={onRetirer}><Trash2 size={14} /> {modifie ? 'Annuler' : 'Retirer'}</button>
+        <button className="btn ghost small" onClick={onRetirer}><Trash2 size={14} /> Supprimer ce changement</button>
+        {onFermer && <button className="btn small" style={{ marginLeft: 'auto' }} onClick={onFermer}><Check size={14} /> Fermer</button>}
       </div>
     </>
   )

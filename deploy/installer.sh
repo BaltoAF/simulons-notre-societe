@@ -73,9 +73,9 @@ source .env
 echo
 echo "C'est en ligne : https://$DOMAINE (le certificat HTTPS peut prendre une minute)."
 echo
-echo "Pour la routine d'auto-amélioration, sur claude.ai (voir docs/DEPLOIEMENT.md), recopie ces deux valeurs :"
-echo "  SOCIETE_SITE_URL=https://$DOMAINE"
-echo "  SOCIETE_JETON_AVIS=$SOCIETE_JETON_AVIS"
+echo "Pour la routine d'auto-amélioration, sur claude.ai (voir docs/DEPLOIEMENT.md) :"
+echo "  variable d'environnement : SOCIETE_SITE_URL=https://$DOMAINE"
+echo "  secret réseau pour $DOMAINE (en-tête Authorization, préfixe Bearer), valeur : $SOCIETE_JETON_AVIS"
 echo "(Pour les revoir plus tard : cat $DOSSIER/deploy/.env)"
 echo
 echo "Fréquentation du site (page privée, à garder dans vos favoris) :"

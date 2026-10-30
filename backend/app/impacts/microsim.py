@@ -287,7 +287,9 @@ def section_redistribution(ctx: Contexte) -> Section | None:
     best = max(deciles, key=lambda d: abs(d["delta_pct"])) if deciles else None
     if best and abs(best["delta_pct"]) > 0.005:
         sens_txt = "hausse" if best["delta_pct"] > 0 else "baisse"
-        qui = {1: "les 10 % les plus modestes", 10: "les 10 % les plus aisés"}.get(best["decile"], f"le {best['decile']}e dixième de la population")
+        d = best["decile"]
+        groupe = "les ménages modestes" if d <= 3 else "les classes moyennes" if d <= 7 else "les ménages plutôt aisés"
+        qui = {1: "les 10 % les plus modestes", 10: "les 10 % les plus aisés"}.get(d, f"{groupe} ({d}e groupe sur 10, du plus modeste au plus aisé)")
         sous = (f"Ce sont {qui} dont le niveau de vie {'augmente' if best['delta_pct'] > 0 else 'baisse'} le plus "
                 f"({best['delta_pct']:+.1f} %)").replace(".", ",")
     else:

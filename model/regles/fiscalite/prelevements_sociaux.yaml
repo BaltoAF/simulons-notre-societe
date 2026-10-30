@@ -33,8 +33,9 @@ regles:
   a_verifier: false
 - id: fiscalite.csg.retraites_taux_plein
   titre: CSG sur les pensions de retraite (taux plein)
-  explication: Taux de CSG appliqué aux retraités dont le revenu fiscal dépasse un certain seuil (des taux réduits existent
-    pour les plus modestes).
+  explication: 'Taux de CSG prélevé sur les pensions des retraités dont le revenu fiscal de référence dépasse un plafond.
+    Selon ce revenu, la CSG sur les pensions est de 0 %, 3,8 %, 6,6 % ou 8,3 % : seul ce dernier taux, le plus élevé, se règle
+    ici.'
   type: nombre
   unite: pourcent
   bornes:

@@ -5,8 +5,9 @@ Usage :
   python system/retours.py [--distant URL] decider FICHIER       enregistre les décisions (liste JSON, voir ci-dessous)
   python system/retours.py bilan                                 nombre d'avis par statut (base locale)
 
---distant URL : travaille sur le site en ligne (ex. https://simulons.example.fr) au lieu de la base locale ; le jeton secret
-est lu dans la variable d'environnement SOCIETE_JETON_AVIS (le même que sur le serveur).
+--distant URL : travaille sur le site en ligne (ex. https://simulons.example.fr) au lieu de la base locale. Le jeton secret
+(le même que sur le serveur) est ajouté par le « secret réseau » de l'environnement cloud de la routine, qui ne le voit
+jamais ; en local, il est lu dans la variable d'environnement SOCIETE_JETON_AVIS.
 
 Format des décisions : [{"id": 12, "statut": "adapte", "resume_public": "…", "motif_public": "…", "commit_ref": "abc1234"}]
 Statuts : retenu, adapte, deja_fait, a_l_etude, ecarte, doublon. Le résumé et le motif sont publiés : neutres, sans donnée personnelle.
@@ -16,6 +17,7 @@ from __future__ import annotations
 import json
 import os
 import sys
+import urllib.error
 import urllib.request
 from pathlib import Path
 
@@ -24,15 +26,20 @@ sys.path.insert(0, str(ROOT / "backend"))
 
 
 def _distant(url: str, chemin: str, corps=None):
+    en_tetes = {"Content-Type": "application/json", "User-Agent": "SimulonsNotreSociete-AutoAmelioration/1.0"}
     jeton = os.environ.get("SOCIETE_JETON_AVIS")
-    if not jeton:
-        sys.exit("SOCIETE_JETON_AVIS n'est pas défini : impossible de lire les avis du site en ligne.")
+    if jeton:  # sinon, le secret réseau de l'environnement cloud ajoute l'en-tête Authorization en sortie
+        en_tetes["Authorization"] = f"Bearer {jeton}"
     req = urllib.request.Request(url.rstrip("/") + chemin, method="POST" if corps is not None else "GET",
-                                 data=json.dumps(corps).encode() if corps is not None else None,
-                                 headers={"Authorization": f"Bearer {jeton}", "Content-Type": "application/json",
-                                          "User-Agent": "SimulonsNotreSociete-AutoAmelioration/1.0"})
-    with urllib.request.urlopen(req, timeout=60) as r:
-        return json.loads(r.read().decode("utf-8"))
+                                 data=json.dumps(corps).encode() if corps is not None else None, headers=en_tetes)
+    try:
+        with urllib.request.urlopen(req, timeout=60) as r:
+            return json.loads(r.read().decode("utf-8"))
+    except urllib.error.HTTPError as e:
+        if e.code in (401, 403, 404):
+            sys.exit(f"Le site refuse l'accès (HTTP {e.code}) : le jeton manque ou ne correspond pas. Dans l'environnement "
+                     "cloud de la routine, vérifier le secret réseau (en-tête Authorization, préfixe Bearer) pour ce domaine.")
+        raise
 
 
 def a_traiter(chemin: str | None, distant: str | None):

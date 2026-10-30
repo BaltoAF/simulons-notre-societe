@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { ArrowLeft, ArrowRight, Calculator, GitFork, Lock, Minus, Plus, RotateCcw } from 'lucide-react'
 import { api, type Confiance, type Regle } from '../lib/api'
 import { euros, insecable, valeur } from '../lib/format'
@@ -117,6 +117,11 @@ export default function MesDroits() {
   const [exemple, setExemple] = useState<string | null>(null) // résultat d'un foyer exemple, pas encore ajusté par la personne
   const { data: regles } = useFetch<{ regles: Regle[] }>('/api/regles?simulable=true&limit=2000')
   const nav = useNavigate()
+  const [params] = useSearchParams()
+  // venu de l'atelier pour décrire son foyer : un bouton y ramène, la réforme est gardée
+  const retourAtelier = params.get('retour') === 'atelier' && (
+    <div style={{ marginBottom: 10 }}><Link className="btn small" to="/atelier"><ArrowLeft size={15} /> Revenir à ma réforme</Link></div>
+  )
 
   const up = (patch: Partial<SituationSaisie>) => setS((x) => ({ ...x, ...patch }))
   const upA = (i: number, patch: Partial<AdulteSaisie>) => setS((x) => ({ ...x, adultes: x.adultes.map((a, j) => (j === i ? { ...a, ...patch } : a)) }))
@@ -206,6 +211,7 @@ export default function MesDroits() {
     }
     return (
       <div className="container page">
+        {retourAtelier}
         <div className="row between" style={{ marginBottom: 10 }}>
           <h1 style={{ margin: 0 }}>Vos droits aujourd'hui</h1>
           <div className="row" style={{ gap: 8 }}>
@@ -334,6 +340,7 @@ export default function MesDroits() {
   const montantManquant = s.adultes.some((a) => ['salarie', 'chomeur', 'retraite'].includes(a.activite) && !(a.montant_net > 0))
   return (
     <div className="container page" style={{ maxWidth: 760 }}>
+      {retourAtelier}
       <h1>Calculer mes droits</h1>
       <p className="lead ink2">En trois étapes, vos aides, votre impôt et ce qui vous reste chaque mois selon les règles actuelles. Sans compte, sans enregistrement.</p>
       <Stepper step={step} />

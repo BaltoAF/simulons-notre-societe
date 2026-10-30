@@ -169,7 +169,7 @@ def options_carbone(store, overrides: dict, manque: float) -> list[dict]:
         d = _arrondi(manque / par_euro_hl, 0.5)
         art = "l'essence" if lib == "essence" else "le gazole"
         out.append({"id": f"accise_{lib}", "famille": "prix", "titre": f"Augmenter la taxe sur {art} d'environ {fr(d * 1.2 / 100, 2)} € par litre à la pompe",
-                    "description": f"La taxe (accise) passe de {g(acc)} à {g(float(acc) + d)} € par hectolitre. Moins de carburant consommé, donc moins d'émissions ; mais un coût en plus pour les automobilistes.",
+                    "description": f"La taxe sur ce carburant passe de {fr(float(acc) / 100, 3)} à {fr((float(acc) + d) / 100, 3)} € par litre, hors TVA. Moins de carburant consommé, donc moins d'émissions ; mais un coût en plus pour les automobilistes.",
                     "rendement": round(par_euro_hl * d, 3), "unite": "mt_co2e", "overrides": {rid: round(float(acc) + d, 2)}})
     # Vitesses : abaisser la limitation sur autoroute ou voie rapide (par paliers de 10 km/h)
     from .planete_bien_etre import RESEAUX

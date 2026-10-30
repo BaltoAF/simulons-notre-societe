@@ -150,11 +150,11 @@ def equilibre_carbone(ctx, sections) -> dict:
         statut = "a_compenser"
     texte = []
     if actuel is not None:
-        texte.append(f"Émissions de la France : {fr(actuel, 0)} MtCO2e ({emis['derniere'].get('date', '')[:4]}).")
+        texte.append(f"Émissions de gaz à effet de serre de la France : {fr(actuel, 0)} millions de tonnes d'équivalent CO₂ ({emis['derniere'].get('date', '')[:4]}).")
     if budget is not None:
-        texte.append(f"Budget carbone légal pour la période en cours : {fr(budget, 0)} MtCO2e par an en moyenne.")
+        texte.append(f"Plafond fixé par la loi pour la période en cours (« budget carbone ») : {fr(budget, 0)} millions de tonnes par an en moyenne.")
         texte.append("La France est au-dessus : toute hausse doit être compensée." if bloque else
-                     f"Marge disponible : {fr(marge, 0)} MtCO2e par an.")
+                     f"Marge disponible : {fr(marge, 0)} millions de tonnes par an.")
     else:
         texte.append("Budget carbone de la période en cours en cours d'intégration par le Système.")
     return {
