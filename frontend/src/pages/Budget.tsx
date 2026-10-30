@@ -151,10 +151,20 @@ export default function Budget() {
         <div className="card"><div className="kpi-label">L'argent public dépensé en {n.depenses?.date?.slice(0, 4)}</div><div className="kpi">{milliards(dep)}</div>
           <div className="small muted">soit <strong>{euros(n.par_habitant.depense ?? 0)}</strong> par habitant et par an</div></div>
         <div className="card"><div className="kpi-label"><Terme id="deficit">Le déficit</Terme> {n.solde?.date?.slice(0, 4)}</div><div className="kpi"><span className="delta neg">{milliards(Math.abs(n.solde?.valeur ?? 0))}</span></div>
-          <div className="small muted">dépensés en plus de ce qui rentre ({milliards(n.recettes_totales?.valeur ?? 0)} de recettes) : il faut l'emprunter</div></div>
+          <div className="small muted">dépenses ({milliards(dep)}) moins recettes ({milliards(n.recettes_totales?.valeur ?? 0)}), à l'arrondi près : il faut l'emprunter</div></div>
         <div className="card"><div className="kpi-label"><Terme id="dette">La dette publique</Terme></div><div className="kpi">{milliards(n.dette?.valeur ?? 0)}</div>
           <div className="small muted">soit {euros(n.par_habitant.dette ?? 0)} par habitant : la somme des déficits passés</div></div>
       </div>
+
+      {/* trois totaux de périmètres différents se suivent sur la page : le dire une fois, en clair (test débutants) */}
+      <details className="curieux small" style={{ margin: '-6px 0 18px' }}>
+        <summary>Pourquoi plusieurs totaux sur cette page ?</summary>
+        <ul style={{ margin: '6px 0 0', paddingLeft: 20 }} className="ink2">
+          <li><strong>{milliards(dep)}</strong> : toutes les dépenses publiques en {n.depenses?.date?.slice(0, 4)} (État, Sécurité sociale, collectivités locales).</li>
+          <li><strong>{milliards(n.total_fonctions)}</strong> : le même périmètre, détaillé par domaine, pour {n.fonctions[0]?.annee}, la dernière année publiée en détail.</li>
+          <li><strong>{milliards(n.etat_missions.reduce((a, m) => a + m.md, 0))}</strong> : le budget de l'État seul, voté pour l'année en cours (plus bas).</li>
+        </ul>
+      </details>
 
       <div className="split even">
         <div className="card">
@@ -173,6 +183,9 @@ export default function Budget() {
               {ouvert === f.id && f.detail && (
                 <ul className="list small" style={{ marginLeft: 12 }}>
                   {f.detail.map((d) => <li key={d.id} className="list-row" style={{ padding: '5px 0' }}><span>{d.titre}</span><span>{milliards(d.md)} · {euros(d.par_habitant_an)}/hab.</span></li>)}
+                  {/* le détail publié ne couvre pas tout : la différence s'affiche, pour que la somme tombe juste */}
+                  {(() => { const reste = f.md - f.detail.reduce((a, d) => a + d.md, 0); return reste > 0.5
+                    ? <li className="list-row" style={{ padding: '5px 0' }}><span className="muted">Autres dépenses de ce domaine</span><span className="muted">{milliards(reste)}</span></li> : null })()}
                 </ul>
               )}
             </div>

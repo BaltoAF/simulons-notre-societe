@@ -5,9 +5,6 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
 
 ## À faire
 
-- **Page « Le budget » trop dense** (test débutants). Trois totaux de périmètres différents se suivent (dépense publique,
-  détail par domaine, État seul) : un petit schéma « 3 chiffres, 3 périmètres ». Écarts d'arrondi (déficit 153 contre
-  1 714 − 1 562 = 152 ; protection sociale 690 contre 693) : afficher des sommes qui tombent juste, ou une ligne « autres ».
 - **Pistes pour les propriétaires âgés aux revenus modestes** (test débutants, Bernard, 72 ans). L'allègement de taxe foncière
   pour les 65-75 ans et l'exonération après 75 ans, ainsi que MaPrimeAdapt' : de nouvelles fiches dans
   `model/aides/oubliees.yaml`, avec leurs sources officielles (service-public.gouv.fr, anah.gouv.fr).
@@ -33,3 +30,5 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   énergie et de la C2S calculés pour le foyer ; mise en garde « forfait logement » pour la C2S d'un propriétaire ; foyer exemple
   « Parent seul » ; bouton « Effacer mes réponses » ; message « Encore une étape » plus répété ; « Aides au logement » sans
   sigles.
+- 30/10/2026 (suite) : page « Le budget » : déficit expliqué (dépenses moins recettes, à l'arrondi près), ligne « Autres
+  dépenses » pour que le détail d'un domaine fasse son total, rubrique « Pourquoi plusieurs totaux sur cette page ? ».
