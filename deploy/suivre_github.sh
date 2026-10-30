@@ -56,6 +56,7 @@ if not runs or any(r["status"] != "completed" for r in runs):
 else:
     print("ok" if any(r["conclusion"] == "success" for r in runs) else "echec")')
   if [ "$ETAT" = "ok" ]; then
+    CHANGES=$(git diff --name-only HEAD origin/main)
     git merge -q --ff-only origin/main
     journal "nouvelle version ${DISTANT:0:7} validée par les tests : mise en ligne"
   else
@@ -74,7 +75,12 @@ if [ -n "$RAFRAICHIR" ] || [ ! -f "$REPERE_IMAGES" ]; then
   journal "images de base rafraîchies (correctifs de sécurité de Debian, Python et Caddy)"
 fi
 $COMPOSE up -d --build --remove-orphans
-$COMPOSE exec -T caddy caddy reload --config /etc/caddy/Caddyfile >/dev/null 2>&1 || true   # Caddyfile modifié
+# Caddyfile modifié : Docker monte le fichier tel qu'il était au démarrage de Caddy (git le remplace par un nouveau
+# fichier, que le conteneur ne voit pas) ; seul un conteneur recréé lit la nouvelle version (une à deux secondes)
+if echo "${CHANGES:-}" | grep -qx "deploy/Caddyfile"; then
+  $COMPOSE up -d --force-recreate --no-deps caddy
+  journal "configuration de Caddy mise à jour"
+fi
 docker image prune -f >/dev/null
 docker builder prune -f --filter until=72h >/dev/null   # le disque ne se remplit pas au fil des reconstructions
 journal "site en ligne : version $(git rev-parse --short HEAD)"
