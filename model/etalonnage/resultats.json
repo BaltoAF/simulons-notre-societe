@@ -1,5 +1,5 @@
 {
- "genere_le": "2026-10-15T00:52:47",
+ "genere_le": "2026-10-18T02:39:05",
  "moteur": "176.1.2",
  "resultats": [
   {
@@ -99,7 +99,7 @@
    "regles": [
     "travail.smic.horaire_brut"
    ],
-   "duree": 26.4
+   "duree": 26.0
   },
   {
    "id": "tva_tous_taux_plus_1_point",
@@ -116,7 +116,7 @@
     "fiscalite.tva.taux_particulier",
     "fiscalite.tva.taux_reduit"
    ],
-   "duree": 12.0
+   "duree": 11.6
   },
   {
    "id": "csg_activite_plus_1_point",
@@ -130,7 +130,7 @@
    "regles": [
     "fiscalite.csg.salaires_taux"
    ],
-   "duree": 11.4
+   "duree": 11.6
   },
   {
    "id": "csg_toutes_assiettes_plus_1_point",
@@ -146,7 +146,7 @@
     "fiscalite.csg.revenus_capital_taux",
     "fiscalite.csg.salaires_taux"
    ],
-   "duree": 11.5
+   "duree": 11.7
   },
   {
    "id": "ir_tous_taux_plus_1_point",
@@ -160,7 +160,7 @@
    "regles": [
     "fiscalite.impot_revenu.bareme"
    ],
-   "duree": 11.8
+   "duree": 11.5
   },
   {
    "id": "ir_taux_30_41_45_plus_1_point",
@@ -174,7 +174,7 @@
    "regles": [
     "fiscalite.impot_revenu.bareme"
    ],
-   "duree": 12.3
+   "duree": 12.6
   },
   {
    "id": "ir_tranche_45_a_46",
@@ -188,7 +188,7 @@
    "regles": [
     "fiscalite.impot_revenu.bareme"
    ],
-   "duree": 11.9
+   "duree": 12.6
   },
   {
    "id": "quotient_familial_plafond_moins_25_pourcent",
@@ -202,7 +202,7 @@
    "regles": [
     "fiscalite.impot_revenu.quotient_familial.plafond_demi_part"
    ],
-   "duree": 11.4
+   "duree": 12.0
   },
   {
    "id": "accise_gazole_plus_2_centimes",
@@ -218,5 +218,6 @@
    ],
    "duree": 0.0
   }
- ]
+ ],
+ "empreinte": "5af57407d5f6421e176.1.2"
 }
