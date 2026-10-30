@@ -38,6 +38,7 @@ function phraseCsgPension(t: number): ReactNode {
 /** Ce qu'il faut saisir pour chaque situation, dit avec les mots du document que la personne a sous les yeux. */
 const AIDE_MONTANT: Record<string, string> = {
   salarie: 'Le montant qui figure en bas de votre fiche de paie, avant prélèvement à la source.',
+  independant: "Ce que vous facturez en moyenne par mois, celui que vous déclarez à l'Urssaf, avant de payer vos cotisations. Le site calcule vos cotisations, votre impôt et vos aides.",
   chomeur: 'Le montant versé chaque mois par France Travail, avant prélèvement à la source.',
   retraite: 'Le montant versé chaque mois sur votre compte, toutes vos retraites additionnées (base et complémentaire), avant prélèvement à la source.',
   etudiant: "Une personne étudiante n'a droit à la prime d'activité que si elle gagne au moins 78 % du SMIC environ. Les bourses ne sont pas calculées par le site, mais le résultat vous dira comment les demander.",
@@ -65,6 +66,8 @@ const POURQUOI: Record<string, { regles: string[]; texte: ReactNode }> = {
   aspa: { regles: ['prestations.aspa.montant_personne_seule'], texte: 'Le minimum vieillesse garantit un revenu minimal aux personnes âgées.' },
   aah: { regles: ['prestations.aah.montant'], texte: 'Allocation pour les personnes en situation de handicap aux ressources modestes.' },
   salaire_net: { regles: ['fiscalite.csg.salaires_taux'], texte: 'Salaire brut moins les cotisations sociales, la CSG et la CRDS.' },
+  revenu_micro: { regles: ['travail.micro_entreprise.cotisations_services', 'travail.micro_entreprise.cotisations_vente', 'travail.micro_entreprise.cotisations_liberal'],
+    texte: "Votre chiffre d'affaires moins vos cotisations sociales, qui sont un pourcentage fixe de ce que vous facturez, selon votre activité (voir les règles). Vos frais (vélo, téléphone, carburant…) ne sont pas déduits : à vous de les retirer. Pour l'impôt et les aides, l'administration retire elle-même une part forfaitaire de votre chiffre d'affaires pour tenir compte de vos frais." },
   retraite_nette: { regles: ['fiscalite.csg.retraites_taux_plein'], texte: 'Pension brute moins la CSG, la CRDS et la Casa.' },
   pfu: { regles: ['fiscalite.capital.pfu_taux_ir'], texte: 'Impôt forfaitaire de 12,8 % sur les intérêts et dividendes.' },
   epargne: { regles: ['fiscalite.capital.pfu_taux_ir'], texte: 'Sur les intérêts et dividendes de votre épargne (hors livret A et autres livrets réglementés) : un impôt de 12,8 % et des prélèvements sociaux de 17,2 %.' },
@@ -346,7 +349,7 @@ export default function MesDroits() {
 
   const enCouple = s.adultes.length > 1
   // un salaire, une allocation chômage ou une pension à 0 € : presque toujours un oubli
-  const montantManquant = s.adultes.some((a) => ['salarie', 'chomeur', 'retraite'].includes(a.activite) && !(a.montant_net > 0))
+  const montantManquant = s.adultes.some((a) => ['salarie', 'independant', 'chomeur', 'retraite'].includes(a.activite) && !(a.montant_net > 0))
   return (
     <div className="container page" style={{ maxWidth: 760 }}>
       {retourAtelier}
@@ -414,15 +417,25 @@ export default function MesDroits() {
                       upA(i, { activite, montant_net: 0, rattache: activite === 'etudiant' ? a.age < 25 : undefined })
                     }}>
                       <option value="salarie">Salarié(e)</option>
+                      <option value="independant">Auto-entrepreneur (micro-entreprise)</option>
                       <option value="chomeur">Au chômage, indemnisé(e)</option>
                       <option value="retraite">Retraité(e)</option>
                       <option value="etudiant">Étudiant(e)</option>
                       <option value="inactif">Sans activité</option>
                     </select></label>
                 </div>
-                {['salarie', 'chomeur', 'retraite', 'etudiant'].includes(a.activite) && (
+                {a.activite === 'independant' && (
+                  <label className="field"><span>Votre activité</span>
+                    <select value={a.activite_micro ?? 'services'} onChange={(e) => upA(i, { activite_micro: e.target.value as AdulteSaisie['activite_micro'] })}>
+                      <option value="services">Services : livraison, VTC, ménage, artisanat…</option>
+                      <option value="vente">Vente de marchandises</option>
+                      <option value="liberal">Profession libérale : conseil, formation, graphisme, informatique…</option>
+                    </select></label>
+                )}
+                {['salarie', 'independant', 'chomeur', 'retraite', 'etudiant'].includes(a.activite) && (
                   <label className="field">
-                    <span>{a.activite === 'salarie' ? 'Salaire net mensuel (avant impôt)' : a.activite === 'chomeur' ? 'Allocation chômage nette mensuelle'
+                    <span>{a.activite === 'salarie' ? 'Salaire net mensuel (avant impôt)' : a.activite === 'independant' ? "Chiffre d'affaires moyen par mois"
+                      : a.activite === 'chomeur' ? 'Allocation chômage nette mensuelle'
                       : a.activite === 'etudiant' ? "Salaire d'un petit boulot, net par mois (0 si vous n'en avez pas)" : 'Pension de retraite nette mensuelle'}</span>
                     <div className="input-suffix"><input type="number" min={0} step={50} value={a.montant_net || ''} placeholder={a.activite === 'etudiant' ? '0' : 'ex. 1 200'}
                       onChange={(e) => upA(i, { montant_net: Number(e.target.value) })} /><span className="suffix">€ / mois</span></div>

@@ -894,3 +894,32 @@ sources:
     date_publication: "2026-06-17"
     consulte_le: "2026-10-13"
     note: "Note liée depuis la page https://www.unedic.org/publications/previsions-financieres-de-lunedic-juin-2026 (copie dans system/cache/travail-retraites/unedic-previsions-juin-2026.pdf). Dépenses d'assurance chômage : 45,3 Md€ (2025), 46,6 (2026), 47,5 (2027), 47,2 (2028) ; dépenses d'allocations et aides : 37,2 Md€ en 2025 ; tableau 3 : chômeurs indemnisés (ARE, AREF, ASP, AREP, ATI), niveau moyen annuel, France entière, CVS. Les comptes 2025 de l'Unédic ont été approuvés le 30 juin 2026 et certifiés sans réserve (communiqué du 16 juillet 2026)."
+
+  # ── Micro-entrepreneurs (régime micro-social et micro-fiscal), lues le 30/10/2026 ──
+  - id: sp-entreprendre-f36232
+    type: texte_officiel
+    editeur: "Service Public Entreprendre (DILA)"
+    titre: "Micro-entrepreneur : calcul et paiement des cotisations et contributions sociales"
+    url: "https://entreprendre.service-public.gouv.fr/vosdroits/F36232"
+    auteurs: []
+    date_publication: "2026-01-01"
+    consulte_le: "2026-10-30"
+    note: "Date = « Vérifié le ». Cotisations sociales en % du chiffre d'affaires : 12,3 % (vente de marchandises, BIC), 21,2 % (prestations de services commerciales ou artisanales, BIC), 25,6 % (activités libérales non réglementées, BNC), 23,2 % (libéral relevant de la Cipav). Mêmes taux dans la fiche F37353 (« Cotisations sociales en 2026 », vérifiée le 21/02/2026). Le site de l'Urssaf n'a pas pu être lu ce jour-là."
+  - id: sp-entreprendre-f23267
+    type: texte_officiel
+    editeur: "Service Public Entreprendre (DILA)"
+    titre: "Régime fiscal de la micro-entreprise"
+    url: "https://entreprendre.service-public.gouv.fr/vosdroits/F23267"
+    auteurs: []
+    date_publication: "2026-05-13"
+    consulte_le: "2026-10-30"
+    note: "Date = « Vérifié le ». Abattement forfaitaire pour frais : 71 % (vente, BIC), 50 % (prestations de services, BIC), 34 % (BNC, au moins 305 €). Versement libératoire : 1 %, 1,7 % ou 2,2 % du chiffre d'affaires."
+  - id: sp-entreprendre-f23459
+    type: texte_officiel
+    editeur: "Service Public Entreprendre (DILA)"
+    titre: "Contribution à la formation professionnelle (CFP) des entrepreneurs individuels"
+    url: "https://entreprendre.service-public.gouv.fr/vosdroits/F23459"
+    auteurs: []
+    date_publication: "2026-01-01"
+    consulte_le: "2026-10-30"
+    note: "Date = « Vérifié le ». Micro-entrepreneurs : 0,1 % du chiffre d'affaires (commerçant), 0,3 % (artisan), 0,2 % (libéral), versée en novembre avec les cotisations."

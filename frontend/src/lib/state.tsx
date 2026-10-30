@@ -33,8 +33,9 @@ export type Brouillon = {
 
 export type AdulteSaisie = {
   age: number
-  activite: 'salarie' | 'chomeur' | 'retraite' | 'etudiant' | 'inactif'
-  montant_net: number
+  activite: 'salarie' | 'independant' | 'chomeur' | 'retraite' | 'etudiant' | 'inactif'
+  montant_net: number // pour un auto-entrepreneur : son chiffre d'affaires moyen par mois
+  activite_micro?: 'vente' | 'services' | 'liberal' // auto-entrepreneur : nature de l'activité
   cadre: boolean
   handicap: boolean
   rattache?: boolean // étudiant compté dans la déclaration d'impôt de ses parents
@@ -146,6 +147,8 @@ export function situationVersMenage(s: SituationSaisie) {
       salaire_net_mensuel: a.activite === 'salarie' || a.activite === 'etudiant' ? a.montant_net : 0,
       chomage_net_mensuel: a.activite === 'chomeur' ? a.montant_net : 0,
       retraite_nette_mensuelle: a.activite === 'retraite' ? a.montant_net : 0,
+      ca_micro_mensuel: a.activite === 'independant' ? a.montant_net : 0,
+      activite_micro: a.activite === 'independant' ? (a.activite_micro ?? 'services') : undefined,
     })),
   }
 }
@@ -175,7 +178,8 @@ export function resumeSituation(s: SituationSaisie): string {
   const foyer = s.adultes.length > 1 ? `couple ${s.couple === 'marie' ? 'marié' : s.couple === 'pacse' ? 'pacsé' : 'en union libre'}` : 'personne seule'
   const enfants = s.enfants.length ? `, ${s.enfants.length} enfant${s.enfants.length > 1 ? 's' : ''} (${s.enfants.join(' et ')} ans)` : ''
   const nature: Record<string, string> = { salarie: 'salaire', chomeur: 'chômage', retraite: 'retraite', etudiant: 'étudiant', inactif: 'sans activité' }
-  const revenus = s.adultes.map((a) => (['salarie', 'chomeur', 'retraite'].includes(a.activite) ? `${nature[a.activite]} ${euros(a.montant_net)} nets/mois`
+  const revenus = s.adultes.map((a) => (a.activite === 'independant' ? `auto-entrepreneur, chiffre d'affaires ${euros(a.montant_net)}/mois`
+    : ['salarie', 'chomeur', 'retraite'].includes(a.activite) ? `${nature[a.activite]} ${euros(a.montant_net)} nets/mois`
     : a.activite === 'etudiant' && a.montant_net > 0 ? `étudiant avec un petit boulot de ${euros(a.montant_net)} nets/mois` : nature[a.activite])).join(' + ')
   const logement: Record<string, string> = { locataire_prive: 'locataire', locataire_social: 'locataire HLM', proprietaire: 'propriétaire', heberge: 'hébergé' }
   const epargne = s.revenus_capital_annuels > 0 ? `, épargne rapportant ${euros(s.revenus_capital_annuels)} par an` : ''

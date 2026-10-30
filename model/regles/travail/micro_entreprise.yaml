@@ -1,0 +1,39 @@
+# Micro-entrepreneurs (auto-entrepreneurs) : cotisations sociales en vigueur au 30 octobre 2026.
+# Le moteur OpenFisca calcule leur impôt et leurs aides (prime d'activité, aides au logement) à partir du chiffre
+# d'affaires, mais pas leurs cotisations sociales : le site les applique avec ces règles (« Mes droits »).
+domaine: travail
+theme: "Micro-entrepreneurs"
+regles:
+  - id: travail.micro_entreprise.cotisations_vente
+    titre: "Micro-entrepreneur, vente de marchandises : cotisations sociales (en % du chiffre d'affaires)"
+    explication: "Un micro-entrepreneur qui vend des marchandises (commerce, restauration à emporter…) paie ses cotisations sociales en pourcentage de son chiffre d'affaires, sans calcul de bénéfice. S'y ajoute 0,1 % pour la formation professionnelle."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 50]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 12.3
+        sources: [sp-entreprendre-f36232]
+    verifie_le: "2026-10-30"
+  - id: travail.micro_entreprise.cotisations_services
+    titre: "Micro-entrepreneur, prestations de services (livraison, VTC, artisanat…) : cotisations sociales (en % du chiffre d'affaires)"
+    explication: "Pour les prestations de services commerciales ou artisanales (livreur, chauffeur, coiffeur à domicile, artisan…), les cotisations sociales sont un pourcentage du chiffre d'affaires. S'y ajoute 0,1 % (commerçant) ou 0,3 % (artisan) pour la formation professionnelle."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 50]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 21.2
+        sources: [sp-entreprendre-f36232]
+    verifie_le: "2026-10-30"
+  - id: travail.micro_entreprise.cotisations_liberal
+    titre: "Micro-entrepreneur, profession libérale non réglementée : cotisations sociales (en % du chiffre d'affaires)"
+    explication: "Pour les activités libérales non réglementées (conseil, formation, graphisme, informatique…), affiliées à la Sécurité sociale des indépendants. Les professions libérales relevant de la Cipav paient 23,2 %. S'y ajoute 0,2 % pour la formation professionnelle."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 50]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 25.6
+        sources: [sp-entreprendre-f36232]
+    verifie_le: "2026-10-30"

@@ -22,6 +22,11 @@ class Adulte:
     chomage_brut_mensuel: float = 0.0
     retraite_brute_mensuelle: float = 0.0
     handicap: bool = False                 # taux d'incapacité ≥ 80 %
+    # micro-entrepreneur (auto-entrepreneur) : chiffre d'affaires moyen par mois, nature de l'activité (l'abattement fiscal et
+    # les cotisations en dépendent) et part du chiffre d'affaires versée en cotisations (règles travail.micro_entreprise.*)
+    ca_micro_mensuel: float = 0.0
+    activite_micro: str = "services"       # vente | services | liberal
+    taux_cotisations_micro: float = 0.0
 
     @classmethod
     def from_dict(cls, d: dict) -> "Adulte":

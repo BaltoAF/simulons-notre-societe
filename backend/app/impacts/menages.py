@@ -10,7 +10,7 @@ from .base import Indicateur, Section, signe
 from .contexte import Contexte
 from . import prix_tva
 
-LIGNES_DETAIL = ["salaire_net", "chomage_net", "retraite_nette", "revenus_capital", "pension_alimentaire", "revenu_universel",
+LIGNES_DETAIL = ["salaire_net", "revenu_micro", "chomage_net", "retraite_nette", "revenus_capital", "pension_alimentaire", "revenu_universel",
                  *PRESTATIONS, "impot_revenu", "pfu", "prelevements_sociaux_capital"]
 PRELEVEMENTS = {"impot_revenu", "pfu", "prelevements_sociaux_capital"}
 

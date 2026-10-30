@@ -62,12 +62,18 @@ COMPOSANTES_FOYER = [
     ("decote", "decote_gain_fiscal", "Y"),          # réduction d'impôt pour les petits impôts (sert à expliquer un impôt nul)
 ]
 
+# micro-entrepreneurs : la case de la déclaration de revenus selon l'activité, et l'abattement forfaitaire pour frais (qui ne sert
+# ici qu'à approcher le revenu fiscal des années anciennes ; l'impôt lui-même est calculé par le moteur)
+MICRO_CA = {"vente": "mbic_impv", "services": "mbic_imps", "liberal": "mbnc_impo"}
+MICRO_ABATTEMENT = {"vente": 0.71, "services": 0.50, "liberal": 0.34}
+
 PRESTATIONS = ["rsa", "prime_activite", "aides_logement", "allocations_familiales", "complement_familial",
                "asf", "paje", "aspa", "aah", "ars", "bourses"]
 
 LIBELLES = {
     "salaire_brut": "Salaire brut",
     "salaire_net": "Salaire net",
+    "revenu_micro": "Revenu d'auto-entrepreneur (chiffre d'affaires moins cotisations)",
     "chomage_net": "Allocation chômage nette",
     "retraite_nette": "Pension de retraite nette",
     "revenus_capital": "Revenus de l'épargne",
@@ -296,6 +302,10 @@ class Engine:
                     if a.salaire_brut_mensuel < smic * 0.98:
                         ind["contrat_de_travail"] = {mo: "temps_partiel" for mo in mois}
                         ind["heures_remunerees_volume"] = {mo: round(151.67 * a.salaire_brut_mensuel / smic, 2) for mo in mois}
+                if a.ca_micro_mensuel > 0:
+                    # chiffre d'affaires déclaré au régime micro (sans versement libératoire, le cas le plus courant) : le moteur
+                    # en tire l'impôt (après abattement forfaitaire), la prime d'activité et les aides au logement
+                    ind[MICRO_CA[a.activite_micro]] = {y: round(a.ca_micro_mensuel * 12, 2) for y in years}
                 if a.chomage_brut_mensuel > 0:
                     ind["chomage_brut"] = {y: round(a.chomage_brut_mensuel * 12, 2) for y in years}
                 if a.retraite_brute_mensuelle > 0:
@@ -317,7 +327,8 @@ class Engine:
             # on fournit un RFR approché pour N-4 et N-3, ce qui laisse le moteur calculer exactement N-2 et N-1.
             def rfr_approx(adults):
                 brut_annuel = sum(a.salaire_brut_mensuel * 0.78 + a.chomage_brut_mensuel * 0.93
-                                  + a.retraite_brute_mensuelle * 0.93 for a in adults) * 12
+                                  + a.retraite_brute_mensuelle * 0.93
+                                  + a.ca_micro_mensuel * (1 - MICRO_ABATTEMENT[a.activite_micro]) / 0.9 for a in adults) * 12
                 return round(brut_annuel * 0.9, 0)
             rfr_inputs = lambda adults: {str(year - 4): rfr_approx(adults), str(year - 3): rfr_approx(adults)}
             if m.couple in ("marie", "pacse") or len(ids) == 1:
@@ -415,8 +426,11 @@ class Engine:
             out[k] = -out[k]
         out["revenus_capital"] = np.array([m.revenus_capital_annuels / 12 for m in menages])
         out["pension_alimentaire"] = np.array([m.pension_alimentaire_mensuelle for m in menages])
+        # micro-entrepreneurs : ce qui reste du chiffre d'affaires après les cotisations sociales (avant les frais réels)
+        out["cotisations_micro"] = np.array([sum(a.ca_micro_mensuel * a.taux_cotisations_micro for a in m.adultes) for m in menages])
+        out["revenu_micro"] = np.array([sum(a.ca_micro_mensuel for a in m.adultes) for m in menages]) - out["cotisations_micro"]
         out["prestations"] = sum(out[k] for k in PRESTATIONS)
-        out["revenu_disponible"] = (out["salaire_net"] + out["chomage_net"] + out["retraite_nette"]
+        out["revenu_disponible"] = (out["salaire_net"] + out["revenu_micro"] + out["chomage_net"] + out["retraite_nette"]
                                     + out["revenus_capital"] + out["pension_alimentaire"] + out["prestations"]
                                     - out["impot_revenu"] - out["pfu"] - out["prelevements_sociaux_capital"])
         uc = np.array([m.unites_consommation for m in menages])
