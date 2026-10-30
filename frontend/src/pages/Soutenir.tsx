@@ -6,6 +6,8 @@ import { remercier } from '../lib/soutien'
 export default function Soutenir() {
   const { meta } = useApp()
   const lien = meta?.soutien?.lien
+  // la plateforme est nommée quand on la reconnaît : savoir où l'on paie, c'est la moindre des choses
+  const plateforme = lien && /(^|\.)tipeee\.com$/i.test(hote(lien)) ? 'Tipeee, une plateforme de dons française' : null
   return (
     <div className="container page" style={{ maxWidth: 820 }}>
       <h1><Coffee size={28} /> Soutenir le projet</h1>
@@ -25,14 +27,14 @@ export default function Soutenir() {
         </div>
         <div className="card">
           <strong><ShieldCheck size={16} /> En toute clarté</strong>
-          <p className="small ink2">Le paiement se fait sur une plateforme de dons extérieure : le site ne voit jamais vos coordonnées bancaires.
+          <p className="small ink2">Le paiement se fait sur {plateforme ?? 'une plateforme de dons extérieure'} : le site ne voit jamais vos coordonnées bancaires.
             Le projet n'est pas une association : le don n'ouvre pas droit à une réduction d'impôt.</p>
         </div>
       </div>
 
       {lien ? (
         <div className="card soft row between" style={{ flexWrap: 'wrap', gap: 12 }}>
-          <div>Le prix d'un café suffit. Merci !</div>
+          <div>Le prix d'un café suffit, une fois ou chaque mois, comme vous voulez. Merci !</div>
           <a className="btn primary" href={lien} target="_blank" rel="noreferrer noopener" onClick={remercier}><Coffee size={16} /> Offrir un café</a>
         </div>
       ) : (
@@ -40,4 +42,8 @@ export default function Soutenir() {
       )}
     </div>
   )
+}
+
+function hote(url: string): string {
+  try { return new URL(url).hostname } catch { return '' }
 }
