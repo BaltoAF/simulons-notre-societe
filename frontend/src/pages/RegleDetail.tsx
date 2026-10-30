@@ -12,8 +12,11 @@ import { ProchaineEtape } from '../components/Parcours'
 // « CSS, art. L161-17-2 » → « Code de la sécurité sociale, art. L161-17-2 »
 const CODES: Record<string, string> = { CSS: 'Code de la sécurité sociale', CGI: 'Code général des impôts', CT: 'Code du travail',
   CASF: "Code de l'action sociale et des familles", CCH: "Code de la construction et de l'habitation", CP: 'Code pénal',
-  CPP: 'Code de procédure pénale', CSP: 'Code de la santé publique', CE: "Code de l'environnement" }
-const codesEnClair = (t: string) => t.replace(/\b(CSS|CGI|CASF|CCH|CPP|CSP|CT|CP|CE)\b/g, (m) => CODES[m] ?? m)
+  CPP: 'Code de procédure pénale', CSP: 'Code de la santé publique', CE: "Code de l'environnement",
+  CESEDA: "Code de l'entrée et du séjour des étrangers et du droit d'asile", CIBS: 'Code des impositions sur les biens et services',
+  CGCT: 'Code général des collectivités territoriales', LFSS: 'loi de financement de la Sécurité sociale', JORF: 'Journal officiel',
+  JO: 'Journal officiel', BOI: 'Bulletin officiel des finances publiques' }
+const codesEnClair = (t: string) => t.replace(/\b(CESEDA|CIBS|CGCT|LFSS|JORF|JO|BOI|CSS|CGI|CASF|CCH|CPP|CSP|CT|CP|CE)\b/g, (m) => CODES[m] ?? m)
 
 function Bareme({ t }: { t: Tranche[] }) {
   const rows = [...t].sort((a, b) => a.seuil - b.seuil)

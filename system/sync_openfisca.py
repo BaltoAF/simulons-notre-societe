@@ -97,7 +97,9 @@ class SourceRegistry:
         self.sources: dict[str, dict] = {}
 
     def add_reference(self, title: str | None, href: str | None) -> str:
-        key = (href or "") + "|" + (title or "")
+        # identifiant calculé sur le titre réparé : sous Windows, OpenFisca lit ses fichiers dans un autre encodage, et
+        # l'identifiant d'une même référence changeait d'un système à l'autre
+        key = (href or "") + "|" + (repare_encodage(title) if title else "")
         sid = "of-ref-" + hashlib.sha1(key.encode("utf-8")).hexdigest()[:10]
         if sid not in self.sources:
             t = repare_encodage((title or href or "Référence légale").strip())
@@ -263,7 +265,8 @@ def main():
         dump_yaml(data, MODEL / "regles" / domaine / f"{fichier}.yaml", header)
 
     import hashlib as _h
-    hash_leviers = _h.sha256((MODEL / "moteur" / "openfisca_leviers.yaml").read_bytes()).hexdigest()[:16]
+    # fins de ligne normalisées : la même empreinte sous Windows (CRLF) et sous Linux (LF)
+    hash_leviers = _h.sha256((MODEL / "moteur" / "openfisca_leviers.yaml").read_bytes().replace(b"\r\n", b"\n")).hexdigest()[:16]
     dump_yaml({"genere_par": GENERATED_MARK, "version_openfisca": version, "hash_leviers": hash_leviers, "valeurs": valeurs_moteur},
               MODEL / "moteur" / "valeurs_moteur.yaml", header)
     sources = [openfisca_source(version)] + sorted(registry.sources.values(), key=lambda s: s["id"])

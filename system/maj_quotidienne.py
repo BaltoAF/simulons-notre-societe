@@ -52,7 +52,7 @@ def sha(*paths: Path) -> str:
     h = hashlib.sha256()
     for p in paths:
         if p.exists():
-            h.update(p.read_bytes())
+            h.update(p.read_bytes().replace(b"\r\n", b"\n"))  # même empreinte sous Windows (CRLF) et Linux (LF)
     return h.hexdigest()[:16]
 
 
