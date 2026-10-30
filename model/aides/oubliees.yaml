@@ -111,7 +111,7 @@ aides:
   - id: c2s
     nom: "Complémentaire santé solidaire (C2S)"
     en_bref: "Une mutuelle gratuite, ou à moins de 1 € par jour, pour les foyers aux revenus modestes."
-    pourquoi_vous: "Les ressources de votre foyer semblent sous le plafond (1 172 € par mois pour une personne seule, davantage à plusieurs)."
+    pourquoi_vous: "Les ressources de votre foyer semblent sous le plafond : {plafond_c2s} par mois pour un foyer comme le vôtre."
     pour_qui: "Personnes qui vivent en France depuis plus de 3 mois avec des revenus modestes. Elle est gratuite sous un premier plafond (868 € par mois pour une personne seule) et coûte au plus 1 € par jour sous un second (1 172 €). Elle est attribuée d'office avec le RSA."
     ce_que_ca_apporte: "Une complémentaire santé qui ne coûte rien, ou de 8 € à 30 € par mois et par personne selon l'âge (8 € jusqu'à 29 ans, 30 € à partir de 70 ans)."
     ou_la_demander: "À l'Assurance maladie : en ligne sur votre compte ameli (« Mes démarches »), ou avec le formulaire papier (cerfa n° 12504) que votre caisse peut vous envoyer. Sans réponse sous deux mois, la demande est acceptée."
@@ -121,11 +121,14 @@ aides:
     source_id: sp-f10027
     sources_complementaires: [ameli-c2s-beneficiaires, ameli-c2s-demande]
     criteres: { ressources_c2s_max: 1172.40, hors_rattaches: true }
+    rappel:
+      criteres: { logement: [proprietaire, heberge] }
+      texte: "Propriétaire ou logé gratuitement : un forfait logement s'ajoute à vos ressources pour la C2S, ce qui peut vous faire dépasser le plafond. Le simulateur d'ameli.fr le vérifie."
 
   - id: cheque_energie
     nom: "Chèque énergie"
     en_bref: "De 48 € à 277 € par an pour payer l'électricité, le gaz, le fioul ou le bois de votre logement."
-    pourquoi_vous: "D'après vos revenus, votre revenu fiscal de référence semble sous le plafond (11 000 € par an pour une personne seule). Le site l'estime : le chiffre exact figure sur votre avis d'impôt."
+    pourquoi_vous: "D'après vos revenus, le revenu fiscal de référence de votre foyer semble sous le plafond : {plafond_cheque} par an pour un foyer comme le vôtre. Le site l'estime : le chiffre exact figure sur votre avis d'impôt."
     pour_qui: "Foyers modestes qui ont un contrat d'électricité, locataires ou propriétaires, dont le revenu fiscal de référence 2024 est inférieur à 11 000 € par an pour une personne seule (16 500 € pour deux, puis + 3 300 € par personne en plus)."
     ce_que_ca_apporte: "De 48 € à 277 € par an (153 € en moyenne en 2026) pour payer les factures d'énergie du logement."
     ou_la_demander: "Il est envoyé automatiquement à une partie des foyers depuis le 1er avril 2026. Si vous ne l'avez pas reçu : demande en ligne sur chequeenergie.gouv.fr (« Vérifier mon éligibilité ») ou par courrier, jusqu'au 31 décembre 2026."

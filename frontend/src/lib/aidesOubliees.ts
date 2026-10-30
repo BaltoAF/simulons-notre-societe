@@ -82,12 +82,23 @@ function correspond(c: Criteres, s: SituationSaisie, lignes: Ligne[]): boolean {
 
 export type AideProposee = AideOubliee & { montant: number | null; libelle: string; rappelVisible: boolean }
 
+/** Les textes des fiches peuvent citer les plafonds du foyer : {plafond_c2s} (par mois) et {plafond_cheque} (par an). */
+function personnaliser(texte: string, c: Criteres, s: SituationSaisie): string {
+  const n = s.adultes.length + s.enfants.length
+  const euros = (x: number) => `${Math.round(x).toLocaleString('fr-FR')} €`
+  const c2s = c.ressources_c2s_max ?? c.ou?.find((x) => x.ressources_c2s_max)?.ressources_c2s_max
+  const cheque = c.rfr_par_uc_max ?? c.ou?.find((x) => x.rfr_par_uc_max)?.rfr_par_uc_max
+  return texte
+    .replace('{plafond_c2s}', c2s ? euros(c2s * coefC2s(n)) : '')
+    .replace('{plafond_cheque}', cheque ? euros(cheque * ucChequeEnergie(n)) : '')
+}
+
 /** Les aides à proposer : d'abord celles que le site a calculées (du plus gros montant au plus petit), puis les pistes à vérifier. */
 export function aidesPourVous(aides: AideOubliee[], s: SituationSaisie, lignes: Ligne[]): AideProposee[] {
   const out = aides.filter((a) => correspond(a.criteres, s, lignes)).map((a) => {
     const l = a.criteres.calculee ? lignes.find((x) => x.id === a.criteres.calculee) : undefined
     // une aide déjà calculée porte le même nom que dans le résultat, pour ne pas croire à deux aides
-    return { ...a, montant: l ? l.montant * (a.versement === 'annuel' ? 12 : 1) : null, libelle: l?.libelle ?? a.nom,
+    return { ...a, pourquoi_vous: personnaliser(a.pourquoi_vous, a.criteres, s), montant: l ? l.montant * (a.versement === 'annuel' ? 12 : 1) : null, libelle: l?.libelle ?? a.nom,
       rappelVisible: !!a.rappel && correspond(a.rappel.criteres, s, lignes) }
   })
   const calculees = out.filter((a) => a.montant != null).sort((x, y) => y.montant! / (y.versement === 'annuel' ? 12 : 1) - x.montant! / (x.versement === 'annuel' ? 12 : 1))

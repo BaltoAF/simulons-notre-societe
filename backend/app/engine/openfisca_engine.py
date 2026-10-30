@@ -75,7 +75,7 @@ LIBELLES = {
     "aah": "Allocation aux adultes handicapés (AAH)",
     "rsa": "RSA",
     "prime_activite": "Prime d'activité",
-    "aides_logement": "Aides au logement (APL/ALF/ALS)",
+    "aides_logement": "Aides au logement",
     "allocations_familiales": "Allocations familiales",
     "complement_familial": "Complément familial",
     "asf": "Allocation de soutien familial",

@@ -14,7 +14,7 @@ const ICONES = { economie: Landmark, social: Users, ecologie: Leaf, bien_etre: H
 // pilier sans indicateur : dire ce qui n'est pas mesuré, sans laisser croire qu'il n'y a « aucun effet »
 const AUCUN: Record<string, string> = {
   economie: "Pas d'effet mesuré sur l'argent public ni sur l'activité.",
-  social: "L'effet sur les inégalités n'est pas mesuré pour ce type de mesure (il ne passe pas par les revenus des ménages).",
+  social: "L'effet sur les revenus des ménages et les inégalités n'est pas encore chiffré pour ce type de mesure.",
   ecologie: "Pas d'effet mesuré sur les émissions de gaz à effet de serre.",
   bien_etre: "L'effet sur le bien-être n'est pas encore chiffré pour ce type de mesure.",
 }

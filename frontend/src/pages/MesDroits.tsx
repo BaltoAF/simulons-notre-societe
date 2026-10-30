@@ -208,7 +208,11 @@ export default function MesDroits() {
       <div className="container page">
         <div className="row between" style={{ marginBottom: 10 }}>
           <h1 style={{ margin: 0 }}>Vos droits aujourd'hui</h1>
-          <button className="btn" onClick={() => { setStep(0); setRes(null) }}><RotateCcw size={16} /> Modifier ma situation</button>
+          <div className="row" style={{ gap: 8 }}>
+            <button className="btn" onClick={() => { setStep(0); setRes(null) }}><RotateCcw size={16} /> Modifier ma situation</button>
+            <button className="btn ghost small" title="Sur un ordinateur partagé : rien de votre situation ne reste dans ce navigateur"
+              onClick={() => { setSituation(null); setS(DEFAUT); setRes(null); setExemple(null); setStep(0); window.scrollTo(0, 0) }}>Effacer mes réponses</button>
+          </div>
         </div>
         {exemple && res && (
           <Notice>C'est le résultat de l'exemple « {exemple} » ({resumeSituation(s)}). Pour votre propre situation :{' '}

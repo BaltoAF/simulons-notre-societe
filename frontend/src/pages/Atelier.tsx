@@ -318,9 +318,8 @@ export default function Atelier() {
               {!aJour ? (
                 <p className="small">D'abord, cliquez sur « Voir les effets » : on n'enregistre une réforme qu'après avoir vérifié ce qu'elle coûte.</p>
               ) : desequilibres.length > 0 ? (
-                <div className="notice warn small"><div><strong>Encore une étape :</strong>{' '}
-                  {desequilibres.map((e) => e.id === 'budget' ? `il manque ${milliards(e.manque)} par an pour financer votre réforme` : `votre réforme émet ${tonnes(e.manque)} de trop par an`).join(', et ')}.
-                  Choisissez une solution dans « <a href="#equilibres">Les équilibres à respecter</a> ».</div></div>
+                <p className="small">Pour l'enregistrer, équilibrez d'abord votre réforme : choisissez une solution dans
+                  « <a href="#equilibres">Les équilibres à respecter</a> ».</p>
               ) : !user ? (
                 <p className="small"><CheckCircle2 size={15} color="var(--gain)" /> Votre réforme est équilibrée. Pour l'enregistrer et la partager, <Link to="/connexion?retour=/atelier">créez un compte ou connectez-vous</Link> (votre travail est conservé).</p>
               ) : (

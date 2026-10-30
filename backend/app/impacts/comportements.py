@@ -630,11 +630,23 @@ def mod_multiplicateur(ctx: Contexte, soldes: dict, inds: list[Indicateur] | Non
     if d_demande:
         calcul.append(f"Effet à court terme : {d_demande:+.1f} Md€, soit {d_demande / pib * 100:+.2f} % du PIB ({pib:.0f} Md€)")
         # dit sans présumer de la cause (impôt, cotisation, aide, dépense) : c'est le solde public qui compte ici
-        pourquoi = (f"L'argent public rendu aux ménages et aux entreprises (dépenses ou aides en plus, impôts ou cotisations en moins) "
-                    f"soutient la consommation : environ {md(d_demande)} milliards € d'activité en plus."
-                    if d_demande > 0 else
-                    f"L'argent qui rentre en plus dans les caisses publiques (impôts ou cotisations en plus, aides ou dépenses en moins) "
-                    f"ne sert plus à consommer : environ {md(-d_demande)} milliards € d'activité en moins.")
+        retraites = soldes.get("solde_public_retraites", (0.0, None))[0]
+        if abs(retraites) >= 0.5 * abs(s):
+            # une mesure de retraite : dire de quel argent il s'agit, plutôt qu'une explication générale
+            pourquoi = (f"Les pensions versées plus tôt (sans financement en face) se dépensent : environ {md(d_demande)} milliards € "
+                        f"d'activité en plus." if d_demande > 0 else
+                        f"Les pensions versées plus tard laissent moins d'argent à dépenser : environ {md(-d_demande)} milliards € "
+                        f"d'activité en moins.")
+        else:
+            pourquoi = (f"L'argent public rendu aux ménages et aux entreprises (dépenses ou aides en plus, impôts ou cotisations en moins) "
+                        f"soutient la consommation : environ {md(d_demande)} milliards € d'activité en plus."
+                        if d_demande > 0 else
+                        f"L'argent qui rentre en plus dans les caisses publiques (impôts ou cotisations en plus, aides ou dépenses en moins) "
+                        f"ne sert plus à consommer : environ {md(-d_demande)} milliards € d'activité en moins.")
+        if d_prod and (d_prod > 0) != (d_demande > 0):
+            # les deux horizons vont en sens contraire : le dire, sinon le verdict d'ensemble paraît contredire ce chiffre
+            pourquoi += (f" C'est un effet de court terme, qui s'estompe : à long terme, l'activité "
+                         f"{'baisse' if d_prod < 0 else 'progresse'} (voir l'effet à long terme).")
         out.append(Indicateur("pib", "Effet sur l'activité à court terme (PIB, à 1-2 ans)", d_demande / pib * 100, "pourcent",
                               confiance=chaine(conf_m, *[c for c in (conf_s,) if c]), explication=pourquoi, calcul=calcul,
                               sources=[src_p] if src_p else [], preuves=["multiplicateur_budgetaire"],
