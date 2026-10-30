@@ -1,0 +1,32 @@
+# Le site et son certificat HTTPS sur le serveur (voir docs/DEPLOIEMENT.md).
+# Les réglages (nom de domaine, jeton de la routine) sont dans deploy/.env, créé par deploy/installer.sh.
+services:
+  site:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - ./donnees:/app/backend/data   # comptes, propositions, avis : conservés d'une version à l'autre
+    expose:
+      - "8000"
+
+  caddy:
+    image: caddy:2
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      DOMAINE: ${DOMAINE}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_donnees:/data             # certificats HTTPS
+      - caddy_config:/config
+    depends_on:
+      - site
+
+volumes:
+  caddy_donnees:
+  caddy_config:

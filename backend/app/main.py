@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import logging
+import os
 import threading
 from contextlib import asynccontextmanager
 from typing import Any
@@ -30,7 +31,9 @@ async def lifespan(_app: FastAPI):
     db.init_db()
     retours.init()
     store = get_store()
-    vcs.ensure_reference(store)
+    # une nouvelle version déployée publie la loi actuelle mise à jour, puis met à jour les propositions sans conflit
+    if vcs.ensure_reference(store).get("message"):
+        vcs.auto_sync_forks(store)
     from .impacts.microsim import prechauffer
     threading.Thread(target=prechauffer, args=(store,), daemon=True).start()
     planificateur.demarrer()
@@ -794,6 +797,43 @@ class AvisIn(BaseModel):
 def donner_avis(body: AvisIn, request: Request):
     """Dépôt d'un avis, sans compte. Il sera examiné par la tâche quotidienne d'auto-amélioration."""
     return retours.deposer(body.categorie, body.texte, body.page, _ip_visiteur(request), body.site_web)
+
+
+def _jeton_routine(request: Request):
+    """La routine d'auto-amélioration (dans le cloud) s'identifie par un jeton secret partagé avec le serveur."""
+    import secrets
+    attendu = os.environ.get("SOCIETE_JETON_AVIS", "")
+    fourni = request.headers.get("authorization", "").removeprefix("Bearer ").strip()
+    if not attendu or not fourni or not secrets.compare_digest(attendu, fourni):
+        raise HTTPException(404, "Ressource inconnue")
+
+
+@app.get("/api/systeme/avis/a-traiter")
+def avis_a_traiter(request: Request):
+    """Réservé à la routine d'auto-amélioration : avis non examinés (texte complet, données personnelles déjà masquées)."""
+    _jeton_routine(request)
+    return retours.paquet_a_traiter()
+
+
+class DecisionIn(BaseModel):
+    id: int
+    statut: str
+    resume_public: str
+    motif_public: str
+    commit_ref: str | None = None
+
+
+@app.post("/api/systeme/avis/decisions")
+def avis_decider(decisions: list[DecisionIn], request: Request):
+    """Réservé à la routine d'auto-amélioration : enregistre les décisions publiques."""
+    _jeton_routine(request)
+    erreurs = []
+    for d in decisions:
+        try:
+            retours.decider(d.id, d.statut, d.resume_public, d.motif_public, d.commit_ref)
+        except ValueError as e:
+            erreurs.append({"id": d.id, "erreur": str(e)})
+    return {"enregistrees": len(decisions) - len(erreurs), "erreurs": erreurs}
 
 
 @app.get("/api/avis/decisions")

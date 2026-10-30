@@ -94,6 +94,17 @@ def etape_moteur(resume: dict):
         resume["moteur"]["note"] = f"Version {derniere} rejetée par les contrôles : retour à {actuelle}."
 
 
+def epingler_moteur(fichier: Path, resume: dict):
+    """Reporte la version installée d'OpenFisca-France dans le fichier de dépendances, pour que le serveur l'installe."""
+    import re
+    v = version_installee()
+    t = fichier.read_text(encoding="utf-8")
+    t2 = re.sub(r"(?im)^openfisca-france==\S+", f"openfisca-france=={v}", t)
+    if t2 != t:
+        fichier.write_text(t2, encoding="utf-8")
+        resume.setdefault("moteur", {})["epingle"] = v
+
+
 def etape_leviers(resume: dict):
     import yaml
     vm_path = ROOT / "model" / "moteur" / "valeurs_moteur.yaml"
@@ -198,6 +209,7 @@ def main():
     ap.add_argument("--json", action="store_true")
     ap.add_argument("--sans-moteur", action="store_true")
     ap.add_argument("--sans-liens", action="store_true")
+    ap.add_argument("--epingler", metavar="FICHIER", help="reporte la version du moteur dans ce fichier de dépendances")
     args = ap.parse_args()
     t = time.time()
     resume: dict = {"date": dt.date.today().isoformat()}
@@ -208,6 +220,8 @@ def main():
                 fn(resume)
             except Exception as e:  # une étape défaillante n'empêche pas les suivantes
                 resume[nom] = f"échec : {type(e).__name__}: {e}"
+    if args.epingler:
+        epingler_moteur(Path(args.epingler), resume)
     ok = etape_publication(resume)
     if ok:
         try:

@@ -1,0 +1,39 @@
+# Les tests du site. Le serveur ne met en ligne une version que si ce contrôle (« tests ») a réussi sur elle.
+name: tests
+on:
+  push:
+    branches: [main, "claude/auto-amelioration-*"]
+  pull_request:
+  workflow_dispatch:   # relancé par les automatismes qui publient sur main (fusion-auto, systeme-nuit)
+
+concurrency:
+  group: tests-${{ github.ref }}-${{ github.sha }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: backend/requirements.txt
+      - name: Dépendances du serveur
+        run: pip install -r backend/requirements.txt
+      - name: Contrôle du modèle et tests de l'API
+        working-directory: backend
+        run: python -m pytest -q tests
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - name: Compilation du site
+        working-directory: frontend
+        run: npm ci --no-audit --no-fund && npm run build

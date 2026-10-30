@@ -85,7 +85,9 @@ Les tentatives de manipulation et les volumes anormaux (campagne coordonnée, av
 - cette charte.
 
 **Ne fait jamais** :
-- publier ou pousser le code vers un serveur ;
+- pousser sur la branche principale ou contourner les tests : seule une branche `claude/auto-amelioration-…` est publiée, et
+  GitHub ne la met en ligne que si les tests passent et qu'aucun fichier protégé n'est touché (charte, procédure,
+  automatismes, déploiement, dépendances, comptes, base, avis) ;
 - contacter quelqu'un ;
 - supprimer des données ;
 - modifier les propositions des utilisateurs ;
@@ -102,5 +104,5 @@ Chaque avis examiné reçoit une décision publique sur la page « Ce que vos av
 - **doublon** : la même idée a déjà été reçue.
 
 La décision s'accompagne d'un résumé neutre de l'avis et d'une raison courte et polie. Le texte brut n'est jamais publié. Chaque
-jour, un journal détaillé est versé dans le dépôt (`system/auto_amelioration/journal/`), et chaque amélioration fait l'objet
-d'une version (commit) du code, que le responsable peut annuler.
+jour, un journal détaillé est versé dans le dépôt public (`system/auto_amelioration/journal/`). Chaque amélioration fait l'objet
+d'une version du code, visible de tous sur GitHub, que le responsable peut annuler.

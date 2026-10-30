@@ -1,0 +1,9 @@
+[Unit]
+Description=Simulons notre société : mise en ligne des nouvelles versions validées sur GitHub, sauvegarde quotidienne
+After=docker.service network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/opt/simulons/deploy/suivre_github.sh
+TimeoutStartSec=1800

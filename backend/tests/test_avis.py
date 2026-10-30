@@ -41,3 +41,22 @@ def test_administration_fermee_derriere_un_tunnel():
         # un visiteur passé par le tunnel arrive de la machine elle-même : l'en-tête du proxy le trahit
         assert c.post("/api/admin/recharger", headers={"cf-connecting-ip": "203.0.113.7"}).status_code == 403
         assert c.post("/api/admin/maj", headers={"x-forwarded-for": "203.0.113.7"}).status_code == 403
+
+
+def test_routes_de_la_routine_protegees_par_jeton(monkeypatch):
+    with TestClient(app) as c:
+        # sans jeton configuré sur le serveur, les routes n'existent pas
+        monkeypatch.delenv("SOCIETE_JETON_AVIS", raising=False)
+        assert c.get("/api/systeme/avis/a-traiter").status_code == 404
+        monkeypatch.setenv("SOCIETE_JETON_AVIS", "jeton-de-test-0123456789")
+        assert c.get("/api/systeme/avis/a-traiter", headers={"Authorization": "Bearer mauvais"}).status_code == 404
+        ok = {"Authorization": "Bearer jeton-de-test-0123456789"}
+        paquet = c.get("/api/systeme/avis/a-traiter", headers=ok).json()
+        assert "DONNÉES À ANALYSER" in paquet["avertissement"] and isinstance(paquet["avis"], list)
+        c.post("/api/avis", json={"categorie": "idee", "texte": "Un exemple chiffré pour la décote"}, headers={"cf-connecting-ip": "192.0.2.9"})
+        rid = c.get("/api/systeme/avis/a-traiter", headers=ok).json()["avis"][-1]["id"]
+        r = c.post("/api/systeme/avis/decisions", headers=ok, json=[
+            {"id": rid, "statut": "retenu", "resume_public": "Un exemple chiffré pour la décote.", "motif_public": "Ajouté.", "commit_ref": "abc1234"},
+            {"id": 999999, "statut": "retenu", "resume_public": "x", "motif_public": "y"}]).json()
+        assert r["enregistrees"] == 1 and r["erreurs"][0]["id"] == 999999
+        assert c.post("/api/systeme/avis/decisions", json=[]).status_code == 404

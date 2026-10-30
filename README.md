@@ -29,7 +29,7 @@ avec un **indice de confiance** sur chaque chiffre.
 Prérequis : Python 3.11, Node.js 20+.
 
 ```bash
-cd backend && python -m venv .venv && .venv/Scripts/python -m pip install openfisca-france==176.1.2 fastapi "uvicorn[standard]" pyyaml pydantic httpx pytest
+cd backend && python -m venv .venv && .venv/Scripts/python -m pip install -r requirements.txt
 ```
 
 ```bash
@@ -70,6 +70,15 @@ backend/.venv/Scripts/python system/mettre_a_jour.py --population
 Synchronise les leviers depuis OpenFisca-France, contrôle la cohérence du modèle, recale la population
 synthétique et publie un commit sur la loi actuelle (visible dans « Le Système » sur le site).
 
+## En ligne, et amélioré chaque jour par ses visiteurs
+
+Le site tourne sur un serveur qui suit ce dépôt : une version n'est mise en ligne que si les tests de GitHub l'ont validée.
+Chaque nuit, le Système met à jour sur GitHub le moteur, les règles et la population (`.github/workflows/systeme-nuit.yml`).
+Chaque matin, une routine Claude lit les avis laissés sur le site (« Donner mon avis ») et améliore le site en suivant une
+charte publique : s'inspirer sans recopier, utilité, fiabilité, neutralité, refus des demandes partisanes ou hors cadre
+(`system/auto_amelioration/CHARTE.md`). Ses décisions sont publiées sur la page « Ce que vos avis ont changé », et ses
+journaux dans `system/auto_amelioration/journal/`. Mise en place : `docs/DEPLOIEMENT.md`.
+
 ## Organisation
 
 | Dossier | Contenu |
@@ -77,7 +86,8 @@ synthétique et publie un commit sur la loi actuelle (visible dans « Le Systèm
 | `model/` | La loi actuelle en YAML : règles, sources, métriques, preuves (voir `docs/FORMAT-DONNEES.md`) |
 | `model/moteur/` | Liens entre règles et moteur de calcul, entre études et règles |
 | `model/population/` | Population synthétique calée (générée par le Système) |
-| `system/` | Les pipelines du Système (synchronisation, population, publication) |
+| `system/` | Les pipelines du Système (synchronisation, population, publication) et l'auto-amélioration (`auto_amelioration/`) |
+| `deploy/` | Le serveur : Docker, HTTPS, suivi de GitHub, sauvegardes, script d'installation |
 | `backend/` | API FastAPI : moteur OpenFisca, modules d'impact, versionnage façon git, comptes |
 | `frontend/` | Site React (grand public) |
 | `docs/` | Format des données, architecture, méthode de calage |

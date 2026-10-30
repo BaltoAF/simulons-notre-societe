@@ -1,0 +1,9 @@
+# Dépendances du serveur. La version d'OpenFisca-France est relevée chaque nuit par le Système sur GitHub
+# (system/maj_quotidienne.py --epingler), après validation sur des cas de contrôle et les tests du site.
+openfisca-france==176.1.10
+fastapi==0.143.0
+uvicorn[standard]==0.54.0
+pyyaml==6.0.3
+pydantic==2.14.1
+httpx==0.28.1
+pytest==8.4.2

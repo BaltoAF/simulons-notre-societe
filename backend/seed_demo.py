@@ -4,11 +4,13 @@ Les propositions publiques sont équilibrées (financées, sous le plafond clima
 propose à tous : la vitrine respecte les règles qu'elle annonce.
 
 Usage : backend/.venv/Scripts/python backend/seed_demo.py
-Les comptes créés sont des comptes de TEST locaux (mot de passe ci-dessous), à ne jamais utiliser en production.
+Mot de passe des comptes : variable SOCIETE_MDP_DEMO (tests en local) ; sans elle, il est aléatoire et personne ne peut s'y connecter.
 Toutes les sociétés créées sont signalées « [Exemple] » dans leur nom.
 """
 from __future__ import annotations
 
+import os
+import secrets
 import sys
 from pathlib import Path
 
@@ -19,7 +21,9 @@ from fastapi import HTTPException  # noqa: E402
 from app import auth, db, vcs  # noqa: E402
 from app.model_store import get_store  # noqa: E402
 
-MOT_DE_PASSE_DEMO = "demo-societe-2026"
+# SOCIETE_MDP_DEMO s'il est fourni (tests en local) ; sinon un mot de passe aléatoire jamais affiché : sur le site en ligne,
+# personne ne peut se connecter aux comptes d'exemple ni modifier leurs propositions.
+MOT_DE_PASSE_DEMO = os.environ.get("SOCIETE_MDP_DEMO") or secrets.token_urlsafe(18)
 COMPTES = [("camille_demo", "camille@demo.test"), ("sacha_demo", "sacha@demo.test"), ("lou_demo", "lou@demo.test")]
 
 
@@ -120,7 +124,7 @@ def main():
             vcs.add_comment(camille, "societe", solidaire["id"], "Bienvenue ! Les impacts sur les ménages types sont intéressants, n'hésitez pas à créer votre version.")
     except HTTPException as e:
         print("Proposition non créée :", e.detail)
-    print("Données de démonstration prêtes. Comptes :", ", ".join(p for p, _ in COMPTES), "— mot de passe : voir MOT_DE_PASSE_DEMO dans ce fichier.")
+    print("Données de démonstration prêtes. Comptes :", ", ".join(p for p, _ in COMPTES), "— mot de passe : SOCIETE_MDP_DEMO, ou aléatoire s'il n'est pas défini.")
 
 
 if __name__ == "__main__":

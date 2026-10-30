@@ -8,7 +8,8 @@ Un fil d'exécution en arrière-plan, lancé avec le serveur :
   - après chaque changement, il recharge le modèle, publie un commit sur la loi actuelle, met à jour
     les forks sans conflit et réchauffe les calculs de référence — sans redémarrage ni action de quiconque.
 
-Variables d'environnement : SOCIETE_MAJ=0 désactive tout ; SOCIETE_MAJ_HEURE="04:30".
+Variables d'environnement : SOCIETE_MAJ=0 désactive tout ; SOCIETE_MAJ_HEURE="04:30" ;
+SOCIETE_MAJ_ARGS="--sans-moteur" sur le serveur en ligne, où le moteur et le modèle sont mis à jour par GitHub (voir docs/DEPLOIEMENT.md).
 """
 from __future__ import annotations
 
@@ -91,7 +92,8 @@ def lancer_maj_quotidienne(declencheur: str = "planifie") -> dict:
     _ETAT["en_cours"] = True
     eid = _enregistrer_execution(declencheur)
     try:
-        out = subprocess.run([sys.executable, str(ROOT / "system" / "maj_quotidienne.py"), "--json"],
+        options = os.environ.get("SOCIETE_MAJ_ARGS", "").split()
+        out = subprocess.run([sys.executable, str(ROOT / "system" / "maj_quotidienne.py"), "--json", *options],
                              cwd=ROOT, capture_output=True, text=True, encoding="utf-8", timeout=3600,
                              env={**os.environ, "PYTHONIOENCODING": "utf-8"})
         resume = {}

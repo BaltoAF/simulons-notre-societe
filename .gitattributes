@@ -1,0 +1,4 @@
+# Les scripts du serveur tournent sous Linux : fins de ligne Unix, quel que soit le poste qui les modifie.
+*.sh text eol=lf
+deploy/* text eol=lf
+Dockerfile text eol=lf

@@ -12,3 +12,6 @@ system/cache/
 # Divers
 .DS_Store
 *.log
+# Serveur en ligne : réglages et données (jamais versionnés)
+deploy/.env
+deploy/donnees/

@@ -1,0 +1,51 @@
+# Met en ligne les améliorations de la routine quotidienne : quand les tests ont réussi sur une branche
+# claude/auto-amelioration-…, exactement cette version est fusionnée dans main (le serveur la reprend ensuite).
+# Une branche venue d'un fork, ou dont les tests échouent, n'est jamais fusionnée.
+name: fusion-auto
+on:
+  workflow_run:
+    workflows: [tests]
+    types: [completed]
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  fusionner:
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'push' &&
+      startsWith(github.event.workflow_run.head_branch, 'claude/auto-amelioration-') &&
+      github.event.workflow_run.head_repository.full_name == github.repository
+    runs-on: ubuntu-latest
+    concurrency: fusion-main
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Fusionner la version testée
+        env:
+          BRANCHE: ${{ github.event.workflow_run.head_branch }}
+          SHA: ${{ github.event.workflow_run.head_sha }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "Auto-amélioration"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin "$BRANCHE"
+          # garde-fous de la charte (règle 5), appliqués ici quoi qu'ait fait la routine : ces fichiers ne changent que
+          # par le responsable du projet ; une branche qui les touche n'est jamais mise en ligne automatiquement
+          PROTEGES='^(system/auto_amelioration/(CHARTE|TACHE)\.md|\.github/|deploy/|Dockerfile|\.dockerignore|\.gitattributes|\.gitignore|backend/requirements\.txt|frontend/package(-lock)?\.json|backend/app/(auth|db|retours|config)\.py)'
+          INTERDITS=$(git diff --name-only "$(git merge-base origin/main "$SHA")" "$SHA" | grep -E "$PROTEGES" || true)
+          if [ -n "$INTERDITS" ]; then
+            echo "::error::Fusion refusée : fichiers protégés modifiés par la routine :"
+            echo "$INTERDITS"
+            exit 1
+          fi
+          # la branche a pu avancer depuis le test : on ne fusionne que ce qui a été testé
+          git merge --no-ff "$SHA" -m "Mise en ligne de l'auto-amélioration ($BRANCHE)"
+          git push origin main
+          git push origin --delete "$BRANCHE" || true
+          # les publications faites par GitHub Actions ne relancent pas les tests d'elles-mêmes : le serveur attend ce contrôle
+          gh workflow run tests.yml --ref main

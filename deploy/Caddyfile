@@ -1,0 +1,12 @@
+# HTTPS automatique (Let's Encrypt) devant le site. Caddy ajoute l'en-tête X-Forwarded-For : le site sait alors que la
+# requête vient de l'extérieur, et les routes réservées au Système restent fermées.
+{$DOMAINE} {
+	encode gzip
+	reverse_proxy site:8000
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		X-Frame-Options "DENY"
+	}
+}
