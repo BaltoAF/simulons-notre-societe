@@ -5,6 +5,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { ArrowRight, Briefcase, Coins, ExternalLink, GraduationCap, HeartPulse, Hourglass, Info, Landmark, Leaf, TrendingDown, Users } from 'lucide-react'
 import { api, type Regle } from '../lib/api'
 import { natureLien } from '../lib/format'
+import { teinteQuestion } from '../lib/teintes'
 import { PRESETS, resoudrePreset } from '../lib/presets'
 import { QUESTIONS, VRAI_FAUX, formater, type Chiffre, type Question, type VraiFaux } from '../lib/questions'
 import { useApp, useFetch } from '../lib/state'
@@ -83,7 +84,7 @@ function Liste() {
       <p className="lead ink2">Pour comprendre la France en quelques minutes : des réponses simples, avec les chiffres officiels les plus récents et leur source.</p>
       <div className="grid cols-2">
         {QUESTIONS.map((q) => (
-          <Link key={q.id} to={`/comprendre/${q.id}`} className="card link question-carte">
+          <Link key={q.id} to={`/comprendre/${q.id}`} className={`card link question-carte carte-teinte ${teinteQuestion(q.id)}`}>
             <div className="row" style={{ flexWrap: 'nowrap', alignItems: 'flex-start', gap: 12 }}>
               <span className="question-icone"><Icone nom={q.icone} /></span>
               <span>
@@ -192,7 +193,7 @@ function Detail({ q }: { q: Question }) {
   if (error) return <div className="container page"><ErrorBox message={error} /></div>
   const visibles = q.chiffres.filter((c) => !c.cache)
   return (
-    <div className="container page" style={{ maxWidth: 900 }}>
+    <div className={`container page ${teinteQuestion(q.id)}`} style={{ maxWidth: 900 }}>
       <div className="breadcrumb"><Link to="/comprendre">Les grandes questions</Link> › {q.titre}</div>
       <div className="row" style={{ flexWrap: 'nowrap', alignItems: 'flex-start', gap: 14 }}>
         <span className="question-icone grande"><Icone nom={q.icone} size={28} /></span>
@@ -214,7 +215,7 @@ function Detail({ q }: { q: Question }) {
           {visibles.map((c) => {
             const s = stats.find((x) => x.id === c.metrique)
             return (
-              <div key={c.cle} className="card">
+              <div key={c.cle} className="card kpi-teinte">
                 <div className="kpi-label">{c.libelle}</div>
                 {(() => {
                   const t = valeurs[c.cle] != null ? formater(valeurs[c.cle], c.format, c.absolu) : '—'

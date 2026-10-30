@@ -2,6 +2,7 @@ import { Link, useParams } from 'react-router-dom'
 import type { Regle } from '../lib/api'
 import { valeur, date } from '../lib/format'
 import { useFetch } from '../lib/state'
+import { teinteDomaine } from '../lib/teintes'
 import { DomainIcon, ErrorBox, Loading } from '../components/ui'
 import { RegleLigne } from './Regles'
 
@@ -19,7 +20,7 @@ export default function Domaine() {
   return (
     <div className="container page">
       <div className="breadcrumb"><Link to="/regles">Les règles</Link> › {data.titre}</div>
-      <div className="row" style={{ alignItems: 'center', marginBottom: 18 }}>
+      <div className={`row ${teinteDomaine(domaine)}`} style={{ alignItems: 'center', marginBottom: 18 }}>
         <DomainIcon name={data.icone} size={26} />
         <div><h1 style={{ margin: 0 }}>{data.titre}</h1><div className="muted">{data.question}</div></div>
       </div>

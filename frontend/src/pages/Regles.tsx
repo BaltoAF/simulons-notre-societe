@@ -5,6 +5,7 @@ import type { Regle } from '../lib/api'
 import { DOMAINE_TITRE, nombre, valeur } from '../lib/format'
 import { useApp, useFetch } from '../lib/state'
 import { chercherRegles } from '../lib/recherche'
+import { teinteDomaine } from '../lib/teintes'
 import { DomainIcon, Loading, SourceType } from '../components/ui'
 
 export function RegleLigne({ r }: { r: Regle }) {
@@ -61,7 +62,7 @@ export default function Regles() {
       ) : (
         <div className="grid auto">
           {(meta?.domaines ?? []).map((d) => (
-            <Link key={d.id} to={`/regles/d/${d.id}`} className="card link">
+            <Link key={d.id} to={`/regles/d/${d.id}`} className={`card link carte-teinte ${teinteDomaine(d.id)}`}>
               <div className="row" style={{ alignItems: 'flex-start', flexWrap: 'nowrap' }}>
                 <DomainIcon name={d.icone} />
                 <div className="grow"><h3 style={{ marginBottom: 2 }}>{d.titre}</h3><div className="small muted">{d.question}</div>

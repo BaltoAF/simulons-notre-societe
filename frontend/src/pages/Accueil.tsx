@@ -9,6 +9,7 @@ import { PRESETS, resoudrePreset } from '../lib/presets'
 import type { Regle, Societe } from '../lib/api'
 import { nombre, relatif } from '../lib/format'
 import { DomainIcon } from '../components/ui'
+import { teinte, teinteDomaine, teinteQuestion } from '../lib/teintes'
 import { Terme } from '../components/Terme'
 
 export default function Accueil() {
@@ -37,18 +38,18 @@ export default function Accueil() {
             Chaque chiffre est prouvé et dit à quel point on peut s'y fier.</p>
           <button className="btn" style={{ marginTop: 6 }} onClick={() => setVisite(true)}><PlayCircle size={17} /> Découvrir le site en 1 minute</button>
           <div className="grid cols-3" style={{ marginTop: 26 }}>
-            <Link to="/mes-droits" className="card link" style={{ borderColor: 'var(--primary)' }}>
-              <Calculator size={26} color="var(--primary)" />
+            <Link to="/mes-droits" className="card link carte-teinte teinte-1">
+              <Calculator size={26} className="icone-teinte" />
               <h3 style={{ marginTop: 8 }}>Mes droits</h3>
               <p className="small ink2" style={{ margin: 0 }}>Vos aides, vos impôts, votre âge de départ à la retraite… en 3 questions, sans compte.</p>
             </Link>
-            <Link to="/budget" className="card link">
-              <Landmark size={26} color="var(--accent)" />
+            <Link to="/budget" className="card link carte-teinte teinte-6">
+              <Landmark size={26} className="icone-teinte" />
               <h3 style={{ marginTop: 8 }}>Où va l'argent public ?</h3>
               <p className="small ink2" style={{ margin: 0 }}>Le budget de la France, et ce que vous y mettez, poste par poste.</p>
             </Link>
-            <Link to="/atelier" className="card link">
-              <GitFork size={26} color="var(--gain)" />
+            <Link to="/atelier" className="card link carte-teinte teinte-3">
+              <GitFork size={26} className="icone-teinte" />
               <h3 style={{ marginTop: 8 }}>Changer les règles</h3>
               <p className="small ink2" style={{ margin: 0 }}>Testez une idée : ce qu'elle change pour vous, pour les finances publiques, le climat et le bien-être.</p>
             </Link>
@@ -66,7 +67,7 @@ export default function Accueil() {
         <div className="section-title"><h2><HelpCircle size={22} /> Comprendre en quelques minutes</h2><Link to="/comprendre">Toutes les questions <ArrowRight size={14} /></Link></div>
         <div className="grid cols-3">
           {QUESTIONS.map((q) => (
-            <Link key={q.id} to={`/comprendre/${q.id}`} className="card link" style={{ padding: 14 }}>
+            <Link key={q.id} to={`/comprendre/${q.id}`} className={`card link carte-teinte ${teinteQuestion(q.id)}`} style={{ padding: 14 }}>
               <strong>{q.titre}</strong>
               <span className="small muted" style={{ display: 'block', marginTop: 4 }}>{q.sousTitre ?? 'Les chiffres officiels, expliqués simplement'} <ArrowRight size={12} /></span>
             </Link>
@@ -77,8 +78,8 @@ export default function Accueil() {
       <section className="container">
         <div className="section-title"><h2>Des idées à tester en un clic</h2><Link to="/atelier">Imaginer la vôtre <ArrowRight size={14} /></Link></div>
         <div className="grid cols-3">
-          {PRESETS.slice(0, 6).map((p) => (
-            <button key={p.id} className="preset" onClick={() => lancerPreset(p.id)}>
+          {PRESETS.slice(0, 6).map((p, i) => (
+            <button key={p.id} className={`preset carte-teinte ${teinte(i + 3)}`} onClick={() => lancerPreset(p.id)}>
               <strong>{p.titre}</strong>
               <span className="small muted">{p.description}</span>
               <div className="pill-list" style={{ marginTop: 8 }}>{p.tags.map((t) => <span key={t} className="badge">{t}</span>)}</div>
@@ -92,17 +93,17 @@ export default function Accueil() {
       </section>
       <section className="container">
         <div className="grid cols-3">
-          <div className="card">
+          <div className="card teinte-1">
             <div className="row"><span className="step-num">1</span><h3 style={{ margin: 0 }}>La France d'aujourd'hui</h3></div>
             <p className="ink2" style={{ marginTop: 10 }}>Toutes les règles en vigueur : c'est la « <Terme id="societe_1_0">loi actuelle</Terme> ». Chaque valeur est <strong>prouvée</strong> par un texte officiel, et tenue à jour automatiquement quand la loi change.</p>
             <Link to="/regles">Explorer les règles <ArrowRight size={14} /></Link>
           </div>
-          <div className="card">
+          <div className="card teinte-4">
             <div className="row"><span className="step-num">2</span><h3 style={{ margin: 0 }}>Votre version</h3></div>
             <p className="ink2" style={{ marginTop: 10 }}>Changez une ou plusieurs règles et enregistrez votre proposition. Les autres peuvent s'en inspirer, créer leur version et vous suggérer des améliorations. Chaque changement est <strong>signé et daté</strong>.</p>
             <Link to="/societes">Voir les propositions <ArrowRight size={14} /></Link>
           </div>
-          <div className="card">
+          <div className="card teinte-8">
             <div className="row"><span className="step-num">3</span><h3 style={{ margin: 0 }}>Les effets, sans tricher</h3></div>
             <p className="ink2" style={{ marginTop: 10 }}>Pour votre foyer et pour le pays : argent, inégalités, climat, bien-être. Toute dépense en plus doit être <strong>financée ailleurs</strong>, et toute hausse des émissions compensée. Quand les études se contredisent, le site tranche et dit avec quelle confiance.</p>
             <Link to="/preuves">Voir les études <ArrowRight size={14} /></Link>
@@ -115,7 +116,7 @@ export default function Accueil() {
         <div className="section-title"><h2>Toutes les règles, par thème</h2><Link to="/regles"><Search size={14} /> Rechercher une règle</Link></div>
         <div className="grid auto">
           {(meta?.domaines ?? []).map((d) => (
-            <Link key={d.id} to={`/regles/d/${d.id}`} className="card link">
+            <Link key={d.id} to={`/regles/d/${d.id}`} className={`card link carte-teinte ${teinteDomaine(d.id)}`}>
               <div className="row" style={{ alignItems: 'flex-start', flexWrap: 'nowrap' }}>
                 <DomainIcon name={d.icone} />
                 <div className="grow">
