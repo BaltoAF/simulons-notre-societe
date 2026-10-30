@@ -672,3 +672,10 @@ button.change-tete:hover { background: color-mix(in srgb, var(--primary) 7%, tra
 @media (max-width: 640px) { details.explain > summary, details.curieux > summary { padding: 12px 0; } }
 /* cases à cocher : plus grandes sur téléphone, pour ne pas en cocher une sans le vouloir */
 @media (max-width: 640px) { input[type=checkbox] { width: 22px; height: 22px; flex-shrink: 0; } }
+/* écrans tactiles : les mots du lexique et les petits liens-boutons dans le texte se touchent sans viser (zone agrandie
+   sans rien décaler), et les mots du lexique prennent la couleur des liens, pour qu'on sache qu'on peut les toucher */
+@media (hover: none) {
+  .terme { color: var(--primary); }
+  .terme, button.lien { position: relative; }
+  .terme::after, button.lien::after { content: ''; position: absolute; inset: -12px -4px; }
+}

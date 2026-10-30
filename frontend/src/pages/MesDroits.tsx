@@ -246,7 +246,7 @@ export default function MesDroits() {
           <Notice>C'est le résultat de l'exemple « {exemple} » ({resumeSituation(s)}). Pour votre propre situation :{' '}
             <button className="lien" onClick={() => { setStep(1); setRes(null) }}>mettre vos vrais montants</button>.</Notice>
         )}
-        {loading && <Loading label="Le moteur calcule vos droits…" />}
+        {loading && <Loading label="Calcul de vos droits en cours…" />}
         {err && <ErrorBox message={err} />}
         {res && (
           <div className="split aside-380">

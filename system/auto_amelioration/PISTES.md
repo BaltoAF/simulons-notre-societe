@@ -15,10 +15,11 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   d'auto-entrepreneur, les aides annoncées en tête de « Mes droits », âge et salaire non pré-remplis, prime d'activité
   expliquée simplement, « Pourquoi ce montant ? » à 44 px ; « Le budget » commence par « Sur 100 € d'argent public » en
   mots courants (retraites, santé, école…) et met « Et vous ? » en premier, sans « cadenas » ni « COFOG ». Reste :
-  « moteur » ; mots du lexique et lien « modifier » trop petits à toucher. 2e passage (notes 4 / 3 / 4) : corrigé le
+  2e passage (notes 4 / 3 / 4) : corrigé le
   détail des cotisations d'auto-entrepreneur (taux, titres des règles), le handicap dans le récapitulatif, des cases à
   cocher plus grandes, le vrai/faux sur les impôts (« C'est plus compliqué »), les mêmes mots dans tout « Le budget »,
-  « salaire modeste » et « MSA ». (Fait aussi : « Intérêts de la dette de l'État » distingué
+  « salaire modeste » et « MSA » ; puis « moteur » retiré du message d'attente, et sur écran tactile, mots du
+  lexique en couleur de lien et petits liens dans le texte avec une zone à toucher agrandie. (Fait aussi : « Intérêts de la dette de l'État » distingué
   des intérêts de toutes les administrations ; le vrai/faux sur les impôts donne la part des foyers qui paient l'impôt
   sur le revenu, 47,3 %.)
 - **Si la fréquentation augmente** (à soumettre au responsable) : la mémoire est déjà protégée, car un seul calcul de
