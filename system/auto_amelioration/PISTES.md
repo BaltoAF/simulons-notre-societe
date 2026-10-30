@@ -10,8 +10,9 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   modestes sur les effectifs officiels d'allocataires (DREES).
 - **« Revaloriser les pensions »** : la règle `retraites.revalorisation.pensions_base` n'est reliée à aucun calcul. La
   changer dans l'atelier ne change donc rien ; la relier (montant des pensions des ménages et de la population) ou le dire.
-- **À soumettre au responsable** : limiter le nombre de simulations de réforme simultanées si la fréquentation augmente
-  (le serveur de 4 Go met jusqu'à une minute et demie pour la première simulation).
+- **Si la fréquentation augmente** (à soumettre au responsable) : la mémoire est déjà protégée, car un seul calcul de
+  population tourne à la fois (`SOCIETE_WORKERS=1`) et les résultats identiques sont gardés en cache. Seule l'attente
+  s'allonge : passer alors au VPS-2 avec `SOCIETE_WORKERS=3`, ou dire au visiteur combien de calculs passent avant le sien.
 
 ## En bêta
 
