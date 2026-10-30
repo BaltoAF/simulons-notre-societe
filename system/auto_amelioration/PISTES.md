@@ -10,6 +10,10 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   modestes sur les effectifs officiels d'allocataires (DREES).
 - **« Revaloriser les pensions »** : la règle `retraites.revalorisation.pensions_base` n'est reliée à aucun calcul. La
   changer dans l'atelier ne change donc rien ; la relier (montant des pensions des ménages et de la population) ou le dire.
+- **Test Jacqueline, 2e passage** (notes 4 / 3,5 / 4 sur 5) : sur ordinateur, la colonne de la réforme défile avec la page
+  et laisse un vide à côté des résultats (la garder visible) ; sur téléphone, le bouton flottant « Voir les effets » peut
+  masquer « Supprimer ce changement » ; « vous payez un taux réduit » : donner le taux de CSG du foyer et dire « revenus
+  déclarés aux impôts » plutôt que « revenu fiscal de référence ».
 - **À soumettre au responsable** : limiter le nombre de simulations de réforme simultanées si la fréquentation augmente
   (le serveur de 4 Go met jusqu'à une minute et demie pour la première simulation).
 
