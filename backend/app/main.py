@@ -12,7 +12,7 @@ from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
-from . import auth, db, planificateur, vcs
+from . import auth, db, planificateur, retours, vcs
 from . import config
 from .config import FRONTEND_DIST, REFERENCE_SOCIETY_ID
 from .engine.household import Menage
@@ -28,6 +28,7 @@ log = logging.getLogger("societe")
 @asynccontextmanager
 async def lifespan(_app: FastAPI):
     db.init_db()
+    retours.init()
     store = get_store()
     vcs.ensure_reference(store)
     from .impacts.microsim import prechauffer
@@ -70,9 +71,20 @@ def meta():
     }
 
 
+# en-têtes ajoutés par un tunnel ou un proxy (Cloudflare…) : derrière eux, un visiteur extérieur arrive lui aussi de 127.0.0.1
+EN_TETES_PROXY = ("cf-connecting-ip", "x-forwarded-for", "forwarded", "x-real-ip")
+
+
 def _local_seulement(request: Request):
-    if request.client and request.client.host not in ("127.0.0.1", "::1", "localhost", "testclient"):
+    if any(h in request.headers for h in EN_TETES_PROXY) or (
+            request.client and request.client.host not in ("127.0.0.1", "::1", "localhost", "testclient")):
         raise HTTPException(403, "Réservé au Système")
+
+
+def _ip_visiteur(request: Request) -> str:
+    h = request.headers
+    return (h.get("cf-connecting-ip") or (h.get("x-forwarded-for") or "").split(",")[0].strip()
+            or (request.client.host if request.client else "inconnu"))
 
 
 @app.post("/api/admin/recharger")
@@ -768,6 +780,26 @@ def commentaires(cible_type: str, cible_id: str):
 @app.post("/api/commentaires")
 def commenter(body: CommentaireIn, user: dict = Depends(auth.require_user)):
     return vcs.add_comment(user, body.cible_type, body.cible_id, body.corps)
+
+
+# ───────────────────────── avis des visiteurs (auto-amélioration) ─────────────────────────
+class AvisIn(BaseModel):
+    categorie: str
+    texte: str = Field(max_length=5000)
+    page: str = ""
+    site_web: str = ""  # champ piège, invisible pour les humains
+
+
+@app.post("/api/avis")
+def donner_avis(body: AvisIn, request: Request):
+    """Dépôt d'un avis, sans compte. Il sera examiné par la tâche quotidienne d'auto-amélioration."""
+    return retours.deposer(body.categorie, body.texte, body.page, _ip_visiteur(request), body.site_web)
+
+
+@app.get("/api/avis/decisions")
+def avis_decisions(limit: int = 100):
+    """Ce que les avis ont changé : reformulations et décisions publiques (jamais le texte brut)."""
+    return retours.publics(min(limit, 300))
 
 
 # ───────────────────────── le Système ─────────────────────────

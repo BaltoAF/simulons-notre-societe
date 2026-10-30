@@ -5,6 +5,7 @@ import { api } from './lib/api'
 import { useApp } from './lib/state'
 import { Loading, useClickOutside } from './components/ui'
 import { Bienvenue } from './components/Bienvenue'
+import { DonnerAvis } from './components/DonnerAvis'
 import Accueil from './pages/Accueil'
 
 const MesDroits = lazy(() => import('./pages/MesDroits'))
@@ -27,6 +28,7 @@ const Fiabilite = lazy(() => import('./pages/Fiabilite'))
 const Comprendre = lazy(() => import('./pages/Comprendre'))
 const Connexion = lazy(() => import('./pages/Connexion'))
 const Glossaire = lazy(() => import('./pages/Glossaire'))
+const VosAvis = lazy(() => import('./pages/VosAvis'))
 
 function MenuPlus({ onVisite }: { onVisite: () => void }) {
   const [open, setOpen] = useState(false)
@@ -34,7 +36,7 @@ function MenuPlus({ onVisite }: { onVisite: () => void }) {
   const { pathname } = useLocation()
   useClickOutside(ref, () => setOpen(false))
   useEffect(() => setOpen(false), [pathname])
-  const actif = ['/regles', '/preuves', '/sources', '/systeme', '/methode', '/glossaire', '/fiabilite'].some((p) => pathname.startsWith(p))
+  const actif = ['/regles', '/preuves', '/sources', '/systeme', '/methode', '/glossaire', '/fiabilite', '/vos-avis'].some((p) => pathname.startsWith(p))
   return (
     <div className="popover-wrap" ref={ref}
       onKeyDown={(e) => { if (e.key === 'Escape' && open) { setOpen(false); (ref.current?.querySelector('button') as HTMLElement | null)?.focus() } }}
@@ -53,6 +55,7 @@ function MenuPlus({ onVisite }: { onVisite: () => void }) {
           <Link to="/glossaire">Le petit lexique<small>Tous les mots expliqués simplement</small></Link>
           <Link to="/sources">Les sources<small>Textes officiels, statistiques, études</small></Link>
           <Link to="/systeme">Les mises à jour automatiques<small>Comment la loi actuelle est tenue à jour (le « Système »)</small></Link>
+          <Link to="/vos-avis">Ce que vos avis ont changé<small>Chaque jour, le site s'améliore grâce à vos idées</small></Link>
         </div>
       )}
     </div>
@@ -112,6 +115,7 @@ function Footer() {
           <Link to="/methode">Méthode et indice de confiance</Link>
           <Link to="/sources">Registre des sources</Link>
           <Link to="/systeme">Journal des mises à jour</Link>
+          <Link to="/vos-avis">Ce que vos avis ont changé</Link>
           {meta && <span>Législation au {new Date(meta.date_reference).toLocaleDateString('fr-FR')} · moteur {meta.moteur.nom} {meta.moteur.version ?? ''}</span>}
         </div>
       </div>
@@ -167,11 +171,13 @@ export default function App() {
             <Route path="/comprendre/:id" element={<Comprendre />} />
             <Route path="/connexion" element={<Connexion />} />
             <Route path="/glossaire" element={<Glossaire />} />
+            <Route path="/vos-avis" element={<VosAvis />} />
             <Route path="*" element={<div className="container page"><h1>Page introuvable</h1><Link to="/">Retour à l'accueil</Link></div>} />
           </Routes>
         </Suspense>
       </main>
       <Footer />
+      <DonnerAvis />
     </>
   )
 }
