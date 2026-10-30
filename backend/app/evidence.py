@@ -189,13 +189,14 @@ def synthese(question: dict, store=None) -> dict:
         score = min(score, 49)  # deux études ne suffisent pas à atteindre « Élevé »
     sens = question.get("sens_attendu")
     disp_txt = f"{dispersion:.1f}".replace(".", ",")   # à la française
+    seuil_txt = str(seuil).replace(".", ",") if seuil else ""
     facteurs = [
         Facteur("Volume de preuves", f_vol,
                 f"{len(num)} estimation(s) chiffrée(s), soit l'équivalent de {n_eff:.1f} études indépendantes de même poids (6 ou plus = maximum)."),
         Facteur("Qualité des études", f_qual,
                 "Moyenne pondérée de la qualité : méta-analyses et expériences contrôlées comptent plus que les études descriptives ; la relecture par des pairs et le sérieux de l'éditeur aussi."),
         Facteur("Accord entre les études", f_acc,
-                (f"{accord_signe * 100:.0f} % du poids des études trouve un effet négligeable (entre −{seuil} et +{seuil} "
+                (f"{accord_signe * 100:.0f} % du poids des études trouve un effet négligeable (entre −{seuil_txt} et +{seuil_txt} "
                  f"{question.get('unite') or ''}) ; la fourchette plausible (10e-90e percentile) fait {disp_txt} fois "
                  f"la largeur de cette zone." if negligeable else
                  f"{accord_signe * 100:.0f} % du poids des études va dans le même sens que la valeur retenue ; "

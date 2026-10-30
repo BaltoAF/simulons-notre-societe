@@ -17,7 +17,7 @@ type Reference = {
 type Vue = { genere_le: string | null; references: Reference[]; bilan: Record<'concordant' | 'proche' | 'ecart', number> }
 
 const VERDICT = {
-  concordant: { txt: 'Concordant', cls: 'gain', Icone: CheckCircle2, aide: "moins de 15 % d'écart, ou moins de 0,2 milliard d'écart (petites mesures), ou dans la fourchette officielle" },
+  concordant: { txt: 'Concordant', cls: 'gain', Icone: CheckCircle2, aide: "moins de 15 % d'écart, ou 0,2 milliard d'écart au plus (petites mesures), ou à moins de 10 % des bornes de la fourchette officielle" },
   proche: { txt: 'Proche', cls: 'warn', Icone: CircleDot, aide: 'entre 15 et 35 % d\'écart' },
   ecart: { txt: 'Écart', cls: 'loss', Icone: CircleAlert, aide: 'plus de 35 % d\'écart, ou pas le même sens' },
 }
@@ -28,9 +28,10 @@ function res_raison(r: Reference): string {
   if (r.fourchette_md) {
     const [bas, haut] = [...r.fourchette_md].sort((a, b) => a - b)
     const marge = 0.1 * Math.max(Math.abs(bas), Math.abs(haut))
-    if (res.simule_md >= bas - marge && res.simule_md <= haut + marge) return ' Concordant : dans la fourchette officielle.'
+    if (res.simule_md >= bas && res.simule_md <= haut) return ' Concordant : dans la fourchette officielle.'
+    if (res.simule_md >= bas - marge && res.simule_md <= haut + marge) return ' Concordant : hors de la fourchette officielle, mais à moins de 10 % de ses bornes.'
   }
-  if (Math.abs(res.simule_md - res.officiel_md) <= 0.2) return " Concordant : moins de 0,2 milliard d'écart."
+  if (Math.abs(res.simule_md - res.officiel_md) <= 0.2) return " Concordant : 0,2 milliard d'écart au plus (petite mesure)."
   return ''
 }
 
@@ -39,7 +40,15 @@ const PERIMETRE: Record<string, string> = {
 }
 
 /** « Rapporte 7,2 milliards € » / « Coûte 13,5 milliards € » */
-const montant = (v: number) => `${v >= 0 ? 'Rapporte' : 'Coûte'} ${nombre(Math.abs(v), Math.abs(v) < 10 ? 1 : 0)} milliard${Math.abs(v) >= 2 ? 's' : ''} €`
+// une décimale jusqu'à 100 milliards : sinon « coûte 11 » semble hors d'une fourchette « 12,3 à 14,6 » qu'il touche presque
+const montant = (v: number) => `${v >= 0 ? 'Rapporte' : 'Coûte'} ${nombre(Math.abs(v), Math.abs(v) < 100 ? 1 : 0)} milliard${Math.abs(v) >= 2 ? 's' : ''} €`
+// la fourchette dans les mêmes mots que les montants (pas « −15,7 à −10 » à côté de « coûte 13 »)
+function fourchette(f: [number, number]): string {
+  const [bas, haut] = [...f].sort((a, b) => a - b)
+  if (haut <= 0) return `coût entre ${nombre(Math.abs(haut), 1)} et ${nombre(Math.abs(bas), 1)} milliards €`
+  if (bas >= 0) return `rapport entre ${nombre(bas, 1)} et ${nombre(haut, 1)} milliards €`
+  return `entre ${nombre(bas, 1)} et ${nombre(haut, 1)} milliards €`
+}
 
 export default function Fiabilite() {
   const { data, loading, error } = useFetch<Vue>('/api/etalonnage')
@@ -82,7 +91,7 @@ export default function Fiabilite() {
                 <div>
                   <div className="kpi-label">Chiffrage officiel ({r.annee})</div>
                   <div style={{ fontWeight: 700 }}>{montant(r.valeur_md)} par an</div>
-                  {r.fourchette_md && <div className="small muted">fourchette : {nombre(r.fourchette_md[0], 1)} à {nombre(r.fourchette_md[1], 1)} milliards €</div>}
+                  {r.fourchette_md && <div className="small muted">fourchette officielle : {fourchette(r.fourchette_md)}</div>}
                   <div className="small muted">{PERIMETRE[r.perimetre] ?? r.perimetre}</div>
                 </div>
                 <div>
@@ -93,7 +102,7 @@ export default function Fiabilite() {
                       {/* en mots : « le site trouve 1,2 milliard de plus » (un signe seul se lisait à l'envers pour un coût) */}
                       <div className="small muted">{(() => {
                         const res = r.resultat!, d = Math.abs(res.simule_md) - Math.abs(res.officiel_md)
-                        const md = `${nombre(Math.abs(d), 1)} milliard${Math.abs(d) >= 2 ? 's' : ''} €`
+                        const md = `${nombre(Math.abs(d), Math.abs(d) < 1 ? 2 : 1)} milliard${Math.abs(d) >= 2 ? 's' : ''} €`
                         const pct = res.ecart_pct != null ? ` (${nombre(Math.abs(res.ecart_pct), 0)} %)` : ''
                         return Math.abs(d) < 0.05 ? "Même montant que le chiffrage officiel." : `Le site trouve ${md}${pct} ${d > 0 ? 'de plus' : 'de moins'} que le chiffrage officiel.`
                       })()}

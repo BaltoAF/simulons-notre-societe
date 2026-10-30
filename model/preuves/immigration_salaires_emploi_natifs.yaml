@@ -5,10 +5,10 @@ question:
   unite: pourcent
   regles_liees: []
   sens_attendu: ambigu
-  # au-dessous de 1 % de variation du salaire pour un point d'immigrés en plus, l'effet est tenu pour négligeable (convention
+  # au-dessous de 0,5 % de variation du salaire pour un point d'immigrés en plus, l'effet est tenu pour négligeable (convention
   # du site, choisie parce que l'incertitude propre à chaque étude est de cet ordre) : l'accord entre études se mesure
   # alors sur ce seuil, et non sur l'écart à une valeur retenue très proche de zéro
-  seuil_negligeable: 1
+  seuil_negligeable: 0.5
   estimations:
     - source: ortega-verdugo-2014-labeco
       valeur: 0.33
