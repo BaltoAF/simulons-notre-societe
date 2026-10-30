@@ -2,7 +2,12 @@
 # requête vient de l'extérieur, et les routes réservées au Système restent fermées.
 {$DOMAINE} {
 	encode gzip
-	reverse_proxy site:8000
+	reverse_proxy site:8000 {
+		# pendant une mise en ligne, le site redémarre quelques secondes : Caddy fait patienter la page au lieu
+		# d'afficher une erreur 502
+		lb_try_duration 60s
+		lb_try_interval 500ms
+	}
 	header {
 		Strict-Transport-Security "max-age=31536000"
 		X-Content-Type-Options "nosniff"
