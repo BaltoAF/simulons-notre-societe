@@ -6,7 +6,7 @@ export type InfoMission = { nom: string; description: string; mots?: string; ver
 export const MISSIONS: Record<string, InfoMission> = {
   remboursements_degrevements: { nom: 'Impôts rendus aux contribuables', description: 'Trop-perçus remboursés, crédits d\'impôt (emploi à domicile, garde d\'enfants…)', mots: 'remboursements crédit impôt',
     verrou: 'Ce montant découle des règles fiscales (taux, crédits d\'impôt) : il ne se décide pas comme une dépense. Pour le changer, modifiez les règles d\'impôt elles-mêmes.' },
-  engagements_financiers_etat: { nom: 'Intérêts de la dette', description: 'Intérêts de la seule dette de l\'État, prévus au budget de l\'année. Ceux de toutes les administrations publiques (avec la Sécurité sociale et les collectivités), cités ailleurs sur le site, sont un peu plus élevés.', mots: 'dette emprunt intérêts',
+  engagements_financiers_etat: { nom: "Intérêts de la dette de l'État", description: 'Intérêts de la seule dette de l\'État, prévus au budget de l\'année. Ceux de toutes les administrations publiques (avec la Sécurité sociale et les collectivités), cités ailleurs sur le site, sont un peu plus élevés.', mots: 'dette emprunt intérêts',
     verrou: 'Ce sont les intérêts de l\'argent déjà emprunté : l\'État doit les payer, sinon plus personne ne lui prêterait. Pour les réduire, il faut emprunter moins, donc réduire le déficit.' },
   enseignement_scolaire: { nom: 'École, collège, lycée', description: 'Enseignants, écoles, collèges et lycées publics et privés sous contrat', mots: 'éducation école professeurs élèves' },
   defense: { nom: 'Défense', description: 'Armées, équipements militaires, opérations extérieures', mots: 'armée militaire' },

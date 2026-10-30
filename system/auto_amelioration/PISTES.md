@@ -15,9 +15,9 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   d'auto-entrepreneur, les aides annoncées en tête de « Mes droits », âge et salaire non pré-remplis, prime d'activité
   expliquée simplement, « Pourquoi ce montant ? » à 44 px ; « Le budget » commence par « Sur 100 € d'argent public » en
   mots courants (retraites, santé, école…) et met « Et vous ? » en premier, sans « cadenas » ni « COFOG ». Reste :
-  « MSA », « moteur » ; mots du lexique trop petits à toucher ; intérêts de la dette 65 Md€ (Comprendre) contre 60 Md€
-  (Budget) à expliquer ; vrai/faux « la moitié des Français ne paie pas d'impôts » : donner la part qui ne paie pas
-  l'impôt sur le revenu.
+  « MSA », « moteur » ; mots du lexique trop petits à toucher. (Fait aussi : « Intérêts de la dette de l'État » distingué
+  des intérêts de toutes les administrations ; le vrai/faux sur les impôts donne la part des foyers qui paient l'impôt
+  sur le revenu, 47,3 %.)
 - **Si la fréquentation augmente** (à soumettre au responsable) : la mémoire est déjà protégée, car un seul calcul de
   population tourne à la fois (`SOCIETE_WORKERS=1`) et les résultats identiques sont gardés en cache. Seule l'attente
   s'allonge : passer alors au VPS-2 avec `SOCIETE_WORKERS=3`, ou dire au visiteur combien de calculs passent avant le sien.
