@@ -10,8 +10,17 @@ export const MISSIONS: { id: EtapeParcours; titre: string; detail: string; lien:
   { id: 'source', titre: "Vérifier d'où vient un chiffre", detail: 'Ouvrez une règle : le texte de loi, son historique, sa fiabilité.', lien: '/regles/r/travail.smic.horaire_brut', Icone: BadgeCheck },
 ]
 
+/** La règle à vérifier : une qui concerne le visiteur s'il a décrit son foyer (la CSG de sa pension, sa prime d'activité…). */
+function regleQuiVousConcerne(activites: string[]): string {
+  if (activites.includes('retraite')) return '/regles/r/fiscalite.csg.retraites_taux_plein'
+  if (activites.includes('salarie')) return '/regles/r/prestations.prime_activite.montant_forfaitaire'
+  if (activites.includes('chomeur')) return '/regles/r/travail.chomage.taux_remplacement'
+  return '/regles/r/travail.smic.horaire_brut'
+}
+
 export function ParcoursDecouverte() {
-  const { parcours, setParcours } = useApp()
+  const { parcours, setParcours, situation } = useApp()
+  const lien = (m: (typeof MISSIONS)[number]) => (m.id === 'source' ? regleQuiVousConcerne((situation?.adultes ?? []).map((a) => a.activite)) : m.lien)
   if (parcours.masque) return null
   const faites = MISSIONS.filter((m) => parcours.faites.includes(m.id)).length
   const suivante = MISSIONS.find((m) => !parcours.faites.includes(m.id))
@@ -36,7 +45,7 @@ export function ParcoursDecouverte() {
           const active = m === suivante
           return (
             <li key={m.id} className={faite ? 'faite' : active ? 'active' : ''}>
-              <Link to={m.lien} className="mission">
+              <Link to={lien(m)} className="mission">
                 <span className="mission-etat" aria-hidden="true">{faite ? <CheckCircle2 size={20} /> : <Circle size={20} />}</span>
                 <span className="grow">
                   <strong>{k + 1}. {m.titre}</strong>{faite && <span className="sr-only"> (fait)</span>}
@@ -55,8 +64,10 @@ export function ParcoursDecouverte() {
 /** En bas d'une page liée à une mission : « étape faite, voici la suivante », tant que le parcours n'est pas masqué. */
 export function ProchaineEtape({ apres }: { apres: EtapeParcours }) {
   const { parcours, setParcours } = useApp()
-  if (parcours.masque || !parcours.faites.includes(apres)) return null
+  // le message final ne s'affiche que sur la page de la dernière mission faite
+  const derniere = parcours.faites[parcours.faites.length - 1]
   const suivante = MISSIONS.find((m) => !parcours.faites.includes(m.id))
+  if (parcours.masque || !parcours.faites.includes(apres) || (!suivante && derniere !== apres)) return null
   const faites = MISSIONS.filter((m) => parcours.faites.includes(m.id)).length
   return (
     <div className="notice ok prochaine-etape" role="status">

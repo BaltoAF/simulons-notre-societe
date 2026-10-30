@@ -139,7 +139,8 @@ export function situationVersMenage(s: SituationSaisie) {
       activite: a.activite,
       cadre: a.cadre,
       handicap: a.handicap,
-      salaire_net_mensuel: a.activite === 'salarie' ? a.montant_net : 0,
+      // un petit boulot d'étudiant est un salaire (le statut d'étudiant reste transmis : il conditionne la prime d'activité)
+      salaire_net_mensuel: a.activite === 'salarie' || a.activite === 'etudiant' ? a.montant_net : 0,
       chomage_net_mensuel: a.activite === 'chomeur' ? a.montant_net : 0,
       retraite_nette_mensuelle: a.activite === 'retraite' ? a.montant_net : 0,
     })),
@@ -171,8 +172,9 @@ export function resumeSituation(s: SituationSaisie): string {
   const foyer = s.adultes.length > 1 ? `couple ${s.couple === 'marie' ? 'marié' : s.couple === 'pacse' ? 'pacsé' : 'en union libre'}` : 'personne seule'
   const enfants = s.enfants.length ? `, ${s.enfants.length} enfant${s.enfants.length > 1 ? 's' : ''} (${s.enfants.join(' et ')} ans)` : ''
   const nature: Record<string, string> = { salarie: 'salaire', chomeur: 'chômage', retraite: 'retraite', etudiant: 'étudiant', inactif: 'sans activité' }
-  const revenus = s.adultes.map((a) => (['salarie', 'chomeur', 'retraite'].includes(a.activite) ? `${nature[a.activite]} ${euros(a.montant_net)}` : nature[a.activite])).join(' + ')
+  const revenus = s.adultes.map((a) => (['salarie', 'chomeur', 'retraite'].includes(a.activite) ? `${nature[a.activite]} ${euros(a.montant_net)} nets/mois`
+    : a.activite === 'etudiant' && a.montant_net > 0 ? `étudiant avec un petit boulot de ${euros(a.montant_net)} nets/mois` : nature[a.activite])).join(' + ')
   const logement: Record<string, string> = { locataire_prive: 'locataire', locataire_social: 'locataire HLM', proprietaire: 'propriétaire', heberge: 'hébergé' }
   const epargne = s.revenus_capital_annuels > 0 ? `, épargne rapportant ${euros(s.revenus_capital_annuels)} par an` : ''
-  return `${foyer}${enfants}, ${revenus} nets/mois${epargne}, ${logement[s.logement] ?? ''}`
+  return `${foyer}${enfants}, ${revenus}${epargne}, ${logement[s.logement] ?? ''}`
 }

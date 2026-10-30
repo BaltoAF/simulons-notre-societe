@@ -321,6 +321,8 @@ leviers:
     titre: "Base mensuelle de calcul des allocations familiales (BMAF)"
     explication: "Montant de référence : la plupart des prestations familiales sont exprimées en pourcentage de cette base."
     lecture: prestations_sociales.prestations_familiales.bmaf.bmaf
+    sources_officielles: [bo-instr-dss-2b-2026-46]
+    article: "Code de la sécurité sociale, art. L551-1 ; instruction n° DSS/2B/2026/46 du 20 mars 2026"
     type: nombre
     unite: euros
     bornes: [0, 1500]
@@ -364,9 +366,11 @@ leviers:
     domaine: prestations
     fichier: famille
     theme: Allocations familiales
-    titre: "Allocations familiales : plafond de revenus avant division par deux (2 enfants)"
-    explication: "Au-delà de ce revenu annuel, les allocations familiales sont divisées par deux (puis par quatre au-delà d'un second plafond)."
+    titre: "Allocations familiales : plafond de revenus de base avant division par deux"
+    explication: "Au-delà de ce revenu annuel, augmenté de 6 664 € par enfant à charge (soit 79 980 € pour deux enfants), les allocations familiales sont divisées par deux (puis par quatre au-delà d'un second plafond)."
     lecture: prestations_sociales.prestations_familiales.prestations_generales.af.af_cond_ress.plafond_tranche_1_base
+    sources_officielles: [bo-instr-dss-2b-2025-177]
+    article: "Code de la sécurité sociale, art. D521-3 ; instruction n° DSS/2B/2025/177 du 18 décembre 2025, annexe, I-1"
     type: nombre
     unite: euros
     bornes: [0, 300000]

@@ -38,21 +38,22 @@ export function ValueEditor({ rule, value, onChange }: { rule: Regle; value: Val
   const singulier: Record<string, string> = { ans: 'an', mois: 'mois', jours: 'jour', heures: 'heure', enfants: 'enfant', parts: 'part' }
   const unitaire = singulier[rule.unite]
   const pasPt = (hi - lo) <= 3 ? 0.1 : (hi - lo) <= 20 ? 0.5 : 1
+  const net = (v: number) => Math.round(v * 10000) / 10000 // 8,3 − 0,5 donne 7,800000000000001 en calcul flottant
   const rapides: [string, number][] = rule.unite === 'pourcent'
-    ? [[`−${nombre(pasPt, 1)} point`, borne(num - pasPt)], [`+${nombre(pasPt, 1)} point`, borne(num + pasPt)]]
-    : unitaire ? [[`−1 ${unitaire}`, borne(num - 1)], [`+1 ${unitaire}`, borne(num + 1)]]
+    ? [[`−${nombre(pasPt, 1)} point`, borne(net(num - pasPt))], [`+${nombre(pasPt, 1)} point`, borne(net(num + pasPt))]]
+    : unitaire ? [[`−1 ${unitaire}`, borne(net(num - 1))], [`+1 ${unitaire}`, borne(net(num + 1))]]
       : num !== 0 ? [['−10 %', borne(arrondi(num * 0.9))], ['−5 %', borne(arrondi(num * 0.95))], ['+5 %', borne(arrondi(num * 1.05))], ['+10 %', borne(arrondi(num * 1.1))]] : []
   return (
     <div>
       <div className="row" style={{ gap: 10 }}>
         <div className="input-suffix grow">
-          <input type="number" value={Number.isFinite(num) ? num : ''} step="any" aria-label={`Nouvelle valeur : ${rule.titre}`}
+          <input type="number" value={Number.isFinite(num) ? net(num) : ''} step="any" aria-label={`Nouvelle valeur : ${rule.titre}`}
             onChange={(e) => onChange(e.target.value === '' ? 0 : Number(e.target.value))} />
           <span className="suffix">{unite(rule.unite)}</span>
         </div>
       </div>
       <input type="range" min={lo} max={hi} step={step} value={Math.min(hi, Math.max(lo, num))}
-        onChange={(e) => onChange(Number(e.target.value))} aria-label={rule.titre} />
+        onChange={(e) => onChange(net(Number(e.target.value)))} aria-label={rule.titre} />
       <div className="row between small muted"><span>{fmt(lo, rule.unite)}</span><span>Aujourd'hui : {fmt(rule.valeur, rule.unite)}</span><span>{fmt(hi, rule.unite)}</span></div>
       {(rapides.length > 0 || num !== cur) && (
         <div className="row" style={{ gap: 6, marginTop: 6 }}>
@@ -93,7 +94,7 @@ export function BaremeEditor({ value, onChange }: { value: Tranche[]; onChange: 
 // règles rangées dans le budget mais qu'on cherche aussi par thème (l'hôpital est dans « La santé » pour tout le monde)
 const AUSSI_DANS: Record<string, string[]> = {
   sante: ['budget.secu.ondam.total'],
-  retraites: ['budget.secu.objectif_depenses.vieillesse'],
+  retraites: ['budget.secu.objectif_depenses.vieillesse', 'fiscalite.csg.retraites_taux_plein', 'fiscalite.impot_revenu.abattement_pensions.plafond'],
 }
 
 /** Fenêtre de recherche d'une règle à modifier. */

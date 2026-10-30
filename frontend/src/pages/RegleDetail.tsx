@@ -72,9 +72,8 @@ export default function RegleDetail() {
                 <div>{c.concordant ? 'Valeur confirmée par une seconde source indépendante' : 'Désaccord entre deux sources'} : {c.autre_source} donne {valeur(c.autre_valeur, r.unite, r.type)}.</div>
               </div>
             ))}
-            {r.note && (mission
-              ? <details className="curieux small" style={{ marginTop: 12 }}><summary>Notes techniques</summary><p className="muted">{r.note}</p></details>
-              : <p className="small muted" style={{ marginTop: 12 }}>{r.note}</p>)}
+            {/* les notes de vérification (dates de publication, sources relues…) intéressent les curieux, pas tout le monde */}
+            {r.note && <details className="curieux small" style={{ marginTop: 12 }}><summary>Notes de vérification</summary><p className="muted">{r.note}</p></details>}
             {r.virtuel && <div className="notice" style={{ marginTop: 12 }}>Ce dispositif n'existe pas aujourd'hui : il est proposé pour que chacun puisse l'essayer dans sa proposition et en mesurer les effets.</div>}
           </div>
 

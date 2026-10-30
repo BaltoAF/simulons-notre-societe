@@ -223,6 +223,12 @@ def main():
                 srcs.insert(0, registry.add_reference(item.get("title"), item.get("href")))
             valeurs.append({"depuis": date, "valeur": value, "sources": srcs})
 
+        # sources officielles vérifiées à la main (texte de loi, instruction) : ajoutées à la valeur en vigueur, pour
+        # qu'elles survivent à chaque régénération ; l'article précis aussi
+        if valeurs and lev.get("sources_officielles"):
+            valeurs[-1]["sources"] = list(dict.fromkeys(list(lev["sources_officielles"]) + valeurs[-1]["sources"]))
+        if valeurs and lev.get("article"):
+            valeurs[-1]["article"] = lev["article"]
         rule = {
             "id": lev["id"],
             "titre": lev["titre"],

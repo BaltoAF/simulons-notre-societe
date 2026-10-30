@@ -137,6 +137,12 @@ def vue_menage(store, m: Menage) -> dict:
                ("complement_familial", "Complément familial"), ("paje", "Prestation d'accueil du jeune enfant"),
                ("ars", "Allocation de rentrée scolaire"), ("asf", "Allocation de soutien familial"), ("bourses", "Bourses scolaires")]
               if g(k) > 0.5]
+    # retraites et allocations chômage : versées par des caisses publiques en échange des cotisations passées, ce sont aussi
+    # de l'argent public (sans elles, un retraité lisait « reçoit 0 € »)
+    for k, t, note in (("retraite_nette", "Retraite (caisses de retraite publiques)", "Financée par les cotisations de ceux qui travaillent aujourd'hui."),
+                       ("chomage_net", "Allocation chômage (assurance chômage)", "Financée par les cotisations sur les salaires.")):
+        if g(k) > 0.5:
+            recues.append({"id": k, "titre": t, "montant": g(k), "note": note})
     finance = []
     for f in nat["fonctions"]:
         if f.get("part"):

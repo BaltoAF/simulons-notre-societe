@@ -181,7 +181,7 @@ regles:
     valeurs:
       - depuis: "2021-08-22"
         valeur: 150000
-        sources: [vp-zfe-questions-reponses]
+        sources: [legi-cgct-l2213-4-1, vp-zfe-questions-reponses]
         article: "Loi n° 2021-1104 du 22 août 2021 (Climat et résilience)"
     tags: [zfe, qualite_air, mobilite]
     a_verifier: false

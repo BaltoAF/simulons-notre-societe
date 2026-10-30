@@ -57,10 +57,10 @@ regles:
         article: "Décret n° 2020-457 du 21 avril 2020 (SNBC 2)"
       - depuis: "2026-07-18"
         valeur: 262
-        sources: [eco-mte-snbc3-partie1, eco-mte-snbc-feuille-route, eco-bdt-snbc3-jo-2026]
+        sources: [legi-decret-2026-636, eco-mte-snbc3-partie1, eco-mte-snbc-feuille-route, eco-bdt-snbc3-jo-2026]
         article: "Décret n° 2026-636 du 16 juillet 2026 (JO du 18 juillet 2026, texte n° 8), art. 2"
     tags: [climat, budget_carbone, snbc, contrainte]
-    a_verifier: true
+    a_verifier: false
     note: "262 Mt/an selon le document de la SNBC 3, la page « feuille de route » du ministère et la Banque des Territoires (qui rend compte du décret) ; mais la page ministérielle « Suivi des émissions » affiche 261 Mt/an. Le texte du décret n'a pas pu être consulté pour trancher. Date « depuis » = publication au JO."
 
   - id: environnement_energie.budget_carbone.periode_2034_2038
@@ -72,10 +72,10 @@ regles:
     valeurs:
       - depuis: "2026-07-18"
         valeur: 194
-        sources: [eco-mte-snbc3-partie1, eco-mte-snbc-feuille-route, eco-bdt-snbc3-jo-2026]
+        sources: [legi-decret-2026-636, eco-mte-snbc3-partie1, eco-mte-snbc-feuille-route, eco-bdt-snbc3-jo-2026]
         article: "Décret n° 2026-636 du 16 juillet 2026 (JO du 18 juillet 2026, texte n° 8), art. 2"
     tags: [climat, budget_carbone, snbc, contrainte]
-    a_verifier: true
+    a_verifier: false
     note: "194 Mt/an selon le document de la SNBC 3, la page « feuille de route » et la Banque des Territoires ; la page ministérielle « Suivi des émissions » affiche 193 Mt/an. Texte du décret non consulté. Rythme de baisse visé : environ -5 % par an."
 
   # --- Tranches annuelles indicatives du 3e budget (période en cours) ---
@@ -410,7 +410,7 @@ regles:
     valeurs:
       - depuis: "2021-08-22"
         valeur: 2050
-        sources: [eco-mte-artificialisation-sols, eco-portail-artificialisation]
+        sources: [legi-loi-2021-1104-art-191, eco-mte-artificialisation-sols, eco-portail-artificialisation]
         article: "Loi « Climat et résilience » d'août 2021"
     tags: [artificialisation, zan, sols, biodiversite]
     a_verifier: false
@@ -425,7 +425,7 @@ regles:
     valeurs:
       - depuis: "2021-08-22"
         valeur: 50
-        sources: [eco-mte-artificialisation-sols, eco-portail-artificialisation]
+        sources: [legi-loi-2021-1104-art-191, eco-mte-artificialisation-sols, eco-portail-artificialisation]
         article: "Loi « Climat et résilience » d'août 2021, art. 194 (première tranche de dix années)"
     tags: [artificialisation, zan, sols, objectif_intermediaire]
     a_verifier: false

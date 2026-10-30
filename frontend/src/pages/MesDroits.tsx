@@ -9,6 +9,7 @@ import { resumeSituation, situationVersMenage, useApp, useFetch, type AdulteSais
 import { ConfidenceBadge, ErrorBox, Loading, Notice } from '../components/ui'
 import { DroitsNonMonetaires } from '../components/DroitsNonMonetaires'
 import { ProchaineEtape } from '../components/Parcours'
+import { OuJeMeSitue } from '../components/OuJeMeSitue'
 import { Terme } from '../components/Terme'
 import { PROFILS } from '../lib/profils'
 
@@ -18,10 +19,18 @@ type Resultat = {
   lignes: { id: string; libelle: string; montant: number; nature: string }[]
   confiance: Confiance
   decote_annuelle?: number
+  taux_csg_pension?: number | null
+}
+
+/** Le taux de CSG vraiment appliqué à une pension, dit en clair (il dépend du revenu du foyer). */
+function phraseCsgPension(t: number): string {
+  if (t < 1) return "Votre pension n'est soumise ni à la CSG, ni à la CRDS, ni à la Casa : les revenus de votre foyer sont sous le seuil d'exonération."
+  const nom = t < 5 ? 'le taux réduit (3,8 %)' : t < 7.5 ? 'le taux médian (6,6 %)' : 'le taux plein (8,3 %)'
+  return `Votre pension est soumise à la CSG à ${nom}, qui dépend du revenu de votre foyer, plus la CRDS et la Casa : c'est la différence entre votre pension brute et votre pension nette.`
 }
 
 const ADULTE: AdulteSaisie = { age: 35, activite: 'salarie', montant_net: 1600, cadre: false, handicap: false }
-const DEFAUT: SituationSaisie = { couple: 'seul', adultes: [ADULTE], enfants: [], logement: 'locataire_prive', loyer_mensuel: 600, zone: 2, revenus_capital_annuels: 0 }
+const DEFAUT: SituationSaisie = { couple: 'seul', adultes: [ADULTE], enfants: [], logement: 'locataire_prive', loyer_mensuel: 0, zone: 2, revenus_capital_annuels: 0 }
 
 // Règles qui « expliquent » chaque ligne du résultat.
 // À qui demander chaque aide (le site calcule des droits théoriques ; la demande se fait auprès de l'organisme)
@@ -51,6 +60,8 @@ const POURQUOI: Record<string, { regles: string[]; texte: ReactNode }> = {
 function Stepper({ step }: { step: number }) {
   const etapes = ['Votre foyer', 'Vos revenus', 'Votre logement']
   return (
+    <>
+    <div className="etape-mobile" aria-hidden="true">Étape {Math.min(step + 1, 3)} sur 3 : <strong>{etapes[Math.min(step, 2)]}</strong></div>
     <ol className="etapes" aria-label="Les étapes">
       {etapes.map((e, i) => (
         <li key={e} className={i < step ? 'fait' : i === step ? 'actif' : ''} aria-current={i === step ? 'step' : undefined}>
@@ -58,6 +69,7 @@ function Stepper({ step }: { step: number }) {
         </li>
       ))}
     </ol>
+    </>
   )
 }
 
@@ -151,6 +163,7 @@ export default function MesDroits() {
                   </div>
                   <ConfidenceBadge c={res.confiance} align="right" />
                 </div>
+                <OuJeMeSitue niveauVieMensuel={res.niveau_de_vie} />
                 <hr className="divider" />
                 {[['Vos revenus nets', revenus, 1], ['Aides et prestations', prest, 1], ['Impôts payés', prel, -1]].map(([titre, lignes, sg]) => (
                   (lignes as any[]).length > 0 && (
@@ -173,6 +186,7 @@ export default function MesDroits() {
                                   ? ((res.decote_annuelle ?? 0) > 0
                                     ? <>Votre impôt aurait été d'environ {euros(res.decote_annuelle!, 0)} par an, mais la <Terme id="decote">décote</Terme>, une réduction automatique pour les petits impôts, l'annule entièrement.</>
                                     : <>Le revenu du foyer est divisé en <Terme id="part_fiscale">parts</Terme> (une part par adulte, une demi-part par enfant) : par part, il reste sous le seuil où l'impôt commence.</>)
+                                  : l.id === 'retraite_nette' && res.taux_csg_pension != null ? phraseCsgPension(res.taux_csg_pension)
                                   : POURQUOI[l.id].texte}</p>
                                 <div className="small">Les règles qui fixent ce montant : {POURQUOI[l.id].regles.map((r, i) => <span key={r}>{i ? ' · ' : ''}<Link to={`/regles/r/${r}`}>{regles?.regles.find((x) => x.id === r)?.titre ?? r}</Link></span>)}</div>
                               </details>
@@ -303,11 +317,14 @@ export default function MesDroits() {
                       <option value="inactif">Sans activité</option>
                     </select></label>
                 </div>
-                {['salarie', 'chomeur', 'retraite'].includes(a.activite) && (
+                {['salarie', 'chomeur', 'retraite', 'etudiant'].includes(a.activite) && (
                   <label className="field">
-                    <span>{a.activite === 'salarie' ? 'Salaire net mensuel (avant impôt)' : a.activite === 'chomeur' ? 'Allocation chômage nette mensuelle' : 'Pension de retraite nette mensuelle'}</span>
+                    <span>{a.activite === 'salarie' ? 'Salaire net mensuel (avant impôt)' : a.activite === 'chomeur' ? 'Allocation chômage nette mensuelle'
+                      : a.activite === 'etudiant' ? "Salaire d'un petit boulot, net par mois (0 si vous n'en avez pas)" : 'Pension de retraite nette mensuelle'}</span>
                     <div className="input-suffix"><input type="number" min={0} step={50} value={a.montant_net} onChange={(e) => upA(i, { montant_net: Number(e.target.value) })} /><span className="suffix">€ / mois</span></div>
-                    <span className="hint">Le montant qui figure en bas de votre fiche de paie ou de votre relevé, avant prélèvement à la source.</span>
+                    <span className="hint">{a.activite === 'etudiant'
+                      ? "Une personne étudiante n'a droit à la prime d'activité que si elle gagne au moins 78 % du SMIC environ. Les bourses ne sont pas encore calculées par le site."
+                      : 'Le montant qui figure en bas de votre fiche de paie ou de votre relevé, avant prélèvement à la source.'}</span>
                   </label>
                 )}
                 <div className="row" style={{ gap: 18 }}>

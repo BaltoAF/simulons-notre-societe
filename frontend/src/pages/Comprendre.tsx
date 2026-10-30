@@ -1,18 +1,19 @@
 // « Les grandes questions » : comprendre la France en quelques chiffres officiels, expliqués simplement, puis agir
 // (calculer pour soi, tester une idée). Chaque chiffre vient d'une statistique du modèle, avec sa source.
-import { useEffect, useMemo, type ReactNode } from 'react'
+import { useEffect, useMemo, useState, type ReactNode } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { ArrowRight, Coins, ExternalLink, Hourglass, Info, Landmark, Leaf, TrendingDown, Users } from 'lucide-react'
-import type { Regle } from '../lib/api'
+import { ArrowRight, Briefcase, Coins, ExternalLink, GraduationCap, HeartPulse, Hourglass, Info, Landmark, Leaf, TrendingDown, Users } from 'lucide-react'
+import { api, type Regle } from '../lib/api'
 import { PRESETS, resoudrePreset } from '../lib/presets'
-import { QUESTIONS, formater, type Question } from '../lib/questions'
+import { QUESTIONS, VRAI_FAUX, formater, type Chiffre, type Question, type VraiFaux } from '../lib/questions'
 import { useApp, useFetch } from '../lib/state'
 import { ErrorBox, Loading } from '../components/ui'
+import { Terme } from '../components/Terme'
 import { ProchaineEtape } from '../components/Parcours'
 
 type Stat = { id: string; titre: string; unite: string; derniere: { date: string; valeur: number } | null; source: { id: string; titre?: string; editeur?: string; url?: string } | null }
 
-const ICONES: Record<string, typeof Info> = { Landmark, Coins, TrendingDown, Hourglass, Users, Leaf }
+const ICONES: Record<string, typeof Info> = { Landmark, Coins, TrendingDown, Hourglass, Users, Leaf, Briefcase, GraduationCap, HeartPulse }
 
 function Icone({ nom, size = 22 }: { nom: string; size?: number }) {
   const I = ICONES[nom] ?? Info
@@ -23,8 +24,12 @@ function Icone({ nom, size = 22 }: { nom: string; size?: number }) {
 function useChiffres(q: Question | undefined) {
   const ids = q?.chiffres.filter((c) => c.metrique).map((c) => c.metrique).join(',')
   const { data: stats, loading, error } = useFetch<{ metriques: Stat[] }>(ids ? `/api/metriques?ids=${ids}` : null)
-  const regleId = q?.chiffres.find((c) => c.regle)?.regle
-  const { data: regle } = useFetch<Regle>(regleId ? `/api/regles/${regleId}` : null)
+  const [regles, setRegles] = useState<Record<string, Regle>>({})
+  useEffect(() => {
+    const ids = (q?.chiffres ?? []).map((c) => c.regle).filter((x): x is string => !!x)
+    Promise.all(ids.map((id) => api<Regle>(`/api/regles/${id}`).then((r) => [id, r] as const).catch(() => null)))
+      .then((rs) => setRegles(Object.fromEntries(rs.filter((x): x is readonly [string, Regle] => !!x))))
+  }, [q])
   const valeurs = useMemo(() => {
     const v: Record<string, number> = {}
     if (!q) return v
@@ -32,26 +37,37 @@ function useChiffres(q: Question | undefined) {
       if (c.metrique) {
         const s = stats?.metriques.find((x) => x.id === c.metrique)
         if (s?.derniere) v[c.cle] = Number(s.derniere.valeur)
-      } else if (c.regle && regle && typeof regle.valeur === 'number') v[c.cle] = regle.valeur
+      } else if (c.regle && typeof regles[c.regle]?.valeur === 'number') v[c.cle] = regles[c.regle].valeur as number
     }
     for (const c of q.chiffres) if (c.calcul) { const x = c.calcul(v); if (x != null) v[c.cle] = x }
     return v
-  }, [q, stats, regle])
-  return { valeurs, stats: stats?.metriques ?? [], regle, loading, error }
+  }, [q, stats, regles])
+  return { valeurs, stats: stats?.metriques ?? [], regles, loading, error }
 }
 
-/** Remplace {cle} par le chiffre mis en forme (en gras). */
-function avecChiffres(texte: string, q: Question, v: Record<string, number>): ReactNode {
-  const morceaux = texte.split(/(\{[a-z_]+\})/)
+/** Remplace {cle} par le chiffre mis en forme (en gras) ; le mot « PIB » est expliqué au survol. */
+function avecChiffres(texte: string, q: Question, v: Record<string, number>, gras = true): ReactNode {
+  const morceaux = texte.split(/(\{[a-z0-9_]+\})/)
+  let pibExplique = false
   return morceaux.map((m, i) => {
-    const cle = m.match(/^\{([a-z_]+)\}$/)?.[1]
-    if (!cle) return <span key={i}>{m}</span>
-    const c = q.chiffres.find((x) => x.cle === cle)
-    return <strong key={i}>{c && v[cle] != null ? formater(v[cle], c.format, c.absolu) : '…'}</strong>
+    const cle = m.match(/^\{([a-z0-9_]+)\}$/)?.[1]
+    const txt = cle ? (() => { const c = q.chiffres.find((x) => x.cle === cle); return c && v[cle] != null ? formater(v[cle], c.format, c.absolu) : '…' })() : m
+    const parts = txt.split(/(PIB)/)
+    const rendu = parts.map((p, k) => (p === 'PIB' && !pibExplique ? ((pibExplique = true), <Terme key={k} id="pib">PIB</Terme>) : p))
+    return cle && gras ? <strong key={i}>{rendu}</strong> : <span key={i}>{rendu}</span>
   })
 }
 
 function Liste() {
+  // les chiffres cités dans les accroches, lus en une seule requête
+  const cites = QUESTIONS.flatMap((q) => (q.accroche.match(/\{([a-z0-9_]+)\}/g) ?? []).map((k) => q.chiffres.find((c) => c.cle === k.slice(1, -1))))
+  const ids = [...new Set(cites.map((c) => c?.metrique).filter(Boolean))].join(',')
+  const { data } = useFetch<{ metriques: Stat[] }>(ids ? `/api/metriques?ids=${ids}` : null)
+  const accroche = (q: Question) => q.accroche.replace(/\{([a-z0-9_]+)\}/g, (_, k: string) => {
+    const c = q.chiffres.find((x) => x.cle === k)
+    const m = data?.metriques.find((x) => x.id === c?.metrique)
+    return c && m?.derniere ? formater(Number(m.derniere.valeur), c.format, c.absolu) : '…'
+  })
   return (
     <div className="container page" style={{ maxWidth: 1000 }}>
       <h1>Les grandes questions</h1>
@@ -63,19 +79,92 @@ function Liste() {
               <span className="question-icone"><Icone nom={q.icone} /></span>
               <span>
                 <h2 style={{ fontSize: '1.15rem', margin: '0 0 4px' }}>{q.titre}</h2>
-                <span className="small ink2">{q.accroche.replace(/\{[a-z_]+\}/g, '…')}</span>
+                <span className="small ink2">{accroche(q)}</span>
                 <span className="small" style={{ display: 'block', marginTop: 6, fontWeight: 650, color: 'var(--primary)' }}>Lire la réponse <ArrowRight size={13} /></span>
               </span>
             </div>
           </Link>
         ))}
       </div>
+      <VraiOuFaux />
+    </div>
+  )
+}
+
+/** Valeurs d'une liste de chiffres (statistiques lues d'un coup, puis calculs). */
+function useValeurs(chiffres: Chiffre[]) {
+  const ids = [...new Set(chiffres.map((c) => c.metrique).filter(Boolean))].join(',')
+  const { data } = useFetch<{ metriques: Stat[] }>(ids ? `/api/metriques?ids=${ids}` : null)
+  return useMemo(() => {
+    const v: Record<string, number> = {}
+    for (const c of chiffres) {
+      const m = data?.metriques.find((x) => x.id === c.metrique)
+      if (m?.derniere) v[c.cle] = Number(m.derniere.valeur)
+    }
+    for (const c of chiffres) if (c.calcul) { const x = c.calcul(v); if (x != null) v[c.cle] = x }
+    return { v, sources: [...new Set((data?.metriques ?? []).map((m) => m.source?.editeur).filter(Boolean))] as string[] }
+  }, [chiffres, data])
+}
+
+const VERDICTS = { vrai: { txt: 'Vrai', cls: 'gain' }, faux: { txt: 'Faux', cls: 'loss' }, nuance: { txt: "C'est plus compliqué", cls: 'warn' } }
+
+function CarteVraiFaux({ c }: { c: VraiFaux }) {
+  const [vu, setVu] = useState(false)
+  const { v, sources } = useValeurs(c.chiffres)
+  const q = { chiffres: c.chiffres } as Question
+  return (
+    <div className="card vrai-faux">
+      <p style={{ fontWeight: 700, fontSize: '1.05rem', margin: '0 0 10px' }}>« {c.affirmation} »</p>
+      {!vu ? <button className="btn" onClick={() => setVu(true)} aria-expanded={false}>Vrai ou faux ? Voir la réponse</button> : (
+        <div role="status">
+          <span className={`badge ${VERDICTS[c.verdict].cls}`} style={{ fontSize: '.9rem' }}>{VERDICTS[c.verdict].txt}</span>
+          <p style={{ margin: '8px 0 6px' }}>{avecChiffres(c.explication, q, v)}</p>
+          <div className="small muted">{sources.length > 0 && <>Sources : {sources.join(', ')}. </>}{c.lien && <Link to={c.lien.lien!}>{c.lien.libelle} →</Link>}</div>
+        </div>
+      )}
+    </div>
+  )
+}
+
+function VraiOuFaux() {
+  return (
+    <section style={{ marginTop: 28 }}>
+      <h2 style={{ fontSize: '1.3rem' }}>Vrai ou faux ?</h2>
+      <p className="ink2" style={{ marginTop: 0 }}>Des idées qu'on entend souvent, vérifiées avec les chiffres officiels. Faites-vous votre avis avant de regarder la réponse.</p>
+      <div className="grid cols-2">{VRAI_FAUX.map((c) => <CarteVraiFaux key={c.id} c={c} />)}</div>
+    </section>
+  )
+}
+
+type Fonction = { id: string; titre: string; md: number; description?: string }
+
+/** « Sur 100 € d'argent public » : la dépense publique répartie par grand domaine (comptes des administrations, Eurostat/Insee). */
+function Sur100() {
+  const { data } = useFetch<{ fonctions: Fonction[]; total_fonctions: number }>('/api/budget/national')
+  if (!data?.fonctions?.length) return null
+  const total = data.fonctions.reduce((a, f) => a + f.md, 0)
+  const max = Math.max(...data.fonctions.map((f) => f.md))
+  return (
+    <div className="card" style={{ marginTop: 16 }}>
+      <h2 style={{ fontSize: '1.2rem', marginTop: 0 }}>Sur 100 € d'argent public</h2>
+      <ul className="list">
+        {data.fonctions.map((f) => (
+          <li key={f.id}>
+            <div className="row between" style={{ flexWrap: 'nowrap', gap: 10 }}>
+              <span><strong>{f.titre}</strong>{f.description && <span className="small muted"> — {f.description}</span>}</span>
+              <strong style={{ whiteSpace: 'nowrap' }}>{Math.round((f.md / total) * 100)} €</strong>
+            </div>
+            <div className="bar-track" style={{ height: 8 }}><div className="bar-fill" style={{ width: `${(f.md / max) * 100}%` }} /></div>
+          </li>
+        ))}
+      </ul>
+      <p className="small muted" style={{ marginBottom: 0 }}>Toutes les administrations (État, Sécurité sociale, collectivités), par grand domaine. « Protection sociale » regroupe surtout les retraites, mais aussi les allocations familiales, le chômage et les aides. Source : Eurostat et Insee.</p>
     </div>
   )
 }
 
 function Detail({ q }: { q: Question }) {
-  const { valeurs, stats, regle, loading, error } = useChiffres(q)
+  const { valeurs, stats, regles: reglesCitees, loading, error } = useChiffres(q)
   const { marquer, setDraft } = useApp()
   const nav = useNavigate()
   const { data: regles } = useFetch<{ regles: Regle[] }>(q.actions.some((a) => a.preset) ? '/api/regles?simulable=true&limit=2000' : null)
@@ -104,6 +193,13 @@ function Detail({ q }: { q: Question }) {
         </div>
       </div>
 
+      {q.enBref && (
+        <div className="card en-bref" style={{ marginTop: 14 }}>
+          <div className="kpi-label">En bref</div>
+          <p style={{ margin: '4px 0 0', fontSize: '1.1rem' }}>{avecChiffres(q.enBref, q, valeurs)}</p>
+        </div>
+      )}
+
       {loading ? <Loading /> : (
         <div className="grid cols-3" style={{ margin: '18px 0' }}>
           {visibles.map((c) => {
@@ -121,7 +217,7 @@ function Detail({ q }: { q: Question }) {
                   {s?.source ? (s.source.url
                     ? <a href={s.source.url} target="_blank" rel="noreferrer">{s.source.editeur ?? s.source.titre} <ExternalLink size={11} /></a>
                     : <Link to={`/sources/${s.source.id}`}>{s.source.editeur ?? s.source.titre}</Link>)
-                    : c.regle && regle ? <Link to={`/regles/r/${regle.id}`}>la règle et son texte officiel</Link> : null}
+                    : c.regle && reglesCitees[c.regle] ? <Link to={`/regles/r/${c.regle}`}>la règle et son texte officiel</Link> : null}
                 </div>
               </div>
             )
@@ -134,6 +230,8 @@ function Detail({ q }: { q: Question }) {
         {q.texte.map((t, k) => <p key={k} style={{ fontSize: '1.05rem' }}>{avecChiffres(t, q, valeurs)}</p>)}
         {q.aSavoir && <div className="notice small"><Info size={16} style={{ flexShrink: 0 }} /><div>{q.aSavoir}</div></div>}
       </div>
+
+      {q.id === 'depenses-publiques' && <Sur100 />}
 
       <div className="card soft" style={{ marginTop: 16 }}>
         <h2 style={{ fontSize: '1.15rem', marginTop: 0 }}>Et vous ?</h2>

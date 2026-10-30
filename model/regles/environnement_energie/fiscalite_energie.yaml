@@ -27,7 +27,7 @@ regles:
         article: "Loi de finances pour 2018"
     tags: [fiscalite_ecologique, carbone, accises]
     a_verifier: false
-    note: "Le guide ministériel 2026 qualifie cette composante d'« informelle » : elle a servi à fixer les tarifs d'accise entre 2014 et 2018, puis « le Gouvernement a décidé de maintenir les tarifs de l'accise sur les énergies aux niveaux de 2018 ». Aucune hausse depuis. Mise en place au 1er avril 2014 selon le ministère (« 2014 (1er avril) ») ; dates des années suivantes retenues au 1er janvier par convention."
+    note: "Aucun texte officiel en vigueur ne fixe ce montant (vérification du 30/10/2026) : la composante carbone a été figée en 2018 et n'existe plus que dans le calcul des accises ; seul le guide du ministère donne ce chiffre. Le guide ministériel 2026 qualifie cette composante d'« informelle » : elle a servi à fixer les tarifs d'accise entre 2014 et 2018, puis « le Gouvernement a décidé de maintenir les tarifs de l'accise sur les énergies aux niveaux de 2018 ». Aucune hausse depuis. Mise en place au 1er avril 2014 selon le ministère (« 2014 (1er avril) ») ; dates des années suivantes retenues au 1er janvier par convention."
 
   - id: environnement_energie.composante_carbone.objectif_legal_2030
     titre: "Composante carbone : valeur cible pour 2030 fixée par la loi de transition énergétique"
@@ -57,7 +57,7 @@ regles:
         article: "Code des impositions sur les biens et services, art. L312-35"
       - depuis: "2025-08-01"
         valeur: 60.75
-        sources: [mte-guide-fiscalite-energies-2026]
+        sources: [legi-arrete-2022-12-13-tarifs-cibs, mte-guide-fiscalite-energies-2026]
         article: "Code des impositions sur les biens et services, art. L312-35"
     tags: [accises, carburants, gazole]
     a_verifier: false
@@ -71,12 +71,12 @@ regles:
     bornes: [0, 150]
     valeurs:
       - depuis: "2025-08-01"
-        valeur: 67.50
-        sources: [mte-guide-fiscalite-energies-2026]
-        article: "Code des impositions sur les biens et services, art. L312-83 (tarif particulier SP95-E10)"
+        valeur: 67.02
+        sources: [legi-arrete-2022-12-13-tarifs-cibs, mte-guide-fiscalite-energies-2026]
+        article: "CIBS, art. L312-79 (tableau : SP95-E10 75,397 €/MWh) et L312-83 ; arrêté du 13 décembre 2022 modifié, art. 2-12"
     tags: [accises, carburants, essence]
     a_verifier: false
-    note: "Valeur en €/hl lue dans l'annexe 3 du guide 2026 (« situation au 1er février 2026 » et au 1er août 2026). En €/MWh : 74,576 jusqu'au 31 juillet 2025, 75,397 depuis le 1er août 2025 ; l'équivalent en €/hl avant août 2025 n'est pas publié dans le guide et n'est donc pas historisé."
+    note: "Valeur corrigée le 30/10/2026 : 67,02 €/hl d'après l'arrêté du 13 décembre 2022 modifié (art. 2-12), qui correspond aux 75,397 €/MWh de l'article L312-79 du CIBS ; le guide 2026 du ministère indiquait 67,50 €/hl. Ancienne note : valeur en €/hl lue dans l'annexe 3 du guide 2026 (« situation au 1er février 2026 » et au 1er août 2026). En €/MWh : 74,576 jusqu'au 31 juillet 2025, 75,397 depuis le 1er août 2025 ; l'équivalent en €/hl avant août 2025 n'est pas publié dans le guide et n'est donc pas historisé."
 
   - id: environnement_energie.accise.sp95_e5_sp98
     titre: "Accise sur les supercarburants SP95-E5 et SP98 (métropole, hors Corse)"
@@ -87,7 +87,7 @@ regles:
     valeurs:
       - depuis: "2025-08-01"
         valeur: 69.02
-        sources: [mte-guide-fiscalite-energies-2026]
+        sources: [legi-arrete-2022-12-13-tarifs-cibs, mte-guide-fiscalite-energies-2026]
         article: "Code des impositions sur les biens et services, art. L312-35 (catégorie des essences)"
     tags: [accises, carburants, essence]
     a_verifier: false
@@ -112,7 +112,8 @@ regles:
         sources: [mte-guide-fiscalite-energies-2026, cre-trve-comprendre]
       - depuis: "2026-08-01"
         valeur: 30.62
-        sources: [mte-guide-fiscalite-energies-2026]
+        sources: [legi-arrete-2022-12-13-tarifs-cibs, mte-guide-fiscalite-energies-2026]
+        article: "CIBS, art. L312-37 (tarif normal 24,69 €/MWh du 1er août 2026 au 31 janvier 2027, loi n° 2026-103, art. 71) et art. L312-37-1 (majoration ZNI 5,93 €/MWh)"
     tags: [accises, electricite, menages]
     a_verifier: false
     note: "Tarifs normaux de l'article L312-37 du CIBS (guide 2026, p. 35). Réforme au 1er août 2025 : le tarif inclut une majoration finançant les zones non interconnectées (5,66 €/MWh au 1er février 2026, 5,93 €/MWh au 1er août 2026)."
@@ -136,7 +137,8 @@ regles:
         sources: [mte-guide-fiscalite-energies-2026, cre-trve-comprendre]
       - depuis: "2026-08-01"
         valeur: 26.35
-        sources: [mte-guide-fiscalite-energies-2026]
+        sources: [legi-arrete-2022-12-13-tarifs-cibs, mte-guide-fiscalite-energies-2026]
+        article: "CIBS, art. L312-37 (catégorie « entreprises et assimilées » : 20,42 €/MWh du 1er août 2026 au 31 janvier 2027) et L312-37-1 (majoration 5,93 €/MWh)"
     tags: [accises, electricite, entreprises]
     a_verifier: false
     note: "Haute puissance (> 250 kVA) : 22,50 €/MWh."
@@ -154,7 +156,8 @@ regles:
         article: "Code des impositions sur les biens et services, art. L312-35 et L312-37-1"
       - depuis: "2026-08-01"
         valeur: 16.66
-        sources: [mte-guide-fiscalite-energies-2026]
+        sources: [legi-arrete-2022-12-13-tarifs-cibs, mte-guide-fiscalite-energies-2026]
+        article: "CIBS, art. L312-36 (10,73 €/MWh, loi n° 2026-103, art. 71) et L312-37-1 (majoration 5,93 €/MWh)"
     tags: [accises, gaz, chauffage]
     a_verifier: false
     note: "Valeurs de l'annexe 3 du guide 2026 (situations au 1er février et au 1er août 2026), incluant la majoration de financement des zones non interconnectées."

@@ -319,7 +319,7 @@ regles:
         sources: [rc-secu-comite-alerte]
       - depuis: "2013-01-01"
         valeur: 0.5
-        sources: [rc-secu-comite-alerte, rc-comite-alerte-avis-2026-1, rc-comite-alerte-avis-2026-2]
+        sources: [legi-css-d114-4-0-17, rc-secu-comite-alerte, rc-comite-alerte-avis-2026-1, rc-comite-alerte-avis-2026-2]
         article: "Code de la sécurité sociale, art. L114-4-1 et D. 114-4-0-17"
     tags: [ondam, securite_sociale, comite_alerte]
     a_verifier: false
@@ -334,7 +334,7 @@ regles:
     valeurs:
       - depuis: "2026-06-25"
         valeur: 1
-        sources: [rc-comite-alerte-avis-2026-2, rc-secu-comite-alerte]
+        sources: [legi-css-l114-4-1, rc-comite-alerte-avis-2026-2, rc-secu-comite-alerte]
         article: "Code de la sécurité sociale, art. L114-4-1"
     tags: [ondam, securite_sociale, comite_alerte]
     a_verifier: false

@@ -27,7 +27,7 @@ type National = {
 }
 type VueMenage = {
   paye: { id: string; titre: string; montant: number; nature: string; note?: string }[]; total_paye: number
-  cotisations_employeur: number; recu: { id: string; titre: string; montant: number }[]; total_recu: number
+  cotisations_employeur: number; recu: { id: string; titre: string; montant: number; note?: string }[]; total_recu: number
   finance: { id: string; titre: string; montant: number; description: string; detail?: { titre: string; montant: number }[] }[]
   revenu_disponible: number; depense_publique_moyenne_foyer: number; personnes: number; note: string
 }
@@ -214,10 +214,11 @@ export default function Budget() {
             {m.cotisations_employeur > 0 && <div className="small muted">En plus, l'employeur verse {euros(m.cotisations_employeur)} de cotisations patronales sur les salaires.</div>}
           </div>
           <div className="card">
-            <div className="kpi-label">… et reçoit en prestations</div>
+            <div className="kpi-label">… et reçoit de l'argent public</div>
             <div className="kpi">{euros(m.total_recu)}</div>
-            {m.recu.length ? <ul className="list small">{m.recu.map((r) => <li key={r.id} className="list-row"><span>{r.titre}</span><strong>{euros(r.montant)}</strong></li>)}</ul>
-              : <div className="small muted">Aucune prestation monétaire.</div>}
+            {m.recu.length ? <ul className="list small">{m.recu.map((r) => <li key={r.id}><div className="list-row"><span>{r.titre}</span><strong>{euros(r.montant)}</strong></div>
+              {r.note && <div className="muted" style={{ fontSize: '.78rem' }}>{r.note}</div>}</li>)}</ul>
+              : <div className="small muted">Ni aide, ni retraite, ni allocation chômage.</div>}
             <p className="small muted" style={{ marginTop: 10 }}>À cela s'ajoutent les services publics gratuits ou remboursés : école, hôpital, routes, police…
               Toute la dépense publique, retraites comprises, représente en moyenne {euros(n.par_habitant.depense ?? 0)} par habitant et par an ;
               chacun en profite très différemment selon son âge et sa situation.</p>

@@ -44,7 +44,7 @@ export function Bienvenue({ onClose }: { onClose: () => void }) {
 
   return (
     <Modal title={fin ? 'Par où commencer ?' : 'Découvrir Société 2.0'} onClose={fermer} width={620} footer={
-      <div className="row between" style={{ width: '100%', flexWrap: 'nowrap' }}>
+      <div className="row between" style={{ width: '100%', flexWrap: 'wrap', gap: 8 }}>
         <button className="btn ghost small" onClick={fermer}>{fin ? 'Je découvre par moi-même' : 'Passer la visite'}</button>
         <div className="row" style={{ flexWrap: 'nowrap', gap: 8 }}>
           {i > 0 && <button className="btn small" onClick={() => setI(i - 1)}><ArrowLeft size={14} /> Retour</button>}

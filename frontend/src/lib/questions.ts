@@ -4,7 +4,7 @@
 import { anEtMois, euros, nombre } from './format'
 import { milliards, tonnes } from './humain'
 
-export type Format = 'md' | 'pct' | 'pct_pib' | 'eur' | 'eur_rond' | 'eur_mois' | 'personnes' | 'mt' | 't_hab' | 'ans' | 'ratio' | 'gini'
+export type Format = 'md' | 'pct' | 'pct_pib' | 'eur' | 'eur_rond' | 'eur_mois' | 'personnes' | 'mt' | 't_hab' | 'ans' | 'ratio' | 'gini' | 'heures' | 'entier'
 
 /** Un chiffre : une statistique (metrique), une règle (regle), ou un calcul à partir des autres chiffres. */
 export type Chiffre = {
@@ -27,6 +27,7 @@ export type Question = {
   accroche: string
   chiffres: Chiffre[]
   texte: string[]
+  enBref?: string // la réponse directe à la question, en une ou deux phrases
   aSavoir?: string
   actions: Action[]
 }
@@ -46,6 +47,8 @@ export function formater(v: number, f: Format, absolu = false): string {
     case 'ans': return anEtMois(x)
     case 'ratio': return nombre(x, 2)
     case 'gini': return nombre(x < 1 ? x * 100 : x, 0)
+    case 'heures': return `${nombre(x, 1)} heures`
+    case 'entier': return nombre(x, 0)
   }
 }
 
@@ -80,6 +83,7 @@ export const QUESTIONS: Question[] = [
     titre: "D'où vient l'argent public ? Qui paie ?",
     icone: 'Coins',
     accroche: "Tout le monde paie : la TVA à chaque achat, les cotisations et la CSG sur les salaires et les pensions. L'impôt sur le revenu, le plus discuté, n'en rapporte qu'une petite part.",
+    enBref: "Tout le monde paie, même sans impôt sur le revenu : la TVA ({tva}) rapporte deux fois plus que l'impôt sur le revenu ({ir}), et les cotisations sur les salaires encore davantage ({cotisations}).",
     chiffres: [
       { cle: 'po', libelle: 'Impôts et cotisations, par an', format: 'md', metrique: 'finances_publiques.prelevements_obligatoires' },
       { cle: 'tva', libelle: 'TVA (payée à chaque achat)', format: 'md', metrique: 'finances_publiques.recettes.tva' },
@@ -115,14 +119,16 @@ export const QUESTIONS: Question[] = [
       { cle: 'deficit_pct', libelle: 'Déficit en part du PIB', format: 'pct_pib', metrique: 'finances_publiques.solde_public_pct_pib', absolu: true, cache: true },
       { cle: 'population', libelle: 'Population', format: 'personnes', metrique: 'demographie.population_totale', cache: true },
       { cle: 'dette_hab', libelle: 'Dette par habitant', format: 'eur_rond', calcul: (v) => (v.dette && v.population ? (v.dette * 1e9) / v.population : null), cache: true },
+      { cle: 'defense', libelle: 'Budget de la Défense', format: 'md', regle: 'budget.etat.mission.defense', cache: true },
     ],
+    enBref: "Pas de faillite en vue : la France emprunte sans difficulté et ne rembourse jamais sa dette d'un coup. Le vrai problème, ce sont les intérêts : {interets} par an, presque autant que tout le budget de la Défense ({defense}), et ils augmentent quand la dette et les taux montent.",
     texte: [
       "Chaque année, les administrations publiques dépensent plus qu'elles ne gagnent : le dernier déficit a atteint {deficit}, soit {deficit_pct}. Ce qui manque est emprunté.",
       "Les emprunts accumulés forment la dette : {dette}, soit {dette_pct}, ou environ {dette_hab} par habitant.",
       "Une dette ne se rembourse pas d'un coup : l'État emprunte à nouveau pour rembourser les anciens prêts. Le vrai coût, ce sont les intérêts : {interets} par an, et ils augmentent quand les taux montent.",
       "Les règles européennes demandent un déficit sous 3 % du PIB et une dette sous 60 % : la France est au-dessus des deux.",
     ],
-    aSavoir: "Sur ce site, toute dépense nouvelle doit être financée (ou l'emprunt assumé clairement) : c'est la même règle que pour les députés (article 40 de la Constitution).",
+    aSavoir: "Sur ce site, toute dépense nouvelle doit être financée par une économie ou une recette ailleurs, ou l'emprunt doit être assumé clairement.",
     actions: [
       { libelle: 'Le budget et le déficit', lien: '/budget' },
       { libelle: 'Chercher des économies', lien: '/atelier?budget=1' },
@@ -133,6 +139,7 @@ export const QUESTIONS: Question[] = [
     titre: 'Comment marchent les retraites ?',
     icone: 'Hourglass',
     accroche: "Les cotisations de ceux qui travaillent paient les pensions des retraités d'aujourd'hui. Avec moins de travailleurs par retraité, l'équilibre devient plus difficile.",
+    enBref: "Il y a aujourd'hui {ratio} personnes qui cotisent pour un retraité. Quand ce nombre baisse, il faut choisir : cotiser plus, verser moins, ou partir plus tard.",
     chiffres: [
       { cle: 'nb', libelle: 'Retraités', format: 'personnes', metrique: 'retraites.nombre_retraites' },
       { cle: 'ratio', libelle: 'Cotisants pour un retraité', format: 'ratio', metrique: 'retraites.ratio_cotisants_retraites' },
@@ -197,5 +204,149 @@ export const QUESTIONS: Question[] = [
       { libelle: 'Les règles sur le climat et l\'énergie', lien: '/regles/d/environnement_energie' },
       { libelle: 'Tester une limite à 110 km/h', lien: '/atelier?regle=transports.vitesse_max.autoroute' },
     ],
+  },
+  {
+    id: 'travail',
+    titre: 'Le travail : salaires et chômage',
+    icone: 'Briefcase',
+    accroche: "La moitié des salariés du privé gagne moins de {median} nets par mois à temps plein, et {chomage} des actifs sont au chômage.",
+    chiffres: [
+      { cle: 'median', libelle: 'Salaire net « du milieu » (temps plein)', format: 'eur', metrique: 'revenus.salaires.net_mensuel_median_eqtp_prive' },
+      { cle: 'chomage', libelle: 'Taux de chômage', format: 'pct', metrique: 'emploi.taux_chomage_bit' },
+      { cle: 'emploi', libelle: 'Personnes en emploi', format: 'personnes', metrique: 'emploi.actifs_occupes' },
+      { cle: 'd1', libelle: '10 % des salariés gagnent moins de', format: 'eur', metrique: 'revenus.salaires.net_mensuel_d1_eqtp_prive', cache: true },
+      { cle: 'd9', libelle: '10 % des salariés gagnent plus de', format: 'eur', metrique: 'revenus.salaires.net_mensuel_d9_eqtp_prive', cache: true },
+      { cle: 'moyen', libelle: 'Salaire net moyen', format: 'eur', metrique: 'revenus.salaires.net_mensuel_moyen_eqtp_prive', cache: true },
+      { cle: 'chomeurs', libelle: 'Chômeurs', format: 'personnes', metrique: 'emploi.chomeurs_bit', cache: true },
+      { cle: 'allocation', libelle: 'Allocation chômage moyenne', format: 'eur', metrique: 'travail.allocation_chomage_moyenne_nette', cache: true },
+      { cle: 'partiel', libelle: 'Temps partiel', format: 'pct', metrique: 'emploi.part_temps_partiel', cache: true },
+    ],
+    texte: [
+      "{emploi} ont un emploi. Dans le privé, le salaire net « du milieu » (médian) est de {median} par mois à temps plein : la moitié gagne moins, l'autre moitié plus. Le salaire moyen ({moyen}) est plus élevé, tiré vers le haut par les plus hauts salaires.",
+      "Les écarts sont importants : 10 % des salariés gagnent moins de {d1}, et 10 % plus de {d9} (toujours à temps plein). {partiel} des personnes en emploi travaillent à temps partiel.",
+      "{chomeurs} sont au chômage, soit {chomage} des actifs. L'allocation chômage moyenne est de {allocation} nets par mois.",
+    ],
+    aSavoir: "Le chômage « au sens du BIT » compte les personnes sans emploi qui en cherchent un activement : c'est la mesure de l'Insee, différente du nombre d'inscrits à France Travail.",
+    actions: [
+      { libelle: 'Vos aides et votre salaire net', lien: '/mes-droits' },
+      { libelle: 'Tester une hausse du SMIC', lien: '/atelier?regle=travail.smic.horaire_brut' },
+    ],
+  },
+  {
+    id: 'ecole',
+    titre: "L'école : combien ça coûte, est-ce que ça marche ?",
+    icone: 'GraduationCap',
+    accroche: "La France consacre {depense} par an à l'éducation, soit environ {par_eleve} par élève ou étudiant.",
+    chiffres: [
+      { cle: 'depense', libelle: "Dépense d'éducation par an", format: 'md', metrique: 'education.depense_interieure_education' },
+      { cle: 'par_eleve', libelle: 'Par élève ou étudiant', format: 'eur', metrique: 'education.depense_moyenne_par_eleve_etudiant' },
+      { cle: 'bac', libelle: "Jeunes d'une génération qui ont le bac", format: 'pct', metrique: 'education.proportion_bacheliers_generation' },
+      { cle: 'pct', libelle: 'Part du PIB', format: 'pct_pib', metrique: 'education.depense_interieure_education_part_pib', cache: true },
+      { cle: 'eleves', libelle: 'Élèves et apprentis', format: 'personnes', metrique: 'education.eleves_apprentis_1er_2d_degres', cache: true },
+      { cle: 'profs', libelle: 'Enseignants', format: 'personnes', metrique: 'education.enseignants_total', cache: true },
+      { cle: 'pisa', libelle: 'Score PISA en mathématiques', format: 'ratio', metrique: 'education.pisa_culture_mathematique', cache: true },
+    ],
+    texte: [
+      "L'État, les collectivités, les familles et les entreprises dépensent ensemble {depense} par an pour l'éducation ({pct}), soit {par_eleve} en moyenne par élève ou étudiant.",
+      "{eleves} sont scolarisés de la maternelle au lycée, avec {profs} enseignants.",
+      "Aujourd'hui, {bac} des jeunes d'une génération obtiennent le baccalauréat. Les évaluations internationales PISA, qui testent les élèves de 15 ans, donnent à la France {pisa} points en mathématiques.",
+    ],
+    actions: [
+      { libelle: "Le budget de l'école", lien: '/regles/r/budget.etat.mission.enseignement_scolaire' },
+      { libelle: "Dépenser plus (ou moins) pour l'école", lien: '/atelier?budget=1' },
+    ],
+  },
+  {
+    id: 'sante',
+    titre: 'La santé : combien ça coûte ?',
+    icone: 'HeartPulse',
+    accroche: "Les soins coûtent cher, mais l'Assurance maladie et les complémentaires en paient l'essentiel : chacun paie lui-même en moyenne {reste} par an.",
+    chiffres: [
+      { cle: 'depense', libelle: 'Dépense de santé par an', format: 'md', metrique: 'sante.depense_courante_sante_internationale' },
+      { cle: 'reste', libelle: 'Payé de sa poche, par habitant et par an', format: 'eur', metrique: 'sante.reste_a_charge_menages_par_habitant' },
+      { cle: 'vie_f', libelle: 'Espérance de vie des femmes', format: 'ans', metrique: 'sante.esperance_vie_naissance_femmes' },
+      { cle: 'pct', libelle: 'Part du PIB', format: 'pct_pib', metrique: 'sante.depense_courante_sante_internationale_part_pib', cache: true },
+      { cle: 'vie_h', libelle: 'Espérance de vie des hommes', format: 'ans', metrique: 'sante.esperance_vie_naissance_hommes', cache: true },
+      { cle: 'bonne_f', libelle: 'En bonne santé (femmes)', format: 'ans', metrique: 'bien_etre.nir.esperance_vie_bonne_sante_femmes', cache: true },
+      { cle: 'bonne_h', libelle: 'En bonne santé (hommes)', format: 'ans', metrique: 'bien_etre.nir.esperance_vie_bonne_sante_hommes', cache: true },
+      { cle: 'medecins', libelle: 'Médecins', format: 'personnes', metrique: 'sante.medecins_en_activite_et_internes', cache: true },
+    ],
+    texte: [
+      "La France consacre {depense} par an à la santé ({pct}). L'essentiel est payé par l'Assurance maladie et les complémentaires : il reste en moyenne {reste} par habitant et par an à payer de sa poche.",
+      "L'espérance de vie à la naissance est de {vie_f} pour les femmes et de {vie_h} pour les hommes. Mais on vit en bonne santé (sans être limité dans ses activités) jusqu'à {bonne_f} en moyenne pour les femmes et {bonne_h} pour les hommes.",
+      "La France compte {medecins} médecins en activité ou en fin de formation.",
+    ],
+    actions: [
+      { libelle: "Dépenser plus pour l'hôpital et les soins", lien: '/atelier?regle=budget.secu.ondam.total' },
+      { libelle: 'Les règles de la santé', lien: '/regles/d/sante' },
+    ],
+  },
+]
+
+/** « Vrai ou faux ? » : des idées reçues, tranchées avec les chiffres officiels du modèle (lus à l'affichage). */
+export type VraiFaux = { id: string; affirmation: string; verdict: 'vrai' | 'faux' | 'nuance'; explication: string; chiffres: Chiffre[]; lien?: Action }
+
+const md = (v: number | undefined) => (v != null ? v / 1e9 : null) // montant annuel publié en euros → milliards
+
+export const VRAI_FAUX: VraiFaux[] = [
+  {
+    id: 'impots',
+    affirmation: 'La moitié des Français ne paie pas d\'impôts.',
+    verdict: 'faux',
+    explication: "Une partie des foyers ne paie pas d'impôt sur le revenu. Mais tout le monde paie la TVA à chaque achat ({tva} par an au total), et la CSG est prélevée sur presque tous les salaires, pensions et allocations ({csg}).",
+    chiffres: [
+      { cle: 'tva', libelle: 'TVA', format: 'md', metrique: 'finances_publiques.recettes.tva' },
+      { cle: 'csg', libelle: 'CSG', format: 'md', metrique: 'finances_publiques.recettes.csg' },
+    ],
+    lien: { libelle: 'Qui paie quoi ?', lien: '/comprendre/qui-paie' },
+  },
+  {
+    id: 'retraites-premiere',
+    affirmation: 'Les retraites sont la première dépense publique.',
+    verdict: 'vrai',
+    explication: "Sur les {depenses} d'argent public dépensés en un an, {retraites} vont aux retraites : environ {sur100} € sur 100 €.",
+    chiffres: [
+      { cle: 'depenses', libelle: 'Dépenses publiques', format: 'md', metrique: 'finances_publiques.depenses_publiques' },
+      { cle: 'retraites', libelle: 'Retraites', format: 'md', metrique: 'retraites.depenses_totales_md' },
+      { cle: 'sur100', libelle: 'Sur 100 €', format: 'entier', calcul: (v) => (v.depenses ? Math.round((v.retraites / v.depenses) * 100) : null) },
+    ],
+    lien: { libelle: 'Où va l\'argent public ?', lien: '/comprendre/depenses-publiques' },
+  },
+  {
+    id: 'rsa-dette',
+    affirmation: 'Le RSA coûte plus cher que les intérêts de la dette.',
+    verdict: 'faux',
+    explication: "Le RSA coûte {rsa} par an. Les intérêts de la dette publique coûtent {interets} : environ {rapport} fois plus.",
+    chiffres: [
+      { cle: 'rsa_e', libelle: 'RSA (euros)', format: 'md', metrique: 'prestations.rsa.montant_annuel', cache: true },
+      { cle: 'rsa', libelle: 'RSA', format: 'md', calcul: (v) => md(v.rsa_e) },
+      { cle: 'interets', libelle: 'Intérêts de la dette', format: 'md', metrique: 'finances_publiques.charge_interets_apu' },
+      { cle: 'rapport', libelle: 'Rapport', format: 'entier', calcul: (v) => (v.rsa_e ? v.interets / (v.rsa_e / 1e9) : null) },
+    ],
+    lien: { libelle: 'La dette, c\'est grave ?', lien: '/comprendre/dette' },
+  },
+  {
+    id: '35-heures',
+    affirmation: 'En France, on travaille 35 heures par semaine.',
+    verdict: 'nuance',
+    explication: "35 heures, c'est la durée légale : au-delà, les heures sont des heures supplémentaires, mieux payées. Mais les salariés à temps complet travaillent en moyenne {duree} par semaine (heures supplémentaires, cadres au forfait…).",
+    chiffres: [{ cle: 'duree_h', libelle: 'Durée habituelle', format: 'ratio', metrique: 'travail.duree_hebdomadaire_habituelle', cache: true },
+      { cle: 'duree', libelle: 'Durée', format: 'heures', calcul: (v) => v.duree_h }],
+    lien: { libelle: 'Tester une autre durée légale', lien: '/atelier?regle=travail.duree.legale_hebdomadaire' },
+  },
+  {
+    id: 'aides-retraites',
+    affirmation: 'Les aides sociales coûtent plus cher que les retraites.',
+    verdict: 'faux',
+    explication: "Le RSA, la prime d'activité et l'allocation aux adultes handicapés coûtent ensemble {minima} par an. Les retraites coûtent {retraites} : environ {rapport} fois plus.",
+    chiffres: [
+      { cle: 'rsa_e', libelle: 'RSA', format: 'md', metrique: 'prestations.rsa.montant_annuel', cache: true },
+      { cle: 'pa_e', libelle: "Prime d'activité", format: 'md', metrique: 'prestations.prime_activite.montant_annuel', cache: true },
+      { cle: 'aah_e', libelle: 'AAH', format: 'md', metrique: 'prestations.aah.montant_annuel', cache: true },
+      { cle: 'minima', libelle: 'Les trois aides', format: 'md', calcul: (v) => (v.rsa_e && v.pa_e && v.aah_e ? (v.rsa_e + v.pa_e + v.aah_e) / 1e9 : null) },
+      { cle: 'retraites', libelle: 'Retraites', format: 'md', metrique: 'retraites.depenses_totales_md' },
+      { cle: 'rapport', libelle: 'Rapport', format: 'entier', calcul: (v) => (v.minima ? v.retraites / v.minima : null) },
+    ],
+    lien: { libelle: 'Comment marchent les retraites ?', lien: '/comprendre/retraites' },
   },
 ]

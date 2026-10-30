@@ -265,6 +265,7 @@ export default function Atelier() {
                   <Link to={`/regles/r/${id}`} style={{ fontWeight: 700, color: 'var(--ink)' }}>{r.titre}</Link>
                   <div className="row small" style={{ gap: 6, marginTop: 4 }}>
                     <span className="muted">Aujourd'hui : {valeur(r.valeur, r.unite, r.type)}</span>
+                    {!modifie && <span className="muted">· Votre choix : à régler ci-dessous</span>}
                     {modifie && <>
                       <ArrowRight size={13} />
                       <strong>Votre choix : {valeur(v, r.unite, r.type)}</strong>
@@ -317,7 +318,7 @@ export default function Atelier() {
               ) : desequilibres.length > 0 ? (
                 <div className="notice warn small"><div><strong>Encore une étape :</strong>{' '}
                   {desequilibres.map((e) => e.id === 'budget' ? `il manque ${milliards(e.manque)} par an pour financer votre réforme` : `votre réforme émet ${tonnes(e.manque)} de trop par an`).join(', et ')}.
-                  Choisissez une solution dans « Les équilibres à respecter », à droite.</div></div>
+                  Choisissez une solution dans « <a href="#equilibres">Les équilibres à respecter</a> ».</div></div>
               ) : !user ? (
                 <p className="small"><CheckCircle2 size={15} color="var(--gain)" /> Votre réforme est équilibrée. Pour l'enregistrer et la partager, <Link to="/connexion?retour=/atelier">créez un compte ou connectez-vous</Link> (votre travail est conservé).</p>
               ) : (

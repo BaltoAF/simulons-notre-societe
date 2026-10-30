@@ -1,0 +1,48 @@
+// « Où je me situe ? » : le niveau de vie du foyer placé parmi les Français, sur une règle graduée (seuil de pauvreté,
+// niveau du milieu, 10 % les plus aisés), d'après les déciles de niveau de vie de l'Insee.
+import { euros, nombre } from '../lib/format'
+import { useFetch } from '../lib/state'
+import { Terme } from './Terme'
+
+type Stat = { id: string; derniere: { date: string; valeur: number } | null; source: { editeur?: string } | null }
+const IDS = [1, 2, 3, 4, 5, 6, 7, 8, 9].map((k) => `revenus.niveau_vie.d${k}`).concat('revenus.pauvrete.seuil_60_mensuel')
+
+/** Part de la population dont le niveau de vie est inférieur à v (interpolation entre les déciles). */
+function rang(v: number, deciles: number[]): number {
+  if (v <= deciles[0]) return Math.max(1, (v / deciles[0]) * 10)
+  for (let k = 1; k < deciles.length; k++) {
+    if (v <= deciles[k]) return 10 * k + 10 * (v - deciles[k - 1]) / (deciles[k] - deciles[k - 1])
+  }
+  return Math.min(99, 90 + 10 * (v - deciles[8]) / deciles[8]) // au-delà du 9e décile : simple ordre de grandeur
+}
+
+export function OuJeMeSitue({ niveauVieMensuel }: { niveauVieMensuel: number }) {
+  const { data } = useFetch<{ metriques: Stat[] }>(`/api/metriques?ids=${IDS.join(',')}`)
+  const val = (id: string) => data?.metriques.find((m) => m.id === id)?.derniere?.valeur
+  const deciles = [1, 2, 3, 4, 5, 6, 7, 8, 9].map((k) => val(`revenus.niveau_vie.d${k}`))
+  const seuil = val('revenus.pauvrete.seuil_60_mensuel')
+  if (deciles.some((d) => d == null) || !seuil) return null
+  const d = deciles as number[]
+  const annuel = niveauVieMensuel * 12
+  const r = rang(annuel, d)
+  const pos = (x: number) => `${Math.max(0, Math.min(100, rang(x, d)))}%`
+  const annee = data?.metriques.find((m) => m.id === 'revenus.niveau_vie.d5')?.derniere?.date?.slice(0, 4)
+  const phrase = r < 10 ? 'Votre foyer fait partie des 10 % les plus modestes.'
+    : r > 90 ? 'Votre foyer fait partie des 10 % les plus aisés.'
+      : `Votre niveau de vie est plus élevé que celui d'environ ${nombre(Math.round(r / 5) * 5, 0)} % des Français.`
+  return (
+    <div className="situe">
+      <div className="kpi-label">Où vous situez-vous ?</div>
+      <p style={{ margin: '4px 0 10px', fontWeight: 650 }}>{phrase}</p>
+      <div className="situe-regle" aria-hidden="true">
+        <span className="situe-zone pauvre" style={{ width: pos(seuil * 12) }} />
+        <span className="situe-repere" style={{ left: pos(seuil * 12) }}><span>Seuil de pauvreté<br />{euros(seuil, 0)}</span></span>
+        <span className="situe-repere" style={{ left: '50%' }}><span>Milieu<br />{euros(d[4] / 12, 0)}</span></span>
+        <span className="situe-repere" style={{ left: '90%' }}><span>10 % les plus aisés<br />{euros(d[8] / 12, 0)}</span></span>
+        <span className="situe-vous" style={{ left: pos(annuel) }}><span>Vous<br />{euros(niveauVieMensuel, 0)}</span></span>
+      </div>
+      <p className="small muted" style={{ margin: '34px 0 0' }}>Niveaux de vie mensuels pour une personne seule, d'après l'Insee ({annee}). Le <Terme id="niveau_vie">niveau de vie</Terme> tient compte
+        de la taille du foyer : c'est ce qui permet de comparer des foyers différents.</p>
+    </div>
+  )
+}

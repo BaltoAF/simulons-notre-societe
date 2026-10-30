@@ -1,4 +1,4 @@
-# FICHIER GÉNÉRÉ par system/sync_openfisca.py le 2026-10-18 à partir d'OpenFisca-France 176.1.2.
+# FICHIER GÉNÉRÉ par system/sync_openfisca.py le 2026-10-30 à partir d'OpenFisca-France 176.1.10.
 # Ne pas modifier à la main : modifier model/moteur/openfisca_leviers.yaml puis relancer le Système.
 genere_par: system/sync_openfisca.py
 domaine: prestations
@@ -97,8 +97,10 @@ regles:
   - depuis: '2026-04-01'
     valeur: 478.16
     sources:
+    - bo-instr-dss-2b-2026-46
     - of-ref-9a5d29f836
     - openfisca-france
+    article: Code de la sécurité sociale, art. L551-1 ; instruction n° DSS/2B/2026/46 du 20 mars 2026
   verifie_le: '2026-04-01'
   moteur:
     openfisca: prestations_sociales.prestations_familiales.bmaf.bmaf
@@ -162,9 +164,9 @@ regles:
     openfisca: prestations_sociales.prestations_familiales.prestations_generales.af.af_cm.taux.enf3
   a_verifier: false
 - id: prestations.famille.af_plafond_modulation
-  titre: 'Allocations familiales : plafond de revenus avant division par deux (2 enfants)'
-  explication: Au-delà de ce revenu annuel, les allocations familiales sont divisées par deux (puis par quatre au-delà d'un
-    second plafond).
+  titre: 'Allocations familiales : plafond de revenus de base avant division par deux'
+  explication: Au-delà de ce revenu annuel, augmenté de 6 664 € par enfant à charge (soit 79 980 € pour deux enfants), les
+    allocations familiales sont divisées par deux (puis par quatre au-delà d'un second plafond).
   type: nombre
   unite: euros
   bornes:
@@ -225,8 +227,10 @@ regles:
   - depuis: '2026-01-01'
     valeur: 66652.0
     sources:
+    - bo-instr-dss-2b-2025-177
     - of-ref-e2c1a3dc2a
     - openfisca-france
+    article: Code de la sécurité sociale, art. D521-3 ; instruction n° DSS/2B/2025/177 du 18 décembre 2025, annexe, I-1
   verifie_le: '2026-01-06'
   moteur:
     openfisca: prestations_sociales.prestations_familiales.prestations_generales.af.af_cond_ress.plafond_tranche_1_base

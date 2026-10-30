@@ -120,8 +120,18 @@ function Footer() {
 }
 
 function ScrollTop() {
-  const { pathname } = useLocation()
-  useEffect(() => { window.scrollTo(0, 0) }, [pathname])
+  const { pathname, hash } = useLocation()
+  useEffect(() => {
+    if (!hash) { window.scrollTo(0, 0); return }
+    // la section visée peut n'exister qu'une fois les données chargées : on la guette quelques secondes
+    let essais = 0
+    const t = setInterval(() => {
+      const el = document.getElementById(decodeURIComponent(hash.slice(1)))
+      if (el) { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); clearInterval(t) }
+      else if (++essais > 40) clearInterval(t)
+    }, 100)
+    return () => clearInterval(t)
+  }, [pathname, hash])
   return null
 }
 

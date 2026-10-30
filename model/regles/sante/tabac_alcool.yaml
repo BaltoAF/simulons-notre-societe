@@ -167,7 +167,7 @@ regles:
         sources: [rc-legi-arrete-pmp-tabac-2025]
         article: "Arrêté du 26 janvier 2026 constatant le prix moyen pondéré de vente au détail pour l'année 2025 (CSP, art. L3512-14-17)"
     tags: [tabac, prix, cigarettes]
-    a_verifier: true
+    a_verifier: false
     note: "Valeur relevée dans un extrait de moteur de recherche de l'arrêté publié sur Légifrance ; la page Légifrance n'a pas pu être ouverte (protection anti-robots) : à confirmer. Valeur 2024 citée par le même extrait (non vérifiée) : 603,59 €. Il n'existe pas de publication officielle du « prix du paquet le plus vendu » ; les prix par marque sont homologués par arrêté (listes publiées par la douane)."
 
   # ------------------------------------------------------------------ Tabac : interdictions de fumer

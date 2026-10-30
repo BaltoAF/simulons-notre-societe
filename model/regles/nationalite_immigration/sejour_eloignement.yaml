@@ -308,7 +308,8 @@ regles:
     valeurs:
       - depuis: "2026-04-01"
         valeur: 6.80
-        sources: [sp-f33314, legi-ceseda-l553-1-a-l553-3]
+        sources: [legi-ceseda-annexe-8, sp-f33314, legi-ceseda-l553-1-a-l553-3]
+        article: "CESEDA, art. D553-10 et annexe 8 (barème)"
     tags: [asile, ada, allocation, accueil]
-    a_verifier: true
+    a_verifier: false
     note: "Date d'entrée en vigueur non établie ; valeur attestée au 2026-04-01. Avec le montant supplémentaire (absence d'hébergement gratuit) : 14,20 € par jour pour une personne seule ; 10,20 € par jour pour 2 personnes. À vérifier : la fiche service-public est en cours de mise à jour après les décrets de juin à octobre 2026 liés au pacte européen, qui modifient les conditions matérielles d'accueil ; le site de l'OFII n'a pas pu être consulté (protection anti-robot). Nouvelle tentative le 2026-10-13 : la fiche F33314 (toujours « Vérifié le 01 avril 2026 », mention « en cours de mise à jour ») affiche encore 6,80 € ; selon des résultats de recherche (non vérifiés), le décret n° 2026-463 du 9 juin 2026 relatif aux conditions matérielles d'accueil a actualisé le barème de l'annexe 8 du CESEDA, avec un total qui resterait de 6,80 € pour une personne seule, mais ce texte n'a pas pu être lu (Légifrance inaccessible ; portail etrangers-en-france.interieur.gouv.fr non lisible)."

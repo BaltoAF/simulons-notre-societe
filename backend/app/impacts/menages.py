@@ -136,4 +136,14 @@ def simuler_menage_seul(store, menage: Menage, approximations: list[str] | None 
         "confiance": confiance_moteur(approximations).to_dict(),
         "unites_consommation": menage.unites_consommation,
         "decote_annuelle": round(abs(float(res.get("decote", [0])[0])) * 12, 0),
+        # taux de CSG réellement appliqué à la pension (0 %, 3,8 %, 6,6 % ou 8,3 % selon le revenu du foyer) : sans lui,
+        # une personne exonérée croit subir le taux plein dont parle la règle
+        "taux_csg_pension": _taux_csg_pension(menage, res),
     }
+
+
+def _taux_csg_pension(menage: Menage, res) -> float | None:
+    pension = sum(a.retraite_brute_mensuelle for a in menage.adultes)
+    if pension <= 0 or any(a.chomage_brut_mensuel > 0 for a in menage.adultes):
+        return None  # la CSG de remplacement mêlerait chômage et retraite
+    return round(abs(float(res["csg_remplacement"][0])) / pension * 100, 1)

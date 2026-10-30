@@ -889,7 +889,8 @@ regles:
     valeurs:
       - depuis: "2026-01-01"
         valeur: 127
-        sources: [agirc-arrco-points-retraite]
+        sources: [agirc-arrco-ani-2017-art36, agirc-arrco-points-retraite]
+        article: "Accord national interprofessionnel du 17 novembre 2017 instituant le régime Agirc-Arrco de retraite complémentaire, art. 36"
     tags: [retraite_complementaire, agirc_arrco, cotisations]
     a_verifier: false
 

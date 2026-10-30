@@ -123,7 +123,7 @@ code, .mono { font-family: var(--mono); font-size: .85em; }
 .header .user { display: flex; gap: 8px; align-items: center; }
 .header .menu-mobile { display: none; margin-left: auto; }
 .nav { overflow: visible; }
-@media (max-width: 860px) {
+@media (max-width: 1120px) { /* six entrées + compte : le menu se replie avant de déborder (1024 px) */
   .header { position: static; }
   .header .container { height: auto; flex-wrap: wrap; padding-top: 10px; padding-bottom: 10px; gap: 8px; }
   .header .menu-mobile { display: inline-flex; }
@@ -466,3 +466,16 @@ main:focus { outline: none; }
 @media (max-width: 640px) {
   .question-icone.grande { display: none; } /* sur téléphone, la place va au titre */
 }
+
+/* « Où vous situez-vous ? » : règle graduée des niveaux de vie */
+.situe { margin: 14px 0 6px; }
+.situe-regle { position: relative; height: 12px; border-radius: 6px; background: linear-gradient(90deg, var(--surface-2), var(--primary-soft)); margin: 30px 6px 0; }
+.situe-zone.pauvre { position: absolute; left: 0; top: 0; bottom: 0; background: color-mix(in srgb, var(--loss) 22%, transparent); border-radius: 6px 0 0 6px; }
+.situe-repere, .situe-vous { position: absolute; top: -4px; width: 2px; height: 20px; background: var(--ink-3); transform: translateX(-1px); }
+.situe-repere > span, .situe-vous > span { position: absolute; top: 22px; left: 50%; transform: translateX(-50%); font-size: .72rem; line-height: 1.15;
+  color: var(--ink-3); text-align: center; white-space: nowrap; }
+.situe-vous { background: var(--primary); width: 4px; height: 28px; top: -8px; border-radius: 2px; }
+.situe-vous > span { top: -32px; color: var(--primary); font-weight: 750; font-size: .8rem; }
+@media (max-width: 640px) { .situe-repere > span { font-size: .64rem; } }
+.en-bref { border-left: 5px solid var(--primary); background: var(--primary-soft); }
+.vrai-faux { display: flex; flex-direction: column; justify-content: space-between; }

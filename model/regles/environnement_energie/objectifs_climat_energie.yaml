@@ -58,7 +58,7 @@ regles:
         article: "Code de l'énergie, art. L100-4 (LTECV 2015)"
       - depuis: "2019-11-08"
         valeur: 40
-        sources: [vp-loi-energie-climat-2019]
+        sources: [legi-energie-l100-4, vp-loi-energie-climat-2019]
         article: "Code de l'énergie, art. L100-4 (loi du 8 novembre 2019 relative à l'énergie et au climat)"
     tags: [energie, fossiles, objectif]
     a_verifier: false
@@ -80,7 +80,7 @@ regles:
         article: "Loi du 8 novembre 2019 relative à l'énergie et au climat (échéance reportée à 2035)"
       - depuis: "2023-06-22"
         valeur: false
-        sources: [vp-loi-acceleration-nucleaire-2023]
+        sources: [legi-loi-2023-491, vp-loi-acceleration-nucleaire-2023]
         article: "Loi n° 2023-491 du 22 juin 2023 relative à l'accélération des procédures liées à la construction de nouvelles installations nucléaires"
     tags: [nucleaire, mix_electrique, objectif]
     a_verifier: false
@@ -94,7 +94,7 @@ regles:
     valeurs:
       - depuis: "2023-06-22"
         valeur: false
-        sources: [vp-loi-acceleration-nucleaire-2023]
+        sources: [legi-loi-2023-491, vp-loi-acceleration-nucleaire-2023]
         article: "Loi n° 2023-491 du 22 juin 2023"
     tags: [nucleaire, objectif]
     a_verifier: false

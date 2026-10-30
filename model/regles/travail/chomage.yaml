@@ -19,7 +19,8 @@ regles:
     valeurs:
       - depuis: "2025-04-01"
         valeur: 130
-        sources: [unedic-regl-parametres-avril-2026, unedic-regl-fiche-rupture-conventionnelle]
+        sources: [unedic-reglement-general-2024, unedic-regl-parametres-avril-2026, unedic-regl-fiche-rupture-conventionnelle]
+        article: "Règlement général annexé à la convention d'assurance chômage du 15 novembre 2024, art. 3 §1"
     tags: [chomage, affiliation]
     a_verifier: false
     note: "Ou 910 heures travaillées. Date « depuis » conventionnelle (voir en-tête) : la condition de 6 mois est antérieure à 2025."
@@ -33,7 +34,8 @@ regles:
     valeurs:
       - depuis: "2025-04-01"
         valeur: 910
-        sources: [unedic-regl-parametres-avril-2026]
+        sources: [unedic-reglement-general-2024, unedic-regl-parametres-avril-2026]
+        article: "Règlement général du 15 novembre 2024, art. 3 §1"
     tags: [chomage, affiliation]
     a_verifier: false
     note: "Date « depuis » conventionnelle (voir en-tête)."
@@ -47,7 +49,8 @@ regles:
     valeurs:
       - depuis: "2025-04-01"
         valeur: 108
-        sources: [unedic-regl-parametres-avril-2026]
+        sources: [unedic-reglement-general-2024, unedic-regl-parametres-avril-2026]
+        article: "Règlement général du 15 novembre 2024, art. 3 §1 bis ; arrêté du 28 mars 2026 (agrément pour les primo-entrants)"
     tags: [chomage, affiliation, jeunes]
     a_verifier: false
     note: "Mesure de la convention du 15 novembre 2024 ; date d'application non relue sur un texte (convention retenue en en-tête)."
@@ -61,7 +64,8 @@ regles:
     valeurs:
       - depuis: "2025-04-01"
         valeur: 24
-        sources: [unedic-regl-parametres-avril-2026]
+        sources: [unedic-reglement-general-2024, unedic-regl-parametres-avril-2026]
+        article: "Règlement général du 15 novembre 2024, art. 3 §1"
     tags: [chomage, affiliation]
     a_verifier: false
 
@@ -74,7 +78,8 @@ regles:
     valeurs:
       - depuis: "2025-04-01"
         valeur: 36
-        sources: [unedic-regl-parametres-avril-2026, unedic-regl-fiche-rupture-conventionnelle]
+        sources: [unedic-reglement-general-2024, unedic-regl-parametres-avril-2026, unedic-regl-fiche-rupture-conventionnelle]
+        article: "Règlement général du 15 novembre 2024, art. 3 §1"
     tags: [chomage, affiliation, seniors]
     a_verifier: false
     note: "Le seuil d'âge est passé de 53 à 55 ans avec la convention du 15 novembre 2024 (date d'application 1er avril 2025, inférée de la page Unédic sur la dégressivité)."
@@ -88,7 +93,8 @@ regles:
     valeurs:
       - depuis: "2019-11-01"
         valeur: 1300
-        sources: [unedic-regl-parametres-avril-2026]
+        sources: [unedic-reglement-general-2024, unedic-regl-parametres-avril-2026]
+        article: "Règlement général du 15 novembre 2024, art. 4 g) (renvoi à l'art. 2 §4)"
     tags: [chomage, demission, reconversion]
     a_verifier: false
     note: "Le projet doit être attesté réel et sérieux par Transitions Pro, après un conseil en évolution professionnelle."
@@ -103,7 +109,8 @@ regles:
     valeurs:
       - depuis: "2023-02-01"
         valeur: 0.75
-        sources: [unedic-regl-fiche-are, unedic-regl-parametres-avril-2026]
+        sources: [unedic-reglement-general-2024, unedic-regl-fiche-are, unedic-regl-parametres-avril-2026]
+        article: "Règlement général du 15 novembre 2024, art. 9 §1 1°"
     tags: [chomage, duree_indemnisation, contracyclicite]
     a_verifier: false
     note: "Applicable aux fins de contrat depuis le 1er février 2023. Coefficient toujours en vigueur au 13/10/2026 (conjoncture « verte »)."
@@ -117,7 +124,8 @@ regles:
     valeurs:
       - depuis: "2025-04-01"
         valeur: 9
-        sources: [unedic-regl-parametres-avril-2026]
+        sources: [unedic-reglement-general-2024, unedic-regl-parametres-avril-2026]
+        article: "Règlement général du 15 novembre 2024, art. 9 bis §1 (et art. 9 §1 2°)"
     tags: [chomage, contracyclicite]
     a_verifier: false
     note: "Le dispositif a été créé en 2023 avec le coefficient 0,75 ; date « depuis » conventionnelle (voir en-tête). Le second déclencheur est une hausse trimestrielle d'au moins 0,8 point."
@@ -131,7 +139,8 @@ regles:
     valeurs:
       - depuis: "2025-04-01"
         valeur: 182
-        sources: [unedic-regl-parametres-avril-2026, unedic-regl-fiche-rupture-conventionnelle]
+        sources: [unedic-reglement-general-2024, unedic-regl-parametres-avril-2026, unedic-regl-fiche-rupture-conventionnelle]
+        article: "Règlement général du 15 novembre 2024, art. 9 §4 1°"
     tags: [chomage, duree_indemnisation]
     a_verifier: false
     note: "Date « depuis » conventionnelle (voir en-tête)."
@@ -145,7 +154,8 @@ regles:
     valeurs:
       - depuis: "2025-04-01"
         valeur: 548
-        sources: [unedic-regl-parametres-avril-2026, unedic-regl-fiche-are]
+        sources: [unedic-reglement-general-2024, unedic-regl-parametres-avril-2026, unedic-regl-fiche-are]
+        article: "Règlement général du 15 novembre 2024, art. 9 §4 2° (730 jours × 0,75)"
     tags: [chomage, duree_indemnisation]
     a_verifier: false
     note: "730 jours avec le complément de fin de droits en cas de conjoncture dégradée. Hors rupture conventionnelle individuelle depuis le 1er septembre 2026 (voir règle dédiée). Bornes d'âge de la convention du 15/11/2024 (avant : moins de 53 ans)."
@@ -159,7 +169,8 @@ regles:
     valeurs:
       - depuis: "2025-04-01"
         valeur: 685
-        sources: [unedic-regl-parametres-avril-2026, unedic-regl-fiche-are]
+        sources: [unedic-reglement-general-2024, unedic-regl-parametres-avril-2026, unedic-regl-fiche-are]
+        article: "Règlement général du 15 novembre 2024, art. 9 §4 2° (913 jours × 0,75)"
     tags: [chomage, duree_indemnisation, seniors]
     a_verifier: false
     note: "913 jours avec le complément de fin de droits."
@@ -173,7 +184,8 @@ regles:
     valeurs:
       - depuis: "2025-04-01"
         valeur: 822
-        sources: [unedic-regl-parametres-avril-2026, unedic-regl-fiche-are]
+        sources: [unedic-reglement-general-2024, unedic-regl-parametres-avril-2026, unedic-regl-fiche-are]
+        article: "Règlement général du 15 novembre 2024, art. 9 §4 2° (1 095 jours × 0,75)"
     tags: [chomage, duree_indemnisation, seniors]
     a_verifier: false
     note: "1 095 jours avec le complément de fin de droits."
@@ -218,7 +230,8 @@ regles:
     valeurs:
       - depuis: "2021-10-01"
         valeur: 40.4
-        sources: [unedic-regl-parametres-avril-2026, unedic-regl-fiche-are]
+        sources: [unedic-reglement-general-2024, unedic-regl-parametres-avril-2026, unedic-regl-fiche-are]
+        article: "Règlement général du 15 novembre 2024, art. 14"
     tags: [chomage, montant_allocation]
     a_verifier: false
     note: "Unédic : « Modalités de calcul de l'allocation depuis le 01/10/2021 » ; le taux de 40,4 % est plus ancien."
@@ -232,7 +245,8 @@ regles:
     valeurs:
       - depuis: "2021-10-01"
         valeur: 57
-        sources: [unedic-regl-parametres-avril-2026, unedic-regl-fiche-are]
+        sources: [sp-f14860, unedic-regl-parametres-avril-2026, unedic-regl-fiche-are]
+        article: "Règlement général du 15 novembre 2024, art. 14"
     tags: [chomage, montant_allocation]
     a_verifier: false
     note: "Même id que le levier moteur OpenFisca (concordance attendue : 57 %). Date « depuis » = modalités de calcul actuelles (01/10/2021) ; le taux de 57 % est plus ancien."
@@ -246,7 +260,8 @@ regles:
     valeurs:
       - depuis: "2025-07-01"
         valeur: 13.18
-        sources: [unedic-regl-parametres-avril-2026, unedic-regl-actu-revalorisation-2026]
+        sources: [sp-f14860, unedic-regl-parametres-avril-2026, unedic-regl-actu-revalorisation-2026]
+        article: "Règlement général du 15 novembre 2024, art. 14 (13,11 € à l'origine, revalorisé de 0,5 % au 1er juillet 2025)"
     tags: [chomage, montant_allocation]
     a_verifier: false
     note: "Non revalorisée au 1er juillet 2026 : aucune majorité au conseil d'administration de l'Unédic du 30 juin 2026."
@@ -260,7 +275,8 @@ regles:
     valeurs:
       - depuis: "2025-07-01"
         valeur: 32.13
-        sources: [unedic-regl-parametres-avril-2026, unedic-regl-actu-revalorisation-2026]
+        sources: [sp-f14860, unedic-regl-parametres-avril-2026, unedic-regl-actu-revalorisation-2026]
+        article: "Règlement général du 15 novembre 2024, art. 14 (31,97 € à l'origine, revalorisé au 1er juillet 2025)"
     tags: [chomage, montant_allocation]
     a_verifier: false
     note: "Non revalorisée au 1er juillet 2026. Allocation plancher en formation (ARE-F) : 22,99 €/jour."
@@ -274,7 +290,8 @@ regles:
     valeurs:
       - depuis: "2021-10-01"
         valeur: 75
-        sources: [unedic-regl-parametres-avril-2026]
+        sources: [unedic-reglement-general-2024, unedic-regl-parametres-avril-2026]
+        article: "Règlement général du 15 novembre 2024, art. 16"
     tags: [chomage, montant_allocation]
     a_verifier: false
     note: "Date « depuis » = modalités de calcul actuelles (01/10/2021) ; le plafond est plus ancien."
@@ -291,7 +308,7 @@ regles:
         sources: [unedic-regl-parametres-avril-2026]
     tags: [chomage, montant_allocation]
     a_verifier: false
-    note: "Valeur théorique pour l'année 2026, découlant du plafond des contributions (16 020 €/mois)."
+    note: "Valeur théorique pour l'année 2026, découlant du plafond des contributions (16 020 €/mois) : aucun texte n'énonce ce montant, c'est un calcul (57 % de quatre plafonds annuels de la Sécurité sociale, divisé par 365), vérifié cohérent le 30/10/2026."
 
   - id: travail.chomage.degressivite_reduction
     titre: "Dégressivité des hautes allocations : réduction appliquée à partir du 7e mois"
@@ -302,7 +319,8 @@ regles:
     valeurs:
       - depuis: "2025-04-01"
         valeur: 30
-        sources: [unedic-regl-fiche-are, unedic-regl-parametres-avril-2026]
+        sources: [unedic-reglement-general-2024, unedic-regl-fiche-are, unedic-regl-parametres-avril-2026]
+        article: "Règlement général du 15 novembre 2024, art. 17 bis §1 (coefficient 0,7 à partir du 183e jour)"
     tags: [chomage, degressivite, hauts_revenus]
     a_verifier: false
     note: "Concerne environ les salaires supérieurs à 4 940 € brut par mois. Date « depuis » = abaissement de l'âge limite à 55 ans (fins de contrat à compter du 1er avril 2025) ; la dégressivité elle-même est plus ancienne."
@@ -316,7 +334,8 @@ regles:
     valeurs:
       - depuis: "2025-07-01"
         valeur: 92.57
-        sources: [unedic-regl-fiche-are, unedic-regl-actu-revalorisation-2026]
+        sources: [sp-f14860, unedic-regl-fiche-are, unedic-regl-actu-revalorisation-2026]
+        article: "Règlement général du 15 novembre 2024, art. 17 bis §1 (92,11 € à l'origine, revalorisé au 1er juillet 2025)"
     tags: [chomage, degressivite, hauts_revenus]
     a_verifier: false
     note: "Non revalorisé au 1er juillet 2026."
@@ -330,7 +349,8 @@ regles:
     valeurs:
       - depuis: "2025-04-01"
         valeur: 55
-        sources: [unedic-regl-fiche-are]
+        sources: [unedic-reglement-general-2024, unedic-regl-fiche-are]
+        article: "Règlement général du 15 novembre 2024, art. 17 bis §1"
     tags: [chomage, degressivite, seniors]
     a_verifier: false
     note: "Pour une fin de contrat (ou une procédure de licenciement engagée) avant le 1er avril 2025, la limite était de 57 ans (unedic.org)."
@@ -345,7 +365,8 @@ regles:
     valeurs:
       - depuis: "2025-04-01"
         valeur: 7
-        sources: [unedic-regl-fiche-are]
+        sources: [unedic-reglement-general-2024, unedic-regl-fiche-are]
+        article: "Règlement général du 15 novembre 2024, art. 22"
     tags: [chomage, carence]
     a_verifier: false
     note: "Date « depuis » conventionnelle (voir en-tête) ; le délai de 7 jours est plus ancien."
@@ -359,7 +380,8 @@ regles:
     valeurs:
       - depuis: "2025-04-01"
         valeur: 150
-        sources: [unedic-regl-fiche-are]
+        sources: [unedic-reglement-general-2024, unedic-regl-fiche-are]
+        article: "Règlement général du 15 novembre 2024, art. 21 §1"
     tags: [chomage, carence]
     a_verifier: false
     note: "Différé = indemnités supra-légales ÷ 109,6 € (valeur au 1er janvier 2025). S'y ajoute un différé « congés payés » de 30 jours au plus. Date « depuis » conventionnelle (voir en-tête)."
@@ -403,7 +425,8 @@ regles:
     valeurs:
       - depuis: "2026-04-01"
         valeur: 19.48
-        sources: [unedic-regl-parametres-avril-2026]
+        sources: [sp-f12484, unedic-regl-parametres-avril-2026]
+        article: "Code du travail, art. L5423-1 et s., R5423-1 et s. ; décret n° 2026-219 du 30 mars 2026"
     tags: [chomage, solidarite, minima_sociaux]
     a_verifier: false
     note: "Soit 584,40 € pour un mois de 30 jours ; montant dégressif au-delà de 779,20 € de ressources mensuelles."

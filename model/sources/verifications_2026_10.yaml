@@ -1,0 +1,174 @@
+# Sources officielles trouvées lors de la vérification documentaire du 30/10/2026 (51 règles qui n'étaient prouvées
+# que par une source secondaire ou marquées « à vérifier »). Textes lus sur Légifrance ou sur des pages officielles qui les citent.
+sources:
+- id: legi-decret-2026-636
+  type: texte_officiel
+  editeur: Légifrance (JORF n° 0166 du 18 juillet 2026, texte n° 8 ; NOR TECR2618516D)
+  titre: Décret n° 2026-636 du 16 juillet 2026 relatif aux budgets carbone nationaux et à la stratégie nationale bas-carbone
+  url: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000054440907
+  auteurs: []
+  date_publication: '2026-07-18'
+  consulte_le: '2026-10-30'
+  note: 'Vérifié le 30/10/2026 pour « environnement_energie.budget_carbone.periode_2029_2033 » : « Les budgets carbone des périodes 2024-2028, 2029-2033 sont révisés et fixés respectivement à 342 et 262 Mt de CO2e par an »'
+- id: legi-cp-311-8
+  type: texte_officiel
+  editeur: Légifrance
+  titre: Code pénal, article 311-8 (version en vigueur depuis le 1er janvier 2002)
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006418143
+  auteurs: []
+  date_publication: '2002-01-01'
+  consulte_le: '2026-10-30'
+  note: 'Vérifié le 30/10/2026 pour « justice_penale.vol_avec_arme.reclusion_max » : « Le vol est puni de vingt ans de réclusion criminelle et de 150 000 euros d''amende lorsqu''il est commis… »'
+- id: legi-ccom-l242-6
+  type: texte_officiel
+  editeur: Légifrance
+  titre: Code de commerce, article L242-6 (version en vigueur depuis le 8 décembre 2013, loi n° 2013-1117, art. 30)
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000028312097
+  auteurs: []
+  date_publication: '2013-12-08'
+  consulte_le: '2026-10-30'
+  note: 'Vérifié le 30/10/2026 pour « justice_penale.abus_biens_sociaux.prison_max » : « Est puni d''un emprisonnement de cinq ans et d''une amende de 375 000 euros le fait pour : »'
+- id: legi-ceseda-annexe-8
+  type: texte_officiel
+  editeur: Légifrance
+  titre: Code de l'entrée et du séjour des étrangers et du droit d'asile, annexe 8 mentionnée à l'article D. 553-10 (version en vigueur depuis le 14 juin 2026, décret n° 2026-494 du 12 juin 2026)
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042906933
+  auteurs: []
+  date_publication: '2026-06-14'
+  consulte_le: '2026-10-30'
+  note: 'Vérifié le 30/10/2026 pour « nationalite_immigration.asile.ada_montant_journalier_personne_seule » : « Tableau 1, 1 personne : allocation journalière 1,00 € + allocation financière 5,80 € = montant journalier 6,80 € (ligne du barème) »'
+- id: legi-csp-l3111-2
+  type: texte_officiel
+  editeur: Légifrance
+  titre: Code de la santé publique, article L3111-2 (version en vigueur depuis le 1er janvier 2025, loi n° 2023-1250 du 26 décembre 2023, art. 38)
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048701919
+  auteurs: []
+  date_publication: '2025-01-01'
+  consulte_le: '2026-10-30'
+  note: 'Vérifié le 30/10/2026 pour « sante.vaccination.nombre_vaccinations_obligatoires_nourrissons » : « 8° Contre les méningocoques des sérogroupes listés par un décret en Conseil d''Etat »'
+- id: legi-css-d114-4-0-17
+  type: texte_officiel
+  editeur: Légifrance
+  titre: Code de la sécurité sociale, article D114-4-0-17 (en vigueur depuis le 23 juin 2014)
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000029113016
+  auteurs: []
+  date_publication: '2014-06-23'
+  consulte_le: '2026-10-30'
+  note: 'Vérifié le 30/10/2026 pour « budget.regles.ondam_comite_alerte_seuil » : « Le seuil prévu à l''article L. 114-4-1 est fixé à 0,5 %. »'
+- id: legi-css-l114-4-1
+  type: texte_officiel
+  editeur: Légifrance
+  titre: Code de la sécurité sociale, article L114-4-1 (en vigueur depuis le 19 décembre 2012, loi n° 2012-1404, art. 60)
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000026799310
+  auteurs: []
+  date_publication: '2012-12-19'
+  consulte_le: '2026-10-30'
+  note: 'Vérifié le 30/10/2026 pour « budget.regles.ondam_comite_alerte_seuil_plafond_legal » : « avec une ampleur supérieure à un seuil fixé par décret qui ne peut excéder 1 % »'
+- id: legi-loi-2021-1104-art-191
+  type: texte_officiel
+  editeur: Légifrance
+  titre: Loi n° 2021-1104 du 22 août 2021 portant lutte contre le dérèglement climatique et renforcement de la résilience face à ses effets, article 191
+  url: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000043958152
+  auteurs: []
+  date_publication: '2021-08-24'
+  consulte_le: '2026-10-30'
+  note: 'Vérifié le 30/10/2026 pour « environnement_energie.artificialisation.annee_objectif_zan » : « l''objectif national d''absence de toute artificialisation nette des sols en 2050 »'
+- id: legi-arrete-2022-12-13-tarifs-cibs
+  type: texte_officiel
+  editeur: Légifrance
+  titre: Arrêté du 13 décembre 2022 constatant divers tarifs et seuils de régime d'impositions relatifs à certaines impositions sur les biens et services (version consolidée, dernière modification par l'arrêté du 8 juin 2026, NOR CPPE2611506A)
+  url: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000046820130
+  auteurs: []
+  date_publication: '2026-07-07'
+  consulte_le: '2026-10-30'
+  note: 'Vérifié le 30/10/2026 pour « environnement_energie.accise.gazole » : « Art. 2-5, tarif à compter du 1er mars 2026 : Gazoles 60,75 €/hL (ligne du tableau) »'
+- id: legi-energie-l100-4
+  type: texte_officiel
+  editeur: Légifrance
+  titre: Code de l'énergie, article L100-4 (version en vigueur depuis le 24 juin 2023, loi n° 2023-491, art. 1)
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047717642
+  auteurs: []
+  date_publication: '2023-06-24'
+  consulte_le: '2026-10-30'
+  note: 'Vérifié le 30/10/2026 pour « environnement_energie.energie.objectif_reduction_consommation_fossiles_2030 » : « De réduire la consommation énergétique primaire des énergies fossiles de 40 % en 2030 »'
+- id: legi-loi-2023-491
+  type: texte_officiel
+  editeur: Légifrance (JORF n° 0144 du 23 juin 2023, texte n° 1)
+  titre: Loi n° 2023-491 du 22 juin 2023 relative à l'accélération des procédures liées à la construction de nouvelles installations nucléaires à proximité de sites nucléaires existants et au fonctionnement des installations existantes
+  url: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000047715784
+  auteurs: []
+  date_publication: '2023-06-23'
+  consulte_le: '2026-10-30'
+  note: 'Vérifié le 30/10/2026 pour « environnement_energie.nucleaire.objectif_reduction_part_a_50_pourcent » : « Le 5° du I est abrogé ; »'
+- id: legi-cgct-l2213-4-1
+  type: texte_officiel
+  editeur: Légifrance
+  titre: Code général des collectivités territoriales, article L2213-4-1 (version en vigueur depuis le 25 août 2021, loi n° 2021-1104, art. 119)
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043976834
+  auteurs: []
+  date_publication: '2021-08-25'
+  consulte_le: '2026-10-30'
+  note: 'Vérifié le 30/10/2026 pour « environnement_energie.zfe.seuil_population_agglomeration_obligatoire » : « est obligatoire avant le 31 décembre 2024 dans toutes les agglomérations de plus de 150 000 habitants »'
+- id: legi-cp-324-2
+  type: texte_officiel
+  editeur: Légifrance
+  titre: Code pénal, article 324-2 (en vigueur depuis le 1er janvier 2002)
+  url: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006418333
+  auteurs: []
+  date_publication: '2002-01-01'
+  consulte_le: '2026-10-30'
+  note: 'Vérifié le 30/10/2026 pour « justice_penale.blanchiment_aggrave.prison_max » : « Le blanchiment est puni de dix ans d''emprisonnement et de 750 000 euros d''amende : »'
+- id: bo-instr-dss-2b-2026-46
+  type: texte_officiel
+  editeur: Bulletin officiel Santé – Protection sociale – Solidarité (ministère des solidarités) ; NOR SFHS2607952J
+  titre: Instruction interministérielle n° DSS/2B/2026/46 du 20 mars 2026 relative à la revalorisation au 1er avril 2026 des prestations familiales servies en métropole, en Guadeloupe, en Guyane, en Martinique, à La Réunion, à Saint-Barthélemy, à Saint-Martin et dans le département de Mayotte
+  url: https://bulletins-officiels.social.gouv.fr/sites/textes-officiels/files/2026-03/SFHS2607952J.pdf
+  auteurs: []
+  date_publication: '2026-03-20'
+  consulte_le: '2026-10-30'
+  note: 'Vérifié le 30/10/2026 pour « prestations.famille.bmaf » : « Le montant de cette base mensuelle […] est donc porté de 474,37 € (depuis le 1er avril 2025) à 478,16 € au 1er avril 2026. »'
+- id: bo-instr-dss-2b-2025-177
+  type: texte_officiel
+  editeur: Bulletin officiel Santé – Protection sociale – Solidarité ; NOR SFHS2535630J
+  titre: Instruction interministérielle n° DSS/2B/2025/177 du 18 décembre 2025 relative à la revalorisation, au 1er janvier 2026, des plafonds de ressources d'attribution de certaines prestations familiales servies en métropole, en Guadeloupe, en Guyane, en Martinique, à la Réunion, à Saint-Barthélemy, à Saint-Martin et à Mayotte
+  url: https://bulletins-officiels.social.gouv.fr/sites/textes-officiels/files/2025-12/SFHS2535630J_0.pdf
+  auteurs: []
+  date_publication: '2025-12-18'
+  consulte_le: '2026-10-30'
+  note: 'Vérifié le 30/10/2026 pour « prestations.famille.af_plafond_modulation » : « la première tranche est celle dont les revenus sont inférieurs ou égaux à un plafond de base de 66 652 euros majoré de 6 664 euros par enfant à charge »'
+- id: agirc-arrco-ani-2017-art36
+  type: texte_officiel
+  editeur: Agirc-Arrco (texte de l'accord diffusé par la circulaire du 19 décembre 2018)
+  titre: Accord National Interprofessionnel du 17 novembre 2017 instituant le régime AGIRC-ARRCO de retraite complémentaire
+  url: https://www.agirc-arrco.fr/storage/2024/09/201809dc_ANI_du_17_novembre_2017.pdf
+  auteurs: []
+  date_publication: '2017-11-17'
+  consulte_le: '2026-10-30'
+  note: 'Vérifié le 30/10/2026 pour « retraites.agirc_arrco.taux_appel » : « Un pourcentage d''appel, fixé à 127 %, est appliqué aux taux visés à l''article 35. »'
+- id: unedic-reglement-general-2024
+  type: texte_officiel
+  editeur: Unédic (texte agréé par arrêté du 19 décembre 2024, JORF du 20 décembre 2024)
+  titre: Règlement général annexé à la convention du 15 novembre 2024 relative à l'assurance chômage
+  url: https://www.unedic.org/la-reglementation/conventions-d-assurance-chomage/reglement-general-annexe-a-la-convention-du-15-novembre-2024-relative-a-l-assurance-chomage
+  auteurs: []
+  date_publication: '2024-11-15'
+  consulte_le: '2026-10-30'
+  note: 'Vérifié le 30/10/2026 pour « travail.chomage.affiliation_jours_travailles » : « doit être au moins égale à 130 jours travaillés ou 910 heures travaillées »'
+- id: sp-f14860
+  type: texte_officiel
+  editeur: Service-Public.fr (DILA)
+  titre: Allocation chômage d'aide au retour à l'emploi (ARE) – montant (page F14860)
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F14860
+  auteurs: []
+  date_publication: '2026-07-23'
+  consulte_le: '2026-10-30'
+  note: 'Vérifié le 30/10/2026 pour « travail.chomage.taux_remplacement » : « Cette somme ne peut pas être inférieure à 57 % et ne peut pas être supérieure à 75 % du SJR. »'
+- id: sp-f12484
+  type: texte_officiel
+  editeur: Service-Public.fr (DILA)
+  titre: Allocation de solidarité spécifique (ASS)
+  url: https://www.service-public.gouv.fr/particuliers/vosdroits/F12484
+  auteurs: []
+  date_publication: '2026-04-01'
+  consulte_le: '2026-10-30'
+  note: 'Vérifié le 30/10/2026 pour « travail.chomage.ass_montant_journalier » : « Son montant journalier est de 19,48 € (584,40 € pour 1 mois de 30 jours). »'

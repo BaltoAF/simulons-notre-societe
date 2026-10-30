@@ -282,24 +282,26 @@ class Engine:
                 }
                 act = {"salarie": "actif", "independant": "actif", "chomeur": "chomeur", "retraite": "retraite",
                        "etudiant": "etudiant", "inactif": "inactif"}[a.activite]
-                ind["activite"] = {config.MOIS_REFERENCE: act}
+                # la situation vaut pour tous les mois simulés : le RSA et la prime d'activité se calculent sur les ressources
+                # des trois mois précédents (une AAH limitée au mois courant n'était pas comptée dans le RSA)
+                ind["activite"] = {mo: act for mo in mois}
                 if a.salaire_brut_mensuel > 0:
                     ind["salaire_de_base"] = {y: round(a.salaire_brut_mensuel * 12, 2) for y in years}
-                    ind["categorie_salarie"] = {config.MOIS_REFERENCE: "prive_cadre" if a.cadre else "prive_non_cadre"}
+                    ind["categorie_salarie"] = {mo: "prive_cadre" if a.cadre else "prive_non_cadre" for mo in mois}
                     # entreprise de 50 salariés ou plus ; réduction générale calculée mois par mois (mode anticipé)
                     ind["effectif_entreprise"] = {y: 60 for y in years}
                     ind["allegement_general_mode_recouvrement"] = {y: "anticipe" for y in years}
                     smic = self._smic_mensuel()
                     if a.salaire_brut_mensuel < smic * 0.98:
-                        ind["contrat_de_travail"] = {config.MOIS_REFERENCE: "temps_partiel"}
-                        ind["heures_remunerees_volume"] = {config.MOIS_REFERENCE: round(151.67 * a.salaire_brut_mensuel / smic, 2)}
+                        ind["contrat_de_travail"] = {mo: "temps_partiel" for mo in mois}
+                        ind["heures_remunerees_volume"] = {mo: round(151.67 * a.salaire_brut_mensuel / smic, 2) for mo in mois}
                 if a.chomage_brut_mensuel > 0:
                     ind["chomage_brut"] = {y: round(a.chomage_brut_mensuel * 12, 2) for y in years}
                 if a.retraite_brute_mensuelle > 0:
                     ind["retraite_brute"] = {y: round(a.retraite_brute_mensuelle * 12, 2) for y in years}
                 if a.handicap:
-                    ind["handicap"] = {config.MOIS_REFERENCE: True}
-                    ind["taux_incapacite"] = {config.MOIS_REFERENCE: 0.8}
+                    ind["handicap"] = {mo: True for mo in mois}
+                    ind["taux_incapacite"] = {mo: 0.8 for mo in mois}
                 individus[pid] = ind
             kids = []
             for k, age in enumerate(m.enfants):

@@ -100,10 +100,10 @@ regles:
     valeurs:
       - depuis: "2002-01-01"
         valeur: 20
-        sources: [verif-cc-2010-25-qpc-dossier, wikipedia-vol-droit-penal-francais]
+        sources: [legi-cp-311-8, verif-cc-2010-25-qpc-dossier, wikipedia-vol-droit-penal-francais]
         article: "Code pénal, art. 311-8"
     tags: [peine, crime, vol, arme, biens]
-    a_verifier: true
+    a_verifier: false
     note: "Durée confirmée par une source officielle ancienne : l'art. 311-8 reproduit par le Conseil constitutionnel (dossier de la décision 2010-25 QPC) punit le vol avec usage ou menace d'une arme de vingt ans de réclusion criminelle et 150 000 € d'amende (rédaction en vigueur depuis le 1er janvier 2002). Maintien au 13/10/2026 non confirmé par une source officielle récente : tentatives du 2026-10-13 sans succès (Légifrance inaccessible, recherches sur service-public, justice.gouv.fr, Sénat, Assemblée nationale) ; la fiche F1487 confirme seulement que le « vol à main armée » est un crime jugé par la cour d'assises ; seul Wikipédia (2026-08-11) l'atteste à date récente."
 
   # --- Amende forfaitaire délictuelle (AFD) pour vol de faible valeur ---
