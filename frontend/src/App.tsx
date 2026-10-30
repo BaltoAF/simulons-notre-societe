@@ -92,7 +92,6 @@ function Header({ onVisite }: { onVisite: () => void }) {
         <Link to="/" className="logo" aria-label="Simulons notre société, accueil">
           <img src="/favicon.svg?v=3" alt="" width={30} height={30} /> Simulons notre société <span className="tag">bêta</span>
         </Link>
-        <TailleTexte />
         <button className="icon-btn menu-mobile" onClick={() => setMenu((m) => !m)} aria-label={menu ? 'Fermer le menu' : 'Ouvrir le menu'} aria-expanded={menu}>{menu ? <X size={22} /> : <Menu size={22} />}<span className="menu-libelle" aria-hidden="true">{menu ? 'Fermer' : 'Menu'}</span></button>
         <nav className={`nav ${menu ? 'ouvert' : ''}`} aria-label="Navigation principale">
           <NavLink to="/mes-droits">Mes droits</NavLink>
@@ -103,6 +102,7 @@ function Header({ onVisite }: { onVisite: () => void }) {
           <MenuPlus onVisite={onVisite} />
         </nav>
         <div className={`user ${menu ? 'ouvert' : ''}`}>
+          <TailleTexte />
           {user ? (
             <>
               <Link to={`/societes?auteur=${encodeURIComponent(user.pseudo)}`} className="btn small ghost" title="Mes propositions"><User size={15} /> {user.pseudo}</Link>

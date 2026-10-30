@@ -151,7 +151,9 @@ code, .mono { font-family: var(--mono); font-size: .85em; }
   .nav a { padding: 12px 14px; font-size: 1rem; }
   .header .user { display: none; order: 4; flex-basis: 100%; }
   .header .user.ouvert { display: flex; }
-  .menu-deroulant { position: static; box-shadow: none; border: 0; padding: 0 0 0 12px; }
+  .nav .popover-wrap { display: block; }
+  .nav .menu-deroulant { position: static; box-shadow: none; border: 0; padding: 0 0 0 12px; min-width: 0; }   /* dans le menu, pas en bulle : sinon elle déborde à gauche */
+  .nav .menu-deroulant a { white-space: normal; }
 }
 
 .footer { border-top: 1px solid var(--line); padding: 32px 0; color: var(--ink-3); font-size: .9rem; background: var(--surface); }
@@ -548,7 +550,7 @@ main:focus { outline: none; }
 /* Texte agrandi (bouton « A+ ») : toutes les tailles en rem suivent la racine */
 html.texte-grand { font-size: 112.5%; }
 html.texte-grand body { font-size: 19px; }
-.header .taille-texte { order: 2; margin-left: 6px; }   /* tout à droite sur ordinateur ; à côté de « Menu » sur téléphone */
+.header .taille-texte { margin-right: 6px; }   /* à côté du compte ; sur téléphone, dans le menu ouvert pour ne pas encombrer l'en-tête */
 .taille-texte { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; font-weight: 800; color: var(--ink); border: 1px solid var(--line); border-radius: 10px; }
 .taille-texte[aria-pressed="true"] { background: var(--primary-soft); color: var(--primary); border-color: var(--primary); }
 
