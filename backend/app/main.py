@@ -116,7 +116,7 @@ def _modeles_couverts(store) -> set[str]:
     s = {rid for rid, r in store.regles.items() if r.get("moteur") or rid in store.correspondances}
     s |= {rid for rid, r in store.regles.items() if budget_etat.est_depense(rid, r)}
     s |= {"prestations.revenu_universel.montant", "prestations.revenu_universel.age_minimum",
-          "prestations.revenu_universel.remplace_rsa_prime_activite"}
+          "prestations.revenu_universel.remplace_rsa_prime_activite", "prestations.famille.af_premier_enfant_montant"}
     s |= set(getattr(comportements, "REGLES_COUVERTES", set()))
     s.add("retraites.revalorisation.pensions_base")   # appliquée à la part « de base » des retraites (impacts/contexte.py)
     # l'âge légal se règle pour toutes les générations à la fois (effet chiffré sur l'âge « à terme »)

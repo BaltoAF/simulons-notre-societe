@@ -38,9 +38,9 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
 - **Test Samira, 2e passage** (notes 4 / 3 / 4). Corrigé : « rien ne change » quand deux effets s'annulent (allocations
   +15 €, prime d'activité −15 €) dit maintenant ce qui bouge ; règles en % de la BMAF traduites en euros par mois ;
   loyer « hors charges, avant que l'aide en soit retirée » ; pension alimentaire mentionnée dans la prime d'activité ;
-  Pajemploi et les 15 % expliqués ; « CSG et CRDS » et cotisations reliées au lexique. Reste : idée « Allocations
-  familiales dès le premier enfant » à rétablir avec un montant pour le 1er enfant (dispositif virtuel, comme le revenu
-  universel) ; CO₂ « à compenser » pour une hausse d'allocations, à expliquer.
+  Pajemploi et les 15 % expliqués ; « CSG et CRDS » et cotisations reliées au lexique. Fait ensuite : « Allocations
+  familiales dès le premier enfant (77 € par mois) », dispositif proposé (règle virtuelle, coût simulé 9 Md€ par an ;
+  limite : sans effet ici sur la prime d'activité et le RSA). Reste : CO₂ « à compenser » pour une hausse d'allocations, à expliquer.
 - **Si la fréquentation augmente** (à soumettre au responsable) : la mémoire est déjà protégée, car un seul calcul de
   population tourne à la fois (`SOCIETE_WORKERS=1`) et les résultats identiques sont gardés en cache. Seule l'attente
   s'allonge : passer alors au VPS-2 avec `SOCIETE_WORKERS=3`, ou dire au visiteur combien de calculs passent avant le sien.

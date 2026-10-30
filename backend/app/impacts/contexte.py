@@ -14,7 +14,8 @@ from ..engine.openfisca_engine import ENGINE, ReformSpec
 RU_MONTANT = "prestations.revenu_universel.montant"
 RU_AGE = "prestations.revenu_universel.age_minimum"
 RU_IMPOSABLE = "prestations.revenu_universel.remplace_rsa_prime_activite"
-LEVIERS_EXTENSION = {RU_MONTANT, RU_AGE, RU_IMPOSABLE}
+AF_PREMIER_ENFANT = "prestations.famille.af_premier_enfant_montant"   # par famille ayant au moins un enfant de moins de 20 ans
+LEVIERS_EXTENSION = {RU_MONTANT, RU_AGE, RU_IMPOSABLE, AF_PREMIER_ENFANT}
 
 
 # au-delà de ce multiple de l'ancien SMIC, une hausse du SMIC ne se diffuse plus aux salaires (voir ajuster_salaires)
@@ -69,6 +70,7 @@ class Contexte:
 
     # ── extensions (dispositifs virtuels) ──
     def appliquer_extensions(self, res: dict, menages: list[Menage]) -> dict:
+        res = self._allocation_premier_enfant(res, menages)
         montant = float(self.apres(RU_MONTANT, 0) or 0)
         if montant <= 0:
             res["revenu_universel"] = np.zeros(len(menages))
@@ -89,6 +91,19 @@ class Contexte:
         res["revenu_disponible"] = res["revenu_disponible"] + ru
         uc = np.array([m.unites_consommation for m in menages])
         res["niveau_de_vie"] = res["revenu_disponible"] / uc
+        return res
+
+    def _allocation_premier_enfant(self, res: dict, menages: list[Menage]) -> dict:
+        """Allocations familiales dès le premier enfant (dispositif proposé) : un montant par famille ayant au moins un
+        enfant de moins de 20 ans, ajouté aux allocations familiales (sans effet ici sur les autres aides : voir la règle)."""
+        montant = float(self.apres(AF_PREMIER_ENFANT, 0) or 0)
+        if montant <= 0:
+            return res
+        af1 = np.array([montant if any(e < 20 for e in m.enfants) else 0.0 for m in menages])
+        res = dict(res)
+        for k in ("allocations_familiales", "prestations", "revenu_disponible"):
+            res[k] = res[k] + af1
+        res["niveau_de_vie"] = res["revenu_disponible"] / np.array([m.unites_consommation for m in menages])
         return res
 
     def ajuster_salaires(self, menages: list[Menage]) -> list[Menage]:

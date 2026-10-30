@@ -41,3 +41,17 @@ regles:
         valeur: false
         sources: []
     tags: [proposition]
+
+  - id: prestations.famille.af_premier_enfant_montant
+    titre: "Allocations familiales dès le premier enfant : montant mensuel par famille"
+    explication: "Somme versée chaque mois à toute famille qui a au moins un enfant à charge de moins de 20 ans, en plus des allocations actuelles (qui commencent au deuxième enfant). Ce dispositif n'existe pas aujourd'hui en métropole (montant 0 €). Simulation simplifiée : versée sans condition de revenus, elle ne réduit pas ici la prime d'activité ni le RSA, alors qu'en réalité ces aides comptent les allocations familiales dans les ressources."
+    type: nombre
+    unite: euros
+    bornes: [0, 500]
+    virtuel: true
+    valeurs:
+      - depuis: "1945-01-01"
+        valeur: 0
+        sources: []
+    tags: [proposition, famille]
+    note: "En métropole, les allocations familiales ne sont versées qu'à partir du 2e enfant ; dans les départements d'outre-mer, un montant existe pour un enfant seul."
