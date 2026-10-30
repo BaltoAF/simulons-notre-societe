@@ -52,9 +52,9 @@ const DEFAUT: SituationSaisie = { couple: 'seul', adultes: [ADULTE], enfants: []
 // À qui demander chaque aide (le site calcule des droits théoriques ; la demande se fait auprès de l'organisme)
 const DEMANDER: Record<string, string> = {
   rsa: 'auprès de la CAF (caf.fr), ou de la MSA si vous êtes agriculteur', prime_activite: 'auprès de la CAF (caf.fr), ou de la MSA si vous êtes agriculteur',
-  aides_logement: 'auprès de la CAF (caf.fr), ou de la MSA si vous êtes agriculteur', allocations_familiales: 'auprès de la CAF : elles sont en général versées automatiquement',
+  aides_logement: 'auprès de la CAF (caf.fr), ou de la MSA si vous êtes agriculteur', allocations_familiales: 'à la CAF seulement si vous ne les touchez pas encore : en général, elles arrivent sans démarche',
   aspa: 'auprès de votre caisse de retraite', aah: 'auprès de la MDPH de votre département, puis de la CAF',
-  complement_familial: 'auprès de la CAF', asf: 'auprès de la CAF', paje: 'auprès de la CAF', ars: 'auprès de la CAF : elle est en général versée automatiquement',
+  complement_familial: 'auprès de la CAF', asf: 'auprès de la CAF', paje: 'auprès de la CAF', ars: 'à la CAF seulement si vous ne la touchez pas encore : en général, elle arrive sans démarche',
 }
 
 const POURQUOI: Record<string, { regles: string[]; texte: ReactNode }> = {
@@ -489,8 +489,9 @@ export default function MesDroits() {
               ))}
             </div>
             {s.logement.startsWith('locataire') && (
-              <label className="field"><span>Loyer mensuel (hors charges)</span>
-                <div className="input-suffix"><input type="number" min={0} step={10} placeholder="ex. 600" value={s.loyer_mensuel || ''} onChange={(e) => up({ loyer_mensuel: Number(e.target.value) })} /><span className="suffix">€ / mois</span></div></label>
+              <label className="field"><span>Loyer mensuel hors charges, avant l'aide au logement</span>
+                <div className="input-suffix"><input type="number" min={0} step={10} placeholder="ex. 600" value={s.loyer_mensuel || ''} onChange={(e) => up({ loyer_mensuel: Number(e.target.value) })} /><span className="suffix">€ / mois</span></div>
+                <span className="hint">Si la CAF verse l'aide directement à votre bailleur (c'est souvent le cas en HLM), indiquez le loyer total inscrit sur votre avis d'échéance, pas ce qu'il vous reste à payer.</span></label>
             )}
             <label className="field"><span>Vous habitez…</span></label>
             <div className="choices">

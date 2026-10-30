@@ -29,10 +29,13 @@ export const PRESETS: Preset[] = [
     tags: ['pauvreté', 'minima sociaux'],
   },
   {
-    id: 'af-premier-enfant',
-    titre: 'Allocations familiales dès le premier enfant',
-    description: "Aujourd'hui, elles ne sont versées qu'à partir du deuxième enfant.",
-    overrides: { 'prestations.famille.af_nombre_enfants_minimum': 1 },
+    id: 'af-plus-10',
+    titre: 'Allocations familiales : 10 % de plus',
+    description: "Hausse de 10 % du montant versé pour le 2e enfant et pour chaque enfant suivant (elles ne sont versées qu'à partir du 2e enfant).",
+    overrides: {
+      'prestations.famille.af_taux_deux_enfants': (v: number) => Math.round(v * 1.1 * 100) / 100,
+      'prestations.famille.af_taux_enfant_supplementaire': (v: number) => Math.round(v * 1.1 * 100) / 100,
+    },
     tags: ['famille'],
   },
   {

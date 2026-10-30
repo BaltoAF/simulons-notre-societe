@@ -107,7 +107,9 @@ regles:
   a_verifier: false
 - id: prestations.famille.af_nombre_enfants_minimum
   titre: 'Allocations familiales : nombre d''enfants minimum pour y avoir droit'
-  explication: Aujourd'hui, les allocations familiales ne sont versées qu'à partir du deuxième enfant à charge (hors outre-mer).
+  explication: 'Aujourd''hui, les allocations familiales ne sont versées qu''à partir du deuxième enfant à charge (hors outre-mer).
+    Attention : abaisser ce nombre à 1 ne donne rien au premier enfant, car le montant n''est prévu qu''à partir du deuxième
+    (règle « montant pour 2 enfants »).'
   type: nombre
   unite: enfants
   bornes:

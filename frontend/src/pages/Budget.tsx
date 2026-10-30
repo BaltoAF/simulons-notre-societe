@@ -52,7 +52,7 @@ const POSTES_CONCRETS: { nom: string; ids: string[] }[] = [
   { nom: 'Logement, culture, sport et environnement', ids: ['logement_equipements', 'loisirs_culture', 'environnement'] },
 ]
 
-// les mêmes mots pour les grands domaines (« Ce que finance sa contribution ») que dans l'encadré des 100 €
+// les mêmes mots pour les grands domaines (« Ce que financent ces impôts et cotisations ») que dans l'encadré des 100 €
 const NOM_DOMAINE: Record<string, string> = {
   protection_sociale: 'Retraites, familles, chômage, invalidité, logement', sante: 'Santé : hôpitaux, soins et médicaments',
   services_generaux: "Fonctionnement de l'État, des communes, et intérêts de la dette", affaires_economiques: 'Transports, énergie, agriculture, aides aux entreprises',
@@ -188,7 +188,7 @@ export default function Budget() {
       <h1>Le budget de la France… et le vôtre</h1>
       <p className="lead ink2" style={{ maxWidth: 820 }}>D'où vient l'argent public, où il va, et quelle est votre part. Toutes les dépenses publiques sont comptées : État, Sécurité sociale et collectivités locales.</p>
       <div className="row" style={{ marginBottom: 16 }}>
-        <a className="btn small primary" href="#et-vous"><Wallet size={14} /> Et vous : combien vous payez, ce que vous recevez ↓</a>
+        <a className="btn small primary" href="#et-vous"><Wallet size={14} /> Et vous ? Votre part ↓</a>
         <a className="btn small" href="#budget-etat"><Landmark size={14} /> Changer le budget de l'État ↓</a>
       </div>
 
@@ -287,7 +287,7 @@ export default function Budget() {
               chacun en profite très différemment selon son âge et sa situation.</p>
           </div>
           <div className="card">
-            <div className="kpi-label">Ce que finance sa contribution</div>
+            <div className="kpi-label">Ce que financent ces impôts et cotisations</div>
             <ul className="list small">
               {m.finance.map((f) => (
                 <li key={f.id}>

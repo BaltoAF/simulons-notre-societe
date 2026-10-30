@@ -20,6 +20,21 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   lexique en couleur de lien et petits liens dans le texte avec une zone à toucher agrandie. (Fait aussi : « Intérêts de la dette de l'État » distingué
   des intérêts de toutes les administrations ; le vrai/faux sur les impôts donne la part des foyers qui paient l'impôt
   sur le revenu, 47,3 %.)
+- **Test Samira** (34 ans, mère seule de 2 enfants, aide-soignante à temps partiel, HLM ; notes 4 / 2,5 / 4, 30/10/2026).
+  Fait : l'idée « Allocations familiales dès le premier enfant » ne calculait rien (le montant ne commence qu'au 2e enfant),
+  remplacée par « 10 % de plus » et la règle prévient ; plus de « −50 % » pour « 2 enfants → 1 » ; loyer « avant l'aide au
+  logement » (en HLM l'aide est souvent versée au bailleur : saisie après aide, elle était comptée deux fois) ;
+  allocations familiales et de rentrée « sans démarche en général » ; « Votre part » dans le budget. Reste :
+  - **À vérifier dans les textes (fiabilité)** : avec 150 € de pension alimentaire, le foyer touche 188 € de moins
+    qu'avec 0 € (prime d'activité 69 € au lieu de 219 €, ASF 254 € au lieu de 404 €). Le moteur compte la pension dans
+    les ressources de la prime d'activité, mais pas l'ASF ? Vérifier sur les textes (CSS, ressources de la prime
+    d'activité) avant toute correction ; demander si la pension est versée « tous les mois, certains mois, jamais ».
+  - **Garde d'enfants** : aucune question ni aide (complément de libre choix du mode de garde, crèche) alors que c'est
+    souvent la première question d'un parent d'enfant de moins de 6 ans ; à ajouter (moteur ou « Avez-vous pensé à… »).
+  - Complémentaire santé solidaire : n'afficher que le plafond du foyer (les plafonds génériques prêtent à confusion).
+  - « Pourquoi ce montant ? » pour l'ASF et l'allocation de rentrée ; arrondis (200,78 € × 2 ≠ 404 €, 429 € / 426,87 €).
+  - Lexique : « CRDS », « part salariale », « cotisations patronales », « pensions de réversion », « BMAF »,
+    « juge aux affaires familiales » ; « Et vous ? » en € par mois comme « Mes droits ».
 - **Si la fréquentation augmente** (à soumettre au responsable) : la mémoire est déjà protégée, car un seul calcul de
   population tourne à la fois (`SOCIETE_WORKERS=1`) et les résultats identiques sont gardés en cache. Seule l'attente
   s'allonge : passer alors au VPS-2 avec `SOCIETE_WORKERS=3`, ou dire au visiteur combien de calculs passent avant le sien.

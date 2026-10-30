@@ -33,6 +33,7 @@ export function ecartLisible(avant: number, apres: number, u: string): string {
   if (u === 'pourcent') return `${s}${nombre(Math.abs(d), 2)} point${Math.abs(d) >= 2 ? 's' : ''}`
   if (u === 'ans') return `${s}${anEtMois(Math.abs(d))}`
   if (u === 'mois' || u === 'jours' || u === 'heures' || u === 'trimestres' || u === 'semaines') return `${s}${nombre(Math.abs(d), 0)} ${uniteLisible(u)}`
+  if (u === 'enfants' || u === 'personnes') return `${s}${nombre(Math.abs(d), 0)} ${Math.abs(d) >= 2 ? u : u.slice(0, -1)}`
   if (!avant) return `${s}${nombre(Math.abs(d), 2)}`
   return `${s}${nombre(Math.abs(d / avant * 100), 1)} %`
 }
