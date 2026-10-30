@@ -60,7 +60,8 @@ const DEMANDER: Record<string, string> = {
 const POURQUOI: Record<string, { regles: string[]; texte: ReactNode }> = {
   aides_logement_zero: { regles: ['prestations.aides_logement.forfait_charges'], texte: 'L\'aide au logement baisse quand les ressources du foyer augmentent : pour votre loyer, votre zone et vos revenus, elle tombe à zéro.' },
   rsa: { regles: ['prestations.rsa.montant_forfaitaire'], texte: 'Le RSA complète vos ressources jusqu\'à un montant garanti qui dépend de la composition du foyer.' },
-  prime_activite: { regles: ['prestations.prime_activite.montant_forfaitaire', 'prestations.prime_activite.part_revenus_activite', 'prestations.prime_activite.bonification_max'], texte: 'La prime d\'activité soutient les revenus des travailleurs modestes.' },
+  prime_activite: { regles: ['prestations.prime_activite.montant_forfaitaire', 'prestations.prime_activite.part_revenus_activite', 'prestations.prime_activite.bonification_max'], 
+    texte: "Elle complète les revenus des personnes qui travaillent et gagnent peu. Son calcul : une somme de base, plus une part de ce que vous gagnez en travaillant, plus un bonus quand vous gagnez au moins la moitié du SMIC environ, moins vos autres ressources (dont une partie de l'aide au logement). Plus vous gagnez, plus elle baisse, jusqu'à s'arrêter. Elle se redemande tous les trois mois." },
   aides_logement: { regles: ['prestations.aides_logement.forfait_charges'], texte: 'L\'aide au logement dépend du loyer, de la zone, de la composition du foyer et des ressources.' },
   allocations_familiales: { regles: ['prestations.famille.bmaf', 'prestations.famille.af_taux_deux_enfants', 'prestations.famille.af_nombre_enfants_minimum'], texte: 'Versées à partir de 2 enfants, modulées selon les revenus.' },
   impot_revenu: { regles: ['fiscalite.impot_revenu.bareme', 'fiscalite.impot_revenu.decote.taux', 'fiscalite.impot_revenu.quotient_familial.plafond_demi_part'], texte: 'Impôt progressif calculé sur le revenu du foyer, divisé par le nombre de parts.' },
@@ -242,6 +243,14 @@ export default function MesDroits() {
           <div className="split aside-380">
             <div className="stack">
               <div className="card">
+                {/* la réponse à la question qu'on se pose en venant (« ai-je droit à des aides ? ») passe avant le total */}
+                {prestBrut.some((l) => l.montant > 0.5) && (
+                  <div className="notice ok" style={{ marginBottom: 14 }}><div>
+                    <strong>Vous avez sans doute droit à :</strong>{' '}
+                    {prestBrut.filter((l) => l.montant > 0.5).map((l) => `${l.libelle} ${euros(l.montant, 0)} par mois`).join(' · ')}.
+                    {' '}<a href="#vos-aides">Comment les demander ↓</a>
+                  </div></div>
+                )}
                 <div className="card-head">
                   <div>
                     <div className="kpi-label">Ce que le foyer touche chaque mois</div>
@@ -266,7 +275,7 @@ export default function MesDroits() {
                 <hr className="divider" />
                 {[['Vos revenus nets', revenus, 1], ['Aides et prestations', prest, 1], ['Impôts payés', prel, -1]].map(([titre, lignes, sg]) => (
                   (lignes as any[]).length > 0 && (
-                    <div key={titre as string} style={{ marginBottom: 14 }}>
+                    <div key={titre as string} id={titre === 'Aides et prestations' ? 'vos-aides' : undefined} style={{ marginBottom: 14, scrollMarginTop: 80 }}>
                       <div className="kpi-label" style={{ marginBottom: 6 }}>{titre as string}</div>
                       <ul className="list">
                         {(lignes as Resultat['lignes']).map((l) => (

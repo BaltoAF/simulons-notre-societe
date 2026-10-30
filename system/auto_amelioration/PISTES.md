@@ -12,11 +12,10 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
 - **« Revaloriser les pensions »** : la règle `retraites.revalorisation.pensions_base` n'est reliée à aucun calcul (l'atelier
   le dit désormais). La relier au montant des pensions des ménages et de la population.
 - **Test Kevin** (24 ans, livreur auto-entrepreneur, téléphone seul ; notes 3 / 2 / 3 sur 5, 30/10/2026). Fait : le statut
-  d'auto-entrepreneur. Reste : en tête de « Mes droits », dire d'abord les aides auxquelles on a droit et où les demander
-  (avant le total du foyer) ; ne pas pré-remplir l'âge et le salaire (exemples grisés) ; « Pourquoi ce montant ? » de la
-  prime d'activité incompréhensible (« bonification individuelle ») ; « Le budget » : commencer par « Et vous ? » et nommer
-  les postes concrètement (retraites, hôpital) ; « cadenas », « COFOG », « MSA », « moteur » ; zones à toucher trop petites
-  (« Pourquoi ce montant ? », mots du lexique : 44 px au moins) ; intérêts de la dette 65 Md€ (Comprendre) contre 60 Md€
+  d'auto-entrepreneur, les aides annoncées en tête de « Mes droits », âge et salaire non pré-remplis, prime d'activité
+  expliquée simplement, « Pourquoi ce montant ? » à 44 px. Reste : « Le budget » : commencer par « Et vous ? » et nommer
+  les postes concrètement (retraites, hôpital) ; « cadenas », « COFOG », « MSA », « moteur » ; mots du lexique trop petits
+  à toucher ; intérêts de la dette 65 Md€ (Comprendre) contre 60 Md€
   (Budget) à expliquer ; vrai/faux « la moitié des Français ne paie pas d'impôts » : donner la part qui ne paie pas
   l'impôt sur le revenu.
 - **Si la fréquentation augmente** (à soumettre au responsable) : la mémoire est déjà protégée, car un seul calcul de

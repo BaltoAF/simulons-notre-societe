@@ -668,3 +668,5 @@ button.change-tete:hover { background: color-mix(in srgb, var(--primary) 7%, tra
 @media (min-width: 961px) {
   .atelier-reforme { position: sticky; top: 76px; max-height: calc(100vh - 88px); overflow-y: auto; padding: 2px 4px 8px; margin: -2px -4px 0; }
 }
+/* sur téléphone, les « Pourquoi ce montant ? » et « Comment la demander » se touchent du doigt sans viser (44 px) */
+@media (max-width: 640px) { details.explain > summary, details.curieux > summary { padding: 12px 0; } }
