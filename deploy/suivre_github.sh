@@ -53,4 +53,5 @@ fi
 
 $COMPOSE up -d --build --remove-orphans
 docker image prune -f >/dev/null
+docker builder prune -f --filter until=72h >/dev/null   # le disque ne se remplit pas au fil des reconstructions
 journal "site en ligne : version $(git rev-parse --short HEAD)"

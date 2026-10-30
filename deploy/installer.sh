@@ -24,8 +24,8 @@ fi
 
 command -v docker >/dev/null || curl -fsSL https://get.docker.com | sh
 
-# un peu de mémoire d'appoint pour compiler le site sur les petits serveurs
-if [ ! -f /swapfile ] && [ "$(awk '/MemTotal/ {print $2}' /proc/meminfo)" -lt 3500000 ]; then
+# mémoire d'appoint : chaque mise à jour reconstruit le site pendant qu'il tourne (1,4 à 1,9 Go) ; utile jusqu'à 8 Go
+if [ ! -f /swapfile ] && [ "$(awk '/MemTotal/ {print $2}' /proc/meminfo)" -lt 7500000 ]; then
   fallocate -l 2G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile
   echo '/swapfile none swap sw 0 0' >> /etc/fstab
 fi
