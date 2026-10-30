@@ -50,12 +50,12 @@ sources:
   - id: drees-cp-css-non-recours-2022
     type: statistique_publique
     editeur: "DREES"
-    titre: "Communiqué de presse du 13 décembre 2022 sur le taux de non-recours à la complémentaire santé solidaire (avec et sans participation financière)"
+    titre: "Complémentaire santé solidaire avec participation financière : un taux de non-recours en baisse pour la première fois en 2021 (communiqué du 13 décembre 2022)"
     url: "https://drees.solidarites-sante.gouv.fr/communique-de-presse/complementaire-sante-solidaire-avec-participation-financiere-un-taux-de-non"
     auteurs: []
     date_publication: "2022-12-13"
-    consulte_le: "2026-10-13"
-    note: "Taux 2019-2021 ; méthodologie détaillée dans les rapports annuels de la CSS 2021 (p. 89-91) et 2022 (p. 38). Intitulé descriptif (titre exact de la page non relevé)."
+    consulte_le: "2026-10-30"
+    note: "Taux 2019-2021 ; méthodologie détaillée dans les rapports annuels de la CSS 2021 (p. 89-91) et 2022 (p. 38). Titre exact relevé le 30/10/2026."
   - id: drees-dd97-non-recours-minimum-vieillesse
     type: statistique_publique
     editeur: "DREES"

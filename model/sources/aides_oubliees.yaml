@@ -1,0 +1,173 @@
+# Sources des fiches « Avez-vous pensé à… ? » (model/aides/oubliees.yaml) : fiches Service-Public, ameli, Info Retraite,
+# Cnaf, ministères et Sénat, relues par l'agent de recherche du Système le 30/10/2026.
+# Les URL service-public.fr renvoient désormais vers service-public.gouv.fr : ce sont les nouvelles adresses qui figurent ici.
+sources:
+  - id: sp-f10027
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Complémentaire santé solidaire (ex-CMU-C)"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F10027"
+    auteurs: []
+    date_publication: "2026-07-01"
+    consulte_le: "2026-10-30"
+    note: "Date = « Vérifié le ». Personne seule, métropole : 10 421 €/an (gratuite), 14 069 €/an (avec participation). Cite CSS L861-1 à L861-12, D861-1 à D861-8."
+  - id: ameli-c2s-beneficiaires
+    type: texte_officiel
+    editeur: "ameli.fr (Assurance maladie)"
+    titre: "Qui peut bénéficier de la Complémentaire santé solidaire ?"
+    url: "https://www.ameli.fr/assure/droits-demarches/difficultes-acces-droits-soins/complementaire-sante/complementaire-sante-beneficiaires"
+    auteurs: []
+    date_publication: "2026-03-31"
+    consulte_le: "2026-10-30"
+    note: "Plafonds au 1er avril 2026 (1 personne : 868,44 €/mois sans participation, 1 172,40 €/mois avec) ; participation 8/14/21/25/30 € par mois selon l'âge."
+  - id: ameli-c2s-demande
+    type: texte_officiel
+    editeur: "ameli.fr (Assurance maladie)"
+    titre: "Complémentaire santé solidaire : comment la demander ?"
+    url: "https://www.ameli.fr/assure/droits-demarches/difficultes-acces-droits-soins/complementaire-sante/complementaire-sante-solidaire-demande"
+    auteurs: []
+    date_publication: "2026-06-18"
+    consulte_le: "2026-10-30"
+  - id: sp-f13104
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Pension de réversion de l'Assurance retraite"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F13104"
+    auteurs: []
+    date_publication: "2026-01-01"
+    consulte_le: "2026-10-30"
+    note: "55 ans ; plafonds 25 001,60 € (seul) et 40 002,56 € (couple) ; 54 % ; minimum 4 019,13 €/an (334,92 €/mois). Cite CSS L353-1 à L353-6, R353-1 à R353-14, D353-1 à D353-4."
+  - id: info-retraite-reversion
+    type: texte_officiel
+    editeur: "Info Retraite (GIP Union Retraite)"
+    titre: "Droits du conjoint en cas de décès (pension de réversion)"
+    url: "https://www.info-retraite.fr/portail-info/sites/PortailInformationnel/home/mes-droits-a-la-retraite/ma-vie-personnelle-1/famille/pension-de-reversion-1.html"
+    auteurs: []
+    date_publication: null
+    consulte_le: "2026-10-30"
+    note: "Page sans date. Plafonds 2026 du régime général ; Agirc-Arrco : 55 ans, 60 %, sans condition de ressources, droit perdu en cas de remariage. Service de demande : https://www.info-retraite.fr/portail-services/drv"
+  - id: agirc-arrco-demande-reversion
+    type: texte_officiel
+    editeur: "Agirc-Arrco"
+    titre: "Demander ma pension de réversion"
+    url: "https://www.agirc-arrco.fr/categorie_expert/demander-ma-pension-de-reversion/"
+    auteurs: []
+    date_publication: "2025-10-15"
+    consulte_le: "2026-10-30"
+    note: "Une seule demande en ligne, transmise à tous les régimes ; 0 970 660 660."
+  - id: sp-f33667
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Chèque énergie"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F33667"
+    auteurs: []
+    date_publication: "2025-10-17"
+    consulte_le: "2026-10-30"
+    note: "Fiche non mise à jour pour 2026 (elle décrit les chèques 2025). Barème RFR/UC : moins de 5 700, 6 800, 7 850, 11 000 € ; 48 € à 277 €. Code de l'énergie L124-1 à L124-5, R124-1 à R124-16."
+  - id: sp-a17885
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Comment bénéficier du chèque énergie en 2026 ?"
+    url: "https://www.service-public.gouv.fr/particuliers/actualites/A17885"
+    auteurs: []
+    date_publication: "2026-03-23"
+    consulte_le: "2026-10-30"
+    note: "Mise à jour le 01/04/2026. Envoi à partir du 1er avril 2026 ; demande possible jusqu'au 31 décembre 2026 ; 48 € à 277 €."
+  - id: mefsin-cp-526-cheque-energie-2026
+    type: rapport_institutionnel
+    editeur: "Ministère de l'Économie, des Finances et de la Souveraineté industrielle, énergétique et numérique (communiqué n° 526)"
+    titre: "Le guichet de demande du chèque énergie ouvre le 1er avril 2026"
+    url: "https://presse.economie.gouv.fr/le-guichet-de-demande-du-cheque-energie-ouvre-le-1er-avril-2026/"
+    auteurs: []
+    date_publication: "2026-04-01"
+    consulte_le: "2026-10-30"
+    note: "4,5 millions de foyers servis automatiquement ; 153 € en moyenne ; RFR/UC 2024 inférieur à 11 000 € ; guichet ouvert du 1er avril au 31 décembre 2026."
+  - id: senat-rapport-l25-139-cheque-energie
+    type: rapport_institutionnel
+    editeur: "Sénat"
+    titre: "Projet de loi de finances pour 2026 : Écologie, développement et mobilité durables (rapport général n° 139, tome III, annexe 10)"
+    url: "https://www.senat.fr/rap/l25-139-310-1/l25-139-310-116.html"
+    auteurs: []
+    date_publication: "2025-11-24"
+    consulte_le: "2026-10-30"
+    note: "Environ 5,5 millions de foyers servis automatiquement avant la réforme, 3,8 millions en 2025 ; 176 000 chèques attribués par le guichet en 2024 pour environ 1 million de foyers concernés."
+  - id: sp-a18811
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Le repas à 1 € accessible à tous les étudiants"
+    url: "https://www.service-public.gouv.fr/particuliers/actualites/A18811"
+    auteurs: []
+    date_publication: "2026-03-09"
+    consulte_le: "2026-10-30"
+    note: "Mise à jour le 16/04/2026 ; en vigueur le 4 mai 2026 ; loi n° 2026-103 du 19 février 2026 de finances pour 2026."
+  - id: etudiant-gouv-repas-1-euro
+    type: texte_officiel
+    editeur: "etudiant.gouv.fr (ministère de l'Enseignement supérieur)"
+    titre: "Comment bénéficier du repas Crous à 1 € ?"
+    url: "https://www.etudiant.gouv.fr/fr/comment-beneficier-du-repas-crous-1-eu-3123"
+    auteurs: []
+    date_publication: "2026-04-16"
+    consulte_le: "2026-10-30"
+  - id: sp-f33453
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Garantie Visale : caution pour le locataire (impayés et dégradations)"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F33453"
+    auteurs: []
+    date_publication: "2026-01-23"
+    consulte_le: "2026-10-30"
+    note: "Salariés de plus de 30 ans : salaire net au plus 1 710 €/mois ; loyers maximum 1 575 € (1 940 € en Île-de-France) ; 36 mois d'impayés (parc privé). Ne cite pas d'article de loi."
+  - id: sp-f1878
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Allocation de rentrée scolaire (ARS)"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F1878"
+    auteurs: []
+    date_publication: "2026-08-04"
+    consulte_le: "2026-10-30"
+    note: "Rentrée 2026 : 426,87 / 450,41 / 466,02 € ; plafonds 28 956 / 35 638 / 42 320 € (+ 6 682 €). CSS L543-1, D543-1 et D543-2 ; instruction DSS/2B/2025/177."
+  - id: sp-f2882
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Prime d'activité : salarié ou fonctionnaire"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F2882"
+    auteurs: []
+    date_publication: "2026-06-01"
+    consulte_le: "2026-10-30"
+    note: "Montant de base 638,28 € (personne seule) ; décret n° 2026-222 du 30 mars 2026 ; CSS L842-1 à L842-8."
+  - id: sp-a18815
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "La prime d'activité revalorisée en 2026"
+    url: "https://www.service-public.gouv.fr/particuliers/actualites/A18815"
+    auteurs: []
+    date_publication: "2026-03-05"
+    consulte_le: "2026-10-30"
+    note: "Mise à jour le 22/07/2026. Pas versée au-delà de 2 000 € nets/mois pour une personne seule ; jusqu'à 54 €/mois de plus ; étudiants et apprentis : plus de 1 117,26 €."
+  - id: cnaf-it-2026-157
+    type: texte_officiel
+    editeur: "Caisse nationale des allocations familiales (instruction au réseau)"
+    titre: "IT 2026-157 – Troncature du seuil applicable aux apprentis, étudiants et élèves-stagiaires pour le calcul de la prime d'activité"
+    url: "https://caf.fr/sites/default/files/medias/cnaf/Nous_connaitre/qui%20sommes%20nous/Textes%20de%20r%C3%A9f%C3%A9rence/Circulaires/2026/IT%202026-157.pdf"
+    auteurs: []
+    date_publication: "2026-07-02"
+    consulte_le: "2026-10-30"
+    note: "Applicable à partir du mois de référence de juin 2026 : seuil de 1 144 €, qui intègre la hausse du Smic au 01/06/2026 ; 78 % du Smic net ; CSS L842-2 et R842-2."
+  - id: sp-f1563
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Un étudiant peut-il bénéficier d'une aide au logement (APL, ALS, ALF) pour payer son loyer ?"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F1563"
+    auteurs: []
+    date_publication: "2026-07-01"
+    consulte_le: "2026-10-30"
+    note: "Nouvelle condition pour les étudiants hors UE au 1er juillet 2026. CCH R831-1 à R831-3."
+  - id: sp-f815
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Allocation de soutien familial (ASF) : parents séparés"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F815"
+    auteurs: []
+    date_publication: "2026-04-01"
+    consulte_le: "2026-10-30"
+    note: "200,78 €/mois et par enfant depuis le 1er avril 2026 ; un titre de la fiche porte « 201,78 € » (coquille probable). CSS L523-1 à L523-3, R523-1 à R523-8."

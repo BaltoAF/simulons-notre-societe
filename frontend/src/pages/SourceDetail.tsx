@@ -10,8 +10,9 @@ type D = Source & { citee_par: { type: string; id: string; titre: string }[]; fi
 
 const LIENS: Record<string, (id: string) => string> = {
   regle: (id) => `/regles/r/${id}`, preuve: (id) => `/preuves/${id}`, metrique: () => '/systeme#metriques',
+  aide: () => '/mes-droits#avez-vous-pense',
 }
-const LIB: Record<string, string> = { regle: 'Règle', preuve: 'Fiche d\'études', metrique: 'Métrique' }
+const LIB: Record<string, string> = { regle: 'Règle', preuve: 'Fiche d\'études', metrique: 'Métrique', aide: 'Aide à demander' }
 
 export default function SourceDetail() {
   const { id } = useParams()

@@ -67,6 +67,7 @@ class ModelStore:
     citations: dict[str, list[dict]] = field(default_factory=dict)  # source_id -> qui la cite
     controles: list[dict] = field(default_factory=list)  # contrôles croisés entre sources indépendantes
     etalonnage: list[dict] = field(default_factory=list)  # réformes chiffrées par des institutions, rejouées par le moteur
+    aides_oubliees: list[dict] = field(default_factory=list)  # « Avez-vous pensé à… ? » : aides souvent non demandées
 
     # ───────────────────────── chargement ─────────────────────────
     @classmethod
@@ -79,6 +80,7 @@ class ModelStore:
         store._load_metriques(model_dir)
         store._load_preuves(model_dir)
         store._load_etalonnage(model_dir)
+        store._load_aides(model_dir)
         store._check_references()
         store._controles_croises(model_dir)
         return store
@@ -284,6 +286,32 @@ class ModelStore:
                 vus.add(ref["id"])
                 self.etalonnage.append({**copy.deepcopy(ref), "fichier": self._rel(path)})
 
+    AIDE_CHAMPS = ("id", "nom", "en_bref", "pourquoi_vous", "ce_que_ca_apporte", "ou_la_demander", "url_officielle", "source_id", "criteres")
+    AIDE_CRITERES = {"calculee", "activite", "age_min", "age_max", "salaire_max", "seul", "enfant_age", "logement",
+                     "ressources_c2s_max", "rfr_par_uc_max", "ou"}
+
+    def _load_aides(self, d: Path):
+        """Aides souvent non demandées, proposées selon le profil dans « Mes droits » (model/aides/*.yaml)."""
+        def criteres_ok(c) -> bool:
+            if not isinstance(c, dict) or set(c) - self.AIDE_CRITERES:
+                return False
+            return all(criteres_ok(x) for x in c.get("ou", []))
+        vus = set()
+        for path in sorted((d / "aides").glob("*.yaml")):
+            data = self._read(path) or {}
+            for a in data.get("aides", []) or []:
+                manque = [k for k in self.AIDE_CHAMPS if not isinstance(a, dict) or not a.get(k)]
+                rappel = a.get("rappel") if isinstance(a, dict) else None
+                if manque or not criteres_ok(a["criteres"]) or (rappel and not criteres_ok(rappel.get("criteres"))):
+                    self.issues.append(Issue("erreur", self._rel(path), f"Fiche d'aide incomplète ou critère inconnu : {a.get('id') if isinstance(a, dict) else a}"
+                                             + (f" (manque {', '.join(manque)})" if manque else "")))
+                    continue
+                if a["id"] in vus:
+                    self.issues.append(Issue("erreur", self._rel(path), f"Fiche d'aide en double : {a['id']}"))
+                    continue
+                vus.add(a["id"])
+                self.aides_oubliees.append({**copy.deepcopy(a), "fichier": self._rel(path)})
+
     def _cite(self, sid: str, kind: str, ref: str, fichier: str):
         if sid not in self.sources:
             self.issues.append(Issue("erreur", fichier, f"Source inconnue « {sid} » citée par {kind} « {ref} »", ref))
@@ -313,6 +341,10 @@ class ModelStore:
         for ref in self.etalonnage:
             if ref.get("source_id"):
                 self._cite(str(ref["source_id"]), "etalonnage", ref["id"], ref["fichier"])
+        for a in self.aides_oubliees:
+            for sid in dict.fromkeys([a["source_id"], *(a.get("sources_complementaires") or []), a.get("non_recours_source")]):
+                if sid:
+                    self._cite(str(sid), "aide", a["id"], a["fichier"])
 
     # ───────────────────────── accès ─────────────────────────
     def snapshot(self) -> dict[str, Any]:

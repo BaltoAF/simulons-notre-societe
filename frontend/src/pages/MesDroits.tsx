@@ -10,6 +10,7 @@ import { ConfidenceBadge, ErrorBox, Loading, Notice } from '../components/ui'
 import { DroitsNonMonetaires } from '../components/DroitsNonMonetaires'
 import { ProchaineEtape } from '../components/Parcours'
 import { OuJeMeSitue } from '../components/OuJeMeSitue'
+import { AvezVousPense } from '../components/AvezVousPense'
 import { Terme } from '../components/Terme'
 import { PROFILS } from '../lib/profils'
 
@@ -199,6 +200,7 @@ export default function MesDroits() {
                 ))}
                 <Notice>Ce sont vos <strong>droits théoriques</strong> selon la législation en vigueur, calculés par le moteur public OpenFisca-France. Pour une démarche officielle, utilisez les simulateurs de l'administration (mesdroitssociaux.gouv.fr, impots.gouv.fr).</Notice>
               </div>
+              <AvezVousPense s={s} lignes={res.lignes} />
               <ProchaineEtape apres="droits" />
               <DroitsNonMonetaires age={s.adultes[0]?.age ?? 35} mois={s.mois_naissance ?? 1}
                 onMois={(m) => { const sit = { ...s, mois_naissance: m }; setS(sit); setSituation(sit) }} />
@@ -323,7 +325,7 @@ export default function MesDroits() {
                       : a.activite === 'etudiant' ? "Salaire d'un petit boulot, net par mois (0 si vous n'en avez pas)" : 'Pension de retraite nette mensuelle'}</span>
                     <div className="input-suffix"><input type="number" min={0} step={50} value={a.montant_net} onChange={(e) => upA(i, { montant_net: Number(e.target.value) })} /><span className="suffix">€ / mois</span></div>
                     <span className="hint">{a.activite === 'etudiant'
-                      ? "Une personne étudiante n'a droit à la prime d'activité que si elle gagne au moins 78 % du SMIC environ. Les bourses ne sont pas encore calculées par le site."
+                      ? "Une personne étudiante n'a droit à la prime d'activité que si elle gagne au moins 78 % du SMIC environ. Les bourses ne sont pas calculées par le site, mais le résultat vous dira comment les demander."
                       : 'Le montant qui figure en bas de votre fiche de paie ou de votre relevé, avant prélèvement à la source.'}</span>
                   </label>
                 )}

@@ -256,6 +256,10 @@ def get_source(sid: str):
             cit.append({**c, "titre": store.metriques[c["id"]].get("titre")})
         elif c["type"] == "preuve" and c["id"] in store.preuves:
             cit.append({**c, "titre": store.preuves[c["id"]].get("titre")})
+        elif c["type"] == "aide":
+            a = next((x for x in store.aides_oubliees if x["id"] == c["id"]), None)
+            if a:
+                cit.append({**c, "titre": a["nom"]})
     uniq = {(c["type"], c["id"]): c for c in cit}
     return {**s, "citee_par": list(uniq.values())}
 
@@ -446,6 +450,22 @@ def simuler_reforme(body: ReformeIn, user: dict | None = Depends(auth.current_us
     # la même réforme a-t-elle été chiffrée par une institution ? (banc d'essai) : on l'affiche à côté de notre chiffre
     from . import etalonnage
     return {**rapport, "reference_officielle": etalonnage.reference_pour(store, overrides)}
+
+
+@app.get("/api/aides-oubliees")
+def aides_oubliees():
+    """« Avez-vous pensé à… ? » : fiches d'aides souvent non demandées, avec leurs sources ; le profil est comparé côté navigateur."""
+    store = get_store()
+
+    def src(sid):
+        s = store.sources.get(sid) if sid else None
+        return {k: s.get(k) for k in ("id", "titre", "editeur", "url", "date_publication", "consulte_le")} if s else None
+    aides = []
+    for a in store.aides_oubliees:
+        aides.append({**{k: v for k, v in a.items() if k != "fichier"}, "source": src(a["source_id"]),
+                      "non_recours_source": src(a.get("non_recours_source")),
+                      "sources_complementaires": [x for x in map(src, a.get("sources_complementaires") or []) if x]})
+    return {"aides": aides}
 
 
 @app.get("/api/etalonnage")
