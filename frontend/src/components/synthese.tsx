@@ -225,7 +225,7 @@ function Titre({ e }: { e: Equilibre }) {
     if (e.statut === 'a_surveiller') return <>Coût estimé : environ <span className="delta neg">{milliards(Math.abs(e.effet))}</span> par an (estimation incertaine).</>
     return e.effet > 0.05 ? <>C'est financé, et ça rapporte <span className="delta pos">{milliards(e.effet)}</span> par an.</> : <>C'est financé. <CheckCircle2 size={20} color="var(--gain)" style={{ verticalAlign: -3 }} /></>
   }
-  if (e.statut === 'a_compenser') return <><span className="delta neg">{tonnes(e.manque)}</span> de trop par an.</>
+  if (e.statut === 'a_compenser') return <><span className="delta neg">{tonnes(e.manque)}</span> d'émissions en plus par an, à compenser.</>
   if (e.statut === 'a_surveiller') return <>Hausse estimée d'environ {tonnes(Math.abs(e.effet))} par an (estimation incertaine).</>
   if (e.statut === 'information') return <>{e.effet > 0 ? 'Hausse' : 'Baisse'} de {tonnes(e.effet)} par an.</>
   return e.effet < -0.005 ? <>Les émissions baissent de <span className="delta pos">{tonnes(e.effet)}</span> par an. <CheckCircle2 size={20} color="var(--gain)" style={{ verticalAlign: -3 }} /></> : <>Dans les clous. <CheckCircle2 size={20} color="var(--gain)" style={{ verticalAlign: -3 }} /></>

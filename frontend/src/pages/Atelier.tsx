@@ -270,7 +270,7 @@ export default function Atelier() {
               const annuel = r.unite === 'euros' && /\(par an\)/i.test(r.titre) && typeof v === 'number' && typeof r.valeur === 'number'
               const montant = (x: Valeur) => annuel ? `${euros(Number(x) / 12, 0)} par mois` : valeur(x, r.unite, r.type)
               return (
-                <Changement key={id} id={id} titre={r.titre} avant={montant(r.valeur)} apres={modifie ? montant(v) : null}
+                <Changement key={id} id={id} titre={annuel ? r.titre.replace(/\s*\(par an\)/i, '') : r.titre} avant={montant(r.valeur)} apres={modifie ? montant(v) : null}
                   badge={modifie && typeof v === 'number' && typeof r.valeur === 'number' && (pct === null || Math.abs(pct) >= 0.05) && v !== r.valeur
                     && <span className={`badge ${v > r.valeur ? 'accent' : 'primary'}`}>{ecartLisible(r.valeur, v, r.unite)}</span>}
                   ouvert={ouvert === id || !modifie} repliable={modifie} onBasculer={() => setOuvert(ouvert === id ? null : id)}>
@@ -293,7 +293,7 @@ export default function Atelier() {
               <hr className="divider" />
               <label className="row" style={{ cursor: situation ? 'pointer' : 'default', flexWrap: 'nowrap', alignItems: 'flex-start' }}>
                 <input type="checkbox" checked={avecFoyer && !!situation} disabled={!situation} onChange={(e) => setAvecFoyer(e.target.checked)} style={{ marginTop: 3 }} />
-                <span className="small"><User size={14} /> Calculer aussi l'effet sur mon foyer{situation && avecFoyer && <span className="muted"> ({resumeSituation(situation)} · <Link to="/mes-droits?retour=atelier">modifier</Link>)</span>}</span>
+                <span className="small"><User size={14} /> Calculer aussi l'effet sur mon foyer{situation && avecFoyer && <span className="muted"> ({resumeSituation(situation)} · <Link to="/mes-droits?retour=atelier&modifier=1">modifier</Link>)</span>}</span>
               </label>
               {!situation && (
                 <div className="small muted" style={{ marginTop: 6 }}>Décrivez votre situation dans <Link to="/mes-droits?retour=atelier">Mes droits</Link>, ou choisissez un foyer qui vous ressemble :
@@ -315,7 +315,7 @@ export default function Atelier() {
           {err && <ErrorBox message={err} />}
           {loading && <Progression phase={phase} demarrage={demarrage} />}
           {rapport && !loading && !aJour && rapportPour !== null && (
-            <div className="notice warn" style={{ marginBottom: 12 }}><div>Vous avez modifié votre réforme depuis le dernier calcul : les résultats ci-dessous ne sont plus à jour.{' '}
+            <div className="notice warn perime" style={{ marginBottom: 12 }}><div>Vous avez modifié votre réforme depuis le dernier calcul : les résultats ci-dessous ne sont plus à jour.{' '}
               <button className="btn small" onClick={() => simuler()}>Recalculer les effets</button></div></div>
           )}
           {aJour && !loading && desequilibres.length === 0 && aSurveiller.length > 0 && (
@@ -337,7 +337,7 @@ export default function Atelier() {
               {desequilibres.map((e) => e.id === 'budget' ? `il manque ${milliards(e.manque)} par an pour financer votre réforme` : `votre réforme ajouterait ${tonnes(e.manque)} d'émissions par an, à compenser pour tenir l'objectif climat de la France`).join(', et ')}.
               {/* une baisse d'impôt qui « pollue » surprend : dire d'où viennent ces émissions */}
               {desequilibres.some((e) => e.id === 'carbone') && rapport?.bilan?.some((p) => p.indicateurs.some((i) => i.id === 'equilibre_carbone_revenus'))
-                && ' Ces émissions viennent du pouvoir d\'achat : plus de revenus, c\'est un peu plus de consommation, donc de chauffage, de transports et d\'achats.'}
+                && " Elles viennent du pouvoir d'achat : plus de revenus, plus de consommation."}
               {' '}<a href="#equilibres">Choisir une solution ↓</a></div></div>
           )}
           {rapport && (!loading || rapport.partiel) && <ReportView r={rapport} overrides={draft.overrides} onAppliquer={appliquerCompensation} />}

@@ -95,8 +95,9 @@ function AucuneAide({ s, totalRevenus, plafondAspa }: { s: SituationSaisie; tota
       <h3 style={{ marginBottom: 6 }}>Pourquoi aucune aide ?</h3>
       {retraite && s.adultes.length === 1 && plafondAspa != null && totalRevenus > plafondAspa ? (
         <p className="small ink2" style={{ margin: 0 }}>Votre pension ({euros(totalRevenus)} par mois) dépasse le plafond du minimum vieillesse
-          ({euros(plafondAspa, 2)} pour une personne seule) : il ne s'ajoute donc pas. Les aides au logement aident à payer un loyer (ou,
-          dans certains cas, un prêt immobilier) : un propriétaire qui ne rembourse plus de prêt n'y a pas droit.</p>
+          ({euros(plafondAspa, 2)} pour une personne seule) : il ne s'ajoute donc pas.{s.logement === 'proprietaire'
+            ? " Les aides au logement aident à payer un loyer (ou, dans certains cas, un prêt immobilier) : un propriétaire qui ne rembourse plus de prêt n'y a pas droit."
+            : ' Pour les aides au logement, vos ressources dépassent le plafond qui correspond à votre loyer.'}</p>
       ) : (
         <p className="small ink2" style={{ margin: 0 }}>Les aides calculées par le site (RSA, prime d'activité, aides au logement, allocations familiales,
           minimum vieillesse…) dépendent des revenus, du loyer et de la composition du foyer : pour votre situation, vous dépassez leurs plafonds.</p>
@@ -137,6 +138,7 @@ export default function MesDroits() {
 
   // De retour sur la page avec une situation déjà saisie : on affiche directement le résultat
   useEffect(() => {
+    if (params.get('modifier')) { setStep(0); return }   // venu pour changer sa situation : le questionnaire, pas le résultat
     if (situation && !res && !loading) calculer(situation)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -198,6 +200,12 @@ export default function MesDroits() {
           ? <>Votre impôt aurait été d'environ {euros(res!.decote_annuelle!, 0)} par an, mais la <Terme id="decote">décote</Terme>, une réduction automatique pour les petits impôts, l'annule entièrement.</>
           : <>Le revenu du foyer est divisé en <Terme id="part_fiscale">parts</Terme> (une part par adulte, une demi-part par enfant) : par part, il reste sous le seuil où l'impôt commence.</>
       }
+      if (l.id === 'impot_revenu' && (res?.decote_annuelle ?? 0) > 0) {
+        const paye = Math.round(l.montant * 12)
+        return <>Le revenu du foyer est divisé en <Terme id="part_fiscale">parts</Terme> (une part par adulte, une demi-part par enfant),
+          ce qui donne un impôt d'environ {euros(paye + res!.decote_annuelle!, 0)} par an. La <Terme id="decote">décote</Terme>, une réduction
+          automatique pour les petits impôts, le ramène à environ <strong>{euros(paye, 0)} par an</strong>, soit {euros(l.montant)} par mois.</>
+      }
       if (l.id === 'retraite_nette' && res?.taux_csg_pension != null) return phraseCsgPension(res.taux_csg_pension)
       if (l.id === 'aspa' && s.adultes.length === 1 && typeof plafondAspa === 'number') {
         return <>Le minimum vieillesse complète vos ressources jusqu'à {euros(plafondAspa, 2)} par mois pour une personne seule.
@@ -232,9 +240,10 @@ export default function MesDroits() {
               <div className="card">
                 <div className="card-head">
                   <div>
-                    <div className="kpi-label">Ce qui reste au foyer chaque mois</div>
+                    <div className="kpi-label">Ce que le foyer touche chaque mois</div>
                     <div className="kpi big">{euros(res.revenu_disponible)} <span className="muted" style={{ fontSize: '1rem', fontWeight: 600 }}>/ mois</span></div>
-                    <div className="small muted">Revenus + aides − impôts.{s.adultes.length + s.enfants.length > 1 && <> Votre foyer vit aussi bien qu'une personne seule qui aurait {euros(res.niveau_de_vie)} par mois (c'est votre <Terme id="niveau_vie">niveau de vie</Terme> : à plusieurs, on partage le logement et les dépenses).</>}</div>
+                    <div className="small muted">Revenus nets (cotisations et CSG déjà retirées) + aides − impôt sur le revenu. C'est avant les dépenses :
+                      loyer ou crédit, taxe foncière, courses (dont la TVA)…{s.adultes.length + s.enfants.length > 1 && <> Votre foyer vit aussi bien qu'une personne seule qui aurait {euros(res.niveau_de_vie)} par mois (c'est votre <Terme id="niveau_vie">niveau de vie</Terme> : à plusieurs, on partage le logement et les dépenses).</>}</div>
                     {totalAides > 0.5 && (
                       <div className="small" style={{ marginTop: 6 }}>Dont <strong>{euros(totalAides)}</strong> d'aides. La plupart ne sont versées que si on les demande :
                         si vous ne les touchez pas encore, il vous reste aujourd'hui {euros(res.revenu_disponible - totalAides)}. Comment les obtenir est indiqué sous chaque aide.</div>

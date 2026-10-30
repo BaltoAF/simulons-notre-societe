@@ -660,3 +660,5 @@ button.change-tete:hover { background: color-mix(in srgb, var(--primary) 7%, tra
 }
 .cta-collant { position: sticky; bottom: 12px; z-index: 2; }
 .cta-collant .btn.primary:not(:disabled) { box-shadow: var(--e2); }
+/* résultats périmés : l'avertissement suit la lecture, on ne lit pas des chiffres faux sans le savoir */
+.notice.perime { position: sticky; top: 70px; z-index: 5; box-shadow: var(--e2); }
