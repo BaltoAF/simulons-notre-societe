@@ -278,6 +278,11 @@ export default function Atelier() {
                     <div className="small muted">Soit environ {euros(v * 151.67, 0)} brut, ≈ {euros(v * 151.67 * 0.79, 0)} net par mois à temps plein.</div>
                   )}
                   {annuel && <div className="small muted">Montant annuel : {valeur(v, r.unite, r.type)} par an, soit {euros(Number(v) / 12, 0)} par mois.</div>}
+                  {/* un pourcentage de la BMAF ne parle à personne : son équivalent en euros par mois */}
+                  {/% de la BMAF/.test(r.titre) && typeof v === 'number' && typeof r.valeur === 'number' && regles['prestations.famille.bmaf'] && (() => {
+                    const bmaf = Number(regles['prestations.famille.bmaf'].valeur)
+                    return <div className="small muted">Soit {euros(bmaf * r.valeur / 100, 0)}{modifie ? <> → <strong>{euros(bmaf * v / 100, 0)}</strong></> : null} par mois (avant la baisse prévue pour les revenus élevés).</div>
+                  })()}
                   {/* sinon on change la règle… et rien ne bouge dans les résultats, sans savoir pourquoi */}
                   {!r.simulable && <div className="notice small" style={{ margin: '4px 0' }}><div>Le site ne sait pas encore calculer
                     l'effet de cette règle : les résultats montreront ce qu'en disent les études, sans chiffrage.</div></div>}

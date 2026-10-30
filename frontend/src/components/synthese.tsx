@@ -94,7 +94,11 @@ export function EnBref({ r, contexte = 'reforme', overrides }: { r: Rapport; con
               {Math.abs(pv.delta_mois) < 0.5 ? <>Pour votre porte-monnaie : <span className="muted">rien ne change.</span></>
                 : <>Pour votre porte-monnaie : <span className={`delta ${pv.delta_mois > 0 ? 'pos' : 'neg'}`}>{pv.delta_mois > 0 ? '+' : '−'}{euros(Math.abs(pv.delta_mois))} par mois</span>.</>}
             </div>
-            {Math.abs(pv.delta_mois) < 0.5 && (
+            {Math.abs(pv.delta_mois) < 0.5 && (pv.detail ?? []).some((l) => Math.abs(l.delta_mois) >= 0.5) && (
+              <div className="small ink2" style={{ marginTop: 2 }}>Ce qui bouge : {pv.detail!.filter((l) => Math.abs(l.delta_mois) >= 0.5).map((l) =>
+                `${l.libelle} ${l.delta_mois > 0 ? '+' : '−'}${euros(Math.abs(l.delta_mois))}`).join(' · ')}. Ces changements s'annulent : au total, votre budget ne bouge pas.</div>
+            )}
+            {Math.abs(pv.delta_mois) < 0.5 && !(pv.detail ?? []).some((l) => Math.abs(l.delta_mois) >= 0.5) && (
               <div className="small muted" style={{ marginTop: 2 }}>{csgRetraiteNonConcernee
                 ? "Le taux plein de CSG ne concerne que les retraités dont les revenus déclarés aux impôts dépassent un plafond. Avec vos revenus, vous payez un taux plus bas, ou pas de CSG du tout, et ce changement ne le touche pas. Votre taux exact est indiqué dans « Mes droits », sous votre pension."
                 : "Les règles changées ne s'appliquent pas à votre situation, ou leur effet fait moins de 50 centimes par mois."}</div>

@@ -61,7 +61,7 @@ const POURQUOI: Record<string, { regles: string[]; texte: ReactNode }> = {
   aides_logement_zero: { regles: ['prestations.aides_logement.forfait_charges'], texte: 'L\'aide au logement baisse quand les ressources du foyer augmentent : pour votre loyer, votre zone et vos revenus, elle tombe à zéro.' },
   rsa: { regles: ['prestations.rsa.montant_forfaitaire'], texte: 'Le RSA complète vos ressources jusqu\'à un montant garanti qui dépend de la composition du foyer.' },
   prime_activite: { regles: ['prestations.prime_activite.montant_forfaitaire', 'prestations.prime_activite.part_revenus_activite', 'prestations.prime_activite.bonification_max'], 
-    texte: "Elle complète les revenus des personnes qui travaillent et gagnent peu. Son calcul : une somme de base, plus une part de ce que vous gagnez en travaillant, plus un bonus quand vous gagnez au moins la moitié du SMIC environ, moins vos autres ressources (dont une partie de l'aide au logement). Plus vous gagnez, plus elle baisse, jusqu'à s'arrêter. Elle se redemande tous les trois mois." },
+    texte: "Elle complète les revenus des personnes qui travaillent et gagnent peu. Son calcul : une somme de base, plus une part de ce que vous gagnez en travaillant, plus un bonus quand vous gagnez au moins la moitié du SMIC environ, moins vos autres ressources (dont une partie de l'aide au logement). Plus vous gagnez, plus elle baisse, jusqu'à s'arrêter. Une pension alimentaire reçue compte en entier dans vos autres ressources. Elle se redemande tous les trois mois." },
   aides_logement: { regles: ['prestations.aides_logement.forfait_charges'], texte: 'L\'aide au logement dépend du loyer, de la zone, de la composition du foyer et des ressources.' },
   allocations_familiales: { regles: ['prestations.famille.bmaf', 'prestations.famille.af_taux_deux_enfants', 'prestations.famille.af_nombre_enfants_minimum'], texte: 'Versées à partir de 2 enfants, modulées selon les revenus.' },
   impot_revenu: { regles: ['fiscalite.impot_revenu.bareme', 'fiscalite.impot_revenu.decote.taux', 'fiscalite.impot_revenu.quotient_familial.plafond_demi_part'], texte: 'Impôt progressif calculé sur le revenu du foyer, divisé par le nombre de parts.' },
@@ -242,7 +242,7 @@ export default function MesDroits() {
           <h1 style={{ margin: 0 }}>Vos droits aujourd'hui</h1>
           <div className="row" style={{ gap: 8 }}>
             <button className="btn" onClick={() => { setStep(0); setRes(null) }}><RotateCcw size={16} /> Modifier ma situation</button>
-            <button className="btn ghost small" title="Sur un ordinateur partagé : rien de votre situation ne reste dans ce navigateur"
+            <button className="btn ghost small" aria-label="Effacer mes réponses" title="Sur un ordinateur partagé : rien de votre situation ne reste dans ce navigateur"
               onClick={() => { setSituation(null); setS(DEFAUT); setRes(null); setExemple(null); setStep(0); window.scrollTo(0, 0) }}>Effacer mes réponses</button>
           </div>
         </div>
@@ -495,7 +495,7 @@ export default function MesDroits() {
             {s.logement.startsWith('locataire') && (
               <label className="field"><span>Loyer mensuel hors charges, avant l'aide au logement</span>
                 <div className="input-suffix"><input type="number" min={0} step={10} placeholder="ex. 600" value={s.loyer_mensuel || ''} onChange={(e) => up({ loyer_mensuel: Number(e.target.value) })} /><span className="suffix">€ / mois</span></div>
-                <span className="hint">Si la CAF verse l'aide directement à votre bailleur (c'est souvent le cas en HLM), indiquez le loyer total inscrit sur votre avis d'échéance, pas ce qu'il vous reste à payer.</span></label>
+                <span className="hint">Si la CAF verse l'aide directement à votre bailleur (c'est souvent le cas en HLM), indiquez le loyer hors charges inscrit sur votre avis d'échéance, avant que l'aide en soit retirée, et non ce qu'il vous reste à payer.</span></label>
             )}
             <label className="field"><span>Vous habitez…</span></label>
             <div className="choices">

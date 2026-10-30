@@ -18,7 +18,7 @@ export function AvezVousPense({ s, lignes }: { s: SituationSaisie; lignes: Ligne
   return (
     <section className="card" id="avez-vous-pense" aria-labelledby="avez-vous-pense-titre">
       <h3 id="avez-vous-pense-titre"><Lightbulb size={19} /> Avez-vous pensé à… ? <Beta /></h3>
-      <p className="small muted" style={{ marginTop: 0 }}>Des aides que beaucoup de gens ne demandent pas, alors qu'ils y ont droit. Aucune n'arrive toute seule : c'est à vous d'en faire la demande.</p>
+      <p className="small muted" style={{ marginTop: 0 }}>Des aides que beaucoup de gens ne demandent pas, alors qu'ils y ont droit. La plupart n'arrivent pas toutes seules : chaque fiche dit s'il faut en faire la demande.</p>
       <ul className="list">
         {aides.map((a) => (
           <li key={a.id} className="aide-oubliee">
