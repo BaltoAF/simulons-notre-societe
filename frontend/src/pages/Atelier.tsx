@@ -206,7 +206,7 @@ export default function Atelier() {
       <Etapes etape={etape} />
 
       <div className="split">
-        <div className="stack">
+        <div className="stack atelier-reforme">
           {/* une seule carte : le point de départ, les changements (une ligne chacun, dépliée pour la régler), le foyer */}
           <div className="card">
             <div className="card-head" style={{ marginBottom: 4 }}><h3 style={{ margin: 0 }}>Votre réforme</h3>
@@ -301,7 +301,7 @@ export default function Atelier() {
                 </div>
               )}
               {/* le bouton principal reste visible quand la liste des changements dépasse l'écran */}
-              <div className="cta-collant">
+              <div className={ouvert ? '' : 'cta-collant'}>
                 <button className="btn primary large" style={{ width: '100%', marginTop: 14 }} disabled={!changes.length || loading} onClick={() => simuler()}>
                   <Calculator size={18} /> {loading ? 'Calcul en cours…' : rapportPour && !aJour ? 'Recalculer les effets' : 'Voir les effets'}
                 </button>

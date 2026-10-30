@@ -96,7 +96,7 @@ export function EnBref({ r, contexte = 'reforme', overrides }: { r: Rapport; con
             </div>
             {Math.abs(pv.delta_mois) < 0.5 && (
               <div className="small muted" style={{ marginTop: 2 }}>{csgRetraiteNonConcernee
-                ? "Le taux plein de CSG ne concerne que les retraités dont le revenu fiscal de référence dépasse un plafond. Avec vos revenus, vous payez un taux réduit, ou pas de CSG du tout, et ce changement ne le touche pas."
+                ? "Le taux plein de CSG ne concerne que les retraités dont les revenus déclarés aux impôts dépassent un plafond. Avec vos revenus, vous payez un taux plus bas, ou pas de CSG du tout, et ce changement ne le touche pas. Votre taux exact est indiqué dans « Mes droits », sous votre pension."
                 : "Les règles changées ne s'appliquent pas à votre situation, ou leur effet fait moins de 50 centimes par mois."}</div>
             )}
             {Math.abs(pv.delta_mois) >= 0.5 && (pv.detail ?? []).length > 0 && (

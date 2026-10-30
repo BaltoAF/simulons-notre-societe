@@ -10,10 +10,6 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   modestes sur les effectifs officiels d'allocataires (DREES).
 - **« Revaloriser les pensions »** : la règle `retraites.revalorisation.pensions_base` n'est reliée à aucun calcul. La
   changer dans l'atelier ne change donc rien ; la relier (montant des pensions des ménages et de la population) ou le dire.
-- **Test Jacqueline, 2e passage** (notes 4 / 3,5 / 4 sur 5) : sur ordinateur, la colonne de la réforme défile avec la page
-  et laisse un vide à côté des résultats (la garder visible) ; sur téléphone, le bouton flottant « Voir les effets » peut
-  masquer « Supprimer ce changement » ; « vous payez un taux réduit » : donner le taux de CSG du foyer et dire « revenus
-  déclarés aux impôts » plutôt que « revenu fiscal de référence ».
 - **À soumettre au responsable** : limiter le nombre de simulations de réforme simultanées si la fréquentation augmente
   (le serveur de 4 Go met jusqu'à une minute et demie pour la première simulation).
 
@@ -38,6 +34,10 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
 - 30/10/2026 (soir, suite) : idées toutes prêtes en tête de chaque thème, minimum vieillesse dans « Les retraites » ;
   « ménages types » présentés comme des exemples ; « plutôt négatif » sur le plan social expliqué quand personne n'y perd ;
   fiabilité écrite en toutes lettres sur les cartes des équilibres ; émissions dues au pouvoir d'achat expliquées.
+- 30/10/2026 (soir, 2e passage du test Jacqueline : 4 / 3,5 / 4 sur 5) : la réforme reste à côté des résultats sur
+  ordinateur ; le bouton flottant s'efface pendant qu'on règle un changement ; « revenus déclarés aux impôts » au lieu de
+  « revenu fiscal de référence » ; « Mes droits » : « Ce que le foyer touche chaque mois » (avant les dépenses) et impôt
+  avant et après décote.
 
 - 30/10/2026 : la TVA compte dans le pouvoir d'achat des ménages ; la pension alimentaire est demandée aux parents seuls ;
   « Pourquoi aucune aide ? » ; allocation de rentrée scolaire présentée comme annuelle ; bouton « A+ » ; bouton d'avis discret

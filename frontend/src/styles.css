@@ -662,3 +662,7 @@ button.change-tete:hover { background: color-mix(in srgb, var(--primary) 7%, tra
 .cta-collant .btn.primary:not(:disabled) { box-shadow: var(--e2); }
 /* résultats périmés : l'avertissement suit la lecture, on ne lit pas des chiffres faux sans le savoir */
 .notice.perime { position: sticky; top: 70px; z-index: 5; box-shadow: var(--e2); }
+/* atelier sur ordinateur : la réforme reste sous les yeux pendant qu'on lit les résultats (sa carte défile si elle est longue) */
+@media (min-width: 961px) {
+  .atelier-reforme { position: sticky; top: 76px; max-height: calc(100vh - 88px); overflow-y: auto; padding: 2px 4px 8px; margin: -2px -4px 0; }
+}
