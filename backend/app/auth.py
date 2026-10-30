@@ -1,8 +1,8 @@
 """Comptes utilisateurs.
 
 Principe : on peut TOUT tester sans compte ; il faut être identifié pour PROPOSER (créer un fork,
-committer, ouvrir une proposition, commenter). L'identification par FranceConnect pourra remplacer
-ou compléter le couple pseudo / mot de passe (champ identite_verifiee).
+committer, ouvrir une proposition, commenter). Le champ identite_verifiee est réservé à une éventuelle identité vérifiée ;
+FranceConnect, réservé aux services publics et aux partenaires habilités, n'est pas prévu.
 """
 from __future__ import annotations
 

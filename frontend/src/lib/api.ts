@@ -165,6 +165,7 @@ export type Meta = {
   version_societe: string
   dernier_commit_systeme: Commit
   moteur: { nom: string; version: string | null; pret: boolean }
+  soutien?: { lien: string | null }
   types_sources: Record<string, string>
 }
 

@@ -71,6 +71,8 @@ def meta():
         "stats": stats, "domaines": domaines, "version_societe": head["base_snapshot"], "dernier_commit_systeme": head,
         "moteur": {"nom": "OpenFisca-France", "version": ENGINE.version, "pret": ENGINE.ready},
         "types_sources": TYPES_SOURCE,
+        # lien vers la plateforme de dons (variable SOCIETE_LIEN_DON du serveur) : sans lui, le site ne propose aucun don
+        "soutien": {"lien": os.environ.get("SOCIETE_LIEN_DON") or None},
     }
 
 

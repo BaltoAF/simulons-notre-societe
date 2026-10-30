@@ -13,6 +13,8 @@ import { BudgetEditor } from '../components/BudgetEditor'
 import { PROFILS } from '../lib/profils'
 import { ReportView } from '../components/report'
 import { ProchaineEtape } from '../components/Parcours'
+import { ProposerSoutien } from '../components/Soutien'
+import { noterActionUtile } from '../lib/soutien'
 import { Terme } from '../components/Terme'
 import { ErrorBox, Modal, Notice } from '../components/ui'
 
@@ -88,7 +90,7 @@ export default function Atelier() {
       const r = await total
       setRapport(r)
       setRapportPour(JSON.stringify(ov))
-      marquer('idee')
+      marquer('idee'); noterActionUtile('reforme')
     } catch (e: any) { setErr(e.message) } finally { setLoading(false); setPhase(0) }
   }
   const appliquerCompensation = (o: Record<string, Valeur>) => {
@@ -360,6 +362,7 @@ export default function Atelier() {
           )}
           {rapport && (!loading || rapport.partiel) && <ReportView r={rapport} overrides={draft.overrides} onAppliquer={appliquerCompensation} />}
           {aJour && !loading && <div style={{ marginTop: 16 }}><ProchaineEtape apres="idee" /></div>}
+          {aJour && !loading && <ProposerSoutien />}
           {!loading && !rapport && changes.length > 0 && (
             <div className="card soft" style={{ textAlign: 'center', padding: 32 }}>
               <Calculator size={36} color="var(--primary)" />

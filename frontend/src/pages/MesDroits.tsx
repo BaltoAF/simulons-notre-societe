@@ -12,6 +12,8 @@ import { DroitsNonMonetaires } from '../components/DroitsNonMonetaires'
 import { ProchaineEtape } from '../components/Parcours'
 import { OuJeMeSitue } from '../components/OuJeMeSitue'
 import { AvezVousPense } from '../components/AvezVousPense'
+import { ProposerSoutien } from '../components/Soutien'
+import { noterActionUtile } from '../lib/soutien'
 import { Terme } from '../components/Terme'
 import { PROFILS } from '../lib/profils'
 
@@ -105,7 +107,7 @@ export default function MesDroits() {
     try {
       setSituation(sit)
       const r = await api<Resultat>('/api/simulation/menage', { body: { menage: situationVersMenage(sit), montants: 'net' } })
-      setRes(r); setStep(3); marquer('droits')
+      setRes(r); setStep(3); marquer('droits'); noterActionUtile('droits')
     } catch (e: any) { setErr(e.message) } finally { setLoading(false) }
   }
 
@@ -250,6 +252,8 @@ export default function MesDroits() {
                 <Notice>Ce sont vos <strong>droits théoriques</strong> selon la législation en vigueur, calculés par le moteur public OpenFisca-France. Pour une démarche officielle, utilisez les simulateurs de l'administration (mesdroitssociaux.gouv.fr, impots.gouv.fr).</Notice>
               </div>
               <AvezVousPense s={s} lignes={res.lignes} />
+              {/* pas de demande d'argent à un foyer qui vient d'apprendre ses droits aux minima ou aux aides */}
+              <ProposerSoutien masquer={prestBrut.length > 0} />
               <ProchaineEtape apres="droits" />
               <DroitsNonMonetaires age={s.adultes[0]?.age ?? 35} mois={s.mois_naissance ?? 1}
                 onMois={(m) => { const sit = { ...s, mois_naissance: m }; setS(sit); setSituation(sit) }} />

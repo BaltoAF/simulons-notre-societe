@@ -11,6 +11,8 @@ import { useApp, useFetch } from '../lib/state'
 import { ErrorBox, Loading } from '../components/ui'
 import { Terme } from '../components/Terme'
 import { ProchaineEtape } from '../components/Parcours'
+import { ProposerSoutien } from '../components/Soutien'
+import { noterActionUtile } from '../lib/soutien'
 
 type Stat = { id: string; titre: string; unite: string; derniere: { date: string; valeur: number } | null; source: { id: string; titre?: string; editeur?: string; url?: string } | null }
 
@@ -175,7 +177,7 @@ function Detail({ q }: { q: Question }) {
   const { marquer, setDraft } = useApp()
   const nav = useNavigate()
   const { data: regles } = useFetch<{ regles: Regle[] }>(q.actions.some((a) => a.preset) ? '/api/regles?simulable=true&limit=2000' : null)
-  useEffect(() => { marquer('question') }, [marquer])
+  useEffect(() => { marquer('question'); noterActionUtile('question') }, [marquer])
   const i = QUESTIONS.indexOf(q)
   const suivante = QUESTIONS[(i + 1) % QUESTIONS.length]
 
@@ -250,6 +252,7 @@ function Detail({ q }: { q: Question }) {
       </div>
 
       <div style={{ marginTop: 16 }}><ProchaineEtape apres="question" /></div>
+      <ProposerSoutien />
 
       <div className="row between" style={{ marginTop: 20 }}>
         <Link to="/comprendre">← Toutes les questions</Link>

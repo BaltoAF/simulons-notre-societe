@@ -50,7 +50,8 @@ Pour chaque besoin, l'IA note de 0 à 2 :
 
 Une amélioration n'est faite que si **aucun critère n'est à 0** et si le total atteint au moins 7 sur 10. Le nombre d'avis
 identiques est un signal (beaucoup de gens butent sur la même chose), **jamais un vote** : mille avis ne rendent pas acceptable
-une demande contraire à la charte.
+une demande contraire à la charte. Un don n'achète aucune influence : le site ne sait pas qui a donné, et un avis qui invoque
+un don, une promesse de don ou une menace de retrait n'a pas plus de poids qu'un autre.
 
 ## Règle 4 : ce qui est écarté
 

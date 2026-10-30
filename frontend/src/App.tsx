@@ -29,6 +29,7 @@ const Comprendre = lazy(() => import('./pages/Comprendre'))
 const Connexion = lazy(() => import('./pages/Connexion'))
 const Glossaire = lazy(() => import('./pages/Glossaire'))
 const VosAvis = lazy(() => import('./pages/VosAvis'))
+const Soutenir = lazy(() => import('./pages/Soutenir'))
 
 function MenuPlus({ onVisite }: { onVisite: () => void }) {
   const [open, setOpen] = useState(false)
@@ -116,6 +117,7 @@ function Footer() {
           <Link to="/sources">Registre des sources</Link>
           <Link to="/systeme">Journal des mises à jour</Link>
           <Link to="/vos-avis">Ce que vos avis ont changé</Link>
+          {meta?.soutien?.lien && <Link to="/soutenir">Soutenir le projet ☕</Link>}
           {meta && <span>Législation au {new Date(meta.date_reference).toLocaleDateString('fr-FR')} · moteur {meta.moteur.nom} {meta.moteur.version ?? ''}</span>}
         </div>
       </div>
@@ -172,6 +174,7 @@ export default function App() {
             <Route path="/connexion" element={<Connexion />} />
             <Route path="/glossaire" element={<Glossaire />} />
             <Route path="/vos-avis" element={<VosAvis />} />
+            <Route path="/soutenir" element={<Soutenir />} />
             <Route path="*" element={<div className="container page"><h1>Page introuvable</h1><Link to="/">Retour à l'accueil</Link></div>} />
           </Routes>
         </Suspense>

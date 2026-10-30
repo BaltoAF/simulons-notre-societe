@@ -496,3 +496,7 @@ main:focus { outline: none; }
 @media print { .bouton-avis { display: none; } }
 .footer { padding-bottom: 76px; } /* le bouton d'avis ne cache pas les liens du pied de page */
 .champ-piege { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+
+/* « Offrir un café » : une invitation discrète, jamais une fenêtre qui s'impose */
+.soutien { display: flex; gap: 12px; align-items: flex-start; margin-top: 16px; padding: 12px 14px; border-radius: var(--radius-sm);
+  border: 1px dashed var(--line-2); background: var(--surface); color: var(--ink); }

@@ -41,7 +41,6 @@ export default function Connexion() {
           {mode === 'connexion' ? <>Pas encore de compte ? <button type="button" className="btn ghost small" onClick={() => setMode('inscription')}>Créer un compte</button></>
             : <>Déjà inscrit ? <button type="button" className="btn ghost small" onClick={() => setMode('connexion')}>Se connecter</button></>}
         </div>
-        <p className="small muted" style={{ marginTop: 10 }}>L'identification via FranceConnect est prévue pour les rôles qui exigent une identité vérifiée.</p>
       </form>
     </div>
   )

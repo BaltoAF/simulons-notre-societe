@@ -46,6 +46,18 @@
 3. **Activation** : activez la routine « Auto-amélioration quotidienne » sur https://claude.ai/code/routines, ou demandez à
    Claude de le faire.
 
+## Les dons (« Offrir un café »)
+
+Après quelques actions utiles, le site propose discrètement d'offrir un café, au plus une fois par mois. Il ne le fait jamais
+pendant la découverte guidée, ni à un foyer qui vient d'apprendre ses droits à des aides. Pour ouvrir les dons, ajoutez le
+lien de votre page de dons dans `/opt/simulons/deploy/.env`, puis relancez :
+
+```bash
+echo "SOCIETE_LIEN_DON=https://ko-fi.com/votre-page" >> /opt/simulons/deploy/.env && /opt/simulons/deploy/suivre_github.sh --forcer
+```
+
+Sans ce lien, le site ne propose aucun don.
+
 ## Au quotidien
 
 | Pour… | Où regarder |

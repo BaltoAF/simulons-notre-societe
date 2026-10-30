@@ -96,8 +96,8 @@ de contrôles (voir `docs/CALAGE-POPULATION.md`).
 - Pas de données individuelles ouvertes : population synthétique = ordres de grandeur.
 - Les indépendants et les fonctionnaires sont simulés comme des salariés du privé.
 - Calculs de 10 à 20 secondes par réforme (OpenFisca sur 5 000 ménages, 4 processus).
-- Identification par pseudo et mot de passe ; FranceConnect à brancher pour les rôles exigeant une
-  identité vérifiée.
+- Identification par pseudo et mot de passe. FranceConnect n'est pas prévu : il est réservé aux services publics et aux
+  partenaires habilités par l'État.
 - Légifrance bloque les robots : les agents ont prouvé les valeurs via les pages officielles qui citent
   les articles (service-public.fr, code.travail.gouv.fr, circulaires…). Une clé d'API PISTE (Légifrance)
   permettrait au Système de vérifier directement chaque article.
