@@ -44,7 +44,8 @@ const AIDE_MONTANT: Record<string, string> = {
   etudiant: "Une personne étudiante n'a droit à la prime d'activité que si elle gagne au moins 78 % du SMIC environ. Les bourses ne sont pas calculées par le site, mais le résultat vous dira comment les demander.",
 }
 
-const ADULTE: AdulteSaisie = { age: 35, activite: 'salarie', montant_net: 1600, cadre: false, handicap: false }
+// âge et montant vides (un exemple grisé les illustre) : pré-remplis, on pouvait valider sans les changer, et le calcul était faux
+const ADULTE: AdulteSaisie = { age: 0, activite: 'salarie', montant_net: 0, cadre: false, handicap: false }
 const DEFAUT: SituationSaisie = { couple: 'seul', adultes: [ADULTE], enfants: [], logement: 'locataire_prive', loyer_mensuel: 0, zone: 2, revenus_capital_annuels: 0 }
 
 // Règles qui « expliquent » chaque ligne du résultat.
@@ -350,6 +351,7 @@ export default function MesDroits() {
   const enCouple = s.adultes.length > 1
   // un salaire, une allocation chômage ou une pension à 0 € : presque toujours un oubli
   const montantManquant = s.adultes.some((a) => ['salarie', 'independant', 'chomeur', 'retraite'].includes(a.activite) && !(a.montant_net > 0))
+  const ageManquant = s.adultes.some((a) => !(a.age >= 16 && a.age <= 110))
   return (
     <div className="container page" style={{ maxWidth: 760 }}>
       {retourAtelier}
@@ -375,7 +377,7 @@ export default function MesDroits() {
             <label className="field"><span>Vous vivez…</span></label>
             <div className="choices" style={{ marginBottom: 16 }}>
               <button className={`choice ${!enCouple ? 'on' : ''}`} aria-pressed={!enCouple} onClick={() => up({ couple: 'seul', adultes: [s.adultes[0]] })}>Seul(e)</button>
-              <button className={`choice ${enCouple ? 'on' : ''}`} aria-pressed={enCouple} onClick={() => up({ couple: s.couple === 'seul' ? 'marie' : s.couple, adultes: [s.adultes[0], s.adultes[1] ?? { ...ADULTE, age: 34 }] })}>En couple</button>
+              <button className={`choice ${enCouple ? 'on' : ''}`} aria-pressed={enCouple} onClick={() => up({ couple: s.couple === 'seul' ? 'marie' : s.couple, adultes: [s.adultes[0], s.adultes[1] ?? ADULTE] })}>En couple</button>
             </div>
             {enCouple && (
               <>
@@ -409,7 +411,7 @@ export default function MesDroits() {
               <div key={i}>
                 {enCouple && <h3>{i === 0 ? 'Vous' : 'Votre conjoint(e)'}</h3>}
                 <div className="grid cols-2">
-                  <label className="field"><span>Âge</span><input type="number" min={16} max={110} value={a.age} onChange={(e) => upA(i, { age: Number(e.target.value) })} /></label>
+                  <label className="field"><span>Âge</span><input type="number" min={16} max={110} value={a.age || ''} placeholder="ex. 35" onChange={(e) => upA(i, { age: Number(e.target.value) })} /></label>
                   <label className="field"><span>Situation</span>
                     {/* changer de situation vide le montant : une pension de 850 € ne doit pas devenir un salaire d'étudiant */}
                     <select value={a.activite} onChange={(e) => {
@@ -483,8 +485,8 @@ export default function MesDroits() {
         <div className="row between" style={{ marginTop: 22 }}>
           {step > 0 ? <button className="btn" onClick={() => { setStep(step - 1); window.scrollTo(0, 0) }}><ArrowLeft size={16} /> Précédent</button> : <span />}
           {step < 2 ? <span className="row" style={{ gap: 10 }}>
-              {step === 1 && montantManquant && <span className="small muted">Indiquez le montant pour continuer.</span>}
-              <button className="btn primary" disabled={step === 1 && montantManquant} onClick={() => { setStep(step + 1); window.scrollTo(0, 0) }}>Suivant <ArrowRight size={16} /></button>
+              {step === 1 && (ageManquant || montantManquant) && <span className="small muted">Indiquez {ageManquant ? "l'âge" : 'le montant'} pour continuer.</span>}
+              <button className="btn primary" disabled={step === 1 && (ageManquant || montantManquant)} onClick={() => { setStep(step + 1); window.scrollTo(0, 0) }}>Suivant <ArrowRight size={16} /></button>
             </span>
             : <span className="row" style={{ gap: 10 }}>
                 {s.logement.startsWith('locataire') && !s.loyer_mensuel && <span className="small muted">Indiquez votre loyer pour continuer.</span>}
