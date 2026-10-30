@@ -107,8 +107,9 @@ export function EnBref({ r, contexte = 'reforme', overrides }: { r: Rapport; con
         {r.bilan.map((p) => {
           const I = ICONES[p.pilier]
           const v = VERDICT[p.verdict]
-          const confs = p.indicateurs.map((i) => i.confiance).filter(Boolean)
-          const conf = confs.length ? confs.reduce((a, b) => ((a!.score) < (b!.score) ? a : b)) : null
+          // la fiabilité du chiffre principal (le premier affiché), pas celle du plus fragile des effets secondaires :
+          // sinon « Écologie : très faible » contredisait « Pour la planète : élevée » plus bas
+          const conf = p.indicateurs.find((i) => i.confiance)?.confiance ?? null
           return (
             <div key={p.pilier} className="card flat" style={{ padding: 14 }}>
               <div className="row between" style={{ marginBottom: 8 }}>
