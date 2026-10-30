@@ -30,6 +30,7 @@ const Connexion = lazy(() => import('./pages/Connexion'))
 const Glossaire = lazy(() => import('./pages/Glossaire'))
 const VosAvis = lazy(() => import('./pages/VosAvis'))
 const Soutenir = lazy(() => import('./pages/Soutenir'))
+const Tester = lazy(() => import('./pages/Tester'))
 const Frequentation = lazy(() => import('./pages/Frequentation'))
 
 function MenuPlus({ onVisite }: { onVisite: () => void }) {
@@ -135,6 +136,7 @@ function Footer() {
           <Link to="/systeme">Journal des mises à jour</Link>
           <button className="lien" style={{ textAlign: 'left', color: 'var(--ink-2)', textDecoration: 'none' }} onClick={ouvrirAvis}>Donner mon avis</button>
           <Link to="/vos-avis">Ce que vos avis ont changé</Link>
+          <Link to="/tester">Tester le site en 10 minutes</Link>
           {meta?.soutien?.lien && <Link to="/soutenir">Soutenir le projet ☕</Link>}
           {meta && <span>Législation au {new Date(meta.date_reference).toLocaleDateString('fr-FR')} · moteur {meta.moteur.nom} {meta.moteur.version ?? ''}</span>}
         </div>
@@ -209,6 +211,7 @@ export default function App() {
             <Route path="/glossaire" element={<Glossaire />} />
             <Route path="/vos-avis" element={<VosAvis />} />
             <Route path="/soutenir" element={<Soutenir />} />
+            <Route path="/tester" element={<Tester />} />
             <Route path="/frequentation" element={<Frequentation />} />
             <Route path="*" element={<div className="container page"><h1>Page introuvable</h1><Link to="/">Retour à l'accueil</Link></div>} />
           </Routes>
