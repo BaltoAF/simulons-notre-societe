@@ -353,7 +353,7 @@ export const VRAI_FAUX: VraiFaux[] = [
     id: 'aides-retraites',
     affirmation: 'Les aides sociales coûtent plus cher que les retraites.',
     verdict: 'faux',
-    explication: "Le RSA, la prime d'activité et l'allocation aux adultes handicapés coûtent ensemble {minima} par an. Les retraites coûtent {retraites} : environ {rapport} fois plus.",
+    explication: "Le RSA, la prime d'activité et l'allocation aux adultes handicapés coûtent ensemble {minima} par an. Les retraites coûtent {retraites} : environ {rapport} fois plus. Même en ajoutant les allocations familiales, le chômage et les aides au logement, on reste loin des retraites (voir « Sur 100 € d'argent public » dans « Le budget »).",
     chiffres: [
       { cle: 'rsa_e', libelle: 'RSA', format: 'md', metrique: 'prestations.rsa.montant_annuel', cache: true },
       { cle: 'pa_e', libelle: "Prime d'activité", format: 'md', metrique: 'prestations.prime_activite.montant_annuel', cache: true },
@@ -363,5 +363,33 @@ export const VRAI_FAUX: VraiFaux[] = [
       { cle: 'rapport', libelle: 'Rapport', format: 'entier', calcul: (v) => (v.minima ? v.retraites / v.minima : null) },
     ],
     lien: { libelle: 'Comment marchent les retraites ?', lien: '/comprendre/retraites' },
+  },
+  // des idées reçues de tous les bords (test Gérard : les premières démontaient surtout des idées sur « l'assistanat »)
+  {
+    id: 'riches-ir',
+    affirmation: "Les plus aisés paient peu d'impôt sur le revenu.",
+    verdict: 'faux',
+    explication: "Les foyers qui déclarent plus de 100 000 € par an ne sont que {part_foyers} des foyers, mais ils paient {part_impot} de l'impôt sur le revenu ({impot_haut} sur {impot_total}), car il est progressif. La TVA, elle, pèse plus lourd, en proportion, sur les revenus modestes.",
+    chiffres: [
+      { cle: 'foyers_haut', libelle: 'Foyers au-delà de 100 000 €', format: 'entier', metrique: 'impot.ir.tranche_rfr_plus_100000.nombre_foyers', cache: true },
+      { cle: 'foyers', libelle: 'Foyers fiscaux', format: 'entier', metrique: 'impot.ir.nombre_foyers_fiscaux', cache: true },
+      { cle: 'impot_haut_e', libelle: 'Impôt payé au-delà de 100 000 €', format: 'entier', metrique: 'impot.ir.tranche_rfr_plus_100000.impot_net', cache: true },
+      { cle: 'impot_total_e', libelle: 'Impôt sur le revenu total', format: 'entier', metrique: 'impot.ir.impot_net_total', cache: true },
+      { cle: 'impot_haut', libelle: 'Impôt payé par ces foyers', format: 'md', calcul: (v) => (v.impot_haut_e ? v.impot_haut_e / 1e9 : null) },
+      { cle: 'impot_total', libelle: 'Impôt sur le revenu, au total', format: 'md', calcul: (v) => (v.impot_total_e ? v.impot_total_e / 1e9 : null) },
+      { cle: 'part_foyers', libelle: 'Part des foyers', format: 'pct', calcul: (v) => (v.foyers ? (v.foyers_haut / v.foyers) * 100 : null) },
+      { cle: 'part_impot', libelle: "Part de l'impôt sur le revenu", format: 'pct', calcul: (v) => (v.impot_total_e ? (v.impot_haut_e / v.impot_total_e) * 100 : null) },
+    ],
+    lien: { libelle: 'Qui paie quoi ?', lien: '/comprendre/qui-paie' },
+  },
+  {
+    id: 'entreprises-is',
+    affirmation: "Les entreprises ne paient presque pas d'impôt.",
+    verdict: 'faux',
+    explication: "L'impôt sur les sociétés, payé sur leurs bénéfices, a rapporté {is} en un an. Elles paient aussi la part « patronale » des cotisations sur les salaires, et des impôts locaux. Les montants varient beaucoup d'une entreprise à l'autre : certaines paient peu, notamment grâce à des crédits d'impôt.",
+    chiffres: [
+      { cle: 'is', libelle: 'Impôt sur les sociétés', format: 'md', metrique: 'finances_publiques.recettes.impot_societes' },
+    ],
+    lien: { libelle: "Où va l'argent public, et d'où il vient", lien: '/budget' },
   },
 ]
