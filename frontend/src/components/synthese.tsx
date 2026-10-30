@@ -56,6 +56,13 @@ function paradoxePauvrete(p: Pilier): boolean {
   return !!pauv && !!gagnants && pauv.valeur <= -0.02 && gagnants.valeur < 10 && (gagnants.perdants ?? 0) > 30
 }
 
+/** « Plutôt négatif » sur le plan social alors que personne n'y perd : les inégalités se creusent, il faut le dire. */
+function gainPourLesPlusAises(p: Pilier): boolean {
+  const gini = p.indicateurs.find((i) => i.id === 'gini')
+  const gagnants = p.indicateurs.find((i) => i.id === 'gagnants')
+  return p.verdict === 'degradation' && !!gini && gini.valeur >= 0.02 && !!gagnants && (gagnants.perdants ?? 0) < 1
+}
+
 export function EnBref({ r, contexte = 'reforme', overrides }: { r: Rapport; contexte?: Contexte; overrides?: Record<string, Valeur> }) {
   const pv = r.pour_vous
   const { situation } = useApp()
@@ -138,6 +145,10 @@ export function EnBref({ r, contexte = 'reforme', overrides }: { r: Rapport; con
               {p.pilier === 'social' && paradoxePauvrete(p) && (
                 <div className="small muted" style={{ marginTop: 6 }}>Pourquoi la pauvreté recule-t-elle si presque personne n'y gagne ? Elle se mesure par rapport au revenu du milieu
                   de la population : quand presque tout le monde perd un peu, ce repère baisse, et moins de personnes se retrouvent en dessous.</div>
+              )}
+              {p.pilier === 'social' && gainPourLesPlusAises(p) && (
+                <div className="small muted" style={{ marginTop: 6 }}>Pourquoi « plutôt négatif » si personne n'y perd ? Le gain va surtout aux ménages
+                  les plus aisés : l'écart entre les revenus se creuse.</div>
               )}
               {conf && <div className="small muted" style={{ marginTop: 8 }}>Fiabilité : <ConfidenceBadge c={conf} compact align="right" /> {CONFIANCE_FEMININ[conf.niveau]}</div>}
             </div>
@@ -233,7 +244,7 @@ export function EquilibresPanel({ r, overrides, onAppliquer, contexte = 'reforme
           <div key={e.id} className="card" style={{ borderColor: alerte ? 'var(--c-tres-faible)' : e.statut === 'respecte' ? 'var(--gain)' : 'var(--line)', borderWidth: alerte ? 2 : 1 }}>
             <div className="row between top" style={{ flexWrap: 'nowrap' }}>
               <div className="kpi-label"><I size={15} /> {budget ? 'L\'argent public' : 'Le climat'}</div>
-              {e.statut !== 'non_mesure' && <ConfidenceBadge c={e.confiance} compact align="right" />}
+              {e.statut !== 'non_mesure' && <ConfidenceBadge c={e.confiance} align="right" />}
             </div>
             <div className="phrase-xl" style={{ margin: '6px 0' }}><Titre e={e} /></div>
             {budget && alerte && <div className="small muted">soit environ {parMenageMois(e.manque)} par mois et par ménage.</div>}

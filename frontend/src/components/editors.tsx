@@ -94,11 +94,16 @@ export function BaremeEditor({ value, onChange }: { value: Tranche[]; onChange: 
 // règles rangées dans le budget mais qu'on cherche aussi par thème (l'hôpital est dans « La santé » pour tout le monde)
 const AUSSI_DANS: Record<string, string[]> = {
   sante: ['budget.secu.ondam.total'],
-  retraites: ['budget.secu.objectif_depenses.vieillesse', 'fiscalite.csg.retraites_taux_plein', 'fiscalite.impot_revenu.abattement_pensions.plafond'],
+  retraites: ['budget.secu.objectif_depenses.vieillesse', 'fiscalite.csg.retraites_taux_plein', 'fiscalite.impot_revenu.abattement_pensions.plafond',
+    'prestations.aspa.montant_personne_seule'],
 }
 
 /** Fenêtre de recherche d'une règle à modifier. */
-export function RulePicker({ onPick, onClose, exclude, domaine = '' }: { onPick: (r: Regle) => void; onClose: () => void; exclude: string[]; domaine?: string }) {
+type Idee = { id: string; titre: string; description: string; overrides: Record<string, unknown> }
+
+export function RulePicker({ onPick, onClose, exclude, domaine = '', idees = [], onIdee }: {
+  onPick: (r: Regle) => void; onClose: () => void; exclude: string[]; domaine?: string; idees?: Idee[]; onIdee?: (id: string) => void
+}) {
   const { data, loading } = useFetch<{ regles: Regle[] }>('/api/regles?limit=2000')
   const [q, setQ] = useState('')
   const [dom, setDom] = useState(domaine)
@@ -116,6 +121,8 @@ export function RulePicker({ onPick, onClose, exclude, domaine = '' }: { onPick:
   }, [data, q, dom, seulementSimulables])
   const deja = (id: string) => exclude.includes(id) || (estAgeLegal(id) && exclude.some(estAgeLegal))
   const domaines = useMemo(() => Array.from(new Set((data?.regles ?? []).map((r) => r.domaine))), [data])
+  // les idées toutes prêtes du thème choisi, en tête : souvent plus parlantes qu'une règle technique
+  const ideesDuTheme = !dom || q || !onIdee ? [] : idees.filter((p) => Object.keys(p.overrides).some((k) => k.startsWith(dom + '.') || AUSSI_DANS[dom]?.includes(k)))
   return (
     <Modal title="Quelle règle voulez-vous changer ?" onClose={onClose} width={820}>
       <div className="row" style={{ marginBottom: 12 }}>
@@ -132,8 +139,17 @@ export function RulePicker({ onPick, onClose, exclude, domaine = '' }: { onPick:
         <input type="checkbox" checked={seulementSimulables} onChange={(e) => setSeulementSimulables(e.target.checked)} />
         Seulement les règles dont le site sait calculer les effets
       </label>
+      {ideesDuTheme.length > 0 && (
+        <div style={{ marginBottom: 12 }}>
+          <div className="kpi-label" style={{ marginBottom: 6 }}>Des idées toutes prêtes</div>
+          <div className="grid cols-2">{ideesDuTheme.map((p) => (
+            <button key={p.id} className="preset" onClick={() => onIdee!(p.id)}><strong>{p.titre}</strong><span className="small muted">{p.description}</span></button>
+          ))}</div>
+          <div className="kpi-label" style={{ margin: '14px 0 0' }}>… ou une règle précise</div>
+        </div>
+      )}
       {loading ? <Loading /> : (
-        <ul className="list" style={{ maxHeight: '58vh', overflowY: 'auto' }}>
+        <ul className="list" style={{ maxHeight: ideesDuTheme.length ? '40vh' : '58vh', overflowY: 'auto' }}>
           {list.slice(0, 200).map((r) => (
             <li key={r.id}>
               <button className="preset" onClick={() => (deja(r.id) ? onClose() : onPick(r))} style={{ border: 0, padding: '6px 4px' }}>
@@ -141,7 +157,7 @@ export function RulePicker({ onPick, onClose, exclude, domaine = '' }: { onPick:
                   <strong style={{ display: 'inline' }}>{r.titre}</strong>
                   {deja(r.id) ? <span className="badge primary">déjà dans votre réforme</span> : <span className="badge">{fmt(r.valeur, r.unite, r.type)}</span>}
                 </div>
-                {r.explication && <div className="small ink2">{r.explication.length > 130 ? r.explication.slice(0, 127).replace(/\s+\S*$/, '') + '…' : r.explication}</div>}
+                {r.explication && <div className="small ink2">{r.explication.length > 200 ? r.explication.slice(0, 197).replace(/\s+\S*$/, '') + '…' : r.explication}</div>}
                 <div className="small muted">{DOMAINE_TITRE[r.domaine] ?? r.domaine} · {r.theme}{r.simulable ? '' : ' · effets pas encore calculés'}</div>
               </button>
             </li>

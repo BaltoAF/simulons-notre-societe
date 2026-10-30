@@ -10,11 +10,6 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   modestes sur les effectifs officiels d'allocataires (DREES).
 - **« Revaloriser les pensions »** : la règle `retraites.revalorisation.pensions_base` n'est reliée à aucun calcul. La
   changer dans l'atelier ne change donc rien ; la relier (montant des pensions des ménages et de la population) ou le dire.
-- **Test Jacqueline, suite** (retraitée, 30/10/2026) : « 12 % des ménages y gagnent » à côté de « 0 ménage type
-  gagnant » paraît contradictoire (dire que les ménages types sont des exemples) ; « Social : plutôt négatif » à côté de
-  « 0 % y perdent » ; légende des points ●●●● des cartes « Les équilibres à respecter » ; idées toutes prêtes en tête de
-  chaque thème (« Les retraites » n'a que des règles techniques, sans le minimum vieillesse) ; expliquer dans le bandeau
-  pourquoi une baisse d'impôt ajoute des émissions (plus de consommation).
 - **À soumettre au responsable** : limiter le nombre de simulations de réforme simultanées si la fréquentation augmente
   (le serveur de 4 Go met jusqu'à une minute et demie pour la première simulation).
 
@@ -36,6 +31,9 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   avec « Rétablir », et « Fermer » ; bouton « Voir les effets » toujours visible ; montants annuels aussi par mois ;
   « Revenir à ma réforme » depuis « Mes droits » ; « rien ne change » expliqué (CSG des retraités) ; CSG des pensions :
   les quatre taux ; émissions en millions de tonnes, taxe carburant en € par litre, « 8e dixième » en mots courants.
+- 30/10/2026 (soir, suite) : idées toutes prêtes en tête de chaque thème, minimum vieillesse dans « Les retraites » ;
+  « ménages types » présentés comme des exemples ; « plutôt négatif » sur le plan social expliqué quand personne n'y perd ;
+  fiabilité écrite en toutes lettres sur les cartes des équilibres ; émissions dues au pouvoir d'achat expliquées.
 
 - 30/10/2026 : la TVA compte dans le pouvoir d'achat des ménages ; la pension alimentaire est demandée aux parents seuls ;
   « Pourquoi aucune aide ? » ; allocation de rentrée scolaire présentée comme annuelle ; bouton « A+ » ; bouton d'avis discret

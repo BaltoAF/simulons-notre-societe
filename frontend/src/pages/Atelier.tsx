@@ -335,6 +335,9 @@ export default function Atelier() {
           {aJour && !loading && desequilibres.length > 0 && (
             <div className="notice warn" style={{ marginBottom: 12 }}><div><strong>Encore une étape :</strong>{' '}
               {desequilibres.map((e) => e.id === 'budget' ? `il manque ${milliards(e.manque)} par an pour financer votre réforme` : `votre réforme ajouterait ${tonnes(e.manque)} d'émissions par an, à compenser pour tenir l'objectif climat de la France`).join(', et ')}.
+              {/* une baisse d'impôt qui « pollue » surprend : dire d'où viennent ces émissions */}
+              {desequilibres.some((e) => e.id === 'carbone') && rapport?.bilan?.some((p) => p.indicateurs.some((i) => i.id === 'equilibre_carbone_revenus'))
+                && ' Ces émissions viennent du pouvoir d\'achat : plus de revenus, c\'est un peu plus de consommation, donc de chauffage, de transports et d\'achats.'}
               {' '}<a href="#equilibres">Choisir une solution ↓</a></div></div>
           )}
           {rapport && (!loading || rapport.partiel) && <ReportView r={rapport} overrides={draft.overrides} onAppliquer={appliquerCompensation} />}
@@ -372,7 +375,8 @@ export default function Atelier() {
         </div>
       </div>
 
-      {picker !== false && <RulePicker onPick={ajouter} onClose={() => setPicker(false)} exclude={ids} domaine={picker} />}
+      {picker !== false && <RulePicker onPick={ajouter} onClose={() => setPicker(false)} exclude={ids} domaine={picker}
+        idees={PRESETS} onIdee={(pid) => { appliquerPreset(pid); setPicker(false) }} />}
       {budgetEd && rdata && <BudgetEditor regles={rdata.regles} overrides={draft.overrides} onClose={() => setBudgetEd(false)}
         onRegle={(id) => { setBudgetEd(false); if (regles[id]) ajouter(regles[id]) }}
         onApply={(o) => { setDraft((d) => { const ov = { ...d.overrides }; for (const k of Object.keys(ov)) if (estMission(k)) delete ov[k]; return { ...d, overrides: { ...ov, ...o } } }); setBudgetEd(false) }} />}

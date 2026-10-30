@@ -127,7 +127,8 @@ def section_cas_types(ctx: Contexte) -> Section | None:
     if conf_tva is not None:
         conf = Confiance.maillon_faible(conf, conf_tva, resume="Calcul de la législation et estimation de la TVA payée")
     ind = [Indicateur("cas_types_gagnants", "Ménages types gagnants", gagnants, "menages", confiance=conf,
-                      explication=f"Sur {len(rows)} ménages types, {gagnants} gagnent et {perdants} perdent du revenu disponible."),
+                      explication=f"Sur {len(rows)} ménages types, {gagnants} gagnent et {perdants} perdent du revenu disponible. Ce sont "
+                                  "des exemples choisis, pas un échantillon : pour toute la population, voir « Pour les inégalités »."),
            Indicateur("cas_types_perdants", "Ménages types qui y perdent", perdants, "menages", confiance=conf)]
     return Section("cas_types", "Pour des ménages types", "Qui gagne, qui perd, parmi des situations courantes",
                    ind, conf,
