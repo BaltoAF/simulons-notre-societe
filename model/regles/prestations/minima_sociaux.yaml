@@ -17,123 +17,123 @@ regles:
   - depuis: '2009-06-01'
     valeur: 454.63
     sources:
-    - of-ref-d7afb60604
+    - of-ref-4b82497535
     - openfisca-france
   - depuis: '2010-01-01'
     valeur: 460.09
     sources:
-    - of-ref-eb69b6c7b1
+    - of-ref-8678502fb6
     - openfisca-france
   - depuis: '2011-01-01'
     valeur: 466.99
     sources:
-    - of-ref-182140bcbf
+    - of-ref-1bbc6303f4
     - openfisca-france
   - depuis: '2012-01-01'
     valeur: 474.93
     sources:
-    - of-ref-ede6a85620
+    - of-ref-64cce80da2
     - openfisca-france
   - depuis: '2013-01-01'
     valeur: 483.24
     sources:
-    - of-ref-e0add4d796
+    - of-ref-fcab69a0d5
     - openfisca-france
   - depuis: '2013-09-01'
     valeur: 492.9
     sources:
-    - of-ref-6cb4d59cad
+    - of-ref-0b55e9ca91
     - openfisca-france
   - depuis: '2014-01-01'
     valeur: 499.31
     sources:
-    - of-ref-5bfebf00ba
+    - of-ref-0a60baeb7b
     - openfisca-france
   - depuis: '2014-09-01'
     valeur: 509.3
     sources:
-    - of-ref-f20ecf77a7
+    - of-ref-cc7d9baaf1
     - openfisca-france
   - depuis: '2015-01-01'
     valeur: 513.88
     sources:
-    - of-ref-10da12e792
+    - of-ref-7307eb22fe
     - openfisca-france
   - depuis: '2015-09-01'
     valeur: 524.16
     sources:
-    - of-ref-d4e11c5c6e
+    - of-ref-1504c05ac4
     - openfisca-france
   - depuis: '2016-04-01'
     valeur: 524.68
     sources:
-    - of-ref-33723793f1
+    - of-ref-22456b7708
     - openfisca-france
   - depuis: '2016-09-01'
     valeur: 535.17
     sources:
-    - of-ref-ad8e141d3c
+    - of-ref-6826234d7f
     - openfisca-france
   - depuis: '2017-04-01'
     valeur: 536.78
     sources:
-    - of-ref-c39ac63a09
+    - of-ref-e841e136a3
     - openfisca-france
   - depuis: '2017-09-01'
     valeur: 545.48
     sources:
-    - of-ref-435188b769
+    - of-ref-58d5607355
     - openfisca-france
   - depuis: '2018-04-01'
     valeur: 550.93
     sources:
-    - of-ref-a92ffba18e
+    - of-ref-8d800f0b8b
     - openfisca-france
   - depuis: '2019-04-01'
     valeur: 559.74
     sources:
-    - of-ref-6a5a526de9
+    - of-ref-a844e63a21
     - openfisca-france
   - depuis: '2020-04-01'
     valeur: 564.78
     sources:
-    - of-ref-e008812ad7
+    - of-ref-0fc19f090a
     - openfisca-france
   - depuis: '2021-04-01'
     valeur: 565.34
     sources:
-    - of-ref-6d987072f4
-    - of-ref-46963d1989
+    - of-ref-fc23645979
+    - of-ref-a09f0e28f5
     - openfisca-france
   - depuis: '2022-04-01'
     valeur: 575.52
     sources:
-    - of-ref-8f09e9cf19
+    - of-ref-3f78101e9c
     - openfisca-france
   - depuis: '2022-07-01'
     valeur: 598.54
     sources:
-    - of-ref-abbd9c5808
+    - of-ref-a7391ac51f
     - openfisca-france
   - depuis: '2023-04-01'
     valeur: 607.75
     sources:
-    - of-ref-a8a529b631
+    - of-ref-448eb4ebae
     - openfisca-france
   - depuis: '2024-04-01'
     valeur: 635.71
     sources:
-    - of-ref-99333b9d0c
+    - of-ref-0114b1efca
     - openfisca-france
   - depuis: '2025-04-01'
     valeur: 646.52
     sources:
-    - of-ref-825bf7e94c
+    - of-ref-21239d3e30
     - openfisca-france
   - depuis: '2026-04-01'
     valeur: 651.69
     sources:
-    - of-ref-05c661ca37
+    - of-ref-4076d5b09c
     - openfisca-france
   tags:
   - minima_sociaux
@@ -154,69 +154,69 @@ regles:
   - depuis: '2016-01-01'
     valeur: 524.16
     sources:
-    - of-ref-80e8f94bc8
-    - of-ref-1310ba544c
+    - of-ref-84a58da30a
+    - of-ref-40fd52a8dd
     - openfisca-france
   - depuis: '2016-04-01'
     valeur: 524.68
     sources:
-    - of-ref-957bb04c5a
+    - of-ref-b6bd590936
     - openfisca-france
   - depuis: '2017-04-01'
     valeur: 526.25
     sources:
-    - of-ref-0b1778a4bb
+    - of-ref-c457e94bfb
     - openfisca-france
   - depuis: '2018-04-01'
     valeur: 531.51
     sources:
-    - of-ref-0b648a1897
+    - of-ref-19b8a55a3a
     - openfisca-france
   - depuis: '2018-08-01'
     valeur: 551.51
     sources:
-    - of-ref-b3d4a85956
+    - of-ref-727d1048e9
     - openfisca-france
   - depuis: '2020-04-01'
     valeur: 553.16
     sources:
-    - of-ref-bd15186378
+    - of-ref-fb9c5f2c97
     - openfisca-france
   - depuis: '2021-04-01'
     valeur: 553.71
     sources:
-    - of-ref-3bc67f7a4c
+    - of-ref-74597e3bb8
     - openfisca-france
   - depuis: '2022-04-01'
     valeur: 563.68
     sources:
-    - of-ref-46f03c7f08
+    - of-ref-e21ae7b2e8
     - openfisca-france
   - depuis: '2022-07-01'
     valeur: 586.23
     sources:
-    - of-ref-093418a201
+    - of-ref-fb7cd7edea
     - openfisca-france
   - depuis: '2023-04-01'
     valeur: 595.25
     sources:
-    - of-ref-400b02d5df
+    - of-ref-5fb35383aa
     - openfisca-france
   - depuis: '2024-04-01'
     valeur: 622.63
     sources:
-    - of-ref-cb87d7f099
-    - of-ref-97aa59560f
+    - of-ref-f279ccd5d8
+    - of-ref-482cedf753
     - openfisca-france
   - depuis: '2025-04-01'
     valeur: 633.21
     sources:
-    - of-ref-b5d36b43e3
+    - of-ref-187f234894
     - openfisca-france
   - depuis: '2026-04-01'
     valeur: 638.28
     sources:
-    - of-ref-9a0714702a
+    - of-ref-52055386bc
     - openfisca-france
   tags:
   - travail
@@ -238,20 +238,20 @@ regles:
   - depuis: '2016-01-01'
     valeur: 62.0
     sources:
-    - of-ref-e93dfeb78b
-    - of-ref-a8d2da8442
+    - of-ref-ed02c95eef
+    - of-ref-d930ecdec1
     - openfisca-france
   - depuis: '2018-08-01'
     valeur: 61.0
     sources:
-    - of-ref-a439ccedc7
-    - of-ref-37b9dee8f8
+    - of-ref-bcf19b31a6
+    - of-ref-78e90ca606
     - openfisca-france
   - depuis: '2025-04-01'
     valeur: 59.85
     sources:
-    - of-ref-ddbf337878
-    - of-ref-37b9dee8f8
+    - of-ref-7a1312821c
+    - of-ref-78e90ca606
     - openfisca-france
   verifie_le: '2025-06-26'
   moteur:
@@ -269,20 +269,20 @@ regles:
   - depuis: '2016-01-01'
     valeur: 12.782
     sources:
-    - of-ref-e93dfeb78b
-    - of-ref-1753828442
+    - of-ref-ed02c95eef
+    - of-ref-59168d912c
     - openfisca-france
   - depuis: '2018-10-01'
     valeur: 29.101
     sources:
-    - of-ref-bbf07fa814
-    - of-ref-bcddfac820
+    - of-ref-c43aa7f415
+    - of-ref-7ecdc00844
     - openfisca-france
   - depuis: '2026-04-01'
     valeur: 37.7
     sources:
-    - of-ref-60da4893d8
-    - of-ref-bcddfac820
+    - of-ref-01a7c5381c
+    - of-ref-7ecdc00844
     - openfisca-france
   verifie_le: '2026-04-01'
   moteur:
@@ -300,119 +300,119 @@ regles:
   - depuis: '2009-09-01'
     valeur: 681.63
     sources:
-    - of-ref-fff48a9a49
+    - of-ref-0bd08dc436
     - openfisca-france
   - depuis: '2010-04-01'
     valeur: 696.63
     sources:
-    - of-ref-3408bb7867
+    - of-ref-8dc04ff8d8
     - openfisca-france
   - depuis: '2010-09-01'
     valeur: 711.95
     sources:
-    - of-ref-3408bb7867
+    - of-ref-8dc04ff8d8
     - openfisca-france
   - depuis: '2011-04-01'
     valeur: 727.61
     sources:
-    - of-ref-eb386b913f
+    - of-ref-8cb609b0b1
     - openfisca-france
   - depuis: '2011-09-01'
     valeur: 743.62
     sources:
-    - of-ref-eb386b913f
+    - of-ref-8cb609b0b1
     - openfisca-france
   - depuis: '2012-04-01'
     valeur: 759.98
     sources:
-    - of-ref-7ba82f65c6
+    - of-ref-a3937be3d6
     - openfisca-france
   - depuis: '2012-09-01'
     valeur: 776.59
     sources:
-    - of-ref-7ba82f65c6
+    - of-ref-a3937be3d6
     - openfisca-france
   - depuis: '2013-09-01'
     valeur: 790.18
     sources:
-    - of-ref-ad922c98ad
+    - of-ref-b3c6794b45
     - openfisca-france
   - depuis: '2014-09-01'
     valeur: 800.45
     sources:
-    - of-ref-c0795390ba
+    - of-ref-c1d4282fa2
     - openfisca-france
   - depuis: '2015-09-01'
     valeur: 807.65
     sources:
-    - of-ref-1d794cabd9
+    - of-ref-8da65e3cfc
     - openfisca-france
   - depuis: '2016-04-01'
     valeur: 808.46
     sources:
-    - of-ref-41029a5b16
+    - of-ref-ee1279b6ff
     - openfisca-france
   - depuis: '2017-04-01'
     valeur: 810.89
     sources:
-    - of-ref-11e0ca4111
+    - of-ref-6870c0e4a7
     - openfisca-france
   - depuis: '2018-04-01'
     valeur: 819.0
     sources:
-    - of-ref-c29e3bc468
+    - of-ref-a5d7af26ed
     - openfisca-france
   - depuis: '2018-11-01'
     valeur: 860.0
     sources:
-    - of-ref-b28dc1d44d
+    - of-ref-5528124fbb
     - openfisca-france
   - depuis: '2019-11-01'
     valeur: 900.0
     sources:
-    - of-ref-7351d16806
+    - of-ref-c97d1ad5f8
     - openfisca-france
   - depuis: '2020-04-01'
     valeur: 902.7
     sources:
-    - of-ref-e27c5c87aa
+    - of-ref-a1ae6b71e6
     - openfisca-france
   - depuis: '2021-04-01'
     valeur: 903.6
     sources:
-    - of-ref-b3ecdb84d6
+    - of-ref-9cacd42269
     - openfisca-france
   - depuis: '2022-04-01'
     valeur: 919.86
     sources:
-    - of-ref-178d72b90a
-    - of-ref-61eef05987
+    - of-ref-43bbebc5fd
+    - of-ref-4e68959020
     - openfisca-france
   - depuis: '2022-07-01'
     valeur: 956.65
     sources:
-    - of-ref-00762f08c6
-    - of-ref-aa58be771a
+    - of-ref-2b82f52495
+    - of-ref-f8454e1b3a
     - openfisca-france
   - depuis: '2023-04-01'
     valeur: 971.37
     sources:
-    - of-ref-7d6912ed2b
+    - of-ref-56ee425ad2
     - openfisca-france
   - depuis: '2024-04-01'
     valeur: 1016.05
     sources:
-    - of-ref-aa8d40a125
+    - of-ref-55eb1165ac
     - openfisca-france
   - depuis: '2025-04-01'
     valeur: 1033.32
     sources:
-    - of-ref-7d2f87c171
+    - of-ref-e8ed3915f1
     - openfisca-france
   - depuis: '2026-04-01'
     valeur: 1041.59
     sources:
-    - of-ref-c04b7c779e
+    - of-ref-bdae4165ef
     - openfisca-france
   verifie_le: '2026-04-01'
   moteur:
@@ -430,7 +430,7 @@ regles:
   - depuis: '2009-04-01'
     valeur: 8125.59
     sources:
-    - of-ref-0d7704716c
+    - of-ref-cda11f244d
     - openfisca-france
   - depuis: '2010-04-01'
     valeur: 8507.49
@@ -460,7 +460,7 @@ regles:
   - depuis: '2014-10-01'
     valeur: 9600.0
     sources:
-    - of-ref-f6f3b8fb51
+    - of-ref-2f67c12eba
     - openfisca-france
   - depuis: '2016-04-01'
     valeur: 9609.6
@@ -475,18 +475,18 @@ regles:
   - depuis: '2018-04-01'
     valeur: 9998.4
     sources:
-    - of-ref-039f927bf0
-    - of-ref-197a3b2006
+    - of-ref-b3a182285c
+    - of-ref-802c5a5806
     - openfisca-france
   - depuis: '2019-01-01'
     valeur: 10418.4
     sources:
-    - of-ref-039f927bf0
+    - of-ref-b3a182285c
     - openfisca-france
   - depuis: '2020-01-01'
     valeur: 10838.4
     sources:
-    - of-ref-039f927bf0
+    - of-ref-b3a182285c
     - openfisca-france
   - depuis: '2021-01-01'
     valeur: 10881.75
@@ -501,7 +501,7 @@ regles:
   - depuis: '2022-07-01'
     valeur: 11441.5
     sources:
-    - of-ref-f548a9102e
+    - of-ref-3fe95b23a6
     - openfisca-france
   - depuis: '2023-01-01'
     valeur: 11533.02

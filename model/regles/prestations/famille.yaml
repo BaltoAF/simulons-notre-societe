@@ -16,12 +16,12 @@ regles:
   - depuis: '2009-01-01'
     valeur: 389.2
     sources:
-    - of-ref-83e3ab20e6
+    - of-ref-b5763dbd32
     - openfisca-france
   - depuis: '2011-01-01'
     valeur: 395.04
     sources:
-    - of-ref-724f71ffff
+    - of-ref-15d333a021
     - openfisca-france
   - depuis: '2012-04-01'
     valeur: 399.0
@@ -76,29 +76,29 @@ regles:
   - depuis: '2022-07-01'
     valeur: 439.17
     sources:
-    - of-ref-abbd9c5808
-    - of-ref-a6d1af1ab4
+    - of-ref-a7391ac51f
+    - of-ref-956ae4e688
     - openfisca-france
   - depuis: '2023-04-01'
     valeur: 445.93
     sources:
-    - of-ref-11e02d9d0c
+    - of-ref-93d5964791
     - openfisca-france
   - depuis: '2024-04-01'
     valeur: 466.44
     sources:
-    - of-ref-ee52101dba
+    - of-ref-78e65e1307
     - openfisca-france
   - depuis: '2025-04-01'
     valeur: 474.37
     sources:
-    - of-ref-e0f2fd12fd
+    - of-ref-ca7fbce59f
     - openfisca-france
   - depuis: '2026-04-01'
     valeur: 478.16
     sources:
     - bo-instr-dss-2b-2026-46
-    - of-ref-9a5d29f836
+    - of-ref-83de02ba40
     - openfisca-france
     article: Code de la sécurité sociale, art. L551-1 ; instruction n° DSS/2B/2026/46 du 20 mars 2026
   verifie_le: '2026-04-01'
@@ -117,8 +117,8 @@ regles:
   - depuis: '1946-09-01'
     valeur: 2.0
     sources:
-    - of-ref-dead2a35bd
-    - of-ref-fed4deccb2
+    - of-ref-25450f85bc
+    - of-ref-5f73680cd1
     - of-ref-bb9cac6286
     - openfisca-france
   verifie_le: '2025-02-27'
@@ -138,8 +138,8 @@ regles:
   - depuis: '1982-02-01'
     valeur: 32.0
     sources:
-    - of-ref-88fbc0d51e
-    - of-ref-85be4d1c67
+    - of-ref-5c42c721ab
+    - of-ref-627bbe1029
     - openfisca-france
   verifie_le: '2025-02-27'
   moteur:
@@ -157,7 +157,7 @@ regles:
   - depuis: '1986-01-01'
     valeur: 41.0
     sources:
-    - of-ref-99a46af409
+    - of-ref-870a947289
     - openfisca-france
   verifie_le: '2025-02-20'
   moteur:
@@ -180,55 +180,55 @@ regles:
   - depuis: '2016-01-01'
     valeur: 56174.0
     sources:
-    - of-ref-cfbbdc1018
+    - of-ref-d5b6558886
     - openfisca-france
   - depuis: '2018-01-01'
     valeur: 56286.0
     sources:
-    - of-ref-417117106f
+    - of-ref-d385e85454
     - openfisca-france
   - depuis: '2019-01-01'
     valeur: 56849.0
     sources:
-    - of-ref-ef721083c0
+    - of-ref-897bd520d8
     - openfisca-france
   - depuis: '2020-01-01'
     valeur: 57759.0
     sources:
-    - of-ref-87dc3c08a6
+    - of-ref-90ee92ea5f
     - openfisca-france
   - depuis: '2021-01-01'
     valeur: 58279.0
     sources:
-    - of-ref-ec7b39d17e
+    - of-ref-d82b915c59
     - openfisca-france
   - depuis: '2022-01-01'
     valeur: 58396.0
     sources:
-    - of-ref-a598edec8a
+    - of-ref-1afe36fa0d
     - openfisca-france
   - depuis: '2023-01-01'
     valeur: 59330.0
     sources:
-    - of-ref-a31bd2e821
+    - of-ref-5f1b8dbd33
     - openfisca-france
   - depuis: '2024-01-01'
     valeur: 62474.0
     sources:
-    - of-ref-383886b76b
+    - of-ref-202db7070b
     - of-ref-4c9d29d536
     - openfisca-france
   - depuis: '2025-01-01'
     valeur: 65473.0
     sources:
-    - of-ref-c4fc018830
-    - of-ref-0dd25ad189
+    - of-ref-b9cfe6293a
+    - of-ref-7ba6495e5d
     - openfisca-france
   - depuis: '2026-01-01'
     valeur: 66652.0
     sources:
     - bo-instr-dss-2b-2025-177
-    - of-ref-e2c1a3dc2a
+    - of-ref-a78cc6eb7a
     - openfisca-france
     article: Code de la sécurité sociale, art. D521-3 ; instruction n° DSS/2B/2025/177 du 18 décembre 2025, annexe, I-1
   verifie_le: '2026-01-06'

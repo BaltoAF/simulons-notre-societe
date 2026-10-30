@@ -16,83 +16,83 @@ regles:
   - depuis: '2009-01-01'
     valeur: 50.59
     sources:
-    - of-ref-d302627898
+    - of-ref-a90450133f
     - openfisca-france
   - depuis: '2010-01-01'
     valeur: 50.75
     sources:
-    - of-ref-e3381ad387
+    - of-ref-73ed1e0059
     - openfisca-france
   - depuis: '2011-01-01'
     valeur: 51.31
     sources:
-    - of-ref-15bb82451b
+    - of-ref-2dab162e73
     - openfisca-france
   - depuis: '2012-01-01'
     valeur: 51.82
     sources:
-    - of-ref-5698e285da
+    - of-ref-04a602b16f
     - openfisca-france
   - depuis: '2013-01-01'
     valeur: 52.93
     sources:
-    - of-ref-a67e599a8d
+    - of-ref-3425b2a76b
     - openfisca-france
   - depuis: '2014-10-01'
     valeur: 53.23
     sources:
-    - of-ref-a3a7b8c031
+    - of-ref-1d24c37a48
     - openfisca-france
   - depuis: '2015-10-01'
     valeur: 53.27
     sources:
-    - of-ref-ff31521afd
+    - of-ref-7395f77a0e
     - openfisca-france
   - depuis: '2017-10-01'
     valeur: 53.67
     sources:
-    - of-ref-f851647f71
+    - of-ref-08262eb9af
     - openfisca-france
   - depuis: '2019-10-01'
     valeur: 53.83
     sources:
-    - of-ref-4001b8f71e
+    - of-ref-a17100e33c
     - openfisca-france
   - depuis: '2020-10-01'
     valeur: 53.99
     sources:
-    - of-ref-134c052b9f
+    - of-ref-661b743ad9
     - openfisca-france
   - depuis: '2021-10-01'
     valeur: 54.22
     sources:
-    - of-ref-8f68c716a4
+    - of-ref-44c172bb36
     - openfisca-france
   - depuis: '2022-07-01'
     valeur: 56.12
     sources:
-    - of-ref-a20d7ae5af
+    - of-ref-d3dc2ce6d5
     - openfisca-france
   - depuis: '2023-10-01'
     valeur: 58.08
     sources:
-    - of-ref-5859285a97
+    - of-ref-f26c4f436a
     - openfisca-france
   - depuis: '2024-10-01'
     valeur: 59.97
     sources:
-    - of-ref-6b9f0418a4
-    - of-ref-101b4f0a98
+    - of-ref-dd70c10487
+    - of-ref-2fe8b04478
     - openfisca-france
   - depuis: '2025-10-01'
     valeur: 60.59
     sources:
-    - of-ref-361e46e797
+    - of-ref-02f5bb689f
     - openfisca-france
   - depuis: '2026-10-01'
     valeur: 61.29
     sources:
-    - of-ref-bf5a1a766c
+    - of-ref-5e11970b8c
     - openfisca-france
   verifie_le: '2026-09-30'
   moteur:
