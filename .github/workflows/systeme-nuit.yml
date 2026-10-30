@@ -28,6 +28,7 @@ jobs:
           cache-dependency-path: backend/requirements.txt
       - run: pip install -r backend/requirements.txt
       - name: Mise à jour du Système
+        timeout-minutes: 80
         env:
           SOCIETE_DATA_DIR: ${{ runner.temp }}/donnees
           PYTHONIOENCODING: utf-8
@@ -38,6 +39,7 @@ jobs:
         run: echo "change=$([ -n "$(git status --porcelain -- model backend/requirements.txt)" ] && echo oui || echo non)" >> "$GITHUB_OUTPUT"
       - name: Tests avec la nouvelle version
         if: steps.diff.outputs.change == 'oui'
+        timeout-minutes: 20
         working-directory: backend
         run: python -m pytest -q tests
       - name: Publier

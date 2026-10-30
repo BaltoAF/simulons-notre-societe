@@ -451,6 +451,7 @@ class Engine:
 ENGINE = Engine()
 
 # ───────────── calcul parallèle ─────────────
+import multiprocessing  # noqa: E402
 import os  # noqa: E402
 from concurrent.futures import ProcessPoolExecutor  # noqa: E402
 
@@ -476,7 +477,9 @@ def get_pool() -> ProcessPoolExecutor:
     global _POOL
     with _POOL_LOCK:
         if _POOL is None:
-            _POOL = ProcessPoolExecutor(max_workers=WORKERS, initializer=_init_worker)
+            # « spawn » : chaque processus démarre à neuf (comme sous Windows). Sous Linux, le « fork » par défaut copie le
+            # serveur avec les verrous tenus par ses autres fils (planificateur, préchauffage) : les calculs pouvaient se figer.
+            _POOL = ProcessPoolExecutor(max_workers=WORKERS, initializer=_init_worker, mp_context=multiprocessing.get_context("spawn"))
         return _POOL
 
 

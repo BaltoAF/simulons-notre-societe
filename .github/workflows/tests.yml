@@ -28,6 +28,7 @@ jobs:
         run: pip install -r backend/requirements.txt
       - name: Contrôle du modèle et tests de l'API
         working-directory: backend
+        timeout-minutes: 20   # d'habitude 4 à 5 minutes : au-delà, un calcul est figé
         run: python -m pytest -q tests
       - uses: actions/setup-node@v4
         with:
