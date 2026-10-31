@@ -2,7 +2,7 @@
 import { useMemo, useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { CheckCircle2, Coins, Globe2, Heart, Landmark, Leaf, ShieldAlert, Users, Wallet } from 'lucide-react'
-import { api, type Equilibre, type OptionCompensation, type Pilier, type Rapport, type Regle, type Valeur } from '../lib/api'
+import { api, type Equilibre, type IdeeFaible, type OptionCompensation, type Pilier, type Rapport, type Regle, type Valeur } from '../lib/api'
 import { euros, nombre, valeur } from '../lib/format'
 import { departsDuFoyer, estAgeLegal } from '../lib/retraite'
 import { useApp, useFetch } from '../lib/state'
@@ -220,11 +220,15 @@ const FAMILLES: Record<OptionCompensation['famille'], string> = {
 
 function Compensations({ e, overrides, onAppliquer }: { e: Equilibre; overrides: Record<string, Valeur>; onAppliquer: (o: Record<string, Valeur>) => void }) {
   const [opts, setOpts] = useState<OptionCompensation[] | null>(null)
+  const [faibles, setFaibles] = useState<IdeeFaible[]>([])
   const [err, setErr] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
   const charger = async () => {
     setLoading(true); setErr(null)
-    try { setOpts((await api<{ options: OptionCompensation[] }>('/api/compensations', { body: { overrides, equilibre: e.id, manque: e.manque } })).options) }
+    try {
+      const r = await api<{ options: OptionCompensation[]; faibles?: IdeeFaible[] }>('/api/compensations', { body: { overrides, equilibre: e.id, manque: e.manque } })
+      setOpts(r.options); setFaibles(r.faibles ?? [])
+    }
     catch (x: any) { setErr(x.message) } finally { setLoading(false) }
   }
   if (!opts) return (
@@ -254,6 +258,22 @@ function Compensations({ e, overrides, onAppliquer }: { e: Equilibre; overrides:
           </div>
         </div>
       ))}
+      {/* des idées souvent citées, à l'effet faible ou incertain : on peut savoir ce qu'elles changent (ou pas) et les essayer,
+          sans qu'elles se mêlent aux solutions qui comptent vraiment (demande du responsable) */}
+      {faibles.length > 0 && (
+        <details className="explain" style={{ marginTop: 4 }}>
+          <summary>D'autres idées souvent citées, à l'effet faible ou incertain ({faibles.length})</summary>
+          <ul className="list" style={{ marginTop: 6 }}>
+            {faibles.map((f) => (
+              <li key={f.id}>
+                <strong className="small">{f.titre}</strong>
+                <p className="small ink2" style={{ margin: '4px 0 0' }}>{f.texte}</p>
+                {f.overrides && <button className="btn small" style={{ marginTop: 6 }} onClick={() => onAppliquer(f.overrides!)}>L'essayer quand même</button>}
+              </li>
+            ))}
+          </ul>
+        </details>
+      )}
     </div>
   )
 }
@@ -330,17 +350,7 @@ export function EquilibresPanel({ r, overrides, onAppliquer, contexte = 'reforme
               )}
             </Pourquoi>
             {(alerte || e.statut === 'a_surveiller') && onAppliquer && overrides && <Compensations e={e} overrides={overrides} onAppliquer={onAppliquer} />}
-            {/* « et planter des arbres ? » (demande du responsable) : la réponse, chiffrée, plutôt qu'une fausse solution */}
-            {!budget && (alerte || e.statut === 'a_surveiller') && (
-              <details className="explain" style={{ marginTop: 10 }}>
-                <summary>Et planter des arbres ?</summary>
-                <p className="small ink2" style={{ margin: '6px 0 0' }}>La forêt française absorbe en moyenne environ 5 tonnes de CO₂ par hectare et par an
-                  (ministère de la Transition écologique, 2019). Mais la loi fixe le budget carbone <strong>hors forêts et sols</strong> (décret
-                  n° 2026-636) : planter des arbres ne compense donc pas une hausse des émissions. Il faudrait d'ailleurs environ 200 000 hectares de
-                  forêt en pleine croissance pour absorber 1 million de tonnes par an, et le puits forestier a baissé d'un tiers en dix ans
-                  (sécheresses, incendies, maladies). La forêt reste utile pour le climat, à côté de la baisse des émissions, pas à sa place.</p>
-              </details>
-            )}
+
             {e.composantes.length > 1 && (
               <details className="explain">
                 <summary>D'où vient ce chiffre ?</summary>

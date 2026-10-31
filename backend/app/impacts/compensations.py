@@ -231,9 +231,51 @@ def options_carbone(store, overrides: dict, manque: float) -> list[dict]:
     return out
 
 
+def idees_faibles(store, overrides: dict, equilibre: str, manque: float) -> list[dict]:
+    """Des idées souvent citées, à l'effet faible ou incertain : montrées à part, avec leur effet, pour qu'on sache ce qu'elles
+    changent (ou pas) plutôt que de croire que le site ne permet pas de les essayer."""
+    out = []
+
+    def part(x):
+        return f" Soit environ {fr(x / manque * 100, 0)} % de ce qu'il faut." if manque > 0 and x else ""
+    if equilibre == "carbone":
+        rid = "transports.vitesse_max.route_bidirectionnelle"
+        v = _valeur(store, overrides, rid)
+        if v and float(v) - 10 >= 60:
+            out.append({"id": "faible_vitesse_routes", "titre": f"Abaisser la vitesse sur les routes à {g(v)} km/h, à {g(float(v) - 10)} km/h",
+                        "texte": "Environ 0,2 million de tonnes de CO₂ par an (jusqu'à 1 selon les études) : à cette vitesse, les voitures "
+                                 "consomment déjà près de leur minimum (CGDD, Cerema)." + part(0.21) + " Moins de tués sur la route.",
+                        "rendement": 0.21, "unite": "mt_co2e", "overrides": {rid: float(v) - 10}})
+        rid = "transports.vitesse_max.agglomeration"
+        v = _valeur(store, overrides, rid)
+        if v and float(v) > 30:
+            out.append({"id": "faible_vitesse_ville", "titre": f"Passer les villes de {g(v)} à 30 km/h",
+                        "texte": "Effet sur le CO₂ non mesuré, peut-être nul : en ville, rouler moins vite ne réduit pas forcément la consommation "
+                                 "(arrêts, redémarrages). La mesure sert surtout la sécurité et le calme.",
+                        "rendement": None, "unite": "mt_co2e", "overrides": {rid: 30}})
+        out.append({"id": "faible_forets", "titre": "Planter des arbres",
+                    "texte": "La forêt française absorbe environ 5 tonnes de CO₂ par hectare et par an (CGDD, 2019), mais la loi fixe le budget carbone "
+                             "hors forêts et sols (décret n° 2026-636) : planter ne compense donc pas une hausse des émissions. Pour 1 million de tonnes "
+                             "par an, il faudrait environ 200 000 hectares de forêt en pleine croissance, et le puits forestier a baissé d'un tiers en dix ans. "
+                             "Utile pour le climat, à côté de la baisse des émissions, pas à sa place.",
+                    "rendement": None, "unite": "mt_co2e", "overrides": None})
+    else:
+        for rid, titre in (("budget.etat.mission.pouvoirs_publics", "Diviser par deux le budget des pouvoirs publics (Élysée, Assemblée, Sénat…)"),
+                           ("budget.etat.mission.direction_action_gouvernement", "Diviser par deux le budget des services du Premier ministre")):
+            v = _valeur(store, overrides, rid)
+            if not isinstance(v, (int, float)) or v <= 0 or (rid in overrides and overrides[rid] != store.rule_value(rid)):
+                continue
+            gain = float(v) / 2
+            out.append({"id": f"faible_{rid.rsplit('.', 1)[1]}", "titre": titre,
+                        "texte": f"Environ {fr(gain, 1)} milliard € par an, sur {fr(float(v), 1)} milliard € votés pour 2026.{part(gain)} "
+                                 "Souvent citée, cette économie pèse peu face aux grandes dépenses (retraites, santé, école).",
+                        "rendement": round(gain, 3), "unite": "milliards_euros", "overrides": {rid: round(float(v) / 2, 3)}})
+    return out
+
+
 def proposer(store, overrides: dict, equilibre: str, manque: float) -> dict:
     if manque <= 0:
-        return {"options": []}
+        return {"options": [], "faibles": []}
     opts = options_budget(store, overrides, manque) if equilibre == "budget" else options_carbone(store, overrides, manque)
-    return {"options": opts,
+    return {"options": opts, "faibles": idees_faibles(store, overrides, equilibre, manque),
             "note": "Rendements estimés à partir des données de simulation ; la nouvelle simulation vérifie le résultat après application."}

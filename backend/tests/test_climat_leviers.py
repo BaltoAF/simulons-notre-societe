@@ -24,3 +24,22 @@ def test_les_solutions_pour_le_climat_sont_variees():
     assert {"prix", "regles", "investir", "pratiques"} <= familles and len(opts) >= 8
     # une solution n'est proposée que si elle peut couvrir le manque (borne de la règle)
     assert not any(o["id"] == "levier_engrais_azotes" for o in compensations.options_carbone(get_store(), {}, 6))
+
+
+def test_vitesses_routes_et_ville_sans_surestimer():
+    """À 80 km/h, le gain est faible (CGDD, 0,21 Mt pour -10 km/h) ; en ville, l'effet sur le CO2 n'est pas mesuré (compté nul)."""
+    with TestClient(app) as c:
+        rap = c.post("/api/simulation/reforme", json={"overrides": {"transports.vitesse_max.route_bidirectionnelle": 70,
+                                                                    "transports.vitesse_max.agglomeration": 30}}).json()
+    ind = {i["id"]: i["valeur"] for s in rap["sections"] for i in s["indicateurs"]}
+    assert abs(ind["emissions_vitesse_route_bidirectionnelle"] + 0.21) < 1e-9
+    assert ind["emissions_vitesse_agglomeration"] == 0
+
+
+def test_idees_faibles_montrees_a_part():
+    st = get_store()
+    carbone = {f["id"]: f for f in compensations.idees_faibles(st, {}, "carbone", 1.0)}
+    assert {"faible_vitesse_routes", "faible_vitesse_ville", "faible_forets"} <= set(carbone)
+    assert carbone["faible_forets"]["overrides"] is None  # expliquée, pas proposée : la forêt ne compte pas pour le budget carbone
+    budget = compensations.idees_faibles(st, {}, "budget", 5.0)
+    assert budget and all(f["rendement"] < 1 for f in budget)

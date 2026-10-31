@@ -145,6 +145,8 @@ export type Pilier = {
   indicateurs: { id: string; libelle: string; valeur: number; unite: string; sens: string; section: string; confiance: Confiance | null; perdants?: number | null; explication?: string | null }[]
 }
 
+export type IdeeFaible = { id: string; titre: string; texte: string; rendement: number | null; unite: string; overrides: Record<string, Valeur> | null }
+
 export type OptionCompensation = {
   id: string; famille: 'depenses' | 'recettes' | 'assumer' | 'regles' | 'prix' | 'investir' | 'pratiques'; titre: string; description: string
   rendement: number; unite: string; overrides: Record<string, Valeur>

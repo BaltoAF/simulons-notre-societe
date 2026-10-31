@@ -216,6 +216,29 @@ def em_vitesse(ctx: Contexte) -> list[Indicateur]:
     v, conf_v, syn = valeur_ou_defaut(ctx.store, "vitesse_limite_emissions_co2", -5.0)
     for rid, lib, _, part_trafic, dv in _vitesses(ctx):
         de = em_route * part_trafic * (v / 100) * (dv / -10)
+        if rid.endswith("agglomeration"):
+            # en ville, rouler moins vite ne réduit pas forcément la consommation : l'effet sur le CO2 n'est pas mesuré
+            out.append(Indicateur(
+                f"emissions_vitesse_{rid.rsplit('.', 1)[1]}", f"Émissions du trafic dans les {lib}", 0.0, "mt_co2e",
+                confiance=hypothese(15, "Effet sur le CO2 de la vitesse en ville : non mesuré par les études réunies"),
+                explication="En ville, rouler moins vite ne réduit pas forcément la consommation (arrêts, redémarrages) : aucune étude réunie "
+                            "ici ne mesure l'effet sur le CO2. L'effet compté est donc nul ; le gain est surtout pour la sécurité et le bruit.",
+                calcul=[f"Vitesse maximale : {dv:+g} km/h", "Effet sur les émissions : non mesuré, compté nul"],
+                preuves=["vitesse_limite_emissions_co2"], sens="neutre"))
+            continue
+        if rid.endswith("route_bidirectionnelle") and (ctx.avant(rid) or 90) <= 80:
+            # à 80 km/h, les voitures consomment déjà près de leur minimum : gain « négligeable » selon le CGDD (0,21 MtCO2 pour
+            # -10 km/h) ; l'effet mesuré pour le passage de 90 à 80 km/h (Cerema, environ 1 Mt) sert de borne haute
+            haut = de
+            de = 0.21 * (dv / 10)  # dv < 0 (vitesse abaissée) : émissions en baisse
+            out.append(Indicateur(
+                f"emissions_vitesse_{rid.rsplit('.', 1)[1]}", f"Émissions du trafic sur les {lib}", de, "mt_co2e",
+                confiance=chaine(conf_e, hypothese(20, "Gain jugé négligeable sous 80 km/h (CGDD) ; borne haute : passage de 90 à 80 km/h (Cerema)")),
+                explication="À 80 km/h, les voitures consomment déjà près de leur minimum : rouler encore moins vite ne réduit que peu les émissions.",
+                calcul=[f"Vitesse maximale : {dv:+g} km/h", "Effet retenu : 0,21 MtCO2 par tranche de 10 km/h (CGDD), jusqu'à environ 1 Mt (Cerema, 90 → 80 km/h)"],
+                sources=[src] if src else [], preuves=["vitesse_limite_emissions_co2"],
+                sens="favorable" if de < 0 else "defavorable", fourchette=sorted([de, haut])))
+            continue
         out.append(Indicateur(
             f"emissions_vitesse_{rid.rsplit('.', 1)[1]}", f"Émissions du trafic sur les {lib}", de, "mt_co2e",
             confiance=chaine(conf_v, conf_e, hypothese(30, f"Part du trafic routier sur les {lib} : {part_trafic:.0%} (ordre de grandeur)")),
