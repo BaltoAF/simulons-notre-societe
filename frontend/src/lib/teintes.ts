@@ -5,7 +5,7 @@ const DOMAINES: Record<string, number> = {
   environnement_energie: 8, transports: 2, justice_penale: 5, droit_civil: 4, institutions: 1, nationalite_immigration: 7,
 }
 const QUESTIONS: Record<string, number> = {
-  'depenses-publiques': 2, 'qui-paie': 6, dette: 4, retraites: 3, inegalites: 5, climat: 8, travail: 5, ecole: 7, sante: 1,
+  'depenses-publiques': 2, 'qui-paie': 6, dette: 4, retraites: 3, inegalites: 5, climat: 8, travail: 5, ecole: 7, sante: 1, immigration: 4,
 }
 
 /** Classe CSS de la teinte d'un thème (domaine des règles). */

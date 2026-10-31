@@ -66,7 +66,7 @@ export default function Accueil() {
       <section className="container">
         <div className="section-title"><h2><HelpCircle size={22} /> Comprendre en quelques minutes</h2><Link to="/comprendre">Toutes les questions <ArrowRight size={14} /></Link></div>
         <div className="grid cols-3">
-          {QUESTIONS.map((q) => (
+          {QUESTIONS.filter((q) => q.accueil !== false).map((q) => (
             <Link key={q.id} to={`/comprendre/${q.id}`} className={`card link carte-teinte ${teinteQuestion(q.id)}`} style={{ padding: 14 }}>
               <strong>{q.titre}</strong>
               <span className="small muted" style={{ display: 'block', marginTop: 4 }}>{q.sousTitre ?? 'Les chiffres officiels, expliqués simplement'} <ArrowRight size={12} /></span>

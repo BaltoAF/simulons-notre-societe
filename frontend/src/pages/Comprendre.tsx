@@ -2,7 +2,7 @@
 // (calculer pour soi, tester une idée). Chaque chiffre vient d'une statistique du modèle, avec sa source.
 import { useEffect, useMemo, useState, type ReactNode } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { ArrowRight, Briefcase, Coins, ExternalLink, GraduationCap, HeartPulse, Hourglass, Info, Landmark, Leaf, TrendingDown, Users } from 'lucide-react'
+import { ArrowRight, Briefcase, Coins, ExternalLink, Globe, GraduationCap, HeartPulse, Hourglass, Info, Landmark, Leaf, TrendingDown, Users } from 'lucide-react'
 import { api, type Regle } from '../lib/api'
 import { natureLien } from '../lib/format'
 import { teinteQuestion } from '../lib/teintes'
@@ -17,7 +17,7 @@ import { noterActionUtile } from '../lib/soutien'
 
 type Stat = { id: string; titre: string; unite: string; derniere: { date: string; valeur: number } | null; source: { id: string; titre?: string; editeur?: string; url?: string } | null }
 
-const ICONES: Record<string, typeof Info> = { Landmark, Coins, TrendingDown, Hourglass, Users, Leaf, Briefcase, GraduationCap, HeartPulse }
+const ICONES: Record<string, typeof Info> = { Landmark, Coins, TrendingDown, Hourglass, Users, Leaf, Briefcase, GraduationCap, HeartPulse, Globe }
 
 function Icone({ nom, size = 22 }: { nom: string; size?: number }) {
   const I = ICONES[nom] ?? Info

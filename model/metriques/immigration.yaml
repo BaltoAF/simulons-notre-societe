@@ -1,0 +1,153 @@
+# Grande question « L'immigration » : des chiffres officiels, présentés avec prudence (sujet sensible).
+# Convention de date : un stock ou une moyenne annuelle est daté du 31 décembre de l'année de référence ;
+# une moyenne sur plusieurs années est datée de la fin de la période.
+metriques:
+  - id: demographie.immigres.nombre
+    titre: "Immigrés vivant en France"
+    explication: "Personnes nées étrangères à l'étranger et résidant en France (définition de l'Insee) ; on reste immigré après être devenu français. Année 2025, données provisoires (estimations avancées de la population), France entière. Rupture de série en 2024 : les années précédentes ne sont pas directement comparables."
+    unite: personnes
+    serie:
+      - date: "2025-12-31"
+        valeur: 8000000
+        source: insee-essentiel-immigres-2026
+        statut: provisoire
+
+  - id: demographie.immigres.part_population
+    titre: "Part des immigrés dans la population"
+    explication: "Immigrés en pourcentage de la population totale vivant en France, en 2025 (données provisoires)."
+    unite: pourcent
+    serie:
+      - date: "2025-12-31"
+        valeur: 11.6
+        source: insee-essentiel-immigres-2026
+        statut: provisoire
+
+  - id: demographie.immigres.devenus_francais
+    titre: "Immigrés devenus français"
+    explication: "Nombre d'immigrés vivant en France qui ont acquis la nationalité française, en 2025 (données provisoires) : 33 % des immigrés."
+    unite: personnes
+    serie:
+      - date: "2025-12-31"
+        valeur: 2600000
+        source: insee-essentiel-immigres-2026
+        statut: provisoire
+
+  - id: demographie.etrangers.part_population
+    titre: "Part des étrangers dans la population"
+    explication: "Personnes de nationalité étrangère vivant en France, en pourcentage de la population totale, en 2025 (données provisoires). Elles comprennent 5,3 millions d'immigrés non naturalisés et 1,0 million de personnes nées en France de nationalité étrangère."
+    unite: pourcent
+    serie:
+      - date: "2025-12-31"
+        valeur: 9.1
+        source: insee-essentiel-immigres-2026
+        statut: provisoire
+
+  - id: demographie.immigres.entrees_annuelles
+    titre: "Immigrés entrés en France dans l'année"
+    explication: "Estimation par l'Insee du nombre d'immigrés arrivés en France dans l'année (flux d'entrées, toutes raisons confondues, y compris les ressortissants de l'Union européenne). 347 000 en 2023."
+    unite: personnes
+    serie:
+      - date: "2024-12-31"
+        valeur: 313000
+        source: insee-essentiel-immigres-2026
+        statut: provisoire
+
+  - id: emploi.immigres.taux_emploi
+    titre: "Taux d'emploi des immigrés de 15 à 64 ans"
+    explication: "Part des immigrés de 15 à 64 ans qui ont un emploi, en 2025 (enquête Emploi, France hors Mayotte, logements ordinaires)."
+    unite: pourcent
+    serie:
+      - date: "2025-12-31"
+        valeur: 61.9
+        source: insee-emploi-immigres-2026
+        statut: definitif
+
+  - id: emploi.sans_ascendance_migratoire.taux_emploi
+    titre: "Taux d'emploi des personnes sans ascendance migratoire, 15 à 64 ans"
+    explication: "Part des personnes de 15 à 64 ans qui ont un emploi, parmi celles qui ne sont ni immigrées ni enfants d'immigrés, en 2025 (même enquête et même champ que pour les immigrés)."
+    unite: pourcent
+    serie:
+      - date: "2025-12-31"
+        valeur: 71.9
+        source: insee-emploi-immigres-2026
+        statut: definitif
+
+  - id: emploi.immigres.taux_chomage
+    titre: "Taux de chômage des immigrés de 15 à 64 ans"
+    explication: "Part des immigrés actifs de 15 à 64 ans qui sont au chômage (au sens du BIT), en 2025."
+    unite: pourcent
+    serie:
+      - date: "2025-12-31"
+        valeur: 12.4
+        source: insee-emploi-immigres-2026
+        statut: definitif
+
+  - id: emploi.sans_ascendance_migratoire.taux_chomage
+    titre: "Taux de chômage des personnes sans ascendance migratoire, 15 à 64 ans"
+    explication: "Part des actifs de 15 à 64 ans au chômage (au sens du BIT), parmi les personnes ni immigrées ni enfants d'immigrés, en 2025."
+    unite: pourcent
+    serie:
+      - date: "2025-12-31"
+        valeur: 6.5
+        source: insee-emploi-immigres-2026
+        statut: definitif
+
+  - id: emploi.immigrees_femmes.taux_emploi
+    titre: "Taux d'emploi des femmes immigrées de 15 à 64 ans"
+    explication: "Part des femmes immigrées de 15 à 64 ans qui ont un emploi, en 2025. Pour les hommes, le taux d'emploi est très proche entre immigrés et non-immigrés (71-72 %)."
+    unite: pourcent
+    serie:
+      - date: "2025-12-31"
+        valeur: 54
+        source: insee-essentiel-immigres-2026
+        statut: definitif
+
+  - id: emploi.non_immigrees_femmes.taux_emploi
+    titre: "Taux d'emploi des femmes non immigrées de 15 à 64 ans"
+    explication: "Part des femmes non immigrées (nées en France ou nées françaises à l'étranger) de 15 à 64 ans qui ont un emploi, en 2025."
+    unite: pourcent
+    serie:
+      - date: "2025-12-31"
+        valeur: 69
+        source: insee-essentiel-immigres-2026
+        statut: definitif
+
+  - id: finances_publiques.immigration.contribution_nette_hors_biens_publics
+    titre: "Contribution nette des immigrés aux finances publiques, sans les dépenses communes (OCDE)"
+    explication: "Ce que les personnes nées à l'étranger paient (impôts, cotisations) moins ce qu'elles reçoivent (prestations, services publics), en points de PIB, en moyenne de 2006 à 2018, sans leur imputer de part des « biens publics purs » (défense, etc.). Étude de l'OCDE (2022), citée par la Cour des comptes. L'OCDE ne définit pas les immigrés comme l'Insee."
+    unite: pourcent_pib
+    serie:
+      - date: "2018-12-31"
+        valeur: 0.25
+        source: ccomptes-demographie-finances-publiques-2025
+        statut: definitif
+
+  - id: finances_publiques.immigration.contribution_nette_avec_biens_publics
+    titre: "Contribution nette des immigrés aux finances publiques, dépenses communes réparties par habitant (OCDE)"
+    explication: "Même calcul, mais en répartissant les « biens publics purs » (défense, etc.) de façon égale entre tous les habitants : en points de PIB, en moyenne de 2006 à 2018. Étude de l'OCDE (2022), citée par la Cour des comptes."
+    unite: pourcent_pib
+    serie:
+      - date: "2018-12-31"
+        valeur: -0.85
+        source: ccomptes-demographie-finances-publiques-2025
+        statut: definitif
+
+  - id: finances_publiques.immigration.cout_asile
+    titre: "Coût de l'asile, toutes administrations"
+    explication: "Coût de l'asile en 2025 estimé par la commission des finances du Sénat à partir des données agrégées, toutes missions budgétaires confondues. C'est un coût minimum : il n'inclut pas les dépenses médicales des demandeurs d'asile et des réfugiés, l'aide sociale aux réfugiés, la scolarisation de leurs enfants, ni les dépenses de police pour le retour des déboutés."
+    unite: milliards_euros
+    serie:
+      - date: "2025-12-31"
+        valeur: 1.85
+        source: senat-r25-874-couts-asile
+        statut: definitif
+
+  - id: sante.ame.depense
+    titre: "Dépenses d'aide médicale de l'État (AME)"
+    explication: "Soins pris en charge pour les étrangers en situation irrégulière aux ressources modestes (AME de droit commun), en 2024 : dépense réelle, supérieure d'environ 170 millions € aux crédits votés. Plus de 465 000 bénéficiaires fin 2024."
+    unite: milliards_euros
+    serie:
+      - date: "2024-12-31"
+        valeur: 1.255
+        source: senat-l25-139-a27-sante
+        statut: definitif

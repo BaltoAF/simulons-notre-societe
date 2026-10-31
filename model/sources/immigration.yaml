@@ -1,0 +1,48 @@
+# Registre des sources — grande question « L'immigration » (métriques model/metriques/immigration.yaml).
+# Consultées le 2026-10-31 ; chaque chiffre a été relu dans le document lui-même (pages citées dans les notes).
+sources:
+  - id: insee-essentiel-immigres-2026
+    type: statistique_publique
+    editeur: "Insee"
+    titre: "L'essentiel sur... les immigrés et les étrangers"
+    url: "https://www.insee.fr/fr/statistiques/3633212"
+    auteurs: []
+    date_publication: "2026-06-25"
+    consulte_le: "2026-10-31"
+    note: "Chiffres-clés 2025 (données provisoires, estimations de population, champ France). Rupture de série en 2024 : les chiffres d'avant 2024 ne sont pas directement comparables. Taux d'emploi par sexe (enquête Emploi, 15-64 ans) comparés aux non-immigrés (personnes nées en France ou nées françaises à l'étranger)."
+  - id: insee-emploi-immigres-2026
+    type: statistique_publique
+    editeur: "Insee"
+    titre: "Inactivité, chômage et emploi des immigrés et des descendants d'immigrés par origine géographique"
+    url: "https://www.insee.fr/fr/statistiques/4195420"
+    auteurs: []
+    date_publication: "2026-06-22"
+    consulte_le: "2026-10-31"
+    note: "Enquête Emploi 2025, France hors Mayotte, personnes de 15 à 64 ans vivant dans un logement ordinaire. Comparaison avec les personnes sans ascendance migratoire (ni immigrées, ni descendantes d'immigrés)."
+  - id: ccomptes-demographie-finances-publiques-2025
+    type: rapport_institutionnel
+    editeur: "Cour des comptes"
+    titre: "Démographie et finances publiques"
+    url: "https://www.ccomptes.fr/sites/default/files/2025-12/20251202-Demographie-et-finances-publiques_0.pdf"
+    auteurs: []
+    date_publication: "2025-12-02"
+    consulte_le: "2026-10-31"
+    note: "Pages 60-61 : synthèse des études sur la contribution nette des immigrés aux finances publiques (Cepii 1979-2011 « en deçà de 0,5 % du PIB » ; France Stratégie ; OCDE 2006-2018). L'OCDE retient une définition des immigrés différente de celle de l'Insee (note 137). Dépenses spécifiques en faveur de la population immigrée : 0,1 point de PIB (France Stratégie, 2019)."
+  - id: senat-r25-874-couts-asile
+    type: rapport_institutionnel
+    editeur: "Sénat, commission des finances"
+    titre: "Les coûts de l'asile en France (rapport d'information n° 874, 2025-2026)"
+    url: "https://www.senat.fr/rap/r25-874/r25-874_mono.html"
+    auteurs: ["Marie-Carole Ciuntu"]
+    date_publication: "2026-07-08"
+    consulte_le: "2026-10-31"
+    note: "« Les coûts de l'asile s'élèvent ainsi pour 2025 à 1,85 milliard d'euros. » Estimation de la commission des finances à partir des données agrégées, toutes missions budgétaires confondues ; certains coûts (soins, scolarisation, police) n'y sont pas comptés."
+  - id: senat-l25-139-a27-sante
+    type: rapport_institutionnel
+    editeur: "Sénat, commission des finances"
+    titre: "Projet de loi de finances pour 2026 : Santé (rapport général n° 139, tome III, annexe 27)"
+    url: "https://www.senat.fr/rap/l25-139-327/l25-139-32711.html"
+    auteurs: ["Vincent Delahaye"]
+    date_publication: "2025-11-24"
+    consulte_le: "2026-10-31"
+    note: "« En 2024, les dépenses d'aide médicale de l'État de droit commun se sont élevées en réalité à 1,255 milliard d'euros » ; plus de 465 000 bénéficiaires fin 2024."

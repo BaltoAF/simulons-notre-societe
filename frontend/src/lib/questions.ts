@@ -4,7 +4,7 @@
 import { anEtMois, euros, nombre } from './format'
 import { milliards, tonnes } from './humain'
 
-export type Format = 'md' | 'pct' | 'pct_pib' | 'eur' | 'eur_rond' | 'eur_mois' | 'personnes' | 'mt' | 't_hab' | 'ans' | 'ratio' | 'gini' | 'heures' | 'entier'
+export type Format = 'md' | 'pct' | 'pct_pib' | 'pt_pib' | 'eur' | 'eur_rond' | 'eur_mois' | 'personnes' | 'mt' | 't_hab' | 'ans' | 'ratio' | 'gini' | 'heures' | 'entier'
 
 /** Un chiffre : une statistique (metrique), une règle (regle), ou un calcul à partir des autres chiffres. */
 export type Chiffre = {
@@ -31,6 +31,7 @@ export type Question = {
   enBref?: string // la réponse directe à la question, en une ou deux phrases
   aSavoir?: string
   actions: Action[]
+  accueil?: false // absente des cartes de l'accueil (sujet sensible : on la trouve dans « Les grandes questions »)
 }
 
 export function formater(v: number, f: Format, absolu = false): string {
@@ -39,6 +40,7 @@ export function formater(v: number, f: Format, absolu = false): string {
     case 'md': return milliards(x)
     case 'pct': return `${nombre(x, 1)} %`
     case 'pct_pib': return `${nombre(x, 1)} % du PIB`
+    case 'pt_pib': return `${x > 0 ? '+' : x < 0 ? '−' : ''}${nombre(Math.abs(x), 2)} point de PIB` // un effet, avec son signe
     case 'eur': return euros(x, 0)
     case 'eur_rond': return euros(Math.round(x / 1000) * 1000, 0) // un ordre de grandeur, pas une précision à l'euro
     case 'eur_mois': return `${euros(x, 0)} par mois`
@@ -291,6 +293,49 @@ export const QUESTIONS: Question[] = [
     actions: [
       { libelle: "Dépenser plus pour l'hôpital et les soins", lien: '/atelier?regle=budget.secu.ondam.total' },
       { libelle: 'Les règles de la santé', lien: '/regles/d/sante' },
+    ],
+  },
+  {
+    // Sujet sensible (choix du responsable : « oui, avec prudence ») : définitions d'abord, conventions de calcul dites,
+    // limites des études affichées, aucun jugement. Chaque chiffre a été relu dans sa source (voir model/sources/immigration.yaml).
+    id: 'immigration',
+    titre: "L'immigration : que disent les chiffres ?",
+    sousTitre: "Combien d'immigrés, leur emploi, et l'effet sur les finances publiques",
+    icone: 'Globe',
+    accueil: false,
+    accroche: "{nombre} immigrées vivent en France, soit {part} de la population. Voici ce que les chiffres publics disent de leur emploi et de leur effet sur les finances publiques, avec leurs limites.",
+    enBref: "Les études publiques trouvent un effet limité sur les finances publiques, positif ou négatif selon la façon de compter : de {ocde_plus} à {ocde_moins} par an en moyenne (OCDE). Un facteur important est l'emploi : {emploi_imm} des immigrés de 15 à 64 ans ont un emploi, contre {emploi_autres} des personnes sans origine immigrée.",
+    chiffres: [
+      { cle: 'nombre', libelle: 'Immigrés vivant en France', format: 'personnes', metrique: 'demographie.immigres.nombre' },
+      { cle: 'part', libelle: 'Part de la population', format: 'pct', metrique: 'demographie.immigres.part_population' },
+      { cle: 'emploi_imm', libelle: 'Ont un emploi (immigrés de 15 à 64 ans)', format: 'pct', metrique: 'emploi.immigres.taux_emploi' },
+      { cle: 'emploi_autres', libelle: 'Ont un emploi (sans origine immigrée)', format: 'pct', metrique: 'emploi.sans_ascendance_migratoire.taux_emploi', cache: true },
+      { cle: 'chomage_imm', libelle: 'Chômage des immigrés', format: 'pct', metrique: 'emploi.immigres.taux_chomage', cache: true },
+      { cle: 'chomage_autres', libelle: 'Chômage (sans origine immigrée)', format: 'pct', metrique: 'emploi.sans_ascendance_migratoire.taux_chomage', cache: true },
+      { cle: 'emploi_f_imm', libelle: 'Femmes immigrées en emploi', format: 'pct', metrique: 'emploi.immigrees_femmes.taux_emploi', cache: true },
+      { cle: 'emploi_f_autres', libelle: 'Autres femmes en emploi', format: 'pct', metrique: 'emploi.non_immigrees_femmes.taux_emploi', cache: true },
+      { cle: 'francais', libelle: 'Immigrés devenus français', format: 'personnes', metrique: 'demographie.immigres.devenus_francais', cache: true },
+      { cle: 'etrangers', libelle: 'Part des étrangers', format: 'pct', metrique: 'demographie.etrangers.part_population', cache: true },
+      { cle: 'entrees', libelle: 'Immigrés arrivés dans l\'année', format: 'entier', metrique: 'demographie.immigres.entrees_annuelles', cache: true },
+      { cle: 'ocde_plus', libelle: 'Contribution nette, sans les dépenses communes', format: 'pt_pib', metrique: 'finances_publiques.immigration.contribution_nette_hors_biens_publics', cache: true },
+      { cle: 'ocde_moins', libelle: 'Contribution nette, dépenses communes réparties', format: 'pt_pib', metrique: 'finances_publiques.immigration.contribution_nette_avec_biens_publics', cache: true },
+      { cle: 'mission', libelle: "Budget de l'État pour l'immigration et l'asile", format: 'md', regle: 'budget.etat.mission.immigration_asile_integration', cache: true },
+      { cle: 'depenses', libelle: 'Argent public dépensé en un an', format: 'md', metrique: 'finances_publiques.depenses_publiques', cache: true },
+      { cle: 'mission_part', libelle: "Part de l'argent public", format: 'pct', calcul: (v) => (v.mission && v.depenses ? (v.mission / v.depenses) * 100 : null), cache: true },
+      { cle: 'asile', libelle: "Coût de l'asile", format: 'md', metrique: 'finances_publiques.immigration.cout_asile', cache: true },
+      { cle: 'ame', libelle: 'Aide médicale de l\'État', format: 'md', metrique: 'sante.ame.depense', cache: true },
+    ],
+    texte: [
+      "Un immigré est une personne née étrangère à l'étranger qui vit en France. On le reste après être devenu français : c'est le cas de {francais}. La France compte {nombre} immigrées, soit {part} de la population. Les étrangers, eux, sont ceux qui n'ont pas la nationalité française, dont certains sont nés en France : {etrangers} de la population.",
+      "En 2024, environ {entrees} immigrés sont arrivés en France ; près de la moitié sont nés en Afrique, un quart en Europe.",
+      "{emploi_imm} des immigrés de 15 à 64 ans ont un emploi, contre {emploi_autres} des personnes sans origine immigrée, et ils sont plus souvent au chômage ({chomage_imm} contre {chomage_autres}). L'écart vient surtout des femmes : les hommes ont aussi souvent un emploi, immigrés ou non, mais {emploi_f_imm} des femmes immigrées travaillent, contre {emploi_f_autres} des autres femmes.",
+      "Pour les finances publiques, on compare ce que les immigrés paient (impôts, cotisations) à ce qu'ils reçoivent (retraites, soins, aides, école…). Le résultat dépend d'une convention : faut-il leur compter une part des dépenses communes à tous, comme la défense ? Selon l'OCDE, citée par la Cour des comptes, leur contribution était de {ocde_plus} par an en moyenne de 2006 à 2018 sans ces dépenses, et de {ocde_moins} en les répartissant par habitant. D'autres études arrivent au même ordre de grandeur. Selon la Cour, si cette contribution est plus faible qu'on pourrait l'attendre, c'est pour plusieurs raisons : une place encore incomplète dans l'emploi, un recours plus fréquent à certaines aides, et aussi des choix de méthode.",
+      "Le coût direct des politiques d'immigration est plus simple à mesurer. Le budget de l'État y consacre {mission} en 2026 (asile, retours, intégration), soit {mission_part} de l'argent public. Le Sénat estime le coût total de l'asile à environ {asile} en 2025, un minimum. L'aide médicale de l'État (AME), qui soigne les étrangers sans titre de séjour aux ressources modestes, a coûté environ {ame} en 2024.",
+    ],
+    aSavoir: "Le site s'en tient aux chiffres publics et à leurs limites. Les études sur les finances publiques sont anciennes (données jusqu'en 2018) et regardent une année à la fois : elles ne suivent pas toute une vie (enfance, travail, retraite) ni les effets sur l'économie. Ce sont des moyennes : elles ne disent rien d'une personne en particulier.",
+    actions: [
+      { libelle: 'Les règles du séjour et de la nationalité', lien: '/regles/d/nationalite_immigration' },
+      { libelle: "Le budget de l'immigration et de l'asile", lien: '/regles/r/budget.etat.mission.immigration_asile_integration' },
     ],
   },
 ]
