@@ -41,7 +41,7 @@ export default function Accueil() {
             <Link to="/mes-droits" className="card link carte-teinte teinte-1">
               <Calculator size={26} className="icone-teinte" />
               <h3 style={{ marginTop: 8 }}>Mes droits</h3>
-              <p className="small ink2" style={{ margin: 0 }}>Vos aides, vos impôts, votre âge de départ à la retraite… en 3 questions, sans compte.</p>
+              <p className="small ink2" style={{ margin: 0 }}>Vos aides, vos impôts, votre âge de départ à la retraite… en 3 étapes, sans compte.</p>
             </Link>
             <Link to="/budget" className="card link carte-teinte teinte-6">
               <Landmark size={26} className="icone-teinte" />
