@@ -43,7 +43,7 @@ const UNITES: Record<string, (v: number) => string> = {
   euros_mois: (v) => euros(v, 0) + ' / mois',
   milliards_euros: (v) => nombre(v, Math.abs(v) < 10 ? 2 : 1) + (Math.abs(v) >= 2 ? ' milliards €' : ' milliard €'),
   millions_euros: (v) => nombre(v, 0) + (Math.abs(v) >= 2 ? ' millions €' : ' million €'),
-  pourcent: (v) => nombre(v, 2) + ' %',
+  pourcent: (v) => nombre(v, v !== 0 && Math.abs(v) < 0.1 ? 4 : 2) + ' %',
   pourcent_part: (v) => nombre(v, 1) + ' %',
   points: (v) => nombre(v, 2) + ' pt',
   points_pib: (v) => nombre(v, 2) + ' pt de PIB',

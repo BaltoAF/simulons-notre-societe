@@ -1,4 +1,4 @@
-# FICHIER GÉNÉRÉ par system/sync_openfisca.py le 2026-10-30 à partir d'OpenFisca-France 176.1.10.
+# FICHIER GÉNÉRÉ par system/sync_openfisca.py le 2026-10-31 à partir d'OpenFisca-France 176.1.10.
 # Ne pas modifier à la main : modifier model/moteur/openfisca_leviers.yaml puis relancer le Système.
 genere_par: system/sync_openfisca.py
 domaine: fiscalite

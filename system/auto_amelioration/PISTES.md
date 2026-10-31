@@ -133,10 +133,16 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   « il reste … hors frais de garde » et « non compté : aides à la garde » ; crédit d'impôt garde avec son plafond (1 750 €
   par enfant, après l'aide de la CAF) ; aide « Net à payer avant impôt » ; 0 € plus en vert ; écart d'une règle en bleu
   dans les deux sens (une hausse en rouge se lisait comme une perte) ; « depuis 1945 » retiré des dispositifs proposés. Reste :
-  - **Coût de la garde et CMG** : demander le mode de garde et son coût, et estimer le reste à charge. OpenFisca 176 ne
-    connaît que l'ancien CMG (formule 2017), pas la réforme du 1er septembre 2025 : à calculer d'après la CAF, sourcé.
+  - ~~Coût de la garde et CMG~~ : fait (2026-10-31). Carte « Faire garder votre enfant » dans Mes droits : heures et
+    somme versée à l'assistante maternelle → CMG réformé au 1er septembre 2025 (décret 2025-515, coût de référence et
+    plafond horaire Urssaf avril 2026, plancher CAF 2026), crédit d'impôt et reste à charge ; règles dans
+    `model/regles/prestations/garde_enfants.yaml`, calcul dans `frontend/src/lib/garde.ts` (retrouve l'exemple Urssaf :
+    2 000 € de ressources, 160 h à 4,91 € → 587,52 €). Reste : la garde à domicile (taux d'effort doublés, 10,50 € de
+    référence) et la crèche ; les ressources sont estimées d'après les revenus actuels (la CAF prend ceux d'il y a 2 ans).
+    Un site tiers dit le plafond horaire resté à 8 € en avril 2026, l'Urssaf dit 8,09 € : à revérifier à la prochaine
+    revalorisation.
   - Comparer avant/après (un enfant de plus, temps partiel) dans Mes droits ; enfant à naître ; prime à la naissance ;
-    PreParE (congé parental) ; titre de l'idée « Allocations familiales dès le premier enfant » (elle vaut pour toute famille).
+    PreParE (congé parental).
 - **Si la fréquentation augmente** (à soumettre au responsable) : la mémoire est déjà protégée, car un seul calcul de
   population tourne à la fois (`SOCIETE_WORKERS=1`) et les résultats identiques sont gardés en cache. Seule l'attente
   s'allonge : passer alors au VPS-2 avec `SOCIETE_WORKERS=3`, ou dire au visiteur combien de calculs passent avant le sien.

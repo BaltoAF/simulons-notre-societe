@@ -1,0 +1,131 @@
+# Garde des jeunes enfants chez une assistante maternelle agréée (emploi direct) : complément de libre choix du mode de
+# garde (CMG) tel que réformé au 1er septembre 2025, et crédit d'impôt pour frais de garde. Fichier écrit à la main :
+# OpenFisca-France 176 ne connaît que l'ancien CMG (formule de 2017). Ces règles servent à l'estimation « Coût de la
+# garde » de Mes droits (frontend/src/lib/garde.ts) : CMG = heures × tarif retenu × (1 − ressources × taux d'effort ÷ coût
+# horaire de référence).
+domaine: prestations
+theme: "Garde des jeunes enfants"
+regles:
+  - id: prestations.garde.cmg_taux_effort_1_enfant
+    titre: "CMG assistante maternelle : taux d'effort pour 1 enfant à charge"
+    explication: "Part des ressources mensuelles du foyer qui reste à la charge de la famille pour chaque heure de garde, au coût de référence (comme en crèche)."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 1]
+    valeurs:
+      - depuis: "2025-09-01"
+        valeur: 0.0619
+        sources: [jorf-decret-2025-515-cmg]
+        article: "Code de la sécurité sociale, art. D. 531-18 (décret n° 2025-515 du 30 mai 2025)"
+    tags: [famille, garde, cmg]
+    a_verifier: false
+  - id: prestations.garde.cmg_taux_effort_2_enfants
+    titre: "CMG assistante maternelle : taux d'effort pour 2 enfants à charge"
+    explication: "Plus le foyer a d'enfants à charge, plus sa part par heure de garde est faible."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 1]
+    valeurs:
+      - depuis: "2025-09-01"
+        valeur: 0.0516
+        sources: [jorf-decret-2025-515-cmg]
+        article: "Code de la sécurité sociale, art. D. 531-18 (décret n° 2025-515 du 30 mai 2025)"
+    tags: [famille, garde, cmg]
+    a_verifier: false
+  - id: prestations.garde.cmg_taux_effort_3_enfants
+    titre: "CMG assistante maternelle : taux d'effort pour 3 enfants à charge"
+    explication: "Plus le foyer a d'enfants à charge, plus sa part par heure de garde est faible."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 1]
+    valeurs:
+      - depuis: "2025-09-01"
+        valeur: 0.0413
+        sources: [jorf-decret-2025-515-cmg]
+        article: "Code de la sécurité sociale, art. D. 531-18 (décret n° 2025-515 du 30 mai 2025)"
+    tags: [famille, garde, cmg]
+    a_verifier: false
+  - id: prestations.garde.cmg_taux_effort_4_enfants_et_plus
+    titre: "CMG assistante maternelle : taux d'effort pour 4 à 7 enfants à charge"
+    explication: "Taux d'effort des familles de 4 à 7 enfants (0,0206 % à partir de 8 enfants)."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 1]
+    valeurs:
+      - depuis: "2025-09-01"
+        valeur: 0.0310
+        sources: [jorf-decret-2025-515-cmg]
+        article: "Code de la sécurité sociale, art. D. 531-18 (décret n° 2025-515 du 30 mai 2025)"
+    tags: [famille, garde, cmg]
+    a_verifier: false
+  - id: prestations.garde.cmg_cout_horaire_reference
+    titre: "CMG assistante maternelle : coût horaire de référence"
+    explication: "Coût d'une heure de garde chez une assistante maternelle pris comme référence par le calcul du CMG ; revalorisé chaque 1er avril selon le SMIC."
+    type: nombre
+    unite: euros
+    bornes: [0, 20]
+    valeurs:
+      - depuis: "2025-09-01"
+        valeur: 4.85
+        sources: [jorf-decret-2025-515-cmg]
+        article: "Code de la sécurité sociale, art. D. 531-18 (décret n° 2025-515 du 30 mai 2025)"
+      - depuis: "2026-04-01"
+        valeur: 4.91
+        sources: [urssaf-reevaluation-cmg-2026]
+    tags: [famille, garde, cmg]
+    a_verifier: false
+  - id: prestations.garde.cmg_plafond_horaire
+    titre: "CMG assistante maternelle : plafond horaire du coût pris en charge"
+    explication: "Au-delà de ce coût par heure (salaire net, indemnités d'entretien et repas compris), le surplus reste entièrement à la charge de la famille, mais le CMG reste versé."
+    type: nombre
+    unite: euros
+    bornes: [0, 30]
+    valeurs:
+      - depuis: "2025-09-01"
+        valeur: 8.0
+        sources: [jorf-decret-2025-515-cmg]
+        article: "Code de la sécurité sociale, art. D. 531-18 (décret n° 2025-515 du 30 mai 2025)"
+      - depuis: "2026-04-01"
+        valeur: 8.09
+        sources: [urssaf-reevaluation-cmg-2026]
+    tags: [famille, garde, cmg]
+    a_verifier: false
+  - id: prestations.garde.cmg_ressources_plancher
+    titre: "CMG : plancher des ressources mensuelles retenues"
+    explication: "En dessous, les ressources sont comptées pour ce montant (RSA d'un parent isolé avec un enfant, moins le forfait logement)."
+    type: nombre
+    unite: euros
+    bornes: [0, 3000]
+    valeurs:
+      - depuis: "2026-01-01"
+        valeur: 814.62
+        sources: [caf-bareme-eaje-2026]
+    tags: [famille, garde, cmg]
+    a_verifier: false
+    note: "Valeur publiée par la CAF au 1er janvier 2026 ; avec le RSA revalorisé au 1er avril 2026, le plancher calculé serait d'environ 821 € (écart négligeable sur le CMG)."
+  - id: prestations.garde.cmg_ressources_plafond
+    titre: "CMG : plafond des ressources mensuelles retenues"
+    explication: "Au-delà, les ressources sont comptées pour ce montant."
+    type: nombre
+    unite: euros
+    bornes: [0, 30000]
+    valeurs:
+      - depuis: "2025-09-01"
+        valeur: 8500
+        sources: [jorf-decret-2025-515-cmg, caf-bareme-eaje-2026]
+        article: "Code de la sécurité sociale, art. D. 531-18 (décret n° 2025-515 du 30 mai 2025)"
+    tags: [famille, garde, cmg]
+    a_verifier: false
+  - id: prestations.garde.credit_impot_plafond_depenses
+    titre: "Crédit d'impôt pour frais de garde : dépenses retenues par enfant et par an"
+    explication: "La moitié des frais de garde d'un enfant de moins de 6 ans, après déduction des aides (CMG), est remboursée, dans la limite de ce montant de dépenses (soit 1 750 € de crédit au plus)."
+    type: nombre
+    unite: euros
+    bornes: [0, 10000]
+    valeurs:
+      - depuis: "2022-01-01"
+        valeur: 3500
+        sources: [sp-f8]
+        article: "Code général des impôts, art. 200 quater B"
+    tags: [famille, garde, impot]
+    a_verifier: false

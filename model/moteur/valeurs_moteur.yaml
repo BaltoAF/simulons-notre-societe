@@ -1,8 +1,8 @@
-# FICHIER GÉNÉRÉ par system/sync_openfisca.py le 2026-10-30 à partir d'OpenFisca-France 176.1.10.
+# FICHIER GÉNÉRÉ par system/sync_openfisca.py le 2026-10-31 à partir d'OpenFisca-France 176.1.10.
 # Ne pas modifier à la main : modifier model/moteur/openfisca_leviers.yaml puis relancer le Système.
 genere_par: system/sync_openfisca.py
 version_openfisca: 176.1.10
-hash_leviers: 8a130d511c36b212
+hash_leviers: 059a0c94d2f83c59
 valeurs:
   travail.smic.horaire_brut: 12.31
   travail.chomage.taux_remplacement: 57.0

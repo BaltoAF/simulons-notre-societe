@@ -13,6 +13,7 @@ import { ProchaineEtape } from '../components/Parcours'
 import { OuJeMeSitue } from '../components/OuJeMeSitue'
 import { AvezVousPense } from '../components/AvezVousPense'
 import { ApresLeChomage } from '../components/ApresChomage'
+import { CoutGarde, gardeConcernee } from '../components/CoutGarde'
 import { ProposerSoutien } from '../components/Soutien'
 import { noterActionUtile } from '../lib/soutien'
 import { Terme } from '../components/Terme'
@@ -65,7 +66,7 @@ const DEMANDER: Record<string, string> = {
 const POURQUOI: Record<string, { regles: string[]; texte: ReactNode }> = {
   prime_activite_zero: { regles: ['prestations.prime_activite.montant_forfaitaire', 'prestations.prime_activite.part_revenus_activite'], texte: "La prime d'activité baisse quand les ressources du foyer augmentent : avec vos revenus et la taille de votre foyer, elle tombe à zéro." },
   paje: { regles: [], texte: "Versée chaque mois jusqu'aux 3 ans de l'enfant, si les revenus du foyer sont sous un plafond qui dépend du nombre d'enfants. La CAF regarde les revenus d'il y a deux ans : le montant est plein ou partiel selon ces revenus." },
-  paje_zero: { regles: [], texte: "L'allocation de base est réservée aux foyers dont les revenus sont sous un plafond, qui dépend du nombre d'enfants (la CAF regarde les revenus d'il y a deux ans). Ceux de votre foyer le dépassent. Les aides à la garde, elles, ont d'autres règles : voyez « Avez-vous pensé à… ? » plus bas." },
+  paje_zero: { regles: [], texte: "L'allocation de base est réservée aux foyers dont les revenus sont sous un plafond, qui dépend du nombre d'enfants (la CAF regarde les revenus d'il y a deux ans). Ceux de votre foyer le dépassent. Les aides à la garde, elles, ont d'autres règles : estimez-les plus bas, dans « Faire garder votre enfant »." },
   aides_logement_zero: { regles: ['prestations.aides_logement.forfait_charges'], texte: 'L\'aide au logement baisse quand les ressources du foyer augmentent : pour votre loyer, votre zone et vos revenus, elle tombe à zéro.' },
   rsa: { regles: ['prestations.rsa.montant_forfaitaire'], texte: 'Le RSA complète vos ressources jusqu\'à un montant garanti qui dépend de la composition du foyer.' },
   prime_activite: { regles: ['prestations.prime_activite.montant_forfaitaire', 'prestations.prime_activite.part_revenus_activite', 'prestations.prime_activite.bonification_max'], 
@@ -126,7 +127,7 @@ function AucuneAide({ s, totalRevenus, plafondAspa }: { s: SituationSaisie; tota
         </ul>
       )}
       <p className="small muted" style={{ margin: '6px 0 0' }}>{s.enfants.some((e) => e >= 0 && e < 6)
-        ? "Pour faire garder un jeune enfant, deux aides ne sont pas calculées ici mais peuvent vous concerner : voyez « Avez-vous pensé à… ? » juste en dessous."
+        ? "Pour faire garder un jeune enfant, deux aides ne sont pas comptées ici mais peuvent vous concerner : estimez-les juste en dessous, dans « Faire garder votre enfant »."
         : "D'autres aides, que le site ne calcule pas, peuvent vous concerner : voyez « Avez-vous pensé à… ? » ci-dessous."}</p>
     </div>
   )
@@ -337,7 +338,7 @@ export default function MesDroits() {
                         : <><strong className="delta neg">il manque {euros(-apresLoyer)}</strong> chaque mois.</>}</div>
                     )}
                     <div className="small" style={{ marginTop: 6 }}>Calcul pour : {resumeSituation(s)} · <button className="lien" onClick={() => setStep(0)}>modifier</button></div>
-                    {s.enfants.some((e) => e >= 0 && e < 6) && <div className="small muted" style={{ marginTop: 4 }}>Non compté ici : les aides à la garde d'un jeune enfant (complément de la CAF, crédit d'impôt), présentées plus bas.</div>}
+                    {gardeConcernee(s) && <div className="small muted" style={{ marginTop: 4 }}>Non compté ici : les aides à la garde d'un jeune enfant (complément de la CAF, crédit d'impôt), à estimer plus bas.</div>}
                   </div>
                   <ConfidenceBadge c={res.confiance} align="right" />
                 </div>
@@ -378,6 +379,7 @@ export default function MesDroits() {
               </div>
               <ApresLeChomage s={s} actuel={res} />
               {prestBrut.length === 0 && <AucuneAide s={s} totalRevenus={totalRevenus} plafondAspa={plafondAspa} />}
+              <CoutGarde s={s} lignes={res.lignes} valeurs={Object.fromEntries((regles?.regles ?? []).map((r) => [r.id, r.valeur]))} />
               <AvezVousPense s={s} lignes={res.lignes} />
               {/* pas de demande d'argent à un foyer qui vient d'apprendre ses droits aux minima ou aux aides */}
               <ProposerSoutien masquer={prestBrut.length > 0} />
