@@ -9,21 +9,21 @@ import { euros } from '../lib/format'
 import { situationVersMenage, type SituationSaisie } from '../lib/state'
 
 type Ligne = { id: string; libelle: string; montant: number; nature: string }
-type Res = { revenu_disponible: number; lignes: Ligne[] }
-type Scenario = { res?: Res; loading?: boolean; erreur?: string }
+export type Res = { revenu_disponible: number; lignes: Ligne[] }
+export type Scenario = { res?: Res; loading?: boolean; erreur?: string }
 
-/** Ce qui change d'une situation à l'autre, ligne par ligne (revenus, aides, impôts). */
+/** Ce qui change d'une situation à l'autre, ligne par ligne (revenus, aides, impôts), en mots : « Impôt sur le revenu +77 € »
+ *  se lisait comme une hausse de l'impôt quand c'était un gain pour le foyer (test des jeunes parents). */
 function changements(avant: Res, apres: Res): string[] {
-  const signe = (l: Ligne) => (l.nature === 'prelevement' ? -1 : 1)
   const ids = [...new Set([...avant.lignes, ...apres.lignes].map((l) => l.id))]
   return ids.flatMap((id) => {
     const a = avant.lignes.find((l) => l.id === id), b = apres.lignes.find((l) => l.id === id)
-    const d = (b ? signe(b) * b.montant : 0) - (a ? signe(a) * a.montant : 0)
-    return Math.abs(d) >= 1 ? [`${(b ?? a)!.libelle} ${d > 0 ? '+' : '−'}${euros(Math.abs(d), 0)}`] : []
+    const d = (b?.montant ?? 0) - (a?.montant ?? 0)
+    return Math.abs(d) >= 1 ? [`${(b ?? a)!.libelle} : ${euros(Math.abs(d), 0)} de ${d > 0 ? 'plus' : 'moins'}`] : []
   })
 }
 
-function Bilan({ sc, actuel }: { sc: Scenario; actuel: Res }) {
+export function Bilan({ sc, actuel }: { sc: Scenario; actuel: Res }) {
   if (sc.loading) return <div className="small muted" style={{ marginTop: 6 }}><span className="spinner" style={{ width: 14, height: 14, verticalAlign: -2 }} /> Calcul (une dizaine de secondes)…</div>
   if (sc.erreur) return <div className="small muted" style={{ marginTop: 6 }}>Calcul indisponible pour le moment.</div>
   if (!sc.res) return null

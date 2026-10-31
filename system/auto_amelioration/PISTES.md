@@ -141,8 +141,9 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
     référence) et la crèche ; les ressources sont estimées d'après les revenus actuels (la CAF prend ceux d'il y a 2 ans).
     Un site tiers dit le plafond horaire resté à 8 € en avril 2026, l'Urssaf dit 8,09 € : à revérifier à la prochaine
     revalorisation.
-  - Comparer avant/après (un enfant de plus, temps partiel) dans Mes droits ; enfant à naître ; prime à la naissance ;
-    PreParE (congé parental).
+  - ~~Comparer avant/après~~ : fait (2026-10-31), carte « Et si votre situation changeait ? » (un enfant de plus, temps
+    partiel à 80 %) ; les écarts s'écrivent « 77 € de moins » (« Impôt +77 € » se lisait comme une hausse d'impôt).
+    Reste : prime à la naissance et PreParE (OpenFisca a `paje_naissance` et `paje_prepare`, non branchées).
 - **Si la fréquentation augmente** (à soumettre au responsable) : la mémoire est déjà protégée, car un seul calcul de
   population tourne à la fois (`SOCIETE_WORKERS=1`) et les résultats identiques sont gardés en cache. Seule l'attente
   s'allonge : passer alors au VPS-2 avec `SOCIETE_WORKERS=3`, ou dire au visiteur combien de calculs passent avant le sien.

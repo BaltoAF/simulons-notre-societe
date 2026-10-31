@@ -14,6 +14,7 @@ import { OuJeMeSitue } from '../components/OuJeMeSitue'
 import { AvezVousPense } from '../components/AvezVousPense'
 import { ApresLeChomage } from '../components/ApresChomage'
 import { CoutGarde, gardeConcernee } from '../components/CoutGarde'
+import { EtSiSituation } from '../components/EtSiSituation'
 import { ProposerSoutien } from '../components/Soutien'
 import { noterActionUtile } from '../lib/soutien'
 import { Terme } from '../components/Terme'
@@ -380,6 +381,7 @@ export default function MesDroits() {
               <ApresLeChomage s={s} actuel={res} />
               {prestBrut.length === 0 && <AucuneAide s={s} totalRevenus={totalRevenus} plafondAspa={plafondAspa} />}
               <CoutGarde s={s} lignes={res.lignes} valeurs={Object.fromEntries((regles?.regles ?? []).map((r) => [r.id, r.valeur]))} />
+              <EtSiSituation s={s} actuel={res} />
               <AvezVousPense s={s} lignes={res.lignes} />
               {/* pas de demande d'argent à un foyer qui vient d'apprendre ses droits aux minima ou aux aides */}
               <ProposerSoutien masquer={prestBrut.length > 0} />
