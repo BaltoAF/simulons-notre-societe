@@ -81,10 +81,12 @@ export default function Atelier() {
   useEffect(() => { if (!rapport?.partiel) ecrireSession('atelier.rapport', rapport); ecrireSession('atelier.rapportPour', rapportPour) }, [rapport, rapportPour])
   const [annulable, setAnnulable] = useState<typeof draft | null>(null) // « Tout recommencer » peut être annulé
   const [demarrage, setDemarrage] = useState(false) // le Système vient de redémarrer : premier calcul plus long
+  const [lent, setLent] = useState(false) // plus de 20 secondes : rassurer plutôt que laisser croire à une panne
   const [phase, setPhase] = useState(0) // 0 : rien en cours ; 1 : foyer et ménages types ; 2 : effets nationaux
   const resultats = useRef<HTMLDivElement>(null)
   const simuler = async (ov: Record<string, Valeur> = draft.overrides) => {
-    setLoading(true); setErr(null); setPhase(1); setDemarrage(false)
+    setLoading(true); setErr(null); setPhase(1); setDemarrage(false); setLent(false)
+    const debut = Date.now(), minuteur = setTimeout(() => setLent(true), 20000)
     api<{ pret: boolean }>('/api/pret').then((p) => setDemarrage(!p.pret)).catch(() => {})
     // amener le lecteur au début des résultats s'il ne les voit pas (sur téléphone, ils sont sous la réforme)
     setTimeout(() => {
@@ -101,10 +103,10 @@ export default function Atelier() {
         .catch(() => { /* le calcul complet suffit */ })
       const total = api<Rapport>('/api/simulation/reforme', { body }).then((r) => { complet = true; return r })
       const r = await total
-      setRapport(r)
+      setRapport({ ...r, duree_secondes: Math.max(r.duree_secondes ?? 0, (Date.now() - debut) / 1000) })
       setRapportPour(JSON.stringify(ov))
       marquer('idee'); noterActionUtile('reforme')
-    } catch (e: any) { setErr(e.message) } finally { setLoading(false); setPhase(0) }
+    } catch (e: any) { setErr(e.message) } finally { clearTimeout(minuteur); setLoading(false); setPhase(0); setLent(false) }
   }
   const appliquerCompensation = (o: Record<string, Valeur>) => {
     const ov = { ...draft.overrides, ...o }
@@ -321,7 +323,7 @@ export default function Atelier() {
 
         <div ref={resultats} style={{ scrollMarginTop: 80 }}>
           {err && <ErrorBox message={err} />}
-          {loading && <Progression phase={phase} demarrage={demarrage} />}
+          {loading && <Progression phase={phase} demarrage={demarrage} lent={lent} />}
           {rapport && !loading && !aJour && rapportPour !== null && (
             <div className="notice warn perime" style={{ marginBottom: 12 }}><div>Vous avez modifié votre réforme depuis le dernier calcul : les résultats ci-dessous ne sont plus à jour.{' '}
               <button className="btn small" onClick={() => simuler()}>Recalculer les effets</button></div></div>
@@ -470,7 +472,7 @@ function Etapes({ etape }: { etape: number }) {
   )
 }
 
-function Progression({ phase, demarrage }: { phase: number; demarrage: boolean }) {
+function Progression({ phase, demarrage, lent }: { phase: number; demarrage: boolean; lent: boolean }) {
   const etapes = [
     'Votre foyer et des ménages types',
     'Les finances publiques et les inégalités (sur une population représentative de la France)',
@@ -491,8 +493,10 @@ function Progression({ phase, demarrage }: { phase: number; demarrage: boolean }
         })}
       </div>
       {demarrage
-        ? <div className="notice warn small" style={{ marginTop: 10, marginBottom: 0 }}><div>Le site vient de redémarrer et prépare ses calculs : ce premier calcul peut prendre jusqu'à une minute. Les suivants seront bien plus rapides.</div></div>
-        : <p className="small muted" style={{ marginBottom: 0, marginTop: 10 }}>Comptez de 10 secondes à une minute : toutes les règles d'impôts et d'aides sont appliquées, une à une, à des milliers de foyers.</p>}
+        ? <div className="notice warn small" style={{ marginTop: 10, marginBottom: 0 }}><div>Le site vient d'être mis à jour et prépare ses calculs : ce premier calcul peut prendre deux à trois minutes. Restez sur cette page ; les suivants seront bien plus rapides.</div></div>
+        : lent
+          ? <div className="notice small" style={{ marginTop: 10, marginBottom: 0 }}><div>C'est plus long que d'habitude : le site vient sans doute d'être mis à jour et se prépare. Cela peut prendre deux à trois minutes ; restez sur cette page, le résultat s'affichera tout seul.</div></div>
+          : <p className="small muted" style={{ marginBottom: 0, marginTop: 10 }}>Comptez de 10 secondes à une minute : toutes les règles d'impôts et d'aides sont appliquées, une à une, à des milliers de foyers.</p>}
     </div>
   )
 }

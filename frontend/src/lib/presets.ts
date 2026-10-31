@@ -58,7 +58,7 @@ export const PRESETS: Preset[] = [
   {
     id: 'gel-pensions',
     titre: 'Geler les pensions de retraite de base pendant un an',
-    description: "Pas de revalorisation au 1er janvier : prévu par le projet de budget de la Sécurité sociale pour 2026, puis retiré par les députés.",
+    description: "Les pensions de base ne sont pas augmentées au 1er janvier pour suivre les prix. Prévu dans le projet de budget de la Sécurité sociale pour 2026, puis retiré par les députés.",
     overrides: { 'retraites.revalorisation.pensions_base': 0 },
     tags: ['retraités', 'Sécurité sociale'],
   },

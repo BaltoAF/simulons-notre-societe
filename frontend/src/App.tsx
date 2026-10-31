@@ -131,7 +131,7 @@ function Footer() {
             Visites comptées de façon anonyme, par le site lui-même : ni cookie, ni outil tiers.
             Simulons notre société est un projet indépendant ; il ne représente aucune administration.</p>
         </div>
-        <div className="small" style={{ display: 'grid', gap: 4 }}>
+        <div className="small liens-pied">
           <Link to="/qui-fait-ce-site">Qui fait ce site ?</Link>
           <Link to="/methode">Méthode et indice de confiance</Link>
           <Link to="/sources">Registre des sources</Link>

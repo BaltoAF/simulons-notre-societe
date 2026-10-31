@@ -66,12 +66,17 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   euros ; « voir l'effet à long terme » introuvable ; « En bref » immigration en euros et « Ce qui fait débat » ;
   « En bref » de la dette qui répondait au débat ; actions d'un seul camp ; exemples de la visite et de l'accueil d'un
   seul bord (nouvel exemple « Travailler plus longtemps, moins d'impôts ») ; « le site tranche » contredit par « le site ne
-  tranche pas » ; espaces insécables (lib/typo.ts) ; zones à toucher. Reste :
-  - « Votre réforme » quand on teste une idée toute faite ; l'année de naissance des foyers types n'est pas affichée.
-  - Mots à expliquer : faits dans les grandes questions (« actifs », « au sens du BIT », « équivalent CO₂ », « minima sociaux »,
-    « budget carbone », expliqués au toucher) ; restent « tranche », « revalorisation » dans les idées à tester,
-    « Légifrance, JO, BOFiP » ; « 8,2 tonnes » sans repère ; le bouton « A+ ».
+  tranche pas » ; espaces insécables (lib/typo.ts) ; zones à toucher. 2e passage (notes 4 / 4 / 4) : mots du lexique
+  dans « À savoir » (« au sens du BIT »), guillemets compris dans le mot expliqué, liens du pied de page espacés, case
+  Social neutre, même temps grammatical des deux côtés du débat immigration, attente au redémarrage annoncée (deux à
+  trois minutes, et message après 20 s) et vrai temps d'attente affiché. Reste :
+  - **Après chaque mise à jour, le premier calcul attend le chargement du moteur (environ 2 min 30 mesurées)** : seul un
+    déploiement sans coupure (deux conteneurs, bascule quand le nouveau est prêt) l'éviterait. À soumettre au responsable.
+  - « Votre réforme » quand on teste une idée toute faite (titre du résultat fait : « Ce que cela changerait ») ; bandeau
+    d'enregistrement avant les résultats ; « Étape 5 sur 5 » après un seul clic ; année de naissance des foyers types.
+  - « 8,2 tonnes » sans repère (objectif de la France à sourcer) ; « Légifrance, JO, BOFiP » ; le bouton « A+ ».
   - Pendant le calcul, le bouton flottant « Voir les effets » cache le choix du foyer type.
+  - Climat : l'action « baisse de la taxe sur le gazole » ne correspond pas tout à fait à la position « innovation et aides ».
 - **Si la fréquentation augmente** (à soumettre au responsable) : la mémoire est déjà protégée, car un seul calcul de
   population tourne à la fois (`SOCIETE_WORKERS=1`) et les résultats identiques sont gardés en cache. Seule l'attente
   s'allonge : passer alors au VPS-2 avec `SOCIETE_WORKERS=3`, ou dire au visiteur combien de calculs passent avant le sien.

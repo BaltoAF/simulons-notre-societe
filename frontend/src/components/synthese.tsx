@@ -85,7 +85,7 @@ export function EnBref({ r, contexte = 'reforme', overrides }: { r: Rapport; con
   const csgRetraiteNonConcernee = overrides?.['fiscalite.csg.retraites_taux_plein'] !== undefined && !!situation?.adultes.some((a) => a.activite === 'retraite')
   return (
     <div className="card" style={{ borderColor: 'var(--primary)' }}>
-      <h2 style={{ fontSize: '1.35rem', marginBottom: 12 }}>{contexte === 'societe' ? 'Ce que change cette proposition' : 'Ce que change votre réforme'}</h2>
+      <h2 style={{ fontSize: '1.35rem', marginBottom: 12 }}>{contexte === 'societe' ? 'Ce que change cette proposition' : 'Ce que cela changerait'}</h2>
       {pv && (
         <div className="row" style={{ marginBottom: 14, flexWrap: 'nowrap', alignItems: 'flex-start' }}>
           <Wallet size={22} color="var(--primary)" style={{ flexShrink: 0, marginTop: 4 }} />
@@ -141,7 +141,7 @@ export function EnBref({ r, contexte = 'reforme', overrides }: { r: Rapport; con
               </div>
               {p.indicateurs.length === 0 ? <div className="small muted">{p.pilier === 'social' && ages.length > 0
                 // test Nadia : les gains publics sont comptés, ce que vivent les personnes concernées doit au moins être dit
-                ? "Pas encore compté ici : les personnes concernées travaillent plus longtemps (ou moins longtemps) et touchent leur pension plus tard (ou plus tôt)."
+                ? "Pas encore compté ici : ce que l'âge de départ change pour les personnes concernées (années de travail, date de départ, pension)."
                 : AUCUN[p.pilier]}</div> : (
                 <div>
                   {p.indicateurs.slice(0, 3).map((i) => (

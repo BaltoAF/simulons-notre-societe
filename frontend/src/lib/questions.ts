@@ -353,7 +353,7 @@ export const QUESTIONS: Question[] = [
     accueil: false,
     accroche: "{nombre} immigrées vivent en France, soit {part} de la population. Voici ce que disent les chiffres publics sur leur emploi et sur les finances publiques, et ce que ces chiffres ne permettent pas de dire.",
     // test Nadia : les euros d'abord ; les parts du PIB restent dans « En clair »
-    enBref: "Selon la façon de compter, les immigrés rapportent un peu plus aux finances publiques qu'ils ne leur coûtent, ou l'inverse : de l'ordre de {ocde_plus_md} en plus, ou de {ocde_moins_md} en moins, chaque année (OCDE). Tout dépend si on leur compte une part des dépenses de tous, comme la défense. Côté emploi, {emploi_imm} des immigrés de 15 à 64 ans ont un emploi, contre {emploi_autres} des personnes qui ne sont ni immigrées ni enfants d'immigrés.",
+    enBref: "Selon la façon de compter, les immigrés rapportent aux finances publiques plus qu'ils ne leur coûtent, ou l'inverse : soit de l'ordre de {ocde_plus_md} en plus, soit de l'ordre de {ocde_moins_md} en moins, chaque année (OCDE). Tout dépend si on leur compte une part des dépenses de tous, comme la défense. Côté emploi, {emploi_imm} des immigrés de 15 à 64 ans ont un emploi, contre {emploi_autres} des personnes qui ne sont ni immigrées ni enfants d'immigrés.",
     chiffres: [
       { cle: 'nombre', libelle: 'Immigrés vivant en France', format: 'personnes', metrique: 'demographie.immigres.nombre' },
       { cle: 'part', libelle: 'Part de la population', format: 'pct', metrique: 'demographie.immigres.part_population' },
@@ -389,7 +389,7 @@ export const QUESTIONS: Question[] = [
     debat: {
       question: "Faut-il moins d'immigration ?",
       positions: [
-        { titre: "Oui, moins d'immigration", texte: "Accueillir moins et faire respecter les règles permettrait de mieux intégrer ceux qui arrivent, de réduire certains coûts comme celui de l'asile, et de répondre à l'inquiétude d'une partie des Français." },
+        { titre: "Oui, moins d'immigration", texte: "Accueillir moins et faire respecter les règles permet de mieux intégrer ceux qui arrivent, réduit certains coûts comme celui de l'asile, et répond à une demande d'une partie des Français." },
         { titre: 'Non, pas moins', texte: "Certains métiers manquent de bras, comme le soin, le bâtiment ou la restauration, et la population vieillit. Mieux vaut améliorer l'accueil et l'accès à l'emploi, notamment des femmes immigrées." },
       ],
     },

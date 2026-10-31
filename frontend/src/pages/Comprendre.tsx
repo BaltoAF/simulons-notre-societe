@@ -57,7 +57,8 @@ const TERMES: [RegExp, string][] = [
 
 function avecTermes(txt: string, deja: Set<string>): ReactNode[] {
   // le premier terme pas encore expliqué qui apparaît le plus tôt dans le texte
-  const trouve = TERMES.filter(([, id]) => !deja.has(id)).map(([re, id]) => ({ m: re.exec(txt), id }))
+  const trouve = TERMES.filter(([, id]) => !deja.has(id))
+    .map(([re, id]) => ({ m: new RegExp(`(?:«[\\s\u202f\u00a0]?)?(?:${re.source})(?:[\\s\u202f\u00a0]?»)?`).exec(txt), id }))
     .filter((x) => x.m).sort((a, b) => a.m!.index - b.m!.index)[0]
   if (!trouve) return [txt]
   deja.add(trouve.id)
@@ -253,7 +254,7 @@ function Detail({ q }: { q: Question }) {
       <div className="card">
         <h2 style={{ fontSize: '1.2rem', marginTop: 0 }}>En clair</h2>
         {q.texte.map((t, k) => <p key={k} style={{ fontSize: '1.05rem' }}>{avecChiffres(t, q, valeurs)}</p>)}
-        {q.aSavoir && <div className="notice small"><Info size={16} style={{ flexShrink: 0 }} /><div>{q.aSavoir}</div></div>}
+        {q.aSavoir && <div className="notice small"><Info size={16} style={{ flexShrink: 0 }} /><div>{avecChiffres(q.aSavoir, q, valeurs, false)}</div></div>}
       </div>
 
       {q.debat && (
