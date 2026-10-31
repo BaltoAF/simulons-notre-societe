@@ -616,6 +616,8 @@ html.texte-grand body { font-size: 19px; }
 .btn:hover { background: color-mix(in srgb, var(--primary) 18%, var(--surface)); box-shadow: var(--e1); }
 .btn.primary { background: var(--primary); color: var(--primary-ink); }
 .btn.primary:hover { background: var(--primary-hover); box-shadow: var(--e1); }
+/* sur téléphone, un long libellé passe à la ligne au lieu de faire défiler la page de côté */
+@media (max-width: 640px) { .btn { white-space: normal; max-width: 100%; text-align: center; } }
 .btn.outline { background: transparent; border: 1px solid var(--contour); color: var(--primary); }
 .btn.ghost { background: transparent; color: var(--primary); box-shadow: none; }
 .btn.ghost:hover { background: color-mix(in srgb, var(--primary) 9%, transparent); box-shadow: none; }
