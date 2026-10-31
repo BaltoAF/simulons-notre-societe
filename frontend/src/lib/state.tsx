@@ -175,7 +175,10 @@ export function useFetch<T>(path: string | null, deps: unknown[] = []) {
 
 /** « couple marié, 2 enfants (8 et 12 ans), salaires 2 100 € + 1 850 € nets/mois, propriétaire » */
 export function resumeSituation(s: SituationSaisie): string {
-  const foyer = s.adultes.length > 1 ? `couple ${s.couple === 'marie' ? 'marié' : s.couple === 'pacse' ? 'pacsé' : 'en union libre'}` : 'personne seule'
+  // l'âge compte (départ à la retraite, aides des jeunes) : test Nadia, « Retraite à 65 ans » sans savoir qui est concerné
+  const ages = s.adultes.map((a) => a.age).filter((a): a is number => typeof a === 'number' && a > 0)
+  const foyer = (s.adultes.length > 1 ? `couple ${s.couple === 'marie' ? 'marié' : s.couple === 'pacse' ? 'pacsé' : 'en union libre'}` : 'personne seule')
+    + (ages.length ? ` de ${ages.join(' et ')} ans` : '')
   const enfants = s.enfants.length ? `, ${s.enfants.length} enfant${s.enfants.length > 1 ? 's' : ''} (${s.enfants.join(' et ')} ans)` : ''
   const nature: Record<string, string> = { salarie: 'salaire', chomeur: 'chômage', retraite: 'retraite', etudiant: 'étudiant', inactif: 'sans activité' }
   const revenus = s.adultes.map((a) => (a.activite === 'independant' ? `auto-entrepreneur, chiffre d'affaires ${euros(a.montant_net)}/mois`

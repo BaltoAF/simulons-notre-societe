@@ -72,8 +72,9 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   trois minutes, et message après 20 s) et vrai temps d'attente affiché. Reste :
   - **Après chaque mise à jour, le premier calcul attend le chargement du moteur (environ 2 min 30 mesurées)** : seul un
     déploiement sans coupure (deux conteneurs, bascule quand le nouveau est prêt) l'éviterait. À soumettre au responsable.
-  - « Votre réforme » quand on teste une idée toute faite (titre du résultat fait : « Ce que cela changerait ») ; bandeau
-    d'enregistrement avant les résultats ; « Étape 5 sur 5 » après un seul clic ; année de naissance des foyers types.
+  - Fait ensuite : « Ce que vous changez » au lieu de « Votre réforme », dernière étape « Partager, si vous le voulez »,
+    âge affiché pour les foyers types, bouton flottant masqué pendant le calcul. Reste : le bandeau d'enregistrement
+    placé avant les résultats.
   - « 8,2 tonnes » sans repère (objectif de la France à sourcer) ; « Légifrance, JO, BOFiP » ; le bouton « A+ ».
   - Pendant le calcul, le bouton flottant « Voir les effets » cache le choix du foyer type.
   - Climat : l'action « baisse de la taxe sur le gazole » ne correspond pas tout à fait à la position « innovation et aides ».

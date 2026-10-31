@@ -211,7 +211,7 @@ export default function Atelier() {
         <div className="stack atelier-reforme">
           {/* une seule carte : le point de départ, les changements (une ligne chacun, dépliée pour la régler), le foyer */}
           <div className="card">
-            <div className="card-head" style={{ marginBottom: 4 }}><h3 style={{ margin: 0 }}>Votre réforme</h3>
+            <div className="card-head" style={{ marginBottom: 4 }}><h3 style={{ margin: 0 }}>Ce que vous changez</h3>
               {nbChangements > 0 && <span className="badge primary">{nbChangements} changement{nbChangements > 1 ? 's' : ''}</span>}</div>
             <div className="small muted" style={{ marginBottom: 12 }}>
               À partir de {base && !base.societe.reference ? <>« {base.societe.nom} » (<Link to={`/societes/${base.societe.id}`}>voir</Link>)</>
@@ -311,7 +311,8 @@ export default function Atelier() {
                 </div>
               )}
               {/* le bouton principal reste visible quand la liste des changements dépasse l'écran */}
-              <div className={ouvert ? '' : 'cta-collant'}>
+              {/* pendant le calcul, le bouton flottant cachait le choix du foyer type : il reprend sa place */}
+              <div className={ouvert || loading ? '' : 'cta-collant'}>
                 <button className="btn primary large" style={{ width: '100%', marginTop: 14 }} disabled={!changes.length || loading} onClick={() => simuler()}>
                   <Calculator size={18} /> {loading ? 'Calcul en cours…' : rapportPour && !aJour ? 'Recalculer les effets' : 'Voir les effets'}
                 </button>
@@ -457,7 +458,7 @@ function ecrireSession(cle: string, v: unknown) {
 }
 
 function Etapes({ etape }: { etape: number }) {
-  const noms = ['Choisir ce qui change', 'Régler', 'Voir les effets', 'Équilibrer', 'Enregistrer et partager']
+  const noms = ['Choisir ce qui change', 'Régler', 'Voir les effets', 'Équilibrer', 'Partager, si vous le voulez']
   return (
     <>
       <ol className="etapes" aria-label="Les étapes">
