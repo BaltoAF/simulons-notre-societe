@@ -167,6 +167,7 @@ export const QUESTIONS: Question[] = [
       { libelle: 'À quel âge pourrai-je partir ?', lien: '/mes-droits' },
       { libelle: 'Déjà retraité(e) avec une petite pension ? Vérifiez le minimum vieillesse et vos aides', lien: '/mes-droits' },
       { libelle: 'Tester la retraite à 62 ans', preset: 'retraite-62' },
+      { libelle: 'Tester la retraite à 65 ans', preset: 'retraite-65' },
     ],
   },
   {

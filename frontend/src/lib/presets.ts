@@ -1,7 +1,7 @@
 // Idées de réformes prêtes à tester : chacune est un ensemble de valeurs de règles.
 // Elles illustrent des propositions qui circulent dans le débat public, sans prendre parti.
 import type { Valeur } from './api'
-import { AGE_TERME, GENERATIONS } from './retraite'
+import { AGE_LEGAL, AGE_TERME, GENERATIONS } from './retraite'
 
 export type Preset = {
   id: string
@@ -14,6 +14,8 @@ export type Preset = {
 const IR_BAREME = 'fiscalite.impot_revenu.bareme'
 
 export const PRESETS: Preset[] = [
+  // Les 6 premières s'affichent sur l'accueil et les 4 premières dans l'atelier : elles doivent rester équilibrées
+  // (une dépense, une économie ; un impôt en plus, un impôt en moins), pour ne pas pencher d'un côté.
   {
     id: 'retraite-62',
     titre: 'Retour de la retraite à 62 ans',
@@ -22,28 +24,11 @@ export const PRESETS: Preset[] = [
     tags: ['retraites'],
   },
   {
-    id: 'rsa-800',
-    titre: 'Porter le RSA à 800 € par mois',
-    description: 'Hausse du montant forfaitaire du RSA pour une personne seule.',
-    overrides: { 'prestations.rsa.montant_forfaitaire': 800 },
-    tags: ['pauvreté', 'minima sociaux'],
-  },
-  {
-    id: 'af-premier-enfant',
-    titre: 'Allocations familiales dès le premier enfant (77 € par mois)',
-    description: "Chaque famille toucherait 77 € par mois dès le premier enfant, soit la moitié de ce qui est versé aujourd'hui pour deux enfants, en plus des allocations actuelles.",
-    overrides: { 'prestations.famille.af_premier_enfant_montant': 77 },
-    tags: ['famille'],
-  },
-  {
-    id: 'af-plus-10',
-    titre: 'Allocations familiales : 10 % de plus',
-    description: "Hausse de 10 % du montant versé pour le 2e enfant et pour chaque enfant suivant (elles ne sont versées qu'à partir du 2e enfant).",
-    overrides: {
-      'prestations.famille.af_taux_deux_enfants': (v: number) => Math.round(v * 1.1 * 100) / 100,
-      'prestations.famille.af_taux_enfant_supplementaire': (v: number) => Math.round(v * 1.1 * 100) / 100,
-    },
-    tags: ['famille'],
+    id: 'retraite-65',
+    titre: 'Retraite à 65 ans',
+    description: "L'âge légal de départ passe à 65 ans pour les personnes nées à partir de 1966 (60 ans ou moins aujourd'hui). Une piste citée pour équilibrer les comptes des retraites.",
+    overrides: Object.fromEntries(GENERATIONS.slice(GENERATIONS.indexOf(AGE_LEGAL + '1966')).map((id) => [id, (v: number) => Math.max(v, 65)])),
+    tags: ['retraites'],
   },
   {
     id: 'tranche-50',
@@ -62,6 +47,37 @@ export const PRESETS: Preset[] = [
       [IR_BAREME]: (b: { seuil: number; taux: number }[]) => b.map((t) => (t.taux === 11 ? { ...t, taux: 9 } : t)),
     },
     tags: ['impôt', 'classes moyennes'],
+  },
+  {
+    id: 'rsa-800',
+    titre: 'Porter le RSA à 800 € par mois',
+    description: 'Hausse du montant forfaitaire du RSA pour une personne seule.',
+    overrides: { 'prestations.rsa.montant_forfaitaire': 800 },
+    tags: ['pauvreté', 'minima sociaux'],
+  },
+  {
+    id: 'gel-pensions',
+    titre: 'Geler les pensions de retraite de base pendant un an',
+    description: "Pas de revalorisation au 1er janvier : prévu par le projet de budget de la Sécurité sociale pour 2026, puis retiré par les députés.",
+    overrides: { 'retraites.revalorisation.pensions_base': 0 },
+    tags: ['retraités', 'Sécurité sociale'],
+  },
+  {
+    id: 'af-premier-enfant',
+    titre: 'Allocations familiales dès le premier enfant (77 € par mois)',
+    description: "Chaque famille toucherait 77 € par mois dès le premier enfant, soit la moitié de ce qui est versé aujourd'hui pour deux enfants, en plus des allocations actuelles.",
+    overrides: { 'prestations.famille.af_premier_enfant_montant': 77 },
+    tags: ['famille'],
+  },
+  {
+    id: 'af-plus-10',
+    titre: 'Allocations familiales : 10 % de plus',
+    description: "Hausse de 10 % du montant versé pour le 2e enfant et pour chaque enfant suivant (elles ne sont versées qu'à partir du 2e enfant).",
+    overrides: {
+      'prestations.famille.af_taux_deux_enfants': (v: number) => Math.round(v * 1.1 * 100) / 100,
+      'prestations.famille.af_taux_enfant_supplementaire': (v: number) => Math.round(v * 1.1 * 100) / 100,
+    },
+    tags: ['famille'],
   },
   {
     id: 'tva-21',
@@ -100,13 +116,6 @@ export const PRESETS: Preset[] = [
     description: "Hausse du minimum vieillesse (Aspa) d'une personne seule, versé aux retraités qui ont les plus petites ressources.",
     overrides: { 'prestations.aspa.montant_personne_seule': (v: number) => Math.round((v + 1200) * 100) / 100 },
     tags: ['retraités', 'pauvreté'],
-  },
-  {
-    id: 'gel-pensions',
-    titre: 'Geler les pensions de retraite de base pendant un an',
-    description: "Pas de revalorisation au 1er janvier : prévu par le projet de budget de la Sécurité sociale pour 2026, puis retiré par les députés.",
-    overrides: { 'retraites.revalorisation.pensions_base': 0 },
-    tags: ['retraités', 'Sécurité sociale'],
   },
   {
     id: 'csg-retraites-6-6',

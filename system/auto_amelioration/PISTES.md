@@ -46,16 +46,15 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   (les mises à jour automatiques sont ignorées dans la provenance) ; « Nos chiffres sont-ils justes ? » dit pourquoi un
   verdict est « concordant » (fourchette officielle, ou moins de 0,2 Md€ d'écart) et l'écart en mots ; l'accord entre
   études se mesure sur un seuil d'effet négligeable quand la question en définit un (immigration et salaires : 4 % → 60 %) ;
-  « grandes questions » de l'accueil renommées « sujets étudiés ». Reste :
-  - **À soumettre au responsable** : une grande question sur l'immigration (« Qu'est-ce que l'immigration coûte ou
-    rapporte ? ») : sujet très politique, à traiter avec les sources (OCDE, Cour des comptes, Insee) et en disant ce qu'on
-    ignore ; les seuils des quatre niveaux de fiabilité (50/100 s'affiche « élevée », ce qui étonne).
-  - Équilibre : les « Vrai ou faux » démontent surtout des idées d'un même bord ; en ajouter d'autres bords, sourcés (part
-    de l'impôt sur le revenu payée par les plus aisés, niveau des dépenses publiques comparé à l'Europe…) ; ajouter une
-    proposition d'exemple qui fait des économies (les trois exemples sont « solidaires »).
+  « grandes questions » de l'accueil renommées « sujets étudiés ». Fait ensuite (décisions du responsable, 31/10/2026) :
+  grande question « L'immigration : que disent les chiffres ? » « avec prudence » (Insee, OCDE citée par la Cour des comptes,
+  Sénat ; relue par deux lecteurs opposés ; absente de l'accueil) ; fiabilité « élevée » à partir de 65/100 ; « Qui fait ce
+  site ? » reste anonyme, et l'IA n'y est nommée que dans le texte, pas en titre (le sujet clive) ; « Vrai ou faux » d'autres
+  bords (impôt payé par les plus aisés, impôt sur les sociétés) ; idées de l'accueil et de l'atelier équilibrées (retraite à
+  62 et à 65 ans, impôt en plus et en moins, une dépense sociale et une économie). Reste :
   - « Comprendre » : un encadré « Ce qui fait débat » (ex. la dette) ; la comparaison avec la Défense à sourcer.
-  - Page « Qui fait ce site ? » faite (/qui-fait-ce-site : sources, rôle et limites de l'IA, code ouvert, financement).
-    Reste à décider par le responsable : y figurer nommément ou non.
+  - Immigration, sans source vérifiée pour l'instant : le solde équivalent des personnes nées en France (OCDE), les enfants
+    d'immigrés, l'immigration irrégulière, les motifs d'entrée.
 - **Si la fréquentation augmente** (à soumettre au responsable) : la mémoire est déjà protégée, car un seul calcul de
   population tourne à la fois (`SOCIETE_WORKERS=1`) et les résultats identiques sont gardés en cache. Seule l'attente
   s'allonge : passer alors au VPS-2 avec `SOCIETE_WORKERS=3`, ou dire au visiteur combien de calculs passent avant le sien.
