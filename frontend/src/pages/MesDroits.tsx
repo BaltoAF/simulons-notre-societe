@@ -541,6 +541,13 @@ export default function MesDroits() {
                   onChange={(e) => up({ pension_alimentaire: Number(e.target.value) })} /><span className="suffix">€ / mois</span></div>
                 <span className="hint">Ce que l'autre parent vous verse vraiment, en moyenne par mois (0 s'il ne verse rien). S'il ne paie pas ou paie mal, la CAF peut verser l'allocation de soutien familial à sa place, puis se faire rembourser par lui.</span></label>
             )}
+            {/* demi-part des personnes seules qui ont élevé seules un enfant (case L) : rien ne la proposait (test Monique) */}
+            {!enCouple && s.enfants.length === 0 && (
+              <label className="row small" style={{ cursor: 'pointer', flexWrap: 'nowrap', alignItems: 'flex-start', margin: '4px 0 14px' }}>
+                <input type="checkbox" checked={!!s.enfant_eleve_seul} onChange={(e) => up({ enfant_eleve_seul: e.target.checked })} style={{ marginTop: 3 }} />
+                <span>J'ai élevé seul(e) un enfant pendant au moins 5 ans<span className="muted"> (case L de la déclaration d'impôt : une demi-part en plus,
+                  limitée, qui peut baisser l'impôt)</span></span></label>
+            )}
             <label className="field"><span>Revenus de l'épargne (intérêts, dividendes) par an</span>
               <div className="input-suffix"><input type="number" min={0} step={100} value={s.revenus_capital_annuels} onChange={(e) => up({ revenus_capital_annuels: Number(e.target.value) })} /><span className="suffix">€ / an</span></div>
               <span className="hint">Hors livrets réglementés (livret A…), qui ne sont pas imposés.</span></label>

@@ -116,7 +116,8 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   d'âge de départ ni de chômage), paradoxe de la pauvreté expliqué dès que des ménages perdent, « 1,6 milliard »,
   écarts en euros ronds dans le tableau du foyer, « Tester le gel des pensions » sur la page retraites, marge du débat,
   « trois étapes » dans la visite. Reste :
-  - Demi-part des veuves et des parents isolés ayant élevé seuls un enfant (case « veuf/veuve » à ajouter au formulaire).
+  - Fait : demi-part des personnes seules qui ont élevé seules un enfant 5 ans (case L, OpenFisca caseL ; tests/test_case_l.py).
+    Les veuves sans personne à charge n'ont pas de demi-part propre (sauf cas particuliers) : pas de case « veuve » ajoutée.
   - Calculs d'idées parfois longs (20 à 100 s mesurées) : précalculer les idées proposées ou montrer une progression.
   - « 2 % des ménages y gagnent » pour un gel (effet probable des seuils de CSG : à vérifier et expliquer).
   - Taxe foncière : pistes selon l'âge et les revenus (exonération à 75 ans déjà dans « Avez-vous pensé à… ? »).

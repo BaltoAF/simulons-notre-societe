@@ -352,6 +352,9 @@ class Engine:
             rfr_inputs = lambda adults: {str(year - 4): rfr_approx(adults), str(year - 3): rfr_approx(adults)}
             if m.couple in ("marie", "pacse") or len(ids) == 1:
                 foyers[f"ff{i}"] = {"declarants": ids, "personnes_a_charge": kids, "rfr": rfr_inputs(m.adultes)}
+                if m.enfant_eleve_seul and len(ids) == 1 and not kids:
+                    # vit seul(e) et a élevé seul(e) un enfant pendant au moins 5 ans : demi-part plafonnée (case L)
+                    foyers[f"ff{i}"]["caseL"] = {y: True for y in years}
                 if m.revenus_capital_annuels > 0:
                     foyers[f"ff{i}"]["revenus_capitaux_prelevement_forfaitaire_unique_ir"] = {
                         y: round(m.revenus_capital_annuels, 2) for y in years}
