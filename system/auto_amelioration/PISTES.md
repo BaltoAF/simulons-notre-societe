@@ -157,7 +157,13 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   selon le revenu » (47 % des foyers paient l'impôt sur le revenu, les 10 % les plus aisés près des trois quarts : DGFiP ;
   taux global de 46 % pour les 0,1 % les plus riches mais 26 % pour les 75 plus fortunés : IPP, 2016) ; patrimoine dans
   « Inégalités » (47,9 % aux 10 % les mieux dotés, 7,2 % à la moitié la moins dotée : Insee) ; Gini comparé à l'Europe
-  (Eurostat ilc_di12). Fait : « D'où viennent ces chiffres ? » sous chaque
+  (Eurostat ilc_di12). 2e passage (notes 3,5 / 4) : tout réglé ; corrigé ensuite : « Non, pas moins » avec un fait
+  chiffré (autre convention de l'OCDE), « ordre de grandeur » relativisant retiré, emploi des hommes immigrés (sans
+  source) retiré, « l'impôt sur le revenu en rapporte environ 7 % », positions de « Qui paie ? » au même mode et à la
+  même longueur, une seule réserve sur les comparaisons de dépenses, Défense « votée pour 2026 », solde et projections
+  du COR sur la page retraites. Reste à sourcer : la TVA plus lourde, en proportion, pour les ménages modestes (Insee ou
+  CPO) ; le détail du tableau « Sur 100 € » ; les études France Stratégie et Cepii citées (liste « études citées ») ; le
+  niveau de vie des retraités « proche » de l'ensemble (Drees, COR). Fait : « D'où viennent ces chiffres ? » sous chaque
   grande question, avec la source exacte du point cité (une année ancienne peut venir d'une autre publication).
 - **Comparaisons européennes** (31/10/2026) : chaque grande question chiffrée situe la France dans l'Union, avec la
   mesure commune d'Eurostat (dette et intérêts, retraites, impôts et cotisations, dépenses publiques, chômage, santé,
