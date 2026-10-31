@@ -17,6 +17,7 @@ export type Chiffre = {
   absolu?: boolean // afficher sans signe (un déficit de −152 Md€ se dit « 152 milliards € »)
   cache?: boolean // sert dans le texte mais n'est pas affiché en grand
   premiere?: boolean // le premier point de la série (un repère dans le temps) plutôt que le dernier
+  annee?: string // le point de cette année-là (« 64 % du PIB en 2007 ») plutôt que le dernier
 }
 
 export type Action = { libelle: string; lien?: string; preset?: string }
@@ -133,7 +134,8 @@ export const QUESTIONS: Question[] = [
     titre: 'La dette publique, c\'est grave ?',
     sousTitre: "Ce que la France doit, et ce que coûtent les intérêts",
     icone: 'TrendingDown',
-    accroche: "La France emprunte chaque année pour payer une partie de ses dépenses. La dette accumulée coûte des intérêts : de l'argent qui ne finance ni l'école ni l'hôpital.",
+    // « de l'argent qui ne finance ni l'école ni l'hôpital » donnait le ton avant les faits (test Josiane)
+    accroche: "La France emprunte chaque année pour payer une partie de ses dépenses. Sur la dette accumulée, elle paie des intérêts chaque année.",
     chiffres: [
       { cle: 'dette', libelle: 'Dette publique', format: 'md', metrique: 'finances_publiques.dette_maastricht' },
       { cle: 'interets', libelle: 'Intérêts payés en un an par toutes les administrations publiques', format: 'md', metrique: 'finances_publiques.charge_interets_apu' },
@@ -143,12 +145,22 @@ export const QUESTIONS: Question[] = [
       { cle: 'population', libelle: 'Population', format: 'personnes', metrique: 'demographie.population_totale', cache: true },
       { cle: 'dette_hab', libelle: 'Dette par habitant', format: 'eur_rond', calcul: (v) => (v.dette && v.population ? (v.dette * 1e9) / v.population : null), cache: true },
       { cle: 'defense', libelle: 'Budget de la Défense', format: 'md', regle: 'budget.etat.mission.defense', cache: true },
+      // « la dette explose ? » restait sans réponse faute de repères dans le temps (test Josiane) : série Insee depuis 1980,
+      // intérêts en part du PIB depuis 1996 (Eurostat)
+      { cle: 'dette_1980', libelle: 'Dette en 1980', format: 'pct_pib', metrique: 'finances_publiques.dette_maastricht_pct_pib', annee: '1980', cache: true },
+      { cle: 'dette_2007', libelle: 'Dette en 2007', format: 'pct', metrique: 'finances_publiques.dette_maastricht_pct_pib', annee: '2007', cache: true },
+      { cle: 'dette_2019', libelle: 'Dette fin 2019', format: 'pct', metrique: 'finances_publiques.dette_maastricht_pct_pib', annee: '2019', cache: true },
+      { cle: 'dette_2020', libelle: 'Dette fin 2020', format: 'pct', metrique: 'finances_publiques.dette_maastricht_pct_pib', annee: '2020', cache: true },
+      { cle: 'dette_pct_court', libelle: "Dette aujourd'hui", format: 'pct', metrique: 'finances_publiques.dette_maastricht_pct_pib', cache: true },
+      { cle: 'int_pct', libelle: "Intérêts aujourd'hui", format: 'pct_pib', metrique: 'finances_publiques.charge_interets_apu_pct_pib', cache: true },
+      { cle: 'int_1996', libelle: 'Intérêts en 1996', format: 'pct_pib', metrique: 'finances_publiques.charge_interets_apu_pct_pib', annee: '1996', cache: true },
+      { cle: 'int_2019', libelle: 'Intérêts en 2019', format: 'pct', metrique: 'finances_publiques.charge_interets_apu_pct_pib', annee: '2019', cache: true },
     ],
-    enBref: "Aujourd'hui, la France trouve facilement des prêteurs, et une dette ne se rembourse jamais d'un coup. Mais les intérêts coûtent déjà {interets} par an, presque autant que tout le budget de la Défense ({defense}), et ils augmentent quand la dette et les taux montent.",
+    enBref: "La dette monte depuis quarante ans : {dette_1980} en 1980, {dette_2007} en 2007, {dette_pct_court} aujourd'hui. Elle ne se rembourse jamais d'un coup ; ce qui pèse chaque année, ce sont les intérêts : {interets} ({int_pct}), moins qu'en 1996 ({int_1996}), mais de nouveau en hausse.",
     texte: [
       "Chaque année, les administrations publiques dépensent plus qu'elles ne gagnent : le dernier déficit a atteint {deficit}, soit {deficit_pct}. Ce qui manque est emprunté.",
-      "Les emprunts accumulés forment la dette : {dette}, soit {dette_pct}, ou environ {dette_hab} par habitant.",
-      "Une dette ne se rembourse pas d'un coup : l'État emprunte à nouveau pour rembourser les anciens prêts. Le vrai coût, ce sont les intérêts : {interets} par an pour l'ensemble des administrations publiques (État, Sécurité sociale, collectivités), et ils augmentent quand les taux montent. Le budget de l'État n'en montre qu'une partie : les intérêts de sa propre dette.",
+      "Les emprunts accumulés forment la dette : {dette}, soit {dette_pct}, ou environ {dette_hab} par habitant. Elle a fait un bond pendant le Covid : de {dette_2019} du PIB fin 2019 à {dette_2020} fin 2020.",
+      "Une dette ne se rembourse pas d'un coup : l'État emprunte à nouveau pour rembourser les anciens prêts. Le vrai coût, ce sont les intérêts : {interets} par an pour l'ensemble des administrations publiques (État, Sécurité sociale, collectivités), presque autant que tout le budget de la Défense ({defense}). Ils avaient baissé jusqu'à {int_2019} du PIB en 2019, quand les taux étaient très bas, et remontent depuis avec les taux. Le budget de l'État n'en montre qu'une partie : les intérêts de sa propre dette.",
       "Les règles européennes demandent un déficit sous 3 % du PIB et une dette sous 60 % : la France est au-dessus des deux.",
     ],
     aSavoir: "Sur ce site, toute dépense nouvelle doit être financée par une économie ou une recette ailleurs, ou l'emprunt doit être assumé clairement.",
@@ -160,6 +172,8 @@ export const QUESTIONS: Question[] = [
       ],
     },
     actions: [
+      // « Et vous ? » menait au budget de l'État, pas à ce que paie la personne (test Josiane)
+      { libelle: 'Ce que vous payez, et pour quoi', lien: '/budget#et-vous' },
       { libelle: 'Le budget et le déficit', lien: '/budget' },
       { libelle: "Changer le budget de l'État", lien: '/atelier?budget=1' },
     ],
@@ -170,21 +184,31 @@ export const QUESTIONS: Question[] = [
     sousTitre: "Qui paie les pensions, et pourquoi on en débat",
     icone: 'Hourglass',
     accroche: "Les cotisations de ceux qui travaillent paient les pensions des retraités d'aujourd'hui. Avec moins de travailleurs par retraité, l'équilibre devient plus difficile.",
-    enBref: "Il y a aujourd'hui environ {cotisants_4} personnes qui travaillent et cotisent pour 4 retraités. Quand ce nombre baisse, il faut choisir : cotiser plus, verser moins, ou partir plus tard.",
+    enBref: "Il y a aujourd'hui environ {cotisants_4} personnes qui travaillent et cotisent pour 4 retraités. Quand ce nombre baisse, il faut choisir : plus de recettes, des pensions moins élevées, ou partir plus tard.",
     chiffres: [
       { cle: 'nb', libelle: 'Retraités', format: 'personnes', metrique: 'retraites.nombre_retraites' },
-      { cle: 'ratio', libelle: 'Cotisants pour un retraité', format: 'ratio', metrique: 'retraites.ratio_cotisants_retraites' },
-      { cle: 'cotisants_4', libelle: 'Cotisants pour 4 retraités', format: 'entier', calcul: (v) => (v.ratio ? v.ratio * 4 : null), cache: true },
+      // « 1,77 cotisant » ne parle à personne ; « 7 pour 4 retraités » si (test Josiane)
+      { cle: 'ratio', libelle: 'Cotisants pour un retraité', format: 'ratio', metrique: 'retraites.ratio_cotisants_retraites', cache: true },
+      { cle: 'cotisants_4', libelle: 'Cotisants pour 4 retraités', format: 'entier', calcul: (v) => (v.ratio ? v.ratio * 4 : null) },
       { cle: 'age', libelle: 'Âge moyen de départ', format: 'ans', metrique: 'retraites.age_moyen_depart' },
       { cle: 'depenses', libelle: 'Coût du système', format: 'md', metrique: 'retraites.depenses_totales_md', cache: true },
       { cle: 'depenses_pct', libelle: 'Part du PIB', format: 'pct_pib', metrique: 'retraites.depenses_pct_pib', cache: true },
+      // « les retraites coûtent trop cher ? » : un repère dans le temps (COR, même champ) et dans l'Europe (Eurostat, champ commun)
+      { cle: 'pct_2002', libelle: 'Part du PIB en 2002', format: 'pct', metrique: 'retraites.depenses_pct_pib', annee: '2002', cache: true },
+      { cle: 'eu_fr', libelle: 'France, définition européenne', format: 'pct_pib', metrique: 'retraites.pensions_pct_pib_eurostat.france', cache: true },
+      { cle: 'eu_ue', libelle: 'Union européenne', format: 'pct', metrique: 'retraites.pensions_pct_pib_eurostat.ue27', cache: true },
+      { cle: 'eu_de', libelle: 'Allemagne', format: 'pct', metrique: 'retraites.pensions_pct_pib_eurostat.allemagne', cache: true },
+      { cle: 'eu_it', libelle: 'Italie', format: 'pct', metrique: 'retraites.pensions_pct_pib_eurostat.italie', cache: true },
+      { cle: 'eu_es', libelle: 'Espagne', format: 'pct', metrique: 'retraites.pensions_pct_pib_eurostat.espagne', cache: true },
       { cle: 'pension_h', libelle: 'Pension moyenne des hommes', format: 'eur', metrique: 'retraites.pension_dd_brute_moyenne_hommes', cache: true },
       { cle: 'pension_f', libelle: 'Pension moyenne des femmes', format: 'eur', metrique: 'retraites.pension_dd_brute_moyenne_femmes', cache: true },
     ],
     texte: [
       "La France compte {nb} à la retraite. Leurs pensions sont payées par les cotisations de ceux qui travaillent aujourd'hui : c'est la « retraite par répartition ».",
-      "On compte environ {cotisants_4} cotisants pour 4 retraités ({ratio} pour un). Quand ce nombre baisse, il n'y a que trois leviers : cotiser plus, verser des pensions moins élevées, ou partir plus tard.",
-      "Le système coûte {depenses} par an ({depenses_pct}). On part en moyenne à {age}.",
+      // « il n'y a que trois leviers » fermait le débat que la page ouvre plus bas (d'autres recettes que les cotisations) : test Josiane
+      "On compte environ {cotisants_4} cotisants pour 4 retraités ({ratio} pour un). Quand ce nombre baisse, il faut plus de recettes (cotisations ou autres ressources), des pensions moins élevées, ou partir plus tard.",
+      "Le système coûte {depenses} par an ({depenses_pct}), contre {pct_2002} en 2002. On part en moyenne à {age}.",
+      "La France dépense plus que la moyenne européenne, moins que l'Italie : selon la définition commune d'Eurostat (qui compte aussi l'invalidité), {eu_fr} contre {eu_ue} en moyenne dans l'Union européenne, {eu_de} en Allemagne, {eu_es} en Espagne et {eu_it} en Italie. Trop, ou pas ? Cela dépend de ce qu'on attend des retraites (niveau des pensions, âge de départ) : c'est le débat ci-dessous.",
       "La pension moyenne avant prélèvements (hors pension de réversion) est de {pension_h} par mois pour les hommes et de {pension_f} pour les femmes, dont les carrières ont souvent été plus courtes ou moins payées.",
     ],
     debat: {
@@ -451,7 +475,8 @@ export const VRAI_FAUX: VraiFaux[] = [
     id: 'retraites-premiere',
     affirmation: 'Les retraites sont la première dépense publique.',
     verdict: 'vrai',
-    explication: "Sur les {depenses} d'argent public dépensés en un an, {retraites} vont aux retraites : environ {sur100} € sur 100 €.",
+    // 25 € ici, 26 € dans « Sur 100 € » du budget (test Josiane) : le périmètre n'est pas le même, il faut le dire
+    explication: "Sur les {depenses} d'argent public dépensés en un an, {retraites} vont aux retraites : environ {sur100} € sur 100 €. Le tableau « Sur 100 € » de la page budget en compte un peu plus, car il ajoute les autres aides aux personnes âgées et aux veufs.",
     chiffres: [
       { cle: 'depenses', libelle: 'Dépenses publiques', format: 'md', metrique: 'finances_publiques.depenses_publiques' },
       { cle: 'retraites', libelle: 'Retraites', format: 'md', metrique: 'retraites.depenses_totales_md' },

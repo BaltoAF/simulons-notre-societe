@@ -121,6 +121,14 @@ export function EnBref({ r, contexte = 'reforme', overrides }: { r: Rapport; con
               <div className="small muted" style={{ marginTop: 2 }}>Un gel ne baisse pas la pension : elle n'augmente pas au 1er janvier. Le site compare avec la loi actuelle, qui
                 augmente la retraite de base (en moyenne les trois quarts d'une pension) : d'où cet écart.</div>
             )}
+            {/* « rien ne change » ressemblait à une réforme gratuite (test Josiane) : le financement reste à choisir */}
+            {pv.delta_mois > -0.5 && (() => {
+              const b = r.equilibres?.find((e) => e.id === 'budget')
+              return b && b.statut === 'a_compenser' && b.manque > 0.05
+                ? <div className="small muted" style={{ marginTop: 4 }}>Sans compter son financement, pas encore choisi : il manque {milliards(b.manque)} par an,
+                    soit environ {parMenageMois(b.manque)} par mois et par ménage, à trouver par des économies, des impôts ou de l'emprunt.</div>
+                : null
+            })()}
             {departs.map((d) => (
               <div key={d.qui} className="small" style={{ marginTop: 4 }}><strong>{d.qui === 'Vous' ? 'Votre départ' : 'Le départ de votre conjoint(e)'} à la retraite : à {valeur(d.apres, 'ans')}, en {d.dateApres}</strong>
                 <span className="muted"> (au lieu de {valeur(d.avant, 'ans')}, en {d.dateAvant}). {d.apres > d.avant
@@ -145,10 +153,11 @@ export function EnBref({ r, contexte = 'reforme', overrides }: { r: Rapport; con
               </div>
               {p.indicateurs.length === 0 ? <div className="small muted">{p.pilier === 'social' && ages.length > 0
                 // test Nadia : les gains publics sont comptés, ce que vivent les personnes concernées doit au moins être dit
-                ? "Pas encore compté ici : ce que l'âge de départ change pour les personnes concernées (années de travail, date de départ, pension)."
+                ? "Pas encore chiffré pour l'ensemble des personnes concernées : années de travail ou de retraite en plus, et montant des pensions. Pour vous, la date de départ est indiquée plus haut."
                 : AUCUN[p.pilier]}</div> : (
                 <div>
-                  {p.indicateurs.slice(0, 3).map((i) => (
+                  {/* « Plutôt négatif » puis « l'activité progresse nettement » (test Josiane) : l'effet durable d'abord, et le sens contraire dit */}
+                  {(p.pilier === 'economie' ? [...p.indicateurs].sort((a, b) => Number(b.id === 'pib_long_terme') - Number(a.id === 'pib_long_terme')) : p.indicateurs).slice(0, 3).map((i) => (
                     <div key={i.id} className="ligne-phrase small">
                       <span className={`puce-sens ${i.sens}`} />
                       <span>{avecTermes(i.id === 'gagnants' && i.perdants != null ? `${nombre(i.valeur, 0)} % des ménages y gagnent, ${nombre(i.perdants, 0)} % y perdent (au moins 1 € par mois).` : phrase(i.id, i.valeur, i.unite))}
@@ -157,6 +166,12 @@ export function EnBref({ r, contexte = 'reforme', overrides }: { r: Rapport; con
                     </div>
                   ))}
                 </div>
+              )}
+              {p.pilier === 'economie' && (() => {
+                const court = p.indicateurs.find((i) => i.id === 'pib'), long = p.indicateurs.find((i) => i.id === 'pib_long_terme')
+                return !!court && !!long && Math.abs(court.valeur) >= 0.01 && Math.abs(long.valeur) >= 0.01 && Math.sign(court.valeur) !== Math.sign(long.valeur)
+              })() && (
+                <div className="small muted" style={{ marginTop: 6 }}>À court terme et à long terme, l'activité va en sens contraire. L'appréciation tient compte des deux, selon leur fiabilité.</div>
               )}
               {/* quelques gagnants à une mesure qui fait surtout des perdants (test Monique, gel des pensions : « 2 % y gagnent ») */}
               {p.pilier === 'social' && (() => {

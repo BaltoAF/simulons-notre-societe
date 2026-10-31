@@ -685,11 +685,60 @@ metriques:
   # ---------------------------------------------------------------------------
   # RETRAITES - FINANCES DU SYSTÈME (COR, rapport annuel juin 2026)
   # ---------------------------------------------------------------------------
+  - id: retraites.pensions_pct_pib_eurostat.france
+    titre: "Dépenses de pension en % du PIB, définition européenne : France"
+    explication: "Indicateur harmonisé d'Eurostat pour comparer les pays : retraites, mais aussi pensions d'invalidité et préretraites. Pour la France, il donne environ 15 % du PIB, contre 14,1 % pour les seules retraites des régimes obligatoires selon le COR. Date = 31 décembre de l'année."
+    unite: pourcent_pib
+    serie:
+      - date: "2024-12-31"
+        valeur: 14.98
+        source: eurostat-tps00103
+        statut: definitif
+  - id: retraites.pensions_pct_pib_eurostat.ue27
+    titre: "Dépenses de pension en % du PIB, définition européenne : Union européenne (moyenne des 27 pays)"
+    explication: "Indicateur harmonisé d'Eurostat pour comparer les pays : retraites, mais aussi pensions d'invalidité et préretraites. Pour la France, il donne environ 15 % du PIB, contre 14,1 % pour les seules retraites des régimes obligatoires selon le COR. Date = 31 décembre de l'année."
+    unite: pourcent_pib
+    serie:
+      - date: "2024-12-31"
+        valeur: 12.57
+        source: eurostat-tps00103
+        statut: provisoire
+  - id: retraites.pensions_pct_pib_eurostat.allemagne
+    titre: "Dépenses de pension en % du PIB, définition européenne : Allemagne"
+    explication: "Indicateur harmonisé d'Eurostat pour comparer les pays : retraites, mais aussi pensions d'invalidité et préretraites. Pour la France, il donne environ 15 % du PIB, contre 14,1 % pour les seules retraites des régimes obligatoires selon le COR. Date = 31 décembre de l'année."
+    unite: pourcent_pib
+    serie:
+      - date: "2024-12-31"
+        valeur: 11.67
+        source: eurostat-tps00103
+        statut: provisoire
+  - id: retraites.pensions_pct_pib_eurostat.italie
+    titre: "Dépenses de pension en % du PIB, définition européenne : Italie"
+    explication: "Indicateur harmonisé d'Eurostat pour comparer les pays : retraites, mais aussi pensions d'invalidité et préretraites. Pour la France, il donne environ 15 % du PIB, contre 14,1 % pour les seules retraites des régimes obligatoires selon le COR. Date = 31 décembre de l'année."
+    unite: pourcent_pib
+    serie:
+      - date: "2024-12-31"
+        valeur: 15.85
+        source: eurostat-tps00103
+        statut: definitif
+  - id: retraites.pensions_pct_pib_eurostat.espagne
+    titre: "Dépenses de pension en % du PIB, définition européenne : Espagne"
+    explication: "Indicateur harmonisé d'Eurostat pour comparer les pays : retraites, mais aussi pensions d'invalidité et préretraites. Pour la France, il donne environ 15 % du PIB, contre 14,1 % pour les seules retraites des régimes obligatoires selon le COR. Date = 31 décembre de l'année."
+    unite: pourcent_pib
+    serie:
+      - date: "2024-12-31"
+        valeur: 13.19
+        source: eurostat-tps00103
+        statut: definitif
   - id: retraites.depenses_pct_pib
     titre: "Dépenses du système de retraite en % du PIB (ensemble des régimes obligatoires, par année)"
     explication: "Poids des pensions de retraite versées par l'ensemble des régimes obligatoires (y compris FSV, hors RAFP) dans la richesse nationale. En 2025, elles représentent 422 milliards d'euros, soit 14,1 % du PIB et 24,3 % des dépenses publiques (valeur 2025 encore provisoire). Projections 2030-2070 : scénario de référence du COR (fécondité 1,45 enfant par femme, solde migratoire +150 000 par an, productivité horaire +0,7 % par an, chômage 7 % à partir de 2040)."
     unite: pourcent_pib
     serie:
+      - date: "2002-12-31"
+        valeur: 11.8
+        source: cor-ra-2026-synthese
+        statut: definitif
       - date: "2022-12-31"
         valeur: 13.6
         source: cor-ra-2026-donnees-synthese

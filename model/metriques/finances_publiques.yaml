@@ -469,6 +469,22 @@ metriques:
     explication: "Dette brute de l'ensemble des administrations publiques rapportée au PIB. 2026 et 2027 : prévisions du PLF 2027 (la LFI 2026 prévoyait 118,2 % fin 2026). Pour 2019, l'Insee Première n° 2106 indique 97,9 % (autre PIB de référence). Statuts Insee : 2023 et avant définitifs, 2024 semi-définitif (codé « provisoire »), 2025 provisoire. Date = 31 décembre de l'année."
     unite: pourcent_pib
     serie:
+      - date: "1980-12-31"
+        valeur: 21.3
+        source: insee-dette-apu-2830192
+        statut: definitif
+      - date: "1990-12-31"
+        valeur: 36.8
+        source: insee-dette-apu-2830192
+        statut: definitif
+      - date: "2000-12-31"
+        valeur: 59.7
+        source: insee-dette-apu-2830192
+        statut: definitif
+      - date: "2007-12-31"
+        valeur: 65.5
+        source: insee-dette-apu-2830192
+        statut: definitif
       - date: "2019-12-31"
         valeur: 98.2
         source: insee-chiffres-cles-depenses-recettes
@@ -505,6 +521,32 @@ metriques:
         valeur: 121.7
         source: an-plf-2027-n3210
         statut: prevision
+  - id: finances_publiques.charge_interets_apu_pct_pib
+    titre: "Charge d'intérêts de l'ensemble des administrations publiques (% du PIB)"
+    explication: "Intérêts payés par l'État, la Sécurité sociale et les collectivités, rapportés à la richesse produite (Eurostat, avec la correction Sifim, d'où environ 1 Md€ de plus que l'Insee). Repères choisis : 1996, 2000, 2007, 2019 et 2025. Date = 31 décembre de l'année."
+    unite: pourcent_pib
+    serie:
+      - date: "1996-12-31"
+        valeur: 3.6
+        source: eurostat-gov-10a-main
+        statut: definitif
+      - date: "2000-12-31"
+        valeur: 3.0
+        source: eurostat-gov-10a-main
+        statut: definitif
+      - date: "2007-12-31"
+        valeur: 2.7
+        source: eurostat-gov-10a-main
+        statut: definitif
+      - date: "2019-12-31"
+        valeur: 1.5
+        source: eurostat-gov-10a-main
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 2.2
+        source: eurostat-gov-10a-main
+        statut: provisoire
+
   - id: finances_publiques.charge_interets_apu
     titre: "Charge d'intérêts de l'ensemble des administrations publiques"
     explication: "Intérêts versés par l'ensemble des administrations publiques (comptabilité nationale, hors correction au titre des services d'intermédiation financière, Sifim). Statuts Insee : 2023 et avant définitifs, 2024 semi-définitif (codé « provisoire »), 2025 provisoire. Date = 31 décembre de l'année."

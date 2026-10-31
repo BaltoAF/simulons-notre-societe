@@ -63,7 +63,7 @@ export function ParcoursDecouverte() {
 
 /** En bas d'une page liée à une mission : « étape faite, voici la suivante », tant que le parcours n'est pas masqué. */
 export function ProchaineEtape({ apres }: { apres: EtapeParcours }) {
-  const { parcours, setParcours } = useApp()
+  const { parcours, setParcours, situation } = useApp()
   // le message final ne s'affiche que sur la page de la dernière mission faite
   const derniere = parcours.faites[parcours.faites.length - 1]
   const suivante = MISSIONS.find((m) => !parcours.faites.includes(m.id))
@@ -74,8 +74,9 @@ export function ProchaineEtape({ apres }: { apres: EtapeParcours }) {
       <CheckCircle2 size={18} style={{ flexShrink: 0 }} />
       <div className="grow">
         {suivante ? <>
-          <strong>Étape faite ({faites} sur {MISSIONS.length}).</strong> Prochaine étape de votre découverte :{' '}
-          <Link to={suivante.lien}>{suivante.titre} →</Link>
+          {/* « Étape faite (3 sur 4) » à côté de « Étape 4 sur 5 » de l'atelier : deux compteurs pris l'un pour l'autre (test Josiane) */}
+          <strong>Découverte du site : {faites} mission{faites > 1 ? 's' : ''} sur {MISSIONS.length}.</strong> La suivante :{' '}
+          <Link to={suivante.id === 'source' ? regleQuiVousConcerne((situation?.adultes ?? []).map((a) => a.activite)) : suivante.lien}>{suivante.titre} →</Link>
         </> : <><strong>Bravo, vous avez fait le tour du site !</strong> Vous savez maintenant voir vos droits, comprendre une question, tester une idée et vérifier un chiffre.</>}
       </div>
       <button className="btn ghost small" onClick={() => setParcours((p) => ({ ...p, masque: true }))}>Ne plus afficher</button>

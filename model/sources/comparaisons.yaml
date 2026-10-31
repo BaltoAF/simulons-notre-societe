@@ -1,0 +1,30 @@
+# Séries longues et comparaisons européennes pour « Les grandes questions » (la dette « explose » ? les retraites « coûtent
+# trop cher » ?) : Insee, Eurostat. Relues par l'agent de recherche le 2026-10-31.
+sources:
+  - id: insee-dette-apu-2830192
+    type: statistique_publique
+    editeur: "Insee"
+    titre: "Dette des administrations publiques au sens de Maastricht par sous-secteur"
+    url: "https://www.insee.fr/fr/statistiques/2830192"
+    auteurs: []
+    date_publication: "2026-08-28"
+    consulte_le: "2026-10-31"
+    note: "Fichier https://www.insee.fr/fr/statistiques/fichier/2830192/econ-fin-pub-dette-adm-pub.xlsx, onglet « Figure 2 », 1978-2025, comptes nationaux base 2020 (mêmes valeurs que les chiffres-clés pour 2019 : 98,2 % et 2025 : 115,7 %). Dette en % du PIB au 31 décembre : 21,3 % (1980), 36,8 % (1990), 59,7 % (2000), 65,5 % (2007)."
+  - id: eurostat-gov-10a-main
+    type: statistique_publique
+    editeur: "Eurostat"
+    titre: "Principaux agrégats des administrations publiques (gov_10a_main) — intérêts payés (D41PAY), administrations publiques (S13)"
+    url: "https://ec.europa.eu/eurostat/databrowser/view/gov_10a_main/default/table?lang=fr"
+    auteurs: []
+    date_publication: "2026-10-21"
+    consulte_le: "2026-10-31"
+    note: "France, intérêts payés par l'ensemble des administrations publiques, en % du PIB : 3,6 % (1996, 45,5 Md€), 3,0 % (2000, 43,6 Md€), 2,7 % (2007, 52,1 Md€), 1,5 % (2019, 36,9 Md€), 2,2 % (2025, 65,7 Md€). Eurostat compte la correction Sifim, l'Insee non (64,7 Md€ en 2025) : environ 1 Md€ d'écart."
+  - id: eurostat-tps00103
+    type: statistique_publique
+    editeur: "Eurostat"
+    titre: "Dépenses de pension en pourcentage du PIB (tps00103)"
+    url: "https://ec.europa.eu/eurostat/databrowser/view/tps00103/default/table?lang=fr"
+    auteurs: []
+    date_publication: "2026-10-26"
+    consulte_le: "2026-10-31"
+    note: "Année 2024. France 14,98 % ; Union européenne à 27 : 12,57 % (provisoire) ; Italie 15,85 % ; Espagne 13,19 % ; Allemagne 11,67 % (provisoire). Champ large, harmonisé entre pays : retraites, mais aussi pensions d'invalidité et préretraites (d'où 15 % pour la France contre 14,1 % au COR)."

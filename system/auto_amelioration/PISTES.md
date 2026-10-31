@@ -128,6 +128,21 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
     exact ménage par ménage reste à vérifier.
   - Taxe foncière : pistes selon l'âge et les revenus (exonération à 75 ans déjà dans « Avez-vous pensé à… ? »).
   - Taille des petits textes (jauge « Où vous situez-vous », aides des champs) même avec « A+ ».
+- **Test Josiane** (55 ans, aide-soignante de nuit, divorcée, fils étudiant de 19 ans, téléphone seul, première visite ;
+  notes prise en main 4 / compréhension 3 / téléphone 4 / confiance 3 sur 5, 31/10/2026). Corrigé : allocation de soutien
+  familial annoncée « d'après la pension que vous avez indiquée » alors que le champ était vide (question oui / non
+  désormais obligatoire pour un parent seul, « jusqu'aux 20 ans ») ; enfant majeur expliqué ; aides de saisie hors champ
+  sans style ; « la dette explose ? » : repères Insee depuis 1980 (21,3 %, 65,5 % en 2007, bond du Covid) et intérêts en
+  part du PIB (3,6 % en 1996, 1,5 % en 2019, 2,2 % aujourd'hui, Eurostat) ; « les retraites coûtent trop cher ? » :
+  11,8 % du PIB en 2002 (COR) et comparaison Eurostat (France 15 %, UE 12,6 %, Allemagne, Espagne, Italie) ; « 7 cotisants
+  pour 4 retraités » en tuile ; ton de la page dette (« ni l'école ni l'hôpital ») ; « il n'y a que trois leviers » ;
+  « Et vous ? » vers ce que paie la personne ; 25 € / 26 € sur 100 € expliqué ; atelier : effet durable sur l'activité
+  d'abord et sens contraire dit, financement « pas encore choisi » sous « rien ne change », case Social d'un âge de
+  départ ; départs anticipés (nuit, pénibilité, catégorie active) ; découverte : la règle vérifiée suit le profil, compteur
+  « missions » distinct des étapes de l'atelier ; mois de naissance : lien. Reste : la page d'une règle (SMIC) jugée
+  pleine de jargon (« Circulaire Cnav », « OpenFisca-France 176.1.10 ») ; /budget long sur téléphone (dix écrans) ;
+  solutions de financement : les économies présentées sans inconvénient, la TVA avec (à vérifier) ; deux exemples de
+  propositions sur trois « solidaires ».
 - **Test Mehdi** (38 ans, père seul, enfants de 4 et 9 ans, 1 900 € nets, assistante maternelle 60 h pour 330 €, envisage
   les 80 % ; notes clarté 4 / confiance 3 / téléphone 4 sur 5, 31/10/2026). Ses deux questions trouvées sans effort.
   Corrigé : un calcul de l'ancien foyer, lancé à l'arrivée puis abandonné pour « Modifier ma situation », s'affichait sous

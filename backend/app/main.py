@@ -300,8 +300,10 @@ def list_metriques(q: str | None = None, prefixe: str | None = None, ids: str | 
             m = store.metriques.get(mid.strip())
             if m:
                 src = store.sources.get((m.get("derniere") or {}).get("source") or "", {})
-                # le premier point de la série sert de repère (« contre 12,1 tonnes en 1990 »)
+                # le premier point de la série sert de repère (« contre 12,1 tonnes en 1990 »), et un point d'une année donnée
+                # (« 64 % du PIB en 2007 ») se lit dans la série, réduite à ses dates et valeurs
                 out.append({**_metric_summary(m), "premiere": (m.get("serie") or [None])[0],
+                            "serie": [{"date": p.get("date"), "valeur": p.get("valeur")} for p in m.get("serie") or []],
                             "source": {k: src.get(k) for k in ("id", "titre", "editeur", "url")} if src else None})
         return {"total": len(out), "metriques": out}
     items = sorted(store.metriques.values(), key=lambda m: m["id"])

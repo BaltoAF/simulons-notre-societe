@@ -92,6 +92,10 @@ def repondre(state: dict, profil: dict) -> list[dict]:
             txt += f" Pour une retraite à taux plein, il faut {int(g(r_trim))} trimestres de cotisation"
             if g("retraites.taux_plein.age_automatique") is not None:
                 txt += f" (ou attendre {int(g('retraites.taux_plein.age_automatique'))} ans)."
+        # une aide-soignante de nuit ne trouvait rien sur les départs anticipés (test Josiane)
+        txt += (" Un départ plus tôt est parfois possible : carrière commencée jeune, travail de nuit ou pénible (compte"
+                " professionnel de prévention), handicap, ou métier dit « actif » de la fonction publique (aide-soignant à"
+                " l'hôpital public, par exemple). Votre caisse de retraite le confirme.")
         add("Retraite", "À quel âge pourrai-je partir à la retraite ?", txt,
             [r_age, r_trim, "retraites.taux_plein.age_automatique"], al, "ans")
     elif annee < 1955 and not retraite:
