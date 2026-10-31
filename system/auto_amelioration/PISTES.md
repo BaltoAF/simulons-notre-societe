@@ -43,7 +43,7 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   loyer « hors charges, avant que l'aide en soit retirée » ; pension alimentaire mentionnée dans la prime d'activité ;
   Pajemploi et les 15 % expliqués ; « CSG et CRDS » et cotisations reliées au lexique. Fait ensuite : « Allocations
   familiales dès le premier enfant (77 € par mois) », dispositif proposé (règle virtuelle, coût simulé 9 Md€ par an ;
-  limite : sans effet ici sur la prime d'activité et le RSA). Reste : CO₂ « à compenser » pour une hausse d'allocations, à expliquer.
+  limite : sans effet ici sur la prime d'activité et le RSA). CO₂ « à compenser » pour une hausse d'allocations : expliqué dans la carte « Le climat » (31/10/2026).
 - **Test Gérard** (58 ans, ouvrier, méfiant envers les chiffres ; notes 4 / 3 / confiance 2 sur 5, 30/10/2026). Corrigé :
   une proposition affichait une TVA « changée automatiquement (la loi a changé) » alors que c'était le choix de son auteur
   (les mises à jour automatiques sont ignorées dans la provenance) ; « Nos chiffres sont-ils justes ? » dit pourquoi un

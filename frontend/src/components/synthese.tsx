@@ -258,6 +258,8 @@ function Titre({ e }: { e: Equilibre }) {
 export function EquilibresPanel({ r, overrides, onAppliquer, contexte = 'reforme' }: { r: Rapport; overrides?: Record<string, Valeur>; onAppliquer?: (o: Record<string, Valeur>) => void; contexte?: Contexte }) {
   // effet indirect sur les émissions (via l'activité) : affiché, mais pas compté dans le plafond car trop incertain
   const indirect = r.sections.flatMap((s) => s.indicateurs).find((i) => i.id === 'impact_emissions_activite')?.valeur ?? 0
+  // l'essentiel des émissions vient du revenu des ménages (bilan.py : equilibre_carbone_revenus)
+  const viaRevenus = r.bilan?.some((p) => p.indicateurs.some((i) => i.id === 'equilibre_carbone_revenus')) ?? false
   return (
     <div className="stack">
       {r.equilibres.map((e) => {
@@ -280,6 +282,13 @@ export function EquilibresPanel({ r, overrides, onAppliquer, contexte = 'reforme
                 <Link to="/fiabilite">Tous les chiffrages comparés</Link></div>
             )}
             {!budget && Math.abs(e.effet) >= 0.005 && <div className="small muted">{equivalentCarbone(e.effet)}.</div>}
+            {/* une hausse d'allocations « à compenser » pour le climat surprenait (test Samira) : dire que ces émissions viennent
+                de la consommation quand c'est le cas */}
+            {!budget && Math.abs(e.effet) >= 0.005 && viaRevenus && (
+              <div className="small ink2" style={{ marginTop: 4 }}>{e.effet > 0
+                ? "D'où viennent ces émissions ? Avec plus de revenus, les ménages consomment davantage (chauffage, carburant, objets fabriqués), et cette consommation émet des gaz à effet de serre."
+                : "D'où vient cette baisse ? Avec moins de revenus, les ménages consomment moins (chauffage, carburant, objets fabriqués), et émettent donc moins de gaz à effet de serre."}</div>
+            )}
             {!budget && Math.abs(indirect) >= 0.005 && (
               <div className="small muted">Effet indirect, par l'activité économique : {tonnes(indirect, true)} par an. Trop incertain pour être compté dans le plafond.</div>
             )}
