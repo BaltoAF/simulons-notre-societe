@@ -58,10 +58,10 @@ regles:
       - depuis: "2026-06-01"
         valeur: 12.31
         sources: [jorf-arrete-smic-2026-05-22, cnav-circ-2026-16, sp-f2300, insee-smic-historique]
-        article: "Arrêté du 22 mai 2026 relatif au relèvement du SMIC (JO du 24/05/2026 selon la Cnav ; 22/05/2026 selon l'INSEE)"
+        article: "Arrêté du 22 mai 2026 relatif au relèvement du SMIC"
     tags: [smic, salaire_minimum]
     a_verifier: false
-    note: "Aucune revalorisation au 1er janvier 2025 (11,88 € maintenu). Hausse de 2,41 % au 1er juin 2026 par le mécanisme automatique (inflation ≥ 2 %). Montants lus sur la page INSEE et, pour 2026, dans les circulaires Cnav ; les numéros des textes de 2020 à 2024 viennent de la presse juridique et n'ont pas été relus sur Légifrance, qui bloque l'accès automatisé."
+    note: "Arrêté du 22 mai 2026 publié au Journal officiel du 24/05/2026 selon la Cnav, du 22/05/2026 selon l'INSEE. Aucune revalorisation au 1er janvier 2025 (11,88 € maintenu). Hausse de 2,41 % au 1er juin 2026 par le mécanisme automatique (inflation ≥ 2 %). Montants lus sur la page INSEE et, pour 2026, dans les circulaires Cnav ; les numéros des textes de 2020 à 2024 viennent de la presse juridique et n'ont pas été relus sur Légifrance, qui bloque l'accès automatisé."
 
   - id: travail.smic.mensuel_brut_35h
     titre: "SMIC mensuel brut pour 35 heures par semaine"

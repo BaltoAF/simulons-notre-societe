@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { AlertTriangle, BadgeCheck, Calculator, Cpu, FileCode2, GitFork } from 'lucide-react'
 import type { RegleDetail as RD, Tranche } from '../lib/api'
-import { date, DOMAINE_TITRE, nombre, valeur } from '../lib/format'
+import { date, DOMAINE_TITRE, euros, nombre, valeur } from '../lib/format'
 import { useApp, useFetch } from '../lib/state'
 import { ConfidenceBadge, ErrorBox, Loading, SourceItem } from '../components/ui'
 import { Pourquoi, Terme } from '../components/Terme'
@@ -16,6 +16,12 @@ const CODES: Record<string, string> = { CSS: 'Code de la sécurité sociale', CG
   CESEDA: "Code de l'entrée et du séjour des étrangers et du droit d'asile", CIBS: 'Code des impositions sur les biens et services',
   CGCT: 'Code général des collectivités territoriales', LFSS: 'loi de financement de la Sécurité sociale', JORF: 'Journal officiel',
   JO: 'Journal officiel', BOI: 'Bulletin officiel des finances publiques' }
+// « OpenFisca-France 176.1.10 » : le nom du moteur suffit au lecteur, la version reste dans les détails techniques (test Josiane)
+const sourceEnClair = (t: string) => (/^OpenFisca/i.test(t) ? 'le moteur de calcul public OpenFisca' : t)
+// une valeur horaire ne parle à personne : le même SMIC par mois, pour un temps plein (règles du site, sourcées)
+const EN_CLAIR: Record<string, { brut: string; net: string }> = {
+  'travail.smic.horaire_brut': { brut: 'travail.smic.mensuel_brut_35h', net: 'travail.smic.mensuel_net_indicatif' },
+}
 const codesEnClair = (t: string) => t.replace(/\b(CESEDA|CIBS|CGCT|LFSS|JORF|JO|BOI|CSS|CGI|CASF|CCH|CPP|CSP|CT|CP|CE)\b/g, (m) => CODES[m] ?? m)
 
 function Bareme({ t }: { t: Tranche[] }) {
@@ -33,6 +39,9 @@ function Bareme({ t }: { t: Tranche[] }) {
 export default function RegleDetail() {
   const { id } = useParams()
   const { data: r, loading, error } = useFetch<RD>(`/api/regles/${id}`)
+  const enClair = id ? EN_CLAIR[id] : undefined
+  const { data: mensuel } = useFetch<RD>(enClair ? `/api/regles/${enClair.brut}` : null)
+  const { data: net } = useFetch<RD>(enClair ? `/api/regles/${enClair.net}` : null)
   const { setDraft, marquer } = useApp()
   const nav = useNavigate()
   useEffect(() => { marquer('source') }, [marquer])
@@ -66,13 +75,17 @@ export default function RegleDetail() {
               <Bareme t={r.valeur as Tranche[]} />
               <Pourquoi titre="Comment lire ce barème ?">Chaque taux ne s'applique qu'à la partie du revenu comprise dans sa tranche. Exemple : passer dans une tranche supérieure ne fait pas payer plus sur tout le revenu, seulement sur ce qui dépasse le seuil.</Pourquoi>
             </> : <div className="value-big">{valeur(r.valeur, r.unite, r.type)}</div>}
+            {enClair && typeof mensuel?.valeur === 'number' && (
+              <div style={{ marginTop: 4 }}>Pour un temps plein (35 heures par semaine) : <Link to={`/regles/r/${enClair.brut}`}>{valeur(mensuel.valeur, 'euros', 'nombre')} bruts par mois</Link>
+                {typeof net?.valeur === 'number' && <>, soit environ <Link to={`/regles/r/${enClair.net}`}>{euros(net.valeur, 0)} nets</Link></>}.</div>
+            )}
             {r.article && <div className="small muted" style={{ marginTop: 4 }}>{codesEnClair(r.article)}</div>}
             {r.prochaine_valeur && <div className="notice" style={{ marginTop: 12 }}>Évolution déjà prévue : {valeur(r.prochaine_valeur.valeur, r.unite, r.type)} à partir du {date(r.prochaine_valeur.depuis)}.</div>}
             {r.a_verifier && <div className="notice warn" style={{ marginTop: 12 }}><AlertTriangle size={18} /> Cette valeur n'a pas encore pu être confirmée sur une source officielle.</div>}
             {(r.controles ?? []).map((c, i) => (
               <div key={i} className={`notice ${c.concordant ? 'ok' : 'warn'}`} style={{ marginTop: 12 }}>
                 {c.concordant ? <BadgeCheck size={18} /> : <AlertTriangle size={18} />}
-                <div>{c.concordant ? 'Valeur confirmée par une seconde source indépendante' : 'Désaccord entre deux sources'} : {c.autre_source} donne {valeur(c.autre_valeur, r.unite, r.type)}.</div>
+                <div>{c.concordant ? 'Valeur confirmée par une seconde source indépendante' : 'Désaccord entre deux sources'} : <span title={c.autre_source}>{sourceEnClair(c.autre_source)}</span> donne aussi {valeur(c.autre_valeur, r.unite, r.type)}.</div>
               </div>
             ))}
             {/* les notes de vérification (dates de publication, sources relues…) intéressent les curieux, pas tout le monde */}
