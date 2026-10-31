@@ -353,8 +353,8 @@ export default function MesDroits() {
                   <div>
                     <div className="kpi-label">Ce que le foyer touche chaque mois</div>
                     <div className="kpi big">{euros(total)} <span className="muted" style={{ fontSize: '1rem', fontWeight: 600 }}>/ mois</span></div>
-                    <div className="small muted">Revenus nets (cotisations et CSG déjà retirées) + aides − impôt sur le revenu. C'est avant les dépenses :
-                      loyer ou crédit, taxe foncière, courses (dont la TVA)…{s.adultes.length + s.enfants.length > 1 && <> Votre foyer vit aussi bien qu'une personne seule qui aurait {euros(res.niveau_de_vie)} par mois (c'est votre <Terme id="niveau_vie">niveau de vie</Terme> : à plusieurs, on partage le logement et les dépenses).</>}</div>
+                    <div className="small muted">Revenus nets (<Terme id="cotisations">cotisations</Terme> et <Terme id="csg">CSG</Terme> déjà retirées) + aides − impôt sur le revenu. C'est avant les dépenses :
+                      loyer ou crédit, taxe foncière, courses (dont la <Terme id="tva">TVA</Terme>, la taxe comprise dans les prix)…{s.adultes.length + s.enfants.length > 1 && <> Votre foyer vit aussi bien qu'une personne seule qui aurait {euros(res.niveau_de_vie)} par mois (c'est votre <Terme id="niveau_vie">niveau de vie</Terme> : à plusieurs, on partage le logement et les dépenses).</>}</div>
                     {totalAides > 0.5 && (
                       <div className="small" style={{ marginTop: 6 }}>Dont <strong>{euros(totalAides)}</strong> d'aides. La plupart ne sont versées que si on les demande :
                         si vous ne les touchez pas encore, il vous reste aujourd'hui {euros(total - totalAides)}. Comment les obtenir est indiqué sous chaque aide.</div>

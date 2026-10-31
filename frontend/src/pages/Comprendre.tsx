@@ -55,7 +55,7 @@ function useChiffres(q: Question | undefined) {
 // mots techniques expliqués au toucher (la première fois seulement dans un paragraphe)
 const TERMES: [RegExp, string][] = [
   [/PIB/, 'pib'], [/au sens du BIT/, 'chomage_bit'], [/\bactifs\b/, 'actifs'], [/équivalent CO₂/, 'equivalent_co2'],
-  [/minima sociaux/, 'minima_sociaux'], [/budget carbone/, 'budget_carbone'],
+  [/minima sociaux/, 'minima_sociaux'], [/budget carbone/, 'budget_carbone'], [/TVA/, 'tva'], [/CSG/, 'csg'],
 ]
 
 function avecTermes(txt: string, deja: Set<string>): ReactNode[] {
