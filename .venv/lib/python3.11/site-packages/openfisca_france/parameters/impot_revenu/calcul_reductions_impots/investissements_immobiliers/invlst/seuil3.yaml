@@ -1,0 +1,9 @@
+description: Seuil3
+values:
+  2004-01-01:
+    value: 45760
+  2005-01-01:
+    value: null
+metadata:
+  unit: currency_next_year
+documentation: N'est plus utilisé depuis 2005.
