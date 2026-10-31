@@ -12,6 +12,7 @@ regles:
   bornes:
   - 0
   - 500
+  theme: Aides au logement
   valeurs:
   - depuis: '2009-01-01'
     valeur: 50.59

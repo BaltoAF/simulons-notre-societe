@@ -13,6 +13,7 @@ regles:
   bornes:
   - 0
   - 2000
+  theme: RSA
   valeurs:
   - depuis: '2009-06-01'
     valeur: 454.63
@@ -150,6 +151,7 @@ regles:
   bornes:
   - 0
   - 2000
+  theme: Prime d'activité
   valeurs:
   - depuis: '2016-01-01'
     valeur: 524.16
@@ -234,6 +236,7 @@ regles:
   bornes:
   - 0
   - 100
+  theme: Prime d'activité
   valeurs:
   - depuis: '2016-01-01'
     valeur: 62.0
@@ -265,6 +268,7 @@ regles:
   bornes:
   - 0
   - 100
+  theme: Prime d'activité
   valeurs:
   - depuis: '2016-01-01'
     valeur: 12.782
@@ -296,6 +300,7 @@ regles:
   bornes:
   - 0
   - 3000
+  theme: Handicap
   valeurs:
   - depuis: '2009-09-01'
     valeur: 681.63
@@ -426,6 +431,7 @@ regles:
   bornes:
   - 0
   - 30000
+  theme: Minimum vieillesse
   valeurs:
   - depuis: '2009-04-01'
     valeur: 8125.59

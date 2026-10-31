@@ -10,6 +10,7 @@ regles:
     propre taux : on ne paie le taux le plus élevé que sur la partie du revenu qui dépasse le seuil.'
   type: bareme
   unite: euros
+  theme: Impôt sur le revenu
   valeurs:
   - depuis: '2010-01-01'
     valeur:
@@ -264,6 +265,7 @@ regles:
   bornes:
   - 0
   - 100
+  theme: Impôt sur le revenu
   valeurs:
   - depuis: '2001-01-01'
     valeur: 50.0
@@ -298,6 +300,7 @@ regles:
   bornes:
   - 0
   - 3000
+  theme: Impôt sur le revenu
   valeurs:
   - depuis: '2009-01-01'
     valeur: 433.0
@@ -398,6 +401,7 @@ regles:
   bornes:
   - 0
   - 5000
+  theme: Impôt sur le revenu
   valeurs:
   - depuis: '2014-01-01'
     valeur: 1870.0
@@ -475,6 +479,7 @@ regles:
   bornes:
   - 0
   - 6000
+  theme: Impôt sur le revenu
   valeurs:
   - depuis: '2009-01-01'
     valeur: 2301.0
@@ -581,6 +586,7 @@ regles:
   bornes:
   - 0
   - 2
+  theme: Impôt sur le revenu
   valeurs:
   - depuis: '1951-01-01'
     valeur: 0.5
@@ -599,6 +605,7 @@ regles:
   bornes:
   - 0
   - 2
+  theme: Impôt sur le revenu
   valeurs:
   - depuis: '1995-01-01'
     valeur: 1.0
@@ -618,6 +625,7 @@ regles:
   bornes:
   - 0
   - 30
+  theme: Impôt sur le revenu
   valeurs:
   - depuis: '1943-01-01'
     valeur: 10.0
@@ -636,6 +644,7 @@ regles:
   bornes:
   - 0
   - 40000
+  theme: Impôt sur le revenu
   valeurs:
   - depuis: '2009-01-01'
     valeur: 13948.0
@@ -735,6 +744,7 @@ regles:
   bornes:
   - 0
   - 15000
+  theme: Impôt sur le revenu
   valeurs:
   - depuis: '2009-01-01'
     valeur: 3606.0
@@ -831,6 +841,7 @@ regles:
   bornes:
   - 0
   - 60
+  theme: Revenus du capital
   valeurs:
   - depuis: '2018-01-01'
     valeur: 12.8

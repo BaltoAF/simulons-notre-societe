@@ -12,6 +12,7 @@ regles:
   bornes:
   - 0
   - 35
+  theme: TVA
   valeurs:
   - depuis: '2000-04-01'
     valeur: 19.6
@@ -35,6 +36,7 @@ regles:
   bornes:
   - 0
   - 35
+  theme: TVA
   valeurs:
   - depuis: '2012-01-01'
     valeur: 7.0
@@ -59,6 +61,7 @@ regles:
   bornes:
   - 0
   - 35
+  theme: TVA
   valeurs:
   - depuis: '1982-07-01'
     valeur: 5.5

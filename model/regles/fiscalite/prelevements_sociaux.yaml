@@ -13,6 +13,7 @@ regles:
   bornes:
   - 2.4
   - 20
+  theme: CSG et CRDS
   valeurs:
   - depuis: '1998-01-01'
     valeur: 7.5
@@ -41,6 +42,7 @@ regles:
   bornes:
   - 2.4
   - 20
+  theme: CSG et CRDS
   valeurs:
   - depuis: '2005-01-01'
     valeur: 6.6
@@ -66,6 +68,7 @@ regles:
   bornes:
   - 0
   - 5
+  theme: CSG et CRDS
   valeurs:
   - depuis: '1996-02-01'
     valeur: 0.5
@@ -86,6 +89,7 @@ regles:
   bornes:
   - 1
   - 4
+  theme: Cotisations sociales
   valeurs:
   - depuis: '2005-07-01'
     valeur: 1.6

@@ -153,9 +153,10 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   d'attente réaliste après 20 s dans Mes droits ; « missions » sur l'accueil ; fiche ASF selon la réponse et « s'arrête
   dans moins d'un an » à 19 ans ; bouton flottant de l'atelier qui couvrait « modifier » ; « payées surtout par les
   cotisations, et pour une part par des impôts ». Ajouté : comparaisons Eurostat des impôts et cotisations (France
-  46,0 % en 2025, UE 40,7 %) et des dépenses publiques (57,3 %, 2e derrière la Finlande). Reste : la page de la prime
-  d'activité (fil « RSA », « crée art. D843-1 du CSS », quinze sources avant l'historique) ; « Défense (66 milliards €) » :
-  vérifier si le périmètre compte les pensions.
+  46,0 % en 2025, UE 40,7 %) et des dépenses publiques (57,3 %, 2e derrière la Finlande). Fait ensuite : thème de
+  chaque règle générée (la prime d'activité affichait « RSA ») ; sources triées (textes de la valeur en vigueur
+  d'abord, OpenFisca en dernier) et repliées au-delà de quatre ; historique sans « OpenFisca-France 176.1.10 ». Reste :
+  « Défense (66 milliards €) » : vérifier si le périmètre compte les pensions.
 - **Test Mehdi** (38 ans, père seul, enfants de 4 et 9 ans, 1 900 € nets, assistante maternelle 60 h pour 330 €, envisage
   les 80 % ; notes clarté 4 / confiance 3 / téléphone 4 sur 5, 31/10/2026). Ses deux questions trouvées sans effort.
   Corrigé : un calcul de l'ancien foyer, lancé à l'arrivée puis abandonné pour « Modifier ma situation », s'affichait sous

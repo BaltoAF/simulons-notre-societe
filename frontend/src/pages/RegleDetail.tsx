@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { AlertTriangle, BadgeCheck, Calculator, Cpu, FileCode2, GitFork } from 'lucide-react'
 import type { RegleDetail as RD, Tranche } from '../lib/api'
@@ -42,6 +42,7 @@ export default function RegleDetail() {
   const enClair = id ? EN_CLAIR[id] : undefined
   const { data: mensuel } = useFetch<RD>(enClair ? `/api/regles/${enClair.brut}` : null)
   const { data: net } = useFetch<RD>(enClair ? `/api/regles/${enClair.net}` : null)
+  const [toutesSources, setToutesSources] = useState(false)
   const { setDraft, marquer } = useApp()
   const nav = useNavigate()
   useEffect(() => { marquer('source') }, [marquer])
@@ -97,7 +98,20 @@ export default function RegleDetail() {
           <div className="card">
             <h3>D'où vient cette valeur ?</h3>
             <p className="small muted">Les textes officiels qui la fixent : cliquez pour les consulter.</p>
-            {r.sources.length ? <ul className="list">{r.sources.map((s) => <SourceItem key={s.id} s={s} />)}</ul> : <div className="small muted">Aucune source (dispositif virtuel).</div>}
+            {/* quinze sources, dont des références techniques importées d'OpenFisca, passaient avant l'historique (test Josiane) :
+                les sources relues à la main d'abord, les autres repliées */}
+            {r.sources.length ? (() => {
+              // d'abord les textes de la valeur en vigueur, puis les autres, le modèle OpenFisca en dernier
+              const actuelles = new Set(r.valeurs[r.valeurs.length - 1]?.sources ?? [])
+              const rang = (id: string) => (id === 'openfisca-france' ? 2 : actuelles.has(id) ? 0 : 1)
+              const triees = [...r.sources].sort((a, b) => rang(a.id) - rang(b.id))
+              const vues = toutesSources ? triees : triees.slice(0, 4)
+              return <>
+                <ul className="list">{vues.map((s) => <SourceItem key={s.id} s={s} />)}</ul>
+                {triees.length > 4 && <button className="lien small" onClick={() => setToutesSources(!toutesSources)}>{toutesSources ? 'Moins de sources'
+                  : `Voir les ${triees.length - 4} autres sources (dont des références techniques)`}</button>}
+              </>
+            })() : <div className="small muted">Aucune source (dispositif virtuel).</div>}
           </div>
 
           <div className="card">
@@ -107,7 +121,7 @@ export default function RegleDetail() {
                 <li key={i} className={v.depuis === r.valeur_depuis ? 'current' : ''}>
                   <div className="row between"><strong>{date(v.depuis)}</strong>{v.depuis === r.valeur_depuis && <span className="badge primary">en vigueur</span>}</div>
                   <div>{r.type === 'bareme' && Array.isArray(v.valeur) ? valeur(v.valeur) : valeur(v.valeur, r.unite, r.type)}</div>
-                  <div className="small muted">{v.sources.map((s) => srcById[s]?.titre ?? s).filter((x) => x !== 'openfisca-france').slice(0, 2).join(' · ')}</div>
+                  <div className="small muted">{v.sources.filter((s) => s !== 'openfisca-france').map((s) => srcById[s]?.titre ?? s).slice(0, 2).join(' · ')}</div>
                 </li>
               ))}
             </ul>

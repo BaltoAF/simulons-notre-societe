@@ -181,7 +181,7 @@ class ModelStore:
         rule = dict(r)
         rule["id"] = str(r["id"])
         rule["domaine"] = domaine
-        rule["theme"] = theme
+        rule["theme"] = r.get("theme") or theme  # une règle peut préciser son thème (fichiers générés qui en mêlent plusieurs)
         rule["fichier"] = self._rel(path)
         rule.setdefault("type", "nombre")
         rule.setdefault("unite", "")

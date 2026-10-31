@@ -240,6 +240,9 @@ def main():
         }
         if lev.get("bornes"):
             rule["bornes"] = lev["bornes"]
+        # le thème de chaque levier : un fichier en mêle plusieurs (la prime d'activité affichait « RSA », test Josiane)
+        if lev.get("theme"):
+            rule["theme"] = lev["theme"]
         rule["valeurs"] = valeurs
         if lev.get("tags"):
             rule["tags"] = lev["tags"]

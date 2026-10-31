@@ -12,6 +12,7 @@ regles:
   bornes:
   - 0
   - 1500
+  theme: Prestations familiales
   valeurs:
   - depuis: '2009-01-01'
     valeur: 389.2
@@ -115,6 +116,7 @@ regles:
   bornes:
   - 1
   - 4
+  theme: Allocations familiales
   valeurs:
   - depuis: '1946-09-01'
     valeur: 2.0
@@ -136,6 +138,7 @@ regles:
   bornes:
   - 0
   - 100
+  theme: Allocations familiales
   valeurs:
   - depuis: '1982-02-01'
     valeur: 32.0
@@ -155,6 +158,7 @@ regles:
   bornes:
   - 0
   - 100
+  theme: Allocations familiales
   valeurs:
   - depuis: '1986-01-01'
     valeur: 41.0
@@ -174,6 +178,7 @@ regles:
   bornes:
   - 0
   - 300000
+  theme: Allocations familiales
   valeurs:
   - depuis: '2015-07-01'
     valeur: 55950.0
