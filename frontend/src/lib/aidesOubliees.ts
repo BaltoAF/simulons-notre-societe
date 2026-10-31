@@ -82,7 +82,7 @@ function correspond(c: Criteres, s: SituationSaisie, lignes: Ligne[]): boolean {
 
 export type AideProposee = AideOubliee & { montant: number | null; libelle: string; rappelVisible: boolean }
 
-/** Les textes des fiches peuvent citer les plafonds du foyer : {plafond_c2s} (par mois) et {plafond_cheque} (par an). */
+/** Les textes des fiches peuvent citer les plafonds du foyer : {plafond_c2s} et {plafond_c2s_gratuite} (par mois), {plafond_cheque} (par an). */
 function personnaliser(texte: string, c: Criteres, s: SituationSaisie): string {
   const n = s.adultes.length + s.enfants.length
   const euros = (x: number) => `${Math.round(x).toLocaleString('fr-FR')} €`
@@ -90,6 +90,8 @@ function personnaliser(texte: string, c: Criteres, s: SituationSaisie): string {
   const cheque = c.rfr_par_uc_max ?? c.ou?.find((x) => x.rfr_par_uc_max)?.rfr_par_uc_max
   return texte
     .replace('{plafond_c2s}', c2s ? euros(c2s * coefC2s(n)) : '')
+    // le plafond de la C2S payante est celui de la C2S gratuite majoré de 35 % (code de la sécurité sociale, art. L861-1)
+    .replace('{plafond_c2s_gratuite}', c2s ? euros(c2s * coefC2s(n) / 1.35) : '')
     .replace('{plafond_cheque}', cheque ? euros(cheque * ucChequeEnergie(n)) : '')
 }
 

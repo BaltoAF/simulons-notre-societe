@@ -111,8 +111,8 @@ aides:
   - id: c2s
     nom: "Complémentaire santé solidaire (C2S)"
     en_bref: "Une mutuelle gratuite, ou à moins de 1 € par jour, pour les foyers aux revenus modestes."
-    pourquoi_vous: "Les ressources de votre foyer semblent sous le plafond : {plafond_c2s} par mois pour un foyer comme le vôtre."
-    pour_qui: "Personnes qui vivent en France depuis plus de 3 mois avec des revenus modestes. Elle est gratuite sous un premier plafond (868 € par mois pour une personne seule) et coûte au plus 1 € par jour sous un second (1 172 €). Elle est attribuée d'office avec le RSA."
+    pourquoi_vous: "Les ressources de votre foyer semblent sous le plafond : {plafond_c2s} par mois pour un foyer comme le vôtre. Sous {plafond_c2s_gratuite} par mois, elle est gratuite."
+    pour_qui: "Personnes qui vivent en France depuis plus de 3 mois avec des revenus modestes. Elle est gratuite sous un premier plafond de ressources et coûte au plus 1 € par jour sous un second ; ces plafonds dépendent de la taille du foyer. Elle est attribuée d'office avec le RSA."
     ce_que_ca_apporte: "Une complémentaire santé qui ne coûte rien, ou de 8 € à 30 € par mois et par personne selon l'âge (8 € jusqu'à 29 ans, 30 € à partir de 70 ans)."
     ou_la_demander: "À l'Assurance maladie : en ligne sur votre compte ameli (« Mes démarches »), ou avec le formulaire officiel n° 12504, que votre caisse peut vous envoyer. Sans réponse sous deux mois, la demande est acceptée."
     url_officielle: "https://www.service-public.gouv.fr/particuliers/vosdroits/F10027"

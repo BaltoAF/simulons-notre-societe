@@ -31,7 +31,8 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
     déclarer 0 quand la pension est versée. Reste à citer l'article du code de la sécurité sociale qui fixe ce forfait.
   - Garde d'enfants : deux fiches ajoutées dans « Avez-vous pensé à… ? » (complément de mode de garde, réforme de 2025
     et parent seul jusqu'aux 12 ans ; crédit d'impôt de 50 %). Reste : le calcul par le moteur (heures, coût horaire).
-  - Complémentaire santé solidaire : n'afficher que le plafond du foyer (les plafonds génériques prêtent à confusion).
+  - Complémentaire santé solidaire : fait (31/10/2026), la fiche donne les deux plafonds du foyer (gratuite, et à moins de
+    1 € par jour) et plus ceux d'une personne seule.
   - Arrondis (200,78 € × 2 ≠ 404 €, 429 € / 426,87 €).
   - Lexique fait (cotisations salariales et patronales, pension de réversion, BMAF, juge aux affaires familiales). « Et vous ? » donne aussi
     l'équivalent par mois.
