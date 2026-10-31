@@ -2,6 +2,9 @@
 __pycache__/
 *.pyc
 backend/.venv/
+# tout environnement Python, où qu'il soit (le 31/10/2026, la routine en a versionné un à la racine)
+.venv/
+venv/
 backend/data/
 .pytest_cache/
 # Node

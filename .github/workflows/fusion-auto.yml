@@ -44,6 +44,16 @@ jobs:
             echo "$INTERDITS"
             exit 1
           fi
+          # ni environnement Python, ni dépendances, ni modifications en masse : le 31/10/2026, un .venv/ de 8 925 fichiers
+          # créé par la routine est passé (il n'était pas ignoré à la racine)
+          CHANGES=$(git diff --name-only "$(git merge-base origin/main "$SHA")" "$SHA")
+          LOURDS=$(echo "$CHANGES" | grep -E '(^|/)(\.?venv|node_modules|__pycache__|\.pytest_cache|dist)/' | head -5 || true)
+          NB=$(echo "$CHANGES" | grep -c . || true)
+          if [ -n "$LOURDS" ] || [ "$NB" -gt 200 ]; then
+            echo "::error::Fusion refusée : $NB fichiers modifiés (plus de 200), ou environnement et dépendances versionnés :"
+            echo "$LOURDS"
+            exit 1
+          fi
           # la branche a pu avancer depuis le test : on ne fusionne que ce qui a été testé
           for essai in 1 2 3 4 5; do
             git fetch -q origin main && git reset -q --hard origin/main
