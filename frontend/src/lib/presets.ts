@@ -64,7 +64,7 @@ export const PRESETS: Preset[] = [
   },
   {
     id: 'af-premier-enfant',
-    titre: 'Allocations familiales dès le premier enfant (77 € par mois)',
+    titre: '77 € par mois en plus pour chaque famille, dès le premier enfant',
     description: "Chaque famille toucherait 77 € par mois dès le premier enfant, soit la moitié de ce qui est versé aujourd'hui pour deux enfants, en plus des allocations actuelles.",
     overrides: { 'prestations.famille.af_premier_enfant_montant': 77 },
     tags: ['famille'],
