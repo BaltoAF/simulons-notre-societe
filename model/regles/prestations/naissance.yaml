@@ -1,0 +1,58 @@
+# Naissance et congé parental : prime à la naissance et prestation partagée d'éducation de l'enfant (PreParE), montants
+# publiés par Service-public au 1er avril 2026. Fichier écrit à la main (famille.yaml est généré) ; ces règles servent aux
+# notes de la carte « Et si votre situation changeait ? » de Mes droits, sans être calculées par le moteur.
+domaine: prestations
+theme: "Naissance et congé parental"
+regles:
+  - id: prestations.naissance.prime_naissance
+    titre: "Prime à la naissance"
+    explication: "Versée une fois par enfant à naître, au 7e mois de grossesse, si les revenus du foyer sont sous un plafond."
+    type: nombre
+    unite: euros
+    bornes: [0, 5000]
+    valeurs:
+      - depuis: "2026-04-01"
+        valeur: 1093.11
+        sources: [sp-f2550]
+        article: "Code de la sécurité sociale, art. L. 531-2"
+    tags: [famille, naissance, paje]
+    a_verifier: false
+  - id: prestations.naissance.prepare_taux_plein
+    titre: "PreParE : montant mensuel pour un parent qui arrête de travailler"
+    explication: "Prestation partagée d'éducation de l'enfant, versée par la CAF à un parent qui cesse son activité pour s'occuper d'un enfant de moins de 3 ans (moins d'un an pour le premier enfant), s'il a assez cotisé."
+    type: nombre
+    unite: euros
+    bornes: [0, 2000]
+    valeurs:
+      - depuis: "2026-04-01"
+        valeur: 459.70
+        sources: [sp-f32485]
+        article: "Code de la sécurité sociale, art. L. 531-4"
+    tags: [famille, naissance, paje, conge_parental]
+    a_verifier: false
+  - id: prestations.naissance.prepare_partiel_50
+    titre: "PreParE : montant mensuel pour un temps partiel à 50 % au plus"
+    explication: "Pour un parent qui réduit son temps de travail à la moitié ou moins."
+    type: nombre
+    unite: euros
+    bornes: [0, 2000]
+    valeurs:
+      - depuis: "2026-04-01"
+        valeur: 297.17
+        sources: [sp-f32485]
+        article: "Code de la sécurité sociale, art. L. 531-4"
+    tags: [famille, naissance, paje, conge_parental]
+    a_verifier: false
+  - id: prestations.naissance.prepare_partiel_50_80
+    titre: "PreParE : montant mensuel pour un temps partiel entre 50 % et 80 %"
+    explication: "Pour un parent qui travaille entre la moitié et les quatre cinquièmes de son temps plein."
+    type: nombre
+    unite: euros
+    bornes: [0, 2000]
+    valeurs:
+      - depuis: "2026-04-01"
+        valeur: 171.42
+        sources: [sp-f32485]
+        article: "Code de la sécurité sociale, art. L. 531-4"
+    tags: [famille, naissance, paje, conge_parental]
+    a_verifier: false

@@ -143,7 +143,9 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
     revalorisation.
   - ~~Comparer avant/après~~ : fait (2026-10-31), carte « Et si votre situation changeait ? » (un enfant de plus, temps
     partiel à 80 %) ; les écarts s'écrivent « 77 € de moins » (« Impôt +77 € » se lisait comme une hausse d'impôt).
-    Reste : prime à la naissance et PreParE (OpenFisca a `paje_naissance` et `paje_prepare`, non branchées).
+    Prime à la naissance et PreParE citées avec leurs montants Service-public (`model/regles/prestations/naissance.yaml`),
+    sans calcul : OpenFisca a `paje_naissance` et `paje_prepare`, mais sa base (BMAF 478,16 €) ne redonne pas les
+    montants publiés de la PAJE (171,42 € = 0,3603 × 475,77 €) ; à vérifier avant de les brancher.
 - **Si la fréquentation augmente** (à soumettre au responsable) : la mémoire est déjà protégée, car un seul calcul de
   population tourne à la fois (`SOCIETE_WORKERS=1`) et les résultats identiques sont gardés en cache. Seule l'attente
   s'allonge : passer alors au VPS-2 avec `SOCIETE_WORKERS=3`, ou dire au visiteur combien de calculs passent avant le sien.

@@ -37,3 +37,21 @@ sources:
     date_publication: "2025-09-01"
     consulte_le: "2026-10-31"
     note: "Plus de reste à charge minimum de 15 %, plus de différence selon l'âge avant 6 ans, chaque heure financée ; cotisations sociales de l'assistante maternelle prises en charge à 100 %. Ressources : 1/12 de l'assiette N-2 des prestations familiales (revenus 2024 en 2026)."
+  - id: sp-f2550
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Prime à la naissance (Paje)"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F2550"
+    auteurs: []
+    date_publication: "2026-04-01"
+    consulte_le: "2026-10-31"
+    note: "Date = « Vérifié le ». « Le montant net de la prime à la naissance s'élève à 1 093,11 € », par enfant à naître ; sous plafond de ressources (revenu net catégoriel de 2024 pour 2026 : 49 054 € pour un enfant, couple à deux revenus ou parent isolé). Cite l'instruction interministérielle du 20 mars 2026 (revalorisation au 1er avril 2026)."
+  - id: sp-f32485
+    type: texte_officiel
+    editeur: "Service-public.gouv.fr (DILA)"
+    titre: "Prestation partagée d'éducation de l'enfant (PreParE)"
+    url: "https://www.service-public.gouv.fr/particuliers/vosdroits/F32485"
+    auteurs: []
+    date_publication: "2026-06-01"
+    consulte_le: "2026-10-31"
+    note: "Date = « Vérifié le ». Montants mensuels : activité interrompue 459,70 € ; temps partiel 50 % maximum 297,17 € ; entre 50 % et 80 % 171,42 €. Premier enfant : 6 mois par parent dans la limite du 1er anniversaire (jusqu'au 1er anniversaire pour un parent isolé). Condition : 8 trimestres de cotisations vieillesse (2 dernières années pour un enfant)."

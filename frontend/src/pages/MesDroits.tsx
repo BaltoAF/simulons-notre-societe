@@ -165,6 +165,7 @@ export default function MesDroits() {
   // toutes les règles (et pas seulement celles que le moteur sait faire varier) : « Pourquoi ce montant ? » cite par leur titre
   // des règles du site comme les cotisations des auto-entrepreneurs, au lieu de leur identifiant technique
   const { data: regles } = useFetch<{ regles: Regle[] }>('/api/regles?limit=5000')
+  const valeursRegles = useMemo(() => Object.fromEntries((regles?.regles ?? []).map((r) => [r.id, r.valeur])), [regles])
   const nav = useNavigate()
   const [params] = useSearchParams()
   // venu de l'atelier pour décrire son foyer : un bouton y ramène, la réforme est gardée
@@ -380,8 +381,8 @@ export default function MesDroits() {
               </div>
               <ApresLeChomage s={s} actuel={res} />
               {prestBrut.length === 0 && <AucuneAide s={s} totalRevenus={totalRevenus} plafondAspa={plafondAspa} />}
-              <CoutGarde s={s} lignes={res.lignes} valeurs={Object.fromEntries((regles?.regles ?? []).map((r) => [r.id, r.valeur]))} />
-              <EtSiSituation s={s} actuel={res} />
+              <CoutGarde s={s} lignes={res.lignes} valeurs={valeursRegles} />
+              <EtSiSituation s={s} actuel={res} valeurs={valeursRegles} />
               <AvezVousPense s={s} lignes={res.lignes} />
               {/* pas de demande d'argent à un foyer qui vient d'apprendre ses droits aux minima ou aux aides */}
               <ProposerSoutien masquer={prestBrut.length > 0} />
