@@ -1,5 +1,5 @@
 {
- "genere_le": "2026-10-30T15:00:19",
+ "genere_le": "2026-10-31T08:44:30",
  "moteur": "176.1.10",
  "resultats": [
   {
@@ -89,17 +89,17 @@
   },
   {
    "id": "smic_plus_1_pourcent",
-   "simule_md": -0.372,
-   "direct_md": -0.372,
-   "total_md": -0.415,
+   "simule_md": -0.381,
+   "direct_md": -0.381,
+   "total_md": -0.419,
    "officiel_md": -0.24,
-   "ecart_md": -0.132,
-   "ecart_pct": -55.0,
+   "ecart_md": -0.141,
+   "ecart_pct": -58.8,
    "verdict": "concordant",
    "regles": [
     "travail.smic.horaire_brut"
    ],
-   "duree": 47.3
+   "duree": 36.3
   },
   {
    "id": "tva_tous_taux_plus_1_point",
@@ -116,65 +116,65 @@
     "fiscalite.tva.taux_particulier",
     "fiscalite.tva.taux_reduit"
    ],
-   "duree": 23.0
+   "duree": 17.2
   },
   {
    "id": "csg_activite_plus_1_point",
-   "simule_md": 8.918,
-   "direct_md": 8.918,
-   "total_md": 8.919,
+   "simule_md": 8.925,
+   "direct_md": 8.925,
+   "total_md": 8.923,
    "officiel_md": 10.1,
-   "ecart_md": -1.182,
-   "ecart_pct": -11.7,
+   "ecart_md": -1.175,
+   "ecart_pct": -11.6,
    "verdict": "concordant",
    "regles": [
     "fiscalite.csg.salaires_taux"
    ],
-   "duree": 25.1
+   "duree": 17.8
   },
   {
    "id": "csg_toutes_assiettes_plus_1_point",
-   "simule_md": 11.498,
-   "direct_md": 11.498,
-   "total_md": 11.5,
+   "simule_md": 11.487,
+   "direct_md": 11.487,
+   "total_md": 11.484,
    "officiel_md": 14.6,
-   "ecart_md": -3.102,
-   "ecart_pct": -21.2,
+   "ecart_md": -3.113,
+   "ecart_pct": -21.3,
    "verdict": "concordant",
    "regles": [
     "fiscalite.csg.retraites_taux_plein",
     "fiscalite.csg.revenus_capital_taux",
     "fiscalite.csg.salaires_taux"
    ],
-   "duree": 23.6
+   "duree": 17.5
   },
   {
    "id": "ir_tous_taux_plus_1_point",
-   "simule_md": 6.697,
-   "direct_md": 6.697,
-   "total_md": 5.955,
+   "simule_md": 6.7,
+   "direct_md": 6.7,
+   "total_md": 5.957,
    "officiel_md": 6.4,
-   "ecart_md": 0.297,
-   "ecart_pct": 4.6,
+   "ecart_md": 0.3,
+   "ecart_pct": 4.7,
    "verdict": "concordant",
    "regles": [
     "fiscalite.impot_revenu.bareme"
    ],
-   "duree": 24.4
+   "duree": 18.0
   },
   {
    "id": "ir_taux_30_41_45_plus_1_point",
-   "simule_md": 1.764,
-   "direct_md": 1.764,
-   "total_md": 1.57,
+   "simule_md": 1.765,
+   "direct_md": 1.765,
+   "total_md": 1.571,
    "officiel_md": 2.2,
-   "ecart_md": -0.436,
+   "ecart_md": -0.435,
    "ecart_pct": -19.8,
    "verdict": "proche",
    "regles": [
     "fiscalite.impot_revenu.bareme"
    ],
-   "duree": 23.7
+   "duree": 17.4
   },
   {
    "id": "ir_tranche_45_a_46",
@@ -188,21 +188,21 @@
    "regles": [
     "fiscalite.impot_revenu.bareme"
    ],
-   "duree": 24.4
+   "duree": 18.4
   },
   {
    "id": "quotient_familial_plafond_moins_25_pourcent",
-   "simule_md": 1.724,
-   "direct_md": 1.724,
-   "total_md": 1.614,
+   "simule_md": 1.732,
+   "direct_md": 1.732,
+   "total_md": 1.618,
    "officiel_md": 1.0,
-   "ecart_md": 0.724,
-   "ecart_pct": 72.4,
+   "ecart_md": 0.732,
+   "ecart_pct": 73.2,
    "verdict": "ecart",
    "regles": [
     "fiscalite.impot_revenu.quotient_familial.plafond_demi_part"
    ],
-   "duree": 25.5
+   "duree": 18.3
   },
   {
    "id": "accise_gazole_plus_2_centimes",
@@ -219,5 +219,5 @@
    "duree": 0.0
   }
  ],
- "empreinte": "7eafe457da864db4176.1.10"
+ "empreinte": "93b537a77e6e1e1a176.1.10"
 }
