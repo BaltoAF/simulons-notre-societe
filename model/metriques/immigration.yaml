@@ -133,7 +133,7 @@ metriques:
         statut: definitif
 
   - id: finances_publiques.immigration.cout_asile
-    titre: "Coût de l'asile, toutes administrations"
+    titre: "Coût de l'asile, toutes missions du budget de l'État"
     explication: "Coût de l'asile en 2025 estimé par la commission des finances du Sénat à partir des données agrégées, toutes missions budgétaires confondues. C'est un coût minimum : il n'inclut pas les dépenses médicales des demandeurs d'asile et des réfugiés, l'aide sociale aux réfugiés, la scolarisation de leurs enfants, ni les dépenses de police pour le retour des déboutés."
     unite: milliards_euros
     serie:
@@ -149,5 +149,15 @@ metriques:
     serie:
       - date: "2024-12-31"
         valeur: 1.255
+        source: senat-l25-139-a27-sante
+        statut: definitif
+
+  - id: sante.ame.beneficiaires
+    titre: "Bénéficiaires de l'aide médicale de l'État (AME)"
+    explication: "Nombre de bénéficiaires de l'AME fin 2024 : « plus de 465 000 », contre 411 000 fin 2022 (Sénat). Valeur plancher."
+    unite: personnes
+    serie:
+      - date: "2024-12-31"
+        valeur: 465000
         source: senat-l25-139-a27-sante
         statut: definitif
