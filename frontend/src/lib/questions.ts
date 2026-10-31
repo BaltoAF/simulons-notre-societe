@@ -78,6 +78,13 @@ export const QUESTIONS: Question[] = [
       "Les retraites sont la première dépense : {retraites} par an.",
     ],
     aSavoir: "Les dépenses des trois administrations se recoupent un peu (elles se versent de l'argent entre elles) : leur somme dépasse le total.",
+    debat: {
+      question: 'Faut-il dépenser moins d\'argent public ?',
+      positions: [
+        { titre: 'Oui, dépenser moins', texte: "Par rapport à sa richesse, la France est l'un des pays d'Europe qui dépensent le plus, pour des services publics pas toujours meilleurs. Dépenser moins permettrait de baisser les impôts et la dette." },
+        { titre: 'Non, pas moins', texte: "La plus grosse part de cet argent revient aux ménages : retraites, santé, école, aides. Le réduire, c'est souvent faire payer chacun de sa poche, comme dans d'autres pays, et les plus modestes en premier." },
+      ],
+    },
     actions: [
       { libelle: 'Voir le budget en détail', lien: '/budget' },
       { libelle: 'Ce que votre foyer y met', lien: '/budget#et-vous' },
@@ -235,6 +242,13 @@ export const QUESTIONS: Question[] = [
       "Si l'on compte aussi ce que nous importons (vêtements, téléphones, voitures…), notre « empreinte carbone » atteint {empreinte}, soit {par_hab} par habitant.",
       "La loi fixe un plafond, le « budget carbone » : {budget} par an en moyenne sur 2024-2028. Sur ce site, une réforme qui ajoute des émissions doit être compensée pour rester sous ce plafond.",
     ],
+    debat: {
+      question: 'Faut-il aller plus vite pour réduire nos émissions ?',
+      positions: [
+        { titre: 'Oui, accélérer', texte: "Chaque année de retard rend l'effort plus coûteux et les dégâts plus lourds. Il faut investir dans le train et la rénovation des logements, fixer des règles et faire payer ce qui pollue, tout en aidant les plus modestes." },
+        { titre: 'Non, avancer pas à pas', texte: "Beaucoup n'ont pas d'autre choix que la voiture ou leur chauffage actuel. Mieux vaut miser sur l'innovation et les aides que sur des taxes, et avancer avec les autres pays : seuls, nous risquons de voir partir nos usines." },
+      ],
+    },
     actions: [
       { libelle: 'Les règles sur le climat et l\'énergie', lien: '/regles/d/environnement_energie' },
       { libelle: 'Tester une limite à 110 km/h', lien: '/atelier?regle=transports.vitesse_max.autoroute' },
@@ -263,6 +277,13 @@ export const QUESTIONS: Question[] = [
       "{chomeurs} sont au chômage, soit {chomage} des actifs. L'allocation chômage moyenne est de {allocation} nets par mois.",
     ],
     aSavoir: "Le chômage « au sens du BIT » compte les personnes sans emploi qui en cherchent un activement : c'est la mesure de l'Insee, différente du nombre d'inscrits à France Travail.",
+    debat: {
+      question: 'Faut-il augmenter le SMIC au-delà de sa hausse automatique, qui suit les prix et les salaires ?',
+      positions: [
+        { titre: 'Oui, augmenter le SMIC', texte: "Avec un SMIC plus élevé, ceux qui ont les plus petits salaires vivent mieux de leur travail, sans dépendre des aides. Ils dépensent aussi davantage, ce qui fait travailler les commerces et les entreprises." },
+        { titre: 'Non, passer par d\'autres outils', texte: "Un SMIC plus cher peut freiner l'embauche des moins qualifiés, surtout dans les petites entreprises. Mieux vaut augmenter la prime d'activité, payée par l'État, ou baisser les cotisations pour augmenter le salaire net." },
+      ],
+    },
     actions: [
       { libelle: 'Vos aides et votre salaire net', lien: '/mes-droits' },
       { libelle: 'Tester une hausse du SMIC', lien: '/atelier?regle=travail.smic.horaire_brut' },
