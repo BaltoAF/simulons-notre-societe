@@ -700,3 +700,6 @@ button.change-tete:hover { background: color-mix(in srgb, var(--primary) 7%, tra
   .table-empilee td:first-child { font-weight: 650; text-align: left; }
   .table-empilee td[data-libelle]::before { content: attr(data-libelle); color: var(--ink-3); font-weight: 400; text-align: left; }
 }
+
+/* résultat précédent gardé pendant un nouveau calcul : visible, mais clairement en attente */
+.ancien-resultat { opacity: .45; pointer-events: none; }

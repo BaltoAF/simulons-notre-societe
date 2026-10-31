@@ -353,7 +353,13 @@ export default function Atelier() {
                 && " Elles viennent du pouvoir d'achat : plus de revenus, plus de consommation."}
               {' '}<a href="#equilibres">Choisir une solution ↓</a></div></div>
           )}
-          {rapport && (!loading || rapport.partiel) && <ReportView r={rapport} overrides={draft.overrides} onAppliquer={appliquerCompensation} />}
+          {/* pendant un nouveau calcul, l'ancien résultat reste visible, grisé (sinon un écran presque vide pendant 10 s à 1 min) */}
+          {rapport && (
+            <div className={loading && !rapport.partiel ? 'ancien-resultat' : undefined} aria-busy={loading && !rapport.partiel}>
+              {loading && !rapport.partiel && <div className="small muted" style={{ marginBottom: 8 }}>Résultat précédent, en attendant le nouveau calcul :</div>}
+              <ReportView r={rapport} overrides={draft.overrides} onAppliquer={appliquerCompensation} />
+            </div>
+          )}
           {aJour && !loading && <div style={{ marginTop: 16 }}><ProchaineEtape apres="idee" /></div>}
           {aJour && !loading && <ProposerSoutien />}
           {/* en attendant le calcul : ce qu'il montrera (un seul bouton « Voir les effets », dans la carte de la réforme) */}
