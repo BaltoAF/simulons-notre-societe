@@ -93,6 +93,15 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   - Fait : le minimum d'un apprenti de son âge est donné à côté du SMIC (de 16 à 25 ans, règles travail.apprentissage.*).
   - Formulaire : « Suivant » hors de l'écran sous les exemples ; « en 3 questions » (trois étapes) ; étiquettes des champs
     pour les lecteurs d'écran ; « Impôts rendus aux contribuables » (budget) ; recherche de règles serrée sur téléphone.
+- **Test Karim** (46 ans, au chômage depuis 7 mois, marié, femme à temps partiel, 2 enfants, HLM ; notes 3 / utilité 2 /
+  téléphone 3 sur 5, 31/10/2026). Corrigé : encadré « Et après le chômage ? » dans Mes droits (fin des droits, reprise
+  d'un emploi à X €, calculés à la demande, avec la mention de l'ASS et du décalage de trois mois) ; allocation de
+  rentrée annoncée « une fois par an, fin août » ; salaires d'un couple détaillés ; idées triées selon le foyer ;
+  « ±0 € » expliqué ; tableau du foyer empilé sur téléphone ; aides sur « avis d'échéance » et « grande ville ». Reste :
+  - ASS non calculée (règle travail.chomage.ass_montant_journalier présente) ; activité réduite (salaire + une partie de
+    l'allocation chômage) ; CSP après un licenciement économique.
+  - « Pourquoi pas de prime d'activité ? » quand un membre du foyer travaille mais que l'allocation chômage l'exclut.
+  - Lenteur des calculs sur un vieux téléphone : garder le résultat précédent à l'écran pendant un nouveau calcul.
 - **Si la fréquentation augmente** (à soumettre au responsable) : la mémoire est déjà protégée, car un seul calcul de
   population tourne à la fois (`SOCIETE_WORKERS=1`) et les résultats identiques sont gardés en cache. Seule l'attente
   s'allonge : passer alors au VPS-2 avec `SOCIETE_WORKERS=3`, ou dire au visiteur combien de calculs passent avant le sien.

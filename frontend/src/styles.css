@@ -691,3 +691,12 @@ button.change-tete:hover { background: color-mix(in srgb, var(--primary) 7%, tra
   .liens-pied { gap: 14px; }
   .liens-pied a { padding: 4px 0; }
 }
+
+/* tableau empilé sur téléphone : une ligne par poste, les colonnes deviennent « Aujourd'hui : … » */
+@media (max-width: 640px) {
+  .table-empilee thead { display: none; }
+  .table-empilee tr { display: block; padding: 8px 0; border-bottom: 1px solid var(--line); }
+  .table-empilee td { display: flex; justify-content: space-between; gap: 12px; border: 0; padding: 2px 0; text-align: right; }
+  .table-empilee td:first-child { font-weight: 650; text-align: left; }
+  .table-empilee td[data-libelle]::before { content: attr(data-libelle); color: var(--ink-3); font-weight: 400; text-align: left; }
+}

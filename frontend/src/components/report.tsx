@@ -54,7 +54,8 @@ function SectionMenage({ s }: { s: Section }) {
   const lignes = s.donnees.lignes as { id: string; libelle: string; avant: number; apres: number; delta: number; nature: string }[]
   return (
     <div className="table-wrap">
-      <table className="table">
+      {/* sur téléphone, chaque ligne se lit « aujourd'hui → avec la réforme » sans défiler de côté (test Karim) */}
+      <table className="table table-empilee">
         <thead><tr><th>Par mois</th><th className="num">Aujourd'hui</th><th className="num">Avec la réforme</th><th className="num">Écart</th></tr></thead>
         <tbody>
           {lignes.map((l) => {
@@ -63,9 +64,9 @@ function SectionMenage({ s }: { s: Section }) {
             return (
               <tr key={l.id}>
                 <td>{l.libelle}{l.nature === 'prelevement' && !/imp[oô]t|prélèvement|cotisation|csg|crds|tva/i.test(l.libelle) ? <span className="muted small"> · payé</span> : null}</td>
-                <td className="num">{euros(l.avant)}</td>
-                <td className="num">{euros(l.apres)}</td>
-                <td className="num"><span className={`delta ${d.cls}`}>{d.txt}</span></td>
+                <td className="num" data-libelle="Aujourd'hui">{euros(l.avant)}</td>
+                <td className="num" data-libelle="Avec la réforme">{euros(l.apres)}</td>
+                <td className="num" data-libelle="Écart"><span className={`delta ${d.cls}`}>{d.txt}</span></td>
               </tr>
             )
           })}

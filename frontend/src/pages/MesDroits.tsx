@@ -1,17 +1,18 @@
-import { useEffect, useState, type ReactNode } from 'react'
+import { useEffect, useMemo, useState, type ReactNode } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { ArrowLeft, ArrowRight, Calculator, GitFork, Lock, Minus, Plus, RotateCcw } from 'lucide-react'
 import { api, type Confiance, type Regle } from '../lib/api'
 import { euros, insecable, valeur } from '../lib/format'
 import { estRattache } from '../lib/aidesOubliees'
 import { departsDuFoyer, estAgeLegal, type Depart } from '../lib/retraite'
-import { PRESETS, resoudrePreset } from '../lib/presets'
+import { PRESETS, resoudrePreset, type Preset } from '../lib/presets'
 import { resumeSituation, situationVersMenage, useApp, useFetch, type AdulteSaisie, type SituationSaisie } from '../lib/state'
 import { ConfidenceBadge, ErrorBox, Loading, Notice } from '../components/ui'
 import { DroitsNonMonetaires } from '../components/DroitsNonMonetaires'
 import { ProchaineEtape } from '../components/Parcours'
 import { OuJeMeSitue } from '../components/OuJeMeSitue'
 import { AvezVousPense } from '../components/AvezVousPense'
+import { ApresLeChomage } from '../components/ApresChomage'
 import { ProposerSoutien } from '../components/Soutien'
 import { noterActionUtile } from '../lib/soutien'
 import { Terme } from '../components/Terme'
@@ -117,6 +118,21 @@ function AucuneAide({ s, totalRevenus, plafondAspa }: { s: SituationSaisie; tota
   )
 }
 
+// Les idées qui concernent le foyer d'abord (test Karim : un chômeur avec deux enfants voyait d'abord la retraite et la
+// tranche à 50 % au-delà de 250 000 €).
+function pertinence(p: Preset, s: SituationSaisie): number {
+  const t = p.tags.join(' ')
+  const revenus = s.adultes.reduce((x, a) => x + (a.montant_net || 0), 0) / Math.max(1, s.adultes.length)
+  let n = 0
+  if (s.enfants.length > 0 && /famille/.test(t)) n += 3
+  if (s.adultes.some((a) => a.activite === 'retraite') && /retraité/.test(t)) n += 3
+  if (s.adultes.some((a) => a.activite !== 'retraite' && a.age >= 50) && /retraites/.test(t)) n += 2
+  if (revenus < 1600 && /pauvreté|minima|travail/.test(t)) n += 2
+  if (revenus > 4000 && /hauts revenus|capital/.test(t)) n += 2
+  if (/impôt|TVA/.test(t)) n += 1
+  return n
+}
+
 export default function MesDroits() {
   const { situation, setSituation, setDraft, marquer } = useApp()
   const [s, setS] = useState<SituationSaisie>(situation ?? DEFAUT)
@@ -126,6 +142,9 @@ export default function MesDroits() {
   const [loading, setLoading] = useState(false)
   const [etSi, setEtSi] = useState<Record<string, { delta: number; loading?: boolean; departs?: Depart[] }>>({})
   const [toutesIdees, setToutesIdees] = useState(false) // 16 idées à la suite : la page faisait neuf écrans de téléphone (test Inès)
+  const idees = useMemo(() => [...PRESETS].sort((a, b) => pertinence(b, s) - pertinence(a, s)), [s])
+  const salaires = s.adultes.filter((a) => ['salarie', 'apprenti', 'etudiant'].includes(a.activite) && a.montant_net > 0).length > 1
+    ? s.adultes.map((a) => (['salarie', 'apprenti', 'etudiant'].includes(a.activite) ? a.montant_net : 0)).filter((m) => m > 0) : []
   const [exemple, setExemple] = useState<string | null>(null) // résultat d'un foyer exemple, pas encore ajusté par la personne
   // toutes les règles (et pas seulement celles que le moteur sait faire varier) : « Pourquoi ce montant ? » cite par leur titre
   // des règles du site comme les cotisations des auto-entrepreneurs, au lieu de leur identifiant technique
@@ -265,7 +284,8 @@ export default function MesDroits() {
                 {prestBrut.some((l) => l.montant > 0.5) && (
                   <div className="notice ok" style={{ marginBottom: 14 }}><div>
                     <strong>Vous avez sans doute droit à :</strong>{' '}
-                    {prestBrut.filter((l) => l.montant > 0.5).map((l) => `${l.libelle} ${euros(l.montant, 0)} par mois`).join(' · ')}.
+                    {prestBrut.filter((l) => l.montant > 0.5).map((l) => l.id === 'ars' ? `${l.libelle} ${euros(l.montant * 12, 0)} une fois par an, fin août`
+                      : `${l.libelle} ${euros(l.montant, 0)} par mois`).join(' · ')}.
                     {' '}<a href="#vos-aides">Comment les demander ↓</a>
                   </div></div>
                 )}
@@ -299,7 +319,8 @@ export default function MesDroits() {
                         {(lignes as Resultat['lignes']).map((l) => (
                           <li key={l.id}>
                             <div className="list-row">
-                              <span>{l.libelle}</span>
+                              <span>{l.libelle}{l.id === 'salaire_net' && salaires.length > 1 && <span className="small muted" style={{ display: 'block' }}>
+                                {salaires.map((m, k) => `${k === 0 ? 'Vous' : 'Votre conjoint(e)'} : ${euros(m, 0)}`).join(' · ')}</span>}</span>
                               <strong className={`delta ${(sg as number) > 0 ? (l.nature === 'prestation' ? 'pos' : '') : l.montant > 0 ? 'neg' : ''}`}>{(sg as number) > 0 || l.montant === 0 ? '' : '−'}{euros(l.montant)}</strong>
                             </div>
                             {/* où la demander, et pourquoi pas d'aide au logement : visible tout de suite, sans ouvrir le détail */}
@@ -322,6 +343,7 @@ export default function MesDroits() {
                 ))}
                 <Notice>Ce sont vos <strong>droits théoriques</strong> selon la législation en vigueur, calculés par le moteur public OpenFisca-France. Pour une démarche officielle, utilisez les simulateurs de l'administration (mesdroitssociaux.gouv.fr, impots.gouv.fr).</Notice>
               </div>
+              <ApresLeChomage s={s} actuel={res} />
               {prestBrut.length === 0 && <AucuneAide s={s} totalRevenus={totalRevenus} plafondAspa={plafondAspa} />}
               <AvezVousPense s={s} lignes={res.lignes} />
               {/* pas de demande d'argent à un foyer qui vient d'apprendre ses droits aux minima ou aux aides */}
@@ -335,7 +357,7 @@ export default function MesDroits() {
                 <h3>Et si les règles changeaient ?</h3>
                 <p className="small muted">Testez des propositions du débat public sur <strong>votre</strong> foyer.</p>
                 <ul className="list">
-                  {(toutesIdees ? PRESETS : PRESETS.slice(0, 4)).map((p) => {
+                  {(toutesIdees ? idees : idees.slice(0, 4)).map((p) => {
                     const r = etSi[p.id]
                     return (
                       <li key={p.id}>
@@ -356,6 +378,10 @@ export default function MesDroits() {
                             : <button className="btn small" onClick={() => tester(p.id)}>Tester sur mon foyer</button>}
                           {r && !r.loading && <button className="btn small ghost" onClick={() => ouvrirAtelier(p.id)}>Effets sur le pays <ArrowRight size={13} /></button>}
                         </div>
+                        {/* « ±0 € » sans un mot passait pour une panne (test Karim, RSA à 800 € alors qu'il ne touche pas le RSA) */}
+                        {r && !r.loading && !r.departs && !Number.isNaN(r.delta) && Math.abs(r.delta) < 0.5 && (
+                          <div className="small muted" style={{ marginTop: 4 }}>Ne change rien pour votre foyer aujourd'hui : vous ne touchez pas ce qui est modifié, ou vos revenus sont hors du champ de la mesure.</div>
+                        )}
                         {/* +100 € sur le montant de base, mais davantage pour un foyer : le dire, sinon l'écart semble une erreur */}
                         {p.id === 'prime-activite-plus' && r && !r.loading && r.delta > 110 && (
                           <div className="small muted" style={{ marginTop: 4 }}>Plus que 100 € pour votre foyer : le montant de base est majoré pour chaque personne du foyer (conjoint, enfants),
@@ -366,7 +392,7 @@ export default function MesDroits() {
                   })}
                 </ul>
                 {!toutesIdees && <button className="btn small ghost" style={{ width: '100%', marginTop: 4 }} onClick={() => setToutesIdees(true)}>
-                  Voir les {PRESETS.length - 4} autres idées</button>}
+                  Voir les {idees.length - 4} autres idées</button>}
                 <Link to="/atelier" className="btn primary" style={{ width: '100%', marginTop: 8 }}><GitFork size={16} /> Imaginer ma propre réforme</Link>
               </div>
               <div className="small muted"><Lock size={13} /> Votre situation reste dans votre navigateur. Elle sert uniquement au calcul et n'est jamais enregistrée par le site.</div>
@@ -504,7 +530,7 @@ export default function MesDroits() {
             {s.logement.startsWith('locataire') && (
               <label className="field"><span>Loyer mensuel hors charges, avant l'aide au logement</span>
                 <div className="input-suffix"><input type="number" min={0} step={10} placeholder="ex. 600" value={s.loyer_mensuel || ''} onChange={(e) => up({ loyer_mensuel: Number(e.target.value) })} /><span className="suffix">€ / mois</span></div>
-                <span className="hint">Si la CAF verse l'aide directement à votre bailleur (c'est souvent le cas en HLM), indiquez le loyer hors charges inscrit sur votre avis d'échéance, avant que l'aide en soit retirée, et non ce qu'il vous reste à payer.</span></label>
+                <span className="hint">Si la CAF verse l'aide directement à votre bailleur (c'est souvent le cas en HLM), indiquez le loyer hors charges inscrit sur votre avis d'échéance (le document que le bailleur envoie chaque mois), avant que l'aide en soit retirée, et non ce qu'il vous reste à payer.</span></label>
             )}
             <label className="field"><span>Vous habitez…</span></label>
             <div className="choices">
@@ -512,6 +538,7 @@ export default function MesDroits() {
                 <button key={v} className={`choice ${s.zone === v ? 'on' : ''}`} aria-pressed={s.zone === v} onClick={() => up({ zone: v })}>{l}</button>
               ))}
             </div>
+            <span className="hint">Une grande ville : plus de 100 000 habitants avec ses environs (Lille, Saint-Étienne, Rennes…). Le choix compte pour l'aide au logement.</span>
           </div>
         )}
         <div className="row between" style={{ marginTop: 22 }}>
