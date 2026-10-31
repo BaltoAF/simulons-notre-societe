@@ -15,7 +15,9 @@ import { ProchaineEtape } from '../components/Parcours'
 import { ProposerSoutien } from '../components/Soutien'
 import { noterActionUtile } from '../lib/soutien'
 
-type Stat = { id: string; titre: string; unite: string; derniere: { date: string; valeur: number } | null; premiere?: { date: string; valeur: number } | null; serie?: { date: string; valeur: number }[]; source: { id: string; titre?: string; editeur?: string; url?: string } | null }
+type Point = { date: string; valeur: number; source?: string }
+type SourceCourte = { id: string; titre?: string; editeur?: string; url?: string }
+type Stat = { id: string; titre: string; unite: string; derniere: Point | null; premiere?: Point | null; serie?: Point[]; sources_serie?: Record<string, SourceCourte>; source: { id: string; titre?: string; editeur?: string; url?: string } | null }
 
 const ICONES: Record<string, typeof Info> = { Landmark, Coins, TrendingDown, Hourglass, Users, Leaf, Briefcase, GraduationCap, HeartPulse, Globe }
 
@@ -256,6 +258,23 @@ function Detail({ q }: { q: Question }) {
         <h2 style={{ fontSize: '1.2rem', marginTop: 0 }}>En clair</h2>
         {q.texte.map((t, k) => <p key={k} style={{ fontSize: '1.05rem' }}>{avecChiffres(t, q, valeurs)}</p>)}
         {q.aSavoir && <div className="notice small"><Info size={16} style={{ flexShrink: 0 }} /><div>{avecChiffres(q.aSavoir, q, valeurs, false)}</div></div>}
+        {/* les chiffres cités seulement dans le texte (années anciennes, comparaisons) n'avaient pas de source visible
+            (relecture de neutralité) : chacun avec la publication d'où vient le point utilisé */}
+        <details className="curieux small" style={{ marginTop: 12 }}>
+          <summary>D'où viennent ces chiffres ?</summary>
+          <ul style={{ margin: '6px 0 0', paddingLeft: 20 }} className="ink2">
+            {q.chiffres.filter((c) => c.metrique || c.regle).map((c) => {
+              if (c.regle) return <li key={c.cle}>{c.libelle} : <Link to={`/regles/r/${c.regle}`}>la règle et son texte officiel</Link></li>
+              const s = stats.find((x) => x.id === c.metrique)
+              const point = c.annee ? s?.serie?.find((p) => p.date.startsWith(c.annee!)) : c.premiere ? s?.premiere : s?.derniere
+              const src = point?.source ? s?.sources_serie?.[point.source] : undefined
+              if (!point || !src) return null
+              return <li key={c.cle}>{c.libelle}{c.libelle.includes(point.date.slice(0, 4)) ? '' : ` (${point.date.slice(0, 4)})`} : {src.url
+                ? <a href={src.url} target="_blank" rel="noreferrer">{src.editeur}{src.titre ? ` – ${src.titre}` : ''} <ExternalLink size={11} /></a>
+                : <Link to={`/sources/${src.id}`}>{src.editeur}{src.titre ? ` – ${src.titre}` : ''}</Link>}</li>
+            })}
+          </ul>
+        </details>
       </div>
 
       {q.debat && (

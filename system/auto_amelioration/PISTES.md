@@ -155,8 +155,8 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   « l'équivalent de 57 % du PIB » expliqué, réserve public/privé, « 8 points de plus que la moyenne européenne » dans le
   « Oui ») ; dette (intérêts entre 1,5 % et 3,6 % du PIB, « baisse d'impôt » aussi à financer). Reste : « qui paie
   selon le revenu » (part des foyers imposés, taux global au sommet : sources DGFiP et IPP) ; patrimoine dans
-  « Inégalités » (concentration, Insee) ; Gini comparé à l'Europe ; lien vers la source des chiffres cités seulement
-  dans le texte (années anciennes, AME, arrivées).
+  « Inégalités » (concentration, Insee) ; Gini comparé à l'Europe. Fait : « D'où viennent ces chiffres ? » sous chaque
+  grande question, avec la source exacte du point cité (une année ancienne peut venir d'une autre publication).
 - **Comparaisons européennes** (31/10/2026) : chaque grande question chiffrée situe la France dans l'Union, avec la
   mesure commune d'Eurostat (dette et intérêts, retraites, impôts et cotisations, dépenses publiques, chômage, santé,
   enseignement public, émissions par habitant ; model/metriques/europe.yaml et sources/comparaisons.yaml). Pas de
