@@ -12,6 +12,13 @@ type Ligne = { id: string; libelle: string; montant: number; nature: string }
 export type Res = { revenu_disponible: number; lignes: Ligne[] }
 export type Scenario = { res?: Res; loading?: boolean; erreur?: string }
 
+/** Le total du foyer fait des montants affichés, arrondis à l'euro, pour que les lignes s'additionnent (test Mehdi : « 857 € »
+ *  d'aides pour des lignes qui faisaient 858) ; celui du moteur si les lignes ne le reconstituent pas. */
+export function totalAffiche(r: Res): number {
+  const t = r.lignes.reduce((a, l) => a + (l.nature === 'prelevement' ? -1 : 1) * Math.round(l.montant), 0)
+  return Math.abs(t - r.revenu_disponible) <= 3 ? t : r.revenu_disponible
+}
+
 /** Ce qui change d'une situation à l'autre, ligne par ligne (revenus, aides, impôts), en mots : « Impôt sur le revenu +77 € »
  *  se lisait comme une hausse de l'impôt quand c'était un gain pour le foyer (test des jeunes parents). */
 function changements(avant: Res, apres: Res): string[] {
@@ -27,10 +34,10 @@ export function Bilan({ sc, actuel }: { sc: Scenario; actuel: Res }) {
   if (sc.loading) return <div className="small muted" style={{ marginTop: 6 }}><span className="spinner" style={{ width: 14, height: 14, verticalAlign: -2 }} /> Calcul (une dizaine de secondes)…</div>
   if (sc.erreur) return <div className="small muted" style={{ marginTop: 6 }}>Calcul indisponible pour le moment.</div>
   if (!sc.res) return null
-  const d = sc.res.revenu_disponible - actuel.revenu_disponible
+  const d = totalAffiche(sc.res) - totalAffiche(actuel)
   return (
     <div style={{ marginTop: 8 }}>
-      <div><strong>{euros(sc.res.revenu_disponible)} par mois</strong> pour le foyer, soit{' '}
+      <div><strong>{euros(totalAffiche(sc.res))} par mois</strong> pour le foyer, soit{' '}
         <strong className={`delta ${d > 0.5 ? 'pos' : d < -0.5 ? 'neg' : ''}`}>{d > 0.5 ? '+' : d < -0.5 ? '−' : '±'}{euros(Math.abs(d), 0)}</strong> par rapport à aujourd'hui.</div>
       <div className="small ink2" style={{ marginTop: 2 }}>Ce qui change : {changements(actuel, sc.res).join(' · ') || 'rien'}.</div>
     </div>

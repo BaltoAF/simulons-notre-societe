@@ -29,6 +29,11 @@ export function CoutGarde({ s, lignes, valeurs }: { s: SituationSaisie; lignes: 
   const e = heures > 0 && cout > 0
     ? estimerGarde({ heures, cout, ressources: ressources ?? estimees, enfants: s.enfants.filter((a) => a >= 0 && a < 21).length, credit: moinsDe6 }, p)
     : null
+  // montants affichés arrondis à l'euro, et calculés à partir des arrondis pour que les soustractions tombent juste
+  const a = e && (() => {
+    const cout = Math.round(e.cout), cmg = Math.round(e.cmg), creditAn = Math.round(e.creditMensuel * 12)
+    return { cout, cmg, paye: cout - cmg, creditAn, final: Math.max(0, Math.round(cout - cmg - creditAn / 12)) }
+  })()
   const sansActivite = s.adultes.filter((a) => !['salarie', 'apprenti', 'independant', 'etudiant'].includes(a.activite)).length
   return (
     <div className="card">
@@ -39,34 +44,40 @@ export function CoutGarde({ s, lignes, valeurs }: { s: SituationSaisie; lignes: 
         <label className="field" style={{ minWidth: 0, flex: '1 1 180px' }}><span>Heures de garde par mois</span>
           <div className="input-suffix"><input type="number" min={0} step={10} value={heures || ''} placeholder="ex. 150" onChange={(x) => setHeures(Number(x.target.value))} /><span className="suffix">h</span></div>
           <span className="hint">Un temps plein fait souvent 150 à 200 heures.</span></label>
-        <label className="field" style={{ minWidth: 0, flex: '1 1 180px' }}><span>Ce que vous lui versez par mois</span>
+        <label className="field" style={{ minWidth: 0, flex: '1 1 180px' }}><span>Ce que coûte la garde par mois</span>
           <div className="input-suffix"><input type="number" min={0} step={10} value={cout || ''} placeholder="ex. 800" onChange={(x) => setCout(Number(x.target.value))} /><span className="suffix">€</span></div>
-          <span className="hint">Salaire net et indemnités d'entretien et de repas. Les cotisations sociales, elles, sont payées par la CAF.</span></label>
+          {/* avec Pajemploi+, la CAF paie directement sa part : sans le dire, le complément était compté deux fois (test Mehdi) */}
+          <span className="hint">Salaire net et indemnités d'entretien et de repas, avant l'aide de la CAF (même si, avec Pajemploi+, vous ne payez que la différence).
+            Les cotisations sociales, elles, sont payées par la CAF.</span></label>
       </div>
       <div className="small muted" style={{ marginTop: 8 }}>
-        Revenus du foyer retenus : environ {euros(ressources ?? estimees, 0)} par mois, estimés d'après vos revenus actuels (la CAF regarde ceux d'il y a deux ans).{' '}
+        Revenus du foyer retenus : environ {euros(ressources ?? estimees, 0)} par mois{ressources == null && ", vos revenus après la déduction de 10 % que font aussi les impôts"}.
+        La CAF regarde ceux d'il y a deux ans.{' '}
         {!corriger && <button className="lien" onClick={() => setCorriger(true)}>corriger</button>}
       </div>
       {corriger && (
         <div className="input-suffix" style={{ maxWidth: 240, marginTop: 6 }}><input type="number" min={0} step={50} value={ressources ?? estimees} aria-label="Revenus mensuels du foyer retenus par la CAF"
           onChange={(x) => setRessources(Number(x.target.value))} /><span className="suffix">€ / mois</span></div>
       )}
-      {e && (
+      {e && a && (
         <div style={{ marginTop: 12 }}>
+          {/* ce qui sort du compte chaque mois, puis ce que les impôts rendent l'année suivante : un seul « reste à charge »
+              qui comptait déjà le crédit d'impôt trompait sur la trésorerie (test Mehdi) */}
           <ul className="list">
-            <li><div className="list-row"><span>Ce que vous versez</span><strong>{euros(e.cout, 0)}</strong></div></li>
-            <li><div className="list-row"><span>Complément de la CAF (CMG), chaque mois</span><strong className={`delta ${e.cmg > 0.5 ? 'pos' : ''}`}>{e.cmg > 0.5 ? '−' : ''}{euros(e.cmg, 0)}</strong></div>
-              {e.cmg < 0.5 && <div className="small muted" style={{ marginTop: 2 }}>À ce niveau de revenus, le complément est nul.</div>}</li>
-            {moinsDe6 && <li><div className="list-row"><span>Crédit d'impôt, ramené au mois</span><strong className="delta pos">−{euros(e.creditMensuel, 0)}</strong></div>
-              <div className="small muted" style={{ marginTop: 2 }}>Versé par les impôts l'année suivante, même si vous ne payez pas d'impôt : environ {euros(e.creditMensuel * 12, 0)} pour l'année.</div></li>}
+            <li><div className="list-row"><span>Ce que coûte la garde</span><strong>{euros(a.cout)}</strong></div></li>
+            <li><div className="list-row"><span>Complément de la CAF (CMG)</span><strong className={`delta ${a.cmg > 0 ? 'pos' : ''}`}>{a.cmg > 0 ? '−' : ''}{euros(a.cmg)}</strong></div>
+              {a.cmg === 0 && <div className="small muted" style={{ marginTop: 2 }}>À ce niveau de revenus, le complément est nul.</div>}</li>
+            <li><div className="list-row"><span><strong>Chaque mois, vous payez</strong></span><strong>{euros(a.paye)}</strong></div></li>
+            {moinsDe6 && <li><div className="list-row"><span>Crédit d'impôt, versé l'année suivante</span><strong className="delta pos">−{euros(a.creditAn)} pour l'année</strong></div>
+              <div className="small muted" style={{ marginTop: 2 }}>Les impôts vous le versent même si vous ne payez pas d'impôt.</div></li>}
           </ul>
-          <div style={{ marginTop: 8 }}>Reste à votre charge : <strong>environ {euros(e.resteACharge, 0)} par mois</strong>.</div>
+          {moinsDe6 && <div style={{ marginTop: 8 }}>Au final, crédit d'impôt compris : <strong>environ {euros(a.final)} par mois</strong>.</div>}
           {e.auDessusDuPlafond && <div className="small muted" style={{ marginTop: 4 }}>Votre tarif dépasse {euros(p.plafondHoraire, 2)} de l'heure : le complément ne compte pas ce qui dépasse.</div>}
         </div>
       )}
       <p className="small muted" style={{ marginBottom: 0 }}>
         {sansActivite > 0 && <>Pour y avoir droit, {s.adultes.length > 1 ? 'chaque parent doit' : 'il faut'} en principe travailler ; des exceptions existent (études, AAH, RSA…) : vérifiez sur caf.fr. </>}
-        Estimation pour un seul enfant gardé, selon <Link to={`/regles/r/${REGLES_GARDE[0]}`}>les règles de septembre 2025</Link>. Le montant exact est calculé par la CAF :{' '}
+        Estimation pour un seul enfant gardé, selon <Link to={`/regles/r/${REGLES_GARDE[0]}`}>les règles en vigueur depuis septembre 2025</Link>. Le montant exact est calculé par la CAF :{' '}
         <a href="https://www.monenfant.fr/" target="_blank" rel="noreferrer">simulateur officiel sur monenfant.fr</a>.
       </p>
     </div>

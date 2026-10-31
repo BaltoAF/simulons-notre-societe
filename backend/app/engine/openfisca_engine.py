@@ -437,6 +437,12 @@ class Engine:
             for key, var, period in COMPOSANTES_FOYER:
                 vals = calc(var, period) / (12 if period == "Y" else 1)
                 out[key] = np.bincount(ff_men, weights=vals, minlength=n)
+            # prestations versées nettes de CRDS : OpenFisca la calcule à part (crds_ppa, crds_pfam) et les montants publiés
+            # sont nets (prime à la naissance 1 093,11 € = 2,2975 × BMAF 478,16 € × 0,995 ; test Mehdi : 202 € d'ASF par
+            # enfant contre 200,78 € annoncés). L'aide au logement d'OpenFisca est déjà nette de CRDS.
+            taux_crds = float(system.parameters(config.MOIS_REFERENCE).prelevements_sociaux.contributions_sociales.crds)
+            for key in ("prime_activite", "allocations_familiales", "complement_familial", "asf", "paje", "ars"):
+                out[key] = out[key] * (1 - taux_crds)
         # conventions de signe : impôts et cotisations exprimés en montants positifs payés
         out["impot_revenu"] = -out["impot_revenu"]
         out["pfu"] = np.abs(out["pfu"])

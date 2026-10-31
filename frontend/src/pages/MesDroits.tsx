@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type ReactNode } from 'react'
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { ArrowLeft, ArrowRight, Calculator, GitFork, Lock, Minus, Plus, RotateCcw } from 'lucide-react'
 import { api, type Confiance, type Regle } from '../lib/api'
@@ -12,7 +12,7 @@ import { DroitsNonMonetaires } from '../components/DroitsNonMonetaires'
 import { ProchaineEtape } from '../components/Parcours'
 import { OuJeMeSitue } from '../components/OuJeMeSitue'
 import { AvezVousPense } from '../components/AvezVousPense'
-import { ApresLeChomage } from '../components/ApresChomage'
+import { ApresLeChomage, totalAffiche } from '../components/ApresChomage'
 import { CoutGarde, gardeConcernee } from '../components/CoutGarde'
 import { EtSiSituation } from '../components/EtSiSituation'
 import { ProposerSoutien } from '../components/Soutien'
@@ -176,16 +176,23 @@ export default function MesDroits() {
   const up = (patch: Partial<SituationSaisie>) => setS((x) => ({ ...x, ...patch }))
   const upA = (i: number, patch: Partial<AdulteSaisie>) => setS((x) => ({ ...x, adultes: x.adultes.map((a, j) => (j === i ? { ...a, ...patch } : a)) }))
 
+  // numéro du dernier calcul lancé : un calcul de l'ancien foyer, lancé à l'arrivée sur la page puis abandonné pour
+  // « Modifier ma situation », s'affichait sous la nouvelle situation et bloquait le bouton « Calcul… » (test Mehdi)
+  const calcul = useRef(0)
   const calculer = async (sit = s) => {
+    const n = ++calcul.current
     setLoading(true); setErr(null); setEtSi({}); setStep(3); window.scrollTo(0, 0)
     try {
       setSituation(sit)
       const menage = situationVersMenage(sit)
       const r = await api<Resultat>('/api/simulation/menage', { body: { menage, montants: 'net' } })
+      if (n !== calcul.current) return
       setRes(r); setStep(3); marquer('droits'); noterActionUtile('droits')
       ecrireSession('droits.resultat', { pour: JSON.stringify(menage), res: r })
-    } catch (e: any) { setErr(e.message) } finally { setLoading(false) }
+    } catch (e: any) { if (n === calcul.current) setErr(e.message) } finally { if (n === calcul.current) setLoading(false) }
   }
+  // retour au questionnaire : le calcul en cours ne compte plus
+  useEffect(() => { if (step < 3) { calcul.current++; setLoading(false) } }, [step])
 
   // De retour sur la page avec une situation déjà saisie : on affiche directement le résultat
   useEffect(() => {
@@ -244,9 +251,11 @@ export default function MesDroits() {
       ...brut.filter((l) => l.id !== 'impot_revenu' && !epargne.includes(l)),
     ] : []
     // ce que le chiffre principal contient : des aides peut-être pas encore demandées, et le loyer pas encore payé
-    const totalAides = prestBrut.reduce((a, l) => a + l.montant, 0)
+    // totaux faits des montants affichés, arrondis à l'euro (test Mehdi : « 857 € d'aides » pour des lignes qui faisaient 858)
+    const totalAides = prestBrut.reduce((a, l) => a + Math.round(l.montant), 0)
+    const total = res ? totalAffiche(res) : 0
     const loyer = s.logement.startsWith('locataire') ? s.loyer_mensuel : 0
-    const apresLoyer = (res?.revenu_disponible ?? 0) - loyer
+    const apresLoyer = total - loyer
     const totalRevenus = revenus.reduce((a, l) => a + l.montant, 0)
     const etudiantRattache = s.adultes.length === 1 && estRattache(s.adultes[0])
     // la règle donne le plafond annuel : ramené au mois, tronqué au centime comme dans les barèmes (1 043,59 €)
@@ -327,12 +336,12 @@ export default function MesDroits() {
                 <div className="card-head">
                   <div>
                     <div className="kpi-label">Ce que le foyer touche chaque mois</div>
-                    <div className="kpi big">{euros(res.revenu_disponible)} <span className="muted" style={{ fontSize: '1rem', fontWeight: 600 }}>/ mois</span></div>
+                    <div className="kpi big">{euros(total)} <span className="muted" style={{ fontSize: '1rem', fontWeight: 600 }}>/ mois</span></div>
                     <div className="small muted">Revenus nets (cotisations et CSG déjà retirées) + aides − impôt sur le revenu. C'est avant les dépenses :
                       loyer ou crédit, taxe foncière, courses (dont la TVA)…{s.adultes.length + s.enfants.length > 1 && <> Votre foyer vit aussi bien qu'une personne seule qui aurait {euros(res.niveau_de_vie)} par mois (c'est votre <Terme id="niveau_vie">niveau de vie</Terme> : à plusieurs, on partage le logement et les dépenses).</>}</div>
                     {totalAides > 0.5 && (
                       <div className="small" style={{ marginTop: 6 }}>Dont <strong>{euros(totalAides)}</strong> d'aides. La plupart ne sont versées que si on les demande :
-                        si vous ne les touchez pas encore, il vous reste aujourd'hui {euros(res.revenu_disponible - totalAides)}. Comment les obtenir est indiqué sous chaque aide.</div>
+                        si vous ne les touchez pas encore, il vous reste aujourd'hui {euros(total - totalAides)}. Comment les obtenir est indiqué sous chaque aide.</div>
                     )}
                     {loyer > 0 && (
                       <div className="small" style={{ marginTop: 4 }}>Après avoir payé le loyer ({euros(loyer)}) : {apresLoyer >= 0
@@ -468,7 +477,7 @@ export default function MesDroits() {
               </button>
             ))}
           </div>
-          <div className="small muted" style={{ marginTop: 8 }}>… ou répondez aux 3 questions ci-dessous pour un calcul à votre mesure.</div>
+          <div className="small muted" style={{ marginTop: 8 }}>… ou décrivez votre foyer ci-dessous, en 3 étapes, pour un calcul à votre mesure.</div>
         </div>
       )}
       <div className="card">
@@ -594,7 +603,12 @@ export default function MesDroits() {
                   <button key={v} className={`choice ${s.zone === v ? 'on' : ''}`} aria-pressed={s.zone === v} onClick={() => up({ zone: v })}>{l}</button>
                 ))}
               </div>
-              <span className="hint">Une grande ville : plus de 100 000 habitants avec ses environs (Lille, Saint-Étienne, Rennes…). Le choix compte pour l'aide au logement.</span>
+              {/* une aide propre au choix : avec une seule phrase sur la grande ville, « ville moyenne » restait à deviner (test Mehdi) */}
+              <span className="hint">{{
+                1: "Paris, les communes de la petite couronne et les villes nouvelles d'Île-de-France.",
+                2: "Une agglomération de plus de 100 000 habitants, communes voisines comprises (Lille, Saint-Étienne, Rennes…), ou le reste de l'Île-de-France.",
+                3: "Une ville dont l'agglomération, communes voisines comprises, compte moins de 100 000 habitants, ou la campagne.",
+              }[s.zone]} Le choix compte pour l'aide au logement.</span>
             </>}
           </div>
         )}

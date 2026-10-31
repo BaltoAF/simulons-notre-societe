@@ -6,6 +6,21 @@ import { api } from '../lib/api'
 import { euros } from '../lib/format'
 import { situationVersMenage, type SituationSaisie } from '../lib/state'
 import { Bilan, type Res, type Scenario } from './ApresChomage'
+import { gardeConcernee } from './CoutGarde'
+
+// quand chaque montant suit un changement de revenus : la phrase ne cite que les lignes qui bougent pour ce foyer (test Mehdi :
+// « RSA » et « PAJE » pour un père qui n'en touchait pas, et rien sur son aide au logement)
+const DELAIS: [string[], string][] = [
+  [['prime_activite', 'rsa'], "la prime d'activité et le RSA dans les trois mois"],
+  [['aides_logement'], "l'aide au logement au fil des trimestres (elle regarde les douze derniers mois)"],
+  [['paje', 'complement_familial', 'allocations_familiales', 'ars'], "les allocations familiales soumises aux revenus deux ans plus tard (la CAF regarde les revenus d'il y a deux ans)"],
+  [['impot_revenu'], "l'impôt dès que vous signalez la baisse aux impôts (taux du prélèvement à la source)"],
+]
+
+function delais(avant: Res, apres: Res): string[] {
+  const bouge = (id: string) => Math.abs((apres.lignes.find((l) => l.id === id)?.montant ?? 0) - (avant.lignes.find((l) => l.id === id)?.montant ?? 0)) >= 1
+  return DELAIS.filter(([ids]) => ids.some(bouge)).map(([, t]) => t)
+}
 
 const SALARIE = ['salarie', 'apprenti']
 
@@ -44,8 +59,9 @@ export function EtSiSituation({ s, actuel, valeurs }: { s: SituationSaisie; actu
             {!partiel.res && !partiel.loading && <div style={{ marginTop: 6 }}><button className="btn small"
               onClick={() => calculer({ ...s, adultes: s.adultes.map((a, k) => (k === iSalarie ? { ...a, montant_net: Math.round(a.montant_net * 0.8) } : a)) }, setPartiel)}>Calculer</button></div>}
             <Bilan sc={partiel} actuel={actuel} />
-            {partiel.res && <div className="small muted" style={{ marginTop: 4 }}>Salaire réduit d'un cinquième. Les aides suivent avec retard : trois mois
-              pour le RSA et la prime d'activité, deux ans pour la PAJE (la CAF regarde les revenus d'il y a deux ans).
+            {partiel.res && <div className="small muted" style={{ marginTop: 4 }}>Salaire réduit d'un cinquième.
+              {delais(actuel, partiel.res).length > 0 && ` Les aides et l'impôt suivent avec retard : ${delais(actuel, partiel.res).join(' ; ')}.`}
+              {gardeConcernee(s) && " Moins d'heures de garde coûteraient aussi moins cher : refaites l'estimation dans « Faire garder votre enfant »."}
               {s.enfants.some((e) => e >= 0 && e < 3) && <> Avec un enfant de moins de 3 ans, la CAF peut aussi verser la PreParE (prestation partagée
               d'éducation de l'enfant){partiel80 && ` : ${partiel80} par mois à temps partiel entre 50 et 80 %`}, si vous avez assez cotisé ; elle n'est pas comptée ici.</>}</div>}
           </div>

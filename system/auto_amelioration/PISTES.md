@@ -126,6 +126,17 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
     exact ménage par ménage reste à vérifier.
   - Taxe foncière : pistes selon l'âge et les revenus (exonération à 75 ans déjà dans « Avez-vous pensé à… ? »).
   - Taille des petits textes (jauge « Où vous situez-vous », aides des champs) même avec « A+ ».
+- **Test Mehdi** (38 ans, père seul, enfants de 4 et 9 ans, 1 900 € nets, assistante maternelle 60 h pour 330 €, envisage
+  les 80 % ; notes clarté 4 / confiance 3 / téléphone 4 sur 5, 31/10/2026). Ses deux questions trouvées sans effort.
+  Corrigé : un calcul de l'ancien foyer, lancé à l'arrivée puis abandonné pour « Modifier ma situation », s'affichait sous
+  la nouvelle situation et bloquait « Calcul… » (numéro de calcul dans MesDroits) ; garde : « Chaque mois, vous payez »
+  puis le crédit d'impôt de l'année suivante (un seul reste à charge trompait sur la trésorerie), « avant l'aide de la
+  CAF (même avec Pajemploi+) », revenus retenus expliqués, arrondis qui tombent juste ; carte 80 % : délais des seules
+  aides du foyer et renvoi vers la garde ; totaux faits des lignes arrondies (« 857 € » pour 858) ; aide propre à
+  chaque zone ; « en 3 étapes ». Prestations nettes de CRDS (0,5 % sur la prime d'activité et les prestations
+  familiales, que le moteur comptait brutes) : l'ASF tombe sur les 200,78 € par enfant de service-public. Le
+  « 275 € » de CMG recalculé par le testeur était une erreur de sa part (60 h × 5,50 € × (1 − 1 767 × 0,0516 % ÷ 4,91)
+  = 269 €).
 - **Test Lucie** (31 ans, pacsée, deux salaires, bébé de 8 mois chez une assistante maternelle, locataire ; notes 3 /
   utilité 2 / téléphone 4 sur 5, 31/10/2026). Corrigé : « Pourquoi aucune aide ? » donne la raison aide par aide (un seul
   enfant : pas d'allocations familiales, quel que soit le revenu) ; PAJE affichée à 0 € avec sa raison (revenus d'il y a
@@ -144,8 +155,8 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   - ~~Comparer avant/après~~ : fait (2026-10-31), carte « Et si votre situation changeait ? » (un enfant de plus, temps
     partiel à 80 %) ; les écarts s'écrivent « 77 € de moins » (« Impôt +77 € » se lisait comme une hausse d'impôt).
     Prime à la naissance et PreParE citées avec leurs montants Service-public (`model/regles/prestations/naissance.yaml`),
-    sans calcul : OpenFisca a `paje_naissance` et `paje_prepare`, mais sa base (BMAF 478,16 €) ne redonne pas les
-    montants publiés de la PAJE (171,42 € = 0,3603 × 475,77 €) ; à vérifier avant de les brancher.
+    sans calcul (OpenFisca a `paje_naissance` et `paje_prepare`). L'écart apparent avec la BMAF venait de la CRDS :
+    les montants publiés sont nets (171,42 € = 0,3603 × 478,16 € × 0,995).
 - **Si la fréquentation augmente** (à soumettre au responsable) : la mémoire est déjà protégée, car un seul calcul de
   population tourne à la fois (`SOCIETE_WORKERS=1`) et les résultats identiques sont gardés en cache. Seule l'attente
   s'allonge : passer alors au VPS-2 avec `SOCIETE_WORKERS=3`, ou dire au visiteur combien de calculs passent avant le sien.
