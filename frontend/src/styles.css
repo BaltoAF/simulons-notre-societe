@@ -195,7 +195,7 @@ code, .mono { font-family: var(--mono); font-size: .85em; }
 /* ── formulaires ── */
 label.field { display: block; font-weight: 600; font-size: .92rem; margin-bottom: 12px; }
 label.field > span { display: block; margin-bottom: 5px; }
-label.field .hint { display: block; font-weight: 400; color: var(--ink-3); font-size: .86rem; margin-top: 3px; } /* lisible sur tablette (test Monique) */
+label.field .hint, .hint { display: block; font-weight: 400; color: var(--ink-3); font-size: .86rem; margin-top: 3px; } /* lisible sur tablette (test Monique) */
 input[type=text], input[type=number], input[type=email], input[type=password], input[type=search], select, textarea {
   width: 100%; font: inherit; color: var(--ink); background: var(--surface); border: 1px solid var(--line-2);
   border-radius: var(--radius-sm); padding: 9px 12px; }

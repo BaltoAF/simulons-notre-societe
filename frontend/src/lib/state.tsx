@@ -53,6 +53,7 @@ export type SituationSaisie = {
   revenus_capital_annuels: number
   mois_naissance?: number // du premier adulte (1 à 12) : sert à dater le départ à la retraite
   pension_alimentaire?: number // reçue de l'autre parent, par mois (parent seul) : réduit l'allocation de soutien familial
+  pension_versee?: boolean // réponse à « l'autre parent verse-t-il une pension ? » (absente : non répondu, ancien enregistrement)
   enfant_eleve_seul?: boolean // vit seul(e), sans enfant à charge, a élevé seul(e) un enfant 5 ans (demi-part, case L)
 }
 
@@ -140,7 +141,7 @@ export function situationVersMenage(s: SituationSaisie) {
     loyer_mensuel: s.logement.startsWith('locataire') ? s.loyer_mensuel : 0,
     zone: s.zone,
     revenus_capital_annuels: s.revenus_capital_annuels,
-    pension_alimentaire_mensuelle: s.adultes.length === 1 && s.enfants.length > 0 ? (s.pension_alimentaire ?? 0) : 0,
+    pension_alimentaire_mensuelle: s.adultes.length === 1 && s.enfants.length > 0 && s.pension_versee !== false ? (s.pension_alimentaire ?? 0) : 0,
     enfant_eleve_seul: s.adultes.length === 1 && s.enfants.length === 0 && !!s.enfant_eleve_seul,
     adultes: s.adultes.map((a) => ({
       age: a.age,

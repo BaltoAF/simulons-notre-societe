@@ -77,7 +77,7 @@ const POURQUOI: Record<string, { regles: string[]; texte: ReactNode }> = {
   impot_revenu: { regles: ['fiscalite.impot_revenu.bareme', 'fiscalite.impot_revenu.decote.taux', 'fiscalite.impot_revenu.quotient_familial.plafond_demi_part'], texte: 'Impôt progressif calculé sur le revenu du foyer, divisé par le nombre de parts.' },
   // test Samira : avec une petite pension alimentaire, le foyer touchait moins qu'avec aucune ; c'est la règle (la pension
   // compte en entier dans les ressources de la prime d'activité, l'ASF seulement pour un forfait), il faut la dire
-  asf: { regles: [], texte: "Quand l'autre parent ne verse pas la pension, la CAF verse l'allocation de soutien familial entière, puis se fait rembourser par lui. S'il verse une pension plus petite, la CAF complète la différence. Attention : pour la prime d'activité, une pension compte en entier dans vos ressources, alors que l'allocation de soutien familial ne compte que pour un petit montant fixe. C'est pourquoi une petite pension peut faire baisser la prime d'activité plus qu'elle ne rapporte." },
+  asf: { regles: [], texte: "Quand l'autre parent ne verse pas la pension, la CAF verse l'allocation de soutien familial entière, jusqu'aux 20 ans de l'enfant, puis se fait rembourser par lui. S'il verse une pension plus petite, la CAF complète la différence. Attention : pour la prime d'activité, une pension compte en entier dans vos ressources, alors que l'allocation de soutien familial ne compte que pour un petit montant fixe. C'est pourquoi une petite pension peut faire baisser la prime d'activité plus qu'elle ne rapporte." },
   ars: { regles: [], texte: "Versée une fois par an, fin août, pour chaque enfant de 6 à 18 ans scolarisé, sous condition de ressources. Son montant dépend de l'âge de l'enfant." },
   aspa: { regles: ['prestations.aspa.montant_personne_seule'], texte: 'Le minimum vieillesse garantit un revenu minimal aux personnes âgées.' },
   aah: { regles: ['prestations.aah.montant'], texte: 'Allocation pour les personnes en situation de handicap aux ressources modestes.' },
@@ -415,7 +415,7 @@ export default function MesDroits() {
                               : r.departs.map((d) => <div key={d.qui}>{d.apres === d.avant
                                 ? <>{d.qui} : rien ne change, départ à {valeur(d.avant, 'ans')} ({d.dateAvant}).</>
                                 : <><strong>{d.qui} : départ possible à {valeur(d.apres, 'ans')}, en {d.dateApres}</strong> <span className="muted">(au lieu de {valeur(d.avant, 'ans')}, en {d.dateAvant})</span>.</>}</div>)}
-                            {r.departs.length > 0 && !s.mois_naissance && <div className="muted">Pour une date exacte, indiquez votre mois de naissance plus bas (« Vos droits au-delà de l'argent »).</div>}
+                            {r.departs.length > 0 && !s.mois_naissance && <div className="muted">Pour une date exacte, indiquez votre mois de naissance dans <a href="#au-dela-de-l-argent">« Vos droits au-delà de l'argent »</a>.</div>}
                           </div>
                         )}
                         <div className="row between" style={{ marginTop: 4 }}>
@@ -461,6 +461,9 @@ export default function MesDroits() {
   const montantManquant = s.adultes.some((a) => ['salarie', 'apprenti', 'independant', 'chomeur', 'retraite'].includes(a.activite) && !(a.montant_net > 0))
   const ageManquant = s.adultes.some((a) => !(a.age >= 16 && a.age <= 110))
   const ageEnfantManquant = s.enfants.some((a) => !(a >= 0 && a <= 25))
+  // parent seul : la réponse sur la pension (un ancien enregistrement avec un montant vaut « oui »)
+  const pensionManquante = s.adultes.length === 1 && s.enfants.length > 0
+    && (s.pension_versee === undefined ? !((s.pension_alimentaire ?? 0) > 0) : s.pension_versee && !((s.pension_alimentaire ?? 0) > 0))
   return (
     <div className="container page" style={{ maxWidth: 760 }}>
       {retourAtelier}
@@ -514,6 +517,9 @@ export default function MesDroits() {
               </div>
             )}
             {s.enfants.length > 0 && <span className="hint">En années : 0 pour un bébé de moins d'un an.</span>}
+            {/* « mon fils étudiant de 19 ans compte-t-il ? » (test Josiane) */}
+            {s.enfants.some((e) => e >= 18) && <span className="hint">Un enfant majeur compte s'il vit chez vous ou fait des études. Pour les aides de la CAF, il compte
+              jusqu'à 20 ans, s'il gagne moins d'environ 1 000 € bruts par mois.</span>}
           </div>
         )}
         {step === 1 && (
@@ -564,12 +570,25 @@ export default function MesDroits() {
                 </div>
               </div>
             ))}
-            {!enCouple && s.enfants.length > 0 && (
-              <label className="field"><span>Pension alimentaire versée par l'autre parent, par mois</span>
-                <div className="input-suffix"><input type="number" min={0} step={10} value={s.pension_alimentaire || ''} placeholder="0"
-                  onChange={(e) => up({ pension_alimentaire: Number(e.target.value) })} /><span className="suffix">€ / mois</span></div>
-                <span className="hint">Ce que l'autre parent vous verse vraiment, en moyenne par mois (0 s'il ne verse rien). S'il ne paie pas ou paie mal, la CAF peut verser l'allocation de soutien familial à sa place, puis se faire rembourser par lui.</span></label>
-            )}
+            {/* une question, et non un champ facultatif : laissé vide, il valait « ne verse rien » et ouvrait l'allocation de soutien
+                familial sans que la personne le sache (test Josiane : « je ne touche pas ça, c'est faux ? ») */}
+            {!enCouple && s.enfants.length > 0 && <>
+              <label className="field" style={{ marginBottom: 6 }}><span>L'autre parent vous verse-t-il une pension alimentaire ?</span></label>
+              <div className="choices">
+                {([[true, 'Oui'], [false, 'Non']] as const).map(([v, l]) => (
+                  <button key={l} className={`choice ${s.pension_versee === v ? 'on' : ''}`} aria-pressed={s.pension_versee === v}
+                    onClick={() => up({ pension_versee: v, pension_alimentaire: v ? s.pension_alimentaire : 0 })}>{l}</button>
+                ))}
+              </div>
+              <span className="hint" style={{ display: 'block', marginBottom: 12 }}>Cela compte pour l'allocation de soutien familial : quand l'autre parent ne paie pas, ou paie moins
+                que cette allocation, la CAF la verse à sa place jusqu'aux 20 ans de l'enfant, puis se fait rembourser par lui.</span>
+              {s.pension_versee && (
+                <label className="field"><span>Montant reçu par mois</span>
+                  <div className="input-suffix"><input type="number" min={0} step={10} value={s.pension_alimentaire || ''} placeholder="ex. 150"
+                    onChange={(e) => up({ pension_alimentaire: Number(e.target.value) })} /><span className="suffix">€ / mois</span></div>
+                  <span className="hint">Ce que vous recevez vraiment, en moyenne par mois, pour tous les enfants.</span></label>
+              )}
+            </>}
             {/* demi-part des personnes seules qui ont élevé seules un enfant (case L) : rien ne la proposait (test Monique) */}
             {!enCouple && s.enfants.length === 0 && (
               <label className="row small" style={{ cursor: 'pointer', flexWrap: 'nowrap', alignItems: 'flex-start', margin: '4px 0 14px' }}>
@@ -616,8 +635,9 @@ export default function MesDroits() {
           {step > 0 ? <button className="btn" onClick={() => { setStep(step - 1); window.scrollTo(0, 0) }}><ArrowLeft size={16} /> Précédent</button> : <span />}
           {step < 2 ? <span className="row" style={{ gap: 10 }}>
               {step === 1 && (ageManquant || montantManquant) && <span className="small muted">Indiquez {ageManquant ? "l'âge" : 'le montant'} pour continuer.</span>}
+              {step === 1 && !ageManquant && !montantManquant && pensionManquante && <span className="small muted">Répondez à la question sur la pension alimentaire pour continuer.</span>}
               {step === 0 && ageEnfantManquant && <span className="small muted">Indiquez l'âge de chaque enfant pour continuer.</span>}
-              <button className="btn primary" disabled={(step === 1 && (ageManquant || montantManquant)) || (step === 0 && ageEnfantManquant)} onClick={() => { setStep(step + 1); window.scrollTo(0, 0) }}>Suivant <ArrowRight size={16} /></button>
+              <button className="btn primary" disabled={(step === 1 && (ageManquant || montantManquant || pensionManquante)) || (step === 0 && ageEnfantManquant)} onClick={() => { setStep(step + 1); window.scrollTo(0, 0) }}>Suivant <ArrowRight size={16} /></button>
             </span>
             : <span className="row" style={{ gap: 10 }}>
                 {s.logement.startsWith('locataire') && !s.loyer_mensuel && <span className="small muted">Indiquez votre loyer pour continuer.</span>}

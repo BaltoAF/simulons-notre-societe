@@ -37,7 +37,7 @@ export function DroitsNonMonetaires({ age, mois: mois0 = 1, onMois, retraite = f
   const themes = Array.from(new Set((rep ?? []).map((r) => r.theme)))
   const nbChange = (rep ?? []).filter((r) => r.change).length
   return (
-    <div className="card">
+    <div className="card" id="au-dela-de-l-argent" style={{ scrollMarginTop: 80 }}>
       <h3>Vos droits au-delà de l'argent</h3>
       <p className="small muted">Retraite, chômage, travail, vote, route, santé : ce que prévoient les règles pour vous. Cliquez sur un thème pour l'ouvrir.</p>
       <div className="row" style={{ marginBottom: 12 }}>
