@@ -823,13 +823,14 @@ class AvisIn(BaseModel):
     categorie: str
     texte: str = Field(max_length=5000)
     page: str = ""
+    endroit: str = Field("", max_length=2000)  # le passage de la page montré par le visiteur (facultatif)
     site_web: str = ""  # champ piège, invisible pour les humains
 
 
 @app.post("/api/avis")
 def donner_avis(body: AvisIn, request: Request):
     """Dépôt d'un avis, sans compte. Il sera examiné par la tâche quotidienne d'auto-amélioration."""
-    return retours.deposer(body.categorie, body.texte, body.page, _ip_visiteur(request), body.site_web)
+    return retours.deposer(body.categorie, body.texte, body.page, _ip_visiteur(request), body.site_web, body.endroit)
 
 
 def _jeton_routine(request: Request):

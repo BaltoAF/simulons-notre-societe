@@ -43,7 +43,8 @@ CREATE TABLE IF NOT EXISTS retours (
     decision_le TEXT,
     resume_public TEXT,               -- reformulation neutre, sans donnée personnelle
     motif_public TEXT,                -- pourquoi cette décision
-    commit_ref TEXT                   -- version du site qui contient l'amélioration
+    commit_ref TEXT,                  -- version du site qui contient l'amélioration
+    endroit TEXT NOT NULL DEFAULT ''  -- l'endroit de la page montré par le visiteur (titre de la page, passage touché)
 );
 CREATE INDEX IF NOT EXISTS idx_retours_statut ON retours(statut, cree_le);
 """
@@ -58,6 +59,9 @@ _MASQUES = [
 def init():
     conn = db.connect()
     conn.executescript(SCHEMA)
+    # base créée avant l'avis « sur cette page » : la colonne de l'endroit montré s'ajoute
+    if "endroit" not in {r["name"] for r in conn.execute("PRAGMA table_info(retours)")}:
+        conn.execute("ALTER TABLE retours ADD COLUMN endroit TEXT NOT NULL DEFAULT ''")
     conn.commit()
 
 
@@ -80,7 +84,7 @@ def empreinte(ip: str) -> str:
     return hashlib.sha256(f"{_sel()}|{dt.date.today().isoformat()}|{ip}".encode()).hexdigest()[:20]
 
 
-def deposer(categorie: str, texte: str, page: str, ip: str, piege: str = "") -> dict:
+def deposer(categorie: str, texte: str, page: str, ip: str, piege: str = "", endroit: str = "") -> dict:
     if piege:  # champ invisible rempli : un robot ; on ne lui dit rien
         return {"statut": "recu"}
     if categorie not in CATEGORIES:
@@ -99,15 +103,16 @@ def deposer(categorie: str, texte: str, page: str, ip: str, piege: str = "") -> 
     if conn.execute("SELECT 1 FROM retours WHERE empreinte = ? AND texte = ?", (e, t)).fetchone():
         return {"statut": "recu"}
     with db.transaction() as c:
-        c.execute("INSERT INTO retours (categorie, page, texte, empreinte) VALUES (?, ?, ?, ?)",
-                  (categorie, (page or "")[:200], t, e))
+        # l'endroit montré (le passage de la page touché) est nettoyé comme le texte : il peut contenir des montants du visiteur
+        c.execute("INSERT INTO retours (categorie, page, texte, empreinte, endroit) VALUES (?, ?, ?, ?, ?)",
+                  (categorie, (page or "")[:200], t, e, nettoyer(endroit)[:600]))
     return {"statut": "recu"}
 
 
 def a_traiter(limite: int = 200) -> list[dict]:
     """Avis non encore examinés, du plus ancien au plus récent (pour la tâche quotidienne)."""
     rows = db.connect().execute(
-        "SELECT id, cree_le, categorie, page, texte, empreinte FROM retours WHERE statut = 'nouveau' ORDER BY id LIMIT ?", (limite,))
+        "SELECT id, cree_le, categorie, page, endroit, texte, empreinte FROM retours WHERE statut = 'nouveau' ORDER BY id LIMIT ?", (limite,))
     return [dict(r) for r in rows]
 
 

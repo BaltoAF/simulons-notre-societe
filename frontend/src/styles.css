@@ -705,3 +705,11 @@ button.change-tete:hover { background: color-mix(in srgb, var(--primary) 7%, tra
 
 /* résultat précédent gardé pendant un nouveau calcul : visible, mais clairement en attente */
 .ancien-resultat { opacity: .45; pointer-events: none; }
+
+/* « Montrer l'endroit » (avis sur la page) : un bandeau fixe en haut, l'élément survolé encadré, un curseur en viseur */
+.avis-viseur { position: fixed; top: 10px; left: 50%; transform: translateX(-50%); z-index: 1000; display: flex; align-items: center; gap: 10px;
+  max-width: calc(100vw - 24px); padding: 10px 14px; border-radius: 14px; background: var(--primary); color: #fff; box-shadow: var(--e3, 0 6px 20px rgba(0,0,0,.25)); font-size: .95rem; }
+.avis-viseur .btn { flex-shrink: 0; }
+body.avis-en-visee, body.avis-en-visee * { cursor: crosshair !important; }
+body.avis-en-visee .avis-viseur, body.avis-en-visee .avis-viseur * { cursor: default !important; }
+.avis-cible { outline: 3px solid var(--accent, #e1000f) !important; outline-offset: 2px; border-radius: 6px; }

@@ -51,7 +51,7 @@ function MenuPlus({ onVisite }: { onVisite: () => void }) {
       </button>
       {open && (
         <div className="menu-deroulant">
-          <button className="menu-item" onClick={() => { setOpen(false); ouvrirAvis() }}>Donner mon avis<small>Une idée, une erreur, un mot pas clair : le site s'améliore chaque jour</small></button>
+          <button className="menu-item" onClick={() => { setOpen(false); ouvrirAvis() }}>Un avis sur cette page<small>Une idée, une erreur, un mot pas clair : vous pouvez montrer l'endroit</small></button>
           <button className="menu-item" onClick={() => { setOpen(false); onVisite() }}>Visite guidée<small>Revoir la prise en main du site, pas à pas</small></button>
           <Link to="/regles">Toutes les règles<small>Ce que dit la loi aujourd'hui, prouvé par les textes</small></Link>
           <Link to="/preuves">Ce que disent les études<small>Comment on estime les effets sur l'emploi, les prix…</small></Link>
@@ -144,7 +144,7 @@ function Footer() {
           <Link to="/methode">Méthode et indice de confiance</Link>
           <Link to="/sources">Registre des sources</Link>
           <Link to="/systeme">Journal des mises à jour</Link>
-          <button className="lien" style={{ textAlign: 'left', color: 'var(--ink-2)', textDecoration: 'none' }} onClick={ouvrirAvis}>Donner mon avis</button>
+          <button className="lien" style={{ textAlign: 'left', color: 'var(--ink-2)', textDecoration: 'none' }} onClick={ouvrirAvis}>Un avis sur cette page</button>
           <Link to="/vos-avis">Ce que vos avis ont changé</Link>
           <Link to="/tester">Tester le site en 10 minutes</Link>
           {meta?.soutien?.lien && <Link to="/soutenir">Soutenir le projet ☕</Link>}

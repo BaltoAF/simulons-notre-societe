@@ -24,12 +24,17 @@ def test_depot_limites_et_publication():
             assert c.post("/api/avis", json={"categorie": "idee", "texte": f"Expliquer le mot décote, idée {k}", "page": "/mes-droits"},
                           headers=visiteur).status_code == 200
         assert c.post("/api/avis", json={"categorie": "idee", "texte": "Encore une idée de plus"}, headers=visiteur).status_code == 429
-        # un autre visiteur n'est pas bloqué
+        # un autre visiteur n'est pas bloqué ; l'endroit montré sur la page est gardé, nettoyé
+        assert c.post("/api/avis", json={"categorie": "incomprehension", "texte": "Je ne comprends pas ce chiffre", "page": "/budget",
+                                         "endroit": "Le budget de la France › Sur 100 € : retraites 26 €, écrire à x@y.fr"},
+                      headers={"cf-connecting-ip": "198.51.100.9"}).status_code == 200
+        a = next(a for a in retours.a_traiter() if a["texte"] == "Je ne comprends pas ce chiffre")
+        assert "Sur 100 €" in a["endroit"] and "@" not in a["endroit"]
         assert c.post("/api/avis", json={"categorie": "bug", "texte": "Le graphique ne s'affiche pas sur téléphone"},
                       headers={"cf-connecting-ip": "198.51.100.4"}).status_code == 200
 
         avis = retours.a_traiter()
-        assert len(avis) == retours.MAX_PAR_VISITEUR + 1 and all("203.0.113.7" not in a["empreinte"] for a in avis)
+        assert len(avis) == retours.MAX_PAR_VISITEUR + 2 and all("203.0.113.7" not in a["empreinte"] for a in avis)
         retours.decider(avis[0]["id"], "adapte", "Le mot « décote » n'était pas expliqué.", "Il a été ajouté au lexique.", "abc1234")
         pub = c.get("/api/avis/decisions").json()
         assert pub["decisions"][0]["resume_public"].startswith("Le mot")
