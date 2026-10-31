@@ -155,8 +155,9 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   foyer) ; « Ma retraite va-t-elle baisser ? Non… » au lieu de « revalorisées » ; sous le seuil de pauvreté, une note
   douce et à qui s'adresser (CCAS, France services, caisse de retraite ou CAF) ; « Je l'ai déjà » pour masquer une piste
   (réversion déjà touchée) ; « Agrandir le texte » dès le premier écran de la visite ; premier choix de « Par où
-  commencer ? » dans ses mots ; mission suivante en vrai bouton ; « Votre pension » qui comptait l'épargne. Reste : les
-  sigles encore nombreux (CSG, Anah, HT…) dans les fiches ; une suite de découverte selon le profil (retraité).
+  commencer ? » dans ses mots ; mission suivante en vrai bouton ; « Votre pension » qui comptait l'épargne. Fait ensuite :
+  sigles des fiches dits en clair (Anah, hors taxes, MSA, accompagnateur, revenu fiscal de référence) ; pour un
+  retraité, la mission « Comprendre une grande question » mène aux retraites.
 - **Relecture de neutralité, deux regards opposés** (31/10/2026 ; notes « Bernard », à droite, 3,5 / « Inès », à gauche, 4
   sur 5 ; débats tous à ±10 %). Corrigé : immigration (solde dans l'ordre croissant, « dépenses communes : défense,
   intérêts de la dette, administration », position « Oui » appuyée sur les chiffres de la page, ordre de grandeur des
