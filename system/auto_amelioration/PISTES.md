@@ -159,7 +159,7 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   « Inégalités » (47,9 % aux 10 % les mieux dotés, 7,2 % à la moitié la moins dotée : Insee) ; Gini comparé à l'Europe
   (Eurostat ilc_di12). 2e passage (notes 3,5 / 4) : tout réglé ; corrigé ensuite : « Non, pas moins » avec un fait
   chiffré (autre convention de l'OCDE), « ordre de grandeur » relativisant retiré, emploi des hommes immigrés (sans
-  source) retiré, « l'impôt sur le revenu en rapporte environ 7 % », positions de « Qui paie ? » au même mode et à la
+  source) retiré, « l'impôt sur le revenu en rapporte environ 8 % » (calculé : recettes de l'impôt sur le revenu ÷ impôts et cotisations), positions de « Qui paie ? » au même mode et à la
   même longueur, une seule réserve sur les comparaisons de dépenses, Défense « votée pour 2026 », solde et projections
   du COR sur la page retraites. Reste à sourcer : la TVA plus lourde, en proportion, pour les ménages modestes (Insee ou
   CPO) ; le détail du tableau « Sur 100 € » ; les études France Stratégie et Cepii citées (liste « études citées ») ; le
