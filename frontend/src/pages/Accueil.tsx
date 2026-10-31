@@ -135,7 +135,7 @@ export default function Accueil() {
           <div className="card">
             <h3><ShieldCheck size={18} /> Des principes non négociables</h3>
             <ul className="list small">
-              <li><BadgeCheck size={15} color="var(--gain)" /> <strong>Pas de chiffre sans source.</strong> Chaque règle renvoie à son texte (Légifrance, JO, BOFiP) ; chaque estimation à son étude.</li>
+              <li><BadgeCheck size={15} color="var(--gain)" /> <strong>Pas de chiffre sans source.</strong> Chaque règle renvoie à son texte officiel (loi, décret, consignes des impôts) ; chaque estimation à son étude.</li>
               <li><Scale size={15} color="var(--primary)" /> <strong>Neutralité.</strong> Toutes les études crédibles sont prises en compte, même contradictoires. La synthèse est calculée par une méthode publique.</li>
               <li><GitFork size={15} color="var(--accent)" /> <strong>Ouverture.</strong> Tester est libre et anonyme ; un compte ne sert qu'à enregistrer et partager. Le code et les données sont publics.</li>
             </ul>

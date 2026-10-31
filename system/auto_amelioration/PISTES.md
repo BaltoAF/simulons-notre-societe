@@ -75,7 +75,8 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   - Fait ensuite : « Ce que vous changez » au lieu de « Votre réforme », dernière étape « Partager, si vous le voulez »,
     âge affiché pour les foyers types, bouton flottant masqué pendant le calcul. Reste : le bandeau d'enregistrement
     placé avant les résultats.
-  - « Légifrance, JO, BOFiP » ; le bouton « A+ ». (Fait : « 8,2 tonnes » comparé à 1990, premier point de la série SDES.)
+  - Fait : « 8,2 tonnes » comparé à 1990 (premier point de la série SDES) ; « Légifrance, JO, BOFiP » en mots courants ;
+    « A+ » nommé « Agrandir le texte » dans le menu du téléphone.
   - Pendant le calcul, le bouton flottant « Voir les effets » cache le choix du foyer type.
   - Climat : l'action « baisse de la taxe sur le gazole » ne correspond pas tout à fait à la position « innovation et aides ».
 - **Si la fréquentation augmente** (à soumettre au responsable) : la mémoire est déjà protégée, car un seul calcul de

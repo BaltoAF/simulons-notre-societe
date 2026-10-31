@@ -76,7 +76,9 @@ function TailleTexte() {
   }, [grand])
   return (
     <button className="icon-btn taille-texte" aria-pressed={grand} onClick={() => setGrand((g) => !g)}
-      title={grand ? 'Revenir à la taille de texte normale' : 'Agrandir le texte'} aria-label={grand ? 'Taille de texte normale' : 'Agrandir le texte'}>A+</button>
+      title={grand ? 'Revenir à la taille de texte normale' : 'Agrandir le texte'} aria-label={grand ? 'Taille de texte normale' : 'Agrandir le texte'}>
+      A+{/* sur téléphone, dans le menu ouvert, « A+ » seul ne se comprenait pas (test Nadia) */}
+      <span className="taille-libelle" aria-hidden="true">{grand ? 'Texte normal' : 'Agrandir le texte'}</span></button>
   )
 }
 
