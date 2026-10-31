@@ -62,3 +62,12 @@ export function estimerGarde(x: { heures: number; cout: number; ressources: numb
     resteACharge: Math.max(0, cout - cmg - creditMensuel), auDessusDuPlafond: tarif > p.plafondHoraire,
   }
 }
+
+/**
+ * Tarif d'une crèche financée par la CAF (prestation de service unique) pour les mêmes heures : mêmes taux d'effort et mêmes
+ * bornes de ressources que le CMG (barème CAF 2026), mais revenus comptés avant la déduction de 10 % (`ressourcesAvantAbattement`).
+ */
+export function coutCreche(x: { heures: number; ressourcesAvantAbattement: number; enfants: number }, p: ParamsGarde): number {
+  const r = Math.min(Math.max(x.ressourcesAvantAbattement, p.ressourcesPlancher), p.ressourcesPlafond)
+  return Math.max(0, x.heures) * r * p.tauxEffort[Math.min(Math.max(x.enfants, 1), 4) - 1] / 100
+}

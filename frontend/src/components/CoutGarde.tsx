@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Baby } from 'lucide-react'
 import { euros } from '../lib/format'
-import { estimerGarde, paramsGarde, REGLES_GARDE } from '../lib/garde'
+import { coutCreche, estimerGarde, paramsGarde, REGLES_GARDE } from '../lib/garde'
 import type { SituationSaisie } from '../lib/state'
 
 type Ligne = { id: string; montant: number; nature: string }
@@ -26,9 +26,13 @@ export function CoutGarde({ s, lignes, valeurs }: { s: SituationSaisie; lignes: 
   const p = paramsGarde(valeurs)
   if (!gardeConcernee(s) || !p) return null
   const moinsDe6 = s.enfants.some((e) => e >= 0 && e < 6)
+  const nbEnfants = s.enfants.filter((x) => x >= 0 && x < 21).length
   const e = heures > 0 && cout > 0
-    ? estimerGarde({ heures, cout, ressources: ressources ?? estimees, enfants: s.enfants.filter((a) => a >= 0 && a < 21).length, credit: moinsDe6 }, p)
+    ? estimerGarde({ heures, cout, ressources: ressources ?? estimees, enfants: nbEnfants, credit: moinsDe6 }, p)
     : null
+  // la même garde en crèche : revenus comptés avant la déduction de 10 % (barème CAF 2026), crédit d'impôt sur le tarif payé
+  const creche = e && moinsDe6 ? Math.round(coutCreche({ heures, ressourcesAvantAbattement: (ressources ?? estimees) / 0.9, enfants: nbEnfants }, p)) : null
+  const crecheFinal = creche != null ? Math.round(creche - 0.5 * Math.min(creche * 12, p.creditPlafondDepenses) / 12) : null
   // montants affichés arrondis à l'euro, et calculés à partir des arrondis pour que les soustractions tombent juste
   const a = e && (() => {
     const cout = Math.round(e.cout), cmg = Math.round(e.cmg), creditAn = Math.round(e.creditMensuel * 12)
@@ -72,6 +76,8 @@ export function CoutGarde({ s, lignes, valeurs }: { s: SituationSaisie; lignes: 
               <div className="small muted" style={{ marginTop: 2 }}>Les impôts vous le versent même si vous ne payez pas d'impôt.</div></li>}
           </ul>
           {moinsDe6 && <div style={{ marginTop: 8 }}>Au final, crédit d'impôt compris : <strong>environ {euros(a.final)} par mois</strong>.</div>}
+          {creche != null && <div className="small ink2" style={{ marginTop: 8 }}>En crèche, au tarif que fixe la CAF selon les revenus, les mêmes heures
+            coûteraient environ {euros(creche)} par mois, soit environ {euros(crecheFinal!)} une fois le crédit d'impôt déduit (repas et couches souvent compris).</div>}
           {e.auDessusDuPlafond && <div className="small muted" style={{ marginTop: 4 }}>Votre tarif dépasse {euros(p.plafondHoraire, 2)} de l'heure : le complément ne compte pas ce qui dépasse.</div>}
         </div>
       )}

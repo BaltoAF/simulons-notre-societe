@@ -21,13 +21,13 @@ sources:
     note: "À compter du 1er avril 2026 : coût horaire de référence de l'assistante maternelle 4,91 € (+1,24 %), plafond horaire 8,09 € ; garde à domicile 10,50 € et 15,18 €. Revalorisation annuelle selon le SMIC. Page lue par extrait (connexion directe refusée)."
   - id: caf-bareme-eaje-2026
     type: texte_officiel
-    editeur: "Caisse nationale des allocations familiales"
-    titre: "Barèmes de participation des familles 2026 (accueil du jeune enfant)"
+    editeur: "Caisse d'allocations familiales des Pyrénées-Orientales (barème national)"
+    titre: "Barème des participations familiales 2026 pour les établissements d'accueil de jeunes enfants (EAJE)"
     url: "https://www.caf.fr/sites/default/files/medias/661/Espace-Partenaires/Documents-Partenaires/2026-Baremes-Participation-Famille-Eaje.pdf"
     auteurs: []
-    date_publication: "2026-01-01"
+    date_publication: "2025-12-15"
     consulte_le: "2026-10-31"
-    note: "Plancher de ressources « 814,62 € au 1er janvier 2026 » ; plafond « maintenu à 8 500 € ». Les mêmes bornes s'appliquent au CMG (art. D. 531-18 CSS)."
+    note: "« Le taux d'effort 2025 est maintenu pour l'année 2026 » (IT 2022-167). Accueil collectif et micro-crèche : 0,0619 % (1 enfant), 0,0516 % (2), 0,0413 % (3), 0,0310 % (4 à 7), 0,0206 % (8 à 10) par heure facturée ; accueil familial ou parental : un cran en dessous. Plancher « 814,62 € au 1er janvier 2026 » (0,50 €/h pour un enfant), plafond « maintenu à 8 500 € » (5,26 €/h). Ressources : revenus de 2024 « avant abattement des 10 % » pour les non-allocataires. Les mêmes taux et bornes servent au CMG (art. D. 531-18 CSS)."
   - id: caf-faq-reforme-cmg
     type: rapport_institutionnel
     editeur: "Caisse nationale des allocations familiales"

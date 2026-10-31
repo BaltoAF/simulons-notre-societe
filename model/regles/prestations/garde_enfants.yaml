@@ -7,20 +7,20 @@ domaine: prestations
 theme: "Garde des jeunes enfants"
 regles:
   - id: prestations.garde.cmg_taux_effort_1_enfant
-    titre: "CMG assistante maternelle : taux d'effort pour 1 enfant à charge"
-    explication: "Part des ressources mensuelles du foyer qui reste à la charge de la famille pour chaque heure de garde, au coût de référence (comme en crèche)."
+    titre: "Taux d'effort horaire (crèche, et CMG assistante maternelle) pour 1 enfant à charge"
+    explication: "Part des ressources mensuelles du foyer payée par la famille pour chaque heure en crèche ; chez une assistante maternelle, ce qui reste à sa charge par heure au coût de référence, après le complément de la CAF."
     type: nombre
     unite: pourcent
     bornes: [0, 1]
     valeurs:
       - depuis: "2025-09-01"
         valeur: 0.0619
-        sources: [jorf-decret-2025-515-cmg]
+        sources: [jorf-decret-2025-515-cmg, caf-bareme-eaje-2026]
         article: "Code de la sécurité sociale, art. D. 531-18 (décret n° 2025-515 du 30 mai 2025)"
-    tags: [famille, garde, cmg]
+    tags: [famille, garde, cmg, creche]
     a_verifier: false
   - id: prestations.garde.cmg_taux_effort_2_enfants
-    titre: "CMG assistante maternelle : taux d'effort pour 2 enfants à charge"
+    titre: "Taux d'effort horaire (crèche, et CMG assistante maternelle) pour 2 enfants à charge"
     explication: "Plus le foyer a d'enfants à charge, plus sa part par heure de garde est faible."
     type: nombre
     unite: pourcent
@@ -28,12 +28,12 @@ regles:
     valeurs:
       - depuis: "2025-09-01"
         valeur: 0.0516
-        sources: [jorf-decret-2025-515-cmg]
+        sources: [jorf-decret-2025-515-cmg, caf-bareme-eaje-2026]
         article: "Code de la sécurité sociale, art. D. 531-18 (décret n° 2025-515 du 30 mai 2025)"
-    tags: [famille, garde, cmg]
+    tags: [famille, garde, cmg, creche]
     a_verifier: false
   - id: prestations.garde.cmg_taux_effort_3_enfants
-    titre: "CMG assistante maternelle : taux d'effort pour 3 enfants à charge"
+    titre: "Taux d'effort horaire (crèche, et CMG assistante maternelle) pour 3 enfants à charge"
     explication: "Plus le foyer a d'enfants à charge, plus sa part par heure de garde est faible."
     type: nombre
     unite: pourcent
@@ -41,12 +41,12 @@ regles:
     valeurs:
       - depuis: "2025-09-01"
         valeur: 0.0413
-        sources: [jorf-decret-2025-515-cmg]
+        sources: [jorf-decret-2025-515-cmg, caf-bareme-eaje-2026]
         article: "Code de la sécurité sociale, art. D. 531-18 (décret n° 2025-515 du 30 mai 2025)"
-    tags: [famille, garde, cmg]
+    tags: [famille, garde, cmg, creche]
     a_verifier: false
   - id: prestations.garde.cmg_taux_effort_4_enfants_et_plus
-    titre: "CMG assistante maternelle : taux d'effort pour 4 à 7 enfants à charge"
+    titre: "Taux d'effort horaire (crèche, et CMG assistante maternelle) pour 4 à 7 enfants à charge"
     explication: "Taux d'effort des familles de 4 à 7 enfants (0,0206 % à partir de 8 enfants)."
     type: nombre
     unite: pourcent
@@ -54,9 +54,9 @@ regles:
     valeurs:
       - depuis: "2025-09-01"
         valeur: 0.0310
-        sources: [jorf-decret-2025-515-cmg]
+        sources: [jorf-decret-2025-515-cmg, caf-bareme-eaje-2026]
         article: "Code de la sécurité sociale, art. D. 531-18 (décret n° 2025-515 du 30 mai 2025)"
-    tags: [famille, garde, cmg]
+    tags: [famille, garde, cmg, creche]
     a_verifier: false
   - id: prestations.garde.cmg_cout_horaire_reference
     titre: "CMG assistante maternelle : coût horaire de référence"

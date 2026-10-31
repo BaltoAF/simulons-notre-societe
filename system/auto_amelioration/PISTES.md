@@ -30,10 +30,12 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
     son forfait « rsa_forfait_asf ») : expliqué dans « Pourquoi ce montant ? » de l'ASF, et la consigne ne pousse plus à
     déclarer 0 quand la pension est versée. Reste à citer l'article du code de la sécurité sociale qui fixe ce forfait.
   - Garde d'enfants : deux fiches ajoutées dans « Avez-vous pensé à… ? » (complément de mode de garde, réforme de 2025
-    et parent seul jusqu'aux 12 ans ; crédit d'impôt de 50 %). Reste : le calcul par le moteur (heures, coût horaire).
+    et parent seul jusqu'aux 12 ans ; crédit d'impôt de 50 %). Fait (31/10/2026) : carte « Faire garder votre enfant »
+    (heures et coût, CMG réformé et crédit d'impôt ; voir test Lucie).
   - Complémentaire santé solidaire : fait (31/10/2026), la fiche donne les deux plafonds du foyer (gratuite, et à moins de
     1 € par jour) et plus ceux d'une personne seule.
-  - Arrondis (200,78 € × 2 ≠ 404 €, 429 € / 426,87 €).
+  - Fait (31/10/2026) : arrondis (200,78 € × 2 ≠ 404 €, 429 € / 426,87 €). Le moteur comptait les prestations familiales
+    avant la CRDS de 0,5 % ; elles sont désormais nettes, comme les montants publiés (voir test Mehdi).
   - Lexique fait (cotisations salariales et patronales, pension de réversion, BMAF, juge aux affaires familiales). « Et vous ? » donne aussi
     l'équivalent par mois.
 - **Test Samira, 2e passage** (notes 4 / 3 / 4). Corrigé : « rien ne change » quand deux effets s'annulent (allocations
