@@ -60,6 +60,7 @@ const DEMANDER: Record<string, string> = {
 }
 
 const POURQUOI: Record<string, { regles: string[]; texte: ReactNode }> = {
+  prime_activite_zero: { regles: ['prestations.prime_activite.montant_forfaitaire', 'prestations.prime_activite.part_revenus_activite'], texte: "La prime d'activité baisse quand les ressources du foyer augmentent : avec vos revenus et la taille de votre foyer, elle tombe à zéro." },
   aides_logement_zero: { regles: ['prestations.aides_logement.forfait_charges'], texte: 'L\'aide au logement baisse quand les ressources du foyer augmentent : pour votre loyer, votre zone et vos revenus, elle tombe à zéro.' },
   rsa: { regles: ['prestations.rsa.montant_forfaitaire'], texte: 'Le RSA complète vos ressources jusqu\'à un montant garanti qui dépend de la composition du foyer.' },
   prime_activite: { regles: ['prestations.prime_activite.montant_forfaitaire', 'prestations.prime_activite.part_revenus_activite', 'prestations.prime_activite.bonification_max'], 
@@ -204,8 +205,10 @@ export default function MesDroits() {
   if (step === 3 && (res || loading || err)) {
     const revenus = res?.lignes.filter((l) => l.nature === 'revenu') ?? []
     const prestBrut = res?.lignes.filter((l) => l.nature === 'prestation') ?? []
-    const prest: Resultat['lignes'] = s.logement.startsWith('locataire') && !prestBrut.some((l) => l.id === 'aides_logement')
-      ? [...prestBrut, { id: 'aides_logement_zero', libelle: 'Aides au logement', montant: 0, nature: 'prestation' }] : prestBrut
+    const travaille = s.adultes.some((a) => ['salarie', 'apprenti', 'independant', 'etudiant'].includes(a.activite) && a.montant_net > 0)
+    const prest: Resultat['lignes'] = [...prestBrut,
+      ...(travaille && !prestBrut.some((l) => l.id === 'prime_activite') ? [{ id: 'prime_activite_zero', libelle: "Prime d'activité", montant: 0, nature: 'prestation' }] : []),
+      ...(s.logement.startsWith('locataire') && !prestBrut.some((l) => l.id === 'aides_logement') ? [{ id: 'aides_logement_zero', libelle: 'Aides au logement', montant: 0, nature: 'prestation' }] : [])]
     // Impôts : toujours une ligne « Impôt sur le revenu » (même à 0 €), et les petits impôts sur l'épargne regroupés
     const brut = res?.lignes.filter((l) => l.nature === 'prelevement') ?? []
     const ir = brut.find((l) => l.id === 'impot_revenu')
@@ -226,6 +229,13 @@ export default function MesDroits() {
     const plafondAspa = typeof aspaAn === 'number' ? Math.floor((aspaAn / 12) * 100) / 100 : null
     /** « Pourquoi ce montant ? » avec le calcul de la personne quand on sait le faire en une ligne. */
     const pourquoi = (l: Resultat['lignes'][number]): ReactNode => {
+      if (l.id === 'prime_activite_zero') {
+        if (s.adultes.some((a) => (a.activite === 'apprenti' || a.activite === 'etudiant') && a.montant_net > 0 && a.montant_net < 1144))
+          return "Pour un étudiant ou un apprenti, la prime d'activité ne s'ouvre qu'au-delà d'environ 1 144 € nets par mois de salaire."
+        if (s.adultes.some((a) => a.activite === 'chomeur' && a.montant_net > 0))
+          return "La prime d'activité tient compte des ressources de tout le foyer, dont l'allocation chômage : avec elle, le foyer dépasse le plafond. Elle peut s'ouvrir quand l'allocation s'arrête : voir « Et après le chômage ? » plus bas."
+        return POURQUOI.prime_activite_zero.texte
+      }
       if (l.id === 'impot_revenu_zero') {
         if (totalRevenus < 1) return "Vous n'avez pas de revenus imposables : il n'y a pas d'impôt à payer."
         if (s.adultes.some((a) => a.activite === 'apprenti')) return "Le salaire d'un apprenti n'est pas imposable, dans la limite du montant annuel du SMIC. Il se déclare quand même : seule la part au-delà est imposée."

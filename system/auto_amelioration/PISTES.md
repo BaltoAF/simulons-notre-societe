@@ -100,7 +100,8 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   « ±0 € » expliqué ; tableau du foyer empilé sur téléphone ; aides sur « avis d'échéance » et « grande ville ». Reste :
   - ASS non calculée (règle travail.chomage.ass_montant_journalier présente) ; activité réduite (salaire + une partie de
     l'allocation chômage) ; CSP après un licenciement économique.
-  - « Pourquoi pas de prime d'activité ? » quand un membre du foyer travaille mais que l'allocation chômage l'exclut.
+  - Fait : « Prime d'activité : 0 € » avec sa raison quand un membre du foyer travaille (allocation chômage du foyer,
+    plancher des étudiants et apprentis, ou revenus au-dessus du plafond).
   - Lenteur des calculs sur un vieux téléphone : garder le résultat précédent à l'écran pendant un nouveau calcul.
 - **Si la fréquentation augmente** (à soumettre au responsable) : la mémoire est déjà protégée, car un seul calcul de
   population tourne à la fois (`SOCIETE_WORKERS=1`) et les résultats identiques sont gardés en cache. Seule l'attente
