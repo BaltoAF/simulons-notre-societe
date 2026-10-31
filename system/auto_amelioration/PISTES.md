@@ -52,7 +52,10 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   site ? » reste anonyme, et l'IA n'y est nommée que dans le texte, pas en titre (le sujet clive) ; « Vrai ou faux » d'autres
   bords (impôt payé par les plus aisés, impôt sur les sociétés) ; idées de l'accueil et de l'atelier équilibrées (retraite à
   62 et à 65 ans, impôt en plus et en moins, une dépense sociale et une économie). Reste :
-  - « Comprendre » : un encadré « Ce qui fait débat » (ex. la dette) ; la comparaison avec la Défense à sourcer.
+  - « Comprendre » : encadré « Ce qui fait débat » fait pour « Qui paie ? », la dette et les retraites (31/10/2026, relu :
+    deux positions de même longueur, une vraie alternative, l'argument le plus fort de chaque côté). Reste : les autres
+    questions ; pour les retraites, le levier « verser moins » (revalorisation) n'y figure pas ; la comparaison avec la
+    Défense à sourcer.
   - Immigration, sans source vérifiée pour l'instant : le solde équivalent des personnes nées en France (OCDE), les enfants
     d'immigrés, l'immigration irrégulière, les motifs d'entrée.
 - **Si la fréquentation augmente** (à soumettre au responsable) : la mémoire est déjà protégée, car un seul calcul de

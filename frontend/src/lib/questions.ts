@@ -30,6 +30,8 @@ export type Question = {
   texte: string[]
   enBref?: string // la réponse directe à la question, en une ou deux phrases
   aSavoir?: string
+  // « Ce qui fait débat » : les chiffres ne tranchent pas tout ; deux positions présentées à égalité, sans en choisir une
+  debat?: { question: string; positions: { titre: string; texte: string }[] }
   actions: Action[]
   accueil?: false // absente des cartes de l'accueil (sujet sensible : on la trouve dans « Les grandes questions »)
 }
@@ -105,6 +107,13 @@ export const QUESTIONS: Question[] = [
       "L'impôt sur le revenu rapporte {ir}, deux fois moins que la TVA. Il est progressif : plus le revenu est élevé, plus la part prélevée augmente. Les entreprises paient l'impôt sur les sociétés ({is}), et les propriétaires la taxe foncière ({fonciere}).",
     ],
     aSavoir: "La TVA pèse plus lourd, en proportion, pour les ménages modestes : ils dépensent presque tout ce qu'ils gagnent.",
+    debat: {
+      question: 'Faut-il faire payer davantage les plus aisés ?',
+      positions: [
+        { titre: 'Oui, davantage', texte: "Ceux qui ont le plus peuvent contribuer davantage sans se priver de l'essentiel, alors que la TVA pèse plus lourd, en proportion, sur les plus modestes. Un impôt plus progressif réduit les écarts et finance l'école et la santé." },
+        { titre: 'Non, pas davantage', texte: "Les impôts et cotisations sont déjà élevés en France. Taxer davantage les plus aisés peut décourager le travail et l'investissement, ou les faire partir à l'étranger, et finalement rapporter moins que prévu." },
+      ],
+    },
     actions: [
       { libelle: 'Calculer vos impôts et vos aides', lien: '/mes-droits' },
       { libelle: 'Votre part du budget', lien: '/budget#et-vous' },
@@ -135,6 +144,13 @@ export const QUESTIONS: Question[] = [
       "Les règles européennes demandent un déficit sous 3 % du PIB et une dette sous 60 % : la France est au-dessus des deux.",
     ],
     aSavoir: "Sur ce site, toute dépense nouvelle doit être financée par une économie ou une recette ailleurs, ou l'emprunt doit être assumé clairement.",
+    debat: {
+      question: 'Faut-il réduire vite le déficit ?',
+      positions: [
+        { titre: 'Oui, sans attendre', texte: "Les intérêts prennent la place d'autres dépenses, et plus on attend, plus l'effort sera lourd, pour nous et pour les générations suivantes. Un pays très endetté dépend de la confiance de ceux qui lui prêtent." },
+        { titre: 'Non, progressivement', texte: "Couper vite dans les dépenses ou augmenter fortement les impôts peut ralentir l'économie et faire baisser les recettes. Mieux vaut réduire le déficit peu à peu et investir dans l'avenir : école, recherche, climat." },
+      ],
+    },
     actions: [
       { libelle: 'Le budget et le déficit', lien: '/budget' },
       { libelle: 'Chercher des économies', lien: '/atelier?budget=1' },
@@ -163,6 +179,13 @@ export const QUESTIONS: Question[] = [
       "Le système coûte {depenses} par an ({depenses_pct}). On part en moyenne à {age}.",
       "La pension moyenne avant prélèvements (hors pension de réversion) est de {pension_h} par mois pour les hommes et de {pension_f} pour les femmes, dont les carrières ont souvent été plus courtes ou moins payées.",
     ],
+    debat: {
+      question: 'Avec moins de cotisants par retraité, comment payer les pensions ?',
+      positions: [
+        { titre: 'Partir plus tard', texte: "On vit plus longtemps qu'avant, donc plus longtemps à la retraite. Partir un peu plus tard permet de payer les pensions sans les baisser ni augmenter les cotisations de ceux qui travaillent." },
+        { titre: 'Augmenter les recettes', texte: "Tout le monde ne peut pas travailler plus longtemps, surtout dans les métiers usants. On peut plutôt augmenter un peu les cotisations ou faire contribuer les revenus du patrimoine, comme les dividendes." },
+      ],
+    },
     actions: [
       { libelle: 'À quel âge pourrai-je partir ?', lien: '/mes-droits' },
       { libelle: 'Déjà retraité(e) avec une petite pension ? Vérifiez le minimum vieillesse et vos aides', lien: '/mes-droits' },

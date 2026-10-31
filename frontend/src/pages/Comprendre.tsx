@@ -2,7 +2,7 @@
 // (calculer pour soi, tester une idée). Chaque chiffre vient d'une statistique du modèle, avec sa source.
 import { useEffect, useMemo, useState, type ReactNode } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { ArrowRight, Briefcase, Coins, ExternalLink, Globe, GraduationCap, HeartPulse, Hourglass, Info, Landmark, Leaf, TrendingDown, Users } from 'lucide-react'
+import { ArrowRight, Briefcase, Coins, ExternalLink, Globe, GraduationCap, HeartPulse, Hourglass, Info, Landmark, Leaf, Scale, TrendingDown, Users } from 'lucide-react'
 import { api, type Regle } from '../lib/api'
 import { natureLien } from '../lib/format'
 import { teinteQuestion } from '../lib/teintes'
@@ -240,6 +240,24 @@ function Detail({ q }: { q: Question }) {
         {q.texte.map((t, k) => <p key={k} style={{ fontSize: '1.05rem' }}>{avecChiffres(t, q, valeurs)}</p>)}
         {q.aSavoir && <div className="notice small"><Info size={16} style={{ flexShrink: 0 }} /><div>{q.aSavoir}</div></div>}
       </div>
+
+      {q.debat && (
+        // deux positions à égalité (même couleur, même place) : le site ne choisit pas
+        <div className="card" style={{ marginTop: 16 }}>
+          <h2 style={{ fontSize: '1.2rem', marginTop: 0 }}><Scale size={20} /> Ce qui fait débat</h2>
+          <p style={{ fontWeight: 650, fontSize: '1.05rem' }}>{q.debat.question}</p>
+          <div className="grid cols-2">
+            {q.debat.positions.map((p) => (
+              <div key={p.titre}>
+                <div className="kpi-label">{p.titre}</div>
+                <p style={{ margin: '4px 0 0' }}>{p.texte}</p>
+              </div>
+            ))}
+          </div>
+          <p className="small muted" style={{ marginBottom: 0 }}>Le site ne tranche pas : la réponse dépend aussi de ce qui compte le plus pour chacun.
+            Pour voir ce que changerait une idée, chiffres à l'appui, <Link to="/atelier">testez-la dans l'atelier</Link>.</p>
+        </div>
+      )}
 
       {q.id === 'depenses-publiques' && <Sur100 />}
 
