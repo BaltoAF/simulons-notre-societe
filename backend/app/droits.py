@@ -110,9 +110,18 @@ def repondre(state: dict, profil: dict) -> list[dict]:
             f"Durée légale : {g('travail.duree.legale_hebdomadaire'):g} heures par semaine.",
             ["travail.duree.legale_hebdomadaire", "travail.conges.jours_ouvrables_par_an"], g("travail.duree.legale_hebdomadaire"), "heures")
     if g("travail.smic.horaire_brut") is not None:
-        add("Travail", "Quel est le salaire minimum ?",
-            f"SMIC : {_fr(g('travail.smic.horaire_brut'), 2)} € brut de l'heure, soit {_fr(float(g('travail.smic.horaire_brut')) * 151.67, 0)} € brut par mois pour 35 heures.",
-            ["travail.smic.horaire_brut"], g("travail.smic.horaire_brut"), "euros")
+        smic_mois = float(g("travail.smic.horaire_brut")) * 151.67
+        txt, regles = (f"SMIC : {_fr(g('travail.smic.horaire_brut'), 2)} € brut de l'heure, soit {_fr(smic_mois, 0)} € brut par mois pour 35 heures.",
+                       ["travail.smic.horaire_brut"])
+        # avant 26 ans, un apprenti peut être payé moins (test Inès : apprentie à 900 €, elle se croyait sous-payée)
+        rid_app = ("travail.apprentissage.remuneration_16_17_ans_1re_annee" if 16 <= age < 18 else
+                   "travail.apprentissage.remuneration_18_20_ans_1re_annee" if 18 <= age < 21 else
+                   "travail.apprentissage.remuneration_21_25_ans_1re_annee" if 21 <= age < 26 else None)
+        if rid_app and g(rid_app) is not None:
+            txt += (f" En apprentissage, à votre âge, le minimum est plus bas : {g(rid_app):g} % du SMIC la 1re année, "
+                    f"soit environ {_fr(smic_mois * float(g(rid_app)) / 100, 0)} € brut par mois ; il augmente chaque année du contrat.")
+            regles.append(rid_app)
+        add("Travail", "Quel est le salaire minimum ?", txt, regles, g("travail.smic.horaire_brut"), "euros")
 
     # Citoyenneté
     va = g("institutions.vote.age_minimum")

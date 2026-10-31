@@ -90,7 +90,7 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
     les modélise pas : le site le dit (Mes droits, Votre part), les cotisations affichées sont trop élevées.
   - Aide au logement : 156 € comme apprentie, 203 € comme étudiante, à loyer et salaire égaux ; à vérifier (ressources
     retenues par la CAF pour un apprenti).
-  - Minimum de salaire d'un apprenti (règle du site) à montrer à côté du SMIC pour un profil apprenti.
+  - Fait : le minimum d'un apprenti de son âge est donné à côté du SMIC (de 16 à 25 ans, règles travail.apprentissage.*).
   - Formulaire : « Suivant » hors de l'écran sous les exemples ; « en 3 questions » (trois étapes) ; étiquettes des champs
     pour les lecteurs d'écran ; « Impôts rendus aux contribuables » (budget) ; recherche de règles serrée sur téléphone.
 - **Si la fréquentation augmente** (à soumettre au responsable) : la mémoire est déjà protégée, car un seul calcul de
