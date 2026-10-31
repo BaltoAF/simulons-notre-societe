@@ -17,6 +17,7 @@ import { ProposerSoutien } from '../components/Soutien'
 import { noterActionUtile } from '../lib/soutien'
 import { Terme } from '../components/Terme'
 import { PROFILS } from '../lib/profils'
+import { ecrireSession, lireSession } from '../lib/session'
 
 type Resultat = {
   revenu_disponible: number
@@ -165,15 +166,23 @@ export default function MesDroits() {
     setLoading(true); setErr(null); setEtSi({}); setStep(3); window.scrollTo(0, 0)
     try {
       setSituation(sit)
-      const r = await api<Resultat>('/api/simulation/menage', { body: { menage: situationVersMenage(sit), montants: 'net' } })
+      const menage = situationVersMenage(sit)
+      const r = await api<Resultat>('/api/simulation/menage', { body: { menage, montants: 'net' } })
       setRes(r); setStep(3); marquer('droits'); noterActionUtile('droits')
+      ecrireSession('droits.resultat', { pour: JSON.stringify(menage), res: r })
     } catch (e: any) { setErr(e.message) } finally { setLoading(false) }
   }
 
   // De retour sur la page avec une situation déjà saisie : on affiche directement le résultat
   useEffect(() => {
     if (params.get('modifier')) { setStep(0); return }   // venu pour changer sa situation : le questionnaire, pas le résultat
-    if (situation && !res && !loading) calculer(situation)
+    if (situation && !res && !loading) {
+      // même situation que tout à l'heure : le résultat gardé s'affiche tout de suite (le calcul prend 5 à 10 secondes,
+      // davantage sur un vieux téléphone ; tests Inès et Karim)
+      const garde = lireSession<{ pour: string; res: Resultat }>('droits.resultat')
+      if (garde && garde.pour === JSON.stringify(situationVersMenage(situation))) { setRes(garde.res); setStep(3) }
+      else calculer(situation)
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

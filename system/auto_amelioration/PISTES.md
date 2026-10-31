@@ -103,7 +103,8 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
     chômage) ; CSP après un licenciement économique.
   - Fait : « Prime d'activité : 0 € » avec sa raison quand un membre du foyer travaille (allocation chômage du foyer,
     plancher des étudiants et apprentis, ou revenus au-dessus du plafond).
-  - Lenteur des calculs sur un vieux téléphone : garder le résultat précédent à l'écran pendant un nouveau calcul.
+  - Lenteur : fait, revenir sur « Mes droits » avec la même situation affiche le résultat gardé (60 ms au lieu de 5 à 10 s).
+    Reste : garder l'ancien résultat à l'écran pendant un nouveau calcul.
 - **Si la fréquentation augmente** (à soumettre au responsable) : la mémoire est déjà protégée, car un seul calcul de
   population tourne à la fois (`SOCIETE_WORKERS=1`) et les résultats identiques sont gardés en cache. Seule l'attente
   s'allonge : passer alors au VPS-2 avec `SOCIETE_WORKERS=3`, ou dire au visiteur combien de calculs passent avant le sien.
