@@ -219,6 +219,13 @@ export const QUESTIONS: Question[] = [
       "L'indice de Gini mesure les écarts : 0 si tout le monde avait autant, 100 si une seule personne avait tout. La France est à {gini}.",
       "Les aides (RSA, prime d'activité, aides au logement…) et les impôts progressifs réduisent ces écarts : pour chaque réforme, le site calcule s'ils augmentent ou diminuent.",
     ],
+    debat: {
+      question: 'Pour faire reculer la pauvreté, faut-il augmenter les aides ?',
+      positions: [
+        { titre: 'Oui, augmenter les aides', texte: "Des aides plus fortes réduisent tout de suite la pauvreté, et un enfant pauvre part avec moins de chances. Or beaucoup de personnes pauvres ne peuvent pas travailler ou travaillent déjà : enfants, retraités, petits salaires." },
+        { titre: 'Non, miser sur le travail', texte: "Des aides plus fortes peuvent rendre la reprise d'un emploi moins intéressante. Mieux vaut que le travail paie davantage, avec la formation, la garde d'enfants et l'accompagnement, pour sortir durablement de la pauvreté." },
+      ],
+    },
     actions: [
       { libelle: 'Votre niveau de vie', lien: '/mes-droits' },
       { libelle: 'Tester un RSA à 800 €', preset: 'rsa-800' },
@@ -311,6 +318,13 @@ export const QUESTIONS: Question[] = [
       "{eleves} sont scolarisés de la maternelle au lycée, avec {profs} enseignants.",
       "Aujourd'hui, {bac} des jeunes d'une génération obtiennent le baccalauréat. Les évaluations internationales PISA, qui testent les élèves de 15 ans, donnent à la France {pisa} points en mathématiques.",
     ],
+    debat: {
+      question: "Faut-il donner plus de moyens à l'école ?",
+      positions: [
+        { titre: 'Oui, plus de moyens', texte: "Des classes moins chargées et des professeurs mieux payés permettent de suivre chaque élève, surtout ceux en difficulté. Et des postes de professeurs restent sans candidat : il faut rendre le métier plus attractif." },
+        { titre: "Non, changer l'organisation", texte: "Dépenser plus ne garantit pas que les élèves apprennent mieux, et le nombre d'élèves baisse. Mieux vaut changer la façon de faire : plus de liberté pour chaque établissement, l'essentiel d'abord (lire, écrire, compter)." },
+      ],
+    },
     actions: [
       { libelle: "Le budget de l'école", lien: '/regles/r/budget.etat.mission.enseignement_scolaire' },
       { libelle: "Dépenser plus (ou moins) pour l'école", lien: '/atelier?budget=1' },
@@ -337,6 +351,13 @@ export const QUESTIONS: Question[] = [
       "L'espérance de vie à la naissance est de {vie_f} pour les femmes et de {vie_h} pour les hommes. Mais on vit en bonne santé (sans être limité dans ses activités) jusqu'à {bonne_f} en moyenne pour les femmes et {bonne_h} pour les hommes.",
       "La France compte {medecins} médecins en activité ou en fin de formation.",
     ],
+    debat: {
+      question: "Faut-il consacrer plus d'argent public à la santé ?",
+      positions: [
+        { titre: 'Oui, dépenser davantage', texte: "La population vieillit et beaucoup peinent à trouver un médecin. Il faut plus de soignants, mieux payés, et des hôpitaux à la hauteur, quitte à augmenter les cotisations ou les impôts pour financer cela." },
+        { titre: 'Non, dépenser autrement', texte: "Par rapport à sa richesse, la France dépense déjà plus pour la santé que la plupart des pays d'Europe. À budget égal, mieux vaut prévenir davantage et organiser autrement les soins, plutôt que prélever plus." },
+      ],
+    },
     actions: [
       { libelle: "Dépenser plus pour l'hôpital et les soins", lien: '/atelier?regle=budget.secu.ondam.total' },
       { libelle: 'Les règles de la santé', lien: '/regles/d/sante' },
