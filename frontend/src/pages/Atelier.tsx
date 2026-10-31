@@ -206,7 +206,8 @@ export default function Atelier() {
         <div className="notice small" style={{ margin: '6px 0' }}><div>Votre réforme a été effacée.{' '}
           <button className="lien" onClick={() => { setDraft(annulable); setAnnulable(null) }}>Annuler</button></div></div>
       )}
-      <p className="ink2" style={{ maxWidth: 760, marginBottom: 8 }}>Imaginez une autre règle et découvrez ce qu'elle changerait, pour vous et pour le pays. C'est libre et anonyme ; un compte n'est utile que pour enregistrer et partager.</p>
+      <p className="ink2" style={{ maxWidth: 760, marginBottom: 8 }}>Réécrivez les règles de la France, une ou cent : le site simule ce qu'elles changeraient, pour vous et pour le pays,
+        et vous aide à trouver vos équilibres (argent public, climat, bien-être). Pas à pas, vous construisez votre programme. C'est libre et anonyme ; un compte n'est utile que pour l'enregistrer et le partager.</p>
       <Etapes etape={etape} />
 
       <div className="split">

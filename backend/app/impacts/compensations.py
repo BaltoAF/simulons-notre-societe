@@ -203,6 +203,31 @@ def options_carbone(store, overrides: dict, manque: float) -> list[dict]:
                     "titre": f"Abaisser la vitesse maximale sur les {lib} de {g(vitesse)} à {g(nouvelle)} km/h",
                     "description": "Réduit les émissions et le nombre de tués sur la route ; allonge un peu les trajets.",
                     "rendement": round(par_10 * paliers, 3), "unite": "mt_co2e", "overrides": {rid: nouvelle}})
+    # Investir et changer les pratiques (leviers environnement_energie.leviers.*) : on fixe les tonnes à éviter, le coût
+    # pour l'argent public suit (coût par tonne de France Stratégie) et devra être financé à son tour
+    from .climat_leviers import LEVIERS
+    for rid, nom, libelle, cout_id, suppose in LEVIERS:
+        regle = store.regles.get(rid)
+        if not regle:
+            continue
+        actuel = float(_valeur(store, overrides, rid) or 0)
+        plafond = float((regle.get("bornes") or [0, 0])[1])
+        mt = _arrondi(manque, 0.1)
+        if mt <= 0 or actuel + mt > plafond:
+            continue
+        cout, _, _ = metrique(store, cout_id) if cout_id else (None, None, None)
+        titres = {"renovation_logements": f"Rénover des logements pour éviter {fr(mt, 1)} Mt de CO₂ par an",
+                  "pompes_a_chaleur": f"Remplacer des chauffages au fioul pour éviter {fr(mt, 1)} Mt de CO₂ par an",
+                  "voitures_electriques": f"Aider à passer à la voiture électrique pour éviter {fr(mt, 1)} Mt de CO₂ par an",
+                  "engrais_azotes": f"Réduire les engrais azotés pour éviter {fr(mt, 1)} Mt de CO₂ par an"}
+        description = (f"Payé par l'État : environ {fr(mt * cout / 1000, 1)} milliard{'s' if mt * cout / 1000 >= 2 else ''} € par an à terme "
+                       f"({fr(cout, 0)} € par tonne évitée, France Stratégie), à financer à son tour. L'effet vient progressivement : {suppose}."
+                       if cout else
+                       f"Sans coût pour l'État dans ce calcul : selon l'Inra, ces pratiques font plutôt gagner de l'argent aux agriculteurs, "
+                       f"mais demandent du conseil. Jusqu'à environ 5 Mt par an en 2030 (étude de 2013) : {suppose}.")
+        out.append({"id": f"levier_{nom}", "famille": "investir" if cout else "pratiques", "titre": titres.get(nom, libelle),
+                    "description": description, "rendement": round(mt, 3), "unite": "mt_co2e",
+                    "overrides": {rid: round(actuel + mt, 2)}})
     return out
 
 

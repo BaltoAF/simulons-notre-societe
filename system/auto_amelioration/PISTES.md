@@ -147,6 +147,17 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   inconvénient (les économies n'en avaient pas). Reste : une solution « revenus du capital » (le taux de la flat tax,
   fiscalite.capital.pfu_taux_ir, est un levier du moteur), à ajouter quand son rendement sera calé sur une source
   officielle (la population simulée représente mal les revenus du capital).
+- **Demandes du responsable (31/10/2026)** : avis « sur cette page » avec l'endroit montré (colonne `endroit`) ;
+  « Changer les règles » au premier plan, message « Réimaginez les règles de la France. Faites-en votre programme »
+  (accueil, menu, visite, missions, atelier) ; « Proposer un changement » à la proposition de quelqu'un en un parcours ;
+  page des propositions expliquée (partir d'un modèle, comparer, suggérer ; exemple d'un parti et de ses adhérents).
+  Climat : neuf solutions pour compenser au lieu de trois (gazole et essence ensemble ; leviers
+  environnement_energie.leviers.* : rénovation 250 €/t, fin du fioul 140 €/t, voitures électriques 270 €/t
+  — France Stratégie, coût payé par l'État et à financer — et engrais azotés, jusqu'à 5,3 Mt, Inra) ; « Et planter des
+  arbres ? » expliqué (budget carbone hors forêts et sols, décret n° 2026-636). Reste : taxe carbone sur le chauffage
+  (élasticités Insee et émissions Citepa trouvées, prix moyen officiel du fioul domestique à trouver ; gaz : SDES,
+  141,4 €/MWh PCS en 2025) ; fret ferroviaire et aviation (pas de coût par tonne officiel trouvé) ; le nom « modèle de
+  société » à l'écran (question posée au responsable).
 - **Test Odette** (74 ans, veuve, retraitée à 1 280 €, propriétaire, tablette, très peu à l'aise ; notes prise en main 3 /
   compréhension 2,5 / confiance 3 / tablette 3 sur 5, 31/10/2026). Corrigé : « environ  % » sur la liste des grandes
   questions (chiffre calculé non pris en charge) ; page « Oups » après une mise à jour (fichier de l'ancienne version

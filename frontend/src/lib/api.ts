@@ -146,7 +146,7 @@ export type Pilier = {
 }
 
 export type OptionCompensation = {
-  id: string; famille: 'depenses' | 'recettes' | 'assumer' | 'regles' | 'prix'; titre: string; description: string
+  id: string; famille: 'depenses' | 'recettes' | 'assumer' | 'regles' | 'prix' | 'investir' | 'pratiques'; titre: string; description: string
   rendement: number; unite: string; overrides: Record<string, Valeur>
 }
 

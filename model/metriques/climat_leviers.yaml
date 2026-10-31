@@ -1,0 +1,75 @@
+# Leviers pour réduire les émissions : coûts par tonne évitée (France Stratégie), potentiels et ordres de grandeur.
+# Servent aux leviers environnement_energie.leviers.* et aux solutions « à compenser » du budget carbone.
+metriques:
+  - id: climat.cout_abattement.renovation_logements
+    titre: "Coût par tonne de CO2 évitée : rénovation des logements avec électrification"
+    explication: "Coût pour la collectivité (travaux, moins les économies d'énergie, sur 30 ans) de chaque tonne évitée pour réduire d'environ 80 % les émissions du parc, en visant l'étiquette B. 160 €/t pour une réduction de moitié, 420 €/t en visant A."
+    unite: euros_par_tco2
+    serie:
+      - date: "2022-11-30"
+        valeur: 250
+        source: fs-couts-abattement-logement-2022
+        statut: definitif
+  - id: climat.cout_abattement.pompes_a_chaleur_fioul
+    titre: "Coût par tonne de CO2 évitée : remplacer le chauffage au fioul (rénovation et pompe à chaleur)"
+    explication: "Haut de la fourchette des médianes (20 à 140 €/t selon l'étiquette du logement au départ) pour un logement chauffé au fioul, rénové et passé à l'électricité."
+    unite: euros_par_tco2
+    serie:
+      - date: "2022-11-30"
+        valeur: 140
+        source: fs-couts-abattement-logement-2022
+        statut: definitif
+  - id: climat.cout_abattement.voiture_electrique
+    titre: "Coût par tonne de CO2 évitée : une voiture électrique à la place d'une thermique (2030)"
+    explication: "Haut de la fourchette pour une citadine en 2030 (200 à 270 €/t), avec une baisse du prix des véhicules jugée favorable."
+    unite: euros_par_tco2
+    serie:
+      - date: "2023-05-01"
+        valeur: 270
+        source: fs-couts-abattement-synthese-2023
+        statut: definitif
+  - id: climat.potentiel.engrais_azotes
+    titre: "Réduction possible des émissions en limitant les engrais azotés minéraux (2030)"
+    explication: "Haut de la fourchette de l'étude Inra (4,6 à 5,3 MtCO2e par an en 2030) : ajuster les doses, mieux valoriser les engrais organiques, plus de légumineuses."
+    unite: mt_co2e
+    serie:
+      - date: "2013-07-01"
+        valeur: 5.3
+        source: inra-ademe-agriculture-ges-2013
+        statut: estimation
+  - id: climat.emissions.logement_fioul
+    titre: "Émissions du chauffage au fioul des logements"
+    explication: "Gaz à effet de serre émis par le fioul domestique brûlé dans les logements (chauffage et eau chaude)."
+    unite: mt_co2e
+    serie:
+      - date: "2024-12-31"
+        valeur: 7.9
+        source: citepa-residentiel-2026
+        statut: definitif
+  - id: climat.emissions.logement_total
+    titre: "Émissions des logements (chauffage, eau chaude, cuisson)"
+    explication: "Gaz à effet de serre émis dans les logements : gaz, fioul, gaz en bouteille."
+    unite: mt_co2e
+    serie:
+      - date: "2024-12-31"
+        valeur: 31.9
+        source: citepa-residentiel-2026
+        statut: definitif
+  - id: climat.foret.puits_par_hectare
+    titre: "CO2 absorbé par un hectare de forêt en France, par an"
+    explication: "Puits moyen de la forêt métropolitaine (87 MtCO2e par an pour 17,2 millions d'hectares, vers 2015). Il baisse depuis : sécheresses, incendies, maladies, coupes."
+    unite: t_co2e_par_ha
+    serie:
+      - date: "2015-12-31"
+        valeur: 5.06
+        source: cgdd-efese-sequestration-2019
+        statut: estimation
+  - id: climat.foret.aide_par_hectare
+    titre: "Aide publique moyenne par hectare de forêt renouvelée (2021-2023)"
+    explication: "203 millions d'euros pour 46 628 hectares renouvelés dans le cadre de France Relance."
+    unite: euros
+    serie:
+      - date: "2023-12-31"
+        valeur: 4350
+        source: maa-renouvellement-forestier-2024
+        statut: estimation

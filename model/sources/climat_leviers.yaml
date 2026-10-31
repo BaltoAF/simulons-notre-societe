@@ -1,0 +1,57 @@
+# Leviers pour réduire les émissions (« compenser » une réforme qui en ajoute) : coûts par tonne évitée et potentiels,
+# relus par l'agent de recherche le 2026-10-31 (pages imprimées des rapports France Stratégie).
+sources:
+  - id: fs-couts-abattement-logement-2022
+    type: rapport_institutionnel
+    editeur: "France Stratégie"
+    titre: "Les coûts d'abattement – Partie 5 – Logement"
+    url: "https://www.strategie-plan.gouv.fr/files/files/Publications/Rapport/fs-2022-rapport-couts-abattement_logement-novembre.pdf"
+    auteurs: []
+    date_publication: "2022-11-30"
+    consulte_le: "2026-10-31"
+    note: "Coût socio-économique de la tonne de CO2 évitée (coûts sur 30 ans). Rénovation du parc avec électrification : 160 €/t pour environ 50 % de réduction des émissions, 250 €/t (coût marginal) pour environ 80 % en visant l'étiquette B, 150 €/t en visant C, 420 €/t en visant A (p. 93). Logement au fioul rénové vers B avec électrification : médianes de 20 à 140 €/t selon l'étiquette de départ ; gaz : 10 à 210 €/t (p. 28)."
+  - id: fs-couts-abattement-synthese-2023
+    type: rapport_institutionnel
+    editeur: "France Stratégie"
+    titre: "Les coûts d'abattement en France – Note de synthèse"
+    url: "https://www.strategie-plan.gouv.fr/files/files/Publications/Rapport/fs-2023-note_de_synthese-les_couts_abattement_en_france-mai_2023.pdf"
+    auteurs: []
+    date_publication: "2023-05-01"
+    consulte_le: "2026-10-31"
+    note: "Voiture électrique à la place d'une voiture thermique : 200 à 270 €/t pour une citadine en 2030 (hypothèse favorable de baisse du prix du véhicule), 110 à 190 €/t pour une berline en 2040 (p. 8). Valeur de l'action pour le climat : 250 €2018/t en 2030, 500 en 2040 (p. 3). L'agriculture « reste à étudier » (p. 1)."
+  - id: inra-ademe-agriculture-ges-2013
+    type: rapport_institutionnel
+    editeur: "INRA, pour l'Ademe et les ministères de l'Agriculture et de l'Écologie"
+    titre: "Quelle contribution de l'agriculture française à la réduction des émissions de gaz à effet de serre ? (partie II)"
+    url: "https://www.inrae.fr/sites/default/files/pdf/fca5a7a52c8f363553b99654d5bae121.pdf"
+    auteurs: []
+    date_publication: "2013-07-01"
+    consulte_le: "2026-10-31"
+    note: "Réduction des engrais azotés minéraux : 4,6 à 5,3 MtCO2e par an d'atténuation en 2030 (tableau 28, p. 110), pour un coût de -62,7 à -54,7 € par tonne pour l'agriculteur (un gain), qui n'est pas un coût socio-économique. Étude ancienne."
+  - id: cgdd-efese-sequestration-2019
+    type: rapport_institutionnel
+    editeur: "Commissariat général au développement durable (CGDD)"
+    titre: "EFESE – La séquestration de carbone par les écosystèmes en France"
+    url: "https://www.notre-environnement.gouv.fr/IMG/pdf/thc3a9ma20-26b15.pdf"
+    auteurs: []
+    date_publication: "2019-03-01"
+    consulte_le: "2026-10-31"
+    note: "Puits moyen de la forêt métropolitaine : 5,06 tCO2e par hectare et par an (17,2 millions d'hectares, 87 MtCO2e par an ; données vers 2015), tableau 1, p. 27."
+  - id: maa-renouvellement-forestier-2024
+    type: rapport_institutionnel
+    editeur: "Ministère de l'Agriculture et de la Souveraineté alimentaire"
+    titre: "Bilan du dispositif d'aide au renouvellement forestier (2021-2023)"
+    url: "https://agriculture.gouv.fr/telecharger/144511"
+    auteurs: []
+    date_publication: "2024-08-01"
+    consulte_le: "2026-10-31"
+    note: "203 M€ d'aides engagées pour 46 628 hectares renouvelés en 2021-2023, soit environ 4 350 € par hectare (calcul). Le puits forestier « a diminué d'un tiers en une décennie » (p. 2)."
+  - id: citepa-residentiel-2026
+    type: statistique_publique
+    editeur: "Citepa"
+    titre: "Analyse de l'évolution des émissions de GES du secteur résidentiel"
+    url: "https://www.citepa.org/wp-content/uploads/2026/06/Analyse_Evolution_Emission_GES_Residentiel_VF.pdf"
+    auteurs: []
+    date_publication: "2026-06-01"
+    consulte_le: "2026-10-31"
+    note: "Logement (chauffage, eau chaude, cuisson) : 31,9 MtCO2e en 2024 (31,3 estimé pour 2025), dont gaz 19,6, fioul 7,9, gaz en bouteille 1,8 (p. 7 et 12)."

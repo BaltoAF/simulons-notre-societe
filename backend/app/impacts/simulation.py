@@ -21,9 +21,9 @@ _EXECUTOR = ThreadPoolExecutor(max_workers=2)
 
 def _modules():
     # imports tardifs : ces modules dépendent de données (population, preuves) chargées à la demande
-    from . import comportements, microsim, budget_etat, planete_bien_etre
+    from . import comportements, microsim, budget_etat, planete_bien_etre, climat_leviers
     return [section_menage, section_cas_types, microsim.section_budget, microsim.section_redistribution,
-            budget_etat.section_budget_etat, *comportements.MODULES, *planete_bien_etre.MODULES]
+            budget_etat.section_budget_etat, *comportements.MODULES, *planete_bien_etre.MODULES, *climat_leviers.MODULES]
 
 
 def regles_modifiees(ctx: Contexte) -> list[dict]:

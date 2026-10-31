@@ -1,0 +1,58 @@
+# Leviers pour le climat qui N'EXISTENT PAS dans la loi actuelle (valeur 0) : chacun fixe des émissions à éviter par an,
+# et le site en déduit le coût pour l'argent public (coût par tonne de France Stratégie, si l'État paie tout le surcoût).
+# Marqués `virtuel: true`. Calcul : backend/app/impacts/climat_leviers.py.
+domaine: environnement_energie
+theme: "Leviers pour le climat (proposés)"
+regles:
+  - id: environnement_energie.leviers.renovation_logements_mt
+    titre: "Rénover les logements : émissions à éviter chaque année"
+    explication: "Isoler les logements et passer au chauffage électrique (pompes à chaleur), payé par l'État. Pour chaque tonne de CO2 évitée par an, la collectivité paie environ 250 € par an (France Stratégie). L'effet vient progressivement, au fil des travaux."
+    type: nombre
+    unite: mt_co2e
+    bornes: [0, 25]
+    virtuel: true
+    valeurs:
+      - depuis: "1945-01-01"
+        valeur: 0
+        sources: []
+    tags: [climat, logement, levier_climat]
+    note: "Borne : environ 80 % des 31,9 Mt émises par les logements (Citepa), ce que vise le coût marginal de 250 €/t."
+  - id: environnement_energie.leviers.pompes_a_chaleur_fioul_mt
+    titre: "Remplacer le chauffage au fioul : émissions à éviter chaque année"
+    explication: "Rénover les logements chauffés au fioul et leur installer une pompe à chaleur, payé par l'État : environ 140 € par tonne de CO2 évitée (France Stratégie)."
+    type: nombre
+    unite: mt_co2e
+    bornes: [0, 7.9]
+    virtuel: true
+    valeurs:
+      - depuis: "1945-01-01"
+        valeur: 0
+        sources: []
+    tags: [climat, logement, levier_climat]
+    note: "Borne : les 7,9 Mt émises par le chauffage au fioul des logements (Citepa, 2024)."
+  - id: environnement_energie.leviers.voitures_electriques_mt
+    titre: "Remplacer des voitures thermiques par des électriques : émissions à éviter chaque année"
+    explication: "Aider l'achat de voitures électriques à la place de voitures à essence ou au gazole, payé par l'État : environ 270 € par tonne de CO2 évitée en 2030 (France Stratégie). L'effet suit le renouvellement des voitures."
+    type: nombre
+    unite: mt_co2e
+    bornes: [0, 60]
+    virtuel: true
+    valeurs:
+      - depuis: "1945-01-01"
+        valeur: 0
+        sources: []
+    tags: [climat, transports, levier_climat]
+    note: "Borne : un peu moins que les émissions des voitures (58,5 % des 115 Mt du transport routier, Citepa)."
+  - id: environnement_energie.leviers.engrais_azotes_mt
+    titre: "Limiter les engrais azotés : émissions à éviter chaque année"
+    explication: "Ajuster les doses d'engrais, mieux utiliser les engrais organiques, cultiver plus de légumineuses. Jusqu'à environ 5 Mt de CO2 par an en 2030 selon l'Inra, sans coût pour l'État dans ce calcul : l'étude estime que ces pratiques font plutôt gagner de l'argent aux agriculteurs, mais elles demandent du conseil et de l'accompagnement."
+    type: nombre
+    unite: mt_co2e
+    bornes: [0, 5.3]
+    virtuel: true
+    valeurs:
+      - depuis: "1945-01-01"
+        valeur: 0
+        sources: []
+    tags: [climat, agriculture, levier_climat]
+    note: "Borne : le haut du potentiel de l'Inra (4,6 à 5,3 MtCO2e par an en 2030 ; étude de 2013)."

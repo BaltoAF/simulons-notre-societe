@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom'
-import { ArrowRight, BadgeCheck, Calculator, GitFork, HelpCircle, PlayCircle, Scale, Search, ShieldCheck, Users } from 'lucide-react'
+import { ArrowRight, BadgeCheck, GitFork, HelpCircle, PlayCircle, Scale, Search, ShieldCheck, Users } from 'lucide-react'
 import { useState } from 'react'
 import { Bienvenue } from '../components/Bienvenue'
 import { ParcoursDecouverte } from '../components/Parcours'
@@ -34,29 +34,31 @@ export default function Accueil() {
         <div className="container">
           <span className="badge primary" style={{ marginBottom: 14 }}><GitFork size={14} /> Les règles de la France, ouvertes à tous</span>
           {/* l'expérience recherchée d'abord : changer les règles, partir des propositions des autres, les comparer, les amender */}
-          <h1>Et si vous changiez les règles ? <em>Imaginez votre France.</em></h1>
-          <p className="lead">Impôts, aides, retraites, climat : partez des règles d'aujourd'hui, changez-les, et voyez ce que cela changerait, pour vous
-            et pour le pays. Comparez votre version à celles des autres, ou proposez-leur des améliorations. Chaque chiffre est prouvé et dit à quel point on peut s'y fier.</p>
+          {/* vendre le rêve (demande du responsable) : réimaginer la société, trouver ses équilibres, en faire son programme */}
+          <h1>Réimaginez les règles de la France. <em>Faites-en votre programme.</em></h1>
+          <p className="lead">Impôts, aides, retraites, école, santé, climat, budget de l'État : réécrivez les règles de la société française,
+            une ou cent. Le site simule tout, pour vous et pour le pays, et vous aide à trouver vos équilibres entre argent public, climat et bien-être.
+            Comparez votre programme à ceux des autres, ou aidez-les à améliorer le leur. Chaque chiffre est prouvé et dit à quel point on peut s'y fier.</p>
           <div className="row" style={{ marginTop: 6, gap: 10 }}>
-            <Link to="/atelier" className="btn primary large"><GitFork size={18} /> Changer les règles</Link>
+            <Link to="/atelier" className="btn primary large"><GitFork size={18} /> Construire mon programme</Link>
             <Link to="/societes" className="btn large"><Users size={18} /> Voir les propositions des autres</Link>
           </div>
           <button className="btn ghost small" style={{ marginTop: 10 }} onClick={() => setVisite(true)}><PlayCircle size={16} /> Découvrir le site en 1 minute</button>
           <div className="grid cols-3" style={{ marginTop: 26 }}>
             <Link to="/atelier" className="card link carte-teinte teinte-3">
               <GitFork size={26} className="icone-teinte" />
-              <h3 style={{ marginTop: 8 }}>1. Changez une règle</h3>
-              <p className="small ink2" style={{ margin: 0 }}>Partez de la loi actuelle, ou d'une idée toute prête, et voyez les effets : pour vous, l'argent public, le climat, le bien-être.</p>
+              <h3 style={{ marginTop: 8 }}>1. Réimaginez les règles</h3>
+              <p className="small ink2" style={{ margin: 0 }}>Partez de la loi actuelle ou d'une idée toute prête, et changez ce que vous voulez : chaque effet est simulé, pour vous et pour le pays.</p>
             </Link>
-            <Link to="/societes" className="card link carte-teinte teinte-4">
+            <Link to="/atelier" className="card link carte-teinte teinte-4">
+              <Scale size={26} className="icone-teinte" />
+              <h3 style={{ marginTop: 8 }}>2. Trouvez vos équilibres</h3>
+              <p className="small ink2" style={{ margin: 0 }}>Une dépense en plus ? Le site vous propose de quoi la financer. Des émissions en plus ? De quoi les compenser. À vous de choisir.</p>
+            </Link>
+            <Link to="/societes" className="card link carte-teinte teinte-1">
               <Users size={26} className="icone-teinte" />
-              <h3 style={{ marginTop: 8 }}>2. Comparez et améliorez</h3>
-              <p className="small ink2" style={{ margin: 0 }}>Enregistrez votre proposition, comparez-la aux autres, partez de celle de quelqu'un, ou suggérez-lui un changement.</p>
-            </Link>
-            <Link to="/mes-droits" className="card link carte-teinte teinte-1">
-              <Calculator size={26} className="icone-teinte" />
-              <h3 style={{ marginTop: 8 }}>3. Voyez ce que ça change pour vous</h3>
-              <p className="small ink2" style={{ margin: 0 }}>Vos aides, vos impôts, votre retraite aujourd'hui, en 3 étapes, sans compte : puis avec vos idées.</p>
+              <h3 style={{ marginTop: 8 }}>3. Faites-en votre programme</h3>
+              <p className="small ink2" style={{ margin: 0 }}>Enregistrez-le, comparez-le à ceux des autres, partez du programme de quelqu'un, ou suggérez-lui des amendements.</p>
             </Link>
           </div>
         </div>

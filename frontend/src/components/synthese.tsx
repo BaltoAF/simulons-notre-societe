@@ -215,7 +215,7 @@ const SOURCE_EFFET: Record<string, string> = {
 
 const FAMILLES: Record<OptionCompensation['famille'], string> = {
   depenses: 'Faire des économies ailleurs', recettes: 'Trouver de nouvelles recettes', assumer: 'Ou bien…',
-  regles: 'Changer une autre règle', prix: 'Agir par les prix',
+  regles: 'Changer une autre règle', prix: 'Agir par les prix', investir: "Investir (payé par l'État, à financer)", pratiques: 'Changer les pratiques',
 }
 
 function Compensations({ e, overrides, onAppliquer }: { e: Equilibre; overrides: Record<string, Valeur>; onAppliquer: (o: Record<string, Valeur>) => void }) {
@@ -330,6 +330,17 @@ export function EquilibresPanel({ r, overrides, onAppliquer, contexte = 'reforme
               )}
             </Pourquoi>
             {(alerte || e.statut === 'a_surveiller') && onAppliquer && overrides && <Compensations e={e} overrides={overrides} onAppliquer={onAppliquer} />}
+            {/* « et planter des arbres ? » (demande du responsable) : la réponse, chiffrée, plutôt qu'une fausse solution */}
+            {!budget && (alerte || e.statut === 'a_surveiller') && (
+              <details className="explain" style={{ marginTop: 10 }}>
+                <summary>Et planter des arbres ?</summary>
+                <p className="small ink2" style={{ margin: '6px 0 0' }}>La forêt française absorbe en moyenne environ 5 tonnes de CO₂ par hectare et par an
+                  (ministère de la Transition écologique, 2019). Mais la loi fixe le budget carbone <strong>hors forêts et sols</strong> (décret
+                  n° 2026-636) : planter des arbres ne compense donc pas une hausse des émissions. Il faudrait d'ailleurs environ 200 000 hectares de
+                  forêt en pleine croissance pour absorber 1 million de tonnes par an, et le puits forestier a baissé d'un tiers en dix ans
+                  (sécheresses, incendies, maladies). La forêt reste utile pour le climat, à côté de la baisse des émissions, pas à sa place.</p>
+              </details>
+            )}
             {e.composantes.length > 1 && (
               <details className="explain">
                 <summary>D'où vient ce chiffre ?</summary>
