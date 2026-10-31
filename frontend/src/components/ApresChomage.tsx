@@ -43,6 +43,7 @@ export function ApresLeChomage({ s, actuel }: { s: SituationSaisie; actuel: Res 
   const [emploi, setEmploi] = useState<Scenario>({})
   const [salaire, setSalaire] = useState(0)
   const [cinqAns, setCinqAns] = useState(false) // condition de l'ASS : 5 ans de travail au cours des 10 dernières années
+  const [garder, setGarder] = useState(false) // garder une partie de l'allocation en restant inscrit (activité réduite)
   if (i < 0) return null
   const calculer = async (adulte: Partial<SituationSaisie['adultes'][number]>, set: (x: Scenario) => void) => {
     set({ loading: true })
@@ -69,13 +70,18 @@ export function ApresLeChomage({ s, actuel }: { s: SituationSaisie; actuel: Res 
           <div className="row" style={{ marginTop: 6, gap: 8, flexWrap: 'nowrap' }}>
             <div className="input-suffix" style={{ maxWidth: 190 }}><input type="number" min={0} step={50} value={salaire || ''} placeholder="ex. 1 300" aria-label="Salaire net mensuel de l'emploi repris"
               onChange={(e) => { setSalaire(Number(e.target.value)); setEmploi({}) }} /><span className="suffix">€ nets / mois</span></div>
-            <button className="btn small" disabled={!(salaire > 0) || emploi.loading} onClick={() => calculer({ activite: 'salarie', montant_net: salaire }, setEmploi)}>Calculer</button>
+            <button className="btn small" disabled={!(salaire > 0) || emploi.loading}
+              onClick={() => calculer({ activite: 'salarie', montant_net: salaire, are_cumul: garder ? s.adultes[i].montant_net : undefined }, setEmploi)}>Calculer</button>
           </div>
+          <label className="row small" style={{ marginTop: 6, cursor: 'pointer', flexWrap: 'nowrap', alignItems: 'flex-start' }}><input type="checkbox" checked={garder}
+            onChange={(e) => { setGarder(e.target.checked); setEmploi({}) }} style={{ marginTop: 3 }} /> En gardant une partie de l'allocation chômage (en restant inscrit(e) à France Travail)</label>
+          {garder && <div className="small muted" style={{ marginTop: 2 }}>L'allocation baisse de <Link to="/regles/r/travail.chomage.cumul_part_salaire_deduite">70 % du salaire brut</Link> du nouvel emploi ;
+            les jours non payés reculent d'autant la fin des droits. Allocation et salaire ensemble ne peuvent pas dépasser l'ancien salaire (non vérifié ici).</div>}
           <Bilan sc={emploi} actuel={actuel} />
         </div>
       </div>
       <p className="small muted" style={{ marginBottom: 0 }}>Le RSA et la prime d'activité se calculent sur les ressources des trois mois précédents : un changement de situation
-        ne se voit pas tout de suite sur leur montant. Le site ne calcule pas encore un petit emploi cumulé avec une partie de l'allocation chômage.</p>
+        ne se voit pas tout de suite sur leur montant. </p>
     </div>
   )
 }

@@ -407,6 +407,16 @@ def menage_depuis_saisie(payload: dict, montants: str) -> tuple[Menage, list[str
     m = Menage.from_dict(data)
     if montants == "net":
         m = _ajuster_au_net(m, payload)
+    # reprise d'un emploi en gardant une partie de l'allocation chômage : elle baisse d'une part du salaire brut repris
+    # (règle travail.chomage.cumul_part_salaire_deduite, service-public F14860), une fois les bruts ajustés aux nets saisis
+    cumul = [bool(a.get("cumul_are")) for a in payload.get("adultes", [])[:2]]
+    if any(cumul):
+        from dataclasses import replace
+        part = float(store.regles["travail.chomage.cumul_part_salaire_deduite"]["valeur"]) / 100
+        m = replace(m, adultes=[replace(a, chomage_brut_mensuel=round(max(0.0, a.chomage_brut_mensuel - part * a.salaire_brut_mensuel), 2)) if c else a
+                                for a, c in zip(m.adultes, cumul)])
+        approximations.append("Allocation chômage cumulée avec le salaire : le plafond (allocation plus salaire au plus égaux au salaire "
+                              "de référence) n'est pas appliqué.")
     return m, sorted(set(approximations))
 
 

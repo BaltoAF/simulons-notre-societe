@@ -415,6 +415,21 @@ regles:
     a_verifier: false
     note: "Soit 192 240 € par an en 2026 (Urssaf). Date « depuis » conventionnelle (voir en-tête)."
 
+  # ───────── Reprise d'un emploi ─────────
+  - id: travail.chomage.cumul_part_salaire_deduite
+    titre: "Cumul allocation chômage et salaire : part du nouveau salaire déduite de l'allocation"
+    explication: "Une personne qui reprend un emploi en restant inscrite comme demandeur d'emploi garde une partie de son allocation : chaque mois, on retire de l'allocation 70 % du salaire de la nouvelle activité. Les jours non payés reculent d'autant la fin des droits, et l'allocation plus le salaire ne peuvent pas dépasser le salaire de référence."
+    type: nombre
+    unite: pourcent
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2025-04-01"
+        valeur: 70
+        sources: [sp-f14860]
+    tags: [chomage, reprise_emploi]
+    a_verifier: false
+    note: "Service-public F14860 (lu le 31/10/2026) : nombre de jours indemnisables = (montant de l'ARE mensuelle − 70 % du salaire de la nouvelle activité) / montant de l'ARE journalière. Date « depuis » conventionnelle (voir en-tête) ; la règle est plus ancienne."
+
   # ───────── Solidarité ─────────
   - id: travail.chomage.ass_montant_journalier
     titre: "Allocation de solidarité spécifique (ASS) : montant journalier à taux plein"

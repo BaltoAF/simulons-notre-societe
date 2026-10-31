@@ -99,8 +99,9 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   rentrée annoncée « une fois par an, fin août » ; salaires d'un couple détaillés ; idées triées selon le foyer ;
   « ±0 € » expliqué ; tableau du foyer empilé sur téléphone ; aides sur « avis d'échéance » et « grande ville ». Reste :
   - Fait : ASS calculée par le moteur dans « Et après le chômage ? » quand la personne coche la condition (5 ans de travail
-    au cours des 10 dernières années ; tests/test_ass.py). Reste : activité réduite (salaire + une partie de l'allocation
-    chômage) ; CSP après un licenciement économique.
+    au cours des 10 dernières années ; tests/test_ass.py). Fait aussi : reprise d'un emploi en gardant une partie de
+    l'allocation (70 % du salaire brut déduit, règle travail.chomage.cumul_part_salaire_deduite ; plafond du salaire de
+    référence non appliqué ; tests/test_cumul_chomage.py). Reste : CSP après un licenciement économique.
   - Fait : « Prime d'activité : 0 € » avec sa raison quand un membre du foyer travaille (allocation chômage du foyer,
     plancher des étudiants et apprentis, ou revenus au-dessus du plafond).
   - Lenteur : fait, revenir sur « Mes droits » avec la même situation affiche le résultat gardé (60 ms au lieu de 5 à 10 s).

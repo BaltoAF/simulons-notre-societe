@@ -40,6 +40,7 @@ export type AdulteSaisie = {
   handicap: boolean
   rattache?: boolean // étudiant compté dans la déclaration d'impôt de ses parents
   ass_precondition?: boolean // 5 ans de travail au cours des 10 dernières années (ASS, « Et après le chômage ? »)
+  are_cumul?: number // allocation chômage nette avant la reprise d'un emploi, gardée en partie (« Et après le chômage ? »)
 }
 
 export type SituationSaisie = {
@@ -147,7 +148,8 @@ export function situationVersMenage(s: SituationSaisie) {
       ass_precondition: a.ass_precondition ?? false,
       // un petit boulot d'étudiant est un salaire (le statut d'étudiant reste transmis : il conditionne la prime d'activité)
       salaire_net_mensuel: a.activite === 'salarie' || a.activite === 'apprenti' || a.activite === 'etudiant' ? a.montant_net : 0,
-      chomage_net_mensuel: a.activite === 'chomeur' ? a.montant_net : 0,
+      chomage_net_mensuel: a.activite === 'chomeur' ? a.montant_net : (a.are_cumul ?? 0),
+      cumul_are: !!a.are_cumul && a.activite !== 'chomeur',
       retraite_nette_mensuelle: a.activite === 'retraite' ? a.montant_net : 0,
       ca_micro_mensuel: a.activite === 'independant' ? a.montant_net : 0,
       activite_micro: a.activite === 'independant' ? (a.activite_micro ?? 'services') : undefined,
