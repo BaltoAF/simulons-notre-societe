@@ -118,7 +118,10 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   « trois étapes » dans la visite. Reste :
   - Fait : demi-part des personnes seules qui ont élevé seules un enfant 5 ans (case L, OpenFisca caseL ; tests/test_case_l.py).
     Les veuves sans personne à charge n'ont pas de demi-part propre (sauf cas particuliers) : pas de case « veuve » ajoutée.
-  - Calculs d'idées parfois longs (20 à 100 s mesurées) : précalculer les idées proposées ou montrer une progression.
+  - Calculs d'idées parfois longs (20 à 100 s mesurées) : cause trouvée le 31/10/2026. Avec SOCIETE_WORKERS=1, tous les
+    calculs passent par le même verrou du moteur (Engine._lock) : un calcul d'un seul foyer (2 à 5 s) attend la fin d'un
+    calcul de population (10 à 80 s). Remède : un processus à part pour les calculs de population (plus de mémoire) ;
+    **à soumettre au responsable** avec la mise à jour sans coupure (même arbitrage mémoire / attente).
   - Fait : « 2 % des ménages y gagnent » expliqué (revenus qui passent sous un seuil : taux de CSG, aides) ; le mécanisme
     exact ménage par ménage reste à vérifier.
   - Taxe foncière : pistes selon l'âge et les revenus (exonération à 75 ans déjà dans « Avez-vous pensé à… ? »).
