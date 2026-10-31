@@ -34,7 +34,7 @@ export default function Methode() {
 
       <div className="card stack" id="sources" style={{ marginTop: 16 }}>
         <h2>2. La hiérarchie des sources</h2>
-        <p>Toutes les sources n'ont pas la même force probante. Par ordre de fiabilité intrinsèque : texte officiel (100 %) · statistique publique (95 %) · modèle de calcul public (90 %) · rapport institutionnel — Cour des comptes, DG Trésor, conseils d'analyse, OCDE (85 %) · étude académique relue par des pairs (80 %) · document de travail (60 %) · think tank (45 %) · presse (30 %).</p>
+        <p>Toutes les sources n'ont pas la même force probante. Par ordre de fiabilité intrinsèque : texte officiel (100 %) · statistique publique (95 %) · modèle de calcul public (90 %) · rapport institutionnel — Cour des comptes, DG Trésor, conseils d'analyse, OCDE (85 %) · étude académique relue par des pairs (80 %) · document de travail (60 %) · laboratoire d'idées, de toutes sensibilités (45 %) · presse (30 %).</p>
       </div>
 
       <div className="card stack" id="impacts" style={{ marginTop: 16 }}>

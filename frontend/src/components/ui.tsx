@@ -77,7 +77,7 @@ export function ConfidenceBadge({ c, align = 'left', compact = false }: { c: Con
 export const LIBELLE_TYPE_SOURCE: Record<string, string> = {
   texte_officiel: 'Texte officiel', statistique_publique: 'Statistique publique', modele_public: 'Modèle public',
   rapport_institutionnel: 'Rapport institutionnel', etude_academique: 'Étude académique',
-  document_de_travail: 'Document de travail', think_tank: 'Think tank', presse: 'Presse',
+  document_de_travail: 'Document de travail', think_tank: "Laboratoire d'idées", presse: 'Presse',
 }
 
 export function SourceType({ type }: { type?: string }) {

@@ -30,7 +30,7 @@ TYPES_SOURCE = {
     "rapport_institutionnel": "Rapport institutionnel",
     "etude_academique": "Étude académique",
     "document_de_travail": "Document de travail",
-    "think_tank": "Think tank",
+    "think_tank": "Laboratoire d'idées",
     "presse": "Presse",
 }
 # Fiabilité intrinsèque d'une source selon son type (0-1), utilisée par l'indice de confiance.
