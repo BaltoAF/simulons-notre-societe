@@ -49,18 +49,33 @@ function useChiffres(q: Question | undefined) {
   return { valeurs, stats: stats?.metriques ?? [], regles, loading, error }
 }
 
-/** Remplace {cle} par le chiffre mis en forme (en gras) ; le mot « PIB » est expliqué au survol. */
+// mots techniques expliqués au toucher (la première fois seulement dans un paragraphe)
+const TERMES: [RegExp, string][] = [
+  [/PIB/, 'pib'], [/au sens du BIT/, 'chomage_bit'], [/\bactifs\b/, 'actifs'], [/équivalent CO₂/, 'equivalent_co2'],
+  [/minima sociaux/, 'minima_sociaux'], [/budget carbone/, 'budget_carbone'],
+]
+
+function avecTermes(txt: string, deja: Set<string>): ReactNode[] {
+  // le premier terme pas encore expliqué qui apparaît le plus tôt dans le texte
+  const trouve = TERMES.filter(([, id]) => !deja.has(id)).map(([re, id]) => ({ m: re.exec(txt), id }))
+    .filter((x) => x.m).sort((a, b) => a.m!.index - b.m!.index)[0]
+  if (!trouve) return [txt]
+  deja.add(trouve.id)
+  const { index } = trouve.m!, mot = trouve.m![0]
+  return [txt.slice(0, index), <Terme key={trouve.id} id={trouve.id}>{mot}</Terme>, ...avecTermes(txt.slice(index + mot.length), deja)]
+}
+
+/** Remplace {cle} par le chiffre mis en forme (en gras) ; les mots techniques sont expliqués au survol. */
 function avecChiffres(texte: string, q: Question, v: Record<string, number>, gras = true): ReactNode {
   const morceaux = texte.split(/(\{[a-z0-9_]+\})/)
-  let pibExplique = false
+  const deja = new Set<string>()
   return morceaux.map((m, i) => {
     const cle = m.match(/^\{([a-z0-9_]+)\}$/)?.[1]
     const c = cle ? q.chiffres.find((x) => x.cle === cle) : undefined
     // chiffre pas encore chargé : un repère discret plutôt qu'une phrase à trous
     if (cle && (!c || v[cle] == null)) return <span key={i} className="attente-chiffre" role="img" aria-label="chiffre en cours de chargement" />
     const txt = cle && c ? formater(v[cle], c.format, c.absolu) : m
-    const parts = txt.split(/(PIB)/)
-    const rendu = parts.map((p, k) => (p === 'PIB' && !pibExplique ? ((pibExplique = true), <Terme key={k} id="pib">PIB</Terme>) : p))
+    const rendu = avecTermes(txt, deja)
     return cle && gras ? <strong key={i}>{rendu}</strong> : <span key={i}>{rendu}</span>
   })
 }

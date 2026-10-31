@@ -59,6 +59,19 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
     Défense à sourcer.
   - Immigration, sans source vérifiée pour l'instant : le solde équivalent des personnes nées en France (OCDE), les enfants
     d'immigrés, l'immigration irrégulière, les motifs d'entrée.
+- **Test Nadia** (47 ans, aide à domicile, téléphone seul, méfiante envers les sites « qui veulent vous faire penser
+  quelque chose » ; notes 3 / neutralité 3,5 / téléphone 4 sur 5, 31/10/2026). Corrigé : « Votre réforme est
+  équilibrée » lu comme une approbation (→ « Les comptes tiennent ») ; « rien ne change » au-dessus d'un départ à la
+  retraite repoussé ; case Social muette sur ce que vivent les personnes concernées ; « ≈ » et parts de PIB avant les
+  euros ; « voir l'effet à long terme » introuvable ; « En bref » immigration en euros et « Ce qui fait débat » ;
+  « En bref » de la dette qui répondait au débat ; actions d'un seul camp ; exemples de la visite et de l'accueil d'un
+  seul bord (nouvel exemple « Travailler plus longtemps, moins d'impôts ») ; « le site tranche » contredit par « le site ne
+  tranche pas » ; espaces insécables (lib/typo.ts) ; zones à toucher. Reste :
+  - « Votre réforme » quand on teste une idée toute faite ; l'année de naissance des foyers types n'est pas affichée.
+  - Mots à expliquer : faits dans les grandes questions (« actifs », « au sens du BIT », « équivalent CO₂ », « minima sociaux »,
+    « budget carbone », expliqués au toucher) ; restent « tranche », « revalorisation » dans les idées à tester,
+    « Légifrance, JO, BOFiP » ; « 8,2 tonnes » sans repère ; le bouton « A+ ».
+  - Pendant le calcul, le bouton flottant « Voir les effets » cache le choix du foyer type.
 - **Si la fréquentation augmente** (à soumettre au responsable) : la mémoire est déjà protégée, car un seul calcul de
   population tourne à la fois (`SOCIETE_WORKERS=1`) et les résultats identiques sont gardés en cache. Seule l'attente
   s'allonge : passer alors au VPS-2 avec `SOCIETE_WORKERS=3`, ou dire au visiteur combien de calculs passent avant le sien.

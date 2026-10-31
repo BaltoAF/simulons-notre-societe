@@ -44,5 +44,10 @@ export const GLOSSAIRE: Record<string, Entree> = {
   cotisations: { terme: 'Cotisations sociales', definition: "Des sommes prélevées sur les salaires pour payer la retraite, l'assurance chômage, la santé et la famille. Une part est retenue sur la fiche de paie (part « salariale ») ; l'employeur en paie une autre en plus du salaire (part « patronale »)." },
   reversion: { terme: 'Pension de réversion', definition: "Une partie de la retraite d'une personne décédée, versée à son veuf ou à sa veuve (s'ils étaient mariés)." },
   bmaf: { terme: 'BMAF', definition: "La « base mensuelle de calcul des allocations familiales » : un montant de référence, revalorisé chaque année. La plupart des aides de la CAF en sont un pourcentage." },
+  // test Nadia : mots des grandes questions qu'un non-spécialiste ne connaît pas
+  actifs: { terme: 'Actifs', definition: "Les personnes qui ont un emploi ou qui en cherchent un. Les étudiants, les retraités ou les personnes au foyer qui ne cherchent pas d'emploi ne sont pas comptés parmi les actifs." },
+  chomage_bit: { terme: 'Chômage au sens du BIT', definition: "La définition internationale du chômage (Bureau international du travail), utilisée par l'Insee : ne pas avoir d'emploi, en avoir cherché un activement dans le mois, et pouvoir commencer dans les deux semaines." },
+  equivalent_co2: { terme: 'Équivalent CO₂', definition: "Une façon d'additionner tous les gaz à effet de serre (gaz carbonique, méthane…) : chacun est compté comme la quantité de CO₂ qui réchaufferait autant le climat." },
+  minima_sociaux: { terme: 'Minima sociaux', definition: "Des aides qui assurent un revenu minimum aux personnes qui ont très peu de ressources : le RSA, le minimum vieillesse, l'allocation aux adultes handicapés…" },
   systeme: { terme: 'Le Système', definition: 'Les programmes et agents automatiques qui tiennent à jour la loi actuelle : ils lisent les textes officiels et les statistiques, vérifient tout et publient chaque changement.' },
 }
