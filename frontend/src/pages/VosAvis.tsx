@@ -1,4 +1,5 @@
 // « Ce que vos avis ont changé » : les décisions de l'auto-amélioration quotidienne, avec leur raison, et la charte qui les guide.
+import { Link } from 'react-router-dom'
 import { MessageSquarePlus, Scale, ShieldCheck, Sparkles } from 'lucide-react'
 import { dateCourte } from '../lib/format'
 import { useFetch } from '../lib/state'
@@ -27,8 +28,8 @@ export default function VosAvis() {
   return (
     <div className="container page" style={{ maxWidth: 900 }}>
       <h1>Ce que vos avis ont changé</h1>
-      <p className="lead ink2">Chaque jour, une intelligence artificielle lit les avis laissés sur le site et l'améliore, en suivant une charte publique.
-        Voici chaque décision, avec sa raison.</p>
+      <p className="lead ink2">Chaque jour, les avis laissés sur le site sont lus et servent à l'améliorer, en suivant une charte publique
+        (<Link to="/qui-fait-ce-site">comment c'est fait</Link>). Voici chaque décision, avec sa raison.</p>
       <div className="row" style={{ marginBottom: 18 }}>
         <button className="btn primary" onClick={ouvrirAvis}><MessageSquarePlus size={16} /> Donner mon avis</button>
         {data && recus > 0 && <span className="small muted">{recus} avis reçus · {appliques} ont déjà amélioré le site</span>}

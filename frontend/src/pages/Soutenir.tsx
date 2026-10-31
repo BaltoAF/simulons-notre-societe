@@ -17,7 +17,7 @@ export default function Soutenir() {
       <div className="grid cols-3" style={{ marginBottom: 18 }}>
         <div className="card">
           <strong><Server size={16} /> À quoi sert un don</strong>
-          <p className="small ink2">Payer le serveur et le nom de domaine, l'intelligence artificielle qui améliore le site chaque jour à partir de vos avis,
+          <p className="small ink2">Payer le serveur et le nom de domaine, les outils qui améliorent le site chaque jour à partir de vos avis,
             et le temps passé à vérifier les sources.</p>
         </div>
         <div className="card">

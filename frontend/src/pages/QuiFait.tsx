@@ -1,7 +1,8 @@
 // « Qui fait ce site ? » : qui est derrière, d'où viennent les chiffres, ce que fait l'IA et ce qu'elle ne peut pas faire.
 // Test Gérard (lecteur méfiant) : « on ne sait pas qui est derrière », et le mot « IA » n'apparaissait nulle part.
+// L'IA est dite ici, mais pas en titre ni en vitrine ailleurs : le sujet clive (choix du responsable).
 import { Link } from 'react-router-dom'
-import { Bot, Calculator, Coins, FileText, Scale, ShieldCheck } from 'lucide-react'
+import { Calculator, Coins, FileText, RefreshCw, Scale, ShieldCheck } from 'lucide-react'
 
 const DEPOT = 'https://github.com/BaltoAF/simulons-notre-societe'
 
@@ -21,13 +22,14 @@ export default function QuiFait() {
             l'arrangent pas : <Link to="/fiabilite">Nos chiffres sont-ils justes ?</Link></p>
         </div>
         <div className="card">
-          <h2 style={{ fontSize: '1.2rem', marginTop: 0 }}><Bot size={20} /> Une intelligence artificielle améliore le site chaque jour</h2>
-          <p style={{ marginTop: 0 }}>Chaque matin, une IA (Claude, de l'entreprise Anthropic) lit les avis laissés par les visiteurs, corrige les erreurs
-            et améliore le site. Elle suit une <a href={`${DEPOT}/blob/main/system/auto_amelioration/CHARTE.md`} target="_blank" rel="noreferrer">charte
-            publique</a> : le bien commun, des sources officielles et la neutralité passent avant toute demande, et elle écarte les demandes partisanes.</p>
-          <p style={{ marginBottom: 0 }}><strong>Ce qu'elle ne peut pas faire :</strong> changer seule une valeur de la loi actuelle, modifier sa propre
-            charte, toucher aux comptes ou aux avis, ni mettre en ligne quoi que ce soit sans que des tests automatiques soient passés. Chacune de ses
-            décisions est publiée : <Link to="/vos-avis">Ce que vos avis ont changé</Link>.</p>
+          <h2 style={{ fontSize: '1.2rem', marginTop: 0 }}><RefreshCw size={20} /> Le site s'améliore chaque jour grâce à vos avis</h2>
+          <p style={{ marginTop: 0 }}>Chaque matin, les avis laissés par les visiteurs sont lus, les erreurs corrigées et le site amélioré. Ce travail est
+            fait avec l'aide d'un outil d'intelligence artificielle (Claude, de l'entreprise Anthropic), qui suit une{' '}
+            <a href={`${DEPOT}/blob/main/system/auto_amelioration/CHARTE.md`} target="_blank" rel="noreferrer">charte publique</a> : le bien commun, des
+            sources officielles et la neutralité passent avant toute demande, et les demandes partisanes sont écartées.</p>
+          <p style={{ marginBottom: 0 }}><strong>Ce que cet outil ne peut pas faire :</strong> changer seul une valeur de la loi actuelle, modifier sa propre
+            charte, toucher aux comptes ou aux avis, ni mettre en ligne quoi que ce soit sans que des tests automatiques soient passés. Chaque
+            décision est publiée : <Link to="/vos-avis">Ce que vos avis ont changé</Link>.</p>
         </div>
         <div className="card">
           <h2 style={{ fontSize: '1.2rem', marginTop: 0 }}><FileText size={20} /> Tout est ouvert</h2>
@@ -43,7 +45,7 @@ export default function QuiFait() {
           </div>
           <div className="card">
             <h2 style={{ fontSize: '1.1rem', marginTop: 0 }}><Coins size={18} /> Qui le finance</h2>
-            <p className="small" style={{ margin: 0 }}>Le serveur, le nom de domaine et l'IA ont un coût. Le site ne vit d'aucune subvention ni
+            <p className="small" style={{ margin: 0 }}>Le serveur, le nom de domaine et les outils ont un coût. Le site ne vit d'aucune subvention ni
               d'aucune entreprise : il compte sur des dons volontaires, qui n'achètent aucune influence (<Link to="/soutenir">Soutenir le projet</Link>).</p>
           </div>
         </div>
