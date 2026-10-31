@@ -155,8 +155,9 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   cotisations, et pour une part par des impôts ». Ajouté : comparaisons Eurostat des impôts et cotisations (France
   46,0 % en 2025, UE 40,7 %) et des dépenses publiques (57,3 %, 2e derrière la Finlande). Fait ensuite : thème de
   chaque règle générée (la prime d'activité affichait « RSA ») ; sources triées (textes de la valeur en vigueur
-  d'abord, OpenFisca en dernier) et repliées au-delà de quatre ; historique sans « OpenFisca-France 176.1.10 ». Reste :
-  « Défense (66 milliards €) » : vérifier si le périmètre compte les pensions.
+  d'abord, OpenFisca en dernier) et repliées au-delà de quatre ; historique sans « OpenFisca-France 176.1.10 ». Vérifié :
+  « Défense (66 milliards €) » = crédits de paiement de la mission votés en LFI 2026 (66,475 Md€, dépenses de personnel
+  comprises) ; la comparaison avec les intérêts tient sur ce périmètre.
 - **Test Mehdi** (38 ans, père seul, enfants de 4 et 9 ans, 1 900 € nets, assistante maternelle 60 h pour 330 €, envisage
   les 80 % ; notes clarté 4 / confiance 3 / téléphone 4 sur 5, 31/10/2026). Ses deux questions trouvées sans effort.
   Corrigé : un calcul de l'ancien foyer, lancé à l'arrivée puis abandonné pour « Modifier ma situation », s'affichait sous
