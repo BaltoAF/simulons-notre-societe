@@ -16,6 +16,7 @@ export type Chiffre = {
   calcul?: (v: Record<string, number>) => number | null
   absolu?: boolean // afficher sans signe (un déficit de −152 Md€ se dit « 152 milliards € »)
   cache?: boolean // sert dans le texte mais n'est pas affiché en grand
+  premiere?: boolean // le premier point de la série (un repère dans le temps) plutôt que le dernier
 }
 
 export type Action = { libelle: string; lien?: string; preset?: string }
@@ -242,11 +243,13 @@ export const QUESTIONS: Question[] = [
       { cle: 'budget', libelle: 'Plafond légal 2024-2028 (par an)', format: 'mt', regle: 'environnement_energie.budget_carbone.periode_2024_2028' },
       { cle: 'par_hab', libelle: 'Empreinte par habitant et par an', format: 't_hab', metrique: 'environnement_energie.empreinte_carbone_par_habitant' },
       { cle: 'empreinte', libelle: 'Empreinte carbone totale', format: 'mt', metrique: 'ecologie.empreinte_carbone_totale', cache: true },
+      // série du SDES depuis 1990 (valeur 1990 rétropolée) : le texte dit « environ » et « en 1990 »
+      { cle: 'par_hab_1990', libelle: 'Empreinte par habitant en 1990', format: 't_hab', metrique: 'ecologie.empreinte_carbone_par_habitant', premiere: true, cache: true },
       { cle: 'transports', libelle: 'Émissions des transports', format: 'mt', metrique: 'ecologie.emissions_par_secteur.transports', cache: true },
     ],
     texte: [
       "En un an, la France a émis {emissions} sur son territoire (tous les gaz à effet de serre, comptés en équivalent CO₂). Les transports en sont la première source ({transports}), devant l'agriculture, l'industrie et les bâtiments.",
-      "Si l'on compte aussi ce que nous importons (vêtements, téléphones, voitures…), notre « empreinte carbone » atteint {empreinte}, soit {par_hab} par habitant.",
+      "Si l'on compte aussi ce que nous importons (vêtements, téléphones, voitures…), notre « empreinte carbone » atteint {empreinte}, soit {par_hab} par habitant, contre environ {par_hab_1990} en 1990.",
       "La loi fixe un plafond, le « budget carbone » : {budget} par an en moyenne sur 2024-2028. À comparer avec les {emissions} émises la dernière année. Sur ce site, une réforme qui ajoute des émissions doit être compensée pour rester sous ce plafond.",
     ],
     debat: {

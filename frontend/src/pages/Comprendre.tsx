@@ -15,7 +15,7 @@ import { ProchaineEtape } from '../components/Parcours'
 import { ProposerSoutien } from '../components/Soutien'
 import { noterActionUtile } from '../lib/soutien'
 
-type Stat = { id: string; titre: string; unite: string; derniere: { date: string; valeur: number } | null; source: { id: string; titre?: string; editeur?: string; url?: string } | null }
+type Stat = { id: string; titre: string; unite: string; derniere: { date: string; valeur: number } | null; premiere?: { date: string; valeur: number } | null; source: { id: string; titre?: string; editeur?: string; url?: string } | null }
 
 const ICONES: Record<string, typeof Info> = { Landmark, Coins, TrendingDown, Hourglass, Users, Leaf, Briefcase, GraduationCap, HeartPulse, Globe }
 
@@ -40,7 +40,8 @@ function useChiffres(q: Question | undefined) {
     for (const c of q.chiffres) {
       if (c.metrique) {
         const s = stats?.metriques.find((x) => x.id === c.metrique)
-        if (s?.derniere) v[c.cle] = Number(s.derniere.valeur)
+        const point = c.premiere ? s?.premiere : s?.derniere
+        if (point) v[c.cle] = Number(point.valeur)
       } else if (c.regle && typeof regles[c.regle]?.valeur === 'number') v[c.cle] = regles[c.regle].valeur as number
     }
     for (const c of q.chiffres) if (c.calcul) { const x = c.calcul(v); if (x != null) v[c.cle] = x }
