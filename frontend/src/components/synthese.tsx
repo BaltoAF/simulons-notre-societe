@@ -158,9 +158,17 @@ export function EnBref({ r, contexte = 'reforme', overrides }: { r: Rapport; con
                   ))}
                 </div>
               )}
+              {/* quelques gagnants à une mesure qui fait surtout des perdants (test Monique, gel des pensions : « 2 % y gagnent ») */}
+              {p.pilier === 'social' && (() => {
+                const g = p.indicateurs.find((i) => i.id === 'gagnants')
+                return !!g && g.valeur >= 0.5 && g.valeur < 5 && (g.perdants ?? 0) > 10
+              })() && (
+                <div className="small muted" style={{ marginTop: 6 }}>Pourquoi quelques ménages y gagnent-ils ? En baissant un peu, leurs revenus passent sous un
+                  seuil (taux de CSG plus bas, aide qui s'ouvre ou augmente) : ce qu'ils y gagnent dépasse ce qu'ils perdent.</div>
+              )}
               {p.pilier === 'social' && paradoxePauvrete(p) && (
                 <div className="small muted" style={{ marginTop: 6 }}>Pourquoi la pauvreté recule-t-elle si presque personne n'y gagne ? Elle se mesure par rapport au revenu du milieu
-                  de la population : quand une partie des ménages perd un peu, ce repère baisse, et moins de personnes se retrouvent en dessous, sans que personne ne gagne.</div>
+                  de la population : quand une partie des ménages perd un peu, ce repère baisse, et moins de personnes se retrouvent en dessous, sans que les plus modestes y gagnent.</div>
               )}
               {p.pilier === 'social' && gainPourLesPlusAises(p) && (
                 <div className="small muted" style={{ marginTop: 6 }}>Pourquoi « plutôt négatif » si personne n'y perd ? Le gain va surtout aux ménages

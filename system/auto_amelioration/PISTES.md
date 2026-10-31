@@ -119,7 +119,8 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   - Fait : demi-part des personnes seules qui ont élevé seules un enfant 5 ans (case L, OpenFisca caseL ; tests/test_case_l.py).
     Les veuves sans personne à charge n'ont pas de demi-part propre (sauf cas particuliers) : pas de case « veuve » ajoutée.
   - Calculs d'idées parfois longs (20 à 100 s mesurées) : précalculer les idées proposées ou montrer une progression.
-  - « 2 % des ménages y gagnent » pour un gel (effet probable des seuils de CSG : à vérifier et expliquer).
+  - Fait : « 2 % des ménages y gagnent » expliqué (revenus qui passent sous un seuil : taux de CSG, aides) ; le mécanisme
+    exact ménage par ménage reste à vérifier.
   - Taxe foncière : pistes selon l'âge et les revenus (exonération à 75 ans déjà dans « Avez-vous pensé à… ? »).
   - Taille des petits textes (jauge « Où vous situez-vous », aides des champs) même avec « A+ ».
 - **Si la fréquentation augmente** (à soumettre au responsable) : la mémoire est déjà protégée, car un seul calcul de
