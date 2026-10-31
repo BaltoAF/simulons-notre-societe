@@ -143,7 +143,7 @@ export const QUESTIONS: Question[] = [
       { cle: 'dette_hab', libelle: 'Dette par habitant', format: 'eur_rond', calcul: (v) => (v.dette && v.population ? (v.dette * 1e9) / v.population : null), cache: true },
       { cle: 'defense', libelle: 'Budget de la Défense', format: 'md', regle: 'budget.etat.mission.defense', cache: true },
     ],
-    enBref: "Pas de faillite en vue : la France emprunte sans difficulté et ne rembourse jamais sa dette d'un coup. Le vrai problème, ce sont les intérêts : {interets} par an, presque autant que tout le budget de la Défense ({defense}), et ils augmentent quand la dette et les taux montent.",
+    enBref: "Aujourd'hui, la France trouve facilement des prêteurs, et une dette ne se rembourse jamais d'un coup. Mais les intérêts coûtent déjà {interets} par an, presque autant que tout le budget de la Défense ({defense}), et ils augmentent quand la dette et les taux montent.",
     texte: [
       "Chaque année, les administrations publiques dépensent plus qu'elles ne gagnent : le dernier déficit a atteint {deficit}, soit {deficit_pct}. Ce qui manque est emprunté.",
       "Les emprunts accumulés forment la dette : {dette}, soit {dette_pct}, ou environ {dette_hab} par habitant.",
@@ -154,13 +154,13 @@ export const QUESTIONS: Question[] = [
     debat: {
       question: 'Faut-il réduire vite le déficit ?',
       positions: [
-        { titre: 'Oui, sans attendre', texte: "Les intérêts prennent la place d'autres dépenses, et plus on attend, plus l'effort sera lourd, pour nous et pour les générations suivantes. Un pays très endetté dépend de la confiance de ceux qui lui prêtent." },
-        { titre: 'Non, progressivement', texte: "Couper vite dans les dépenses ou augmenter fortement les impôts peut ralentir l'économie et faire baisser les recettes. Mieux vaut réduire le déficit peu à peu et investir dans l'avenir : école, recherche, climat." },
+        { titre: 'Oui, réduire vite', texte: "Les intérêts prennent la place d'autres dépenses, et plus on attend, plus l'effort sera lourd, pour nous et pour les générations suivantes. Un pays très endetté dépend de la confiance de ceux qui lui prêtent." },
+        { titre: 'Non, réduire lentement', texte: "Couper vite dans les dépenses ou augmenter fortement les impôts peut ralentir l'économie et faire baisser les recettes. Mieux vaut réduire le déficit peu à peu et investir dans l'avenir : école, recherche, climat." },
       ],
     },
     actions: [
       { libelle: 'Le budget et le déficit', lien: '/budget' },
-      { libelle: 'Chercher des économies', lien: '/atelier?budget=1' },
+      { libelle: "Changer le budget de l'État", lien: '/atelier?budget=1' },
     ],
   },
   {
@@ -240,7 +240,7 @@ export const QUESTIONS: Question[] = [
     texte: [
       "En un an, la France a émis {emissions} sur son territoire (tous les gaz à effet de serre, comptés en équivalent CO₂). Les transports en sont la première source ({transports}), devant l'agriculture, l'industrie et les bâtiments.",
       "Si l'on compte aussi ce que nous importons (vêtements, téléphones, voitures…), notre « empreinte carbone » atteint {empreinte}, soit {par_hab} par habitant.",
-      "La loi fixe un plafond, le « budget carbone » : {budget} par an en moyenne sur 2024-2028. Sur ce site, une réforme qui ajoute des émissions doit être compensée pour rester sous ce plafond.",
+      "La loi fixe un plafond, le « budget carbone » : {budget} par an en moyenne sur 2024-2028. À comparer avec les {emissions} émises la dernière année. Sur ce site, une réforme qui ajoute des émissions doit être compensée pour rester sous ce plafond.",
     ],
     debat: {
       question: 'Faut-il aller plus vite pour réduire nos émissions ?',
@@ -252,6 +252,7 @@ export const QUESTIONS: Question[] = [
     actions: [
       { libelle: 'Les règles sur le climat et l\'énergie', lien: '/regles/d/environnement_energie' },
       { libelle: 'Tester une limite à 110 km/h', lien: '/atelier?regle=transports.vitesse_max.autoroute' },
+      { libelle: 'Tester une baisse de la taxe sur le gazole', lien: '/atelier?regle=environnement_energie.accise.gazole' },
     ],
   },
   {
@@ -287,6 +288,7 @@ export const QUESTIONS: Question[] = [
     actions: [
       { libelle: 'Vos aides et votre salaire net', lien: '/mes-droits' },
       { libelle: 'Tester une hausse du SMIC', lien: '/atelier?regle=travail.smic.horaire_brut' },
+      { libelle: "Tester une hausse de la prime d'activité", lien: '/atelier?regle=prestations.prime_activite.montant_forfaitaire' },
     ],
   },
   {
@@ -350,7 +352,8 @@ export const QUESTIONS: Question[] = [
     icone: 'Globe',
     accueil: false,
     accroche: "{nombre} immigrées vivent en France, soit {part} de la population. Voici ce que disent les chiffres publics sur leur emploi et sur les finances publiques, et ce que ces chiffres ne permettent pas de dire.",
-    enBref: "Selon l'OCDE, le solde entre ce que les immigrés paient et ce qu'ils reçoivent allait, en moyenne de 2006 à 2018, de {ocde_moins} à {ocde_plus} par an : négatif si on leur compte une part des dépenses communes comme la défense, positif sinon. Côté emploi, {emploi_imm} des immigrés de 15 à 64 ans ont un emploi, contre {emploi_autres} des personnes qui ne sont ni immigrées ni enfants d'immigrés.",
+    // test Nadia : les euros d'abord ; les parts du PIB restent dans « En clair »
+    enBref: "Selon la façon de compter, les immigrés rapportent un peu plus aux finances publiques qu'ils ne leur coûtent, ou l'inverse : de l'ordre de {ocde_plus_md} en plus, ou de {ocde_moins_md} en moins, chaque année (OCDE). Tout dépend si on leur compte une part des dépenses de tous, comme la défense. Côté emploi, {emploi_imm} des immigrés de 15 à 64 ans ont un emploi, contre {emploi_autres} des personnes qui ne sont ni immigrées ni enfants d'immigrés.",
     chiffres: [
       { cle: 'nombre', libelle: 'Immigrés vivant en France', format: 'personnes', metrique: 'demographie.immigres.nombre' },
       { cle: 'part', libelle: 'Part de la population', format: 'pct', metrique: 'demographie.immigres.part_population' },
@@ -382,7 +385,14 @@ export const QUESTIONS: Question[] = [
       "Une étude plus ancienne du Cepii (1979-2011) trouvait un solde « globalement négatif mais relativement faible ». La Cour des comptes avance plusieurs explications : une insertion incomplète sur le marché du travail, un recours plus fréquent à certaines prestations, et des choix de méthode. Les moyennes cachent aussi de grands écarts : selon France Stratégie, si les immigrés paient en moyenne moins d'impôts et de cotisations que les autres habitants, c'est surtout le fait des moins diplômés ; selon l'OCDE, les plus qualifiés en paient même davantage.",
       "Certaines dépenses visent directement l'immigration. Pour 2026, la loi de finances prévoit {mission} pour la mission « Immigration, asile et intégration » du budget de l'État (asile, retours, intégration) ; d'autres dépenses liées figurent ailleurs dans le budget. La commission des finances du Sénat estime le coût de l'asile en 2025 à environ {asile}, toutes missions budgétaires confondues : c'est un minimum, car les soins, l'aide sociale, la scolarisation des enfants et la police des retours n'y sont pas comptés. Les dépenses d'aide médicale de l'État (AME), qui prend en charge les soins des étrangers en situation irrégulière aux ressources modestes, ont atteint environ {ame} en 2024, pour plus de {ame_benef} bénéficiaires. Ces montants se recoupent en partie : ils ne s'additionnent pas.",
     ],
-    aSavoir: "Le site s'en tient aux chiffres publics, avec leurs limites. Les chiffres de population de 2025 sont provisoires, et l'Insee a changé sa méthode en 2024 : on ne peut pas les comparer directement aux années d'avant. Les études sur les finances publiques sont anciennes (données jusqu'en 2018) et regardent une année à la fois : elles ne suivent pas toute une vie (enfance, travail, retraite) ni les effets sur l'économie. Faute de source vérifiée, la page ne donne pas le solde équivalent des personnes nées en France. Or, sur ces années, les comptes publics de la France étaient en déficit chaque année, tous habitants confondus.",
+    aSavoir: "Le site s'en tient aux chiffres publics, avec leurs limites. Les chiffres de population de 2025 sont provisoires, et l'Insee a changé sa méthode en 2024 : on ne peut pas les comparer directement aux années d'avant. Les études sur les finances publiques sont anciennes (données jusqu'en 2018) et regardent une année à la fois : elles ne suivent pas toute une vie (enfance, travail, retraite) ni les effets sur l'économie. Faute de source vérifiée, la page ne donne pas le solde équivalent des personnes nées en France. Sur ces années, les comptes publics de la France étaient en déficit chaque année, pour l'ensemble des habitants.",
+    debat: {
+      question: "Faut-il moins d'immigration ?",
+      positions: [
+        { titre: "Oui, moins d'immigration", texte: "Accueillir moins et faire respecter les règles permettrait de mieux intégrer ceux qui arrivent, de réduire certains coûts comme celui de l'asile, et de répondre à l'inquiétude d'une partie des Français." },
+        { titre: 'Non, pas moins', texte: "Certains métiers manquent de bras, comme le soin, le bâtiment ou la restauration, et la population vieillit. Mieux vaut améliorer l'accueil et l'accès à l'emploi, notamment des femmes immigrées." },
+      ],
+    },
     actions: [
       { libelle: 'Les règles du séjour et de la nationalité', lien: '/regles/d/nationalite_immigration' },
       { libelle: 'La mission « Immigration, asile et intégration »', lien: '/regles/r/budget.etat.mission.immigration_asile_integration' },

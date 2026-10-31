@@ -105,7 +105,7 @@ export default function Accueil() {
           </div>
           <div className="card teinte-8">
             <div className="row"><span className="step-num">3</span><h3 style={{ margin: 0 }}>Les effets, sans tricher</h3></div>
-            <p className="ink2" style={{ marginTop: 10 }}>Pour votre foyer et pour le pays : argent, inégalités, climat, bien-être. Toute dépense en plus doit être <strong>financée ailleurs</strong>, et toute hausse des émissions compensée. Quand les études se contredisent, le site tranche et dit avec quelle confiance.</p>
+            <p className="ink2" style={{ marginTop: 10 }}>Pour votre foyer et pour le pays : argent, inégalités, climat, bien-être. Toute dépense en plus doit être <strong>financée ailleurs</strong>, et toute hausse des émissions compensée. Quand les études se contredisent, le site fait la synthèse et dit avec quelle confiance.</p>
             <Link to="/preuves">Voir les études <ArrowRight size={14} /></Link>
           </div>
         </div>

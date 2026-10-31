@@ -255,7 +255,7 @@ function Detail({ q }: { q: Question }) {
             ))}
           </div>
           <p className="small muted" style={{ marginBottom: 0 }}>Le site ne tranche pas : la réponse dépend aussi de ce qui compte le plus pour chacun.
-            Pour voir ce que changerait une idée, chiffres à l'appui, <Link to="/atelier">testez-la dans l'atelier</Link>.</p>
+            Pour voir ce que changerait une idée, chiffres à l'appui, testez-la dans <Link to="/atelier">« Changer les règles »</Link>.</p>
         </div>
       )}
 
@@ -273,7 +273,7 @@ function Detail({ q }: { q: Question }) {
       <div style={{ marginTop: 16 }}><ProchaineEtape apres="question" /></div>
       <ProposerSoutien />
 
-      <div className="row between" style={{ marginTop: 20 }}>
+      <div className="row between nav-questions" style={{ marginTop: 20, rowGap: 18 }}>
         <Link to="/comprendre">← Toutes les questions</Link>
         <Link to={`/comprendre/${suivante.id}`}>Question suivante : {suivante.titre} →</Link>
       </div>

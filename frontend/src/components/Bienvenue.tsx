@@ -22,7 +22,7 @@ const ECRANS = [
   {
     Icone: GitFork,
     titre: '2. Imaginez un changement',
-    texte: "« Et si le SMIC augmentait ? Et si on partait à la retraite à 62 ans ? » Changez une règle, et le site calcule ce que cela changerait "
+    texte: "« Et si le SMIC augmentait ? Et si on baissait les impôts ? » Changez une règle, et le site calcule ce que cela changerait "
       + 'pour vous et pour le pays : argent public, pauvreté, climat, bien-être.',
   },
   {

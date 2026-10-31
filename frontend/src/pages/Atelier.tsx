@@ -275,7 +275,7 @@ export default function Atelier() {
                     && <span className={`badge ${v > r.valeur ? 'accent' : 'primary'}`}>{ecartLisible(r.valeur, v, r.unite)}</span>}
                   ouvert={ouvert === id || !modifie} repliable={modifie} onBasculer={() => setOuvert(ouvert === id ? null : id)}>
                   {id === 'travail.smic.horaire_brut' && typeof v === 'number' && (
-                    <div className="small muted">Soit environ {euros(v * 151.67, 0)} brut, ≈ {euros(v * 151.67 * 0.79, 0)} net par mois à temps plein.</div>
+                    <div className="small muted">Soit environ {euros(v * 151.67, 0)} brut, environ {euros(v * 151.67 * 0.79, 0)} net par mois à temps plein.</div>
                   )}
                   {annuel && <div className="small muted">Montant annuel : {valeur(v, r.unite, r.type)} par an, soit {euros(Number(v) / 12, 0)} par mois.</div>}
                   {/* un pourcentage de la BMAF ne parle à personne : son équivalent en euros par mois */}
@@ -333,8 +333,9 @@ export default function Atelier() {
           )}
           {aJour && !loading && changes.length > 0 && desequilibres.length === 0 && aSurveiller.length === 0 && (
             <div className="notice ok" style={{ marginBottom: 12 }}><CheckCircle2 size={18} style={{ flexShrink: 0 }} />
-              <div className="grow"><strong>Votre réforme est équilibrée.</strong> Vous pouvez l'enregistrer pour la partager.</div>
-              {!user ? <Link className="btn primary small" to="/connexion?retour=/atelier">Se connecter pour enregistrer</Link>
+              {/* « équilibrée » se lisait « juste, raisonnable » (test Nadia) : dire seulement que les comptes tiennent */}
+              <div className="grow"><strong>Les comptes tiennent :</strong> pas de dépense sans financement, ni d'émissions en trop. Si vous le souhaitez, vous pouvez l'enregistrer pour la partager.</div>
+              {!user ? <Link className="btn small" to="/connexion?retour=/atelier">Se connecter pour enregistrer</Link>
                 : proprietaire ? <div className="row"><button className="btn primary small" onClick={() => setSaving(true)}><GitBranch size={15} /> Mettre à jour « {base!.societe.nom} »</button>
                   <button className="btn small" onClick={() => setSaving(true)}><GitFork size={15} /> Nouvelle proposition</button></div>
                 : <button className="btn primary small" onClick={() => setSaving(true)}><GitFork size={15} /> Enregistrer ma proposition</button>}

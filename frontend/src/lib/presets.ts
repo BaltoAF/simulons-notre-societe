@@ -26,14 +26,14 @@ export const PRESETS: Preset[] = [
   {
     id: 'retraite-65',
     titre: 'Retraite à 65 ans',
-    description: "L'âge légal de départ passe à 65 ans pour les personnes nées à partir de 1966 (60 ans ou moins aujourd'hui). Une piste citée pour équilibrer les comptes des retraites.",
+    description: "L'âge légal de départ passe à 65 ans pour les personnes nées à partir de 1966 (60 ans ou moins aujourd'hui).",
     overrides: Object.fromEntries(GENERATIONS.slice(GENERATIONS.indexOf(AGE_LEGAL + '1966')).map((id) => [id, (v: number) => Math.max(v, 65)])),
     tags: ['retraites'],
   },
   {
     id: 'tranche-50',
     titre: 'Nouvelle tranche d\'impôt à 50 % au-delà de 250 000 €',
-    description: 'Une tranche d\'impôt de plus, réservée aux revenus les plus élevés (au-delà de 250 000 € par an pour une personne seule).',
+    description: "Un taux d'impôt de plus, seulement sur la part des revenus au-delà de 250 000 € par an (pour une personne seule).",
     overrides: {
       [IR_BAREME]: (b: { seuil: number; taux: number }[]) => [...b.filter((t) => t.seuil < 250000), { seuil: 250000, taux: 50 }],
     },
@@ -42,7 +42,7 @@ export const PRESETS: Preset[] = [
   {
     id: 'baisse-ir-premiere-tranche',
     titre: 'Baisser la première tranche d\'impôt de 11 % à 9 %',
-    description: 'Allègement ciblé sur les classes moyennes imposables.',
+    description: "Moins d'impôt sur le revenu pour les foyers qui en paient un peu.",
     overrides: {
       [IR_BAREME]: (b: { seuil: number; taux: number }[]) => b.map((t) => (t.taux === 11 ? { ...t, taux: 9 } : t)),
     },
@@ -51,7 +51,7 @@ export const PRESETS: Preset[] = [
   {
     id: 'rsa-800',
     titre: 'Porter le RSA à 800 € par mois',
-    description: 'Hausse du montant forfaitaire du RSA pour une personne seule.',
+    description: "Le RSA d'une personne seule passe à 800 € par mois.",
     overrides: { 'prestations.rsa.montant_forfaitaire': 800 },
     tags: ['pauvreté', 'minima sociaux'],
   },

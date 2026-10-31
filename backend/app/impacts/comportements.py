@@ -646,7 +646,7 @@ def mod_multiplicateur(ctx: Contexte, soldes: dict, inds: list[Indicateur] | Non
         if d_prod and (d_prod > 0) != (d_demande > 0):
             # les deux horizons vont en sens contraire : le dire, sinon le verdict d'ensemble paraît contredire ce chiffre
             pourquoi += (f" C'est un effet de court terme, qui s'estompe : à long terme, l'activité "
-                         f"{'baisse' if d_prod < 0 else 'progresse'} (voir l'effet à long terme).")
+                         f"{'baisse' if d_prod < 0 else 'progresse'} d'environ {md(abs(d_prod))} milliards € par an.")
         out.append(Indicateur("pib", "Effet sur l'activité à court terme (PIB, à 1-2 ans)", d_demande / pib * 100, "pourcent",
                               confiance=chaine(conf_m, *[c for c in (conf_s,) if c]), explication=pourquoi, calcul=calcul,
                               sources=[src_p] if src_p else [], preuves=["multiplicateur_budgetaire"],

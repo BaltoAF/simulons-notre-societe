@@ -22,7 +22,7 @@ const LIGNES: { titre: string; rendu: (r: Rapport | null) => string; foyer?: boo
       const e = r?.equilibres.find((x) => x.id === 'budget')
       if (!e) return '—'
       if (Math.abs(e.effet) < 0.05) return 'Pas d\'effet notable'
-      return e.effet > 0 ? `Rapporte ${milliards(e.effet)} par an` : `Coûte ${milliards(Math.abs(e.effet))} par an (≈ ${parMenageMois(e.effet)} par mois et par ménage)${e.statut === 'a_compenser' ? ', non financé' : ''}`
+      return e.effet > 0 ? `Rapporte ${milliards(e.effet)} par an` : `Coûte ${milliards(Math.abs(e.effet))} par an (environ ${parMenageMois(e.effet)} par mois et par ménage)${e.statut === 'a_compenser' ? ', non financé' : ''}`
     },
   },
   {

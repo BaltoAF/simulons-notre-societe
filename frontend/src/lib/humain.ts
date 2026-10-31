@@ -25,11 +25,11 @@ export function tonnes(mt: number, signe = false): string {
   return `${s}${nombre(Math.round(a * 1000) * 1000, 0)} tonnes de CO₂`
 }
 
-/** « ≈ l'empreinte carbone annuelle de 127 000 Français » */
+/** « autant que l'empreinte carbone annuelle de 127 000 Français » */
 export function equivalentCarbone(mt: number): string {
   const n = Math.abs(mt) * 1e6 / EMPREINTE_HAB_T
   const txt = n >= 1e6 ? `${nombre(n / 1e6, 1)} million${n >= 2e6 ? 's' : ''}` : nombre(Math.round(n / 1000) * 1000, 0)
-  return `≈ l'empreinte carbone annuelle de ${txt} Français`
+  return `autant que l'empreinte carbone annuelle de ${txt} Français`
 }
 
 export function parHabitant(md: number): string {
@@ -45,7 +45,7 @@ function qualif(v: number, faible: number, fort: number): string {
 export function phrase(id: string, v: number, unite: string): string {
   if (id === 'equilibre_budget') {
     if (Math.abs(v) < 0.05) return 'Pas d\'effet notable sur les finances publiques.'
-    return v < 0 ? `Coûte ${milliards(Math.abs(v))} par an aux finances publiques (≈ ${parMenageMois(v)} par mois et par ménage).`
+    return v < 0 ? `Coûte ${milliards(Math.abs(v))} par an aux finances publiques (environ ${parMenageMois(v)} par mois et par ménage).`
       : `Rapporte ${milliards(v)} par an aux finances publiques.`
   }
   if (id === 'equilibre_carbone_revenus') {
@@ -60,26 +60,26 @@ export function phrase(id: string, v: number, unite: string): string {
   if (id === 'impact_emissions_activite') return `Effet indirect via l'activité : ${tonnes(v, true)} par an (incertain).`
   if (id === 'pib' || id === 'pib_long_terme') {
     const quand = id === 'pib' ? 'À court terme (1 à 2 ans)' : 'À long terme'
-    return Math.abs(v) < 0.01 ? `${quand}, activité économique quasiment inchangée.` : `${quand}, l'activité économique ${v > 0 ? 'progresse' : 'recule'} ${qualif(v, 0.05, 0.3)} (${v > 0 ? '+' : '−'}${nombre(Math.abs(v), 2)} % de la richesse produite en France, soit ${milliards(Math.abs(v) / 100 * PIB_MD)} ${v > 0 ? 'de plus' : 'de moins'} par an).`
+    return Math.abs(v) < 0.01 ? `${quand}, activité économique quasiment inchangée.` : `${quand}, l'activité économique ${v > 0 ? 'progresse' : 'recule'} ${qualif(v, 0.05, 0.3)} : environ ${milliards(Math.abs(v) / 100 * PIB_MD)} ${v > 0 ? 'de plus' : 'de moins'} par an (${v > 0 ? '+' : '−'}${nombre(Math.abs(v), 2)} % de la richesse produite en France).`
   }
   if (id === 'emploi_incitations' || id === 'emploi_revenu_universel') {
     const n = nombre(Math.abs(Math.round(v / 1000) * 1000), 0)
-    return v < 0 ? `≈ ${n} personnes de moins au travail : reprendre un emploi rapporterait moins qu'aujourd'hui (estimation incertaine).`
-      : `≈ ${n} personnes de plus au travail : travailler rapporterait davantage (estimation incertaine).`
+    return v < 0 ? `Environ ${n} personnes de moins au travail : reprendre un emploi rapporterait moins qu'aujourd'hui (estimation incertaine).`
+      : `Environ ${n} personnes de plus au travail : travailler rapporterait davantage (estimation incertaine).`
   }
   if (id === 'emploi_seniors') {
     const n = nombre(Math.abs(Math.round(v / 1000) * 1000), 0)
-    return v < 0 ? `≈ ${n} seniors de moins au travail : ils partent plus tôt à la retraite (à terme).`
-      : `≈ ${n} seniors de plus au travail : ils partent plus tard à la retraite (à terme).`
+    return v < 0 ? `Environ ${n} seniors de moins au travail : ils partent plus tôt à la retraite (à terme).`
+      : `Environ ${n} seniors de plus au travail : ils partent plus tard à la retraite (à terme).`
   }
-  if (id.startsWith('emploi_')) return `≈ ${nombre(Math.abs(Math.round(v / 1000) * 1000), 0)} emplois ${v > 0 ? 'en plus' : 'en moins'}.`
+  if (id.startsWith('emploi_')) return `Environ ${nombre(Math.abs(Math.round(v / 1000) * 1000), 0)} emplois ${v > 0 ? 'en plus' : 'en moins'}.`
   if (id === 'gini') return Math.abs(v) < 0.02 ? 'Inégalités inchangées.' : `Les inégalités ${v < 0 ? 'baissent' : 'augmentent'} ${qualif(v, 0.1, 0.5)}.`
-  if (id === 'pauvrete') return Math.abs(v) < 0.02 ? 'Pauvreté inchangée.' : `La pauvreté ${v < 0 ? 'recule' : 'progresse'} ${qualif(v, 0.1, 0.5)} : ≈ ${nombre(Math.round(Math.abs(v) / 100 * HABITANTS / 1000) * 1000, 0)} personnes ${v < 0 ? 'de moins' : 'de plus'} sous le seuil de pauvreté.`
+  if (id === 'pauvrete') return Math.abs(v) < 0.02 ? 'Pauvreté inchangée.' : `La pauvreté ${v < 0 ? 'recule' : 'progresse'} ${qualif(v, 0.1, 0.5)} : environ ${nombre(Math.round(Math.abs(v) / 100 * HABITANTS / 1000) * 1000, 0)} personnes ${v < 0 ? 'de moins' : 'de plus'} sous le seuil de pauvreté.`
   if (id === 'gagnants') return `${nombre(v, 0)} % des ménages y gagnent.`
   if (id.startsWith('pouvoir_achat_tva_d1')) return `Pouvoir d'achat des plus modestes : ${v > 0 ? '+' : '−'}${nombre(Math.abs(v), 2)} %.`
   if (id === 'bien_etre_satisfaction') return Math.abs(v) < 0.002 ? 'Satisfaction dans la vie quasiment inchangée.' : `Satisfaction dans la vie : ${v > 0 ? 'légère hausse' : 'légère baisse'} en moyenne.`
   if (id === 'bien_etre_satisfaction_d1') return Math.abs(v) < 0.002 ? 'Rien ne change pour les plus modestes.' : `Pour les plus modestes : ${v > 0 ? 'mieux-être' : 'mal-être'} ${qualif(v, 0.02, 0.1)} ressenti.`
-  if (id.startsWith('securite_routiere_tues')) return `≈ ${nombre(Math.abs(Math.round(v)), 0)} morts ${v < 0 ? 'de moins' : 'de plus'} sur les routes par an.`
+  if (id.startsWith('securite_routiere_tues')) return `Environ ${nombre(Math.abs(Math.round(v)), 0)} morts ${v < 0 ? 'de moins' : 'de plus'} sur les routes par an.`
   if (id === 'consommation_tabac') return `Consommation de cigarettes : ${v > 0 ? '+' : '−'}${nombre(Math.abs(v), 1)} %.`
   if (id === 'temps_libre') return `${nombre(Math.abs(v), 0)} heures de temps libre ${v > 0 ? 'en plus' : 'en moins'} par an pour un salarié.`
   if (id === 'bien_etre_emploi') return `${nombre(Math.abs(Math.round(v / 1000) * 1000), 0)} personnes ${v > 0 ? 'perdraient' : 'retrouveraient'} un emploi : un choc fort sur leur bien-être.`

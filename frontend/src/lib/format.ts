@@ -90,7 +90,7 @@ export function valeur(v: Valeur | undefined, u = '', type?: string): string {
     const f = UNITES[u]
     if (f) return f(v)
     // taxes sur les carburants : aussi en euros par litre, l'unité que chacun connaît
-    if (u === 'euros_par_hectolitre') return `${nombre(v, 2)} € par hectolitre (≈ ${nombre(v / 100, 2)} € par litre)`
+    if (u === 'euros_par_hectolitre') return `${nombre(v, 2)} € par hectolitre (environ ${nombre(v / 100, 2)} € par litre)`
     return nombre(v) + (u ? ' ' + uniteLisible(u) : '')
   }
   if (type === 'choix') return String(v).replace(/_/g, ' ')

@@ -227,7 +227,7 @@ export default function MesDroits() {
       if (l.id === 'retraite_nette' && res?.taux_csg_pension != null) return phraseCsgPension(res.taux_csg_pension)
       if (l.id === 'aspa' && s.adultes.length === 1 && typeof plafondAspa === 'number') {
         return <>Le minimum vieillesse complète vos ressources jusqu'à {euros(plafondAspa, 2)} par mois pour une personne seule.
-          Pour vous : {euros(plafondAspa, 2)} − {euros(totalRevenus)} de revenus ≈ <strong>{euros(l.montant)}</strong>.</>
+          Pour vous : {euros(plafondAspa, 2)} − {euros(totalRevenus)} de revenus = environ <strong>{euros(l.montant)}</strong>.</>
       }
       if (l.id === 'aides_logement' && loyer > 0) {
         return <>Pour un loyer de {euros(loyer)}, l'aide est de {euros(l.montant)} : il vous reste <strong>{euros(Math.max(0, loyer - l.montant))}</strong> de loyer à payer chaque mois.

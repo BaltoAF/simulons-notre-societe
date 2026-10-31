@@ -104,6 +104,16 @@ def main():
           [{"regle": "prestations.prime_activite.montant_forfaitaire", "valeur": 738.28, "justification": "Mieux récompenser le travail"},
            {"regle": "fiscalite.csg.salaires_taux", "valeur": 8.7, "justification": "Baisser les prélèvements sur les salaires"}],
           "Prime d'activité +100 € et CSG −0,5 point", preferences=["missions_proportion", "ir", "csg"])
+    # test Nadia : les exemples publics penchaient tous du même côté ; celui-ci part d'idées opposées
+    creer(lou, "[Exemple] Travailler plus longtemps, moins d'impôts",
+          "Exemple de démonstration : l'âge légal de la retraite passe à 65 ans pour les personnes nées à partir de 1966, et la première "
+          "tranche de l'impôt sur le revenu baisse de 11 % à 9 %. Le reste est financé par des économies sur les autres dépenses de l'État. "
+          "Les émissions en plus (davantage de consommation) sont compensées.",
+          [{"regle": f"retraites.age_legal.generation_{g}", "valeur": max(65, store.regles[f"retraites.age_legal.generation_{g}"]["valeur"]),
+            "justification": "On vit plus longtemps : partir plus tard pour payer les pensions"} for g in ("1966", "1967", "1968", "1969_et_apres")]
+          + [{"regle": "fiscalite.impot_revenu.bareme", "valeur": [dict(t, taux=9) if t["taux"] == 11 else t for t in bareme],
+              "justification": "Moins d'impôt pour les foyers qui en paient peu"}],
+          "Retraite à 65 ans et première tranche à 9 %", preferences=["missions_proportion", "tva", "csg"])
     creer(lou, "[Exemple] Revenu universel",
           "Exemple de démonstration, non financé : un revenu universel de 600 € par adulte coûterait environ 360 milliards € par an. "
           "Pour l'enregistrer publiquement, il faudrait le financer (par exemple par un impôt proportionnel sur tous les revenus).",

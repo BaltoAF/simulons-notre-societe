@@ -680,4 +680,7 @@ button.change-tete:hover { background: color-mix(in srgb, var(--primary) 7%, tra
   .terme { color: var(--primary); }
   .terme, button.lien { position: relative; }
   .terme::after, button.lien::after { content: ''; position: absolute; inset: -12px -4px; }
+  /* fil d'Ariane, liens « question suivante » et pied de page : 22 à 25 px de haut, trop petits au doigt (test Nadia) */
+  .breadcrumb a, .footer a, .nav-questions a { position: relative; }
+  .breadcrumb a::after, .footer a::after, .nav-questions a::after { content: ''; position: absolute; inset: -10px -4px; }
 }

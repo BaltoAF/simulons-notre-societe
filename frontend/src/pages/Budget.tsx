@@ -134,7 +134,7 @@ function BudgetEtat({ missions, depenseTotale }: { missions: { id: string; titre
           <div className="card flat" style={{ padding: 12 }}>
             <strong><TrendingUp size={16} /> Dépenser plus</strong>
             <div className="small ink2">Il faut trouver l'argent : des économies ailleurs ou un impôt en plus (le site propose des solutions chiffrées).
-              Ou bien emprunter, en l'assumant : la <Terme id="dette">dette</Terme> augmente. 10 milliards de plus par an ≈ {parMenageMois(10)} par mois et par ménage.</div>
+              Ou bien emprunter, en l'assumant : la <Terme id="dette">dette</Terme> augmente. 10 milliards de plus par an, c'est environ {parMenageMois(10)} par mois et par ménage.</div>
           </div>
           <div className="card flat" style={{ padding: 12 }}>
             <strong><TrendingDown size={16} /> Dépenser moins</strong>
