@@ -98,8 +98,9 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   d'un emploi à X €, calculés à la demande, avec la mention de l'ASS et du décalage de trois mois) ; allocation de
   rentrée annoncée « une fois par an, fin août » ; salaires d'un couple détaillés ; idées triées selon le foyer ;
   « ±0 € » expliqué ; tableau du foyer empilé sur téléphone ; aides sur « avis d'échéance » et « grande ville ». Reste :
-  - ASS non calculée (règle travail.chomage.ass_montant_journalier présente) ; activité réduite (salaire + une partie de
-    l'allocation chômage) ; CSP après un licenciement économique.
+  - Fait : ASS calculée par le moteur dans « Et après le chômage ? » quand la personne coche la condition (5 ans de travail
+    au cours des 10 dernières années ; tests/test_ass.py). Reste : activité réduite (salaire + une partie de l'allocation
+    chômage) ; CSP après un licenciement économique.
   - Fait : « Prime d'activité : 0 € » avec sa raison quand un membre du foyer travaille (allocation chômage du foyer,
     plancher des étudiants et apprentis, ou revenus au-dessus du plafond).
   - Lenteur des calculs sur un vieux téléphone : garder le résultat précédent à l'écran pendant un nouveau calcul.

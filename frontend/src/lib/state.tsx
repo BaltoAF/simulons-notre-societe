@@ -39,6 +39,7 @@ export type AdulteSaisie = {
   cadre: boolean
   handicap: boolean
   rattache?: boolean // étudiant compté dans la déclaration d'impôt de ses parents
+  ass_precondition?: boolean // 5 ans de travail au cours des 10 dernières années (ASS, « Et après le chômage ? »)
 }
 
 export type SituationSaisie = {
@@ -143,6 +144,7 @@ export function situationVersMenage(s: SituationSaisie) {
       activite: a.activite,
       cadre: a.cadre,
       handicap: a.handicap,
+      ass_precondition: a.ass_precondition ?? false,
       // un petit boulot d'étudiant est un salaire (le statut d'étudiant reste transmis : il conditionne la prime d'activité)
       salaire_net_mensuel: a.activite === 'salarie' || a.activite === 'apprenti' || a.activite === 'etudiant' ? a.montant_net : 0,
       chomage_net_mensuel: a.activite === 'chomeur' ? a.montant_net : 0,

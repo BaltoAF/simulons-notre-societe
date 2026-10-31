@@ -22,6 +22,7 @@ class Adulte:
     chomage_brut_mensuel: float = 0.0
     retraite_brute_mensuelle: float = 0.0
     handicap: bool = False                 # taux d'incapacité ≥ 80 %
+    ass_precondition: bool = False         # a travaillé 5 ans au cours des 10 dernières années (condition de l'ASS)
     # micro-entrepreneur (auto-entrepreneur) : chiffre d'affaires moyen par mois, nature de l'activité (l'abattement fiscal et
     # les cotisations en dépendent) et part du chiffre d'affaires versée en cotisations (règles travail.micro_entreprise.*)
     ca_micro_mensuel: float = 0.0

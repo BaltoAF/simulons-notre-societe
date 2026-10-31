@@ -53,6 +53,7 @@ const DEFAUT: SituationSaisie = { couple: 'seul', adultes: [ADULTE], enfants: []
 // Règles qui « expliquent » chaque ligne du résultat.
 // À qui demander chaque aide (le site calcule des droits théoriques ; la demande se fait auprès de l'organisme)
 const DEMANDER: Record<string, string> = {
+  ass: 'auprès de France Travail, qui vous envoie le formulaire à la fin de vos droits au chômage',
   rsa: 'auprès de la CAF (caf.fr), ou de la MSA si vous êtes agriculteur', prime_activite: 'auprès de la CAF (caf.fr), ou de la MSA si vous êtes agriculteur',
   aides_logement: 'auprès de la CAF (caf.fr), ou de la MSA si vous êtes agriculteur', allocations_familiales: 'à la CAF seulement si vous ne les touchez pas encore : en général, elles arrivent sans démarche',
   aspa: 'auprès de votre caisse de retraite', aah: 'auprès de la MDPH de votre département, puis de la CAF',

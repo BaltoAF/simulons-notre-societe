@@ -42,6 +42,7 @@ COMPOSANTES_INDIVIDU = [
     ("chomage_net", "chomage_net", "M"),
     ("retraite_nette", "retraite_nette", "M"),
     ("aah", "aah", "M"),
+    ("ass", "ass", "M"),
 ]
 COMPOSANTES_FAMILLE = [
     ("rsa", "rsa", "M"),
@@ -68,7 +69,7 @@ MICRO_CA = {"vente": "mbic_impv", "services": "mbic_imps", "liberal": "mbnc_impo
 MICRO_ABATTEMENT = {"vente": 0.71, "services": 0.50, "liberal": 0.34}
 
 PRESTATIONS = ["rsa", "prime_activite", "aides_logement", "allocations_familiales", "complement_familial",
-               "asf", "paje", "aspa", "aah", "ars", "bourses"]
+               "asf", "paje", "aspa", "aah", "ass", "ars", "bourses"]
 
 LIBELLES = {
     "salaire_brut": "Salaire brut",
@@ -79,6 +80,7 @@ LIBELLES = {
     "revenus_capital": "Revenus de l'épargne",
     "pension_alimentaire": "Pension alimentaire reçue",
     "aah": "Allocation aux adultes handicapés (AAH)",
+    "ass": "Allocation de solidarité spécifique (ASS)",
     "rsa": "RSA",
     "prime_activite": "Prime d'activité",
     "aides_logement": "Aides au logement",
@@ -297,6 +299,9 @@ class Engine:
                     # Les exonérations de cotisations, de CSG-CRDS et d'impôt des apprentis ne sont pas modélisées par OpenFisca :
                     # le salaire net saisi est converti comme celui d'un salarié, et le site le dit à la personne.
                     ind["apprenti"] = {mo: True for mo in mois}
+                if a.ass_precondition:
+                    # 5 ans de travail au cours des 10 dernières années : condition de l'ASS (OpenFisca, ass_eligibilite_individu)
+                    ind["ass_precondition_remplie"] = {mo: True for mo in mois}
                 if a.salaire_brut_mensuel > 0:
                     ind["salaire_de_base"] = {y: round(a.salaire_brut_mensuel * 12, 2) for y in years}
                     ind["categorie_salarie"] = {mo: "prive_cadre" if a.cadre else "prive_non_cadre" for mo in mois}
@@ -407,8 +412,9 @@ class Engine:
                 return sim.calculate(var, p)
 
             any_handicap = any(a.handicap for m in menages for a in m.adultes)
+            any_ass = any(a.ass_precondition for m in menages for a in m.adultes)
             for key, var, period in COMPOSANTES_INDIVIDU:
-                if key == "aah" and not any_handicap:  # calcul coûteux, inutile sans handicap déclaré
+                if (key == "aah" and not any_handicap) or (key == "ass" and not any_ass):  # calculs inutiles sans handicap déclaré ni condition de l'ASS
                     out[key] = np.zeros(n)
                     continue
                 vals = calc(var, period) / (12 if period == "Y" else 1)

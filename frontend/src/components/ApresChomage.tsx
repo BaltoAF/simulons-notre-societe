@@ -42,6 +42,7 @@ export function ApresLeChomage({ s, actuel }: { s: SituationSaisie; actuel: Res 
   const [fin, setFin] = useState<Scenario>({})
   const [emploi, setEmploi] = useState<Scenario>({})
   const [salaire, setSalaire] = useState(0)
+  const [cinqAns, setCinqAns] = useState(false) // condition de l'ASS : 5 ans de travail au cours des 10 dernières années
   if (i < 0) return null
   const calculer = async (adulte: Partial<SituationSaisie['adultes'][number]>, set: (x: Scenario) => void) => {
     set({ loading: true })
@@ -56,10 +57,12 @@ export function ApresLeChomage({ s, actuel }: { s: SituationSaisie; actuel: Res 
       <div className="stack" style={{ gap: 14 }}>
         <div>
           <strong><Hourglass size={16} /> Quand l'allocation chômage {s.adultes.length > 1 && i > 0 ? 'de votre conjoint(e) ' : ''}s'arrête</strong>
-          {!fin.res && !fin.loading && <div style={{ marginTop: 6 }}><button className="btn small" onClick={() => calculer({ montant_net: 0 }, setFin)}>Calculer</button></div>}
+          <label className="row small" style={{ marginTop: 6, cursor: 'pointer', flexWrap: 'nowrap', alignItems: 'flex-start' }}><input type="checkbox" checked={cinqAns}
+            onChange={(e) => { setCinqAns(e.target.checked); setFin({}) }} style={{ marginTop: 3 }} /> J'ai travaillé au moins 5 ans au cours des 10 dernières années (condition de l'ASS)</label>
+          {!fin.res && !fin.loading && <div style={{ marginTop: 6 }}><button className="btn small" onClick={() => calculer({ montant_net: 0, ass_precondition: cinqAns }, setFin)}>Calculer</button></div>}
           <Bilan sc={fin} actuel={actuel} />
-          {fin.res && <div className="small muted" style={{ marginTop: 4 }}>Après une longue période de travail, l'<Link to="/regles/r/travail.chomage.ass_montant_journalier">allocation
-            de solidarité spécifique (ASS)</Link> peut aussi prendre le relais, sous conditions : le site ne la calcule pas encore, France Travail vous le dira.</div>}
+          {fin.res && <div className="small muted" style={{ marginTop: 4 }}>L'<Link to="/regles/r/travail.chomage.ass_montant_journalier">allocation de solidarité
+            spécifique (ASS)</Link> est {cinqAns ? 'comptée ici si les ressources du foyer le permettent' : "réservée à ceux qui ont travaillé au moins 5 ans au cours des 10 dernières années : cochez la case si c'est votre cas"}. France Travail confirme le droit.</div>}
         </div>
         <div>
           <strong><Briefcase size={16} /> Si {i > 0 && s.adultes.length > 1 ? 'votre conjoint(e) reprend' : 'vous reprenez'} un emploi</strong>
