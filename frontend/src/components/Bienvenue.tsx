@@ -22,7 +22,7 @@ const ECRANS = [
   {
     Icone: GitFork,
     titre: '2. Imaginez un changement',
-    texte: "« Et si le SMIC augmentait ? Et si on baissait les impôts ? » Changez une règle, et le site calcule ce que cela changerait "
+    texte: "« Et si le salaire minimum augmentait ? Et si on baissait les impôts ? » Changez une règle, et le site calcule ce que cela changerait "
       + 'pour vous et pour le pays : argent public, pauvreté, climat, bien-être.',
   },
   {
@@ -36,6 +36,7 @@ const ECRANS = [
 
 export function Bienvenue({ onClose }: { onClose: () => void }) {
   const [i, setI] = useState(0)
+  const [grand, setGrand] = useState(() => document.documentElement.classList.contains('texte-grand'))
   const { setParcours } = useApp()
   const nav = useNavigate()
   const fin = i >= ECRANS.length
@@ -60,10 +61,10 @@ export function Bienvenue({ onClose }: { onClose: () => void }) {
             <h3 style={{ margin: '12px 0 8px', fontSize: '1.25rem' }}>{e.titre}</h3>
             <p className="ink2" style={{ fontSize: '1.05rem', margin: 0 }}>{e.texte}</p>
             {i === 0 && (
-              <button className="btn small" style={{ marginTop: 12 }} onClick={() => {
-                const grand = !document.documentElement.classList.contains('texte-grand')
-                window.dispatchEvent(new CustomEvent('societe:texte', { detail: grand }))
-              }}>A+ Texte trop petit ? Agrandir le texte</button>
+              <button className="btn small" style={{ marginTop: 12 }} aria-pressed={grand} onClick={() => {
+                window.dispatchEvent(new CustomEvent('societe:texte', { detail: !grand }))
+                setGrand(!grand)
+              }}>{grand ? 'Texte agrandi ✓ (revenir à la taille normale)' : 'A+ Texte trop petit ? Agrandir le texte'}</button>
             )}
             {e.exemple && (
               <div className="small" style={{ marginTop: 12 }}>Par exemple : <span className="conf tres_eleve">Fiabilité très élevée</span>{' '}

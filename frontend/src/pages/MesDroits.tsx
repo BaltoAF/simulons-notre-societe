@@ -322,8 +322,9 @@ export default function MesDroits() {
           <h1 style={{ margin: 0 }}>Vos droits aujourd'hui</h1>
           <div className="row" style={{ gap: 8 }}>
             <button className="btn" onClick={() => { setStep(0); setRes(null) }}><RotateCcw size={16} /> Modifier ma situation</button>
-            <button className="btn ghost small" aria-label="Effacer mes réponses" title="Sur un ordinateur partagé : rien de votre situation ne reste dans ce navigateur"
-              onClick={() => { setSituation(null); setS(DEFAUT); setRes(null); setExemple(null); setStep(0); window.scrollTo(0, 0) }}>Effacer mes réponses</button>
+            {/* pendant le calcul, « Effacer mes réponses » inquiétait (test Odette) */}
+            {!loading && <button className="btn ghost small" aria-label="Effacer mes réponses" title="Sur un ordinateur partagé : rien de votre situation ne reste dans ce navigateur"
+              onClick={() => { setSituation(null); setS(DEFAUT); setRes(null); setExemple(null); setStep(0); window.scrollTo(0, 0) }}>Effacer mes réponses</button>}
           </div>
         </div>
         {exemple && res && (

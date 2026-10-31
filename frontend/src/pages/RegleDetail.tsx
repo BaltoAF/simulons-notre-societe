@@ -109,7 +109,7 @@ export default function RegleDetail() {
               return <>
                 <ul className="list">{vues.map((s) => <SourceItem key={s.id} s={s} />)}</ul>
                 {triees.length > 4 && <button className="lien small" onClick={() => setToutesSources(!toutesSources)}>{toutesSources ? 'Moins de sources'
-                  : `Voir les ${triees.length - 4} autres sources (dont des références techniques)`}</button>}
+                  : triees.length - 4 === 1 ? "Voir l'autre source" : `Voir les ${triees.length - 4} autres sources (dont des références techniques)`}</button>}
               </>
             })() : <div className="small muted">Aucune source (dispositif virtuel).</div>}
           </div>

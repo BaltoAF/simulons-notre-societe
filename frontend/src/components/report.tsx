@@ -11,7 +11,8 @@ import { EnBref, EquilibresPanel, type Contexte } from './synthese'
 
 const UNITES_DELTA = new Set(['euros_mois', 'euros', 'milliards_euros', 'points', 'points_pib', 'pourcent', 'emplois', 'personnes', 'mt_co2e', 'points_sur_10', 'ecart_type', 'heures'])
 
-export function IndicatorCard({ ind, big = false }: { ind: Indicateur; big?: boolean }) {
+// gel : une hausse qui n'a pas lieu, pas une baisse (tests Odette) : « de moins que prévu », sans rouge, en euros ronds
+export function IndicatorCard({ ind, big = false, gel = false }: { ind: Indicateur; big?: boolean; gel?: boolean }) {
   const isDelta = ind.avant !== null || ind.id.startsWith('solde') || UNITES_DELTA.has(ind.unite)
   const d = delta(ind.valeur, ind.unite)
   // la couleur suit le sens (favorable / défavorable), pas le signe : une baisse des inégalités est une bonne nouvelle
@@ -23,9 +24,12 @@ export function IndicatorCard({ ind, big = false }: { ind: Indicateur; big?: boo
         <ConfidenceBadge c={ind.confiance} align="right" compact />
       </div>
       <div className={big ? 'kpi big' : 'kpi'}>
-        {isDelta && ind.valeur !== null ? <span className={`delta ${cls}`}>{d.txt}</span> : valeur(ind.valeur, ind.unite)}
+        {gel && ind.valeur !== null && ind.valeur < -0.5 ? <span className="delta">{euros(Math.abs(ind.valeur), 0)} de moins que prévu / mois</span>
+          : isDelta && ind.valeur !== null ? <span className={`delta ${cls}`}>{d.txt}</span> : valeur(ind.valeur, ind.unite)}
       </div>
-      {ind.avant !== null && ind.apres !== null && (
+      {gel && ind.avant !== null && ind.apres !== null ? (
+        <div className="small muted" style={{ marginTop: 4 }}>Avec la hausse prévue : {euros(ind.avant, 0)} · sans cette hausse : {euros(ind.apres, 0)}</div>
+      ) : ind.avant !== null && ind.apres !== null && (
         <div className="small muted" style={{ marginTop: 4 }}>{valeur(ind.avant, ind.unite.replace('_mois', ''))} <ArrowRight size={12} /> {valeur(ind.apres, ind.unite.replace('_mois', ''))}</div>
       )}
       {ind.fourchette && <div className="small muted">Fourchette plausible : {valeur(ind.fourchette[0], ind.unite)} à {valeur(ind.fourchette[1], ind.unite)}</div>}
@@ -58,7 +62,7 @@ function SectionMenage({ s, overrides }: { s: Section; overrides?: Record<string
     <div className="table-wrap">
       {/* sur téléphone, chaque ligne se lit « aujourd'hui → avec la réforme » sans défiler de côté (test Karim) */}
       <table className="table table-empilee">
-        <thead><tr><th>Par mois</th><th className="num">Aujourd'hui</th><th className="num">Avec la réforme</th><th className="num">Écart</th></tr></thead>
+        <thead><tr><th>Par mois</th><th className="num">{gel ? 'Avec la hausse prévue' : "Aujourd'hui"}</th><th className="num">{gel ? 'Sans la hausse' : 'Avec la réforme'}</th><th className="num">Écart</th></tr></thead>
         <tbody>
           {lignes.map((l) => {
             const sign = l.nature === 'prelevement' ? -1 : 1
@@ -66,16 +70,16 @@ function SectionMenage({ s, overrides }: { s: Section; overrides?: Record<string
             return (
               <tr key={l.id}>
                 <td>{l.libelle}{l.nature === 'prelevement' && !/imp[oô]t|prélèvement|cotisation|csg|crds|tva/i.test(l.libelle) ? <span className="muted small"> · payé</span> : null}</td>
-                <td className="num" data-libelle="Aujourd'hui">{euros(l.avant)}</td>
-                <td className="num" data-libelle="Avec la réforme">{euros(l.apres)}</td>
+                <td className="num" data-libelle={gel ? 'Avec la hausse prévue' : "Aujourd'hui"}>{euros(l.avant)}</td>
+                <td className="num" data-libelle={gel ? 'Sans la hausse' : 'Avec la réforme'}>{euros(l.apres)}</td>
                 <td className="num" data-libelle="Écart"><span className={`delta ${d.cls}`}>{d.txt}</span></td>
               </tr>
             )
           })}
         </tbody>
       </table>
-      {gel && <p className="small muted" style={{ marginTop: 8 }}>Votre pension ne baisse pas : « Aujourd'hui » compte l'augmentation que la loi actuelle prévoit
-        chaque 1er janvier, « Avec la réforme » ne la compte pas. L'écart est ce que vous n'auriez pas en plus.</p>}
+      {gel && <p className="small muted" style={{ marginTop: 8 }}>Votre pension ne baisse pas : la loi actuelle prévoit de l'augmenter chaque 1er janvier ;
+        avec un gel, cette hausse n'a pas lieu. L'écart est ce que vous n'auriez pas en plus.</p>}
     </div>
   )
 }
@@ -204,7 +208,8 @@ export function SectionView({ s, ouvert = false, overrides }: { s: Section; ouve
       {open && <>
       {principaux.length > 0 && (
         <div className="grid" style={{ marginBottom: 14, gridTemplateColumns: principaux.length === 1 ? '1fr' : 'repeat(auto-fit, minmax(230px, 1fr))' }}>
-          {principaux.map((i) => <IndicatorCard key={i.id} ind={i} big={s.id === 'menage'} />)}
+          {principaux.map((i) => <IndicatorCard key={i.id} ind={i} big={s.id === 'menage'}
+            gel={s.id === 'menage' && overrides?.['retraites.revalorisation.pensions_base'] !== undefined} />)}
         </div>
       )}
       {R ? <R s={s} overrides={overrides} /> : null}
@@ -225,7 +230,7 @@ export function ReportView({ r, overrides, onAppliquer, contexte = 'reforme' }: 
   const budget = r.equilibres?.find((e) => e.id === 'budget')
   if (r.partiel) {
     // 1er temps du calcul : seulement le foyer et les ménages types, le reste arrive
-    return <div className="stack">{r.sections.map((s) => <SectionView key={s.id} s={s} ouvert />)}</div>
+    return <div className="stack">{r.sections.map((s) => <SectionView key={s.id} s={s} ouvert overrides={overrides} />)}</div>
   }
   return (
     <div className="stack">

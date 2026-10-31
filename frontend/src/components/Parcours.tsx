@@ -12,7 +12,8 @@ export const MISSIONS: { id: EtapeParcours; titre: string; detail: string; lien:
 
 /** La règle à vérifier : une qui concerne le visiteur s'il a décrit son foyer (la CSG de sa pension, sa prime d'activité…). */
 function regleQuiVousConcerne(activites: string[]): string {
-  if (activites.includes('retraite')) return '/regles/r/fiscalite.csg.retraites_taux_plein'
+  // pour un retraité, la hausse des pensions au 1er janvier : sa question, et une page sans sigles (la CSG en était pleine)
+  if (activites.includes('retraite')) return '/regles/r/retraites.revalorisation.pensions_base'
   if (activites.includes('salarie') || activites.includes('apprenti')) return '/regles/r/prestations.prime_activite.montant_forfaitaire'
   if (activites.includes('chomeur')) return '/regles/r/travail.chomage.taux_remplacement'
   return '/regles/r/travail.smic.horaire_brut'
@@ -87,7 +88,8 @@ export function ProchaineEtape({ apres }: { apres: EtapeParcours }) {
           <Link className="btn small primary" style={{ marginTop: 6 }} to={lienMission(suivante, (situation?.adultes ?? []).map((a) => a.activite))}>{suivante.titre} →</Link>
         </> : <><strong>Bravo, vous avez fait le tour du site !</strong> Vous savez maintenant voir vos droits, comprendre une question, tester une idée et vérifier un chiffre.</>}
       </div>
-      <button className="btn ghost small" onClick={() => setParcours((p) => ({ ...p, masque: true }))}>Ne plus afficher</button>
+      {/* à l'écart du bouton de la mission, pour ne pas toucher l'un pour l'autre */}
+      <button className="btn ghost small" style={{ marginLeft: 16 }} onClick={() => setParcours((p) => ({ ...p, masque: true }))}>Ne plus afficher</button>
     </div>
   )
 }
