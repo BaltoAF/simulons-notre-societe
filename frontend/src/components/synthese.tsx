@@ -95,7 +95,10 @@ export function EnBref({ r, contexte = 'reforme', overrides }: { r: Rapport; con
                 // « rien ne change » au-dessus de « vous partirez un an plus tard » se lisait comme une contradiction
                 ? <>Votre budget d'aujourd'hui : <span className="muted">rien ne change. Mais…</span></>
                 : <>Pour votre porte-monnaie : <span className="muted">rien ne change.</span></>)
-                : <>Pour votre porte-monnaie : <span className={`delta ${pv.delta_mois > 0 ? 'pos' : 'neg'}`}>{pv.delta_mois > 0 ? '+' : '−'}{euros(Math.abs(pv.delta_mois))} par mois</span>.</>}
+                : overrides?.['retraites.revalorisation.pensions_base'] !== undefined && pv.delta_mois < 0
+                  // un gel n'est pas une baisse (test Odette : « ma retraite va baisser de 8 € ») : ni signe moins, ni rouge
+                  ? <>Pour votre porte-monnaie : <span className="delta">{euros(Math.abs(pv.delta_mois))} de moins que prévu</span> par mois.</>
+                  : <>Pour votre porte-monnaie : <span className={`delta ${pv.delta_mois > 0 ? 'pos' : 'neg'}`}>{pv.delta_mois > 0 ? '+' : '−'}{euros(Math.abs(pv.delta_mois))} par mois</span>.</>}
             </div>
             {Math.abs(pv.delta_mois) < 0.5 && (pv.detail ?? []).some((l) => Math.abs(l.delta_mois) >= 0.5) && (
               <div className="small ink2" style={{ marginTop: 2 }}>Ce qui bouge : {pv.detail!.filter((l) => Math.abs(l.delta_mois) >= 0.5).map((l) =>

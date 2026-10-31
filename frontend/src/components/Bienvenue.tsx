@@ -59,6 +59,12 @@ export function Bienvenue({ onClose }: { onClose: () => void }) {
             <div className="bienvenue-icone"><e.Icone size={34} /></div>
             <h3 style={{ margin: '12px 0 8px', fontSize: '1.25rem' }}>{e.titre}</h3>
             <p className="ink2" style={{ fontSize: '1.05rem', margin: 0 }}>{e.texte}</p>
+            {i === 0 && (
+              <button className="btn small" style={{ marginTop: 12 }} onClick={() => {
+                const grand = !document.documentElement.classList.contains('texte-grand')
+                window.dispatchEvent(new CustomEvent('societe:texte', { detail: grand }))
+              }}>A+ Texte trop petit ? Agrandir le texte</button>
+            )}
             {e.exemple && (
               <div className="small" style={{ marginTop: 12 }}>Par exemple : <span className="conf tres_eleve">Fiabilité très élevée</span>{' '}
                 <span className="conf faible">Fiabilité faible</span></div>
@@ -71,8 +77,9 @@ export function Bienvenue({ onClose }: { onClose: () => void }) {
       })() : (
         <div className="stack" style={{ gap: 10 }}>
           <p className="ink2" style={{ marginTop: 0 }}>Choisissez ce qui vous intéresse. Vous pourrez revoir cette visite depuis le menu « En savoir plus ».</p>
-          <button className="preset" onClick={() => aller('/mes-droits')}><strong><Calculator size={16} /> Calculer mes droits</strong>
-            <span className="small muted">Le plus simple pour commencer : environ une minute.</span></button>
+          {/* dans les mots du visiteur (test Odette : « Est-ce que j'ai droit à des aides ? Ma retraite va-t-elle baisser ? ») */}
+          <button className="preset" onClick={() => aller('/mes-droits')}><strong><Calculator size={16} /> Ai-je droit à des aides ? Combien me reste-t-il ?</strong>
+            <span className="small muted">Le plus simple pour commencer : environ une minute. Vous saurez aussi à quel âge partir à la retraite, ou si votre retraite va baisser.</span></button>
           <button className="preset" onClick={() => aller('/comprendre')}><strong><HelpCircle size={16} /> Comprendre une grande question</strong>
             <span className="small muted">Où va l'argent public ? La dette, c'est grave ? Comment marchent les retraites ?</span></button>
           <button className="preset" onClick={() => aller('/atelier')}><strong><GitFork size={16} /> Tester une idée de réforme</strong>

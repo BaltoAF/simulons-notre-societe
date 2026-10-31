@@ -79,8 +79,10 @@ def repondre(state: dict, profil: dict) -> list[dict]:
     r_age, r_trim = _tranche(AGE_LEGAL, ym), _tranche(TRIMESTRES, ym)
     if retraite and g("retraites.revalorisation.pensions_base") is not None:
         rv = float(g("retraites.revalorisation.pensions_base"))
-        add("Retraite", "Comment ma pension évolue-t-elle ?",
-            f"Les retraites de base sont revalorisées chaque 1er janvier : {_fr(rv, 1)} % au dernier 1er janvier. "
+        # « ma retraite va-t-elle baisser ? », dans les mots d'une retraitée (test Odette : « revalorisées » ne lui disait rien)
+        add("Retraite", "Ma retraite va-t-elle baisser ?",
+            f"Non : votre pension ne baisse pas en euros. La retraite de base augmente en principe chaque 1er janvier pour suivre les "
+            f"prix : +{_fr(rv, 1)} % au dernier 1er janvier. Seule une loi peut décider de ne pas l'augmenter une année (un « gel »). "
             "Les retraites complémentaires (Agirc-Arrco pour les anciens salariés du privé) suivent leurs propres règles.",
             ["retraites.revalorisation.pensions_base"], rv, "pourcent")
     elif r_age and g(r_age) is not None:

@@ -113,7 +113,7 @@ function AucuneAide({ s, totalRevenus, plafondAspa }: { s: SituationSaisie; tota
     <div className="card">
       <h3 style={{ marginBottom: 6 }}>Pourquoi aucune aide ?</h3>
       {retraite && s.adultes.length === 1 && plafondAspa != null && totalRevenus > plafondAspa ? (
-        <p className="small ink2" style={{ margin: 0 }}>Votre pension ({euros(totalRevenus)} par mois) dépasse le plafond du minimum vieillesse
+        <p className="small ink2" style={{ margin: 0 }}>{s.revenus_capital_annuels > 0 ? 'Vos revenus (pension et épargne' : 'Votre pension ('}{s.revenus_capital_annuels > 0 ? ', ' : ''}{euros(totalRevenus)} par mois) {s.revenus_capital_annuels > 0 ? 'dépassent' : 'dépasse'} le plafond du minimum vieillesse
           ({euros(plafondAspa, 2)} pour une personne seule) : il ne s'ajoute donc pas.{(s.adultes[0]?.age ?? 0) < 65 && ' Il faut aussi, en principe, avoir 65 ans.'}{s.logement === 'proprietaire'
             ? " Les aides au logement aident à payer un loyer (ou, dans certains cas, un prêt immobilier) : un propriétaire qui ne rembourse plus de prêt n'y a pas droit."
             : ' Pour les aides au logement, vos ressources dépassent le plafond qui correspond à votre loyer.'}</p>
@@ -147,6 +147,14 @@ function pertinence(p: Preset, s: SituationSaisie): number {
   if (revenus > 4000 && /hauts revenus|capital/.test(t)) n += 2
   if (/impôt|TVA/.test(t)) n += 1
   return n
+}
+
+/** « calcul… » est resté plus de deux minutes sans un mot après une mise à jour du site (test Odette) : après 20 s, dire pourquoi. */
+function CalculIdee() {
+  const [lent, setLent] = useState(false)
+  useEffect(() => { const t = setTimeout(() => setLent(true), 20000); return () => clearTimeout(t) }, [])
+  return <span className="small muted"><span className="spinner" style={{ width: 14, height: 14, verticalAlign: -2 }} /> {lent
+    ? "Plus long que d'habitude : le site prépare son moteur de calcul (jusqu'à trois minutes). Restez sur cette page." : 'calcul…'}</span>
 }
 
 export default function MesDroits() {
@@ -360,7 +368,7 @@ export default function MesDroits() {
                   </div>
                   <ConfidenceBadge c={res.confiance} align="right" />
                 </div>
-                <OuJeMeSitue niveauVieMensuel={res.niveau_de_vie}
+                <OuJeMeSitue niveauVieMensuel={res.niveau_de_vie} retraite={s.adultes.every((a) => a.activite === 'retraite')}
                   note={etudiantRattache ? "Vous êtes rattaché(e) à la déclaration d'impôt de vos parents : ce classement ne compte que vos propres revenus, pas l'aide de votre famille." : undefined} />
                 <hr className="divider" />
                 {[['Vos revenus nets', revenus, 1], ['Aides et prestations', prest, 1], ['Impôts payés', prel, -1]].map(([titre, lignes, sg]) => (
@@ -426,9 +434,11 @@ export default function MesDroits() {
                           </div>
                         )}
                         <div className="row between" style={{ marginTop: 4 }}>
-                          {r?.departs ? <span /> : r ? (r.loading ? <span className="small muted"><span className="spinner" style={{ width: 14, height: 14, verticalAlign: -2 }} /> calcul…</span>
+                          {r?.departs ? <span /> : r ? (r.loading ? <CalculIdee />
                             : Number.isNaN(r.delta) ? <span className="small muted">indisponible</span>
-                              : <span className={`delta ${r.delta > 0.5 ? 'pos' : r.delta < -0.5 ? 'neg' : 'zero'}`}>{r.delta > 0.5 ? '+' : r.delta < -0.5 ? '−' : '±'}{euros(Math.abs(r.delta))} / mois</span>)
+                              : p.id === 'gel-pensions' && r.delta < -0.5
+                                ? <span className="delta">{euros(Math.abs(r.delta))} de moins que prévu / mois</span>
+                                : <span className={`delta ${r.delta > 0.5 ? 'pos' : r.delta < -0.5 ? 'neg' : 'zero'}`}>{r.delta > 0.5 ? '+' : r.delta < -0.5 ? '−' : '±'}{euros(Math.abs(r.delta))} / mois</span>)
                             : <button className="btn small" onClick={() => tester(p.id)}>Tester sur mon foyer</button>}
                           {r && !r.loading && <button className="btn small ghost" onClick={() => ouvrirAtelier(p.id)}>Effets sur le pays <ArrowRight size={13} /></button>}
                         </div>

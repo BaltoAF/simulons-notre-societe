@@ -1,5 +1,6 @@
 // « Avez-vous pensé à… ? » : sous le résultat de « Mes droits », les aides souvent oubliées qui correspondent au foyer,
 // avec ce qu'elles apportent, comment les demander et la fiche officielle.
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AlertCircle, CheckCircle2, ExternalLink, Lightbulb, Users } from 'lucide-react'
 import { aidesPourVous, type AideOubliee } from '../lib/aidesOubliees'
@@ -9,11 +10,24 @@ import { Beta } from './Beta'
 
 type Ligne = { id: string; montant: number; nature: string; libelle?: string }
 
+// pistes que la personne touche déjà ou a déjà demandées (test Odette : la réversion, qu'elle touche, revenait sans cesse) :
+// masquées dans ce navigateur seulement
+const CLE = 'societe.aides_deja'
+const lireDeja = (): string[] => { try { return JSON.parse(localStorage.getItem(CLE) ?? '[]') } catch { return [] } }
+
 export function AvezVousPense({ s, lignes }: { s: SituationSaisie; lignes: Ligne[] }) {
   const { data } = useFetch<{ aides: AideOubliee[] }>('/api/aides-oubliees')
+  const [deja, setDeja] = useState<string[]>(lireDeja)
+  const marquer = (id: string | null) => {
+    const v = id ? [...deja, id] : []
+    setDeja(v)
+    try { localStorage.setItem(CLE, JSON.stringify(v)) } catch { /* navigation privée */ }
+  }
   if (!data) return null
-  const aides = aidesPourVous(data.aides, s, lignes)
-  if (!aides.length) return null
+  const toutes = aidesPourVous(data.aides, s, lignes)
+  const aides = toutes.filter((a) => a.montant != null || !deja.includes(a.id))
+  const masquees = toutes.length - aides.length
+  if (!toutes.length) return null
   const pistes = aides.filter((a) => a.montant == null).length
   return (
     <section className="card" id="avez-vous-pense" aria-labelledby="avez-vous-pense-titre">
@@ -26,7 +40,8 @@ export function AvezVousPense({ s, lignes }: { s: SituationSaisie; lignes: Ligne
               <strong>{a.libelle}</strong>
               {a.montant != null
                 ? <span className="badge gain">Déjà comptée ci-dessus{a.versement === 'annuel' ? ` (${euros(a.montant)} par an)` : ` : ${euros(a.montant)} / mois`}</span>
-                : <span className="badge">Piste à vérifier</span>}
+                : <span className="row" style={{ gap: 8 }}><span className="badge">Piste à vérifier</span>
+                    <button className="btn ghost small" onClick={() => marquer(a.id)}>Je l'ai déjà</button></span>}
             </div>
             <p className="small" style={{ margin: '4px 0 0' }}>{a.en_bref}</p>
             <p className="small muted" style={{ margin: '4px 0 0' }}>{a.pourquoi_vous}</p>
@@ -48,6 +63,8 @@ export function AvezVousPense({ s, lignes }: { s: SituationSaisie; lignes: Ligne
           </li>
         ))}
       </ul>
+      {masquees > 0 && <p className="small muted">{masquees} piste{masquees > 1 ? 's' : ''} que vous avez déjà masquée{masquees > 1 ? 's' : ''}.{' '}
+        <button className="lien" onClick={() => marquer(null)}>Tout réafficher</button></p>}
       {pistes > 0 && (
         <p className="small muted" style={{ marginBottom: 0 }}>Les « pistes à vérifier » ne sont pas calculées par le site : elles sont proposées d'après votre profil, avec des revenus estimés.
           Pour en avoir le cœur net, suivez la fiche officielle de chaque aide, ou le simulateur public <a href="https://www.mesdroitssociaux.gouv.fr" target="_blank" rel="noreferrer noopener">mesdroitssociaux.gouv.fr</a>.</p>

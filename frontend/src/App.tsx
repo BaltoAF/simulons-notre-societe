@@ -74,6 +74,12 @@ function TailleTexte() {
     document.documentElement.classList.toggle('texte-grand', grand)
     try { localStorage.setItem('societe.texte', grand ? 'grand' : 'normal') } catch { /* navigation privée */ }
   }, [grand])
+  // la visite d'accueil propose aussi d'agrandir le texte (test Odette : « A+ » caché dans le menu)
+  useEffect(() => {
+    const suivre = (e: Event) => setGrand((e as CustomEvent<boolean>).detail)
+    window.addEventListener('societe:texte', suivre)
+    return () => window.removeEventListener('societe:texte', suivre)
+  }, [])
   return (
     <button className="icon-btn taille-texte" aria-pressed={grand} onClick={() => setGrand((g) => !g)}
       title={grand ? 'Revenir à la taille de texte normale' : 'Agrandir le texte'} aria-label={grand ? 'Taille de texte normale' : 'Agrandir le texte'}>

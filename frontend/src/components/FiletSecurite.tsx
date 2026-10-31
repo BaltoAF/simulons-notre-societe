@@ -3,6 +3,11 @@
 import { Component, type ErrorInfo, type ReactNode } from 'react'
 import { signalerErreur } from '../lib/erreurs'
 
+// Après une mise à jour du site, les fichiers de l'ancienne version n'existent plus : la page ouverte avant ne peut plus
+// charger la suivante (test Odette : « Oups » en plein parcours). Ce n'est pas une panne : on recharge, une seule fois.
+const VERSION_PERIMEE = /dynamically imported module|Importing a module script failed|error loading dynamically imported|ChunkLoadError/i
+const CLE_RECHARGE = 'societe.rechargement_version'
+
 export class FiletSecurite extends Component<{ children: ReactNode }, { erreur: boolean }> {
   state = { erreur: false }
 
@@ -11,6 +16,16 @@ export class FiletSecurite extends Component<{ children: ReactNode }, { erreur: 
   }
 
   componentDidCatch(e: Error, info: ErrorInfo) {
+    if (VERSION_PERIMEE.test(e.message)) {
+      let deja = false
+      // pas de boucle : un seul rechargement par page en 30 secondes
+      try {
+        const [page, quand] = (sessionStorage.getItem(CLE_RECHARGE) ?? '').split('|')
+        deja = page === location.pathname && Date.now() - Number(quand) < 30000
+        sessionStorage.setItem(CLE_RECHARGE, `${location.pathname}|${Date.now()}`)
+      } catch { /* rien */ }
+      if (!deja) { location.reload(); return }
+    }
     signalerErreur(e.message, `${e.stack ?? ''}\n${info.componentStack ?? ''}`)
   }
 

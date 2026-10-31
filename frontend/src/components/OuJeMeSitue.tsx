@@ -17,7 +17,7 @@ function rang(v: number, deciles: number[]): number {
   return Math.min(99, 90 + 10 * (v - deciles[8]) / deciles[8]) // au-delà du 9e décile : simple ordre de grandeur
 }
 
-export function OuJeMeSitue({ niveauVieMensuel, note }: { niveauVieMensuel: number; note?: ReactNode }) {
+export function OuJeMeSitue({ niveauVieMensuel, note, retraite = false }: { niveauVieMensuel: number; note?: ReactNode; retraite?: boolean }) {
   const { data } = useFetch<{ metriques: Stat[] }>(`/api/metriques?ids=${IDS.join(',')}`)
   const val = (id: string) => data?.metriques.find((m) => m.id === id)?.derniere?.valeur
   const deciles = [1, 2, 3, 4, 5, 6, 7, 8, 9].map((k) => val(`revenus.niveau_vie.d${k}`))
@@ -43,7 +43,18 @@ export function OuJeMeSitue({ niveauVieMensuel, note }: { niveauVieMensuel: numb
         <span className="situe-repere" style={{ left: '90%' }}><span>10 % les plus aisés<br />{euros(d[8] / 12, 0)}</span></span>
         <span className="situe-vous" style={{ left: pos(annuel) }}><span>Vous<br />{euros(niveauVieMensuel, 0)}</span></span>
       </div>
-      <p className="small muted" style={{ margin: '34px 0 0' }}>Niveaux de vie mensuels pour une personne seule, d'après l'Insee ({annee}). Le <Terme id="niveau_vie">niveau de vie</Terme> tient compte
+      {/* sous le seuil, une retraitée comprenait « je suis pauvre ? » sans savoir à qui s'adresser (test Odette) : le dire
+          doucement, et dire qui peut aider */}
+      {niveauVieMensuel < seuil && (
+        <div className="notice small" style={{ marginTop: 34 }}><div>
+          <strong>Votre niveau de vie est sous le seuil de pauvreté,</strong> une mesure statistique (60 % du niveau de vie du milieu) qui ne
+          dit pas tout de votre situation. Si vous avez du mal à faire face, des aides existent, au-delà de celles calculées ici. Pour en parler :
+          le centre communal d'action sociale (CCAS) de votre mairie, un espace France services près de chez vous{retraite
+            ? ", ou le service d'action sociale de votre caisse de retraite"
+            : ", ou votre caisse d'allocations familiales (CAF)"}. Voyez aussi « Avez-vous pensé à… ? » plus bas.
+        </div></div>
+      )}
+      <p className="small muted" style={{ margin: niveauVieMensuel < seuil ? '12px 0 0' : '34px 0 0' }}>Niveaux de vie mensuels pour une personne seule, d'après l'Insee ({annee}). Le <Terme id="niveau_vie">niveau de vie</Terme> tient compte
         de la taille du foyer : c'est ce qui permet de comparer des foyers différents.</p>
     </div>
   )

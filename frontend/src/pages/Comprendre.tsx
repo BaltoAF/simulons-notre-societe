@@ -86,17 +86,33 @@ function avecChiffres(texte: string, q: Question, v: Record<string, number>, gra
 
 function Liste() {
   // les chiffres cités dans les accroches, lus en une seule requête
-  const cites = QUESTIONS.flatMap((q) => (q.accroche.match(/\{([a-z0-9_]+)\}/g) ?? []).map((k) => q.chiffres.find((c) => c.cle === k.slice(1, -1))))
+  // un chiffre calculé (« l'impôt sur le revenu en rapporte environ 8 % ») a besoin de toutes les statistiques de sa question :
+  // sans elles, l'accroche affichait « environ  % » (test Odette)
+  const cites = QUESTIONS.flatMap((q) => {
+    const direct = (q.accroche.match(/\{([a-z0-9_]+)\}/g) ?? []).map((k) => q.chiffres.find((c) => c.cle === k.slice(1, -1)))
+    return direct.some((c) => c?.calcul) ? q.chiffres : direct
+  })
   const ids = [...new Set(cites.map((c) => c?.metrique).filter(Boolean))].join(',')
   const { data } = useFetch<{ metriques: Stat[] }>(ids ? `/api/metriques?ids=${ids}` : null)
-  const accroche = (q: Question) => q.accroche.split(/(\{[a-z0-9_]+\})/).map((morceau, i) => {
-    const k = morceau.match(/^\{([a-z0-9_]+)\}$/)?.[1]
-    if (!k) return morceau
-    const c = q.chiffres.find((x) => x.cle === k)
-    const m = data?.metriques.find((x) => x.id === c?.metrique)
-    return c && m?.derniere ? formater(Number(m.derniere.valeur), c.format, c.absolu)
-      : <span key={i} className="attente-chiffre" role="img" aria-label="chiffre en cours de chargement" />
-  })
+  const valeursDe = (q: Question) => {
+    const v: Record<string, number> = {}
+    for (const c of q.chiffres) {
+      const m = data?.metriques.find((x) => x.id === c.metrique)
+      if (m?.derniere) v[c.cle] = Number(m.derniere.valeur)
+    }
+    for (const c of q.chiffres) if (c.calcul) { const x = c.calcul(v); if (x != null && Number.isFinite(x)) v[c.cle] = x }
+    return v
+  }
+  const accroche = (q: Question) => {
+    const v = valeursDe(q)
+    return q.accroche.split(/(\{[a-z0-9_]+\})/).map((morceau, i) => {
+      const k = morceau.match(/^\{([a-z0-9_]+)\}$/)?.[1]
+      if (!k) return morceau
+      const c = q.chiffres.find((x) => x.cle === k)
+      return c && v[k] != null ? formater(v[k], c.format, c.absolu)
+        : <span key={i} className="attente-chiffre" role="img" aria-label="chiffre en cours de chargement" />
+    })
+  }
   return (
     <div className="container page" style={{ maxWidth: 1000 }}>
       <h1>Les grandes questions</h1>

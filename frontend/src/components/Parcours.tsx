@@ -76,7 +76,8 @@ export function ProchaineEtape({ apres }: { apres: EtapeParcours }) {
         {suivante ? <>
           {/* « Étape faite (3 sur 4) » à côté de « Étape 4 sur 5 » de l'atelier : deux compteurs pris l'un pour l'autre (test Josiane) */}
           <strong>Découverte du site : {faites} mission{faites > 1 ? 's' : ''} sur {MISSIONS.length}.</strong> La suivante :{' '}
-          <Link to={suivante.id === 'source' ? regleQuiVousConcerne((situation?.adultes ?? []).map((a) => a.activite)) : suivante.lien}>{suivante.titre} →</Link>
+          {/* un petit lien coupé sur deux lignes était difficile à toucher (test Odette, tablette) */}
+          <Link className="btn small primary" style={{ marginTop: 6 }} to={suivante.id === 'source' ? regleQuiVousConcerne((situation?.adultes ?? []).map((a) => a.activite)) : suivante.lien}>{suivante.titre} →</Link>
         </> : <><strong>Bravo, vous avez fait le tour du site !</strong> Vous savez maintenant voir vos droits, comprendre une question, tester une idée et vérifier un chiffre.</>}
       </div>
       <button className="btn ghost small" onClick={() => setParcours((p) => ({ ...p, masque: true }))}>Ne plus afficher</button>

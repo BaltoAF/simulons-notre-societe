@@ -147,6 +147,16 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   inconvénient (les économies n'en avaient pas). Reste : une solution « revenus du capital » (le taux de la flat tax,
   fiscalite.capital.pfu_taux_ir, est un levier du moteur), à ajouter quand son rendement sera calé sur une source
   officielle (la population simulée représente mal les revenus du capital).
+- **Test Odette** (74 ans, veuve, retraitée à 1 280 €, propriétaire, tablette, très peu à l'aise ; notes prise en main 3 /
+  compréhension 2,5 / confiance 3 / tablette 3 sur 5, 31/10/2026). Corrigé : « environ  % » sur la liste des grandes
+  questions (chiffre calculé non pris en charge) ; page « Oups » après une mise à jour (fichier de l'ancienne version
+  introuvable : rechargement automatique, une fois) ; « calcul… » sans fin dans les idées de Mes droits (message après
+  20 s) ; gel des pensions lu comme une baisse (« 8 € de moins que prévu », sans rouge, et une phrase sous le tableau du
+  foyer) ; « Ma retraite va-t-elle baisser ? Non… » au lieu de « revalorisées » ; sous le seuil de pauvreté, une note
+  douce et à qui s'adresser (CCAS, France services, caisse de retraite ou CAF) ; « Je l'ai déjà » pour masquer une piste
+  (réversion déjà touchée) ; « Agrandir le texte » dès le premier écran de la visite ; premier choix de « Par où
+  commencer ? » dans ses mots ; mission suivante en vrai bouton ; « Votre pension » qui comptait l'épargne. Reste : les
+  sigles encore nombreux (CSG, Anah, HT…) dans les fiches ; une suite de découverte selon le profil (retraité).
 - **Relecture de neutralité, deux regards opposés** (31/10/2026 ; notes « Bernard », à droite, 3,5 / « Inès », à gauche, 4
   sur 5 ; débats tous à ±10 %). Corrigé : immigration (solde dans l'ordre croissant, « dépenses communes : défense,
   intérêts de la dette, administration », position « Oui » appuyée sur les chiffres de la page, ordre de grandeur des

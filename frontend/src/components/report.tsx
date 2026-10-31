@@ -50,8 +50,10 @@ export function IndicatorCard({ ind, big = false }: { ind: Indicateur; big?: boo
   )
 }
 
-function SectionMenage({ s }: { s: Section }) {
+function SectionMenage({ s, overrides }: { s: Section; overrides?: Record<string, Valeur> }) {
   const lignes = s.donnees.lignes as { id: string; libelle: string; avant: number; apres: number; delta: number; nature: string }[]
+  // un gel des pensions : « 1 280 € → 1 271,55 € » se lisait comme une baisse (test Odette) ; c'est une hausse qui n'a pas lieu
+  const gel = overrides?.['retraites.revalorisation.pensions_base'] !== undefined && lignes.some((l) => l.id === 'retraite_nette' && l.delta < -0.5)
   return (
     <div className="table-wrap">
       {/* sur téléphone, chaque ligne se lit « aujourd'hui → avec la réforme » sans défiler de côté (test Karim) */}
@@ -72,6 +74,8 @@ function SectionMenage({ s }: { s: Section }) {
           })}
         </tbody>
       </table>
+      {gel && <p className="small muted" style={{ marginTop: 8 }}>Votre pension ne baisse pas : « Aujourd'hui » compte l'augmentation que la loi actuelle prévoit
+        chaque 1er janvier, « Avec la réforme » ne la compte pas. L'écart est ce que vous n'auriez pas en plus.</p>}
     </div>
   )
 }
@@ -175,12 +179,12 @@ function SectionNonModelise({ s }: { s: Section }) {
   )
 }
 
-const RENDUS: Record<string, (p: { s: Section }) => JSX.Element | null> = {
+const RENDUS: Record<string, (p: { s: Section; overrides?: Record<string, Valeur> }) => JSX.Element | null> = {
   menage: SectionMenage, cas_types: SectionCasTypes, budget: SectionBudget, redistribution: SectionRedistribution,
   budget_etat: SectionBudgetEtat, non_modelise: SectionNonModelise,
 }
 
-export function SectionView({ s, ouvert = false }: { s: Section; ouvert?: boolean }) {
+export function SectionView({ s, ouvert = false, overrides }: { s: Section; ouvert?: boolean; overrides?: Record<string, Valeur> }) {
   const R = RENDUS[s.id]
   const principaux = s.indicateurs
   const [open, setOpen] = useState(ouvert)
@@ -203,7 +207,7 @@ export function SectionView({ s, ouvert = false }: { s: Section; ouvert?: boolea
           {principaux.map((i) => <IndicatorCard key={i.id} ind={i} big={s.id === 'menage'} />)}
         </div>
       )}
-      {R ? <R s={s} /> : null}
+      {R ? <R s={s} overrides={overrides} /> : null}
       {(s.methode || s.limites.length > 0) && (
         <details className="explain">
           <summary><ChevronDown size={15} /> Méthode et limites</summary>
@@ -250,7 +254,7 @@ export function ReportView({ r, overrides, onAppliquer, contexte = 'reforme' }: 
       )}
       <h2 style={{ margin: '8px 0 0', fontSize: '1.3rem' }}>Pour aller plus loin : le détail</h2>
       <p className="small muted" style={{ margin: 0 }}>Cliquez sur une rubrique pour l'ouvrir. Chaque chiffre indique d'où il vient et à quel point on peut s'y fier.</p>
-      {r.sections.map((s) => <SectionView key={s.id} s={s} ouvert={s.id === 'menage' && Math.abs(r.pour_vous?.delta_mois ?? 0) >= 0.5} />)}
+      {r.sections.map((s) => <SectionView key={s.id} s={s} overrides={overrides} ouvert={s.id === 'menage' && Math.abs(r.pour_vous?.delta_mois ?? 0) >= 0.5} />)}
       {r.erreurs.length > 0 && (
         <div className="notice warn small">Certains modules n'ont pas pu être calculés : {r.erreurs.map((e) => e.module).join(', ')}.</div>
       )}
