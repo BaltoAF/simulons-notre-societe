@@ -82,3 +82,39 @@ sources:
     date_publication: "2026-04-22"
     consulte_le: "2026-10-31"
     note: "Émissions sur le territoire, hors forêts et sols (UTCATF) et hors transports internationaux (src_crf TOTX4_MEMO, unit T_HAB). 2024 (2023) : France 5,3 (5,5) ; Allemagne 7,8 (8,0) ; Italie 6,2 (6,4) ; Espagne 5,5 (5,6) ; Pays-Bas 7,8 (8,0) ; Suède 4,5 (4,2) ; Pologne 9,3 (9,5). France 22e des 27 en 2024 (1 = le plus élevé). Pas de moyenne européenne publiée sur ce champ. Ne compte pas les émissions des produits importés (empreinte carbone)."
+  - id: dgfip-stat-41-ir-2024
+    type: statistique_publique
+    editeur: "Direction générale des finances publiques (DGFiP)"
+    titre: "L'impôt sur le revenu 2024 a été plus dynamique que les revenus (DGFiP Statistiques n° 41)"
+    url: "https://www.impots.gouv.fr/sites/default/files/media/9_statistiques/0_etudes_et_stats/0_publications/dgfip_statistiques/2025/num41_11/dgfip_stat_41.pdf"
+    auteurs: []
+    date_publication: "2025-11-01"
+    consulte_le: "2026-10-31"
+    note: "Revenus 2024, données provisoires (fichier POTE). 19,6 millions de foyers sur 41,5 millions paient un impôt net (47 %) ; impôt net total 92 Md€. Le dernier dixième de revenu fiscal de référence par part paie « près des trois quarts de l'impôt sur le revenu » (74 % d'après le tableau 4 : impôt moyen de 16 395 € pour environ 4,15 millions de foyers)."
+  - id: ipp-note-92-milliardaires
+    type: rapport_institutionnel
+    editeur: "Institut des politiques publiques (IPP)"
+    titre: "Quels impôts les milliardaires paient-ils ? (Notes IPP n° 92, Bach, Bozio, Guillouzouic, Malgouyres)"
+    url: "https://www.ipp.eu/actualites/quels-impots-les-milliardaires-paient-ils/"
+    auteurs: ["Laurent Bach", "Antoine Bozio", "Arthur Guillouzouic", "Clément Malgouyres"]
+    date_publication: "2023-06-07"
+    consulte_le: "2026-10-31"
+    note: "Données 2016, ménages les plus aisés seulement (à partir des 10 % du haut), hors TVA et impôts de production. Taux global d'imposition (impôts personnels et impôt sur les sociétés) rapporté au revenu économique : 46 % pour les 0,1 % les plus riches, 26 % pour les 0,0002 % (75 foyers milliardaires), dont une grande part des revenus reste dans leurs sociétés. Note : https://www.ipp.eu/wp-content/uploads/2023/06/Note_IPP_Billionaires-version-actualisee.pdf"
+  - id: insee-patrimoine-brut-2024
+    type: statistique_publique
+    editeur: "Insee"
+    titre: "Répartition de la masse totale de patrimoine brut entre les ménages"
+    url: "https://www.insee.fr/fr/statistiques/2502915"
+    auteurs: []
+    date_publication: "2026-04-07"
+    consulte_le: "2026-10-31"
+    note: "Début 2024. Les 10 % de ménages les mieux dotés détiennent 47,9 % du patrimoine brut (avant déduction des dettes), les 1 % 15,4 %, les 50 % les mieux dotés 92,8 % (donc 7,2 % pour la moitié la moins dotée). Voir aussi Insee Focus n° 371 (9 décembre 2025) : « la moitié la mieux dotée possède 93 % » ; Gini du patrimoine brut 0,652."
+  - id: eurostat-ilc-di12
+    type: statistique_publique
+    editeur: "Eurostat"
+    titre: "Coefficient de Gini du revenu disponible équivalent (ilc_di12)"
+    url: "https://ec.europa.eu/eurostat/databrowser/view/ilc_di12/default/table?lang=fr"
+    auteurs: []
+    date_publication: "2026-10-20"
+    consulte_le: "2026-10-31"
+    note: "Échelle 0-100, enquête 2025 (revenus 2024). France 30,4 ; UE-27 29,2 ; Allemagne 30,1 ; Italie 31,0 ; Espagne 30,8 ; Suède 28,6 ; Pologne 24,9. France 11e des 27 (1 = le plus inégal ; Bulgarie 37,7). L'Insee, sur la France métropolitaine et sa propre enquête, donne 0,302 pour les mêmes revenus."

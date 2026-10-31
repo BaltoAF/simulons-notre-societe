@@ -1,0 +1,48 @@
+# Qui paie l'impôt selon son revenu, et la concentration du patrimoine (relecture de neutralité, 31/10/2026).
+# Convention : date = 31 décembre de l'année des revenus (début d'année pour le patrimoine).
+metriques:
+  - id: impot.ir.part_impot_dixieme_plus_aise
+    titre: "Part de l'impôt sur le revenu payée par les 10 % de foyers les plus aisés"
+    explication: "« Près des trois quarts de l'impôt sur le revenu », selon la DGFiP (revenus 2024, données provisoires) ; 74 % d'après son tableau 4 (impôt moyen du dernier dixième multiplié par le nombre de foyers, rapporté à l'impôt total)."
+    unite: pourcent
+    serie:
+      - date: "2024-12-31"
+        valeur: 74
+        source: dgfip-stat-41-ir-2024
+        statut: provisoire
+  - id: impot.taux_global_ipp.top_0_1_pct
+    titre: "Taux global d'imposition des 0,1 % les plus riches (IPP, 2016)"
+    explication: "Tous les impôts personnels et l'impôt sur les sociétés payé par leurs entreprises, rapportés à leur revenu économique (hors TVA et impôts de production), selon l'Institut des politiques publiques."
+    unite: pourcent
+    serie:
+      - date: "2016-12-31"
+        valeur: 46
+        source: ipp-note-92-milliardaires
+        statut: definitif
+  - id: impot.taux_global_ipp.milliardaires
+    titre: "Taux global d'imposition des 75 foyers les plus fortunés (IPP, 2016)"
+    explication: "Les 0,0002 % les plus riches (les « milliardaires ») : une grande part de leurs revenus reste dans leurs sociétés, où elle n'est soumise qu'à l'impôt sur les sociétés. Même définition que pour les 0,1 %."
+    unite: pourcent
+    serie:
+      - date: "2016-12-31"
+        valeur: 26
+        source: ipp-note-92-milliardaires
+        statut: definitif
+  - id: inegalites.patrimoine_brut.part_10_pct_mieux_dotes
+    titre: "Part du patrimoine brut détenue par les 10 % de ménages les mieux dotés"
+    explication: "Logement, épargne, biens professionnels…, avant déduction des dettes (Insee, début 2024)."
+    unite: pourcent
+    serie:
+      - date: "2024-01-01"
+        valeur: 47.9
+        source: insee-patrimoine-brut-2024
+        statut: definitif
+  - id: inegalites.patrimoine_brut.part_50_pct_moins_dotes
+    titre: "Part du patrimoine brut détenue par la moitié des ménages la moins dotée"
+    explication: "100 % moins la part des 50 % les mieux dotés (92,8 %), avant déduction des dettes (Insee, début 2024)."
+    unite: pourcent
+    serie:
+      - date: "2024-01-01"
+        valeur: 7.2
+        source: insee-patrimoine-brut-2024
+        statut: definitif

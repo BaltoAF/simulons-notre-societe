@@ -153,9 +153,11 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   coûts, « même » retiré) ; inégalités (« revenus de l'épargne », coût des aides dans le « Non », un test de chaque bord) ;
   qui paie (capital taxé à taux fixe, cotisations patronales et impôts de production) ; dépenses (accroche neutre,
   « l'équivalent de 57 % du PIB » expliqué, réserve public/privé, « 8 points de plus que la moyenne européenne » dans le
-  « Oui ») ; dette (intérêts entre 1,5 % et 3,6 % du PIB, « baisse d'impôt » aussi à financer). Reste : « qui paie
-  selon le revenu » (part des foyers imposés, taux global au sommet : sources DGFiP et IPP) ; patrimoine dans
-  « Inégalités » (concentration, Insee) ; Gini comparé à l'Europe. Fait : « D'où viennent ces chiffres ? » sous chaque
+  « Oui ») ; dette (intérêts entre 1,5 % et 3,6 % du PIB, « baisse d'impôt » aussi à financer). Fait ensuite : « qui paie
+  selon le revenu » (47 % des foyers paient l'impôt sur le revenu, les 10 % les plus aisés près des trois quarts : DGFiP ;
+  taux global de 46 % pour les 0,1 % les plus riches mais 26 % pour les 75 plus fortunés : IPP, 2016) ; patrimoine dans
+  « Inégalités » (47,9 % aux 10 % les mieux dotés, 7,2 % à la moitié la moins dotée : Insee) ; Gini comparé à l'Europe
+  (Eurostat ilc_di12). Fait : « D'où viennent ces chiffres ? » sous chaque
   grande question, avec la source exacte du point cité (une année ancienne peut venir d'une autre publication).
 - **Comparaisons européennes** (31/10/2026) : chaque grande question chiffrée situe la France dans l'Union, avec la
   mesure commune d'Eurostat (dette et intérêts, retraites, impôts et cotisations, dépenses publiques, chômage, santé,

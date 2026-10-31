@@ -404,3 +404,66 @@ metriques:
         valeur: 9.3
         source: eurostat-sdg-13-10
         statut: provisoire
+  - id: europe.gini.france
+    titre: "Indice de Gini du revenu disponible (Eurostat) : France"
+    explication: "Écarts de niveau de vie, de 0 (tout le monde a autant) à 100 (une seule personne a tout), selon l'enquête européenne sur les revenus ; enquête 2025, revenus 2024. Date = 31 décembre de l'année d'enquête."
+    unite: indice
+    serie:
+      - date: "2025-12-31"
+        valeur: 30.4
+        source: eurostat-ilc-di12
+        statut: definitif
+  - id: europe.gini.ue27
+    titre: "Indice de Gini du revenu disponible (Eurostat) : Union européenne (27 pays)"
+    explication: "Écarts de niveau de vie, de 0 (tout le monde a autant) à 100 (une seule personne a tout), selon l'enquête européenne sur les revenus ; enquête 2025, revenus 2024. Date = 31 décembre de l'année d'enquête."
+    unite: indice
+    serie:
+      - date: "2025-12-31"
+        valeur: 29.2
+        source: eurostat-ilc-di12
+        statut: definitif
+  - id: europe.gini.allemagne
+    titre: "Indice de Gini du revenu disponible (Eurostat) : Allemagne"
+    explication: "Écarts de niveau de vie, de 0 (tout le monde a autant) à 100 (une seule personne a tout), selon l'enquête européenne sur les revenus ; enquête 2025, revenus 2024. Date = 31 décembre de l'année d'enquête."
+    unite: indice
+    serie:
+      - date: "2025-12-31"
+        valeur: 30.1
+        source: eurostat-ilc-di12
+        statut: definitif
+  - id: europe.gini.italie
+    titre: "Indice de Gini du revenu disponible (Eurostat) : Italie"
+    explication: "Écarts de niveau de vie, de 0 (tout le monde a autant) à 100 (une seule personne a tout), selon l'enquête européenne sur les revenus ; enquête 2025, revenus 2024. Date = 31 décembre de l'année d'enquête."
+    unite: indice
+    serie:
+      - date: "2025-12-31"
+        valeur: 31.0
+        source: eurostat-ilc-di12
+        statut: definitif
+  - id: europe.gini.espagne
+    titre: "Indice de Gini du revenu disponible (Eurostat) : Espagne"
+    explication: "Écarts de niveau de vie, de 0 (tout le monde a autant) à 100 (une seule personne a tout), selon l'enquête européenne sur les revenus ; enquête 2025, revenus 2024. Date = 31 décembre de l'année d'enquête."
+    unite: indice
+    serie:
+      - date: "2025-12-31"
+        valeur: 30.8
+        source: eurostat-ilc-di12
+        statut: definitif
+  - id: europe.gini.suede
+    titre: "Indice de Gini du revenu disponible (Eurostat) : Suède"
+    explication: "Écarts de niveau de vie, de 0 (tout le monde a autant) à 100 (une seule personne a tout), selon l'enquête européenne sur les revenus ; enquête 2025, revenus 2024. Date = 31 décembre de l'année d'enquête."
+    unite: indice
+    serie:
+      - date: "2025-12-31"
+        valeur: 28.6
+        source: eurostat-ilc-di12
+        statut: definitif
+  - id: europe.gini.pologne
+    titre: "Indice de Gini du revenu disponible (Eurostat) : Pologne"
+    explication: "Écarts de niveau de vie, de 0 (tout le monde a autant) à 100 (une seule personne a tout), selon l'enquête européenne sur les revenus ; enquête 2025, revenus 2024. Date = 31 décembre de l'année d'enquête."
+    unite: indice
+    serie:
+      - date: "2025-12-31"
+        valeur: 24.9
+        source: eurostat-ilc-di12
+        statut: definitif
