@@ -185,7 +185,8 @@ export function resumeSituation(s: SituationSaisie): string {
   const ages = s.adultes.map((a) => a.age).filter((a): a is number => typeof a === 'number' && a > 0)
   const foyer = (s.adultes.length > 1 ? `couple ${s.couple === 'marie' ? 'marié' : s.couple === 'pacse' ? 'pacsé' : 'en union libre'}` : 'personne seule')
     + (ages.length ? ` de ${ages.join(' et ')} ans` : '')
-  const enfants = s.enfants.length ? `, ${s.enfants.length} enfant${s.enfants.length > 1 ? 's' : ''} (${s.enfants.join(' et ')} ans)` : ''
+  const age = (a: number) => (a < 1 ? "moins d'un an" : `${a} an${a > 1 ? 's' : ''}`)
+  const enfants = s.enfants.length ? `, ${s.enfants.length} enfant${s.enfants.length > 1 ? 's' : ''} (${s.enfants.map(age).join(' et ')})` : ''
   const nature: Record<string, string> = { salarie: 'salaire', apprenti: "salaire d'apprenti(e)", chomeur: 'chômage', retraite: 'retraite', etudiant: 'étudiant(e)', inactif: 'sans activité' }
   const revenus = s.adultes.map((a) => (a.activite === 'independant' ? `auto-entrepreneur, chiffre d'affaires ${euros(a.montant_net)}/mois`
     : ['salarie', 'apprenti', 'chomeur', 'retraite'].includes(a.activite) ? `${nature[a.activite]} ${euros(a.montant_net)} nets/mois`

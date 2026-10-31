@@ -241,7 +241,7 @@ export default function Atelier() {
               return (
                 <Changement key={AGE_TERME} id={AGE_TERME} titre="Âge légal de départ à la retraite" avant={`${valeur(avant, r.unite, r.type)} (à terme)`}
                   apres={v !== avant ? valeur(v, r.unite, r.type) : null}
-                  badge={v !== avant && <span className={`badge ${v > avant ? 'accent' : 'primary'}`}>{ecartLisible(avant, v, r.unite)}</span>}
+                  badge={v !== avant && <span className="badge primary">{ecartLisible(avant, v, r.unite)}</span>}
                   ouvert={ouvert === AGE_TERME || v === avant} repliable={v !== avant} onBasculer={() => setOuvert(ouvert === AGE_TERME ? null : AGE_TERME)}>
                   <div className="small muted">
                     {v < avant ? `Personne ne partira plus tard que ${valeur(v, r.unite, r.type)}, quelle que soit sa date de naissance.`
@@ -275,7 +275,7 @@ export default function Atelier() {
               return (
                 <Changement key={id} id={id} titre={annuel ? r.titre.replace(/\s*\(par an\)/i, '') : r.titre} avant={montant(r.valeur)} apres={modifie ? montant(v) : null}
                   badge={modifie && typeof v === 'number' && typeof r.valeur === 'number' && (pct === null || Math.abs(pct) >= 0.05) && v !== r.valeur
-                    && <span className={`badge ${v > r.valeur ? 'accent' : 'primary'}`}>{ecartLisible(r.valeur, v, r.unite)}</span>}
+                    && <span className="badge primary">{ecartLisible(r.valeur, v, r.unite)}</span>}
                   ouvert={ouvert === id || !modifie} repliable={modifie} onBasculer={() => setOuvert(ouvert === id ? null : id)}>
                   {id === 'travail.smic.horaire_brut' && typeof v === 'number' && (
                     <div className="small muted">Soit environ {euros(v * 151.67, 0)} brut, environ {euros(v * 151.67 * 0.79, 0)} net par mois à temps plein.</div>

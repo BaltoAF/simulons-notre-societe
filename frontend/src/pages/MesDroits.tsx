@@ -40,8 +40,8 @@ function phraseCsgPension(t: number): ReactNode {
 
 /** Ce qu'il faut saisir pour chaque situation, dit avec les mots du document que la personne a sous les yeux. */
 const AIDE_MONTANT: Record<string, string> = {
-  salarie: 'Le montant qui figure en bas de votre fiche de paie, avant prélèvement à la source.',
-  apprenti: "Le montant en bas de votre fiche de paie. La prime d'activité ne s'ouvre aux apprentis qu'au-delà d'environ 1 144 € nets par mois.",
+  salarie: "La ligne « Net à payer avant impôt sur le revenu » de votre fiche de paie (pas le montant versé, d'où l'impôt est déjà retiré).",
+  apprenti: "La ligne « Net à payer avant impôt sur le revenu » de votre fiche de paie. La prime d'activité ne s'ouvre aux apprentis qu'au-delà d'environ 1 144 € nets par mois.",
   independant: "Ce que vous facturez en moyenne par mois, celui que vous déclarez à l'Urssaf, avant de payer vos cotisations. Le site calcule vos cotisations, votre impôt et vos aides.",
   chomeur: 'Le montant versé chaque mois par France Travail, avant prélèvement à la source.',
   retraite: "Toutes vos retraites additionnées (base, complémentaire, et pension de réversion si vous en touchez une), avant prélèvement à la source : le montant net de votre relevé de pension ou de votre espace info-retraite.fr.",
@@ -64,6 +64,8 @@ const DEMANDER: Record<string, string> = {
 
 const POURQUOI: Record<string, { regles: string[]; texte: ReactNode }> = {
   prime_activite_zero: { regles: ['prestations.prime_activite.montant_forfaitaire', 'prestations.prime_activite.part_revenus_activite'], texte: "La prime d'activité baisse quand les ressources du foyer augmentent : avec vos revenus et la taille de votre foyer, elle tombe à zéro." },
+  paje: { regles: [], texte: "Versée chaque mois jusqu'aux 3 ans de l'enfant, si les revenus du foyer sont sous un plafond qui dépend du nombre d'enfants. La CAF regarde les revenus d'il y a deux ans : le montant est plein ou partiel selon ces revenus." },
+  paje_zero: { regles: [], texte: "L'allocation de base est réservée aux foyers dont les revenus sont sous un plafond, qui dépend du nombre d'enfants (la CAF regarde les revenus d'il y a deux ans). Ceux de votre foyer le dépassent. Les aides à la garde, elles, ont d'autres règles : voyez « Avez-vous pensé à… ? » plus bas." },
   aides_logement_zero: { regles: ['prestations.aides_logement.forfait_charges'], texte: 'L\'aide au logement baisse quand les ressources du foyer augmentent : pour votre loyer, votre zone et vos revenus, elle tombe à zéro.' },
   rsa: { regles: ['prestations.rsa.montant_forfaitaire'], texte: 'Le RSA complète vos ressources jusqu\'à un montant garanti qui dépend de la composition du foyer.' },
   prime_activite: { regles: ['prestations.prime_activite.montant_forfaitaire', 'prestations.prime_activite.part_revenus_activite', 'prestations.prime_activite.bonification_max'], 
@@ -114,10 +116,18 @@ function AucuneAide({ s, totalRevenus, plafondAspa }: { s: SituationSaisie; tota
             ? " Les aides au logement aident à payer un loyer (ou, dans certains cas, un prêt immobilier) : un propriétaire qui ne rembourse plus de prêt n'y a pas droit."
             : ' Pour les aides au logement, vos ressources dépassent le plafond qui correspond à votre loyer.'}</p>
       ) : (
-        <p className="small ink2" style={{ margin: 0 }}>Les aides calculées par le site (RSA, prime d'activité, aides au logement, allocations familiales,
-          minimum vieillesse…) dépendent des revenus, du loyer et de la composition du foyer : pour votre situation, vous dépassez leurs plafonds.</p>
+        <ul className="list small ink2" style={{ margin: 0 }}>
+          {s.enfants.length === 1 && <li>Allocations familiales : elles ne sont versées qu'à partir du deuxième enfant, quels que soient les revenus.</li>}
+          {s.enfants.length >= 2 && <li>Allocations familiales : elles n'ont pas pu être calculées pour votre foyer.</li>}
+          {s.enfants.some((e) => e >= 0 && e < 3) && <li>Allocation de base de la PAJE (enfant de moins de 3 ans) : vos revenus dépassent son plafond.</li>}
+          {s.logement.startsWith('locataire') && <li>Aides au logement : vos revenus dépassent le plafond pour votre loyer et votre zone.</li>}
+          {s.adultes.some((a) => ['salarie', 'apprenti', 'independant'].includes(a.activite)) && <li>Prime d'activité : les revenus du foyer dépassent son plafond.</li>}
+          <li>RSA : les revenus du foyer dépassent le montant qu'il garantit.</li>
+        </ul>
       )}
-      <p className="small muted" style={{ margin: '6px 0 0' }}>D'autres aides, que le site ne calcule pas, peuvent vous concerner : voyez « Avez-vous pensé à… ? » ci-dessous.</p>
+      <p className="small muted" style={{ margin: '6px 0 0' }}>{s.enfants.some((e) => e >= 0 && e < 6)
+        ? "Pour faire garder un jeune enfant, deux aides ne sont pas calculées ici mais peuvent vous concerner : voyez « Avez-vous pensé à… ? » juste en dessous."
+        : "D'autres aides, que le site ne calcule pas, peuvent vous concerner : voyez « Avez-vous pensé à… ? » ci-dessous."}</p>
     </div>
   )
 }
@@ -219,6 +229,7 @@ export default function MesDroits() {
     const travaille = s.adultes.some((a) => ['salarie', 'apprenti', 'independant', 'etudiant'].includes(a.activite) && a.montant_net > 0)
     const prest: Resultat['lignes'] = [...prestBrut,
       ...(travaille && !prestBrut.some((l) => l.id === 'prime_activite') ? [{ id: 'prime_activite_zero', libelle: "Prime d'activité", montant: 0, nature: 'prestation' }] : []),
+      ...(s.enfants.some((e) => e >= 0 && e < 3) && !prestBrut.some((l) => l.id === 'paje') ? [{ id: 'paje_zero', libelle: 'Allocation de base PAJE (jeunes enfants)', montant: 0, nature: 'prestation' }] : []),
       ...(s.logement.startsWith('locataire') && !prestBrut.some((l) => l.id === 'aides_logement') ? [{ id: 'aides_logement_zero', libelle: 'Aides au logement', montant: 0, nature: 'prestation' }] : [])]
     // Impôts : toujours une ligne « Impôt sur le revenu » (même à 0 €), et les petits impôts sur l'épargne regroupés
     const brut = res?.lignes.filter((l) => l.nature === 'prelevement') ?? []
@@ -322,10 +333,11 @@ export default function MesDroits() {
                     )}
                     {loyer > 0 && (
                       <div className="small" style={{ marginTop: 4 }}>Après avoir payé le loyer ({euros(loyer)}) : {apresLoyer >= 0
-                        ? <>il reste <strong>{euros(apresLoyer)}</strong> par mois pour tout le reste.</>
+                        ? <>il reste <strong>{euros(apresLoyer)}</strong> par mois pour tout le reste{s.enfants.some((e) => e >= 0 && e < 6) && ', hors frais de garde'}.</>
                         : <><strong className="delta neg">il manque {euros(-apresLoyer)}</strong> chaque mois.</>}</div>
                     )}
                     <div className="small" style={{ marginTop: 6 }}>Calcul pour : {resumeSituation(s)} · <button className="lien" onClick={() => setStep(0)}>modifier</button></div>
+                    {s.enfants.some((e) => e >= 0 && e < 6) && <div className="small muted" style={{ marginTop: 4 }}>Non compté ici : les aides à la garde d'un jeune enfant (complément de la CAF, crédit d'impôt), présentées plus bas.</div>}
                   </div>
                   <ConfidenceBadge c={res.confiance} align="right" />
                 </div>
@@ -342,7 +354,7 @@ export default function MesDroits() {
                             <div className="list-row">
                               <span>{l.libelle}{l.id === 'salaire_net' && salaires.length > 1 && <span className="small muted" style={{ display: 'block' }}>
                                 {salaires.map((m, k) => `${k === 0 ? 'Vous' : 'Votre conjoint(e)'} : ${euros(m, 0)}`).join(' · ')}</span>}</span>
-                              <strong className={`delta ${(sg as number) > 0 ? (l.nature === 'prestation' ? 'pos' : '') : l.montant > 0 ? 'neg' : ''}`}>{(sg as number) > 0 || l.montant === 0 ? '' : '−'}{euros(l.montant)}</strong>
+                              <strong className={`delta ${(sg as number) > 0 ? (l.nature === 'prestation' && l.montant > 0 ? 'pos' : '') : l.montant > 0 ? 'neg' : ''}`}>{(sg as number) > 0 || l.montant === 0 ? '' : '−'}{euros(l.montant)}</strong>
                             </div>
                             {/* où la demander, et pourquoi pas d'aide au logement : visible tout de suite, sans ouvrir le détail */}
                             {DEMANDER[l.id] && l.montant > 0 && <div className="small muted" style={{ marginTop: 2 }}>À demander {DEMANDER[l.id]}.</div>}
@@ -434,6 +446,7 @@ export default function MesDroits() {
   // un salaire, une allocation chômage ou une pension à 0 € : presque toujours un oubli
   const montantManquant = s.adultes.some((a) => ['salarie', 'apprenti', 'independant', 'chomeur', 'retraite'].includes(a.activite) && !(a.montant_net > 0))
   const ageManquant = s.adultes.some((a) => !(a.age >= 16 && a.age <= 110))
+  const ageEnfantManquant = s.enfants.some((a) => !(a >= 0 && a <= 25))
   return (
     <div className="container page" style={{ maxWidth: 760 }}>
       {retourAtelier}
@@ -475,16 +488,18 @@ export default function MesDroits() {
             <div className="row" style={{ marginBottom: 10 }}>
               <button className="btn small" disabled={!s.enfants.length} onClick={() => up({ enfants: s.enfants.slice(0, -1) })} aria-label="Retirer un enfant"><Minus size={15} /></button>
               <strong style={{ minWidth: 30, textAlign: 'center' }}>{s.enfants.length}</strong>
-              <button className="btn small" disabled={s.enfants.length >= 8} onClick={() => up({ enfants: [...s.enfants, 5] })} aria-label="Ajouter un enfant"><Plus size={15} /></button>
+              <button className="btn small" disabled={s.enfants.length >= 8} onClick={() => up({ enfants: [...s.enfants, -1] })} aria-label="Ajouter un enfant"><Plus size={15} /></button>
             </div>
             {s.enfants.length > 0 && (
               <div className="grid cols-4">
                 {s.enfants.map((a, i) => (
                   <label key={i} className="field"><span>Âge enfant {i + 1}</span>
-                    <input type="number" min={0} max={25} value={a} onChange={(e) => up({ enfants: s.enfants.map((x, j) => (j === i ? Number(e.target.value) : x)) })} /></label>
+                    <input type="number" min={0} max={25} value={a >= 0 ? a : ''} placeholder="ex. 4"
+                      onChange={(e) => up({ enfants: s.enfants.map((x, j) => (j === i ? (e.target.value === '' ? -1 : Number(e.target.value)) : x)) })} /></label>
                 ))}
               </div>
             )}
+            {s.enfants.length > 0 && <span className="hint">En années : 0 pour un bébé de moins d'un an.</span>}
           </div>
         )}
         {step === 1 && (
@@ -582,7 +597,8 @@ export default function MesDroits() {
           {step > 0 ? <button className="btn" onClick={() => { setStep(step - 1); window.scrollTo(0, 0) }}><ArrowLeft size={16} /> Précédent</button> : <span />}
           {step < 2 ? <span className="row" style={{ gap: 10 }}>
               {step === 1 && (ageManquant || montantManquant) && <span className="small muted">Indiquez {ageManquant ? "l'âge" : 'le montant'} pour continuer.</span>}
-              <button className="btn primary" disabled={step === 1 && (ageManquant || montantManquant)} onClick={() => { setStep(step + 1); window.scrollTo(0, 0) }}>Suivant <ArrowRight size={16} /></button>
+              {step === 0 && ageEnfantManquant && <span className="small muted">Indiquez l'âge de chaque enfant pour continuer.</span>}
+              <button className="btn primary" disabled={(step === 1 && (ageManquant || montantManquant)) || (step === 0 && ageEnfantManquant)} onClick={() => { setStep(step + 1); window.scrollTo(0, 0) }}>Suivant <ArrowRight size={16} /></button>
             </span>
             : <span className="row" style={{ gap: 10 }}>
                 {s.logement.startsWith('locataire') && !s.loyer_mensuel && <span className="small muted">Indiquez votre loyer pour continuer.</span>}

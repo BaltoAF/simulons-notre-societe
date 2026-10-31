@@ -126,6 +126,17 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
     exact ménage par ménage reste à vérifier.
   - Taxe foncière : pistes selon l'âge et les revenus (exonération à 75 ans déjà dans « Avez-vous pensé à… ? »).
   - Taille des petits textes (jauge « Où vous situez-vous », aides des champs) même avec « A+ ».
+- **Test Lucie** (31 ans, pacsée, deux salaires, bébé de 8 mois chez une assistante maternelle, locataire ; notes 3 /
+  utilité 2 / téléphone 4 sur 5, 31/10/2026). Corrigé : « Pourquoi aucune aide ? » donne la raison aide par aide (un seul
+  enfant : pas d'allocations familiales, quel que soit le revenu) ; PAJE affichée à 0 € avec sa raison (revenus d'il y a
+  deux ans) ; âge des enfants vide (un 5 prérempli passait inaperçu), « 0 pour un bébé », « moins d'un an » dans le résumé ;
+  « il reste … hors frais de garde » et « non compté : aides à la garde » ; crédit d'impôt garde avec son plafond (1 750 €
+  par enfant, après l'aide de la CAF) ; aide « Net à payer avant impôt » ; 0 € plus en vert ; écart d'une règle en bleu
+  dans les deux sens (une hausse en rouge se lisait comme une perte) ; « depuis 1945 » retiré des dispositifs proposés. Reste :
+  - **Coût de la garde et CMG** : demander le mode de garde et son coût, et estimer le reste à charge. OpenFisca 176 ne
+    connaît que l'ancien CMG (formule 2017), pas la réforme du 1er septembre 2025 : à calculer d'après la CAF, sourcé.
+  - Comparer avant/après (un enfant de plus, temps partiel) dans Mes droits ; enfant à naître ; prime à la naissance ;
+    PreParE (congé parental) ; titre de l'idée « Allocations familiales dès le premier enfant » (elle vaut pour toute famille).
 - **Si la fréquentation augmente** (à soumettre au responsable) : la mémoire est déjà protégée, car un seul calcul de
   population tourne à la fois (`SOCIETE_WORKERS=1`) et les résultats identiques sont gardés en cache. Seule l'attente
   s'allonge : passer alors au VPS-2 avec `SOCIETE_WORKERS=3`, ou dire au visiteur combien de calculs passent avant le sien.

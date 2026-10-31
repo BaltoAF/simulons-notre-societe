@@ -232,7 +232,7 @@ aides:
 
   - id: credit_impot_garde
     nom: "Crédit d'impôt pour la garde d'un enfant de moins de 6 ans"
-    en_bref: "L'État rembourse la moitié de ce que vous payez pour la crèche, l'assistante maternelle ou la garderie d'un enfant de moins de 6 ans, même si vous ne payez pas d'impôt."
+    en_bref: "L'État rembourse la moitié de ce que vous payez pour la crèche, l'assistante maternelle ou la garderie d'un enfant de moins de 6 ans, après déduction de l'aide de la CAF, jusqu'à 1 750 € par an et par enfant, même si vous ne payez pas d'impôt."
     pourquoi_vous: "Vous avez un enfant de moins de 6 ans : s'il est gardé hors de chez vous (crèche, assistante maternelle, garderie), la moitié de ce que vous payez vous revient, même sans impôt à payer."
     pour_qui: "Les parents d'un enfant de moins de 6 ans au 1er janvier, gardé hors du domicile : crèche, halte-garderie, assistante maternelle agréée, garderie scolaire. La garde à domicile relève d'un autre crédit d'impôt (emploi à domicile)."
     ce_que_ca_apporte: "50 % des sommes payées, dans la limite de 3 500 € de dépenses par enfant et par an (1 750 € en garde alternée), soit jusqu'à 1 750 € rendus. Les aides de la CAF pour la garde sont d'abord retirées des dépenses. Si vous ne payez pas d'impôt, l'argent vous est versé ; une avance de 60 % arrive en janvier."

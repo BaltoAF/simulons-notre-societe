@@ -61,7 +61,7 @@ export default function RegleDetail() {
               <h1 style={{ fontSize: '1.8rem' }}>{r.titre}</h1>
               <p className="ink2" style={{ fontSize: '1.05rem' }}>{r.explication}</p>
             </>}
-            <div className="kpi-label">Valeur en vigueur{r.valeur_depuis ? ` depuis le ${date(r.valeur_depuis)}` : ''}</div>
+            <div className="kpi-label">{r.virtuel ? 'Valeur par défaut (dispositif proposé, absent de la loi)' : <>Valeur en vigueur{r.valeur_depuis ? ` depuis le ${date(r.valeur_depuis)}` : ''}</>}</div>
             {r.type === 'bareme' && Array.isArray(r.valeur) ? <>
               <Bareme t={r.valeur as Tranche[]} />
               <Pourquoi titre="Comment lire ce barème ?">Chaque taux ne s'applique qu'à la partie du revenu comprise dans sa tranche. Exemple : passer dans une tranche supérieure ne fait pas payer plus sur tout le revenu, seulement sur ce qui dépasse le seuil.</Pourquoi>

@@ -25,7 +25,7 @@ export function RegleLigne({ r }: { r: Regle }) {
         </div>
         <div style={{ textAlign: 'right', minWidth: 120 }}>
           <strong>{valeur(r.valeur, r.unite, r.type)}</strong>
-          {r.valeur_depuis && <div className="small muted">depuis {new Date(r.valeur_depuis).getFullYear()}</div>}
+          {r.valeur_depuis && !r.virtuel && <div className="small muted">depuis {new Date(r.valeur_depuis).getFullYear()}</div>}
         </div>
       </div>
     </li>
