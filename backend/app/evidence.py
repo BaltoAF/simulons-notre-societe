@@ -186,7 +186,7 @@ def synthese(question: dict, store=None) -> dict:
     if len(num) == 1:
         score = min(score, 35)
     elif len(num) == 2:
-        score = min(score, 49)  # deux études ne suffisent pas à atteindre « Élevé »
+        score = min(score, 64)  # deux études ne suffisent pas à atteindre « Élevé »
     sens = question.get("sens_attendu")
     disp_txt = f"{dispersion:.1f}".replace(".", ",")   # à la française
     seuil_txt = str(seuil).replace(".", ",") if seuil else ""

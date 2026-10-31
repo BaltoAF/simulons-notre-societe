@@ -1,7 +1,8 @@
 """Indice de confiance à 4 niveaux, commun à tous les résultats du site.
 
 Chaque résultat chiffré porte un score de 0 à 100, converti en niveau :
-  < 25  Très faible   ·   25-49  Faible   ·   50-74  Élevé   ·   ≥ 75  Très élevé
+  < 25  Très faible   ·   25-64  Faible   ·   65-74  Élevé   ·   ≥ 75  Très élevé
+(« Élevé » commençait à 50 : un score de 50/100 affiché « élevé » étonnait les lecteurs ; seuil relevé le 31/10/2026.)
 Le score est toujours accompagné des facteurs qui l'expliquent, pour que chacun puisse le contester.
 """
 from __future__ import annotations
@@ -10,7 +11,7 @@ from dataclasses import dataclass, field
 
 NIVEAUX = [
     (75, "tres_eleve", "Très élevé"),
-    (50, "eleve", "Élevé"),
+    (65, "eleve", "Élevé"),
     (25, "faible", "Faible"),
     (0, "tres_faible", "Très faible"),
 ]

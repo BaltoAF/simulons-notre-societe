@@ -3,8 +3,8 @@ import { Bot, Calculator, GitFork, Scale, ShieldCheck } from 'lucide-react'
 
 const NIVEAUX = [
   ['tres_eleve', 'Très élevé', '75 à 100', 'Sources officielles, calcul mécanique de la loi, ou études nombreuses, solides et concordantes.'],
-  ['eleve', 'Élevé', '50 à 74', 'Fiable dans ses grandes lignes ; une marge d\'incertitude existe.'],
-  ['faible', 'Faible', '25 à 49', 'Ordre de grandeur indicatif : peu d\'études, ou des études qui divergent.'],
+  ['eleve', 'Élevé', '65 à 74', 'Fiable dans ses grandes lignes ; une marge d\'incertitude existe.'],
+  ['faible', 'Faible', '25 à 64', 'Ordre de grandeur indicatif : peu d\'études, ou des études qui divergent.'],
   ['tres_faible', 'Très faible', '0 à 24', 'Hypothèse fragile, à prendre comme une piste et non comme une prévision.'],
 ]
 
