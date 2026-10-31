@@ -338,11 +338,7 @@ export default function Atelier() {
           {aJour && !loading && changes.length > 0 && desequilibres.length === 0 && aSurveiller.length === 0 && (
             <div className="notice ok" style={{ marginBottom: 12 }}><CheckCircle2 size={18} style={{ flexShrink: 0 }} />
               {/* « équilibrée » se lisait « juste, raisonnable » (test Nadia) : dire seulement que les comptes tiennent */}
-              <div className="grow"><strong>Les comptes tiennent :</strong> pas de dépense sans financement, ni d'émissions en trop. Si vous le souhaitez, vous pouvez l'enregistrer pour la partager.</div>
-              {!user ? <Link className="btn small" to="/connexion?retour=/atelier">Se connecter pour enregistrer</Link>
-                : proprietaire ? <div className="row"><button className="btn primary small" onClick={() => setSaving(true)}><GitBranch size={15} /> Mettre à jour « {base!.societe.nom} »</button>
-                  <button className="btn small" onClick={() => setSaving(true)}><GitFork size={15} /> Nouvelle proposition</button></div>
-                : <button className="btn primary small" onClick={() => setSaving(true)}><GitFork size={15} /> Enregistrer ma proposition</button>}
+              <div className="grow"><strong>Les comptes tiennent :</strong> pas de dépense sans financement, ni d'émissions en trop. Ses effets sont détaillés ci-dessous.</div>
             </div>
           )}
           {aJour && !loading && desequilibres.length > 0 && (
@@ -358,6 +354,18 @@ export default function Atelier() {
             <div className={loading && !rapport.partiel ? 'ancien-resultat' : undefined} aria-busy={loading && !rapport.partiel}>
               {loading && !rapport.partiel && <div className="small muted" style={{ marginBottom: 8 }}>Résultat précédent, en attendant le nouveau calcul :</div>}
               <ReportView r={rapport} overrides={draft.overrides} onAppliquer={appliquerCompensation} />
+            </div>
+          )}
+          {/* enregistrer vient après les résultats : en tête, le bouton « Se connecter pour enregistrer » passait avant ce que
+              la réforme change (test Nadia) */}
+          {aJour && !loading && changes.length > 0 && desequilibres.length === 0 && (
+            <div className="card" style={{ marginTop: 16 }}>
+              <h3 style={{ marginTop: 0 }}>Partager, si vous le voulez</h3>
+              <p className="small ink2" style={{ marginTop: 0 }}>Enregistrée, votre proposition reçoit une adresse à partager ; chacun peut la consulter et en faire sa propre version.</p>
+              {!user ? <Link className="btn small" to="/connexion?retour=/atelier">Se connecter pour enregistrer</Link>
+                : proprietaire ? <div className="row"><button className="btn primary small" onClick={() => setSaving(true)}><GitBranch size={15} /> Mettre à jour « {base!.societe.nom} »</button>
+                  <button className="btn small" onClick={() => setSaving(true)}><GitFork size={15} /> Nouvelle proposition</button></div>
+                : <button className="btn primary small" onClick={() => setSaving(true)}><GitFork size={15} /> Enregistrer ma proposition</button>}
             </div>
           )}
           {aJour && !loading && <div style={{ marginTop: 16 }}><ProchaineEtape apres="idee" /></div>}

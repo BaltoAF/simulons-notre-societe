@@ -73,8 +73,8 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   - **Après chaque mise à jour, le premier calcul attend le chargement du moteur (environ 2 min 30 mesurées)** : seul un
     déploiement sans coupure (deux conteneurs, bascule quand le nouveau est prêt) l'éviterait. À soumettre au responsable.
   - Fait ensuite : « Ce que vous changez » au lieu de « Votre réforme », dernière étape « Partager, si vous le voulez »,
-    âge affiché pour les foyers types, bouton flottant masqué pendant le calcul. Reste : le bandeau d'enregistrement
-    placé avant les résultats.
+    âge affiché pour les foyers types, bouton flottant masqué pendant le calcul ; enregistrer dans une carte « Partager,
+    si vous le voulez » après les résultats (2026-10-31 ; le cas « À surveiller » n'avait pas de bouton du tout).
   - Fait : « 8,2 tonnes » comparé à 1990 (premier point de la série SDES) ; « Légifrance, JO, BOFiP » en mots courants ;
     « A+ » nommé « Agrandir le texte » dans le menu du téléphone.
   - Pendant le calcul, le bouton flottant « Voir les effets » cache le choix du foyer type.
