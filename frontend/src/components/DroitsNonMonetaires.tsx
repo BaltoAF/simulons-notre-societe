@@ -10,7 +10,7 @@ import { Loading } from './ui'
 
 type Reponse = { theme: string; question: string; reponse: string; regles: string[]; autre?: string | null; change?: boolean }
 
-export function DroitsNonMonetaires({ age, mois: mois0 = 1, onMois }: { age: number; mois?: number; onMois?: (m: number) => void }) {
+export function DroitsNonMonetaires({ age, mois: mois0 = 1, onMois, retraite = false }: { age: number; mois?: number; onMois?: (m: number) => void; retraite?: boolean }) {
   const annee0 = new Date().getFullYear() - age
   const [annee, setAnnee] = useState(annee0)
   const [mois, setMoisLocal] = useState(mois0)
@@ -24,10 +24,10 @@ export function DroitsNonMonetaires({ age, mois: mois0 = 1, onMois }: { age: num
 
   useEffect(() => {
     setLoading(true)
-    api<{ reponses: Reponse[]; societe?: { nom: string } }>('/api/droits', { body: { profil: { annee_naissance: annee, mois_naissance: mois }, societe: societe || null } })
+    api<{ reponses: Reponse[]; societe?: { nom: string } }>('/api/droits', { body: { profil: { annee_naissance: annee, mois_naissance: mois, retraite }, societe: societe || null } })
       .then((r) => { setRep(r.reponses); setNomSoc(r.societe?.nom ?? null) })
       .finally(() => setLoading(false))
-  }, [annee, mois, societe])
+  }, [annee, mois, societe, retraite])
 
   // les liens vers les règles portent leur nom (« l'âge légal », « la durée de cotisation »), pas un numéro
   const nomRegle = (id: string) => {

@@ -53,7 +53,7 @@ function avecTermes(texte: string): ReactNode {
 function paradoxePauvrete(p: Pilier): boolean {
   const pauv = p.indicateurs.find((i) => i.id === 'pauvrete')
   const gagnants = p.indicateurs.find((i) => i.id === 'gagnants')
-  return !!pauv && !!gagnants && pauv.valeur <= -0.02 && gagnants.valeur < 10 && (gagnants.perdants ?? 0) > 30
+  return !!pauv && !!gagnants && pauv.valeur <= -0.02 && gagnants.valeur < 10 && (gagnants.perdants ?? 0) > 10
 }
 
 /** « Plutôt négatif » sur le plan social alors que personne n'y perd : les inégalités se creusent, il faut le dire. */
@@ -117,6 +117,10 @@ export function EnBref({ r, contexte = 'reforme', overrides }: { r: Rapport; con
                 maximum à un salaire fixé en proportion du SMIC{smicActuel ? ` (environ ${euros(Math.round(138 * smicActuel / 10) * 10, 0)} net par mois aujourd'hui)` : ''}.
                 Si le SMIC monte, ce seuil monte aussi : à salaire égal, le bonus est plus petit.{salaireInchange ? ' Votre salaire, lui, ne change pas dans ce calcul : il est déjà au-dessus du nouveau SMIC.' : ''}</div>
             )}
+            {overrides?.['retraites.revalorisation.pensions_base'] !== undefined && pv.delta_mois < -0.5 && (
+              <div className="small muted" style={{ marginTop: 2 }}>Un gel ne baisse pas la pension : elle n'augmente pas au 1er janvier. Le site compare avec la loi actuelle, qui
+                augmente la retraite de base (en moyenne les trois quarts d'une pension) : d'où cet écart.</div>
+            )}
             {departs.map((d) => (
               <div key={d.qui} className="small" style={{ marginTop: 4 }}><strong>{d.qui === 'Vous' ? 'Votre départ' : 'Le départ de votre conjoint(e)'} à la retraite : à {valeur(d.apres, 'ans')}, en {d.dateApres}</strong>
                 <span className="muted"> (au lieu de {valeur(d.avant, 'ans')}, en {d.dateAvant}). {d.apres > d.avant
@@ -156,7 +160,7 @@ export function EnBref({ r, contexte = 'reforme', overrides }: { r: Rapport; con
               )}
               {p.pilier === 'social' && paradoxePauvrete(p) && (
                 <div className="small muted" style={{ marginTop: 6 }}>Pourquoi la pauvreté recule-t-elle si presque personne n'y gagne ? Elle se mesure par rapport au revenu du milieu
-                  de la population : quand presque tout le monde perd un peu, ce repère baisse, et moins de personnes se retrouvent en dessous.</div>
+                  de la population : quand une partie des ménages perd un peu, ce repère baisse, et moins de personnes se retrouvent en dessous, sans que personne ne gagne.</div>
               )}
               {p.pilier === 'social' && gainPourLesPlusAises(p) && (
                 <div className="small muted" style={{ marginTop: 6 }}>Pourquoi « plutôt négatif » si personne n'y perd ? Le gain va surtout aux ménages

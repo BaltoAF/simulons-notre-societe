@@ -108,6 +108,19 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
     plancher des étudiants et apprentis, ou revenus au-dessus du plafond).
   - Lenteur : fait, revenir sur « Mes droits » avec la même situation affiche le résultat gardé (60 ms au lieu de 5 à 10 s).
     Fait aussi : dans l'atelier, l'ancien résultat reste visible, grisé, pendant un nouveau calcul.
+- **Test Monique** (63 ans, veuve, retraitée depuis un an, propriétaire, tablette ; notes 3 / 3 / confiance 3 sur 5,
+  31/10/2026). Corrigé : le gel des pensions expliqué (« un gel ne baisse pas la pension : elle n'augmente pas »), le
+  « ±0 » d'une mesure de CSG dit le taux de la personne, « soumise à la CSG à le taux » → « au taux », taux fixé d'après le
+  revenu fiscal d'il y a deux ans, réversion dans l'aide à la saisie, zone demandée aux seuls locataires, minimum
+  vieillesse « en principe à 65 ans », questions de retraitée dans « Vos droits au-delà de l'argent » (revalorisation, plus
+  d'âge de départ ni de chômage), paradoxe de la pauvreté expliqué dès que des ménages perdent, « 1,6 milliard »,
+  écarts en euros ronds dans le tableau du foyer, « Tester le gel des pensions » sur la page retraites, marge du débat,
+  « trois étapes » dans la visite. Reste :
+  - Demi-part des veuves et des parents isolés ayant élevé seuls un enfant (case « veuf/veuve » à ajouter au formulaire).
+  - Calculs d'idées parfois longs (20 à 100 s mesurées) : précalculer les idées proposées ou montrer une progression.
+  - « 2 % des ménages y gagnent » pour un gel (effet probable des seuils de CSG : à vérifier et expliquer).
+  - Taxe foncière : pistes selon l'âge et les revenus (exonération à 75 ans déjà dans « Avez-vous pensé à… ? »).
+  - Taille des petits textes (jauge « Où vous situez-vous », aides des champs) même avec « A+ ».
 - **Si la fréquentation augmente** (à soumettre au responsable) : la mémoire est déjà protégée, car un seul calcul de
   population tourne à la fois (`SOCIETE_WORKERS=1`) et les résultats identiques sont gardés en cache. Seule l'attente
   s'allonge : passer alors au VPS-2 avec `SOCIETE_WORKERS=3`, ou dire au visiteur combien de calculs passent avant le sien.

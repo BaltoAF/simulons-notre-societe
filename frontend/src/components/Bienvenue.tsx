@@ -16,7 +16,7 @@ const ECRANS = [
   {
     Icone: Calculator,
     titre: '1. Voyez ce que la loi vous donne',
-    texte: "Répondez à trois questions sur votre foyer : le site calcule vos aides, vos impôts, ce qui vous reste chaque mois et l'âge auquel vous pourrez partir à la retraite. "
+    texte: "Décrivez votre foyer en trois étapes : le site calcule vos aides, vos impôts, ce qui vous reste chaque mois et l'âge auquel vous pourrez partir à la retraite. "
       + 'Vos réponses restent sur votre appareil.',
   },
   {

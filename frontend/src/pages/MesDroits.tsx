@@ -31,10 +31,11 @@ type Resultat = {
 /** Le taux de CSG vraiment appliqué à une pension, dit en clair (il dépend du revenu du foyer). */
 function phraseCsgPension(t: number): ReactNode {
   if (t < 1) return <>Votre pension n'est soumise ni à la <Terme id="csg">CSG</Terme>, ni à la <Terme id="crds">CRDS</Terme>, ni à la <Terme id="casa">Casa</Terme> : les revenus de votre foyer sont sous le seuil d'exonération.</>
-  const nom = t < 5 ? 'le taux réduit (3,8 %)' : t < 7.5 ? 'le taux médian (6,6 %)' : 'le taux plein (8,3 %)'
+  const nom = t < 5 ? 'au taux réduit (3,8 %)' : t < 7.5 ? 'au taux médian (6,6 %)' : 'au taux plein (8,3 %)'
   // la Casa ne s'applique qu'aux pensions soumises à la CSG au taux médian ou plein
-  return <>Votre pension est soumise à la <Terme id="csg">CSG</Terme> à {nom}, qui dépend du revenu de votre foyer, plus la <Terme id="crds">CRDS</Terme>
-    {t >= 5 && <> et la <Terme id="casa">Casa</Terme></>} : c'est la différence entre votre pension brute et votre pension nette.</>
+  return <>Votre pension est soumise à la <Terme id="csg">CSG</Terme> {nom}, qui dépend du revenu de votre foyer, plus la <Terme id="crds">CRDS</Terme>
+    {t >= 5 && <> et la <Terme id="casa">Casa</Terme></>} : c'est la différence entre votre pension brute et votre pension nette. Le taux se fixe d'après le revenu
+    fiscal de référence d'il y a deux ans (sur votre avis d'impôt) : la première année de retraite, il peut encore dépendre de vos anciens revenus d'activité.</>
 }
 
 /** Ce qu'il faut saisir pour chaque situation, dit avec les mots du document que la personne a sous les yeux. */
@@ -43,7 +44,7 @@ const AIDE_MONTANT: Record<string, string> = {
   apprenti: "Le montant en bas de votre fiche de paie. La prime d'activité ne s'ouvre aux apprentis qu'au-delà d'environ 1 144 € nets par mois.",
   independant: "Ce que vous facturez en moyenne par mois, celui que vous déclarez à l'Urssaf, avant de payer vos cotisations. Le site calcule vos cotisations, votre impôt et vos aides.",
   chomeur: 'Le montant versé chaque mois par France Travail, avant prélèvement à la source.',
-  retraite: 'Le montant versé chaque mois sur votre compte, toutes vos retraites additionnées (base et complémentaire), avant prélèvement à la source.',
+  retraite: "Toutes vos retraites additionnées (base, complémentaire, et pension de réversion si vous en touchez une), avant prélèvement à la source : le montant net de votre relevé de pension ou de votre espace info-retraite.fr.",
   etudiant: "En alternance ? Choisissez plutôt « Apprenti(e) ». Une personne étudiante n'a droit à la prime d'activité que si elle gagne plus d'environ 1 144 € nets par mois. Les bourses ne sont pas calculées par le site, mais le résultat vous dira comment les demander.",
 }
 
@@ -109,7 +110,7 @@ function AucuneAide({ s, totalRevenus, plafondAspa }: { s: SituationSaisie; tota
       <h3 style={{ marginBottom: 6 }}>Pourquoi aucune aide ?</h3>
       {retraite && s.adultes.length === 1 && plafondAspa != null && totalRevenus > plafondAspa ? (
         <p className="small ink2" style={{ margin: 0 }}>Votre pension ({euros(totalRevenus)} par mois) dépasse le plafond du minimum vieillesse
-          ({euros(plafondAspa, 2)} pour une personne seule) : il ne s'ajoute donc pas.{s.logement === 'proprietaire'
+          ({euros(plafondAspa, 2)} pour une personne seule) : il ne s'ajoute donc pas.{(s.adultes[0]?.age ?? 0) < 65 && ' Il faut aussi, en principe, avoir 65 ans.'}{s.logement === 'proprietaire'
             ? " Les aides au logement aident à payer un loyer (ou, dans certains cas, un prêt immobilier) : un propriétaire qui ne rembourse plus de prêt n'y a pas droit."
             : ' Pour les aides au logement, vos ressources dépassent le plafond qui correspond à votre loyer.'}</p>
       ) : (
@@ -369,7 +370,7 @@ export default function MesDroits() {
               {/* pas de demande d'argent à un foyer qui vient d'apprendre ses droits aux minima ou aux aides */}
               <ProposerSoutien masquer={prestBrut.length > 0} />
               <ProchaineEtape apres="droits" />
-              <DroitsNonMonetaires age={s.adultes[0]?.age ?? 35} mois={s.mois_naissance ?? 1}
+              <DroitsNonMonetaires age={s.adultes[0]?.age ?? 35} mois={s.mois_naissance ?? 1} retraite={s.adultes[0]?.activite === 'retraite'}
                 onMois={(m) => { const sit = { ...s, mois_naissance: m }; setS(sit); setSituation(sit) }} />
             </div>
             <div className="stack sticky">
@@ -400,7 +401,13 @@ export default function MesDroits() {
                         </div>
                         {/* « ±0 € » sans un mot passait pour une panne (test Karim, RSA à 800 € alors qu'il ne touche pas le RSA) */}
                         {r && !r.loading && !r.departs && !Number.isNaN(r.delta) && Math.abs(r.delta) < 0.5 && (
-                          <div className="small muted" style={{ marginTop: 4 }}>Ne change rien pour votre foyer aujourd'hui : vous ne touchez pas ce qui est modifié, ou vos revenus sont hors du champ de la mesure.</div>
+                          <div className="small muted" style={{ marginTop: 4 }}>{p.id.startsWith('csg-retraites') && res?.taux_csg_pension != null
+                            ? `Le taux plein de CSG ne concerne que les retraités dont les revenus dépassent un plafond. Vous payez ${res.taux_csg_pension < 1 ? 'aucune CSG' : res.taux_csg_pension < 5 ? 'le taux réduit (3,8 %)' : 'le taux médian (6,6 %)'}, que cette mesure ne change pas.`
+                            : "Ne change rien pour votre foyer aujourd'hui : vous ne touchez pas ce qui est modifié, ou vos revenus sont hors du champ de la mesure."}</div>
+                        )}
+                        {p.id === 'gel-pensions' && r && !r.loading && !Number.isNaN(r.delta) && r.delta < -0.5 && (
+                          <div className="small muted" style={{ marginTop: 4 }}>Un gel ne baisse pas la pension : elle n'augmente pas au 1er janvier. Le site compare avec la loi
+                            actuelle, qui augmente la retraite de base (en moyenne les trois quarts d'une pension) : vous auriez environ {euros(Math.abs(r.delta))} de moins par mois que prévu.</div>
                         )}
                         {/* +100 € sur le montant de base, mais davantage pour un foyer : le dire, sinon l'écart semble une erreur */}
                         {p.id === 'prime-activite-plus' && r && !r.loading && r.delta > 110 && (
@@ -552,13 +559,16 @@ export default function MesDroits() {
                 <div className="input-suffix"><input type="number" min={0} step={10} placeholder="ex. 600" value={s.loyer_mensuel || ''} onChange={(e) => up({ loyer_mensuel: Number(e.target.value) })} /><span className="suffix">€ / mois</span></div>
                 <span className="hint">Si la CAF verse l'aide directement à votre bailleur (c'est souvent le cas en HLM), indiquez le loyer hors charges inscrit sur votre avis d'échéance (le document que le bailleur envoie chaque mois), avant que l'aide en soit retirée, et non ce qu'il vous reste à payer.</span></label>
             )}
-            <label className="field"><span>Vous habitez…</span></label>
-            <div className="choices">
-              {([[1, 'Paris et sa proche banlieue'], [2, 'Une grande ville'], [3, 'Une ville moyenne ou la campagne']] as const).map(([v, l]) => (
-                <button key={v} className={`choice ${s.zone === v ? 'on' : ''}`} aria-pressed={s.zone === v} onClick={() => up({ zone: v })}>{l}</button>
-              ))}
-            </div>
-            <span className="hint">Une grande ville : plus de 100 000 habitants avec ses environs (Lille, Saint-Étienne, Rennes…). Le choix compte pour l'aide au logement.</span>
+            {/* la zone ne sert qu'à l'aide au logement : la demander à un propriétaire le faisait hésiter pour rien (test Monique) */}
+            {s.logement.startsWith('locataire') && <>
+              <label className="field"><span>Vous habitez…</span></label>
+              <div className="choices">
+                {([[1, 'Paris et sa proche banlieue'], [2, 'Une grande ville'], [3, 'Une ville moyenne ou la campagne']] as const).map(([v, l]) => (
+                  <button key={v} className={`choice ${s.zone === v ? 'on' : ''}`} aria-pressed={s.zone === v} onClick={() => up({ zone: v })}>{l}</button>
+                ))}
+              </div>
+              <span className="hint">Une grande ville : plus de 100 000 habitants avec ses environs (Lille, Saint-Étienne, Rennes…). Le choix compte pour l'aide au logement.</span>
+            </>}
           </div>
         )}
         <div className="row between" style={{ marginTop: 22 }}>

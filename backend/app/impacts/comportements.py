@@ -626,6 +626,7 @@ def mod_multiplicateur(ctx: Contexte, soldes: dict, inds: list[Indicateur] | Non
     # qui travaillent. Les additionner mélangerait deux moments différents.
     conf_s = moyenne_ponderee(list(soldes.values()), "Effet budgétaire de la réforme") if soldes else None
     md = lambda v: fr(v, 0 if abs(v) >= 10 else 1)  # noqa: E731
+    mds = lambda v: f"{md(v)} milliard{'s' if abs(v) >= 2 else ''} €"  # noqa: E731  (« 1,6 milliard », « 2 milliards »)
     out = []
     if d_demande:
         calcul.append(f"Effet à court terme : {d_demande:+.1f} Md€, soit {d_demande / pib * 100:+.2f} % du PIB ({pib:.0f} Md€)")
@@ -633,20 +634,20 @@ def mod_multiplicateur(ctx: Contexte, soldes: dict, inds: list[Indicateur] | Non
         retraites = soldes.get("solde_public_retraites", (0.0, None))[0]
         if abs(retraites) >= 0.5 * abs(s):
             # une mesure de retraite : dire de quel argent il s'agit, plutôt qu'une explication générale
-            pourquoi = (f"Les pensions versées plus tôt (sans financement en face) se dépensent : environ {md(d_demande)} milliards € "
+            pourquoi = (f"Les pensions versées plus tôt (sans financement en face) se dépensent : environ {mds(d_demande)} "
                         f"d'activité en plus." if d_demande > 0 else
-                        f"Les pensions versées plus tard laissent moins d'argent à dépenser : environ {md(-d_demande)} milliards € "
+                        f"Les pensions versées plus tard laissent moins d'argent à dépenser : environ {mds(-d_demande)} "
                         f"d'activité en moins.")
         else:
             pourquoi = (f"L'argent public rendu aux ménages et aux entreprises (dépenses ou aides en plus, impôts ou cotisations en moins) "
-                        f"soutient la consommation : environ {md(d_demande)} milliards € d'activité en plus."
+                        f"soutient la consommation : environ {mds(d_demande)} d'activité en plus."
                         if d_demande > 0 else
                         f"L'argent qui rentre en plus dans les caisses publiques (impôts ou cotisations en plus, aides ou dépenses en moins) "
-                        f"ne sert plus à consommer : environ {md(-d_demande)} milliards € d'activité en moins.")
+                        f"ne sert plus à consommer : environ {mds(-d_demande)} d'activité en moins.")
         if d_prod and (d_prod > 0) != (d_demande > 0):
             # les deux horizons vont en sens contraire : le dire, sinon le verdict d'ensemble paraît contredire ce chiffre
             pourquoi += (f" C'est un effet de court terme, qui s'estompe : à long terme, l'activité "
-                         f"{'baisse' if d_prod < 0 else 'progresse'} d'environ {md(abs(d_prod))} milliards € par an.")
+                         f"{'baisse' if d_prod < 0 else 'progresse'} d'environ {mds(abs(d_prod))} par an.")
         out.append(Indicateur("pib", "Effet sur l'activité à court terme (PIB, à 1-2 ans)", d_demande / pib * 100, "pourcent",
                               confiance=chaine(conf_m, *[c for c in (conf_s,) if c]), explication=pourquoi, calcul=calcul,
                               sources=[src_p] if src_p else [], preuves=["multiplicateur_budgetaire"],
@@ -654,7 +655,7 @@ def mod_multiplicateur(ctx: Contexte, soldes: dict, inds: list[Indicateur] | Non
                               fourchette=fourchette(syn, lambda x: -x * s / pib * 100)))
     if d_prod:
         pourquoi = (f"{'Moins' if d_prod < 0 else 'Plus'} de personnes au travail (environ {fr(abs(round(d_offre, -3)), 0)}), "
-                    f"c'est {'moins' if d_prod < 0 else 'plus'} de production : environ {md(abs(d_prod))} milliards € par an"
+                    f"c'est {'moins' if d_prod < 0 else 'plus'} de production : environ {mds(abs(d_prod))} par an"
                     f"{' en moins' if d_prod < 0 else ' en plus'}, durablement.")
         out.append(Indicateur("pib_long_terme", "Effet sur l'activité à long terme (PIB, une dizaine d'années)", d_prod / pib * 100, "pourcent",
                               confiance=chaine(*[i.confiance for i in offre if i.confiance]) if any(i.confiance for i in offre) else None,

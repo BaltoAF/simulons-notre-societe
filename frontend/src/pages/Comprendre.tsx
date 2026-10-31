@@ -271,7 +271,7 @@ function Detail({ q }: { q: Question }) {
               </div>
             ))}
           </div>
-          <p className="small muted" style={{ marginBottom: 0 }}>Le site ne tranche pas : la réponse dépend aussi de ce qui compte le plus pour chacun.
+          <p className="small muted" style={{ marginBottom: 0, marginTop: 14 }}>Le site ne tranche pas : la réponse dépend aussi de ce qui compte le plus pour chacun.
             Pour voir ce que changerait une idée, chiffres à l'appui, testez-la dans <Link to="/atelier">« Changer les règles »</Link>.</p>
         </div>
       )}

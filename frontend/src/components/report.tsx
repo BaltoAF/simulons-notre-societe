@@ -60,7 +60,7 @@ function SectionMenage({ s }: { s: Section }) {
         <tbody>
           {lignes.map((l) => {
             const sign = l.nature === 'prelevement' ? -1 : 1
-            const d = delta(sign * l.delta, 'euros')
+            const d = delta(Math.round(sign * l.delta), 'euros')
             return (
               <tr key={l.id}>
                 <td>{l.libelle}{l.nature === 'prelevement' && !/imp[oô]t|prélèvement|cotisation|csg|crds|tva/i.test(l.libelle) ? <span className="muted small"> · payé</span> : null}</td>

@@ -68,6 +68,7 @@ def repondre(state: dict, profil: dict) -> list[dict]:
     naissance = dt.date(annee, mois, 1)
     age = (aujourd_hui.year - annee) - (1 if (aujourd_hui.month, aujourd_hui.day) < (mois, 1) else 0)
     ym = f"{annee}-{mois:02d}"
+    retraite = bool(profil.get("retraite"))  # déjà à la retraite : ni âge de départ, ni chômage, ni SMIC (test Monique)
     out = []
 
     def add(theme, question, reponse, regles, valeur=None, unite=""):
@@ -76,7 +77,13 @@ def repondre(state: dict, profil: dict) -> list[dict]:
 
     # Retraite
     r_age, r_trim = _tranche(AGE_LEGAL, ym), _tranche(TRIMESTRES, ym)
-    if r_age and g(r_age) is not None:
+    if retraite and g("retraites.revalorisation.pensions_base") is not None:
+        rv = float(g("retraites.revalorisation.pensions_base"))
+        add("Retraite", "Comment ma pension évolue-t-elle ?",
+            f"Les retraites de base sont revalorisées chaque 1er janvier : {_fr(rv, 1)} % au dernier 1er janvier. "
+            "Les retraites complémentaires (Agirc-Arrco pour les anciens salariés du privé) suivent leurs propres règles.",
+            ["retraites.revalorisation.pensions_base"], rv, "pourcent")
+    elif r_age and g(r_age) is not None:
         al = float(g(r_age))
         quand = _date_plus(naissance, al)
         de = "d'" if quand[0] in "aeiou" else "de "  # « à partir d'octobre », « de juin »
@@ -87,7 +94,7 @@ def repondre(state: dict, profil: dict) -> list[dict]:
                 txt += f" (ou attendre {int(g('retraites.taux_plein.age_automatique'))} ans)."
         add("Retraite", "À quel âge pourrai-je partir à la retraite ?", txt,
             [r_age, r_trim, "retraites.taux_plein.age_automatique"], al, "ans")
-    elif annee < 1955:
+    elif annee < 1955 and not retraite:
         add("Retraite", "À quel âge pourrai-je partir à la retraite ?", "Votre génération a déjà atteint l'âge légal de départ.", [])
 
     # Chômage
@@ -97,19 +104,19 @@ def repondre(state: dict, profil: dict) -> list[dict]:
         rid, tranche = "travail.chomage.duree_max_55_56_ans", "55 et 56 ans"
     else:
         rid, tranche = "travail.chomage.duree_max_57_ans_et_plus", "57 ans et plus"
-    if g(rid) is not None and age < 67:
+    if g(rid) is not None and age < 67 and not retraite:
         j = float(g(rid))
         add("Travail", "Si je perds mon emploi, combien de temps serai-je indemnisé au maximum ?",
             f"Jusqu'à {round(j)} jours (environ {j / 30.4:.0f} mois) pour les {tranche}, si vous avez assez travaillé auparavant.",
             [rid, "travail.chomage.affiliation_jours_travailles"], j, "jours")
-    if g("travail.duree.legale_hebdomadaire") is not None:
+    if g("travail.duree.legale_hebdomadaire") is not None and not retraite:
         add("Travail", "Combien d'heures dois-je travailler, combien de congés ?",
             f"Durée légale : {g('travail.duree.legale_hebdomadaire'):g} heures par semaine ; au-delà, ce sont des heures supplémentaires majorées. "
             f"Congés payés : {g('travail.conges.jours_ouvrables_par_an'):g} jours ouvrables par an (soit 5 semaines)."
             if g("travail.conges.jours_ouvrables_par_an") is not None else
             f"Durée légale : {g('travail.duree.legale_hebdomadaire'):g} heures par semaine.",
             ["travail.duree.legale_hebdomadaire", "travail.conges.jours_ouvrables_par_an"], g("travail.duree.legale_hebdomadaire"), "heures")
-    if g("travail.smic.horaire_brut") is not None:
+    if g("travail.smic.horaire_brut") is not None and not retraite:
         smic_mois = float(g("travail.smic.horaire_brut")) * 151.67
         txt, regles = (f"SMIC : {_fr(g('travail.smic.horaire_brut'), 2)} € brut de l'heure, soit {_fr(smic_mois, 0)} € brut par mois pour 35 heures.",
                        ["travail.smic.horaire_brut"])
