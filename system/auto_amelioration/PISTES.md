@@ -79,6 +79,20 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
     « A+ » nommé « Agrandir le texte » dans le menu du téléphone.
   - Pendant le calcul, le bouton flottant « Voir les effets » cache le choix du foyer type.
   - Climat : l'action « baisse de la taxe sur le gazole » ne correspond pas tout à fait à la position « innovation et aides ».
+- **Test Inès** (20 ans, apprentie en BTS à 900 € nets, studio à 450 €, téléphone ; notes 3 / utilité 2 / téléphone 3,5
+  sur 5, 31/10/2026). Corrigé : statut « Apprenti(e), en alternance » (le moteur applique le plancher de la prime
+  d'activité des apprentis : le site lui annonçait 243 € comme salariée ; tests/test_apprenti.py), plus de bourse du
+  Crous proposée, impôt à 0 expliqué par l'exonération des apprentis, salaire gardé quand on change de statut, seuil de
+  la prime d'activité en euros, case « mes parents me comptent… » expliquée, 4 idées à tester puis « Voir les autres »,
+  durée du calcul annoncée. Reste :
+  - **Exonérations des apprentis** (service-public F2918) : contrats depuis le 1er mars 2025, cotisations salariales et
+    CSG-CRDS exonérées jusqu'à 50 % du SMIC, impôt jusqu'au SMIC annuel ; avant, 79 % et CSG-CRDS exonérée. OpenFisca ne
+    les modélise pas : le site le dit (Mes droits, Votre part), les cotisations affichées sont trop élevées.
+  - Aide au logement : 156 € comme apprentie, 203 € comme étudiante, à loyer et salaire égaux ; à vérifier (ressources
+    retenues par la CAF pour un apprenti).
+  - Minimum de salaire d'un apprenti (règle du site) à montrer à côté du SMIC pour un profil apprenti.
+  - Formulaire : « Suivant » hors de l'écran sous les exemples ; « en 3 questions » (trois étapes) ; étiquettes des champs
+    pour les lecteurs d'écran ; « Impôts rendus aux contribuables » (budget) ; recherche de règles serrée sur téléphone.
 - **Si la fréquentation augmente** (à soumettre au responsable) : la mémoire est déjà protégée, car un seul calcul de
   population tourne à la fois (`SOCIETE_WORKERS=1`) et les résultats identiques sont gardés en cache. Seule l'attente
   s'allonge : passer alors au VPS-2 avec `SOCIETE_WORKERS=3`, ou dire au visiteur combien de calculs passent avant le sien.

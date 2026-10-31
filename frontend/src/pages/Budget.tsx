@@ -277,6 +277,7 @@ export default function Budget() {
             <div className="small muted" style={{ marginBottom: 6 }}>soit environ {euros(m.total_paye / 12, 0)} par mois</div>
             <ul className="list small">{m.paye.map((p) => <li key={p.id}><div className="list-row"><span>{p.id === 'csg_crds' ? <><Terme id="csg">CSG</Terme> et <Terme id="crds">CRDS</Terme></>
               : p.id === 'cotisations' ? <Terme id="cotisations">{p.titre}</Terme> : p.titre}</span><strong>{euros(p.montant)}</strong></div>{p.note && <div className="muted" style={{ fontSize: '.78rem' }}>{p.note}</div>}</li>)}</ul>
+            {profil?.adultes.some((a) => a.activite === 'apprenti') && <div className="small muted" style={{ marginBottom: 6 }}>Apprenti(e) : les exonérations de cotisations et de CSG des apprentis ne sont pas encore calculées par le site ; ces montants sont trop élevés.</div>}
             {m.cotisations_employeur > 0 && <div className="small muted">En plus, l'employeur verse {euros(m.cotisations_employeur)} de <Terme id="cotisations">cotisations patronales</Terme> sur les salaires.</div>}
           </div>
           <div className="card">

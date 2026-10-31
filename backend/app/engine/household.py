@@ -8,7 +8,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field, asdict
 from typing import Literal
 
-Activite = Literal["salarie", "independant", "chomeur", "retraite", "etudiant", "inactif"]
+Activite = Literal["salarie", "apprenti", "independant", "chomeur", "retraite", "etudiant", "inactif"]
 Couple = Literal["seul", "marie", "pacse", "concubin"]
 Logement = Literal["locataire_prive", "locataire_social", "proprietaire", "heberge"]
 

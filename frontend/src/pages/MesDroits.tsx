@@ -38,10 +38,11 @@ function phraseCsgPension(t: number): ReactNode {
 /** Ce qu'il faut saisir pour chaque situation, dit avec les mots du document que la personne a sous les yeux. */
 const AIDE_MONTANT: Record<string, string> = {
   salarie: 'Le montant qui figure en bas de votre fiche de paie, avant prélèvement à la source.',
+  apprenti: "Le montant en bas de votre fiche de paie. La prime d'activité ne s'ouvre aux apprentis qu'au-delà d'environ 1 144 € nets par mois.",
   independant: "Ce que vous facturez en moyenne par mois, celui que vous déclarez à l'Urssaf, avant de payer vos cotisations. Le site calcule vos cotisations, votre impôt et vos aides.",
   chomeur: 'Le montant versé chaque mois par France Travail, avant prélèvement à la source.',
   retraite: 'Le montant versé chaque mois sur votre compte, toutes vos retraites additionnées (base et complémentaire), avant prélèvement à la source.',
-  etudiant: "Une personne étudiante n'a droit à la prime d'activité que si elle gagne au moins 78 % du SMIC environ. Les bourses ne sont pas calculées par le site, mais le résultat vous dira comment les demander.",
+  etudiant: "En alternance ? Choisissez plutôt « Apprenti(e) ». Une personne étudiante n'a droit à la prime d'activité que si elle gagne plus d'environ 1 144 € nets par mois. Les bourses ne sont pas calculées par le site, mais le résultat vous dira comment les demander.",
 }
 
 // âge et montant vides (un exemple grisé les illustre) : pré-remplis, on pouvait valider sans les changer, et le calcul était faux
@@ -124,6 +125,7 @@ export default function MesDroits() {
   const [err, setErr] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
   const [etSi, setEtSi] = useState<Record<string, { delta: number; loading?: boolean; departs?: Depart[] }>>({})
+  const [toutesIdees, setToutesIdees] = useState(false) // 16 idées à la suite : la page faisait neuf écrans de téléphone (test Inès)
   const [exemple, setExemple] = useState<string | null>(null) // résultat d'un foyer exemple, pas encore ajusté par la personne
   // toutes les règles (et pas seulement celles que le moteur sait faire varier) : « Pourquoi ce montant ? » cite par leur titre
   // des règles du site comme les cotisations des auto-entrepreneurs, au lieu de leur identifiant technique
@@ -207,6 +209,7 @@ export default function MesDroits() {
     const pourquoi = (l: Resultat['lignes'][number]): ReactNode => {
       if (l.id === 'impot_revenu_zero') {
         if (totalRevenus < 1) return "Vous n'avez pas de revenus imposables : il n'y a pas d'impôt à payer."
+        if (s.adultes.some((a) => a.activite === 'apprenti')) return "Le salaire d'un apprenti n'est pas imposable, dans la limite du montant annuel du SMIC. Il se déclare quand même : seule la part au-delà est imposée."
         return (res?.decote_annuelle ?? 0) > 0
           ? <>Votre impôt aurait été d'environ {euros(res!.decote_annuelle!, 0)} par an, mais la <Terme id="decote">décote</Terme>, une réduction automatique pour les petits impôts, l'annule entièrement.</>
           : <>Le revenu du foyer est divisé en <Terme id="part_fiscale">parts</Terme> (une part par adulte, une demi-part par enfant) : par part, il reste sous le seuil où l'impôt commence.</>
@@ -250,7 +253,9 @@ export default function MesDroits() {
           <Notice>C'est le résultat de l'exemple « {exemple} » ({resumeSituation(s)}). Pour votre propre situation :{' '}
             <button className="lien" onClick={() => { setStep(1); setRes(null) }}>mettre vos vrais montants</button>.</Notice>
         )}
-        {loading && <Loading label="Calcul de vos droits en cours…" />}
+        {res && s.adultes.some((a) => a.activite === 'apprenti') && <Notice>Apprenti(e) : le site applique le seuil de la prime d'activité des apprentis, mais pas encore leurs exonérations (cotisations, CSG et CRDS sur la part du salaire jusqu'à la moitié du SMIC, impôt sur le revenu dans la limite du SMIC annuel). Les cotisations indiquées sont donc trop élevées ; votre salaire net, lui, est bien celui que vous avez indiqué.</Notice>}
+        {/* le calcul dure de 5 à 10 secondes : un écran presque vide faisait croire à une panne (test Inès) */}
+        {loading && <Loading label="Calcul de vos droits en cours (une dizaine de secondes)…" />}
         {err && <ErrorBox message={err} />}
         {res && (
           <div className="split aside-380">
@@ -330,7 +335,7 @@ export default function MesDroits() {
                 <h3>Et si les règles changeaient ?</h3>
                 <p className="small muted">Testez des propositions du débat public sur <strong>votre</strong> foyer.</p>
                 <ul className="list">
-                  {PRESETS.map((p) => {
+                  {(toutesIdees ? PRESETS : PRESETS.slice(0, 4)).map((p) => {
                     const r = etSi[p.id]
                     return (
                       <li key={p.id}>
@@ -360,6 +365,8 @@ export default function MesDroits() {
                     )
                   })}
                 </ul>
+                {!toutesIdees && <button className="btn small ghost" style={{ width: '100%', marginTop: 4 }} onClick={() => setToutesIdees(true)}>
+                  Voir les {PRESETS.length - 4} autres idées</button>}
                 <Link to="/atelier" className="btn primary" style={{ width: '100%', marginTop: 8 }}><GitFork size={16} /> Imaginer ma propre réforme</Link>
               </div>
               <div className="small muted"><Lock size={13} /> Votre situation reste dans votre navigateur. Elle sert uniquement au calcul et n'est jamais enregistrée par le site.</div>
@@ -372,7 +379,7 @@ export default function MesDroits() {
 
   const enCouple = s.adultes.length > 1
   // un salaire, une allocation chômage ou une pension à 0 € : presque toujours un oubli
-  const montantManquant = s.adultes.some((a) => ['salarie', 'independant', 'chomeur', 'retraite'].includes(a.activite) && !(a.montant_net > 0))
+  const montantManquant = s.adultes.some((a) => ['salarie', 'apprenti', 'independant', 'chomeur', 'retraite'].includes(a.activite) && !(a.montant_net > 0))
   const ageManquant = s.adultes.some((a) => !(a.age >= 16 && a.age <= 110))
   return (
     <div className="container page" style={{ maxWidth: 760 }}>
@@ -438,9 +445,11 @@ export default function MesDroits() {
                     {/* changer de situation vide le montant : une pension de 850 € ne doit pas devenir un salaire d'étudiant */}
                     <select value={a.activite} onChange={(e) => {
                       const activite = e.target.value as AdulteSaisie['activite']
-                      upA(i, { activite, montant_net: 0, rattache: activite === 'etudiant' ? a.age < 25 : undefined })
+                      const salaire = ['salarie', 'apprenti', 'etudiant']
+                      upA(i, { activite, montant_net: salaire.includes(activite) && salaire.includes(a.activite) ? a.montant_net : 0, rattache: activite === 'etudiant' ? a.age < 25 : undefined })
                     }}>
                       <option value="salarie">Salarié(e)</option>
+                      <option value="apprenti">Apprenti(e), en alternance</option>
                       <option value="independant">Auto-entrepreneur (micro-entreprise)</option>
                       <option value="chomeur">Au chômage, indemnisé(e)</option>
                       <option value="retraite">Retraité(e)</option>
@@ -456,9 +465,9 @@ export default function MesDroits() {
                       <option value="liberal">Profession libérale : conseil, formation, graphisme, informatique…</option>
                     </select></label>
                 )}
-                {['salarie', 'independant', 'chomeur', 'retraite', 'etudiant'].includes(a.activite) && (
+                {['salarie', 'apprenti', 'independant', 'chomeur', 'retraite', 'etudiant'].includes(a.activite) && (
                   <label className="field">
-                    <span>{a.activite === 'salarie' ? 'Salaire net mensuel (avant impôt)' : a.activite === 'independant' ? "Chiffre d'affaires moyen par mois"
+                    <span>{a.activite === 'salarie' || a.activite === 'apprenti' ? 'Salaire net mensuel (avant impôt)' : a.activite === 'independant' ? "Chiffre d'affaires moyen par mois"
                       : a.activite === 'chomeur' ? 'Allocation chômage nette mensuelle'
                       : a.activite === 'etudiant' ? "Salaire d'un petit boulot, net par mois (0 si vous n'en avez pas)" : 'Pension de retraite nette mensuelle'}</span>
                     <div className="input-suffix"><input type="number" min={0} step={50} value={a.montant_net || ''} placeholder={a.activite === 'etudiant' ? '0' : 'ex. 1 200'}
@@ -468,7 +477,7 @@ export default function MesDroits() {
                 )}
                 <div className="row" style={{ gap: 18 }}>
                   {a.activite === 'salarie' && <label className="row small" style={{ cursor: 'pointer' }}><input type="checkbox" checked={a.cadre} onChange={(e) => upA(i, { cadre: e.target.checked })} /> Cadre</label>}
-                  {a.activite === 'etudiant' && !enCouple && <label className="row small" style={{ cursor: 'pointer' }}><input type="checkbox" checked={estRattache(a)} onChange={(e) => upA(i, { rattache: e.target.checked })} /> Mes parents me comptent encore dans leur déclaration d'impôt</label>}
+                  {a.activite === 'etudiant' && !enCouple && <label className="row small" style={{ cursor: 'pointer' }}><input type="checkbox" checked={estRattache(a)} onChange={(e) => upA(i, { rattache: e.target.checked })} /> Mes parents me comptent encore dans leur déclaration d'impôt<span className="muted"> (à vérifier : cela change vos droits ; en cas de doute, regardez leur dernier avis d'impôt ou demandez-leur)</span></label>}
                   <label className="row small" style={{ cursor: 'pointer' }}><input type="checkbox" checked={a.handicap} onChange={(e) => upA(i, { handicap: e.target.checked })} /> Handicap reconnu (taux ≥ 80 %)</label>
                 </div>
               </div>

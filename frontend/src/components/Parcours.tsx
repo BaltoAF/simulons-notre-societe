@@ -13,7 +13,7 @@ export const MISSIONS: { id: EtapeParcours; titre: string; detail: string; lien:
 /** La règle à vérifier : une qui concerne le visiteur s'il a décrit son foyer (la CSG de sa pension, sa prime d'activité…). */
 function regleQuiVousConcerne(activites: string[]): string {
   if (activites.includes('retraite')) return '/regles/r/fiscalite.csg.retraites_taux_plein'
-  if (activites.includes('salarie')) return '/regles/r/prestations.prime_activite.montant_forfaitaire'
+  if (activites.includes('salarie') || activites.includes('apprenti')) return '/regles/r/prestations.prime_activite.montant_forfaitaire'
   if (activites.includes('chomeur')) return '/regles/r/travail.chomage.taux_remplacement'
   return '/regles/r/travail.smic.horaire_brut'
 }

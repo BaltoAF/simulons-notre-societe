@@ -287,11 +287,16 @@ class Engine:
                     "date_naissance": {"ETERNITY": f"{config.TODAY.year - a.age}-{config.TODAY.month:02d}-01"},
                     "statut_marital": {config.MOIS_REFERENCE: statut} if len(m.adultes) == 2 else {config.MOIS_REFERENCE: "celibataire"},
                 }
-                act = {"salarie": "actif", "independant": "actif", "chomeur": "chomeur", "retraite": "retraite",
+                act = {"salarie": "actif", "apprenti": "actif", "independant": "actif", "chomeur": "chomeur", "retraite": "retraite",
                        "etudiant": "etudiant", "inactif": "inactif"}[a.activite]
                 # la situation vaut pour tous les mois simulés : le RSA et la prime d'activité se calculent sur les ressources
                 # des trois mois précédents (une AAH limitée au mois courant n'était pas comptée dans le RSA)
                 ind["activite"] = {mo: act for mo in mois}
+                if a.activite == "apprenti":
+                    # la prime d'activité ne s'ouvre aux apprentis qu'au-delà d'un plancher de revenus (ppa_eligibilite_apprenants).
+                    # Les exonérations de cotisations, de CSG-CRDS et d'impôt des apprentis ne sont pas modélisées par OpenFisca :
+                    # le salaire net saisi est converti comme celui d'un salarié, et le site le dit à la personne.
+                    ind["apprenti"] = {mo: True for mo in mois}
                 if a.salaire_brut_mensuel > 0:
                     ind["salaire_de_base"] = {y: round(a.salaire_brut_mensuel * 12, 2) for y in years}
                     ind["categorie_salarie"] = {mo: "prive_cadre" if a.cadre else "prive_non_cadre" for mo in mois}
