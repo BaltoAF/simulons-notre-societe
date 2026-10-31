@@ -140,8 +140,9 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   d'abord et sens contraire dit, financement « pas encore choisi » sous « rien ne change », case Social d'un âge de
   départ ; départs anticipés (nuit, pénibilité, catégorie active) ; découverte : la règle vérifiée suit le profil, compteur
   « missions » distinct des étapes de l'atelier ; mois de naissance : lien ; page du SMIC : montant mensuel brut et net
-  d'un temps plein, « le moteur de calcul public OpenFisca » sans numéro de version. Reste : /budget long sur téléphone
-  (dix écrans ; deux raccourcis en tête, « Votre part » et « Changer le budget ») ;
+  d'un temps plein, « le moteur de calcul public OpenFisca » sans numéro de version. /budget sur téléphone : « Et vous ? »
+  remonté juste après « Sur 100 € » (2e écran au lieu du dernier), cinq domaines du budget de l'État d'abord, cadenas
+  repliés (7,4 → 6,7 écrans). Reste :
   deux exemples de propositions sur trois « solidaires ». Fait : chaque solution de financement a son avantage et son
   inconvénient (les économies n'en avaient pas). Reste : une solution « revenus du capital » (le taux de la flat tax,
   fiscalite.capital.pfu_taux_ir, est un levier du moteur), à ajouter quand son rendement sera calé sur une source

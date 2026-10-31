@@ -93,17 +93,18 @@ function BudgetEtat({ missions, depenseTotale }: { missions: { id: string; titre
   const [tout, setTout] = useState(false)
   const totalEtat = missions.reduce((a, x) => a + x.md, 0)
   const max = Math.max(...missions.map((x) => x.md))
-  const visibles = tout ? missions : missions.slice(0, 10)
+  // sur téléphone, cinq domaines d'abord : la carte faisait trois écrans (test Josiane)
+  const premiers = typeof window !== 'undefined' && window.matchMedia?.('(max-width: 640px)').matches ? 5 : 10
+  const visibles = tout ? missions : missions.slice(0, premiers)
   return (
     <div className="card" id="budget-etat" style={{ marginTop: 20, scrollMarginTop: 80 }}>
       <h2 style={{ fontSize: '1.3rem', marginBottom: 4 }}><Landmark size={20} /> Le budget de l'État, et comment le changer</h2>
       <p className="small ink2" style={{ marginTop: 0 }}>Sur les {milliards(depenseTotale)} d'argent public, l'État en gère environ <strong>{milliards(totalEtat)}</strong>.
         Le reste, c'est surtout la Sécurité sociale (retraites, santé, familles) et les communes, départements et régions.
-        Les montants ci-dessous sont ceux du budget de l'État voté pour l'année ; plus haut, « Où va l'argent public » compte toutes les
-        administrations, sur la dernière année publiée : c'est pourquoi un même domaine (la défense, par exemple) n'a pas le même chiffre.</p>
-      <div className="notice small" style={{ marginBottom: 10 }}><Lock size={16} style={{ flexShrink: 0 }} /><div><strong>Pourquoi des cadenas ?</strong> Ces dépenses ne se décident pas d'un coup de crayon :
-        elles découlent d'engagements déjà pris (les intérêts de la dette) ou des règles d'impôt. On ne peut pas les baisser directement ;
-        on agit sur leurs causes : moins de déficit, d'autres règles d'impôt.</div></div>
+        Les montants ci-dessous sont ceux du budget voté pour l'année (voir « Pourquoi plusieurs totaux sur cette page ? »).</p>
+      <details className="curieux small" style={{ marginBottom: 10 }}><summary><Lock size={14} style={{ verticalAlign: -2 }} /> Pourquoi des cadenas ?</summary>
+        <p className="ink2" style={{ margin: '6px 0 0' }}>Ces dépenses ne se décident pas d'un coup de crayon : elles découlent d'engagements déjà pris (les intérêts
+        de la dette) ou des règles d'impôt. On ne peut pas les baisser directement ; on agit sur leurs causes : moins de déficit, d'autres règles d'impôt.</p></details>
       <Link className="btn primary small" style={{ marginBottom: 14 }} to="/atelier?budget=1">Modifier le budget de l'État <ArrowRight size={14} /></Link>
       <div className="split even" style={{ alignItems: 'start' }}>
         <div>
@@ -123,7 +124,7 @@ function BudgetEtat({ missions, depenseTotale }: { missions: { id: string; titre
               </div>
             )
           })}
-          {missions.length > 10 && <button className="btn ghost small" onClick={() => setTout(!tout)}>{tout ? 'Voir moins' : `Voir les ${missions.length - 10} autres domaines`}</button>}
+          {missions.length > premiers && <button className="btn ghost small" onClick={() => setTout(!tout)}>{tout ? 'Voir moins' : `Voir les ${missions.length - premiers} autres domaines`}</button>}
         </div>
         <div className="stack" style={{ gap: 10 }}>
           <div className="kpi-label">Trois façons de changer ce budget</div>
@@ -195,6 +196,55 @@ export default function Budget() {
       {/* la question qu'on se pose en arrivant (« où va mon argent ? ») avant les grands totaux */}
       <SurCent fonctions={n.fonctions} />
 
+      {/* « votre part » arrivait tout en bas, après dix écrans sur téléphone (test Josiane) : juste après « Sur 100 € » */}
+      <div className="section-title" id="et-vous" style={{ scrollMarginTop: 80, marginTop: 8 }}><h2><Wallet size={22} /> Et vous ?</h2></div>
+      <div className="row" style={{ marginBottom: 12 }}>
+        {situation && <button className={`choice ${titreProfil.startsWith('Votre') ? 'on' : ''}`} aria-pressed={titreProfil.startsWith('Votre')} onClick={() => { setProfil(situation); setTitreProfil('Votre foyer (renseigné dans « Mes droits »)') }}>Mon foyer</button>}
+        {PROFILS.map((p) => <button key={p.titre} className={`choice ${titreProfil === p.titre ? 'on' : ''}`} aria-pressed={titreProfil === p.titre} onClick={() => { setProfil(p.s); setTitreProfil(p.titre) }}>{p.titre}</button>)}
+        {!situation && <Link to="/mes-droits" className="small">Renseigner mon propre foyer</Link>}
+      </div>
+      {!profil && <div className="card soft">Choisissez un profil ci-dessus, ou renseignez votre situation dans <Link to="/mes-droits">Mes droits</Link>.</div>}
+      {mLoading && <Loading label="Calcul de votre part…" />}
+      {m && !mLoading && (
+        <div className="grid cols-3" style={{ alignItems: 'start' }}>
+          <div className="card">
+            <div className="kpi-label">{titreProfil} paie chaque année</div>
+            <div className="kpi">{euros(m.total_paye)}</div>
+            {/* « Mes droits » parle en euros par mois : le même repère ici */}
+            <div className="small muted" style={{ marginBottom: 6 }}>soit environ {euros(m.total_paye / 12, 0)} par mois</div>
+            <ul className="list small">{m.paye.map((p) => <li key={p.id}><div className="list-row"><span>{p.id === 'csg_crds' ? <><Terme id="csg">CSG</Terme> et <Terme id="crds">CRDS</Terme></>
+              : p.id === 'cotisations' ? <Terme id="cotisations">{p.titre}</Terme> : p.titre}</span><strong>{euros(p.montant)}</strong></div>{p.note && <div className="muted" style={{ fontSize: '.78rem' }}>{p.note}</div>}</li>)}</ul>
+            {profil?.adultes.some((a) => a.activite === 'apprenti') && <div className="small muted" style={{ marginBottom: 6 }}>Apprenti(e) : les exonérations de cotisations et de CSG des apprentis ne sont pas encore calculées par le site ; ces montants sont trop élevés.</div>}
+            {m.cotisations_employeur > 0 && <div className="small muted">En plus, l'employeur verse {euros(m.cotisations_employeur)} de <Terme id="cotisations">cotisations patronales</Terme> sur les salaires.</div>}
+          </div>
+          <div className="card">
+            <div className="kpi-label">… et reçoit de l'argent public</div>
+            <div className="kpi">{euros(m.total_recu)}</div>
+            <div className="small muted" style={{ marginBottom: 6 }}>soit environ {euros(m.total_recu / 12, 0)} par mois</div>
+            {m.recu.length ? <ul className="list small">{m.recu.map((r) => <li key={r.id}><div className="list-row"><span>{r.titre}</span><strong>{euros(r.montant)}</strong></div>
+              {r.note && <div className="muted" style={{ fontSize: '.78rem' }}>{r.note}</div>}</li>)}</ul>
+              : <div className="small muted">Ni aide, ni retraite, ni allocation chômage.</div>}
+            <p className="small muted" style={{ marginTop: 10 }}>À cela s'ajoutent les services publics gratuits ou remboursés : école, hôpital, routes, police…
+              Toute la dépense publique, retraites comprises, représente en moyenne {euros(n.par_habitant.depense ?? 0)} par habitant et par an ;
+              chacun en profite très différemment selon son âge et sa situation.</p>
+          </div>
+          <div className="card">
+            <div className="kpi-label">Ce que financent ces impôts et cotisations</div>
+            <ul className="list small">
+              {m.finance.map((f) => (
+                <li key={f.id}>
+                  <div className="list-row"><span>{NOM_DOMAINE[f.id] ?? f.titre}</span><strong>{euros(f.montant)}</strong></div>
+                  <Barre part={m.total_paye ? f.montant / m.total_paye : 0} />
+                  {f.detail && <div className="muted" style={{ fontSize: '.78rem', marginTop: 4 }}>{f.detail.slice(0, 4).map((d) => `${d.titre} ${euros(d.montant)}`).join(' · ')}</div>}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
+      {m && <p className="small muted" style={{ marginTop: 10 }}><Lock size={13} /> {m.note} Votre situation n'est jamais enregistrée.</p>}
+      <div style={{ marginBottom: 20 }} />
+
       <div className="grid cols-3" style={{ marginBottom: 20 }}>
         <div className="card"><div className="kpi-label">L'argent public dépensé en {n.depenses?.date?.slice(0, 4)}</div><div className="kpi">{milliards(dep)}</div>
           <div className="small muted">soit <strong>{euros(n.par_habitant.depense ?? 0)}</strong> par habitant et par an</div></div>
@@ -260,52 +310,6 @@ export default function Budget() {
 
       <BudgetEtat missions={n.etat_missions} depenseTotale={dep} />
 
-      <div className="section-title" id="et-vous" style={{ scrollMarginTop: 80 }}><h2><Wallet size={22} /> Et vous ?</h2></div>
-      <div className="row" style={{ marginBottom: 12 }}>
-        {situation && <button className={`choice ${titreProfil.startsWith('Votre') ? 'on' : ''}`} aria-pressed={titreProfil.startsWith('Votre')} onClick={() => { setProfil(situation); setTitreProfil('Votre foyer (renseigné dans « Mes droits »)') }}>Mon foyer</button>}
-        {PROFILS.map((p) => <button key={p.titre} className={`choice ${titreProfil === p.titre ? 'on' : ''}`} aria-pressed={titreProfil === p.titre} onClick={() => { setProfil(p.s); setTitreProfil(p.titre) }}>{p.titre}</button>)}
-        {!situation && <Link to="/mes-droits" className="small">Renseigner mon propre foyer</Link>}
-      </div>
-      {!profil && <div className="card soft">Choisissez un profil ci-dessus, ou renseignez votre situation dans <Link to="/mes-droits">Mes droits</Link>.</div>}
-      {mLoading && <Loading label="Calcul de votre part…" />}
-      {m && !mLoading && (
-        <div className="grid cols-3" style={{ alignItems: 'start' }}>
-          <div className="card">
-            <div className="kpi-label">{titreProfil} paie chaque année</div>
-            <div className="kpi">{euros(m.total_paye)}</div>
-            {/* « Mes droits » parle en euros par mois : le même repère ici */}
-            <div className="small muted" style={{ marginBottom: 6 }}>soit environ {euros(m.total_paye / 12, 0)} par mois</div>
-            <ul className="list small">{m.paye.map((p) => <li key={p.id}><div className="list-row"><span>{p.id === 'csg_crds' ? <><Terme id="csg">CSG</Terme> et <Terme id="crds">CRDS</Terme></>
-              : p.id === 'cotisations' ? <Terme id="cotisations">{p.titre}</Terme> : p.titre}</span><strong>{euros(p.montant)}</strong></div>{p.note && <div className="muted" style={{ fontSize: '.78rem' }}>{p.note}</div>}</li>)}</ul>
-            {profil?.adultes.some((a) => a.activite === 'apprenti') && <div className="small muted" style={{ marginBottom: 6 }}>Apprenti(e) : les exonérations de cotisations et de CSG des apprentis ne sont pas encore calculées par le site ; ces montants sont trop élevés.</div>}
-            {m.cotisations_employeur > 0 && <div className="small muted">En plus, l'employeur verse {euros(m.cotisations_employeur)} de <Terme id="cotisations">cotisations patronales</Terme> sur les salaires.</div>}
-          </div>
-          <div className="card">
-            <div className="kpi-label">… et reçoit de l'argent public</div>
-            <div className="kpi">{euros(m.total_recu)}</div>
-            <div className="small muted" style={{ marginBottom: 6 }}>soit environ {euros(m.total_recu / 12, 0)} par mois</div>
-            {m.recu.length ? <ul className="list small">{m.recu.map((r) => <li key={r.id}><div className="list-row"><span>{r.titre}</span><strong>{euros(r.montant)}</strong></div>
-              {r.note && <div className="muted" style={{ fontSize: '.78rem' }}>{r.note}</div>}</li>)}</ul>
-              : <div className="small muted">Ni aide, ni retraite, ni allocation chômage.</div>}
-            <p className="small muted" style={{ marginTop: 10 }}>À cela s'ajoutent les services publics gratuits ou remboursés : école, hôpital, routes, police…
-              Toute la dépense publique, retraites comprises, représente en moyenne {euros(n.par_habitant.depense ?? 0)} par habitant et par an ;
-              chacun en profite très différemment selon son âge et sa situation.</p>
-          </div>
-          <div className="card">
-            <div className="kpi-label">Ce que financent ces impôts et cotisations</div>
-            <ul className="list small">
-              {m.finance.map((f) => (
-                <li key={f.id}>
-                  <div className="list-row"><span>{NOM_DOMAINE[f.id] ?? f.titre}</span><strong>{euros(f.montant)}</strong></div>
-                  <Barre part={m.total_paye ? f.montant / m.total_paye : 0} />
-                  {f.detail && <div className="muted" style={{ fontSize: '.78rem', marginTop: 4 }}>{f.detail.slice(0, 4).map((d) => `${d.titre} ${euros(d.montant)}`).join(' · ')}</div>}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      )}
-      {m && <p className="small muted" style={{ marginTop: 10 }}><Lock size={13} /> {m.note} Votre situation n'est jamais enregistrée.</p>}
     </div>
   )
 }
