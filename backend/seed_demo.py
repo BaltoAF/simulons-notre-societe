@@ -76,8 +76,15 @@ def main():
     db.init_db()
     store = get_store()
     vcs.ensure_reference(store)
-    existantes = {s["nom"] for s in vcs.list_societies(store, None, limit=500)}
     camille, sacha, lou = (compte(p, e) for p, e in COMPTES)
+    # des noms qui disent ce que fait la mesure, pas ce qu'il faut en penser : « Une France plus solidaire » jugeait par son
+    # titre (test Josiane : deux exemples sur trois « solidaires ») ; les exemples déjà créés sont renommés
+    RENOMMES = {"[Exemple] Une France plus solidaire": ("[Exemple] RSA à 800 €, payé par les plus hauts revenus", camille),
+                "[Exemple] Plus solidaire, financée aussi par la TVA": ("[Exemple] RSA à 800 €, payé aussi par la TVA", sacha)}
+    for soc in vcs.list_societies(store, None, limit=500):
+        if soc["nom"] in RENOMMES:
+            vcs.update_society(RENOMMES[soc["nom"]][1], soc["id"], RENOMMES[soc["nom"]][0], None, None)
+    existantes = {s["nom"] for s in vcs.list_societies(store, None, limit=500)}
     bareme = store.regles["fiscalite.impot_revenu.bareme"]["valeur"]
 
     def creer(user, nom, description, changements, message, source="france", preferences=None, visibilite="publique"):
@@ -89,7 +96,7 @@ def main():
             equilibrer(store, user, soc["id"], preferences)
         return soc
 
-    solidaire = creer(camille, "[Exemple] Une France plus solidaire",
+    solidaire = creer(camille, "[Exemple] RSA à 800 €, payé par les plus hauts revenus",
                       "Exemple de démonstration : porter le RSA à 800 € par mois et créer une tranche d'impôt à 50 % au-delà de 250 000 € par part. "
                       "Cette tranche rapporte peu, car les foyers concernés sont peu nombreux : le financement est complété par une petite hausse "
                       "de tous les taux de l'impôt sur le revenu (la nouvelle tranche passe ainsi à un peu plus de 50 %). Les émissions en plus "
@@ -120,7 +127,7 @@ def main():
           [{"regle": "prestations.revenu_universel.montant", "valeur": 600},
            {"regle": "prestations.revenu_universel.remplace_rsa_prime_activite", "valeur": True}],
           "Revenu universel de 600 €", visibilite="privee")
-    variante = creer(sacha, "[Exemple] Plus solidaire, financée aussi par la TVA",
+    variante = creer(sacha, "[Exemple] RSA à 800 €, payé aussi par la TVA",
                      "Exemple de démonstration : une variante de la proposition de Camille, qui finance la hausse du RSA par une tranche à 50 % "
                      "et un point de TVA. Cela rapporte plus que nécessaire : l'excédent réduit le déficit. Les émissions en plus sont compensées "
                      "par une limitation à 110 km/h sur autoroute.",

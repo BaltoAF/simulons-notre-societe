@@ -141,8 +141,10 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   départ ; départs anticipés (nuit, pénibilité, catégorie active) ; découverte : la règle vérifiée suit le profil, compteur
   « missions » distinct des étapes de l'atelier ; mois de naissance : lien. Reste : la page d'une règle (SMIC) jugée
   pleine de jargon (« Circulaire Cnav », « OpenFisca-France 176.1.10 ») ; /budget long sur téléphone (dix écrans) ;
-  solutions de financement : les économies présentées sans inconvénient, la TVA avec (à vérifier) ; deux exemples de
-  propositions sur trois « solidaires ».
+  deux exemples de propositions sur trois « solidaires ». Fait : chaque solution de financement a son avantage et son
+  inconvénient (les économies n'en avaient pas). Reste : une solution « revenus du capital » (le taux de la flat tax,
+  fiscalite.capital.pfu_taux_ir, est un levier du moteur), à ajouter quand son rendement sera calé sur une source
+  officielle (la population simulée représente mal les revenus du capital).
 - **Test Mehdi** (38 ans, père seul, enfants de 4 et 9 ans, 1 900 € nets, assistante maternelle 60 h pour 330 €, envisage
   les 80 % ; notes clarté 4 / confiance 3 / téléphone 4 sur 5, 31/10/2026). Ses deux questions trouvées sans effort.
   Corrigé : un calcul de l'ancien foyer, lancé à l'arrivée puis abandonné pour « Modifier ma situation », s'affichait sous

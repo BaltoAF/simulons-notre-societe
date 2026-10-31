@@ -96,7 +96,8 @@ def options_budget(store, overrides: dict, manque: float) -> list[dict]:
         pct = _arrondi(manque / total * 100, 0.1)
         out.append({"id": "missions_proportion", "famille": "depenses",
                     "titre": f"Économiser {g(pct)} % sur les autres dépenses de l'État",
-                    "description": f"Chaque ministère fait le même petit effort, sur {g(round(total))} milliards € (sans toucher aux domaines que vous avez changés, ni aux dépenses obligatoires).",
+                    # chaque solution avec son avantage et son inconvénient : « le même petit effort » n'en avait pas, la TVA si (test Josiane)
+                    "description": f"Chaque ministère réduit ses dépenses de la même part, sur {g(round(total))} milliards € (sans toucher aux domaines que vous avez changés, ni aux dépenses obligatoires). Pas d'impôt en plus ; mais moins de moyens pour les services concernés (école, police, justice, recherche…).",
                     "rendement": round(total * pct / 100, 2),
                     "overrides": {rid: round(v * (1 - pct / 100), 3) for rid, v in missions.items()}})
         # la plus grosse mission (exemple d'arbitrage ciblé ; l'utilisateur peut en choisir une autre dans l'éditeur du budget)
@@ -120,7 +121,7 @@ def options_budget(store, overrides: dict, manque: float) -> list[dict]:
         par_pt = mes.get("csg_par_point") or agg["csg_salaire"] * 0.75 / float(csg)
         d = _arrondi(manque * MARGE / par_pt, 0.05)
         out.append({"id": "csg", "famille": "recettes", "titre": f"Relever la CSG sur les revenus d'activité de {g(csg)} % à {g(float(csg) + d)} %",
-                    "description": "Touche presque tous les revenus du travail : un petit taux rapporte beaucoup.",
+                    "description": "Touche presque tous les revenus du travail : un petit taux rapporte beaucoup ; mais le salaire net de presque tous les actifs baisse un peu.",
                     "rendement": round(par_pt * d, 2), "overrides": {"fiscalite.csg.salaires_taux": round(float(csg) + d, 3)}})
     bareme = _valeur(store, overrides, "fiscalite.impot_revenu.bareme")
     if (mes.get("ir_par_pourcent") or agg.get("impot_revenu+pfu")) and isinstance(bareme, list):
