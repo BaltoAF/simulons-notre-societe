@@ -157,6 +157,7 @@ def options_carbone(store, overrides: dict, manque: float) -> list[dict]:
     vol_e, _, _ = metrique(store, "energie.consommation_essence_routier")
     from ..evidence import valeur_ou_defaut
     elas, _, _ = valeur_ou_defaut(store, "elasticite_prix_carburants", -0.34)
+    rendements = {}  # baisse d'émissions (Mt) par €/hl d'accise, par carburant : sert aussi à la solution « les deux carburants »
     for rid, prix_id, vol, lib in [("environnement_energie.accise.gazole", "ecologie.prix_moyen_gazole", vol_g, "gazole"),
                                    ("environnement_energie.accise.sp95_e10", "ecologie.prix_moyen_sp95_e10", vol_e, "essence")]:
         prix, _, _ = metrique(store, prix_id)
@@ -167,12 +168,23 @@ def options_carbone(store, overrides: dict, manque: float) -> list[dict]:
         par_euro_hl = -em_route * part * elas * (0.012 / prix)  # baisse d'émissions (Mt) par €/hl d'accise
         if par_euro_hl <= 0:
             continue
+        rendements[rid] = (par_euro_hl, float(acc))
         d = _arrondi(manque / par_euro_hl, 0.5)
         art = "l'essence" if lib == "essence" else "le gazole"
         out.append({"id": f"accise_{lib}", "famille": "prix", "titre": f"Augmenter la taxe sur {art} d'environ {fr(d * 1.2 / 100, 2)} € par litre à la pompe",
                     "description": f"La taxe sur ce carburant passe de {fr(float(acc) / 100, 3)} à {fr((float(acc) + d) / 100, 3)} € par litre, hors TVA. Moins de carburant consommé, donc moins d'émissions ; mais un coût en plus pour les automobilistes.",
                     "rendement": round(par_euro_hl * d, 3), "unite": "mt_co2e", "overrides": {rid: round(float(acc) + d, 2)}})
-    # Vitesses : abaisser la limitation sur autoroute ou voie rapide (par paliers de 10 km/h)
+    # les deux carburants à la fois : la même hausse par litre, partagée entre automobilistes au gazole et à l'essence
+    if len(rendements) == 2:
+        par_euro_hl = sum(r for r, _ in rendements.values())
+        d = _arrondi(manque / par_euro_hl, 0.5)
+        out.append({"id": "accise_deux", "famille": "prix", "titre": f"Augmenter la taxe sur le gazole et l'essence d'environ {fr(d * 1.2 / 100, 2)} € par litre à la pompe",
+                    "description": "La même hausse sur les deux carburants : plus petite que sur un seul, et partagée entre tous les automobilistes. "
+                                   "Moins de carburant consommé, donc moins d'émissions ; mais un coût en plus pour ceux qui roulent beaucoup.",
+                    "rendement": round(par_euro_hl * d, 3), "unite": "mt_co2e",
+                    "overrides": {rid: round(acc + d, 2) for rid, (_, acc) in rendements.items()}})
+    # Vitesses : abaisser la limitation sur autoroute ou voie rapide (par paliers de 10 km/h). Pas sur les routes à 80 km/h ni
+    # en ville : le gain y est jugé négligeable (CGDD) ou non mesuré (preuve vitesse_limite_emissions_co2)
     from .planete_bien_etre import RESEAUX
     v_em, _, _ = valeur_ou_defaut(store, "vitesse_limite_emissions_co2", -5.0)
     for rid in ("transports.vitesse_max.autoroute", "transports.vitesse_max.voie_rapide"):
