@@ -66,7 +66,7 @@ export const QUESTIONS: Question[] = [
     titre: "Où va l'argent public ?",
     sousTitre: "Retraites, santé, école : à quoi sert l'argent public",
     icone: 'Landmark',
-    accroche: "Plus de la moitié de la richesse produite chaque année passe par l'État, la Sécurité sociale et les collectivités. La plus grosse part revient aux ménages : retraites, santé, aides.",
+    accroche: "L'État, la Sécurité sociale et les collectivités dépensent chaque année l'équivalent de plus de la moitié de la richesse produite. La première dépense est la protection sociale : retraites, santé, aides.",
     chiffres: [
       { cle: 'depenses', libelle: "Argent public dépensé en un an", format: 'md', metrique: 'finances_publiques.depenses_publiques' },
       { cle: 'depenses_pct', libelle: 'Part de la richesse produite (PIB)', format: 'pct_pib', metrique: 'finances_publiques.depenses_publiques_pct_pib' },
@@ -82,16 +82,16 @@ export const QUESTIONS: Question[] = [
       { cle: 'eu_es', libelle: 'Espagne', format: 'pct', metrique: 'finances_publiques.ue.depenses_pct_pib.espagne', cache: true },
     ],
     texte: [
-      "En une année, les administrations publiques dépensent {depenses}, soit {depenses_pct} : plus de la moitié de tout ce que la France produit.",
+      "En une année, les administrations publiques dépensent {depenses}, soit l'équivalent de {depenses_pct}. Ce n'est pas une part de la production : une grande partie de ces dépenses sont des versements (retraites, aides) que les ménages dépensent ensuite.",
       "La Sécurité sociale en dépense la plus grosse part ({secu}) : retraites, assurance maladie, allocations familiales. Viennent ensuite l'État ({etat}), qui paie notamment l'école, la défense, la police et la justice, puis les communes, départements et régions ({local}).",
       "Les retraites sont la première dépense : {retraites} par an.",
-      "En Europe, seule la Finlande dépense un peu plus ({eu_fi} du PIB en 2025, selon Eurostat). La moyenne de l'Union européenne est de {eu_ue} ; la Belgique est à {eu_be}, l'Italie à {eu_it}, l'Allemagne à {eu_de} et l'Espagne à {eu_es}.",
+      "En Europe, seule la Finlande dépense un peu plus ({eu_fi} du PIB en 2025, selon Eurostat). La moyenne de l'Union européenne est de {eu_ue} ; la Belgique est à {eu_be}, l'Italie à {eu_it}, l'Allemagne à {eu_de} et l'Espagne à {eu_es}. Ces écarts dépendent aussi de ce que chaque pays finance par l'argent public ou laisse aux assurances et à l'épargne privées.",
     ],
     aSavoir: "Les dépenses des trois administrations se recoupent un peu (elles se versent de l'argent entre elles) : leur somme dépasse le total.",
     debat: {
       question: 'Faut-il dépenser moins d\'argent public ?',
       positions: [
-        { titre: 'Oui, dépenser moins', texte: "Par rapport à sa richesse, la France est l'un des pays d'Europe qui dépensent le plus, pour des services publics pas toujours meilleurs. Dépenser moins permettrait de baisser les impôts et la dette." },
+        { titre: 'Oui, dépenser moins', texte: "La France dépense environ 8 points de PIB de plus que la moyenne européenne, pour des services publics pas toujours meilleurs. Dépenser moins permettrait de baisser les impôts et la dette." },
         { titre: 'Non, pas moins', texte: "La plus grosse part de cet argent revient aux ménages : retraites, santé, école, aides. Le réduire, c'est souvent faire payer chacun de sa poche, comme dans d'autres pays, et les plus modestes en premier." },
       ],
     },
@@ -129,7 +129,7 @@ export const QUESTIONS: Question[] = [
     texte: [
       "Les impôts et cotisations rapportent {po} par an, soit {po_pct}.",
       "Les cotisations sociales, prélevées sur les salaires, en sont la première source ({cotisations}). La TVA, payée par tous à chaque achat, rapporte {tva}, et la CSG, prélevée sur presque tous les revenus, {csg}.",
-      "L'impôt sur le revenu rapporte {ir}, deux fois moins que la TVA. Il est progressif : plus le revenu est élevé, plus la part prélevée augmente. Les entreprises paient l'impôt sur les sociétés ({is}), et les propriétaires la taxe foncière ({fonciere}).",
+      "L'impôt sur le revenu rapporte {ir}, deux fois moins que la TVA. Son barème est progressif : plus le revenu est élevé, plus la part prélevée augmente ; les revenus de l'épargne (intérêts, dividendes) sont, eux, le plus souvent taxés à un taux fixe. Les entreprises paient l'impôt sur les sociétés ({is}), en plus des cotisations patronales et d'impôts sur la production ; les propriétaires paient la taxe foncière ({fonciere}).",
       "Par rapport à ses voisins, la France prélève parmi les plus hauts niveaux d'Europe. Selon la définition commune d'Eurostat, un peu plus large que celle de l'Insee : {eu_fr} en 2025, contre {eu_ue} en moyenne dans l'Union européenne, {eu_dk} au Danemark, {eu_be} en Belgique, {eu_it} en Italie, {eu_de} en Allemagne et {eu_es} en Espagne. Ces comparaisons ne disent pas tout : selon les pays, les retraites et la santé sont payées plus ou moins par l'argent public, ou par des assurances et une épargne privées.",
     ],
     aSavoir: "La TVA pèse plus lourd, en proportion, pour les ménages modestes : ils dépensent presque tout ce qu'ils gagnent.",
@@ -170,17 +170,17 @@ export const QUESTIONS: Question[] = [
       { cle: 'dette_2020', libelle: 'Dette fin 2020', format: 'pct', metrique: 'finances_publiques.dette_maastricht_pct_pib', annee: '2020', cache: true },
       { cle: 'dette_pct_court', libelle: "Dette aujourd'hui", format: 'pct', metrique: 'finances_publiques.dette_maastricht_pct_pib', cache: true },
       { cle: 'int_pct', libelle: "Intérêts aujourd'hui", format: 'pct_pib', metrique: 'finances_publiques.charge_interets_apu_pct_pib', cache: true },
-      { cle: 'int_1996', libelle: 'Intérêts en 1996', format: 'pct_pib', metrique: 'finances_publiques.charge_interets_apu_pct_pib', annee: '1996', cache: true },
+      { cle: 'int_1996', libelle: 'Intérêts en 1996', format: 'pct', metrique: 'finances_publiques.charge_interets_apu_pct_pib', annee: '1996', cache: true },
       { cle: 'int_2019', libelle: 'Intérêts en 2019', format: 'pct', metrique: 'finances_publiques.charge_interets_apu_pct_pib', annee: '2019', cache: true },
     ],
-    enBref: "La dette monte depuis quarante ans : {dette_1980} en 1980, {dette_2007} en 2007, {dette_pct_court} aujourd'hui. Elle ne se rembourse jamais d'un coup ; ce qui pèse chaque année, ce sont les intérêts : {interets} ({int_pct}), moins qu'en 1996 ({int_1996}), mais de nouveau en hausse.",
+    enBref: "La dette monte depuis quarante ans : {dette_1980} en 1980, {dette_2007} en 2007, {dette_pct_court} aujourd'hui. Elle ne se rembourse jamais d'un coup ; ce qui pèse chaque année, ce sont les intérêts : {interets} ({int_pct}). Cette charge a varié entre {int_2019} (2019) et {int_1996} du PIB (1996) ; elle remonte depuis 2019.",
     texte: [
       "Chaque année, les administrations publiques dépensent plus qu'elles ne gagnent : le dernier déficit a atteint {deficit}, soit {deficit_pct}. Ce qui manque est emprunté.",
       "Les emprunts accumulés forment la dette : {dette}, soit {dette_pct}, ou environ {dette_hab} par habitant. Elle a fait un bond pendant le Covid : de {dette_2019} du PIB fin 2019 à {dette_2020} fin 2020.",
-      "Une dette ne se rembourse pas d'un coup : l'État emprunte à nouveau pour rembourser les anciens prêts. Le vrai coût, ce sont les intérêts : {interets} par an pour l'ensemble des administrations publiques (État, Sécurité sociale, collectivités), presque autant que tout le budget de la Défense ({defense}). Ils avaient baissé jusqu'à {int_2019} du PIB en 2019, quand les taux étaient très bas, et remontent depuis avec les taux. Le budget de l'État n'en montre qu'une partie : les intérêts de sa propre dette.",
+      "Une dette ne se rembourse pas d'un coup : l'État emprunte à nouveau pour rembourser les anciens prêts. Ce que la dette coûte chaque année, ce sont les intérêts : {interets} par an pour l'ensemble des administrations publiques (État, Sécurité sociale, collectivités), presque autant que tout le budget de la Défense ({defense}). Ils avaient baissé jusqu'à {int_2019} du PIB en 2019, quand les taux étaient très bas, et remontent depuis avec les taux. Le budget de l'État n'en montre qu'une partie : les intérêts de sa propre dette.",
       "Les règles européennes demandent un déficit sous 3 % du PIB et une dette sous 60 % : la France est au-dessus des deux.",
     ],
-    aSavoir: "Sur ce site, toute dépense nouvelle doit être financée par une économie ou une recette ailleurs, ou l'emprunt doit être assumé clairement.",
+    aSavoir: "Sur ce site, toute dépense nouvelle ou baisse d'impôt doit être financée par une économie ou une recette ailleurs, ou l'emprunt doit être assumé clairement.",
     debat: {
       question: 'Faut-il réduire vite le déficit ?',
       positions: [
@@ -259,7 +259,7 @@ export const QUESTIONS: Question[] = [
       { cle: 'privation', libelle: 'Privation matérielle et sociale', format: 'pct', metrique: 'bien_etre.nir.pauvrete_conditions_vie', cache: true },
     ],
     texte: [
-      "Le niveau de vie « du milieu » (médian) est de {mediane} pour une personne seule : la moitié de la population a moins, l'autre moitié plus. Pour un foyer de plusieurs personnes, on divise le revenu en tenant compte de la taille du foyer. Il peut dépasser le salaire « du milieu » : il compte aussi les pensions, les aides et l'épargne, après impôts, et à plusieurs on partage le logement et les dépenses.",
+      "Le niveau de vie « du milieu » (médian) est de {mediane} pour une personne seule : la moitié de la population a moins, l'autre moitié plus. Pour un foyer de plusieurs personnes, on divise le revenu en tenant compte de la taille du foyer. Il peut dépasser le salaire « du milieu » : il compte aussi les pensions, les aides et les revenus de l'épargne, après impôts, et à plusieurs on partage le logement et les dépenses.",
       "On est dit pauvre sous 60 % de ce niveau, soit {seuil} pour une personne seule : c'est le cas de {pauvres}. Et {privation} de la population ne peut pas faire face à certaines dépenses de base (chauffer son logement, remplacer un meuble abîmé…).",
       "L'indice de Gini mesure les écarts : 0 si tout le monde avait autant, 100 si une seule personne avait tout. La France est à {gini}.",
       "Les aides (RSA, prime d'activité, aides au logement…) et les impôts progressifs réduisent ces écarts : pour chaque réforme, le site calcule s'ils augmentent ou diminuent.",
@@ -268,12 +268,13 @@ export const QUESTIONS: Question[] = [
       question: 'Pour faire reculer la pauvreté, faut-il augmenter les aides ?',
       positions: [
         { titre: 'Oui, augmenter les aides', texte: "Des aides plus fortes réduisent tout de suite la pauvreté, et un enfant pauvre part avec moins de chances. Or beaucoup de personnes pauvres ne peuvent pas travailler ou travaillent déjà : enfants, retraités, petits salaires." },
-        { titre: 'Non, miser sur le travail', texte: "Des aides plus fortes peuvent rendre la reprise d'un emploi moins intéressante. Mieux vaut que le travail paie davantage, avec la formation, la garde d'enfants et l'accompagnement, pour sortir durablement de la pauvreté." },
+        { titre: 'Non, miser sur le travail', texte: "Des aides plus fortes coûtent cher, à financer par l'impôt ou la dette, et peuvent rendre la reprise d'un emploi moins intéressante. Mieux vaut que le travail paie davantage, avec la formation et la garde d'enfants." },
       ],
     },
     actions: [
       { libelle: 'Votre niveau de vie', lien: '/mes-droits' },
       { libelle: 'Tester un RSA à 800 €', preset: 'rsa-800' },
+      { libelle: "Tester une prime d'activité plus forte", preset: 'prime-activite-plus' },
     ],
   },
   {
@@ -448,8 +449,10 @@ export const QUESTIONS: Question[] = [
     accueil: false,
     accroche: "{nombre} immigrées vivent en France, soit {part} de la population. Voici ce que disent les chiffres publics sur leur emploi et sur les finances publiques, et ce que ces chiffres ne permettent pas de dire.",
     // test Nadia : les euros d'abord ; les parts du PIB restent dans « En clair »
-    enBref: "Selon la façon de compter, les immigrés rapportent aux finances publiques plus qu'ils ne leur coûtent, ou l'inverse : soit de l'ordre de {ocde_plus_md} en plus, soit de l'ordre de {ocde_moins_md} en moins, chaque année (OCDE). Tout dépend si on leur compte une part des dépenses de tous, comme la défense. Côté emploi, {emploi_imm} des immigrés de 15 à 64 ans ont un emploi, contre {emploi_autres} des personnes qui ne sont ni immigrées ni enfants d'immigrés.",
+    // relecture de neutralité (31/10/2026) : le solde dans l'ordre croissant, et les dépenses communes nommées, pas la seule défense
+    enBref: "Selon la façon de compter, les immigrés coûtent aux finances publiques plus qu'ils ne rapportent, ou l'inverse : de l'ordre de {ocde_moins_md} en moins, ou de {ocde_plus_md} en plus, chaque année (OCDE). Tout dépend si on leur compte une part des dépenses communes à tous (défense, intérêts de la dette, administration). Côté emploi, {emploi_imm} des immigrés de 15 à 64 ans ont un emploi, contre {emploi_autres} des personnes qui ne sont ni immigrées ni enfants d'immigrés.",
     chiffres: [
+      { cle: 'depenses_pub', libelle: 'Dépenses publiques', format: 'md', metrique: 'finances_publiques.depenses_publiques', cache: true },
       { cle: 'nombre', libelle: 'Immigrés vivant en France', format: 'personnes', metrique: 'demographie.immigres.nombre' },
       { cle: 'part', libelle: 'Part de la population', format: 'pct', metrique: 'demographie.immigres.part_population' },
       { cle: 'emploi_imm', libelle: 'Ont un emploi (immigrés de 15 à 64 ans)', format: 'pct', metrique: 'emploi.immigres.taux_emploi' },
@@ -476,15 +479,15 @@ export const QUESTIONS: Question[] = [
       "Un immigré est une personne née étrangère à l'étranger qui vit en France. On le reste après être devenu français : c'est le cas d'un tiers d'entre eux ({francais}). Les étrangers, eux, sont les personnes qui n'ont pas la nationalité française, qu'elles soient nées à l'étranger ou en France : ils représentent {etrangers} de la population.",
       "En 2024, environ {entrees} immigrés sont arrivés en France, toutes raisons confondues et y compris depuis l'Union européenne. C'est un nombre d'arrivées : les départs n'en sont pas déduits.",
       "{emploi_imm} des immigrés de 15 à 64 ans ont un emploi, contre {emploi_autres} des personnes qui ne sont ni immigrées ni enfants d'immigrés. Parmi ceux qui travaillent ou cherchent un emploi, {chomage_imm} des immigrés sont au chômage, contre {chomage_autres}. L'écart d'emploi se concentre chez les femmes : chez les hommes, la part qui a un emploi est presque la même, immigrés ou non, alors que {emploi_f_imm} des femmes immigrées ont un emploi, contre {emploi_f_autres} des femmes non immigrées.",
-      "Pour les finances publiques, on compare ce que les immigrés paient (impôts, cotisations) à ce qu'ils reçoivent (retraites, soins, aides, école…). Le résultat dépend d'une convention : faut-il leur compter une part des dépenses communes à tous, comme la défense ? Selon l'OCDE, citée par la Cour des comptes, ce solde était en moyenne, de 2006 à 2018, de {ocde_plus} par an si on ne leur compte pas ces dépenses communes, et de {ocde_moins} si on les répartit à parts égales entre tous les habitants. À l'échelle de la richesse produite aujourd'hui, cela ferait de l'ordre de {ocde_plus_md} en plus, ou de {ocde_moins_md} en moins, chaque année. L'OCDE compte toutes les personnes nées à l'étranger : ce n'est pas tout à fait la même population que les immigrés au sens de l'Insee.",
-      "Une étude plus ancienne du Cepii (1979-2011) trouvait un solde « globalement négatif mais relativement faible ». La Cour des comptes avance plusieurs explications : une insertion incomplète sur le marché du travail, un recours plus fréquent à certaines prestations, et des choix de méthode. Les moyennes cachent aussi de grands écarts : selon France Stratégie, si les immigrés paient en moyenne moins d'impôts et de cotisations que les autres habitants, c'est surtout le fait des moins diplômés ; selon l'OCDE, les plus qualifiés en paient même davantage.",
-      "Certaines dépenses visent directement l'immigration. Pour 2026, la loi de finances prévoit {mission} pour la mission « Immigration, asile et intégration » du budget de l'État (asile, retours, intégration) ; d'autres dépenses liées figurent ailleurs dans le budget. La commission des finances du Sénat estime le coût de l'asile en 2025 à environ {asile}, toutes missions budgétaires confondues : c'est un minimum, car les soins, l'aide sociale, la scolarisation des enfants et la police des retours n'y sont pas comptés. Les dépenses d'aide médicale de l'État (AME), qui prend en charge les soins des étrangers en situation irrégulière aux ressources modestes, ont atteint environ {ame} en 2024, pour plus de {ame_benef} bénéficiaires. Ces montants se recoupent en partie : ils ne s'additionnent pas.",
+      "Pour les finances publiques, on compare ce que les immigrés paient (impôts, cotisations) à ce qu'ils reçoivent (retraites, soins, aides, école…). Le résultat dépend d'une convention : faut-il leur compter une part des dépenses communes à tous (défense, intérêts de la dette, administration) ? Selon l'OCDE, citée par la Cour des comptes, ce solde était en moyenne, de 2006 à 2018, de {ocde_moins} par an si on répartit ces dépenses communes à parts égales entre tous les habitants, et de {ocde_plus} si on ne les leur compte pas. À l'échelle de la richesse produite aujourd'hui, cela ferait de l'ordre de {ocde_moins_md} en moins, ou de {ocde_plus_md} en plus, chaque année. L'OCDE compte toutes les personnes nées à l'étranger : ce n'est pas tout à fait la même population que les immigrés au sens de l'Insee.",
+      "Une étude plus ancienne du Cepii (1979-2011) trouvait un solde « globalement négatif mais relativement faible ». La Cour des comptes avance plusieurs explications : une insertion incomplète sur le marché du travail, un recours plus fréquent à certaines prestations, et des choix de méthode. Les moyennes cachent aussi de grands écarts : selon France Stratégie, si les immigrés paient en moyenne moins d'impôts et de cotisations que les autres habitants, c'est surtout le fait des moins diplômés ; selon l'OCDE, les plus qualifiés en paient davantage.",
+      "Certaines dépenses visent directement l'immigration. Pour 2026, la loi de finances prévoit {mission} pour la mission « Immigration, asile et intégration » du budget de l'État (asile, retours, intégration) ; d'autres dépenses liées figurent ailleurs dans le budget. La commission des finances du Sénat estime le coût de l'asile en 2025 à environ {asile}, toutes missions budgétaires confondues : c'est un minimum, car les soins, l'aide sociale, la scolarisation des enfants et la police des retours n'y sont pas comptés. Les dépenses d'aide médicale de l'État (AME), qui prend en charge les soins des étrangers en situation irrégulière aux ressources modestes, ont atteint environ {ame} en 2024, pour plus de {ame_benef} bénéficiaires. Ces montants se recoupent en partie : ils ne s'additionnent pas. Pour donner un ordre de grandeur, l'ensemble des dépenses publiques atteint {depenses_pub} par an.",
     ],
     aSavoir: "Le site s'en tient aux chiffres publics, avec leurs limites. Les chiffres de population de 2025 sont provisoires, et l'Insee a changé sa méthode en 2024 : on ne peut pas les comparer directement aux années d'avant. Les études sur les finances publiques sont anciennes (données jusqu'en 2018) et regardent une année à la fois : elles ne suivent pas toute une vie (enfance, travail, retraite) ni les effets sur l'économie. Faute de source vérifiée, la page ne donne pas le solde équivalent des personnes nées en France. Sur ces années, les comptes publics de la France étaient en déficit chaque année, pour l'ensemble des habitants.",
     debat: {
       question: "Faut-il moins d'immigration ?",
       positions: [
-        { titre: "Oui, moins d'immigration", texte: "Accueillir moins et faire respecter les règles permet de mieux intégrer ceux qui arrivent, réduit certains coûts comme celui de l'asile, et répond à une demande d'une partie des Français." },
+        { titre: "Oui, moins d'immigration", texte: "Les immigrés ont moins souvent un emploi que les autres habitants et, selon une convention de l'OCDE, coûtent plus qu'ils ne rapportent. Accueillir moins permettrait de mieux intégrer ceux qui arrivent." },
         { titre: 'Non, pas moins', texte: "Certains métiers manquent de bras, comme le soin, le bâtiment ou la restauration, et la population vieillit. Mieux vaut améliorer l'accueil et l'accès à l'emploi, notamment des femmes immigrées." },
       ],
     },

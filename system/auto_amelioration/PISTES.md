@@ -147,6 +147,16 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   inconvénient (les économies n'en avaient pas). Reste : une solution « revenus du capital » (le taux de la flat tax,
   fiscalite.capital.pfu_taux_ir, est un levier du moteur), à ajouter quand son rendement sera calé sur une source
   officielle (la population simulée représente mal les revenus du capital).
+- **Relecture de neutralité, deux regards opposés** (31/10/2026 ; notes « Bernard », à droite, 3,5 / « Inès », à gauche, 4
+  sur 5 ; débats tous à ±10 %). Corrigé : immigration (solde dans l'ordre croissant, « dépenses communes : défense,
+  intérêts de la dette, administration », position « Oui » appuyée sur les chiffres de la page, ordre de grandeur des
+  coûts, « même » retiré) ; inégalités (« revenus de l'épargne », coût des aides dans le « Non », un test de chaque bord) ;
+  qui paie (capital taxé à taux fixe, cotisations patronales et impôts de production) ; dépenses (accroche neutre,
+  « l'équivalent de 57 % du PIB » expliqué, réserve public/privé, « 8 points de plus que la moyenne européenne » dans le
+  « Oui ») ; dette (intérêts entre 1,5 % et 3,6 % du PIB, « baisse d'impôt » aussi à financer). Reste : « qui paie
+  selon le revenu » (part des foyers imposés, taux global au sommet : sources DGFiP et IPP) ; patrimoine dans
+  « Inégalités » (concentration, Insee) ; Gini comparé à l'Europe ; lien vers la source des chiffres cités seulement
+  dans le texte (années anciennes, AME, arrivées).
 - **Comparaisons européennes** (31/10/2026) : chaque grande question chiffrée situe la France dans l'Union, avec la
   mesure commune d'Eurostat (dette et intérêts, retraites, impôts et cotisations, dépenses publiques, chômage, santé,
   enseignement public, émissions par habitant ; model/metriques/europe.yaml et sources/comparaisons.yaml). Pas de
