@@ -104,11 +104,12 @@ function Header({ onVisite }: { onVisite: () => void }) {
         </Link>
         <button className="icon-btn menu-mobile" onClick={() => setMenu((m) => !m)} aria-label={menu ? 'Fermer le menu' : 'Ouvrir le menu'} aria-expanded={menu}>{menu ? <X size={22} /> : <Menu size={22} />}<span className="menu-libelle" aria-hidden="true">{menu ? 'Fermer' : 'Menu'}</span></button>
         <nav className={`nav ${menu ? 'ouvert' : ''}`} aria-label="Navigation principale">
+          {/* l'expérience centrale du site d'abord : changer les règles, et les propositions des autres */}
+          <NavLink to="/atelier">Changer les règles</NavLink>
+          <NavLink to="/societes">Les propositions</NavLink>
           <NavLink to="/mes-droits">Mes droits</NavLink>
           <NavLink to="/comprendre">Comprendre</NavLink>
           <NavLink to="/budget">Le budget</NavLink>
-          <NavLink to="/atelier">Changer les règles</NavLink>
-          <NavLink to="/societes">Les propositions</NavLink>
           <MenuPlus onVisite={onVisite} />
         </nav>
         <div className={`user ${menu ? 'ouvert' : ''}`}>

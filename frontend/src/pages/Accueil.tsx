@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom'
-import { ArrowRight, BadgeCheck, Calculator, GitFork, HelpCircle, Landmark, PlayCircle, Scale, Search, ShieldCheck } from 'lucide-react'
+import { ArrowRight, BadgeCheck, Calculator, GitFork, HelpCircle, PlayCircle, Scale, Search, ShieldCheck, Users } from 'lucide-react'
 import { useState } from 'react'
 import { Bienvenue } from '../components/Bienvenue'
 import { ParcoursDecouverte } from '../components/Parcours'
@@ -33,31 +33,48 @@ export default function Accueil() {
       <section className="hero">
         <div className="container">
           <span className="badge primary" style={{ marginBottom: 14 }}><GitFork size={14} /> Les règles de la France, ouvertes à tous</span>
-          <h1>Comprenez les règles de la France. <em>Imaginez les vôtres.</em></h1>
-          <p className="lead">Impôts, aides, retraites, climat : voyez ce que la loi vous donne, puis testez vos idées et leurs effets, pour vous et pour le pays.
-            Chaque chiffre est prouvé et dit à quel point on peut s'y fier.</p>
-          <button className="btn" style={{ marginTop: 6 }} onClick={() => setVisite(true)}><PlayCircle size={17} /> Découvrir le site en 1 minute</button>
+          {/* l'expérience recherchée d'abord : changer les règles, partir des propositions des autres, les comparer, les amender */}
+          <h1>Et si vous changiez les règles ? <em>Imaginez votre France.</em></h1>
+          <p className="lead">Impôts, aides, retraites, climat : partez des règles d'aujourd'hui, changez-les, et voyez ce que cela changerait, pour vous
+            et pour le pays. Comparez votre version à celles des autres, ou proposez-leur des améliorations. Chaque chiffre est prouvé et dit à quel point on peut s'y fier.</p>
+          <div className="row" style={{ marginTop: 6, gap: 10 }}>
+            <Link to="/atelier" className="btn primary large"><GitFork size={18} /> Changer les règles</Link>
+            <Link to="/societes" className="btn large"><Users size={18} /> Voir les propositions des autres</Link>
+          </div>
+          <button className="btn ghost small" style={{ marginTop: 10 }} onClick={() => setVisite(true)}><PlayCircle size={16} /> Découvrir le site en 1 minute</button>
           <div className="grid cols-3" style={{ marginTop: 26 }}>
-            <Link to="/mes-droits" className="card link carte-teinte teinte-1">
-              <Calculator size={26} className="icone-teinte" />
-              <h3 style={{ marginTop: 8 }}>Mes droits</h3>
-              <p className="small ink2" style={{ margin: 0 }}>Vos aides, vos impôts, votre âge de départ à la retraite… en 3 étapes, sans compte.</p>
-            </Link>
-            <Link to="/budget" className="card link carte-teinte teinte-6">
-              <Landmark size={26} className="icone-teinte" />
-              <h3 style={{ marginTop: 8 }}>Où va l'argent public ?</h3>
-              <p className="small ink2" style={{ margin: 0 }}>Le budget de la France, et ce que vous y mettez, poste par poste.</p>
-            </Link>
             <Link to="/atelier" className="card link carte-teinte teinte-3">
               <GitFork size={26} className="icone-teinte" />
-              <h3 style={{ marginTop: 8 }}>Changer les règles</h3>
-              <p className="small ink2" style={{ margin: 0 }}>Testez une idée : ce qu'elle change pour vous, pour les finances publiques, le climat et le bien-être.</p>
+              <h3 style={{ marginTop: 8 }}>1. Changez une règle</h3>
+              <p className="small ink2" style={{ margin: 0 }}>Partez de la loi actuelle, ou d'une idée toute prête, et voyez les effets : pour vous, l'argent public, le climat, le bien-être.</p>
+            </Link>
+            <Link to="/societes" className="card link carte-teinte teinte-4">
+              <Users size={26} className="icone-teinte" />
+              <h3 style={{ marginTop: 8 }}>2. Comparez et améliorez</h3>
+              <p className="small ink2" style={{ margin: 0 }}>Enregistrez votre proposition, comparez-la aux autres, partez de celle de quelqu'un, ou suggérez-lui un changement.</p>
+            </Link>
+            <Link to="/mes-droits" className="card link carte-teinte teinte-1">
+              <Calculator size={26} className="icone-teinte" />
+              <h3 style={{ marginTop: 8 }}>3. Voyez ce que ça change pour vous</h3>
+              <p className="small ink2" style={{ margin: 0 }}>Vos aides, vos impôts, votre retraite aujourd'hui, en 3 étapes, sans compte : puis avec vos idées.</p>
             </Link>
           </div>
         </div>
       </section>
 
       {visite && <Bienvenue onClose={() => setVisite(false)} />}
+      <section className="container">
+        <div className="section-title"><h2>Des idées à tester en un clic</h2><Link to="/atelier">Imaginer la vôtre <ArrowRight size={14} /></Link></div>
+        <div className="grid cols-3">
+          {PRESETS.slice(0, 6).map((p, i) => (
+            <button key={p.id} className={`preset carte-teinte ${teinte(i + 3)}`} onClick={() => lancerPreset(p.id)}>
+              <strong>{p.titre}</strong>
+              <span className="small muted">{p.description}</span>
+              <div className="pill-list" style={{ marginTop: 8 }}>{p.tags.map((t) => <span key={t} className="badge">{t}</span>)}</div>
+            </button>
+          ))}
+        </div>
+      </section>
 
       <section className="container" style={{ marginTop: 22 }}>
         <ParcoursDecouverte />
@@ -75,18 +92,6 @@ export default function Accueil() {
         </div>
       </section>
 
-      <section className="container">
-        <div className="section-title"><h2>Des idées à tester en un clic</h2><Link to="/atelier">Imaginer la vôtre <ArrowRight size={14} /></Link></div>
-        <div className="grid cols-3">
-          {PRESETS.slice(0, 6).map((p, i) => (
-            <button key={p.id} className={`preset carte-teinte ${teinte(i + 3)}`} onClick={() => lancerPreset(p.id)}>
-              <strong>{p.titre}</strong>
-              <span className="small muted">{p.description}</span>
-              <div className="pill-list" style={{ marginTop: 8 }}>{p.tags.map((t) => <span key={t} className="badge">{t}</span>)}</div>
-            </button>
-          ))}
-        </div>
-      </section>
 
       <section className="container">
         <div className="section-title"><h2>Comment ça marche</h2><Link to="/methode">En savoir plus <ArrowRight size={14} /></Link></div>
@@ -99,7 +104,7 @@ export default function Accueil() {
             <Link to="/regles">Explorer les règles <ArrowRight size={14} /></Link>
           </div>
           <div className="card teinte-4">
-            <div className="row"><span className="step-num">2</span><h3 style={{ margin: 0 }}>Votre version</h3></div>
+            <div className="row"><span className="step-num">2</span><h3 style={{ margin: 0 }}>Votre version, et celles des autres</h3></div>
             <p className="ink2" style={{ marginTop: 10 }}>Changez une ou plusieurs règles et enregistrez votre proposition. Les autres peuvent s'en inspirer, créer leur version et vous suggérer des améliorations. Chaque changement est <strong>signé et daté</strong>.</p>
             <Link to="/societes">Voir les propositions <ArrowRight size={14} /></Link>
           </div>

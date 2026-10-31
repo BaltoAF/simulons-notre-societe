@@ -29,6 +29,7 @@ export type Brouillon = {
   societe: string | null   // société de départ (fork), null = loi actuelle
   branche: string
   nomSociete?: string
+  suggestion?: boolean     // on prépare une suggestion à la proposition de départ (son auteur l'acceptera ou non)
 }
 
 export type AdulteSaisie = {

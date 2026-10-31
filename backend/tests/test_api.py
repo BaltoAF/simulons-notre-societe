@@ -136,3 +136,24 @@ def test_equilibres_et_compensation():
         rap2 = c.post("/api/simulation/reforme", json={"overrides": {"prestations.rsa.montant_forfaitaire": 800, **tva["overrides"]}}).json()
         assert next(e for e in rap2["equilibres"] if e["id"] == "budget")["statut"] == "respecte"
         assert {p["pilier"] for p in rap["bilan"]} == {"economie", "social", "ecologie", "bien_etre"}
+
+
+def test_suggestion_en_un_parcours():
+    """« Proposer un changement » depuis la proposition de quelqu'un : une copie avec les changements, en un appel, puis la
+    suggestion à l'auteur (les deux appels de « Envoyer ma suggestion » dans l'atelier)."""
+    with client() as c:
+        c.post("/api/auth/inscription", json={"pseudo": "dora", "email": "d@ex.fr", "mot_de_passe": "motdepasse4"})
+        sid = c.post("/api/societes", json={"nom": "Programme de Dora", "changements": [
+            {"regle": "prestations.rsa.montant_forfaitaire", "valeur": 850}]}).json()["id"]
+        c.post("/api/auth/deconnexion")
+        c.cookies.clear()
+        c.post("/api/auth/inscription", json={"pseudo": "elie", "email": "e@ex.fr", "mot_de_passe": "motdepasse5"})
+        copie = c.post("/api/societes", json={"source": sid, "branche": "principale", "nom": "Suggestion pour « Programme de Dora »",
+                                              "description": "Financer la hausse", "message": "TVA à 20,5 %",
+                                              "changements": [{"regle": "fiscalite.tva.taux_normal", "valeur": 20.5}]})
+        assert copie.status_code == 200, copie.text
+        p = c.post("/api/propositions", json={"source": copie.json()["id"], "source_branche": "principale", "cible": sid,
+                                              "cible_branche": "principale", "titre": "TVA à 20,5 %", "description": "Financer la hausse"})
+        assert p.status_code == 200, p.text
+        assert [ch["regle"] for ch in p.json()["changements"]] == ["fiscalite.tva.taux_normal"]
+        assert c.get(f"/api/societes/{sid}").json()["propositions"][0]["titre"] == "TVA à 20,5 %"

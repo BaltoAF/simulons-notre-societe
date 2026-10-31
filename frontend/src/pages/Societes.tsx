@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
-import { GitFork, Scale, Search, ShieldCheck, Star } from 'lucide-react'
+import { GitFork, GitPullRequest, Scale, Search, ShieldCheck, Star } from 'lucide-react'
 import type { Societe } from '../lib/api'
 import { relatif } from '../lib/format'
 import { ligneMesure } from '../components/DiffSociete'
@@ -26,6 +26,17 @@ export default function Societes() {
           <Link to="/atelier" className="btn primary"><GitFork size={16} /> Créer la mienne</Link>
         </div>
       </div>
+      {!auteur && (
+        <div className="grid cols-3" style={{ margin: '14px 0 6px' }}>
+          <div className="card flat"><strong><GitFork size={16} /> Partir d'un modèle</strong>
+            <p className="small ink2" style={{ margin: '6px 0 0' }}>Partez de la loi actuelle, ou de la proposition de quelqu'un : vous en faites une copie à vous, que vous changez librement.</p></div>
+          <div className="card flat"><strong><Scale size={16} /> Comparer</strong>
+            <p className="small ink2" style={{ margin: '6px 0 0' }}>Mettez deux propositions côte à côte : ce qui change, et leurs effets pour les ménages, l'argent public et le climat.</p></div>
+          <div className="card flat"><strong><GitPullRequest size={16} /> Suggérer un changement</strong>
+            <p className="small ink2" style={{ margin: '6px 0 0' }}>Sur la proposition de quelqu'un, « Proposer un changement » : il l'accepte ou non, comme un amendement.
+              Un parti pourrait y écrire son programme, et ses adhérents l'amender.</p></div>
+        </div>
+      )}
       <div className="row" style={{ margin: '12px 0 18px' }}>
         <form className="input-suffix grow" style={{ maxWidth: 420 }} onSubmit={(e) => { e.preventDefault(); params.set('q', q); setParams(params) }}>
           <input type="search" placeholder="Rechercher une proposition" value={q} onChange={(e) => setQ(e.target.value)} />

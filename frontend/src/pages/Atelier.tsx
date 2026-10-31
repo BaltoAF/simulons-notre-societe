@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
-import { ArrowRight, BookOpen, Calculator, Check, CheckCircle2, ChevronDown, GitBranch, GitFork, Landmark, Lightbulb, MessageSquare, Plus, Trash2, Undo2, User } from 'lucide-react'
+import { ArrowRight, BookOpen, Calculator, Check, CheckCircle2, ChevronDown, GitBranch, GitFork, GitPullRequest, Landmark, Lightbulb, MessageSquare, Plus, Trash2, Undo2, User } from 'lucide-react'
 import { api, type Rapport, type Regle, type SocieteDetail, type Valeur } from '../lib/api'
 import { ecrireSession, lireSession } from '../lib/session'
 import { ecartLisible, euros, valeur } from '../lib/format'
@@ -36,7 +36,7 @@ export default function Atelier() {
   const [loading, setLoading] = useState(false)
   const [err, setErr] = useState<string | null>(null)
   const [base, setBase] = useState<{ societe: SocieteDetail; overrides: Record<string, Valeur> } | null>(null)
-  const [saving, setSaving] = useState(false)
+  const [saving, setSaving] = useState<false | true | 'suggestion' | 'propre'>(false)
   const [ouvert, setOuvert] = useState<string | null>(null) // le changement déplié pour être réglé (les autres tiennent sur une ligne)
   const [supprime, setSupprime] = useState<typeof draft | null>(null) // « Supprimer ce changement » peut être annulé
   const supprimer = (faire: () => void) => { setSupprime(draft); faire(); setOuvert(null) }
@@ -67,9 +67,10 @@ export default function Atelier() {
     Promise.all([api<SocieteDetail>(`/api/societes/${sid}?branche=${br}`), api<{ overrides: Record<string, Valeur> }>(`/api/societes/${sid}/etat?branche=${br}`)])
       .then(([soc, e]) => {
         setBase({ societe: soc, overrides: e.overrides })
-        setDraft({ overrides: { ...e.overrides }, justifications: {}, societe: soc.reference ? null : sid, branche: br, nomSociete: soc.nom })
+        setDraft({ overrides: { ...e.overrides }, justifications: {}, societe: soc.reference ? null : sid, branche: br, nomSociete: soc.nom,
+          suggestion: params.get('suggestion') === '1' && !soc.reference })
         setRapport(null)
-        params.delete('societe'); params.delete('branche'); params.set('lancer', '1'); setParams(params, { replace: true })
+        params.delete('societe'); params.delete('branche'); params.delete('suggestion'); params.set('lancer', '1'); setParams(params, { replace: true })
       })
       .catch((e) => setErr(e.message))
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -217,6 +218,13 @@ export default function Atelier() {
             <div className="small muted" style={{ marginBottom: 12 }}>
               À partir de {base && !base.societe.reference ? <>« {base.societe.nom} » (<Link to={`/societes/${base.societe.id}`}>voir</Link>)</>
                 : <>la France d'aujourd'hui (la <Terme id="societe_1_0">loi actuelle</Terme>)</>}</div>
+            {base && !base.societe.reference && !proprietaire && (
+              <div className="notice small" style={{ margin: '0 0 10px' }}><GitPullRequest size={16} style={{ flexShrink: 0 }} /><div>
+                {draft.suggestion ? <>Vous préparez une <strong>suggestion</strong> pour « {base.societe.nom} » : changez ses règles, voyez les effets, puis envoyez-la.
+                  Son auteur l'acceptera ou non, comme un amendement.</>
+                  : <>Changez ses règles, puis suggérez vos changements à son auteur, ou faites-en votre propre proposition.</>}
+              </div></div>
+            )}
             {aRetablir.length > 0 && (
               <div className="notice small" style={{ margin: '0 0 8px' }}><div>Changement supprimé.{' '}
                 <button className="lien" onClick={retablir}>Rétablir</button></div></div>
@@ -366,6 +374,9 @@ export default function Atelier() {
               {!user ? <Link className="btn small" to="/connexion?retour=/atelier">Se connecter pour enregistrer</Link>
                 : proprietaire ? <div className="row"><button className="btn primary small" onClick={() => setSaving(true)}><GitBranch size={15} /> Mettre à jour « {base!.societe.nom} »</button>
                   <button className="btn small" onClick={() => setSaving(true)}><GitFork size={15} /> Nouvelle proposition</button></div>
+                : base && !base.societe.reference ? <div className="row">
+                    <button className={`btn small ${draft.suggestion ? 'primary' : ''}`} onClick={() => setSaving('suggestion')}><GitPullRequest size={15} /> Suggérer ces changements à « {base.societe.nom} »</button>
+                    <button className={`btn small ${draft.suggestion ? '' : 'primary'}`} onClick={() => setSaving('propre')}><GitFork size={15} /> En faire ma propre proposition</button></div>
                 : <button className="btn primary small" onClick={() => setSaving(true)}><GitFork size={15} /> Enregistrer ma proposition</button>}
             </div>
           )}
@@ -415,7 +426,12 @@ export default function Atelier() {
         </Modal>
       )}
       {saving && <SaveModal proprietaire={proprietaire} base={base} changements={aCommitter()} nomDefaut={draft.nomSociete}
-        onClose={() => setSaving(false)} onDone={(sid) => { setSaving(false); setDraft((d) => ({ ...d, societe: sid })); nav(`/societes/${sid}`) }} />}
+        suggestion={saving === 'suggestion' || (!!draft.suggestion && saving !== 'propre')}
+        onClose={() => setSaving(false)} onDone={(sid, suggestion) => {
+          setSaving(false)
+          if (suggestion) { setDraft((d) => ({ ...d, suggestion: false })); nav(`/societes/${sid}?suggestion=envoyee`) }
+          else { setDraft((d) => ({ ...d, societe: sid, suggestion: false })); nav(`/societes/${sid}`) }
+        }} />}
     </div>
   )
 }
@@ -510,11 +526,13 @@ function Progression({ phase, demarrage, lent }: { phase: number; demarrage: boo
   )
 }
 
-function SaveModal({ proprietaire, base, changements, nomDefaut, onClose, onDone }: {
-  proprietaire: boolean; base: { societe: SocieteDetail } | null; changements: any[]; nomDefaut?: string
-  onClose: () => void; onDone: (sid: string) => void
+function SaveModal({ proprietaire, base, changements, nomDefaut, suggestion = false, onClose, onDone }: {
+  proprietaire: boolean; base: { societe: SocieteDetail } | null; changements: any[]; nomDefaut?: string; suggestion?: boolean
+  onClose: () => void; onDone: (sid: string, suggestion?: boolean) => void
 }) {
-  const [mode, setMode] = useState<'commit' | 'fork'>(proprietaire ? 'commit' : 'fork')
+  // suggérer à la proposition de quelqu'un d'autre : une copie à soi, puis une suggestion que son auteur acceptera ou non
+  const peutSuggerer = !!base && !base.societe.reference && !proprietaire
+  const [mode, setMode] = useState<'commit' | 'fork' | 'suggestion'>(proprietaire ? 'commit' : peutSuggerer && suggestion ? 'suggestion' : 'fork')
   const [nom, setNom] = useState(nomDefaut && !proprietaire ? nomDefaut : '')
   const [description, setDescription] = useState('')
   const [message, setMessage] = useState('')
@@ -526,6 +544,12 @@ function SaveModal({ proprietaire, base, changements, nomDefaut, onClose, onDone
       if (mode === 'commit' && base) {
         await api(`/api/societes/${base.societe.id}/commits`, { body: { branche: base.societe.branche, changements, message } })
         onDone(base.societe.id)
+      } else if (mode === 'suggestion' && base) {
+        const copie = await api<{ id: string }>('/api/societes', { body: { source: base.societe.id, branche: base.societe.branche,
+          nom: `Suggestion pour « ${base.societe.nom} »`.slice(0, 120), description, changements, message } })
+        await api('/api/propositions', { body: { source: copie.id, source_branche: 'principale', cible: base.societe.id,
+          cible_branche: base.societe.branche, titre: message, description } })
+        onDone(base.societe.id, true)
       } else {
         const source = base?.societe.id ?? 'france'
         const s = await api<{ id: string }>('/api/societes', { body: { source, branche: base?.societe.branche ?? 'principale', nom, description, changements, message } })
@@ -534,7 +558,15 @@ function SaveModal({ proprietaire, base, changements, nomDefaut, onClose, onDone
     } catch (e: any) { setErr(e.message) } finally { setBusy(false) }
   }
   return (
-    <Modal title="Enregistrer votre proposition" onClose={onClose}>
+    <Modal title={mode === 'suggestion' ? 'Suggérer vos changements' : 'Enregistrer votre proposition'} onClose={onClose}>
+      {peutSuggerer && (
+        <div className="choices" style={{ marginBottom: 14 }}>
+          <button className={`choice ${mode === 'suggestion' ? 'on' : ''}`} aria-pressed={mode === 'suggestion'} onClick={() => setMode('suggestion')}>Suggérer à « {base!.societe.nom} »</button>
+          <button className={`choice ${mode === 'fork' ? 'on' : ''}`} aria-pressed={mode === 'fork'} onClick={() => setMode('fork')}>Ma propre proposition</button>
+        </div>
+      )}
+      {mode === 'suggestion' && <p className="small ink2" style={{ marginTop: 0 }}>Votre suggestion sera envoyée à l'auteur de « {base!.societe.nom} ». Il pourra en discuter
+        avec vous, puis l'accepter ou non ; s'il l'accepte, vos changements entrent dans sa proposition.</p>}
       {proprietaire && (
         <div className="choices" style={{ marginBottom: 14 }}>
           <button className={`choice ${mode === 'commit' ? 'on' : ''}`} aria-pressed={mode === 'commit'} onClick={() => setMode('commit')}>Mettre à jour « {base!.societe.nom} »</button>
@@ -547,14 +579,15 @@ function SaveModal({ proprietaire, base, changements, nomDefaut, onClose, onDone
           <label className="field"><span>Votre idée en quelques lignes (facultatif)</span><textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Quelle France voulez-vous ? Pourquoi ces changements ?" /></label>
         </>
       )}
-      <label className="field"><span>En une phrase, ce que vous avez changé</span><input type="text" value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Ex. : RSA à 800 €, financé par une tranche d'impôt à 50 %" />
+      {mode === 'suggestion' && <label className="field"><span>Pourquoi ce changement ? (facultatif)</span><textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Ce que vous voulez améliorer, et pour qui." /></label>}
+      <label className="field"><span>{mode === 'suggestion' ? 'En une phrase, ce que vous suggérez' : 'En une phrase, ce que vous avez changé'}</span><input type="text" value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Ex. : RSA à 800 €, financé par une tranche d'impôt à 50 %" />
         <span className="hint">Cette phrase apparaîtra dans l'historique de votre proposition.</span></label>
       <div className="small muted" style={{ marginBottom: 12 }}>{(() => { const m = changements.filter((c) => String(c.regle).startsWith('budget.etat.mission.')).length; const n = changements.length - m + (m ? 1 : 0); return <>{n} changement{n > 1 ? 's' : ''} {n > 1 ? 'seront enregistrés' : 'sera enregistré'}{m ? ` (dont le budget de l'État : ${m} domaine${m > 1 ? 's' : ''} ajusté${m > 1 ? 's' : ''})` : ''}.</> })()} Votre proposition sera visible par tous : chacun pourra s'en inspirer, créer sa propre version et vous suggérer des améliorations.</div>
       {changements.length === 0 && <Notice kind="warn">Rien n'a changé par rapport à votre point de départ.</Notice>}
       {err && <ErrorBox message={err} />}
       <div className="row" style={{ justifyContent: 'flex-end', marginTop: 12 }}>
         <button className="btn" onClick={onClose}>Annuler</button>
-        <button className="btn primary" disabled={busy || changements.length === 0 || (mode === 'fork' && !nom.trim())} onClick={go}>{busy ? 'Enregistrement…' : 'Enregistrer'} <ArrowRight size={15} /></button>
+        <button className="btn primary" disabled={busy || changements.length === 0 || (mode === 'fork' && !nom.trim()) || (mode === 'suggestion' && !message.trim())} onClick={go}>{busy ? 'Envoi…' : mode === 'suggestion' ? 'Envoyer ma suggestion' : 'Enregistrer'} <ArrowRight size={15} /></button>
       </div>
     </Modal>
   )

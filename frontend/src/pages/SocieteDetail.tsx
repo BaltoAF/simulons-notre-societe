@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { Calculator, GitBranch, GitCommit, GitFork, GitMerge, GitPullRequest, MessageSquare, RefreshCw, ShieldCheck, Star } from 'lucide-react'
 import { api, type Changement, type Commit, type Rapport, type SocieteDetail as SD } from '../lib/api'
 import { DOMAINE_TITRE, STATUT_SUGGESTION, relatif, valeur } from '../lib/format'
@@ -82,7 +82,10 @@ export default function SocieteDetail() {
   const nav = useNavigate()
   const [branche, setBranche] = useState('principale')
   const { data: s, loading, error, reload } = useFetch<SD>(`/api/societes/${id}?branche=${branche}`)
-  const [tab, setTab] = useState<'apercu' | 'impacts' | 'historique' | 'propositions' | 'discussion'>('apercu')
+  // de retour après « Envoyer ma suggestion » : l'onglet des suggestions, avec un mot qui le confirme
+  const [params] = useSearchParams()
+  const envoyee = params.get('suggestion') === 'envoyee'
+  const [tab, setTab] = useState<'apercu' | 'impacts' | 'historique' | 'propositions' | 'discussion'>(envoyee ? 'propositions' : 'apercu')
   const [rapport, setRapport] = useState<Rapport | null>(null)
   const [calc, setCalc] = useState(false)
   const [modal, setModal] = useState<null | 'fork' | 'proposer' | 'branche' | 'sync'>(null)
@@ -111,9 +114,16 @@ export default function SocieteDetail() {
         <div className="row">
           <button className={`btn ${s.etoile ? 'primary' : ''}`} onClick={etoile} title="J'aime cette proposition"><Star size={16} /> {s.etoiles}</button>
           <button className="btn" onClick={() => (user ? setModal('fork') : nav(`/connexion?retour=/societes/${s.id}`))} title="Une copie à vous, que vous pourrez modifier librement"><GitFork size={16} /> Partir de cette proposition</button>
-          <Link className="btn primary" to={`/atelier?societe=${s.id}&branche=${branche}`}><Calculator size={16} /> {s.proprietaire ? 'Modifier' : 'Tester des changements'}</Link>
+          {/* l'expérience centrale : changer les règles ; sur la proposition de quelqu'un, c'est lui suggérer un changement */}
+          <Link className="btn primary" to={`/atelier?societe=${s.id}&branche=${branche}${!s.proprietaire && !s.reference ? '&suggestion=1' : ''}`}>
+            {s.proprietaire ? <><Calculator size={16} /> Modifier</> : s.reference ? <><Calculator size={16} /> Changer ces règles</> : <><GitPullRequest size={16} /> Proposer un changement</>}</Link>
         </div>
       </div>
+      {!s.reference && !s.proprietaire && (
+        <p className="small ink2" style={{ margin: '8px 0 0', maxWidth: 820 }}>Pas d'accord avec une règle ? <strong>Proposez un changement</strong> : vous la modifiez, vous voyez
+          les effets, et vous l'envoyez à {s.owner_pseudo}, qui l'accepte ou non, comme un amendement. Ou bien <strong>partez de cette proposition</strong> pour faire la vôtre.</p>
+      )}
+      {envoyee && <Notice kind="ok">Votre suggestion est envoyée. Elle apparaît ci-dessous, dans « Suggestions reçues » : son auteur pourra en discuter avec vous, puis l'accepter ou non.</Notice>}
       {s.description && <p className="ink2" style={{ marginTop: 12, maxWidth: 820, whiteSpace: 'pre-wrap' }}>{s.description}</p>}
       {msg && <Notice kind="ok">{msg}</Notice>}
       {s.conflits_loi.length > 0 && (

@@ -4,9 +4,9 @@ import { BadgeCheck, Calculator, CheckCircle2, Circle, GitFork, HelpCircle, Part
 import { useApp, type EtapeParcours } from '../lib/state'
 
 export const MISSIONS: { id: EtapeParcours; titre: string; detail: string; lien: string; Icone: typeof Calculator }[] = [
+  { id: 'idee', titre: 'Changer une règle', detail: 'Testez une idée et voyez ce que cela change, pour vous et pour le pays.', lien: '/atelier', Icone: GitFork },
   { id: 'droits', titre: 'Voir ce que la loi vous donne', detail: 'Vos aides, vos impôts, ce qui vous reste chaque mois : environ une minute.', lien: '/mes-droits', Icone: Calculator },
   { id: 'question', titre: 'Comprendre une grande question', detail: "Où va l'argent public ? La dette, c'est grave ? Les retraites ?", lien: '/comprendre', Icone: HelpCircle },
-  { id: 'idee', titre: 'Tester une idée de réforme', detail: 'Changez une règle et voyez ce que cela change, pour vous et pour le pays.', lien: '/atelier', Icone: GitFork },
   { id: 'source', titre: "Vérifier d'où vient un chiffre", detail: 'Ouvrez une règle : le texte de loi, son historique, sa fiabilité.', lien: '/regles/r/travail.smic.horaire_brut', Icone: BadgeCheck },
 ]
 
