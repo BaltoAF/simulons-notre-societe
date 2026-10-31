@@ -195,7 +195,7 @@ code, .mono { font-family: var(--mono); font-size: .85em; }
 /* ── formulaires ── */
 label.field { display: block; font-weight: 600; font-size: .92rem; margin-bottom: 12px; }
 label.field > span { display: block; margin-bottom: 5px; }
-label.field .hint { display: block; font-weight: 400; color: var(--ink-3); font-size: .82rem; margin-top: 3px; }
+label.field .hint { display: block; font-weight: 400; color: var(--ink-3); font-size: .86rem; margin-top: 3px; } /* lisible sur tablette (test Monique) */
 input[type=text], input[type=number], input[type=email], input[type=password], input[type=search], select, textarea {
   width: 100%; font: inherit; color: var(--ink); background: var(--surface); border: 1px solid var(--line-2);
   border-radius: var(--radius-sm); padding: 9px 12px; }
@@ -324,7 +324,7 @@ details.explain[open] summary { margin-bottom: 8px; }
 .preset:hover { border-color: var(--primary); background: var(--primary-soft); }
 .preset strong { display: block; }
 .bareme-table input { padding: 6px 8px; }
-.chart text { fill: var(--ink-3); font-size: 11px; font-family: var(--font); }
+.chart text { fill: var(--ink-3); font-size: .75rem; font-family: var(--font); } /* suit « Agrandir le texte » */
 .chart .axis { stroke: var(--line-2); }
 .chart .grid-line { stroke: var(--line); }
 
@@ -503,11 +503,11 @@ main:focus { outline: none; }
 .situe-regle { position: relative; height: 12px; border-radius: 6px; background: linear-gradient(90deg, var(--surface-2), var(--primary-soft)); margin: 46px 6px 0; } /* place pour l'étiquette « Vous » au-dessus */
 .situe-zone.pauvre { position: absolute; left: 0; top: 0; bottom: 0; background: color-mix(in srgb, var(--loss) 22%, transparent); border-radius: 6px 0 0 6px; }
 .situe-repere, .situe-vous { position: absolute; top: -4px; width: 2px; height: 20px; background: var(--ink-3); transform: translateX(-1px); }
-.situe-repere > span, .situe-vous > span { position: absolute; top: 22px; left: 50%; transform: translateX(-50%); font-size: .72rem; line-height: 1.15;
+.situe-repere > span, .situe-vous > span { position: absolute; top: 22px; left: 50%; transform: translateX(-50%); font-size: .8rem; line-height: 1.15;
   color: var(--ink-3); text-align: center; white-space: nowrap; }
 .situe-vous { background: var(--primary); width: 4px; height: 28px; top: -8px; border-radius: 2px; }
 .situe-vous > span { top: -32px; color: var(--primary); font-weight: 750; font-size: .8rem; }
-@media (max-width: 640px) { .situe-repere > span { font-size: .64rem; } }
+@media (max-width: 640px) { .situe-repere > span { font-size: .72rem; } }
 .en-bref { border-left: 5px solid var(--t, var(--primary)); background: var(--t-soft, var(--primary-soft)); }
 .vrai-faux { display: flex; flex-direction: column; justify-content: space-between; }
 
