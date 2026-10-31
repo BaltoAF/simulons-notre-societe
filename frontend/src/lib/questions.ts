@@ -192,6 +192,8 @@ export const QUESTIONS: Question[] = [
       positions: [
         { titre: 'Partir plus tard', texte: "On vit plus longtemps qu'avant, donc plus longtemps à la retraite. Partir un peu plus tard permet de payer les pensions sans les baisser ni augmenter les cotisations de ceux qui travaillent." },
         { titre: 'Augmenter les recettes', texte: "Tout le monde ne peut pas travailler plus longtemps, surtout dans les métiers usants. On peut plutôt augmenter un peu les cotisations ou faire contribuer les revenus du patrimoine, comme les dividendes." },
+        // le troisième levier cité par la page (« verser des pensions moins élevées ») : relecture du débat, 31/10/2026
+        { titre: 'Augmenter moins les pensions', texte: "Les retraités ont en moyenne un niveau de vie proche de celui de l'ensemble de la population. Augmenter un peu moins les pensions chaque année, surtout les plus élevées, partage l'effort entre les générations." },
       ],
     },
     actions: [

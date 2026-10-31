@@ -263,7 +263,7 @@ function Detail({ q }: { q: Question }) {
         <div className="card" style={{ marginTop: 16 }}>
           <h2 style={{ fontSize: '1.2rem', marginTop: 0 }}><Scale size={20} /> Ce qui fait débat</h2>
           <p style={{ fontWeight: 650, fontSize: '1.05rem' }}>{q.debat.question}</p>
-          <div className="grid cols-2">
+          <div className={`grid cols-${q.debat.positions.length}`}>
             {q.debat.positions.map((p) => (
               <div key={p.titre}>
                 <div className="kpi-label">{p.titre}</div>
