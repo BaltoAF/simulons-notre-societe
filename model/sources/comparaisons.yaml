@@ -46,3 +46,39 @@ sources:
     date_publication: "2026-10-21"
     consulte_le: "2026-10-31"
     note: "Dépenses totales des administrations publiques (TE, secteur S13), en % du PIB. 2025 (2024) : France 57,3 % (57,0) ; Finlande 57,5 (57,9) ; UE-27 49,4 (48,9) ; Allemagne 50,1 (49,0) ; Italie 51,1 (50,3) ; Espagne 45,3 (45,4) ; Belgique 54,4 (54,1) ; Danemark 47,2 (46,5) ; Suède 49,3 (50,0). France 2e des 27 en 2025 et 2024, derrière la Finlande ; 1re en 2023 (56,8 %)."
+  - id: eurostat-une-rt-a
+    type: statistique_publique
+    editeur: "Eurostat"
+    titre: "Chômage par sexe et par âge, moyennes annuelles (une_rt_a)"
+    url: "https://ec.europa.eu/eurostat/databrowser/view/une_rt_a/default/table?lang=fr"
+    auteurs: []
+    date_publication: "2026-10-26"
+    consulte_le: "2026-10-31"
+    note: "Taux de chômage des 15-74 ans, en % de la population active (unit PC_ACT, age Y15-74, sex T). 2025 (2024) : France 7,7 (7,4), signalée « définition différente » ; UE-27 6,0 (6,0) ; Allemagne 3,8 (3,5) ; Italie 6,1 (6,5) ; Espagne 10,5 (11,4) ; Pays-Bas 3,9 (3,7) ; Suède 8,8 (8,4) ; Pologne 3,1 (2,9). France 5e des 27 en 2025 (1 = le plus élevé)."
+  - id: eurostat-hlth-sha11-hf
+    type: statistique_publique
+    editeur: "Eurostat"
+    titre: "Dépenses de santé par régime de financement (hlth_sha11_hf)"
+    url: "https://ec.europa.eu/eurostat/databrowser/view/hlth_sha11_hf/default/table?lang=fr"
+    auteurs: []
+    date_publication: "2026-10-23"
+    consulte_le: "2026-10-31"
+    note: "Dépense courante de santé, tous financeurs (TOT_HF), en % du PIB. 2024 (2023) : France 11,33 (11,33) ; UE-27 10,16 (9,94) ; Allemagne 12,21 (11,64) ; Italie 8,46 (8,37) ; Espagne 9,25 (9,22) ; Pays-Bas 10,10 (10,04) ; Suède 11,16 (11,24) ; Pologne 7,84 (7,14). France 3e des 27 en 2024, derrière l'Allemagne et l'Autriche (11,71). 2025 encore partielle."
+  - id: eurostat-gov-10a-exp-education
+    type: statistique_publique
+    editeur: "Eurostat"
+    titre: "Dépenses des administrations publiques par fonction (gov_10a_exp) — enseignement (COFOG 09)"
+    url: "https://ec.europa.eu/eurostat/databrowser/view/gov_10a_exp/default/table?lang=fr"
+    auteurs: []
+    date_publication: "2026-10-21"
+    consulte_le: "2026-10-31"
+    note: "Dépenses publiques d'enseignement (cofog99 GF09, TE, S13), en % du PIB : argent public seulement (pas les familles ni les entreprises). 2024 (2023) : France 5,1 provisoire (5,0) ; UE-27 4,7 (4,7) ; Allemagne 4,5 (4,5) ; Italie 4,0 (3,9) ; Espagne 4,1 (4,2) ; Pays-Bas 5,1 (5,1) ; Suède 7,2 (7,3) ; Pologne 5,6 (4,9). France 11e des 27 en 2024, ex aequo avec les Pays-Bas et la Slovaquie."
+  - id: eurostat-sdg-13-10
+    type: statistique_publique
+    editeur: "Eurostat"
+    titre: "Émissions de gaz à effet de serre (sdg_13_10), tonnes d'équivalent CO2 par habitant"
+    url: "https://ec.europa.eu/eurostat/databrowser/view/sdg_13_10/default/table?lang=fr"
+    auteurs: []
+    date_publication: "2026-04-22"
+    consulte_le: "2026-10-31"
+    note: "Émissions sur le territoire, hors forêts et sols (UTCATF) et hors transports internationaux (src_crf TOTX4_MEMO, unit T_HAB). 2024 (2023) : France 5,3 (5,5) ; Allemagne 7,8 (8,0) ; Italie 6,2 (6,4) ; Espagne 5,5 (5,6) ; Pays-Bas 7,8 (8,0) ; Suède 4,5 (4,2) ; Pologne 9,3 (9,5). France 22e des 27 en 2024 (1 = le plus élevé). Pas de moyenne européenne publiée sur ce champ. Ne compte pas les émissions des produits importés (empreinte carbone)."

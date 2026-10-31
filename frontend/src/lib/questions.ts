@@ -4,7 +4,7 @@
 import { anEtMois, euros, nombre } from './format'
 import { milliards, tonnes } from './humain'
 
-export type Format = 'md' | 'pct' | 'pct_pib' | 'pct_pib_signe' | 'eur' | 'eur_rond' | 'eur_mois' | 'personnes' | 'mt' | 't_hab' | 'ans' | 'ratio' | 'gini' | 'heures' | 'entier'
+export type Format = 'md' | 'pct' | 'pct_pib' | 'pct_pib_signe' | 'eur' | 'eur_rond' | 'eur_mois' | 'personnes' | 'mt' | 't_hab' | 'ans' | 'ratio' | 'gini' | 'heures' | 'entier' | 'decimal'
 
 /** Un chiffre : une statistique (metrique), une règle (regle), ou un calcul à partir des autres chiffres. */
 export type Chiffre = {
@@ -51,6 +51,7 @@ export function formater(v: number, f: Format, absolu = false): string {
     case 'personnes': return x >= 1e6 ? `${nombre(x / 1e6, 1)} millions de personnes` : `${nombre(x, 0)} personnes`
     case 'mt': return tonnes(x)
     case 't_hab': return `${nombre(x, 1)} tonnes de CO₂`
+    case 'decimal': return nombre(x, 1) // dans une énumération, l'unité dite une fois suffit
     case 'ans': return anEtMois(x)
     case 'ratio': return nombre(x, 2)
     case 'gini': return nombre(x < 1 ? x * 100 : x, 0)
@@ -285,6 +286,11 @@ export const QUESTIONS: Question[] = [
       { cle: 'emissions', libelle: 'Émissions sur le territoire, par an', format: 'mt', metrique: 'ecologie.emissions_territoriales_totales' },
       { cle: 'budget', libelle: 'Plafond légal 2024-2028 (par an)', format: 'mt', regle: 'environnement_energie.budget_carbone.periode_2024_2028' },
       { cle: 'par_hab', libelle: 'Empreinte par habitant et par an', format: 't_hab', metrique: 'environnement_energie.empreinte_carbone_par_habitant' },
+      { cle: 'ue_fr', libelle: 'France, par habitant (territoire)', format: 't_hab', metrique: 'europe.ges_par_habitant.france', cache: true },
+      { cle: 'ue_de', libelle: 'Allemagne', format: 'decimal', metrique: 'europe.ges_par_habitant.allemagne', cache: true },
+      { cle: 'ue_it', libelle: 'Italie', format: 'decimal', metrique: 'europe.ges_par_habitant.italie', cache: true },
+      { cle: 'ue_pl', libelle: 'Pologne', format: 'decimal', metrique: 'europe.ges_par_habitant.pologne', cache: true },
+      { cle: 'ue_se', libelle: 'Suède', format: 'decimal', metrique: 'europe.ges_par_habitant.suede', cache: true },
       { cle: 'empreinte', libelle: 'Empreinte carbone totale', format: 'mt', metrique: 'ecologie.empreinte_carbone_totale', cache: true },
       // série du SDES depuis 1990 (valeur 1990 rétropolée) : le texte dit « environ » et « en 1990 »
       { cle: 'par_hab_1990', libelle: 'Empreinte par habitant en 1990', format: 't_hab', metrique: 'ecologie.empreinte_carbone_par_habitant', premiere: true, cache: true },
@@ -293,6 +299,7 @@ export const QUESTIONS: Question[] = [
     texte: [
       "En un an, la France a émis {emissions} sur son territoire (tous les gaz à effet de serre, comptés en équivalent CO₂). Les transports en sont la première source ({transports}), devant l'agriculture, l'industrie et les bâtiments.",
       "Si l'on compte aussi ce que nous importons (vêtements, téléphones, voitures…), notre « empreinte carbone » atteint {empreinte}, soit {par_hab} par habitant, contre environ {par_hab_1990} en 1990.",
+      "Rapportées au nombre d'habitants, les émissions sur le territoire sont plus basses en France que dans la plupart des pays de l'Union (22e sur 27 en 2024, selon Eurostat) : {ue_fr} par habitant, contre {ue_de} en Allemagne, {ue_it} en Italie et {ue_pl} en Pologne, mais {ue_se} en Suède (en tonnes). Ce chiffre ne compte pas les produits importés, que l'empreinte carbone ajoute.",
       "La loi fixe un plafond, le « budget carbone » : {budget} par an en moyenne sur 2024-2028. À comparer avec les {emissions} émises la dernière année. Sur ce site, une réforme qui ajoute des émissions doit être compensée pour rester sous ce plafond.",
     ],
     debat: {
@@ -317,6 +324,14 @@ export const QUESTIONS: Question[] = [
     chiffres: [
       { cle: 'median', libelle: 'Salaire net « du milieu » (temps plein)', format: 'eur', metrique: 'revenus.salaires.net_mensuel_median_eqtp_prive' },
       { cle: 'chomage', libelle: 'Taux de chômage', format: 'pct', metrique: 'emploi.taux_chomage_bit' },
+      // repères européens (Eurostat, mesure commune) : « comprendre le monde » passe aussi par la comparaison
+      { cle: 'ue_fr', libelle: 'France (Eurostat)', format: 'pct', metrique: 'europe.chomage.france', cache: true },
+      { cle: 'ue_ue', libelle: 'Union européenne', format: 'pct', metrique: 'europe.chomage.ue27', cache: true },
+      { cle: 'ue_de', libelle: 'Allemagne', format: 'pct', metrique: 'europe.chomage.allemagne', cache: true },
+      { cle: 'ue_nl', libelle: 'Pays-Bas', format: 'pct', metrique: 'europe.chomage.pays_bas', cache: true },
+      { cle: 'ue_it', libelle: 'Italie', format: 'pct', metrique: 'europe.chomage.italie', cache: true },
+      { cle: 'ue_se', libelle: 'Suède', format: 'pct', metrique: 'europe.chomage.suede', cache: true },
+      { cle: 'ue_es', libelle: 'Espagne', format: 'pct', metrique: 'europe.chomage.espagne', cache: true },
       { cle: 'emploi', libelle: 'Personnes en emploi', format: 'personnes', metrique: 'emploi.actifs_occupes' },
       { cle: 'd1', libelle: '10 % des salariés gagnent moins de', format: 'eur', metrique: 'revenus.salaires.net_mensuel_d1_eqtp_prive', cache: true },
       { cle: 'd9', libelle: '10 % des salariés gagnent plus de', format: 'eur', metrique: 'revenus.salaires.net_mensuel_d9_eqtp_prive', cache: true },
@@ -329,6 +344,7 @@ export const QUESTIONS: Question[] = [
       "{emploi} ont un emploi. Dans le privé, le salaire net « du milieu » (médian) est de {median} par mois à temps plein : la moitié gagne moins, l'autre moitié plus. Le salaire moyen ({moyen}) est plus élevé, tiré vers le haut par les plus hauts salaires.",
       "Les écarts sont importants : 10 % des salariés gagnent moins de {d1}, et 10 % plus de {d9} (toujours à temps plein). {partiel} des personnes en emploi travaillent à temps partiel.",
       "{chomeurs} sont au chômage, soit {chomage} des actifs. L'allocation chômage moyenne est de {allocation} nets par mois.",
+      "Selon la mesure commune d'Eurostat, le chômage en France ({ue_fr} en 2025) est au-dessus de la moyenne européenne ({ue_ue}). Il est plus bas en Allemagne ({ue_de}), aux Pays-Bas ({ue_nl}) et en Italie ({ue_it}), plus haut en Suède ({ue_se}) et en Espagne ({ue_es}).",
     ],
     aSavoir: "Le chômage « au sens du BIT » compte les personnes sans emploi qui en cherchent un activement : c'est la mesure de l'Insee, différente du nombre d'inscrits à France Travail.",
     debat: {
@@ -355,12 +371,18 @@ export const QUESTIONS: Question[] = [
       { cle: 'par_eleve', libelle: 'Par élève ou étudiant', format: 'eur', metrique: 'education.depense_moyenne_par_eleve_etudiant' },
       { cle: 'bac', libelle: "Jeunes d'une génération qui ont le bac", format: 'pct', metrique: 'education.proportion_bacheliers_generation' },
       { cle: 'pct', libelle: 'Part du PIB', format: 'pct_pib', metrique: 'education.depense_interieure_education_part_pib', cache: true },
+      { cle: 'ue_fr', libelle: 'France (argent public)', format: 'pct_pib', metrique: 'europe.education_publique_pct_pib.france', cache: true },
+      { cle: 'ue_ue', libelle: 'Union européenne', format: 'pct', metrique: 'europe.education_publique_pct_pib.ue27', cache: true },
+      { cle: 'ue_se', libelle: 'Suède', format: 'pct', metrique: 'europe.education_publique_pct_pib.suede', cache: true },
+      { cle: 'ue_de', libelle: 'Allemagne', format: 'pct', metrique: 'europe.education_publique_pct_pib.allemagne', cache: true },
+      { cle: 'ue_it', libelle: 'Italie', format: 'pct', metrique: 'europe.education_publique_pct_pib.italie', cache: true },
       { cle: 'eleves', libelle: 'Élèves et apprentis', format: 'personnes', metrique: 'education.eleves_apprentis_1er_2d_degres', cache: true },
       { cle: 'profs', libelle: 'Enseignants', format: 'personnes', metrique: 'education.enseignants_total', cache: true },
       { cle: 'pisa', libelle: 'Score PISA en mathématiques', format: 'ratio', metrique: 'education.pisa_culture_mathematique', cache: true },
     ],
     texte: [
       "L'État, les collectivités, les familles et les entreprises dépensent ensemble {depense} par an pour l'éducation ({pct}), soit {par_eleve} en moyenne par élève ou étudiant.",
+      "Pour le seul argent public, la France consacre {ue_fr} à l'enseignement, un peu plus que la moyenne européenne ({ue_ue}) : moins que la Suède ({ue_se}), plus que l'Allemagne ({ue_de}) ou l'Italie ({ue_it}) (Eurostat, 2024).",
       "{eleves} sont scolarisés de la maternelle au lycée, avec {profs} enseignants.",
       "Aujourd'hui, {bac} des jeunes d'une génération obtiennent le baccalauréat. Les évaluations internationales PISA, qui testent les élèves de 15 ans, donnent à la France {pisa} points en mathématiques.",
     ],
@@ -387,6 +409,11 @@ export const QUESTIONS: Question[] = [
       { cle: 'reste', libelle: 'Payé de sa poche, par habitant et par an', format: 'eur', metrique: 'sante.reste_a_charge_menages_par_habitant' },
       { cle: 'vie_f', libelle: 'Espérance de vie des femmes', format: 'ans', metrique: 'sante.esperance_vie_naissance_femmes' },
       { cle: 'pct', libelle: 'Part du PIB', format: 'pct_pib', metrique: 'sante.depense_courante_sante_internationale_part_pib', cache: true },
+      { cle: 'ue_fr', libelle: 'France (Eurostat)', format: 'pct_pib', metrique: 'europe.sante_pct_pib.france', cache: true },
+      { cle: 'ue_ue', libelle: 'Union européenne', format: 'pct', metrique: 'europe.sante_pct_pib.ue27', cache: true },
+      { cle: 'ue_de', libelle: 'Allemagne', format: 'pct', metrique: 'europe.sante_pct_pib.allemagne', cache: true },
+      { cle: 'ue_it', libelle: 'Italie', format: 'pct', metrique: 'europe.sante_pct_pib.italie', cache: true },
+      { cle: 'ue_es', libelle: 'Espagne', format: 'pct', metrique: 'europe.sante_pct_pib.espagne', cache: true },
       { cle: 'vie_h', libelle: 'Espérance de vie des hommes', format: 'ans', metrique: 'sante.esperance_vie_naissance_hommes', cache: true },
       { cle: 'bonne_f', libelle: 'En bonne santé (femmes)', format: 'ans', metrique: 'bien_etre.nir.esperance_vie_bonne_sante_femmes', cache: true },
       { cle: 'bonne_h', libelle: 'En bonne santé (hommes)', format: 'ans', metrique: 'bien_etre.nir.esperance_vie_bonne_sante_hommes', cache: true },
@@ -394,6 +421,7 @@ export const QUESTIONS: Question[] = [
     ],
     texte: [
       "La France consacre {depense} par an à la santé ({pct}). L'essentiel est payé par l'Assurance maladie et les complémentaires : il reste en moyenne {reste} par habitant et par an à payer de sa poche.",
+      "C'est plus que la moyenne européenne : selon Eurostat, {ue_fr} en 2024 contre {ue_ue} dans l'Union européenne. La France est au 3e rang, derrière l'Allemagne ({ue_de}) et l'Autriche ; l'Espagne y consacre {ue_es} et l'Italie {ue_it}.",
       "L'espérance de vie à la naissance est de {vie_f} pour les femmes et de {vie_h} pour les hommes. Mais on vit en bonne santé (sans être limité dans ses activités) jusqu'à {bonne_f} en moyenne pour les femmes et {bonne_h} pour les hommes.",
       "La France compte {medecins} médecins en activité ou en fin de formation.",
     ],

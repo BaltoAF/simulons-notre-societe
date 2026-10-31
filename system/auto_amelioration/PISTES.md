@@ -147,6 +147,11 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   inconvénient (les économies n'en avaient pas). Reste : une solution « revenus du capital » (le taux de la flat tax,
   fiscalite.capital.pfu_taux_ir, est un levier du moteur), à ajouter quand son rendement sera calé sur une source
   officielle (la population simulée représente mal les revenus du capital).
+- **Comparaisons européennes** (31/10/2026) : chaque grande question chiffrée situe la France dans l'Union, avec la
+  mesure commune d'Eurostat (dette et intérêts, retraites, impôts et cotisations, dépenses publiques, chômage, santé,
+  enseignement public, émissions par habitant ; model/metriques/europe.yaml et sources/comparaisons.yaml). Pas de
+  moyenne européenne des émissions par habitant : Eurostat ne la publie pas sur le même champ. Reste : PISA comparé à
+  la moyenne de l'OCDE (le site de l'OCDE refuse les robots) ; mise à jour annuelle de ces séries.
 - **Josiane, 2e passage** (notes compréhension 4 / confiance 4 / neutralité 4,5 / téléphone 4 sur 5, 31/10/2026).
   Réglés : pension alimentaire, allocation de soutien familial, enfant majeur, dette, retraites, financement. Corrigé
   ensuite : la case Économie ne comptait que l'effet à court terme (le filtre du bilan ne retenait que « pib » exact) ;

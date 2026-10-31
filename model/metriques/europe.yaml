@@ -1,0 +1,406 @@
+# Comparaisons européennes (Eurostat) pour « Les grandes questions » : chômage, santé, école, climat. Relues le 2026-10-31.
+# Convention : date = 31 décembre de l'année ; la dernière année est souvent provisoire.
+metriques:
+  - id: europe.chomage.france
+    titre: "Taux de chômage des 15-74 ans : France"
+    explication: "Taux de chômage harmonisé d'Eurostat (au sens du BIT), en % de la population active, moyenne de l'année. Pour la France, Eurostat signale une définition un peu différente en 2024 et 2025. Date = 31 décembre de l'année."
+    unite: pourcent
+    serie:
+      - date: "2024-12-31"
+        valeur: 7.4
+        source: eurostat-une-rt-a
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 7.7
+        source: eurostat-une-rt-a
+        statut: provisoire
+  - id: europe.chomage.ue27
+    titre: "Taux de chômage des 15-74 ans : Union européenne (27 pays)"
+    explication: "Taux de chômage harmonisé d'Eurostat (au sens du BIT), en % de la population active, moyenne de l'année. Pour la France, Eurostat signale une définition un peu différente en 2024 et 2025. Date = 31 décembre de l'année."
+    unite: pourcent
+    serie:
+      - date: "2024-12-31"
+        valeur: 6.0
+        source: eurostat-une-rt-a
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 6.0
+        source: eurostat-une-rt-a
+        statut: provisoire
+  - id: europe.chomage.allemagne
+    titre: "Taux de chômage des 15-74 ans : Allemagne"
+    explication: "Taux de chômage harmonisé d'Eurostat (au sens du BIT), en % de la population active, moyenne de l'année. Pour la France, Eurostat signale une définition un peu différente en 2024 et 2025. Date = 31 décembre de l'année."
+    unite: pourcent
+    serie:
+      - date: "2024-12-31"
+        valeur: 3.5
+        source: eurostat-une-rt-a
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 3.8
+        source: eurostat-une-rt-a
+        statut: provisoire
+  - id: europe.chomage.italie
+    titre: "Taux de chômage des 15-74 ans : Italie"
+    explication: "Taux de chômage harmonisé d'Eurostat (au sens du BIT), en % de la population active, moyenne de l'année. Pour la France, Eurostat signale une définition un peu différente en 2024 et 2025. Date = 31 décembre de l'année."
+    unite: pourcent
+    serie:
+      - date: "2024-12-31"
+        valeur: 6.5
+        source: eurostat-une-rt-a
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 6.1
+        source: eurostat-une-rt-a
+        statut: provisoire
+  - id: europe.chomage.espagne
+    titre: "Taux de chômage des 15-74 ans : Espagne"
+    explication: "Taux de chômage harmonisé d'Eurostat (au sens du BIT), en % de la population active, moyenne de l'année. Pour la France, Eurostat signale une définition un peu différente en 2024 et 2025. Date = 31 décembre de l'année."
+    unite: pourcent
+    serie:
+      - date: "2024-12-31"
+        valeur: 11.4
+        source: eurostat-une-rt-a
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 10.5
+        source: eurostat-une-rt-a
+        statut: provisoire
+  - id: europe.chomage.pays_bas
+    titre: "Taux de chômage des 15-74 ans : Pays-Bas"
+    explication: "Taux de chômage harmonisé d'Eurostat (au sens du BIT), en % de la population active, moyenne de l'année. Pour la France, Eurostat signale une définition un peu différente en 2024 et 2025. Date = 31 décembre de l'année."
+    unite: pourcent
+    serie:
+      - date: "2024-12-31"
+        valeur: 3.7
+        source: eurostat-une-rt-a
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 3.9
+        source: eurostat-une-rt-a
+        statut: provisoire
+  - id: europe.chomage.suede
+    titre: "Taux de chômage des 15-74 ans : Suède"
+    explication: "Taux de chômage harmonisé d'Eurostat (au sens du BIT), en % de la population active, moyenne de l'année. Pour la France, Eurostat signale une définition un peu différente en 2024 et 2025. Date = 31 décembre de l'année."
+    unite: pourcent
+    serie:
+      - date: "2024-12-31"
+        valeur: 8.4
+        source: eurostat-une-rt-a
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 8.8
+        source: eurostat-une-rt-a
+        statut: provisoire
+  - id: europe.chomage.pologne
+    titre: "Taux de chômage des 15-74 ans : Pologne"
+    explication: "Taux de chômage harmonisé d'Eurostat (au sens du BIT), en % de la population active, moyenne de l'année. Pour la France, Eurostat signale une définition un peu différente en 2024 et 2025. Date = 31 décembre de l'année."
+    unite: pourcent
+    serie:
+      - date: "2024-12-31"
+        valeur: 2.9
+        source: eurostat-une-rt-a
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 3.1
+        source: eurostat-une-rt-a
+        statut: provisoire
+  - id: europe.sante_pct_pib.france
+    titre: "Dépense courante de santé en % du PIB : France"
+    explication: "Toutes les dépenses de soins et de biens médicaux, quel que soit le financeur (Sécurité sociale, complémentaires, ménages), rapportées à la richesse produite (Eurostat, système des comptes de la santé). Date = 31 décembre de l'année."
+    unite: pourcent_pib
+    serie:
+      - date: "2023-12-31"
+        valeur: 11.33
+        source: eurostat-hlth-sha11-hf
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 11.33
+        source: eurostat-hlth-sha11-hf
+        statut: provisoire
+  - id: europe.sante_pct_pib.ue27
+    titre: "Dépense courante de santé en % du PIB : Union européenne (27 pays)"
+    explication: "Toutes les dépenses de soins et de biens médicaux, quel que soit le financeur (Sécurité sociale, complémentaires, ménages), rapportées à la richesse produite (Eurostat, système des comptes de la santé). Date = 31 décembre de l'année."
+    unite: pourcent_pib
+    serie:
+      - date: "2023-12-31"
+        valeur: 9.94
+        source: eurostat-hlth-sha11-hf
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 10.16
+        source: eurostat-hlth-sha11-hf
+        statut: provisoire
+  - id: europe.sante_pct_pib.allemagne
+    titre: "Dépense courante de santé en % du PIB : Allemagne"
+    explication: "Toutes les dépenses de soins et de biens médicaux, quel que soit le financeur (Sécurité sociale, complémentaires, ménages), rapportées à la richesse produite (Eurostat, système des comptes de la santé). Date = 31 décembre de l'année."
+    unite: pourcent_pib
+    serie:
+      - date: "2023-12-31"
+        valeur: 11.64
+        source: eurostat-hlth-sha11-hf
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 12.21
+        source: eurostat-hlth-sha11-hf
+        statut: provisoire
+  - id: europe.sante_pct_pib.italie
+    titre: "Dépense courante de santé en % du PIB : Italie"
+    explication: "Toutes les dépenses de soins et de biens médicaux, quel que soit le financeur (Sécurité sociale, complémentaires, ménages), rapportées à la richesse produite (Eurostat, système des comptes de la santé). Date = 31 décembre de l'année."
+    unite: pourcent_pib
+    serie:
+      - date: "2023-12-31"
+        valeur: 8.37
+        source: eurostat-hlth-sha11-hf
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 8.46
+        source: eurostat-hlth-sha11-hf
+        statut: provisoire
+  - id: europe.sante_pct_pib.espagne
+    titre: "Dépense courante de santé en % du PIB : Espagne"
+    explication: "Toutes les dépenses de soins et de biens médicaux, quel que soit le financeur (Sécurité sociale, complémentaires, ménages), rapportées à la richesse produite (Eurostat, système des comptes de la santé). Date = 31 décembre de l'année."
+    unite: pourcent_pib
+    serie:
+      - date: "2023-12-31"
+        valeur: 9.22
+        source: eurostat-hlth-sha11-hf
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 9.25
+        source: eurostat-hlth-sha11-hf
+        statut: provisoire
+  - id: europe.sante_pct_pib.pays_bas
+    titre: "Dépense courante de santé en % du PIB : Pays-Bas"
+    explication: "Toutes les dépenses de soins et de biens médicaux, quel que soit le financeur (Sécurité sociale, complémentaires, ménages), rapportées à la richesse produite (Eurostat, système des comptes de la santé). Date = 31 décembre de l'année."
+    unite: pourcent_pib
+    serie:
+      - date: "2023-12-31"
+        valeur: 10.04
+        source: eurostat-hlth-sha11-hf
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 10.1
+        source: eurostat-hlth-sha11-hf
+        statut: provisoire
+  - id: europe.sante_pct_pib.suede
+    titre: "Dépense courante de santé en % du PIB : Suède"
+    explication: "Toutes les dépenses de soins et de biens médicaux, quel que soit le financeur (Sécurité sociale, complémentaires, ménages), rapportées à la richesse produite (Eurostat, système des comptes de la santé). Date = 31 décembre de l'année."
+    unite: pourcent_pib
+    serie:
+      - date: "2023-12-31"
+        valeur: 11.24
+        source: eurostat-hlth-sha11-hf
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 11.16
+        source: eurostat-hlth-sha11-hf
+        statut: provisoire
+  - id: europe.sante_pct_pib.pologne
+    titre: "Dépense courante de santé en % du PIB : Pologne"
+    explication: "Toutes les dépenses de soins et de biens médicaux, quel que soit le financeur (Sécurité sociale, complémentaires, ménages), rapportées à la richesse produite (Eurostat, système des comptes de la santé). Date = 31 décembre de l'année."
+    unite: pourcent_pib
+    serie:
+      - date: "2023-12-31"
+        valeur: 7.14
+        source: eurostat-hlth-sha11-hf
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 7.84
+        source: eurostat-hlth-sha11-hf
+        statut: provisoire
+  - id: europe.education_publique_pct_pib.france
+    titre: "Dépenses publiques d'enseignement en % du PIB : France"
+    explication: "Argent public consacré à l'enseignement (de la maternelle à l'université), selon la classification commune des fonctions (COFOG 09) ; sans les dépenses des familles et des entreprises. Date = 31 décembre de l'année."
+    unite: pourcent_pib
+    serie:
+      - date: "2023-12-31"
+        valeur: 5.0
+        source: eurostat-gov-10a-exp-education
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 5.1
+        source: eurostat-gov-10a-exp-education
+        statut: provisoire
+  - id: europe.education_publique_pct_pib.ue27
+    titre: "Dépenses publiques d'enseignement en % du PIB : Union européenne (27 pays)"
+    explication: "Argent public consacré à l'enseignement (de la maternelle à l'université), selon la classification commune des fonctions (COFOG 09) ; sans les dépenses des familles et des entreprises. Date = 31 décembre de l'année."
+    unite: pourcent_pib
+    serie:
+      - date: "2023-12-31"
+        valeur: 4.7
+        source: eurostat-gov-10a-exp-education
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 4.7
+        source: eurostat-gov-10a-exp-education
+        statut: provisoire
+  - id: europe.education_publique_pct_pib.allemagne
+    titre: "Dépenses publiques d'enseignement en % du PIB : Allemagne"
+    explication: "Argent public consacré à l'enseignement (de la maternelle à l'université), selon la classification commune des fonctions (COFOG 09) ; sans les dépenses des familles et des entreprises. Date = 31 décembre de l'année."
+    unite: pourcent_pib
+    serie:
+      - date: "2023-12-31"
+        valeur: 4.5
+        source: eurostat-gov-10a-exp-education
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 4.5
+        source: eurostat-gov-10a-exp-education
+        statut: provisoire
+  - id: europe.education_publique_pct_pib.italie
+    titre: "Dépenses publiques d'enseignement en % du PIB : Italie"
+    explication: "Argent public consacré à l'enseignement (de la maternelle à l'université), selon la classification commune des fonctions (COFOG 09) ; sans les dépenses des familles et des entreprises. Date = 31 décembre de l'année."
+    unite: pourcent_pib
+    serie:
+      - date: "2023-12-31"
+        valeur: 3.9
+        source: eurostat-gov-10a-exp-education
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 4.0
+        source: eurostat-gov-10a-exp-education
+        statut: provisoire
+  - id: europe.education_publique_pct_pib.espagne
+    titre: "Dépenses publiques d'enseignement en % du PIB : Espagne"
+    explication: "Argent public consacré à l'enseignement (de la maternelle à l'université), selon la classification commune des fonctions (COFOG 09) ; sans les dépenses des familles et des entreprises. Date = 31 décembre de l'année."
+    unite: pourcent_pib
+    serie:
+      - date: "2023-12-31"
+        valeur: 4.2
+        source: eurostat-gov-10a-exp-education
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 4.1
+        source: eurostat-gov-10a-exp-education
+        statut: provisoire
+  - id: europe.education_publique_pct_pib.pays_bas
+    titre: "Dépenses publiques d'enseignement en % du PIB : Pays-Bas"
+    explication: "Argent public consacré à l'enseignement (de la maternelle à l'université), selon la classification commune des fonctions (COFOG 09) ; sans les dépenses des familles et des entreprises. Date = 31 décembre de l'année."
+    unite: pourcent_pib
+    serie:
+      - date: "2023-12-31"
+        valeur: 5.1
+        source: eurostat-gov-10a-exp-education
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 5.1
+        source: eurostat-gov-10a-exp-education
+        statut: provisoire
+  - id: europe.education_publique_pct_pib.suede
+    titre: "Dépenses publiques d'enseignement en % du PIB : Suède"
+    explication: "Argent public consacré à l'enseignement (de la maternelle à l'université), selon la classification commune des fonctions (COFOG 09) ; sans les dépenses des familles et des entreprises. Date = 31 décembre de l'année."
+    unite: pourcent_pib
+    serie:
+      - date: "2023-12-31"
+        valeur: 7.3
+        source: eurostat-gov-10a-exp-education
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 7.2
+        source: eurostat-gov-10a-exp-education
+        statut: provisoire
+  - id: europe.education_publique_pct_pib.pologne
+    titre: "Dépenses publiques d'enseignement en % du PIB : Pologne"
+    explication: "Argent public consacré à l'enseignement (de la maternelle à l'université), selon la classification commune des fonctions (COFOG 09) ; sans les dépenses des familles et des entreprises. Date = 31 décembre de l'année."
+    unite: pourcent_pib
+    serie:
+      - date: "2023-12-31"
+        valeur: 4.9
+        source: eurostat-gov-10a-exp-education
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 5.6
+        source: eurostat-gov-10a-exp-education
+        statut: provisoire
+  - id: europe.ges_par_habitant.france
+    titre: "Émissions de gaz à effet de serre par habitant (territoire) : France"
+    explication: "Gaz à effet de serre émis sur le territoire, rapportés au nombre d'habitants, en tonnes d'équivalent CO₂, hors forêts et sols et hors transports internationaux. Ne compte pas les produits importés (voir l'empreinte carbone). Date = 31 décembre de l'année."
+    unite: t_co2e_par_habitant
+    serie:
+      - date: "2023-12-31"
+        valeur: 5.5
+        source: eurostat-sdg-13-10
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 5.3
+        source: eurostat-sdg-13-10
+        statut: provisoire
+  - id: europe.ges_par_habitant.allemagne
+    titre: "Émissions de gaz à effet de serre par habitant (territoire) : Allemagne"
+    explication: "Gaz à effet de serre émis sur le territoire, rapportés au nombre d'habitants, en tonnes d'équivalent CO₂, hors forêts et sols et hors transports internationaux. Ne compte pas les produits importés (voir l'empreinte carbone). Date = 31 décembre de l'année."
+    unite: t_co2e_par_habitant
+    serie:
+      - date: "2023-12-31"
+        valeur: 8.0
+        source: eurostat-sdg-13-10
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 7.8
+        source: eurostat-sdg-13-10
+        statut: provisoire
+  - id: europe.ges_par_habitant.italie
+    titre: "Émissions de gaz à effet de serre par habitant (territoire) : Italie"
+    explication: "Gaz à effet de serre émis sur le territoire, rapportés au nombre d'habitants, en tonnes d'équivalent CO₂, hors forêts et sols et hors transports internationaux. Ne compte pas les produits importés (voir l'empreinte carbone). Date = 31 décembre de l'année."
+    unite: t_co2e_par_habitant
+    serie:
+      - date: "2023-12-31"
+        valeur: 6.4
+        source: eurostat-sdg-13-10
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 6.2
+        source: eurostat-sdg-13-10
+        statut: provisoire
+  - id: europe.ges_par_habitant.espagne
+    titre: "Émissions de gaz à effet de serre par habitant (territoire) : Espagne"
+    explication: "Gaz à effet de serre émis sur le territoire, rapportés au nombre d'habitants, en tonnes d'équivalent CO₂, hors forêts et sols et hors transports internationaux. Ne compte pas les produits importés (voir l'empreinte carbone). Date = 31 décembre de l'année."
+    unite: t_co2e_par_habitant
+    serie:
+      - date: "2023-12-31"
+        valeur: 5.6
+        source: eurostat-sdg-13-10
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 5.5
+        source: eurostat-sdg-13-10
+        statut: provisoire
+  - id: europe.ges_par_habitant.pays_bas
+    titre: "Émissions de gaz à effet de serre par habitant (territoire) : Pays-Bas"
+    explication: "Gaz à effet de serre émis sur le territoire, rapportés au nombre d'habitants, en tonnes d'équivalent CO₂, hors forêts et sols et hors transports internationaux. Ne compte pas les produits importés (voir l'empreinte carbone). Date = 31 décembre de l'année."
+    unite: t_co2e_par_habitant
+    serie:
+      - date: "2023-12-31"
+        valeur: 8.0
+        source: eurostat-sdg-13-10
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 7.8
+        source: eurostat-sdg-13-10
+        statut: provisoire
+  - id: europe.ges_par_habitant.suede
+    titre: "Émissions de gaz à effet de serre par habitant (territoire) : Suède"
+    explication: "Gaz à effet de serre émis sur le territoire, rapportés au nombre d'habitants, en tonnes d'équivalent CO₂, hors forêts et sols et hors transports internationaux. Ne compte pas les produits importés (voir l'empreinte carbone). Date = 31 décembre de l'année."
+    unite: t_co2e_par_habitant
+    serie:
+      - date: "2023-12-31"
+        valeur: 4.2
+        source: eurostat-sdg-13-10
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 4.5
+        source: eurostat-sdg-13-10
+        statut: provisoire
+  - id: europe.ges_par_habitant.pologne
+    titre: "Émissions de gaz à effet de serre par habitant (territoire) : Pologne"
+    explication: "Gaz à effet de serre émis sur le territoire, rapportés au nombre d'habitants, en tonnes d'équivalent CO₂, hors forêts et sols et hors transports internationaux. Ne compte pas les produits importés (voir l'empreinte carbone). Date = 31 décembre de l'année."
+    unite: t_co2e_par_habitant
+    serie:
+      - date: "2023-12-31"
+        valeur: 9.5
+        source: eurostat-sdg-13-10
+        statut: definitif
+      - date: "2024-12-31"
+        valeur: 9.3
+        source: eurostat-sdg-13-10
+        statut: provisoire
