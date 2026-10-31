@@ -95,12 +95,21 @@ function personnaliser(texte: string, c: Criteres, s: SituationSaisie): string {
     .replace('{plafond_cheque}', cheque ? euros(cheque * ucChequeEnergie(n)) : '')
 }
 
+/** L'allocation de soutien familial dit la réponse donnée, et prévient quand elle s'arrête bientôt (test Josiane : fils de 19 ans). */
+function pourquoiAsf(texte: string, s: SituationSaisie): string {
+  const base = s.pension_versee === false
+    ? "Vous avez indiqué que l'autre parent ne verse pas de pension alimentaire : la CAF verse cette allocation à sa place, jusqu'aux 20 ans de l'enfant."
+    : texte
+  const ages = s.enfants.filter((e) => e >= 0 && e < 20)
+  return ages.length > 0 && ages.every((e) => e >= 19) ? `${base} Pour votre enfant de 19 ans, elle s'arrête donc dans moins d'un an.` : base
+}
+
 /** Les aides à proposer : d'abord celles que le site a calculées (du plus gros montant au plus petit), puis les pistes à vérifier. */
 export function aidesPourVous(aides: AideOubliee[], s: SituationSaisie, lignes: Ligne[]): AideProposee[] {
   const out = aides.filter((a) => correspond(a.criteres, s, lignes)).map((a) => {
     const l = a.criteres.calculee ? lignes.find((x) => x.id === a.criteres.calculee) : undefined
     // une aide déjà calculée porte le même nom que dans le résultat, pour ne pas croire à deux aides
-    return { ...a, pourquoi_vous: personnaliser(a.pourquoi_vous, a.criteres, s), montant: l ? l.montant * (a.versement === 'annuel' ? 12 : 1) : null, libelle: l?.libelle ?? a.nom,
+    return { ...a, pourquoi_vous: a.id === 'asf' ? pourquoiAsf(a.pourquoi_vous, s) : personnaliser(a.pourquoi_vous, a.criteres, s), montant: l ? l.montant * (a.versement === 'annuel' ? 12 : 1) : null, libelle: l?.libelle ?? a.nom,
       rappelVisible: !!a.rappel && correspond(a.rappel.criteres, s, lignes) }
   })
   const calculees = out.filter((a) => a.montant != null).sort((x, y) => y.montant! / (y.versement === 'annuel' ? 12 : 1) - x.montant! / (x.versement === 'annuel' ? 12 : 1))

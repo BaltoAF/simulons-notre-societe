@@ -156,6 +156,12 @@ export default function MesDroits() {
   const [res, setRes] = useState<Resultat | null>(null)
   const [err, setErr] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
+  const [lent, setLent] = useState(false) // plus de 20 secondes : le moteur se charge sans doute après une mise à jour
+  useEffect(() => {
+    if (!loading) { setLent(false); return }
+    const t = setTimeout(() => setLent(true), 20000)
+    return () => clearTimeout(t)
+  }, [loading])
   const [etSi, setEtSi] = useState<Record<string, { delta: number; loading?: boolean; departs?: Depart[] }>>({})
   const [toutesIdees, setToutesIdees] = useState(false) // 16 idées à la suite : la page faisait neuf écrans de téléphone (test Inès)
   const idees = useMemo(() => [...PRESETS].sort((a, b) => pertinence(b, s) - pertinence(a, s)), [s])
@@ -318,7 +324,8 @@ export default function MesDroits() {
         )}
         {res && s.adultes.some((a) => a.activite === 'apprenti') && <Notice>Apprenti(e) : le site applique le seuil de la prime d'activité des apprentis, l'exonération d'impôt sur le revenu (jusqu'au SMIC annuel) et la règle de l'aide au logement (seule la part du salaire au-delà d'environ 20 800 € par an compte). Il n'applique pas encore l'exonération de cotisations, de CSG et de CRDS sur la part du salaire jusqu'à la moitié du SMIC : les cotisations indiquées sont donc trop élevées ; votre salaire net, lui, est bien celui que vous avez indiqué.</Notice>}
         {/* le calcul dure de 5 à 10 secondes : un écran presque vide faisait croire à une panne (test Inès) */}
-        {loading && <Loading label="Calcul de vos droits en cours (une dizaine de secondes)…" />}
+        {/* « une dizaine de secondes » restait affiché plus de deux minutes après une mise à jour du site (test Josiane) */}
+        {loading && <Loading label={lent ? "Le calcul prend plus longtemps que d'habitude : le site vient sans doute d'être mis à jour et prépare son moteur de calcul (jusqu'à trois minutes). Merci de patienter, vos réponses sont gardées." : 'Calcul de vos droits en cours (une dizaine de secondes)…'} />}
         {err && <ErrorBox message={err} />}
         {res && (
           <div className="split aside-380">
@@ -581,7 +588,7 @@ export default function MesDroits() {
                 ))}
               </div>
               <span className="hint" style={{ display: 'block', marginBottom: 12 }}>Cela compte pour l'allocation de soutien familial : quand l'autre parent ne paie pas, ou paie moins
-                que cette allocation, la CAF la verse à sa place jusqu'aux 20 ans de l'enfant, puis se fait rembourser par lui.</span>
+                que cette allocation, la CAF la verse à sa place jusqu'aux 20 ans de l'enfant, puis se fait rembourser par l'autre parent.</span>
               {s.pension_versee && (
                 <label className="field"><span>Montant reçu par mois</span>
                   <div className="input-suffix"><input type="number" min={0} step={10} value={s.pension_alimentaire || ''} placeholder="ex. 150"

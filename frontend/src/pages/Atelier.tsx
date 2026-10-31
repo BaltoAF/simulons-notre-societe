@@ -302,7 +302,16 @@ export default function Atelier() {
             </div>
             {ids.length > 0 && <>
               <hr className="divider" />
-              <label className="row" style={{ cursor: situation ? 'pointer' : 'default', flexWrap: 'nowrap', alignItems: 'flex-start' }}>
+              {/* le bouton principal reste visible quand la liste des changements dépasse l'écran */}
+              {/* pendant le calcul, le bouton flottant cachait le choix du foyer type : il reprend sa place. Et le choix du foyer
+                  vient après le bouton : juste au-dessus, le bouton flottant couvrait « modifier » (test Josiane, téléphone) */}
+              <div className={ouvert || loading ? '' : 'cta-collant'}>
+                <button className="btn primary large" style={{ width: '100%' }} disabled={!changes.length || loading} onClick={() => simuler()}>
+                  <Calculator size={18} /> {loading ? 'Calcul en cours…' : rapportPour && !aJour ? 'Recalculer les effets' : 'Voir les effets'}
+                </button>
+              </div>
+              {!changes.length && <div className="small muted" style={{ marginTop: 6, textAlign: 'center' }}>Réglez au moins une valeur pour voir ses effets.</div>}
+              <label className="row" style={{ cursor: situation ? 'pointer' : 'default', flexWrap: 'nowrap', alignItems: 'flex-start', marginTop: 12 }}>
                 <input type="checkbox" checked={avecFoyer && !!situation} disabled={!situation} onChange={(e) => setAvecFoyer(e.target.checked)} style={{ marginTop: 3 }} />
                 <span className="small"><User size={14} /> Calculer aussi l'effet sur mon foyer{situation && avecFoyer && <span className="muted"> ({resumeSituation(situation)} · <Link to="/mes-droits?retour=atelier&modifier=1">modifier</Link>)</span>}</span>
               </label>
@@ -311,14 +320,6 @@ export default function Atelier() {
                   <div className="pill-list" style={{ marginTop: 6 }}>{PROFILS.map((p) => <button key={p.titre} className="btn small" onClick={() => { setSituation(p.s); setAvecFoyer(true) }}>{p.titre}</button>)}</div>
                 </div>
               )}
-              {/* le bouton principal reste visible quand la liste des changements dépasse l'écran */}
-              {/* pendant le calcul, le bouton flottant cachait le choix du foyer type : il reprend sa place */}
-              <div className={ouvert || loading ? '' : 'cta-collant'}>
-                <button className="btn primary large" style={{ width: '100%', marginTop: 14 }} disabled={!changes.length || loading} onClick={() => simuler()}>
-                  <Calculator size={18} /> {loading ? 'Calcul en cours…' : rapportPour && !aJour ? 'Recalculer les effets' : 'Voir les effets'}
-                </button>
-              </div>
-              {!changes.length && <div className="small muted" style={{ marginTop: 6, textAlign: 'center' }}>Réglez au moins une valeur pour voir ses effets.</div>}
             </>}
           </div>
         </div>

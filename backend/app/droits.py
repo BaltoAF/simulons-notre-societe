@@ -93,9 +93,10 @@ def repondre(state: dict, profil: dict) -> list[dict]:
             if g("retraites.taux_plein.age_automatique") is not None:
                 txt += f" (ou attendre {int(g('retraites.taux_plein.age_automatique'))} ans)."
         # une aide-soignante de nuit ne trouvait rien sur les départs anticipés (test Josiane)
-        txt += (" Un départ plus tôt est parfois possible : carrière commencée jeune, travail de nuit ou pénible (compte"
-                " professionnel de prévention), handicap, ou métier dit « actif » de la fonction publique (aide-soignant à"
-                " l'hôpital public, par exemple). Votre caisse de retraite le confirme.")
+        txt += (" Un départ plus tôt est parfois possible : carrière commencée jeune, handicap, travail de nuit ou pénible"
+                " dans le privé (compte professionnel de prévention), ou métier dit « actif » de la fonction publique, comme"
+                " aide-soignant à l'hôpital public : en principe cinq ans avant l'âge légal, après au moins 17 ans dans ce"
+                " métier. Votre caisse de retraite le confirme.")
         add("Retraite", "À quel âge pourrai-je partir à la retraite ?", txt,
             [r_age, r_trim, "retraites.taux_plein.age_automatique"], al, "ans")
     elif annee < 1955 and not retraite:

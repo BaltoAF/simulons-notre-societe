@@ -32,7 +32,7 @@ export function ParcoursDecouverte() {
           <h2 id="parcours-titre" style={{ margin: 0, fontSize: '1.25rem' }}>{fini ? <><PartyPopper size={20} /> Bravo, vous avez fait le tour !</> : 'Votre découverte, pas à pas'}</h2>
           <p className="small muted" style={{ margin: '4px 0 0' }}>{fini
             ? 'Vous savez maintenant tout ce qu\'il faut pour explorer le site. Vous pouvez masquer ce guide.'
-            : `${faites} sur ${MISSIONS.length} faites. Chaque étape se coche toute seule quand vous la faites.`}</p>
+            : `${faites} mission${faites > 1 ? 's' : ''} sur ${MISSIONS.length} faite${faites > 1 ? 's' : ''}. Chaque mission se coche toute seule quand vous la faites.`}</p>
         </div>
         <button className="btn ghost small" onClick={() => setParcours((p) => ({ ...p, masque: true }))} aria-label="Masquer le guide de découverte"><X size={15} /> Masquer</button>
       </div>

@@ -28,3 +28,21 @@ sources:
     date_publication: "2026-10-26"
     consulte_le: "2026-10-31"
     note: "Année 2024. France 14,98 % ; Union européenne à 27 : 12,57 % (provisoire) ; Italie 15,85 % ; Espagne 13,19 % ; Allemagne 11,67 % (provisoire). Champ large, harmonisé entre pays : retraites, mais aussi pensions d'invalidité et préretraites (d'où 15 % pour la France contre 14,1 % au COR)."
+  - id: eurostat-gov-10a-taxag
+    type: statistique_publique
+    editeur: "Eurostat"
+    titre: "Principaux agrégats fiscaux des administrations publiques (gov_10a_taxag) — impôts et cotisations sociales en % du PIB"
+    url: "https://ec.europa.eu/eurostat/databrowser/view/gov_10a_taxag/default/table?lang=fr"
+    auteurs: []
+    date_publication: "2026-10-28"
+    consulte_le: "2026-10-31"
+    note: "Indicateur D2_D5_D91_D61_M_D995 (impôts et cotisations sociales, y compris cotisations imputées, nets des montants non recouvrables), secteur S13_S212 (administrations publiques et institutions de l'UE), en % du PIB. 2025 (2024) : France 46,0 % (45,1) ; UE-27 40,7 (40,2) ; Allemagne 41,4 (40,3) ; Italie 43,0 (42,3) ; Espagne 38,1 (37,2) ; Belgique 44,7 (45,2) ; Danemark 45,1 (45,5) ; Suède 41,2 (41,8). France 1re des 27 en 2025, 3e en 2024. L'Insee, qui ne compte pas les cotisations imputées et déduit les crédits d'impôt, donne 43,6 % pour 2025."
+  - id: eurostat-gov-10a-main-te
+    type: statistique_publique
+    editeur: "Eurostat"
+    titre: "Principaux agrégats des administrations publiques (gov_10a_main) — dépenses publiques totales (TE) en % du PIB"
+    url: "https://ec.europa.eu/eurostat/databrowser/view/gov_10a_main/default/table?lang=fr"
+    auteurs: []
+    date_publication: "2026-10-21"
+    consulte_le: "2026-10-31"
+    note: "Dépenses totales des administrations publiques (TE, secteur S13), en % du PIB. 2025 (2024) : France 57,3 % (57,0) ; Finlande 57,5 (57,9) ; UE-27 49,4 (48,9) ; Allemagne 50,1 (49,0) ; Italie 51,1 (50,3) ; Espagne 45,3 (45,4) ; Belgique 54,4 (54,1) ; Danemark 47,2 (46,5) ; Suède 49,3 (50,0). France 2e des 27 en 2025 et 2024, derrière la Finlande ; 1re en 2023 (56,8 %)."

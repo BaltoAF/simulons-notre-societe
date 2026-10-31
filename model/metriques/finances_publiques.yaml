@@ -1244,3 +1244,226 @@ metriques:
         valeur: 57.3
         source: eurostat-gov-10a-exp
         statut: provisoire
+
+  # Comparaisons européennes (Eurostat), pour « Qui paie ? » et « Où va l'argent public ? »
+  - id: finances_publiques.ue.prelevements_pct_pib.france
+    titre: "Impôts et cotisations sociales en % du PIB, définition européenne : France"
+    explication: "Définition commune d'Eurostat pour comparer les pays : impôts et cotisations sociales, y compris les cotisations « imputées » (celles que l'État employeur se verse à lui-même pour les retraites de ses agents). D'où, pour la France, 46 % en 2025 contre 43,6 % pour le taux de prélèvements obligatoires de l'Insee. 2025 provisoire. Date = 31 décembre de l'année."
+    unite: pourcent_pib
+    serie:
+      - date: "2024-12-31"
+        valeur: 45.1
+        source: eurostat-gov-10a-taxag
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 46.0
+        source: eurostat-gov-10a-taxag
+        statut: provisoire
+  - id: finances_publiques.ue.prelevements_pct_pib.ue27
+    titre: "Impôts et cotisations sociales en % du PIB, définition européenne : Union européenne (27 pays)"
+    explication: "Définition commune d'Eurostat pour comparer les pays : impôts et cotisations sociales, y compris les cotisations « imputées » (celles que l'État employeur se verse à lui-même pour les retraites de ses agents). D'où, pour la France, 46 % en 2025 contre 43,6 % pour le taux de prélèvements obligatoires de l'Insee. 2025 provisoire. Date = 31 décembre de l'année."
+    unite: pourcent_pib
+    serie:
+      - date: "2024-12-31"
+        valeur: 40.2
+        source: eurostat-gov-10a-taxag
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 40.7
+        source: eurostat-gov-10a-taxag
+        statut: provisoire
+  - id: finances_publiques.ue.prelevements_pct_pib.allemagne
+    titre: "Impôts et cotisations sociales en % du PIB, définition européenne : Allemagne"
+    explication: "Définition commune d'Eurostat pour comparer les pays : impôts et cotisations sociales, y compris les cotisations « imputées » (celles que l'État employeur se verse à lui-même pour les retraites de ses agents). D'où, pour la France, 46 % en 2025 contre 43,6 % pour le taux de prélèvements obligatoires de l'Insee. 2025 provisoire. Date = 31 décembre de l'année."
+    unite: pourcent_pib
+    serie:
+      - date: "2024-12-31"
+        valeur: 40.3
+        source: eurostat-gov-10a-taxag
+        statut: provisoire
+      - date: "2025-12-31"
+        valeur: 41.4
+        source: eurostat-gov-10a-taxag
+        statut: provisoire
+  - id: finances_publiques.ue.prelevements_pct_pib.italie
+    titre: "Impôts et cotisations sociales en % du PIB, définition européenne : Italie"
+    explication: "Définition commune d'Eurostat pour comparer les pays : impôts et cotisations sociales, y compris les cotisations « imputées » (celles que l'État employeur se verse à lui-même pour les retraites de ses agents). D'où, pour la France, 46 % en 2025 contre 43,6 % pour le taux de prélèvements obligatoires de l'Insee. 2025 provisoire. Date = 31 décembre de l'année."
+    unite: pourcent_pib
+    serie:
+      - date: "2024-12-31"
+        valeur: 42.3
+        source: eurostat-gov-10a-taxag
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 43.0
+        source: eurostat-gov-10a-taxag
+        statut: provisoire
+  - id: finances_publiques.ue.prelevements_pct_pib.espagne
+    titre: "Impôts et cotisations sociales en % du PIB, définition européenne : Espagne"
+    explication: "Définition commune d'Eurostat pour comparer les pays : impôts et cotisations sociales, y compris les cotisations « imputées » (celles que l'État employeur se verse à lui-même pour les retraites de ses agents). D'où, pour la France, 46 % en 2025 contre 43,6 % pour le taux de prélèvements obligatoires de l'Insee. 2025 provisoire. Date = 31 décembre de l'année."
+    unite: pourcent_pib
+    serie:
+      - date: "2024-12-31"
+        valeur: 37.2
+        source: eurostat-gov-10a-taxag
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 38.1
+        source: eurostat-gov-10a-taxag
+        statut: provisoire
+  - id: finances_publiques.ue.prelevements_pct_pib.belgique
+    titre: "Impôts et cotisations sociales en % du PIB, définition européenne : Belgique"
+    explication: "Définition commune d'Eurostat pour comparer les pays : impôts et cotisations sociales, y compris les cotisations « imputées » (celles que l'État employeur se verse à lui-même pour les retraites de ses agents). D'où, pour la France, 46 % en 2025 contre 43,6 % pour le taux de prélèvements obligatoires de l'Insee. 2025 provisoire. Date = 31 décembre de l'année."
+    unite: pourcent_pib
+    serie:
+      - date: "2024-12-31"
+        valeur: 45.2
+        source: eurostat-gov-10a-taxag
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 44.7
+        source: eurostat-gov-10a-taxag
+        statut: provisoire
+  - id: finances_publiques.ue.prelevements_pct_pib.danemark
+    titre: "Impôts et cotisations sociales en % du PIB, définition européenne : Danemark"
+    explication: "Définition commune d'Eurostat pour comparer les pays : impôts et cotisations sociales, y compris les cotisations « imputées » (celles que l'État employeur se verse à lui-même pour les retraites de ses agents). D'où, pour la France, 46 % en 2025 contre 43,6 % pour le taux de prélèvements obligatoires de l'Insee. 2025 provisoire. Date = 31 décembre de l'année."
+    unite: pourcent_pib
+    serie:
+      - date: "2024-12-31"
+        valeur: 45.5
+        source: eurostat-gov-10a-taxag
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 45.1
+        source: eurostat-gov-10a-taxag
+        statut: provisoire
+  - id: finances_publiques.ue.prelevements_pct_pib.suede
+    titre: "Impôts et cotisations sociales en % du PIB, définition européenne : Suède"
+    explication: "Définition commune d'Eurostat pour comparer les pays : impôts et cotisations sociales, y compris les cotisations « imputées » (celles que l'État employeur se verse à lui-même pour les retraites de ses agents). D'où, pour la France, 46 % en 2025 contre 43,6 % pour le taux de prélèvements obligatoires de l'Insee. 2025 provisoire. Date = 31 décembre de l'année."
+    unite: pourcent_pib
+    serie:
+      - date: "2024-12-31"
+        valeur: 41.8
+        source: eurostat-gov-10a-taxag
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 41.2
+        source: eurostat-gov-10a-taxag
+        statut: provisoire
+  - id: finances_publiques.ue.depenses_pct_pib.france
+    titre: "Dépenses publiques totales en % du PIB, définition européenne : France"
+    explication: "Dépenses de l'ensemble des administrations publiques (État, Sécurité sociale, collectivités) rapportées à la richesse produite, selon Eurostat (même valeur que l'Insee pour la France). 2025 provisoire. Date = 31 décembre de l'année."
+    unite: pourcent_pib
+    serie:
+      - date: "2024-12-31"
+        valeur: 57.0
+        source: eurostat-gov-10a-main-te
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 57.3
+        source: eurostat-gov-10a-main-te
+        statut: provisoire
+  - id: finances_publiques.ue.depenses_pct_pib.finlande
+    titre: "Dépenses publiques totales en % du PIB, définition européenne : Finlande"
+    explication: "Dépenses de l'ensemble des administrations publiques (État, Sécurité sociale, collectivités) rapportées à la richesse produite, selon Eurostat (même valeur que l'Insee pour la France). 2025 provisoire. Date = 31 décembre de l'année."
+    unite: pourcent_pib
+    serie:
+      - date: "2024-12-31"
+        valeur: 57.9
+        source: eurostat-gov-10a-main-te
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 57.5
+        source: eurostat-gov-10a-main-te
+        statut: provisoire
+  - id: finances_publiques.ue.depenses_pct_pib.ue27
+    titre: "Dépenses publiques totales en % du PIB, définition européenne : Union européenne (27 pays)"
+    explication: "Dépenses de l'ensemble des administrations publiques (État, Sécurité sociale, collectivités) rapportées à la richesse produite, selon Eurostat (même valeur que l'Insee pour la France). 2025 provisoire. Date = 31 décembre de l'année."
+    unite: pourcent_pib
+    serie:
+      - date: "2024-12-31"
+        valeur: 48.9
+        source: eurostat-gov-10a-main-te
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 49.4
+        source: eurostat-gov-10a-main-te
+        statut: provisoire
+  - id: finances_publiques.ue.depenses_pct_pib.allemagne
+    titre: "Dépenses publiques totales en % du PIB, définition européenne : Allemagne"
+    explication: "Dépenses de l'ensemble des administrations publiques (État, Sécurité sociale, collectivités) rapportées à la richesse produite, selon Eurostat (même valeur que l'Insee pour la France). 2025 provisoire. Date = 31 décembre de l'année."
+    unite: pourcent_pib
+    serie:
+      - date: "2024-12-31"
+        valeur: 49.0
+        source: eurostat-gov-10a-main-te
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 50.1
+        source: eurostat-gov-10a-main-te
+        statut: provisoire
+  - id: finances_publiques.ue.depenses_pct_pib.italie
+    titre: "Dépenses publiques totales en % du PIB, définition européenne : Italie"
+    explication: "Dépenses de l'ensemble des administrations publiques (État, Sécurité sociale, collectivités) rapportées à la richesse produite, selon Eurostat (même valeur que l'Insee pour la France). 2025 provisoire. Date = 31 décembre de l'année."
+    unite: pourcent_pib
+    serie:
+      - date: "2024-12-31"
+        valeur: 50.3
+        source: eurostat-gov-10a-main-te
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 51.1
+        source: eurostat-gov-10a-main-te
+        statut: provisoire
+  - id: finances_publiques.ue.depenses_pct_pib.espagne
+    titre: "Dépenses publiques totales en % du PIB, définition européenne : Espagne"
+    explication: "Dépenses de l'ensemble des administrations publiques (État, Sécurité sociale, collectivités) rapportées à la richesse produite, selon Eurostat (même valeur que l'Insee pour la France). 2025 provisoire. Date = 31 décembre de l'année."
+    unite: pourcent_pib
+    serie:
+      - date: "2024-12-31"
+        valeur: 45.4
+        source: eurostat-gov-10a-main-te
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 45.3
+        source: eurostat-gov-10a-main-te
+        statut: provisoire
+  - id: finances_publiques.ue.depenses_pct_pib.belgique
+    titre: "Dépenses publiques totales en % du PIB, définition européenne : Belgique"
+    explication: "Dépenses de l'ensemble des administrations publiques (État, Sécurité sociale, collectivités) rapportées à la richesse produite, selon Eurostat (même valeur que l'Insee pour la France). 2025 provisoire. Date = 31 décembre de l'année."
+    unite: pourcent_pib
+    serie:
+      - date: "2024-12-31"
+        valeur: 54.1
+        source: eurostat-gov-10a-main-te
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 54.4
+        source: eurostat-gov-10a-main-te
+        statut: provisoire
+  - id: finances_publiques.ue.depenses_pct_pib.danemark
+    titre: "Dépenses publiques totales en % du PIB, définition européenne : Danemark"
+    explication: "Dépenses de l'ensemble des administrations publiques (État, Sécurité sociale, collectivités) rapportées à la richesse produite, selon Eurostat (même valeur que l'Insee pour la France). 2025 provisoire. Date = 31 décembre de l'année."
+    unite: pourcent_pib
+    serie:
+      - date: "2024-12-31"
+        valeur: 46.5
+        source: eurostat-gov-10a-main-te
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 47.2
+        source: eurostat-gov-10a-main-te
+        statut: provisoire
+  - id: finances_publiques.ue.depenses_pct_pib.suede
+    titre: "Dépenses publiques totales en % du PIB, définition européenne : Suède"
+    explication: "Dépenses de l'ensemble des administrations publiques (État, Sécurité sociale, collectivités) rapportées à la richesse produite, selon Eurostat (même valeur que l'Insee pour la France). 2025 provisoire. Date = 31 décembre de l'année."
+    unite: pourcent_pib
+    serie:
+      - date: "2024-12-31"
+        valeur: 50.0
+        source: eurostat-gov-10a-main-te
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 49.3
+        source: eurostat-gov-10a-main-te
+        statut: provisoire

@@ -9,7 +9,9 @@ from __future__ import annotations
 from .base import Section
 
 PILIERS = [
-    ("economie", "Économie", ["solde_public_mecanique", "solde_public_credits", "pib", "emploi_"]),
+    # « pib_long_terme » aussi : avec le seul effet à court terme, « plutôt négatif » voisinait avec « l'activité progresse
+    # nettement » (test Josiane, retraite à 62 ans)
+    ("economie", "Économie", ["solde_public_mecanique", "solde_public_credits", "pib_long_terme", "pib", "emploi_"]),
     ("social", "Social", ["gini", "pauvrete", "gagnants", "pouvoir_achat_tva_d1"]),
     ("ecologie", "Écologie", ["emissions_", "impact_emissions_activite"]),
     ("bien_etre", "Bien-être", ["bien_etre_satisfaction", "bien_etre_satisfaction_d1", "securite_routiere_tues_", "consommation_tabac",

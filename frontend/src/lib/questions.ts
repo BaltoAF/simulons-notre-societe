@@ -73,11 +73,18 @@ export const QUESTIONS: Question[] = [
       { cle: 'secu', libelle: 'Dépenses de la Sécurité sociale', format: 'md', metrique: 'finances_publiques.depenses_asso', cache: true },
       { cle: 'etat', libelle: "Dépenses de l'État", format: 'md', metrique: 'finances_publiques.depenses_etat', cache: true },
       { cle: 'local', libelle: 'Dépenses des collectivités', format: 'md', metrique: 'finances_publiques.depenses_apul', cache: true },
+      { cle: 'eu_ue', libelle: 'Union européenne', format: 'pct', metrique: 'finances_publiques.ue.depenses_pct_pib.ue27', cache: true },
+      { cle: 'eu_fi', libelle: 'Finlande', format: 'pct', metrique: 'finances_publiques.ue.depenses_pct_pib.finlande', cache: true },
+      { cle: 'eu_be', libelle: 'Belgique', format: 'pct', metrique: 'finances_publiques.ue.depenses_pct_pib.belgique', cache: true },
+      { cle: 'eu_it', libelle: 'Italie', format: 'pct', metrique: 'finances_publiques.ue.depenses_pct_pib.italie', cache: true },
+      { cle: 'eu_de', libelle: 'Allemagne', format: 'pct', metrique: 'finances_publiques.ue.depenses_pct_pib.allemagne', cache: true },
+      { cle: 'eu_es', libelle: 'Espagne', format: 'pct', metrique: 'finances_publiques.ue.depenses_pct_pib.espagne', cache: true },
     ],
     texte: [
       "En une année, les administrations publiques dépensent {depenses}, soit {depenses_pct} : plus de la moitié de tout ce que la France produit.",
       "La Sécurité sociale en dépense la plus grosse part ({secu}) : retraites, assurance maladie, allocations familiales. Viennent ensuite l'État ({etat}), qui paie notamment l'école, la défense, la police et la justice, puis les communes, départements et régions ({local}).",
       "Les retraites sont la première dépense : {retraites} par an.",
+      "En Europe, seule la Finlande dépense un peu plus ({eu_fi} du PIB en 2025, selon Eurostat). La moyenne de l'Union européenne est de {eu_ue} ; la Belgique est à {eu_be}, l'Italie à {eu_it}, l'Allemagne à {eu_de} et l'Espagne à {eu_es}.",
     ],
     aSavoir: "Les dépenses des trois administrations se recoupent un peu (elles se versent de l'argent entre elles) : leur somme dépasse le total.",
     debat: {
@@ -109,11 +116,20 @@ export const QUESTIONS: Question[] = [
       { cle: 'csg', libelle: 'CSG', format: 'md', metrique: 'finances_publiques.recettes.csg', cache: true },
       { cle: 'is', libelle: 'Impôt sur les sociétés', format: 'md', metrique: 'finances_publiques.recettes.impot_societes', cache: true },
       { cle: 'fonciere', libelle: 'Taxe foncière', format: 'md', metrique: 'finances_publiques.recettes.taxe_fonciere', cache: true },
+      // « la France, championne des impôts ? » : la comparaison commune d'Eurostat (définition un peu plus large que l'Insee)
+      { cle: 'eu_fr', libelle: 'France', format: 'pct_pib', metrique: 'finances_publiques.ue.prelevements_pct_pib.france', cache: true },
+      { cle: 'eu_ue', libelle: 'Union européenne', format: 'pct', metrique: 'finances_publiques.ue.prelevements_pct_pib.ue27', cache: true },
+      { cle: 'eu_de', libelle: 'Allemagne', format: 'pct', metrique: 'finances_publiques.ue.prelevements_pct_pib.allemagne', cache: true },
+      { cle: 'eu_it', libelle: 'Italie', format: 'pct', metrique: 'finances_publiques.ue.prelevements_pct_pib.italie', cache: true },
+      { cle: 'eu_es', libelle: 'Espagne', format: 'pct', metrique: 'finances_publiques.ue.prelevements_pct_pib.espagne', cache: true },
+      { cle: 'eu_dk', libelle: 'Danemark', format: 'pct', metrique: 'finances_publiques.ue.prelevements_pct_pib.danemark', cache: true },
+      { cle: 'eu_be', libelle: 'Belgique', format: 'pct', metrique: 'finances_publiques.ue.prelevements_pct_pib.belgique', cache: true },
     ],
     texte: [
       "Les impôts et cotisations rapportent {po} par an, soit {po_pct}.",
       "Les cotisations sociales, prélevées sur les salaires, en sont la première source ({cotisations}). La TVA, payée par tous à chaque achat, rapporte {tva}, et la CSG, prélevée sur presque tous les revenus, {csg}.",
       "L'impôt sur le revenu rapporte {ir}, deux fois moins que la TVA. Il est progressif : plus le revenu est élevé, plus la part prélevée augmente. Les entreprises paient l'impôt sur les sociétés ({is}), et les propriétaires la taxe foncière ({fonciere}).",
+      "Par rapport à ses voisins, la France prélève parmi les plus hauts niveaux d'Europe. Selon la définition commune d'Eurostat, un peu plus large que celle de l'Insee : {eu_fr} en 2025, contre {eu_ue} en moyenne dans l'Union européenne, {eu_dk} au Danemark, {eu_be} en Belgique, {eu_it} en Italie, {eu_de} en Allemagne et {eu_es} en Espagne. Ces comparaisons ne disent pas tout : selon les pays, les retraites et la santé sont payées plus ou moins par l'argent public, ou par des assurances et une épargne privées.",
     ],
     aSavoir: "La TVA pèse plus lourd, en proportion, pour les ménages modestes : ils dépensent presque tout ce qu'ils gagnent.",
     debat: {
@@ -204,7 +220,7 @@ export const QUESTIONS: Question[] = [
       { cle: 'pension_f', libelle: 'Pension moyenne des femmes', format: 'eur', metrique: 'retraites.pension_dd_brute_moyenne_femmes', cache: true },
     ],
     texte: [
-      "La France compte {nb} à la retraite. Leurs pensions sont payées par les cotisations de ceux qui travaillent aujourd'hui : c'est la « retraite par répartition ».",
+      "La France compte {nb} à la retraite. Leurs pensions sont payées surtout par les cotisations de ceux qui travaillent aujourd'hui, et pour une part par des impôts : c'est la « retraite par répartition ».",
       // « il n'y a que trois leviers » fermait le débat que la page ouvre plus bas (d'autres recettes que les cotisations) : test Josiane
       "On compte environ {cotisants_4} cotisants pour 4 retraités ({ratio} pour un). Quand ce nombre baisse, il faut plus de recettes (cotisations ou autres ressources), des pensions moins élevées, ou partir plus tard.",
       "Le système coûte {depenses} par an ({depenses_pct}), contre {pct_2002} en 2002. On part en moyenne à {age}.",
