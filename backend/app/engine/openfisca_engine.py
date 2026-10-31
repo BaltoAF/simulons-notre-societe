@@ -299,6 +299,15 @@ class Engine:
                     # Les exonérations de cotisations, de CSG-CRDS et d'impôt des apprentis ne sont pas modélisées par OpenFisca :
                     # le salaire net saisi est converti comme celui d'un salarié, et le site le dit à la personne.
                     ind["apprenti"] = {mo: True for mo in mois}
+                    # salaire d'apprenti exonéré d'impôt sur le revenu dans la limite du SMIC annuel (service-public F2918), et
+                    # ignoré par l'aide au logement en deçà d'un plafond voisin (« seuls vos revenus d'apprentissage au-delà de
+                    # 20 815 € par an sont pris en compte », caf.fr, Caf de Paris). OpenFisca ne le modélise pas : on lui donne le
+                    # salaire imposable (la part au-delà du SMIC) et, comme il en tire aussi le salaire net, le net saisi.
+                    if a.salaire_net_saisi > 0:
+                        periodes = [f"{y}-{mm:02d}" for y in (year - 2, year - 1, year) for mm in range(1, 13)]
+                        exces = round(max(0.0, a.salaire_brut_mensuel - self._smic_mensuel()), 2)
+                        ind["salaire_imposable"] = {p: exces for p in periodes}
+                        ind["salaire_net"] = {p: round(a.salaire_net_saisi, 2) for p in periodes}
                 if a.ass_precondition:
                     # 5 ans de travail au cours des 10 dernières années : condition de l'ASS (OpenFisca, ass_eligibilite_individu)
                     ind["ass_precondition_remplie"] = {mo: True for mo in mois}

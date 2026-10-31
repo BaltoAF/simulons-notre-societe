@@ -395,6 +395,8 @@ def menage_depuis_saisie(payload: dict, montants: str) -> tuple[Menage, list[str
                                 ("retraite_brute_mensuelle", "retraite")):
                 net_key = champ.replace("brut_mensuel", "net_mensuel").replace("brute_mensuelle", "nette_mensuelle")
                 net = float(a.pop(net_key, 0) or a.get(champ, 0) or 0)
+                if kind == "salaire" and a.get("activite") == "apprenti":
+                    a["salaire_net_saisi"] = net
                 if net > 0:
                     if not ENGINE.ready:
                         ENGINE.load()

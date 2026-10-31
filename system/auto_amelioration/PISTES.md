@@ -88,8 +88,9 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   - **Exonérations des apprentis** (service-public F2918) : contrats depuis le 1er mars 2025, cotisations salariales et
     CSG-CRDS exonérées jusqu'à 50 % du SMIC, impôt jusqu'au SMIC annuel ; avant, 79 % et CSG-CRDS exonérée. OpenFisca ne
     les modélise pas : le site le dit (Mes droits, Votre part), les cotisations affichées sont trop élevées.
-  - Aide au logement : 156 € comme apprentie, 203 € comme étudiante, à loyer et salaire égaux ; à vérifier (ressources
-    retenues par la CAF pour un apprenti).
+  - Aide au logement : fait. « Seuls vos revenus d'apprentissage au-delà de 20 815 € par an sont pris en compte » (caf.fr,
+    Caf de Paris) ; le moteur reçoit le salaire imposable d'un apprenti (part au-delà du SMIC) et le net saisi : impôt nul et
+    aide au logement de 308 € pour Inès (156 € avant). Reste : exonération de cotisations et de CSG-CRDS jusqu'à 50 % du SMIC.
   - Fait : le minimum d'un apprenti de son âge est donné à côté du SMIC (de 16 à 25 ans, règles travail.apprentissage.*).
   - Formulaire : « Suivant » hors de l'écran sous les exemples ; « en 3 questions » (trois étapes) ; étiquettes des champs
     pour les lecteurs d'écran ; « Impôts rendus aux contribuables » (budget) ; recherche de règles serrée sur téléphone.
@@ -101,7 +102,8 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   - Fait : ASS calculée par le moteur dans « Et après le chômage ? » quand la personne coche la condition (5 ans de travail
     au cours des 10 dernières années ; tests/test_ass.py). Fait aussi : reprise d'un emploi en gardant une partie de
     l'allocation (70 % du salaire brut déduit, règle travail.chomage.cumul_part_salaire_deduite ; plafond du salaire de
-    référence non appliqué ; tests/test_cumul_chomage.py). Reste : CSP après un licenciement économique.
+    référence non appliqué ; tests/test_cumul_chomage.py). CSP : examiné, à accepter avant le licenciement (délai de 21 jours, service-public F13819) ; sans objet pour une
+    personne déjà au chômage, donc pas de fiche.
   - Fait : « Prime d'activité : 0 € » avec sa raison quand un membre du foyer travaille (allocation chômage du foyer,
     plancher des étudiants et apprentis, ou revenus au-dessus du plafond).
   - Lenteur : fait, revenir sur « Mes droits » avec la même situation affiche le résultat gardé (60 ms au lieu de 5 à 10 s).

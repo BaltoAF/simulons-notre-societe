@@ -292,7 +292,7 @@ export default function MesDroits() {
           <Notice>C'est le résultat de l'exemple « {exemple} » ({resumeSituation(s)}). Pour votre propre situation :{' '}
             <button className="lien" onClick={() => { setStep(1); setRes(null) }}>mettre vos vrais montants</button>.</Notice>
         )}
-        {res && s.adultes.some((a) => a.activite === 'apprenti') && <Notice>Apprenti(e) : le site applique le seuil de la prime d'activité des apprentis, mais pas encore leurs exonérations (cotisations, CSG et CRDS sur la part du salaire jusqu'à la moitié du SMIC, impôt sur le revenu dans la limite du SMIC annuel). Les cotisations indiquées sont donc trop élevées ; votre salaire net, lui, est bien celui que vous avez indiqué.</Notice>}
+        {res && s.adultes.some((a) => a.activite === 'apprenti') && <Notice>Apprenti(e) : le site applique le seuil de la prime d'activité des apprentis, l'exonération d'impôt sur le revenu (jusqu'au SMIC annuel) et la règle de l'aide au logement (seule la part du salaire au-delà d'environ 20 800 € par an compte). Il n'applique pas encore l'exonération de cotisations, de CSG et de CRDS sur la part du salaire jusqu'à la moitié du SMIC : les cotisations indiquées sont donc trop élevées ; votre salaire net, lui, est bien celui que vous avez indiqué.</Notice>}
         {/* le calcul dure de 5 à 10 secondes : un écran presque vide faisait croire à une panne (test Inès) */}
         {loading && <Loading label="Calcul de vos droits en cours (une dizaine de secondes)…" />}
         {err && <ErrorBox message={err} />}

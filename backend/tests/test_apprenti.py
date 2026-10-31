@@ -23,5 +23,9 @@ def test_apprentie_sous_le_plancher_sans_prime_d_activite():
     assert l_app.get("prime_activite", 0) < 1
     # au-dessus du plancher, l'apprentie y a droit
     assert l_haut.get("prime_activite", 0) > 50
-    # le salaire net saisi reste celui calculé ; l'aide au logement reste due
-    assert abs(l_app.get("salaire_net", 0) - 900) < 5 and l_app.get("aides_logement", 0) > 0
+    # le salaire net saisi reste celui calculé
+    assert abs(l_app.get("salaire_net", 0) - 900) < 1
+    # aide au logement : « seuls vos revenus d'apprentissage au-delà de 20 815 € par an sont pris en compte » (caf.fr) ;
+    # à salaire égal, l'apprentie en touche donc plus que la salariée, et pas d'impôt sur le revenu (exonération jusqu'au SMIC)
+    assert l_app.get("aides_logement", 0) > l_sal.get("aides_logement", 0) + 50
+    assert l_app.get("impot_revenu", 0) == 0 and l_haut.get("impot_revenu", 0) == 0
