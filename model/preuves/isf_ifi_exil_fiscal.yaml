@@ -106,4 +106,54 @@ question:
       type_etude: quasi_experimental
       revue_par_les_pairs: true
       note: "Après 2001, le nombre de membres du Forbes 400 résidant dans les États dotés d'un impôt sur les successions baisse de 35 % par rapport aux autres États, et la sensibilité augmente avec l'âge. Pourtant, pour la grande majorité des États, les recettes successorales dépassent les pertes d'impôt sur le revenu dues aux départs. Impôt sur les successions (et non sur la fortune) et mobilité entre États : non convertible, valeur nulle."
-  note_synthese: "Un impôt sur la fortune fait-il baisser le patrimoine déclaré ou partir les plus riches ? Tout dépend de la façon dont l'impôt est conçu et contrôlé. Juste autour des seuils de taux, les études française et suédoise trouvent des réactions minimes (de l'ordre de −0,1 à −0,3 % de patrimoine déclaré par point de taux), mais les études qui suivent le patrimoine pendant plusieurs années trouvent des effets bien plus forts : −5 % (ménages aisés) à −19 % (très riches) par point au Danemark après 8 ans, et au moins −43 % en Suisse après 6 ans, surtout par sous-déclaration, montages et déménagements plutôt que par une baisse de l'épargne ; la revue d'Advani et Tarrant estime qu'un impôt bien conçu à 1 % réduirait l'assiette de 7 à 17 %. En France, les départs de redevables de l'ISF étaient réels mais limités (environ 950 par an pour 360 000 redevables, avec 370 retours), les retours dépassent les départs depuis l'IFI, et le comité d'évaluation n'a pas trouvé d'effet de l'ISF sur l'activité des entreprises. Les données françaises montrent surtout que la sous-déclaration réagit beaucoup plus aux règles de déclaration (déclaration simplifiée) qu'aux taux eux-mêmes."
+    - source: rexecode-dt63-expatriations-2017
+      valeur: null
+      intervalle_95: null
+      methode: "Reconstitution des départs de redevables de l'ISF à partir des statistiques fiscales publiées, puis chiffrage de l'effet sur la croissance"
+      champ: "France, redevables de l'ISF partis à l'étranger de 1982 à 2015"
+      pays: FR
+      annee_donnees: 2014
+      type_etude: descriptif
+      revue_par_les_pairs: false
+      note: "Laboratoire d'idées (Coe-Rexecode). P. 42-43 : « Nous estimons à 800 le nombre de départs à l'étranger de redevables de l'ISF au cours des années récentes avec un patrimoine taxable moyen de 6,5 millions d'euros » (moyenne 2013-2014), avec environ 300 retours ; « 16 421 redevables de l'ISF partis à l'étranger depuis 1982 », pour 70 Md€ de patrimoine imposable cumulé (104 Md€ actualisés ; un peu plus de 200 Md€ de patrimoine effectif). Des nombres de départs, sans variation de taux : non convertible, valeur nulle."
+    - source: ifrap-isf-exil-2019
+      valeur: null
+      intervalle_95: null
+      methode: "Exploitation, par l'auteur, des chiffres d'un rapport de la DGFiP de 2017 sur les contribuables quittant la France (non publié), puis capitalisation à 3 % par an"
+      champ: "France, redevables de l'ISF, départs et retours 2002-2015"
+      pays: FR
+      annee_donnees: 2015
+      type_etude: descriptif
+      revue_par_les_pairs: false
+      note: "Laboratoire d'idées (Fondation iFRAP). En 2013, « 877 départs pour 226 retours » ; de 2002 à 2015, en moyenne 3,04 Md€ de base imposable sortis chaque année et 655 M€ revenus, soit « 2,38 milliards d'euros net » par an ; 143 à 200 Md€ partis depuis 1982 selon la méthode de capitalisation retenue. Rapport de la DGFiP non public : chiffres non vérifiables à la source. Non convertible, valeur nulle."
+    - source: montaigne-amicus-isf-2007
+      valeur: null
+      intervalle_95: null
+      methode: "Note de synthèse à partir des statistiques fiscales disponibles"
+      champ: "France, redevables de l'ISF, 1997-2006"
+      pays: FR
+      annee_donnees: 2006
+      type_etude: descriptif
+      revue_par_les_pairs: false
+      note: "Laboratoire d'idées (Institut Montaigne). P. 3 : 649 départs de redevables en 2005, soit 0,16 % d'entre eux ; p. 4 : « Environ 130 milliards d'euros de patrimoines redevables à l'ISF sont probablement sortis du pays entre 1997 et 2006 ». Non convertible, valeur nulle."
+    - source: concorde-exil-fiscal-2013
+      valeur: null
+      intervalle_95: null
+      methode: "Note de synthèse à partir de données fiscales"
+      champ: "France, foyers redevables de l'ISF partis en 2010"
+      pays: FR
+      annee_donnees: 2010
+      type_etude: descriptif
+      revue_par_les_pairs: false
+      note: "Laboratoire d'idées (Fondation Concorde). P. 1 : « En 2010, 717 foyers fiscaux imposés à l'ISF, représentant une base imposable de 1,7 milliard €, quittaient la France ». La note avance aussi environ 400 Md€ détenus à l'étranger par 12 000 foyers, extrapolés à partir de la Suisse et présentés comme une « hypothèse de chiffrage a minima ». Non convertible, valeur nulle."
+    - source: atterres-isf-2019
+      valeur: null
+      intervalle_95: null
+      methode: "Note de synthèse à partir des chiffres publiés des départs de redevables"
+      champ: "France, redevables de l'ISF partis à l'étranger, 2002-2014"
+      pays: FR
+      annee_donnees: 2014
+      type_etude: descriptif
+      revue_par_les_pairs: false
+      note: "Collectif d'économistes (Les Économistes atterrés). P. 5 : départs de « 383 en 2002, 666 en 2005, 821 en 2008, 800 en 2010 et 784 en 2014 » ; « en 2004, les expatriés représentaient 0,14% du total des contribuables redevables de l'ISF, 0,24% en 2014 », et « rien ne dit que l'ISF était la cause de leur expatriation ». Non convertible, valeur nulle."
+  note_synthese: "Un impôt sur la fortune fait-il baisser le patrimoine déclaré ou partir les plus riches ? Tout dépend de la façon dont l'impôt est conçu et contrôlé. Juste autour des seuils de taux, les études française et suédoise trouvent des réactions minimes (de l'ordre de −0,1 à −0,3 % de patrimoine déclaré par point de taux), mais les études qui suivent le patrimoine pendant plusieurs années trouvent des effets bien plus forts : −5 % (ménages aisés) à −19 % (très riches) par point au Danemark après 8 ans, et au moins −43 % en Suisse après 6 ans, surtout par sous-déclaration, montages et déménagements plutôt que par une baisse de l'épargne ; la revue d'Advani et Tarrant estime qu'un impôt bien conçu à 1 % réduirait l'assiette de 7 à 17 %. En France, les départs de redevables de l'ISF étaient réels mais limités (environ 950 par an pour 360 000 redevables, avec 370 retours ; des ordres de grandeur proches de ceux que publient des laboratoires d'idées de plusieurs bords, de 650 à 900 départs par an entre 2005 et 2014, soit 0,14 à 0,24 % des redevables), les retours dépassent les départs depuis l'IFI, et le comité d'évaluation n'a pas trouvé d'effet de l'ISF sur l'activité des entreprises. Les données françaises montrent surtout que la sous-déclaration réagit beaucoup plus aux règles de déclaration (déclaration simplifiée) qu'aux taux eux-mêmes."

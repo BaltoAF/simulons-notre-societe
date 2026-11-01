@@ -919,3 +919,68 @@ sources:
     date_publication: "2017-01"
     consulte_le: "2026-10-13"
     note: "Vol. 107, n° 1, p. 217-248. Résumé lu sur la page AEA."
+  # ---------------------------------------------------------------------------
+  # Laboratoires d'idées (chiffrages publiés, toutes sensibilités ; consultés le 01/11/2026)
+  # ---------------------------------------------------------------------------
+  - id: montaigne-cahuc-carcillo-2014
+    type: think_tank
+    editeur: "Institut Montaigne"
+    titre: "Alléger le coût du travail pour augmenter l'emploi : les clés de la réussite"
+    url: "https://www.institutmontaigne.org/ressources/pdfs/publications/Etude%20Alleger%20le%20cout%20du%20travail.pdf"
+    auteurs: ["Pierre Cahuc", "Stéphane Carcillo"]
+    date_publication: "2014-04"
+    consulte_le: "2026-11-01"
+    note: "Étude. Chapitre III, p. 33 de la publication : élasticité « autour de – 2 » pour les embauches au niveau du SMIC (dispositif « zéro charges » de 2009) ; résumé : « une diminution de 1 % du coût du travail a entraîné un accroissement de 2 % de l'emploi au bout d'un an ». Diffusion des travaux de Cahuc, Carcillo et Le Barbanchon (source cahuc-et-al-2014)."
+  - id: ifrap-smic-1600-2024
+    type: think_tank
+    editeur: "Fondation iFRAP"
+    titre: "L'augmentation du smic à 1 600 euros détruirait 240 000 emplois"
+    url: "https://www.ifrap.org/emploi-et-politiques-sociales/laugmentation-du-smic-1-600-euros-detruirait-240-000-emplois"
+    auteurs: ["Gilles Koleda"]
+    date_publication: "2024-07-16"
+    consulte_le: "2026-11-01"
+    note: "Chiffrage d'une proposition du programme du Nouveau Front populaire (législatives 2024). Hypothèses écrites sous le tableau des emplois : « Elasticité moyenne de la demande de travail à son coût de -0,5 »."
+  - id: rexecode-dt63-expatriations-2017
+    type: think_tank
+    editeur: "Coe-Rexecode"
+    titre: "Les conséquences économiques des expatriations dues aux écarts de fiscalité entre la France et les autres pays (Document de travail n° 63)"
+    url: "https://rexecode.fr/media/documents/document-de-travail/2017/document-de-travail-n-63-les-consequences-economiques-des-expatriations-dues-aux-ecarts-de-fiscalite-entre-la-france-et-les-autres-pays"
+    auteurs: ["Michel Didier", "Gilles Koleda"]
+    date_publication: "2017-07"
+    consulte_le: "2026-11-01"
+    note: "Auteurs lus dans les métadonnées du PDF (le document est signé « L'équipe de Coe-Rexecode »). Estimations des départs de redevables de l'ISF p. 42-43."
+  - id: ifrap-isf-exil-2019
+    type: think_tank
+    editeur: "Fondation iFRAP"
+    titre: "Ce que l'ISF a fait perdre à la France"
+    url: "https://www.ifrap.org/budget-et-fiscalite/ce-que-lisf-fait-perdre-la-france"
+    auteurs: ["Corentin Droz-Georget"]
+    date_publication: "2019-01-24"
+    consulte_le: "2026-11-01"
+    note: "Chiffres tirés, selon l'auteur, du rapport 2017 de la DGFiP sur les contribuables quittant le territoire, transmis au Parlement mais non publié : non vérifiables à la source."
+  - id: montaigne-amicus-isf-2007
+    type: think_tank
+    editeur: "Institut Montaigne"
+    titre: "Supprimer l'ISF… pour faire payer les riches (en France !) (Amicus Curiae, briefing paper)"
+    url: "https://www.institutmontaigne.org/ressources/pdfs/publications/amicus_isf_bd.pdf"
+    auteurs: []
+    date_publication: "2007-11"
+    consulte_le: "2026-11-01"
+  - id: concorde-exil-fiscal-2013
+    type: think_tank
+    editeur: "Fondation Concorde"
+    titre: "Quelques éléments sur l'exil fiscal et l'expatriation, leurs conséquences sur l'emploi"
+    url: "https://www.fondationconcorde.com/wp-content/uploads/2013/03/Synth%C3%A8se_Exil-fiscal-1.pdf"
+    auteurs: []
+    date_publication: "2013-03"
+    consulte_le: "2026-11-01"
+    note: "Synthèse de deux pages ; date lue dans l'adresse et les propriétés du PDF."
+  - id: atterres-isf-2019
+    type: think_tank
+    editeur: "Les Économistes atterrés"
+    titre: "Ceci est une pipe : intox autour de la suppression de l'ISF"
+    url: "https://www.atterres.org/wp-content/uploads/anciens/Note%20EA%20ISF.pdf"
+    auteurs: ["Leo Charles"]
+    date_publication: "2019-01"
+    consulte_le: "2026-11-01"
+    note: "Note d'une association d'économistes. Départs de redevables de l'ISF p. 5."
