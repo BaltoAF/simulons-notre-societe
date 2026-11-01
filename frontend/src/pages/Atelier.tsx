@@ -284,7 +284,7 @@ export default function Atelier() {
               return (
                 <Changement key={id} id={id} titre={annuel ? r.titre.replace(/\s*\(par an\)/i, '') : r.titre} avant={montant(r.valeur)} apres={modifie ? montant(v) : null}
                   badge={modifie && typeof v === 'number' && typeof r.valeur === 'number' && (pct === null || Math.abs(pct) >= 0.05) && v !== r.valeur
-                    && <span className="badge primary">{ecartLisible(r.valeur, v, r.unite)}</span>}
+                    && <span className="badge primary">{ecartLisible(r.valeur, v, r.unite, id)}</span>}
                   ouvert={ouvert === id || !modifie} repliable={modifie} onBasculer={() => setOuvert(ouvert === id ? null : id)}>
                   {id === 'travail.smic.horaire_brut' && typeof v === 'number' && (
                     <div className="small muted">Soit environ {euros(v * 151.67, 0)} brut, environ {euros(v * 151.67 * 0.79, 0)} net par mois à temps plein.</div>

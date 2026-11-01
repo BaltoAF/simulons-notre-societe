@@ -73,7 +73,7 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   Social neutre, même temps grammatical des deux côtés du débat immigration, attente au redémarrage annoncée (deux à
   trois minutes, et message après 20 s) et vrai temps d'attente affiché. Reste :
   - **Après chaque mise à jour, le premier calcul attend le chargement du moteur (environ 2 min 30 mesurées)** : seul un
-    déploiement sans coupure (deux conteneurs, bascule quand le nouveau est prêt) l'éviterait. À soumettre au responsable.
+    déploiement sans coupure (deux conteneurs, bascule quand le nouveau est prêt) l'éviterait. Réponse du responsable (01/11/2026) : un plus, pas une obligation ; à faire seulement si le reste est à jour.
   - Fait ensuite : « Ce que vous changez » au lieu de « Votre réforme », dernière étape « Partager, si vous le voulez »,
     âge affiché pour les foyers types, bouton flottant masqué pendant le calcul ; enregistrer dans une carte « Partager,
     si vous le voulez » après les résultats (2026-10-31 ; le cas « À surveiller » n'avait pas de bouton du tout).
@@ -173,7 +173,9 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   dans le résultat partiel), boutons « small » à 44 px au doigt, « Ne plus afficher » écarté de la mission, règle sans
   sigles pour un retraité (la hausse des pensions), « Voir l'autre source », « Effacer » caché pendant le calcul,
   bouton « Agrandir le texte » qui dit son état. Reste : sigles dans le résumé de Mes droits (CSG, TVA) et sur la page
-  retraites (PIB, DREES) ; « −0,9 point » dans l'atelier pour un gel.
+  retraites (PIB, DREES) ; « −0,9 point » dans l'atelier pour un gel. Fait (01/11/2026) : un gel s'affiche « gel (au lieu de
+  +0,9 %) » et une autre revalorisation « +0,5 % au lieu de +0,9 % » ; DREES et COR expliqués au toucher dans « Comprendre »
+  (PIB, CSG et TVA l'étaient déjà).
 - **Relecture de neutralité, deux regards opposés** (31/10/2026 ; notes « Bernard », à droite, 3,5 / « Inès », à gauche, 4
   sur 5 ; débats tous à ±10 %). Corrigé : immigration (solde dans l'ordre croissant, « dépenses communes : défense,
   intérêts de la dette, administration », position « Oui » appuyée sur les chiffres de la page, ordre de grandeur des

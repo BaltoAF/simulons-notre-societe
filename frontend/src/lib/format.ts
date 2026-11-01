@@ -27,9 +27,14 @@ export function anEtMois(v: number): string {
 }
 
 /** Écart entre deux valeurs d'une règle, dans l'unité la plus parlante : « −2 ans », « +0,5 point », « +15 % ». */
-export function ecartLisible(avant: number, apres: number, u: string): string {
+export function ecartLisible(avant: number, apres: number, u: string, regle?: string): string {
   const d = apres - avant
   const s = d > 0 ? '+' : '−'
+  // une revalorisation est déjà un pourcentage de hausse : « −0,9 point » se lit mal (test Odette) ; on dit gel ou hausse
+  if (u === 'pourcent' && regle && /\.(revalorisation|indexation)\./.test(regle)) {
+    const pct = (x: number) => `${x > 0 ? '+' : x < 0 ? '−' : ''}${nombre(Math.abs(x), 2)} %`
+    return apres === 0 ? `gel (au lieu de ${pct(avant)})` : `${pct(apres)} au lieu de ${pct(avant)}`
+  }
   if (u === 'pourcent') return `${s}${nombre(Math.abs(d), 2)} point${Math.abs(d) >= 2 ? 's' : ''}`
   if (u === 'ans') return `${s}${anEtMois(Math.abs(d))}`
   if (u === 'mois' || u === 'jours' || u === 'heures' || u === 'trimestres' || u === 'semaines') return `${s}${nombre(Math.abs(d), 0)} ${uniteLisible(u)}`

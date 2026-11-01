@@ -169,7 +169,7 @@ function ListeDiff({ items: tous, vide, pastilles }: { items: Diff[]; vide: stri
                   <div className="row between top" style={{ flexWrap: 'nowrap' }}>
                     <Link to={`/regles/r/${c.regle}`} style={{ fontWeight: 650 }}>{c.titre ?? c.regle}</Link>
                     {typeof c.avant === 'number' && typeof c.apres === 'number' && c.avant !== c.apres && (
-                      <span className={`badge ${hausse ? 'accent' : 'primary'}`}>{ecartLisible(c.avant, c.apres, c.unite ?? '')}</span>
+                      <span className={`badge ${hausse ? 'accent' : 'primary'}`}>{ecartLisible(c.avant, c.apres, c.unite ?? '', c.regle)}</span>
                     )}
                   </div>
                   {(c.lignes ?? diffBareme(c.avant, c.apres)) ? (
