@@ -713,3 +713,82 @@ button.change-tete:hover { background: color-mix(in srgb, var(--primary) 7%, tra
 body.avis-en-visee, body.avis-en-visee * { cursor: crosshair !important; }
 body.avis-en-visee .avis-viseur, body.avis-en-visee .avis-viseur * { cursor: default !important; }
 .avis-cible { outline: 3px solid var(--accent, #e1000f) !important; outline-offset: 2px; border-radius: 6px; }
+
+/* ═══════════ Ce qui est cliquable se voit (01/11/2026, retour du responsable : « blanc sur blanc ») ═══════════
+   Règle unique, en clair comme en sombre : tout élément cliquable a un CONTOUR visible (≥ 3:1 sur le fond) ou un fond plein.
+   - bouton principal : plein bleu ;
+   - bouton secondaire (.btn par défaut) : fond bleu clair + contour bleu 1 px ;
+   - bouton texte (.btn.ghost) : bleu, souligné ;
+   - cartes et idées cliquables : contour gris-bleu, titre bleu suivi d'une flèche ; au survol, contour bleu et élévation ;
+   - étiquettes d'information (.badge) : plates, sans contour, rectangulaires : on ne les confond pas avec un bouton. */
+:root {
+  --contour-carte: #7b88ab;      /* 3,5:1 sur blanc, 3,2:1 sur le fond teinté d'une carte */
+  --titre-lien: var(--primary);  /* 7:1 sur blanc */
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --contour-carte: #6f7c9c; }
+}
+:root[data-theme="dark"] { --contour-carte: #6f7c9c; }
+
+/* boutons */
+.btn { border: 1px solid var(--primary); }
+.btn:hover { background: color-mix(in srgb, var(--primary) 16%, var(--surface)); }
+.btn:active { background: color-mix(in srgb, var(--primary) 24%, var(--surface)); }
+.btn.primary { border-color: var(--primary); }
+.btn.primary:active { background: var(--primary-hover); box-shadow: none; }
+.btn.outline { border-color: var(--primary); }
+.btn.ghost { border-color: transparent; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.btn.ghost:hover { text-decoration-thickness: 2px; }
+.btn.ghost:active { background: color-mix(in srgb, var(--primary) 16%, transparent); }
+.nav .btn.ghost { text-decoration: none; }   /* « En savoir plus » dans le menu : présenté comme les autres entrées */
+.btn.danger { border-color: currentColor; }
+.btn:disabled, .btn:disabled:hover { border-color: transparent; text-decoration: none; }
+/* « Découvrir le site en 1 minute » : moins discret */
+.hero .btn.ghost.small { font-size: .95rem; min-height: 44px; padding-left: 12px; padding-right: 12px; }
+/* « A+ » et « Menu » de l'en-tête : des boutons à contour, comme les autres */
+.taille-texte, .header .menu-mobile { border: 1px solid var(--contour-carte); color: var(--primary); background: var(--surface); }
+.taille-texte:hover, .header .menu-mobile:hover { border-color: var(--primary); background: color-mix(in srgb, var(--primary) 8%, var(--surface)); color: var(--primary); }
+.taille-texte[aria-pressed="true"] { background: var(--primary-soft); color: var(--sur-tonal); border-color: var(--primary); }
+
+/* cartes et idées cliquables : contour visible, titre de lien, flèche ; survol = contour bleu + élévation */
+.card.link, button.preset, .mode-carte {
+  border: 1px solid var(--contour-carte); box-shadow: none;
+  transition: box-shadow .15s ease, background-color .15s ease, border-color .15s ease; }
+.card.link.carte-teinte, button.preset.carte-teinte { border-top: 4px solid var(--t); }
+.card.link:hover, button.preset:hover, .mode-carte:hover {
+  border-color: var(--primary); box-shadow: var(--e2); background-color: color-mix(in srgb, var(--primary) 4%, var(--surface)); }
+.card.link.carte-teinte:hover, button.preset.carte-teinte:hover { border-top-color: var(--t); }
+.card.link:active, button.preset:active { box-shadow: var(--e1); background-color: color-mix(in srgb, var(--primary) 9%, var(--surface)); }
+.card.link h3, .card.link > strong, button.preset > strong { color: var(--titre-lien); }
+.card.link h3::after, .card.link > strong::after, button.preset > strong::after {
+  content: "\00a0→"; display: inline-block; font-weight: 700; transition: transform .15s ease; }
+.card.link:hover h3::after, .card.link:hover > strong::after, button.preset:hover > strong::after { transform: translateX(3px); }
+.card.link:hover h3, .card.link:hover > strong, button.preset:hover > strong { text-decoration: underline; text-underline-offset: 3px; }
+/* le contenu d'une idée commence en haut (les cartes d'une rangée ont la même hauteur) ; un titre seul reste centré */
+button.preset { display: flex; flex-direction: column; justify-content: flex-start; align-items: stretch; }
+button.preset > strong:only-child { margin: auto 0; }
+/* la flèche du titre suffit : pas une seconde flèche grise dans le sous-titre */
+.card.link > strong + span > svg:last-child { display: none; }
+/* listes de choix dans une fenêtre : lignes, pas cartes (pas de cadre dans un cadre) */
+.list button.preset { border: 0; box-shadow: none; }
+.list button.preset:hover { box-shadow: none; }
+.mode-carte { border-width: 2px; }
+.mode-carte.on { border-color: var(--primary); }
+@media (prefers-reduced-motion: reduce) { .card.link h3::after, .card.link > strong::after, button.preset > strong::after { transition: none; } }
+
+/* puces de choix, missions, onglets */
+.mission { border: 1px solid var(--contour-carte); }
+.card .mission { border: 1px solid transparent; }
+.mission:hover, .card .mission:hover { border-color: var(--primary); background: color-mix(in srgb, var(--primary) 6%, var(--surface)); }
+.mission strong { color: var(--titre-lien); }
+.missions li.faite .mission strong { color: var(--ink-2); }
+.tabs { border-bottom-color: var(--line-2); }
+.tabs button { color: var(--ink-2); min-height: 44px; border-radius: 8px 8px 0 0; }
+.tabs button:hover { color: var(--primary); background: color-mix(in srgb, var(--primary) 7%, transparent); }
+
+/* focus clavier : l'anneau suit la forme de l'élément (la règle générale arrondit à 4 px) */
+.btn:focus-visible, .choice:focus-visible, .taille-texte:focus-visible { border-radius: 99px; }
+.choice:focus-visible { border-radius: 8px; }
+.taille-texte:focus-visible { border-radius: 10px; }
+.card.link:focus-visible { border-radius: 16px; outline-offset: 3px; }
+button.preset:focus-visible, .mode-carte:focus-visible { border-radius: 14px; outline-offset: 3px; }
