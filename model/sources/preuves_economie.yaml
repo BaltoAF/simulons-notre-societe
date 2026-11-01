@@ -984,3 +984,21 @@ sources:
     date_publication: "2019-01"
     consulte_le: "2026-11-01"
     note: "Note d'une association d'économistes. Départs de redevables de l'ISF p. 5."
+  - id: ofce-heyer-audition-35h-2014
+    type: think_tank
+    editeur: "OFCE (É. Heyer), audition devant la commission d'enquête de l'Assemblée nationale sur la réduction du temps de travail"
+    titre: "Compte rendu n° 24 : audition de M. Éric Heyer, directeur adjoint au département Analyse et prévision de l'OFCE"
+    url: "https://www.assemblee-nationale.fr/14/pdf/cr-ceredutemtra/14-15/c1415024.pdf"
+    auteurs: ["Éric Heyer"]
+    date_publication: "2014-10-16"
+    consulte_le: "2026-11-01"
+    note: "Estimations de l'OFCE présentées par son auteur (p. 4-5). Les études originales de l'OFCE sur les 35 heures (Revue de l'OFCE n° 64 et n° 74) ne sont plus en ligne et n'ont pas été lues."
+  - id: concorde-35-heures-2003
+    type: think_tank
+    editeur: "Fondation Concorde (Forum des économistes)"
+    titre: "L'emploi et le travail en France – L'impact des 35 heures"
+    url: "https://www.fondationconcorde.com/wp-content/uploads/2016/05/Microsoft-Word-Publication-35-heures-090103.pdf"
+    auteurs: ["Tristan Mocilnikar"]
+    date_publication: "2003-01"
+    consulte_le: "2026-11-01"
+    note: "Étude du Forum des économistes de la Fondation Concorde ; tableau 14 (p. 19-20) établi par Tristan Mocilnikar."

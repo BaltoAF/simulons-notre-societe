@@ -785,3 +785,21 @@ sources:
     date_publication: "2022"
     consulte_le: "2026-10-13"
     note: "URL et résumé non consultés ; référence et résultat lus dans la bibliographie de Chapelle, Gobillon et Vignolles (2025)."
+  - id: insee-ia30-dubois-koubi-2017
+    type: statistique_publique
+    editeur: "Insee (Insee Analyses n° 30)"
+    titre: "Report de l'âge de la retraite et taux d'emploi des séniors : le cas de la réforme des retraites de 2010"
+    url: "https://www.insee.fr/fr/statistiques/fichier/version-html/2546882/ia30.pdf"
+    auteurs: ["Yves Dubois", "Malik Koubi"]
+    date_publication: "2017-01"
+    consulte_le: "2026-11-01"
+    note: "Chiffres repris par l'OFCE (Revue de l'OFCE n° 184, 2024, p. 30) et par la Fondation iFRAP (3 octobre 2022, chiffres attribués à la DG Trésor)."
+  - id: ipp-rapport61-retraite-2010-chomage-2025
+    type: document_de_travail
+    editeur: "Institut des politiques publiques (Rapport IPP n° 61, en partenariat avec l'Unédic)"
+    titre: "Impact de la réforme des retraites de 2010 sur l'équilibre financier de l'assurance chômage"
+    url: "https://www.ipp.eu/wp-content/uploads/2025/11/Rapport-61.pdf"
+    auteurs: ["Patrick Aubert", "Antoine Bozio", "Marion Pedrono", "Maxime Tô"]
+    date_publication: "2025-11"
+    consulte_le: "2026-11-01"
+    note: "Institut de recherche (Sciences Po, PSE, CREST). Résultats lus dans la synthèse du rapport et p. 45 du rapport."

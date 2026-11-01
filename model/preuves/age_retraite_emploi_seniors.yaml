@@ -86,4 +86,24 @@ question:
       type_etude: quasi_experimental
       revue_par_les_pairs: true
       note: "L'âge moyen de départ des générations concernées a augmenté d'environ la moitié du relèvement de l'âge normal. Résultat exprimé en âge de départ, non convertible en points de taux d'emploi."
-  note_synthese: "Toutes les études sérieuses trouvent qu'un report de l'âge légal augmente nettement l'emploi des seniors concernés : de +6 à +21 points de taux d'emploi selon les pays, la valeur la plus forte (+21 points) étant celle de la réforme française de 2010 (Rabaté et Rochut). Le consensus porte aussi sur le revers de la médaille : une part importante des personnes qui ne peuvent plus partir ne sont pas en emploi, mais au chômage, en invalidité ou sans revenu. Aux Pays-Bas, seul un tiers environ du recul des départs se traduit en emploi, et en Autriche la hausse du chômage est aussi forte que celle de l'emploi. Les études divergent surtout sur l'ampleur de ces vases communicants, qui dépend du taux d'emploi avant l'âge légal et de l'accès à l'invalidité ou au chômage. Les études françaises et autrichiennes, fondées sur des données administratives exhaustives et des réformes nettes, pèsent le plus. Une évaluation officielle française récente (DREES, DARES ou Cour des comptes) n'a pas pu être consultée."
+    - source: insee-ia30-dubois-koubi-2017
+      valeur: 16.5
+      intervalle_95: null
+      methode: "Comparaison des premières générations touchées par la réforme de 2010 avec celles nées juste avant, à âge égal, à partir de l'enquête Emploi"
+      champ: "France, personnes de 60 ans des premières générations touchées par la réforme de 2010, comparées aux générations nées juste avant"
+      pays: FR
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: false
+      note: "P. 1 : « la probabilité d'occuper un emploi a progressé de 17 points pour les hommes et de 16 points pour les femmes » (dont 3 et 7 points à temps partiel) ; le chômage a aussi augmenté de 7 et 6 points, et l'inactivité hors retraite de 3 points pour les hommes. Valeur retenue : moyenne simple des hommes et des femmes (16,5). Ce chiffre est repris tel quel par des laboratoires d'idées de sensibilités différentes, l'OFCE (Revue de l'OFCE n° 184, 2024) et la Fondation iFRAP (2022), qui ne publient pas d'estimation propre dans cette unité."
+    - source: ipp-rapport61-retraite-2010-chomage-2025
+      valeur: 22.5
+      intervalle_95: null
+      methode: "Doubles différences entre générations (1954 contre 1950), données administratives de l'assurance chômage et des retraites"
+      champ: "France, personnes non éligibles aux carrières longues, ayant travaillé au moins un mois entre 50 et 55 ans et cotisé surtout au régime général, âges de 60 à 62 ans"
+      pays: FR
+      annee_donnees: null
+      type_etude: quasi_experimental
+      revue_par_les_pairs: false
+      note: "Synthèse : « une augmentation de l'emploi de 20 à 25 points de pourcentage entre 60 et 62 ans, et une hausse de 12 à 15 points de la probabilité d'être au chômage indemnisé » ; valeur retenue = milieu (22,5). P. 45 : jusqu'à +30 points entre 60 et 61 ans et demi, avec +15 points de chômage indemnisé et +18 points d'inactivité. Effet dès 57 ans d'environ +5 points. Institut de recherche, pas laboratoire d'idées."
+  note_synthese: "Toutes les études sérieuses trouvent qu'un report de l'âge légal augmente nettement l'emploi des seniors concernés : de +6 à +21 points de taux d'emploi selon les pays, les valeurs les plus fortes venant de la réforme française de 2010 : +21 points selon Rabaté et Rochut, +16 à +17 points à 60 ans selon l'Insee, +20 à +25 points entre 60 et 62 ans selon l'Institut des politiques publiques (2025). Les laboratoires d'idées qui en parlent, comme l'OFCE ou la Fondation iFRAP, reprennent ces chiffres officiels plutôt que d'en calculer d'autres. Le consensus porte aussi sur le revers de la médaille : une part importante des personnes qui ne peuvent plus partir ne sont pas en emploi, mais au chômage, en invalidité ou sans revenu. Aux Pays-Bas, seul un tiers environ du recul des départs se traduit en emploi, et en Autriche la hausse du chômage est aussi forte que celle de l'emploi. Les études divergent surtout sur l'ampleur de ces vases communicants, qui dépend du taux d'emploi avant l'âge légal et de l'accès à l'invalidité ou au chômage. Les études françaises et autrichiennes, fondées sur des données administratives exhaustives et des réformes nettes, pèsent le plus. Une évaluation officielle française récente (DREES, DARES ou Cour des comptes) n'a pas pu être consultée."
