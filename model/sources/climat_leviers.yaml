@@ -55,3 +55,30 @@ sources:
     date_publication: "2026-06-01"
     consulte_le: "2026-10-31"
     note: "Logement (chauffage, eau chaude, cuisson) : 31,9 MtCO2e en 2024 (31,3 estimé pour 2025), dont gaz 19,6, fioul 7,9, gaz en bouteille 1,8 (p. 7 et 12)."
+  - id: mte-prix-produits-petroliers-2026
+    type: statistique_publique
+    editeur: "Ministère de la Transition écologique (DGEC)"
+    titre: "Prix des produits pétroliers : prix HTT et TTC depuis janvier 2020 (fichier hebdomadaire, onglet « Combustibles »)"
+    url: "https://www.ecologie.gouv.fr/sites/default/files/documents/Prix%20HTT%20et%20TTC%20depuis%20janvier%202020_0.xlsx"
+    auteurs: []
+    date_publication: "2026-10"
+    consulte_le: "2026-11-01"
+    note: "Page : https://www.ecologie.gouv.fr/politiques-publiques/prix-produits-petroliers. Onglet « Combustibles », bloc « MOYENNES ANNUELLES » publié dans le fichier : fioul domestique (livraisons de 2 000 à 4 999 litres), 1,1325 € par litre TTC en 2025 (0,7883 € hors taxes) ; 1,2004 € en 2024 ; 1,4821 € en 2022. Date de publication : mise à jour hebdomadaire, version téléchargée le 01/11/2026."
+  - id: sdes-prix-gaz-naturel-2025
+    type: statistique_publique
+    editeur: "SDES (service des données et études statistiques du ministère de la Transition écologique)"
+    titre: "Prix du gaz naturel en France et dans l'Union européenne en 2025"
+    url: "https://www.statistiques.developpement-durable.gouv.fr/prix-du-gaz-naturel-en-france-et-dans-lunion-europeenne-en-2025"
+    auteurs: []
+    date_publication: "2026-07-23"
+    consulte_le: "2026-11-01"
+    note: "« En 2025, le prix moyen toutes taxes comprises du gaz naturel facturé aux ménages français s'élève à 141,4 €/MWh PCS (pouvoir calorifique supérieur), en hausse de 8,6 % sur un an. Les taxes payées par les ménages représentent 29 % du prix. »"
+  - id: insee-g2009-08-clerc-marcus
+    type: document_de_travail
+    editeur: "Insee (document de travail G 2009/08)"
+    titre: "Élasticités-prix des consommations énergétiques des ménages"
+    url: "https://www.insee.fr/fr/statistiques/1380837"
+    auteurs: ["Marie Clerc", "Vincent Marcus"]
+    date_publication: "2009-09"
+    consulte_le: "2026-11-01"
+    note: "Tableau 1 (séries temporelles 1978-2008) : fioul, élasticité-prix -0,14 à court terme et -0,20 à long terme (à consommation d'énergie domestique donnée) ; énergie domestique dans son ensemble, -0,06 à court terme et -0,17 à long terme ; carburants -0,19 et -0,40."

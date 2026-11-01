@@ -143,6 +143,33 @@ regles:
     a_verifier: false
     note: "Haute puissance (> 250 kVA) : 22,50 €/MWh."
 
+  - id: environnement_energie.accise.fioul_domestique
+    titre: "Accise sur le fioul domestique (chauffage)"
+    explication: "Taxe fixe prélevée sur chaque hectolitre de fioul domestique utilisé pour le chauffage (ex-TICPE), avant TVA. Un hectolitre de fioul contient environ 1 MWh d'énergie : le tarif est donc le même par hectolitre et par mégawattheure."
+    type: nombre
+    unite: euros_par_hectolitre
+    bornes: [0, 100]
+    valeurs:
+      - depuis: "2024-01-01"
+        valeur: 15.62
+        sources: [mte-guide-fiscalite-energies-2026]
+        article: "Code des impositions sur les biens et services, art. L312-36"
+      - depuis: "2025-08-01"
+        valeur: 15.43
+        sources: [mte-guide-fiscalite-energies-2026]
+        article: "CIBS, art. L312-36 et L312-37-1 (majoration pour les zones non interconnectées)"
+      - depuis: "2026-02-01"
+        valeur: 16.39
+        sources: [mte-guide-fiscalite-energies-2026]
+        article: "CIBS, art. L312-36 et L312-37-1"
+      - depuis: "2026-08-01"
+        valeur: 16.66
+        sources: [mte-guide-fiscalite-energies-2026]
+        article: "CIBS, art. L312-36 et L312-37-1"
+    tags: [accises, fioul, chauffage]
+    a_verifier: false
+    note: "Tarifs des « fiouls domestiques » lus dans le guide 2026 (tableau des combustibles pétroliers, p. 25 ; annexe 3, p. 37 : coefficient 3,6 GJ par hectolitre, 16,39 puis 16,66 €/hl soit autant d'€/MWh)."
+
   - id: environnement_energie.accise.gaz_naturel_combustible
     titre: "Accise sur le gaz naturel utilisé comme combustible (tarif normal)"
     explication: "Taxe par mégawattheure (pouvoir calorifique supérieur) prélevée sur le gaz naturel de chauffage (ex-TICGN)."

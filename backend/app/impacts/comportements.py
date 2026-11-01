@@ -22,6 +22,7 @@ REGLES_COUVERTES = {
     "fiscalite.ifi.bareme.taux_tranche_4", "fiscalite.ifi.bareme.taux_tranche_5",
     "travail.chomage.duree_max_moins_55_ans", "travail.chomage.duree_max_55_56_ans", "travail.chomage.duree_max_57_ans_et_plus",
     "travail.duree.legale_hebdomadaire", "environnement_energie.accise.gazole", "environnement_energie.accise.sp95_e10",
+    "environnement_energie.accise.fioul_domestique", "environnement_energie.accise.gaz_naturel_combustible",
     "retraites.age_legal.generation_1969_et_apres", "retraites.age_legal.generation_1968", "retraites.age_legal.generation_1967",
     "retraites.age_legal.generation_1966", "transports.vitesse_max.route_bidirectionnelle", "transports.vitesse_max.autoroute",
     "transports.vitesse_max.voie_rapide", "transports.vitesse_max.agglomeration", "sante.tabac.accise_cigarettes_taux",

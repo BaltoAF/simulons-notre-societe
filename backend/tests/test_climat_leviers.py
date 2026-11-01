@@ -43,3 +43,17 @@ def test_idees_faibles_montrees_a_part():
     assert carbone["faible_forets"]["overrides"] is None  # expliquée, pas proposée : la forêt ne compte pas pour le budget carbone
     budget = compensations.idees_faibles(st, {}, "budget", 5.0)
     assert budget and all(f["rendement"] < 1 for f in budget)
+
+
+def test_taxe_carbone_sur_le_chauffage():
+    """Une hausse de l'accise sur le fioul et le gaz de chauffage baisse les émissions des logements, et compte dans le budget
+    carbone ; la solution « chauffage » est proposée pour compenser."""
+    with TestClient(app) as c:
+        rap = c.post("/api/simulation/reforme", json={"overrides": {"environnement_energie.accise.fioul_domestique": 36.66,
+                                                                    "environnement_energie.accise.gaz_naturel_combustible": 26.66}}).json()
+    ind = {i["id"]: i["valeur"] for s in rap["sections"] for i in s["indicateurs"]}
+    # fioul : +20 €/hl → +24 € TTC sur 113,25 €/hl, soit +21 % ; × −0,20 × 7,9 Mt ≈ −0,33 Mt
+    assert -0.4 < ind["emissions_chauffage_fioul"] < -0.3
+    # gaz : +10 €/MWh → +12 € TTC sur 141,4 €, soit +8,5 % ; × −0,17 × 19,6 Mt ≈ −0,28 Mt
+    assert -0.35 < ind["emissions_chauffage_gaz"] < -0.2
+    assert any(o["id"] == "accise_chauffage" for o in compensations.options_carbone(get_store(), {}, 1.0))

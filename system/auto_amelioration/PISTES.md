@@ -154,9 +154,8 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   Climat : neuf solutions pour compenser au lieu de trois (gazole et essence ensemble ; leviers
   environnement_energie.leviers.* : rénovation 250 €/t, fin du fioul 140 €/t, voitures électriques 270 €/t
   — France Stratégie, coût payé par l'État et à financer — et engrais azotés, jusqu'à 5,3 Mt, Inra) ; « Et planter des
-  arbres ? » expliqué (budget carbone hors forêts et sols, décret n° 2026-636). Reste : taxe carbone sur le chauffage
-  (élasticités Insee et émissions Citepa trouvées, prix moyen officiel du fioul domestique à trouver ; gaz : SDES,
-  141,4 €/MWh PCS en 2025) ; fret ferroviaire et aviation (pas de coût par tonne officiel trouvé) ; le nom « modèle de
+  arbres ? » expliqué (budget carbone hors forêts et sols, décret n° 2026-636). Taxe carbone sur le chauffage : faite le 01/11/2026 (voir « Fait »). Reste : ses
+  recettes pour l'État et son coût foyer par foyer (volumes de fioul et de gaz des logements à sourcer) ; fret ferroviaire et aviation (pas de coût par tonne officiel trouvé) ; le nom « modèle de
   société » à l'écran (question posée au responsable).
 - **Test Odette** (74 ans, veuve, retraitée à 1 280 €, propriétaire, tablette, très peu à l'aise ; notes prise en main 3 /
   compréhension 2,5 / confiance 3 / tablette 3 sur 5, 31/10/2026). Corrigé : « environ  % » sur la liste des grandes
@@ -306,6 +305,12 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
 
 ## Fait
 
+- 01/11/2026 : taxe carbone sur le chauffage. Nouvelle règle « Accise sur le fioul domestique » (16,66 €/hl depuis
+  août 2026, guide 2026 du ministère) ; l'accise sur le gaz de chauffage existait. Effet sur les émissions des logements
+  (Citepa : fioul 7,9 Mt, gaz 19,6 Mt) avec les élasticités de long terme de l'Insee (G 2009/08 : fioul −0,20, énergie
+  domestique −0,17 appliquée au gaz) et les prix moyens 2025 (fioul 1,1325 €/l TTC, moyenne annuelle publiée par le
+  ministère ; gaz 141,4 €/MWh, SDES). Nouvelle solution « pour compenser » : la même hausse par MWh sur le fioul et le
+  gaz (environ +27 € par MWh TTC pour 1 Mt). Pas encore chiffré : recettes et coût par foyer.
 - 01/11/2026 (demande du responsable) : mise en ligne automatique élargie. Toute branche `claude/…` ou `main-…` du
   dépôt est testée puis fusionnée dans main si les tests passent (mêmes garde-fous : fichiers protégés, pas d'environnement
   ni de dépendances, 200 fichiers au plus) ; le serveur la reprend ensuite.

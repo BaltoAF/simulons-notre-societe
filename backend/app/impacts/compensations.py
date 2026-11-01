@@ -183,6 +183,23 @@ def options_carbone(store, overrides: dict, manque: float) -> list[dict]:
                                    "Moins de carburant consommé, donc moins d'émissions ; mais un coût en plus pour ceux qui roulent beaucoup.",
                     "rendement": round(par_euro_hl * d, 3), "unite": "mt_co2e",
                     "overrides": {rid: round(acc + d, 2) for rid, (_, acc) in rendements.items()}})
+    # Chauffage : la même hausse de taxe, en €/MWh, sur le fioul domestique (1 hl ≈ 1 MWh) et le gaz des logements
+    from .planete_bien_etre import CHAUFFAGE, baisse_chauffage_par_unite
+    chauffage = {}
+    for rid, *_ in CHAUFFAGE:
+        acc, par_u = _valeur(store, overrides, rid), baisse_chauffage_par_unite(store, rid)
+        if acc is not None and par_u and par_u > 0:
+            chauffage[rid] = (par_u, float(acc))
+    if len(chauffage) == 2:
+        par_mwh = sum(r for r, _ in chauffage.values())
+        d = _arrondi(manque / par_mwh, 0.5)
+        out.append({"id": "accise_chauffage", "famille": "prix",
+                    "titre": f"Augmenter la taxe sur le fioul et le gaz de chauffage d'environ {fr(d * 1.2, 1)} € par mégawattheure",
+                    "description": f"Environ {fr(d * 1.2 / 100, 2)} € de plus par litre de fioul, TVA comprise, et la même hausse par mégawattheure de gaz. "
+                                   "On chauffe un peu moins ou on change de chauffage, donc moins d'émissions ; mais un coût en plus pour les "
+                                   "ménages chauffés au fioul ou au gaz, souvent à la campagne ou dans des logements mal isolés.",
+                    "rendement": round(par_mwh * d, 3), "unite": "mt_co2e",
+                    "overrides": {rid: round(acc + d, 2) for rid, (_, acc) in chauffage.items()}})
     # Vitesses : abaisser la limitation sur autoroute ou voie rapide (par paliers de 10 km/h). Pas sur les routes à 80 km/h ni
     # en ville : le gain y est jugé négligeable (CGDD) ou non mesuré (preuve vitesse_limite_emissions_co2)
     from .planete_bien_etre import RESEAUX

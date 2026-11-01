@@ -73,3 +73,30 @@ metriques:
         valeur: 4350
         source: maa-renouvellement-forestier-2024
         statut: estimation
+  - id: climat.emissions.logement_gaz
+    titre: "Émissions du chauffage au gaz naturel des logements"
+    explication: "Gaz à effet de serre émis par le gaz naturel brûlé dans les logements (chauffage, eau chaude, cuisson)."
+    unite: mt_co2e
+    serie:
+      - date: "2024-12-31"
+        valeur: 19.6
+        source: citepa-residentiel-2026
+        statut: definitif
+  - id: ecologie.prix_moyen_fioul_domestique
+    titre: "Prix moyen du fioul domestique (TTC, livraisons de 2 000 à 4 999 litres)"
+    explication: "Prix moyen de vente d'un litre de fioul domestique, toutes taxes comprises, moyenne annuelle publiée par le ministère (1,20 € en 2024, 1,48 € en 2022)."
+    unite: euros_par_litre
+    serie:
+      - date: "2025-12-31"
+        valeur: 1.1325
+        source: mte-prix-produits-petroliers-2026
+        statut: definitif
+  - id: ecologie.prix_moyen_gaz_menages
+    titre: "Prix moyen du gaz naturel payé par les ménages (TTC)"
+    explication: "Prix moyen toutes taxes comprises d'un mégawattheure de gaz naturel (pouvoir calorifique supérieur) facturé aux ménages, chèque énergie non déduit. Les taxes en font 29 %."
+    unite: euros_par_mwh
+    serie:
+      - date: "2025-12-31"
+        valeur: 141.4
+        source: sdes-prix-gaz-naturel-2025
+        statut: definitif

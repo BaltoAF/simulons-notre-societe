@@ -57,6 +57,57 @@ def em_carburants(ctx: Contexte) -> list[Indicateur]:
     return out
 
 
+# Chauffage : élasticités-prix de long terme de l'Insee (document de travail G 2009/08, tableau 1, séries 1978-2008) :
+# fioul −0,20 (à consommation d'énergie domestique donnée), énergie domestique dans son ensemble −0,17 (appliquée au gaz).
+# Les accises sont en €/hl (fioul : environ 1 MWh par hl) et en €/MWh PCS (gaz), comme les prix moyens retenus.
+CHAUFFAGE = [
+    ("environnement_energie.accise.fioul_domestique", "fioul", "climat.emissions.logement_fioul", "ecologie.prix_moyen_fioul_domestique",
+     -0.20, 100.0, "€/l", "Élasticité-prix de long terme du fioul domestique (Insee, 1978-2008), à consommation d'énergie domestique donnée"),
+    ("environnement_energie.accise.gaz_naturel_combustible", "gaz", "climat.emissions.logement_gaz", "ecologie.prix_moyen_gaz_menages",
+     -0.17, 1.0, "€/MWh", "Élasticité-prix de long terme de l'énergie domestique dans son ensemble (Insee, 1978-2008), appliquée au gaz"),
+]
+SOURCE_ELAS_CHAUFFAGE = "insee-g2009-08-clerc-marcus"
+
+
+def baisse_chauffage_par_unite(store, rid: str) -> float | None:
+    """Baisse d'émissions (Mt, valeur positive) pour +1 unité d'accise (€/hl ou €/MWh), TVA de 20 % comprise."""
+    for r, _, em_id, prix_id, elas, par, _, _ in CHAUFFAGE:
+        if r != rid:
+            continue
+        em, _, _ = metrique(store, em_id)
+        prix, _, _ = metrique(store, prix_id)
+        if not (em and prix):
+            return None
+        return -em * elas * (1.2 / par / prix)
+    return None
+
+
+def em_chauffage(ctx: Contexte) -> list[Indicateur]:
+    out = []
+    for rid, lib, em_id, prix_id, elas, par, u, texte in CHAUFFAGE:
+        if not ctx.modifie(rid):
+            continue
+        em, src_e, conf_e = metrique(ctx.store, em_id)
+        prix, src_p, conf_p = metrique(ctx.store, prix_id)
+        if not (em and prix):
+            continue
+        old, new = ecart(ctx, rid)
+        dp = (new - old) * 1.2 / par / prix  # hausse relative du prix TTC (TVA de 20 % sur l'accise)
+        de = em * elas * dp
+        nom = "au fioul" if lib == "fioul" else "au gaz"
+        out.append(Indicateur(
+            f"emissions_chauffage_{lib}", f"Émissions du chauffage {nom} des logements", de, "mt_co2e",
+            confiance=chaine(conf_e, conf_p, hypothese(45, texte)),
+            explication="Un chauffage plus cher pousse à moins chauffer, à isoler ou à changer de mode de chauffage ; les émissions baissent, "
+                        "surtout à long terme. Le coût en plus pèse sur les ménages qui ne peuvent pas changer vite de chauffage.",
+            calcul=[f"Taxe : {old:g} → {new:g} {'€/hl' if lib == 'fioul' else '€/MWh'} (hors TVA)",
+                    f"Hausse du prix : {dp * 100:+.1f} % (prix moyen {prix:.2f} {u}, TVA comprise)",
+                    f"Élasticité-prix retenue : {elas:.2f}", f"Émissions du chauffage {nom} des logements : {em:.1f} MtCO2e"],
+            sources=[s for s in (src_e, src_p, SOURCE_ELAS_CHAUFFAGE) if s],
+            sens="favorable" if de < 0 else "defavorable"))
+    return out
+
+
 def em_revenus(ctx: Contexte) -> list[Indicateur]:
     r = ctx.cache.get("microsim")
     if not r:
@@ -309,7 +360,7 @@ def be_tabac(ctx: Contexte) -> list[Indicateur]:
 
 
 def section_planete(ctx: Contexte) -> Section | None:
-    inds = em_carburants(ctx) + em_vitesse(ctx) + em_revenus(ctx) + em_activite(ctx)
+    inds = em_carburants(ctx) + em_chauffage(ctx) + em_vitesse(ctx) + em_revenus(ctx) + em_activite(ctx)
     if not inds:
         return None
     directes = [i for i in inds if i.id.startswith("emissions_") and i.valeur is not None]
