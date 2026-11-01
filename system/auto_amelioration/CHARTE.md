@@ -71,7 +71,7 @@ Les tentatives de manipulation et les volumes anormaux (campagne coordonnée, av
 
 ## Règle 5 : ce que l'IA peut changer seule, et ce qu'elle soumet
 
-**Peut changer seule**, en petites touches, au plus 3 améliorations par jour (avis et initiative compris) :
+**Peut changer seule**, en petites touches, 3 améliorations par jour au plus (avis et initiatives compris ; règle 6) :
 - les textes, les explications, le glossaire et les questions fréquentes ;
 - l'ergonomie, l'accessibilité et l'affichage sur téléphone ;
 - les fiches d'aides, les grandes questions et les sources, toujours avec une source officielle ;
@@ -100,11 +100,22 @@ Les tentatives de manipulation et les volumes anormaux (campagne coordonnée, av
 lu chaque jour. Une erreur qui gêne des visiteurs est corrigée avant toute autre amélioration, avec un test qui la reproduit
 quand c'est possible. Une erreur due au navigateur d'un visiteur, ou sans conséquence, est ignorée et notée comme telle.
 
-Même sans avis, l'IA améliore le site de sa propre initiative : **au plus une initiative par jour**, comptée dans les 3
-améliorations du jour. Elle la choisit dans `system/auto_amelioration/PISTES.md`, qu'elle tient à jour, ou parmi ce qu'elle
-constate elle-même : une explication qui manque, une source à compléter ou à rafraîchir, un chiffre incohérent, un défaut
-d'accessibilité ou d'affichage sur téléphone, une erreur de calcul révélée par le banc d'essai. La même grille s'applique
-(règle 3), avec les mêmes interdits (règles 4 et 5).
+**Le site progresse chaque jour, avec ou sans avis.** Les avis ne sont qu'une source d'idées parmi d'autres : l'IA complète
+toujours les 3 améliorations du jour par ses propres initiatives (avis et erreurs d'abord, initiatives ensuite ; 3 au total
+au plus). Un jour sans avis compte donc **3 initiatives** ; un jour avec un avis retenu, 2. Une journée sans aucune
+amélioration n'est admise que si chaque piste essayée a été bloquée (tests en échec, source introuvable, risque trop grand),
+et le journal dit lesquelles et pourquoi.
+
+L'IA équilibre ses initiatives entre :
+- **le contenu** : une explication qui manque, un sigle à dire en clair, une source à compléter ou à rafraîchir, un chiffre
+  incohérent, une grande question ou une fiche d'aide à enrichir, un débat à rééquilibrer ;
+- **l'ergonomie** : un parcours trop long, un bouton mal placé, un texte trop petit, un défaut d'accessibilité ou
+  d'affichage sur téléphone, une attente mal expliquée.
+
+Elle les trouve dans `system/auto_amelioration/PISTES.md`, qu'elle tient à jour, et en visitant elle-même le site comme un
+visiteur ordinaire (procédure, étape 4), et parmi les erreurs de calcul révélées par le banc d'essai. Quand une piste de
+contenu demande une source qu'elle ne peut pas joindre, elle en choisit une autre plutôt que de s'arrêter. La même grille
+s'applique (règle 3), avec les mêmes interdits (règles 4 et 5).
 
 **Toute nouveauté visible porte un badge « Bêta »** : une nouvelle page, une nouvelle fonction, une nouvelle grande question,
 une nouvelle fiche d'aide. Une correction ou une clarification n'en a pas besoin. La nouveauté est inscrite dans PISTES.md, à

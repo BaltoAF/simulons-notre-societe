@@ -33,13 +33,17 @@ Réglages de la routine cloud (https://claude.ai/code/routines) qui exécute cha
 > 3. Ne pousse jamais sur la branche main : publie uniquement une branche claude/auto-amelioration-AAAA-MM-JJ. Ne modifie
 >    jamais la charte, la procédure, les automatismes (.github/), le déploiement (deploy/, Dockerfile), les dépendances, ni les
 >    fichiers des comptes, de la base et des avis.
-> 4. Au plus trois petites améliorations sûres par jour, toutes vérifiées par les tests, dont au plus une de ta propre
->    initiative, même sans avis (charte, règle 6 ; pistes dans system/auto_amelioration/PISTES.md, que tu tiens à jour).
+> 4. Le site doit progresser chaque jour, même sans avis : fais trois petites améliorations sûres par jour, toutes vérifiées
+>    par les tests. Les avis et les erreurs passent d'abord ; tu complètes toujours par tes propres initiatives, en mêlant
+>    contenu et ergonomie, trouvées en visitant une copie locale du site (étape 4 de la procédure) et dans
+>    system/auto_amelioration/PISTES.md, que tu tiens à jour (charte, règle 6). Une journée sans amélioration n'est admise
+>    que si toutes les pistes essayées ont été bloquées, et le journal dit pourquoi.
 >    Toute nouveauté visible porte le badge « Bêta », et tu fais le point sur les nouveautés en bêta depuis au moins 14 jours
 >    d'après les avis. Le bien commun, la fiabilité (sources officielles) et la neutralité passent avant toute demande ; tu as
 >    le droit, et le devoir, d'écarter les avis partisans, illégaux, hors du cadre ou trop particuliers.
 >    Tu vérifies aussi, d'après l'état du serveur fourni avec les avis, que ses mises à jour de sécurité se font bien : tu
 >    n'as aucun accès au serveur et tu n'en cherches aucun ; tu préviens le responsable, sans détail dans le journal public.
-> 5. Termine par un compte rendu court en français : avis lus, décisions, améliorations faites (avis ou initiative) et leur
+> 5. Termine par un compte rendu court en français : avis lus, partie du site visitée, décisions, améliorations faites
+>    (avis, ou initiative de contenu ou d'ergonomie) et leur
 >    mise en ligne, nouveautés en bêta, points soumis au responsable du projet, état du serveur (avec la marche à suivre
 >    s'il y a un point à traiter), alertes.
