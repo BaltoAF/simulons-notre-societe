@@ -1,5 +1,6 @@
-# Met en ligne les améliorations de la routine quotidienne : quand les tests ont réussi sur une branche
-# claude/auto-amelioration-…, exactement cette version est fusionnée dans main (le serveur la reprend ensuite).
+# Met en ligne les améliorations : quand les tests ont réussi sur une branche claude/… (routine quotidienne
+# claude/auto-amelioration-…, ou séance de travail) ou main-… (séance de travail, demande du responsable du
+# 01/11/2026), exactement cette version est fusionnée dans main (le serveur la reprend ensuite).
 # Une branche venue d'un fork, ou dont les tests échouent, n'est jamais fusionnée.
 name: fusion-auto
 on:
@@ -16,7 +17,7 @@ jobs:
     if: >-
       github.event.workflow_run.conclusion == 'success' &&
       github.event.workflow_run.event == 'push' &&
-      startsWith(github.event.workflow_run.head_branch, 'claude/auto-amelioration-') &&
+      (startsWith(github.event.workflow_run.head_branch, 'claude/') || startsWith(github.event.workflow_run.head_branch, 'main-')) &&
       github.event.workflow_run.head_repository.full_name == github.repository
     runs-on: ubuntu-latest
     # pas de file d'attente partagée : GitHub n'y garde qu'une tâche en attente et annule les autres ;

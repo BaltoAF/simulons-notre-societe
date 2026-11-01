@@ -304,6 +304,9 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
 
 ## Fait
 
+- 01/11/2026 (demande du responsable) : mise en ligne automatique élargie. Toute branche `claude/…` ou `main-…` du
+  dépôt est testée puis fusionnée dans main si les tests passent (mêmes garde-fous : fichiers protégés, pas d'environnement
+  ni de dépendances, 200 fichiers au plus) ; le serveur la reprend ensuite.
 - 01/11/2026 (demande du responsable) : l'accueil ne pousse plus seulement à « faire son programme » : titre « Réimaginez
   les règles de la France. Voyez la France que ça donne. », bouton « Changer les règles », 3e étape « Une idée ou un
   programme » ; même esprit dans la visite « Découvrir le site en 1 minute ».
