@@ -2,7 +2,7 @@
 name: tests
 on:
   push:
-    branches: [main, "claude/auto-amelioration-*"]
+    branches: [main, "claude/**", "main-*"]   # main-* et claude/** : branches de travail mises en ligne par fusion-auto
   pull_request:
   workflow_dispatch:   # relancé par les automatismes qui publient sur main (fusion-auto, systeme-nuit)
 

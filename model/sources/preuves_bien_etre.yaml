@@ -285,6 +285,24 @@ sources:
     date_publication: "2026-04"
     consulte_le: "2026-10-13"
     note: "Guide grand public : diminuer sa vitesse de 10 km/h sur autoroute fait économiser 1 à 3 litres sur un trajet de 500 km."
+  - id: pbe-shift-project-2022-voyager
+    type: think_tank
+    editeur: "The Shift Project (Plan de transformation de l'économie française)"
+    titre: "Pouvoir voyager en 2050 (Voyager bas carbone) – Rapport final"
+    url: "https://theshiftproject.org/app/uploads/2025/02/Voyager-Bas-Carbone-RAPPORT-FINAL.pdf"
+    auteurs: ["The Shift Project"]
+    date_publication: "2022-04"
+    consulte_le: "2026-11-01"
+    note: "Limitation à 110 km/h sur autoroute : p. 100 (p. 101 du PDF) ; hypothèse de modélisation p. 119."
+  - id: pbe-shift-project-2022-fret
+    type: think_tank
+    editeur: "The Shift Project (Plan de transformation de l'économie française)"
+    titre: "Assurer le fret dans un monde fini – Rapport final"
+    url: "https://theshiftproject.org/app/uploads/2025/02/Fret_rapport-final_ShiftProject_PTEF.pdf"
+    auteurs: ["The Shift Project"]
+    date_publication: "2022-03"
+    consulte_le: "2026-11-01"
+    note: "Bridage des poids lourds à 80 km/h : p. 72 du PDF et annexe p. 137, d'après le programme Objectif CO2 (2020)."
   # ---------------------------------------------------------------------------
   # 5. Retraite et santé
   # ---------------------------------------------------------------------------

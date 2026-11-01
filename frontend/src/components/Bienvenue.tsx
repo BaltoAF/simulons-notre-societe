@@ -17,7 +17,7 @@ const ECRANS = [
     Icone: GitFork,
     titre: '1. Réimaginez les règles de la France',
     texte: "« Et si le salaire minimum augmentait ? Et si on baissait les impôts ? » Changez une règle, ou cent : le site simule tout, pour vous "
-      + "et pour le pays, et vous aide à trouver vos équilibres entre argent public, climat et bien-être. Pas à pas, c'est votre programme.",
+      + "et pour le pays, et vous aide à trouver vos équilibres entre argent public, climat et bien-être. Pas à pas, vous imaginez votre France, et si vous voulez, votre programme.",
   },
   {
     Icone: Users,
@@ -84,7 +84,7 @@ export function Bienvenue({ onClose }: { onClose: () => void }) {
       })() : (
         <div className="stack" style={{ gap: 10 }}>
           <p className="ink2" style={{ marginTop: 0 }}>Choisissez ce qui vous intéresse. Vous pourrez revoir cette visite depuis le menu « En savoir plus ».</p>
-          <button className="preset" onClick={() => aller('/atelier')}><strong><GitFork size={16} /> Construire mon programme</strong>
+          <button className="preset" onClick={() => aller('/atelier')}><strong><GitFork size={16} /> Changer les règles</strong>
             <span className="small muted">Le cœur du site : réimaginez les règles, une idée toute prête ou la règle de votre choix, et trouvez vos équilibres.</span></button>
           {/* dans les mots du visiteur (test Odette : « Est-ce que j'ai droit à des aides ? Ma retraite va-t-elle baisser ? ») */}
           <button className="preset" onClick={() => aller('/mes-droits')}><strong><Calculator size={16} /> Ai-je droit à des aides ? Combien me reste-t-il ?</strong>

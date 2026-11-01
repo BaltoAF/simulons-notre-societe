@@ -66,4 +66,24 @@ question:
       type_etude: quasi_experimental
       revue_par_les_pairs: true
       note: "Contrepoint international. Résumé publié (1999) : les données de branches suggèrent que le partage du travail « may have reduced employment in the period 1984-1994 », le salaire horaire ayant augmenté assez pour compenser la baisse des heures. La version document de travail (NBER 5724, 1996) trouvait au contraire, pour 1984-1989, une hausse de l'emploi de 0,3 à 0,7 % par heure de réduction (soit au plus 1,1 % au total), avec des résultats « plus pessimistes » pour 1990-1994. Faute de chiffre publié dans la version finale lue, valeur laissée vide."
-  note_synthese: "Les études ne s'accordent pas, et la question reste débattue. Les évaluations du ministère du Travail et de l'INSEE attribuent aux lois Aubry environ 350 000 emplois entre 1998 et 2002 (de l'ordre de 2 à 3 % des salariés des entreprises concernées), et les entreprises passées aux 35 heures avec des aides ont augmenté leurs effectifs d'environ 10 % de plus que les autres. Mais ces gains semblent surtout venir des baisses de cotisations et de la modération des salaires qui accompagnaient la réforme, plus que du partage du travail lui-même. Les études qui comparent des groupes touchés différemment par la loi (Alsace-Moselle, grandes et petites entreprises) ne trouvent pas d'effet significatif sur l'emploi total. Enfin, le passage de 40 à 39 heures en 1982, fait sans baisse de salaire, a fait perdre leur emploi à 2 à 4 % des salariés concernés, et l'expérience allemande ne montre pas non plus de gain clair."
+    - source: ofce-heyer-audition-35h-2014
+      valeur: 2.5
+      intervalle_95: null
+      methode: "Simulation avec les modèles macroéconomiques de l'OFCE de l'effet conjoint de la réduction du temps de travail et des allègements de cotisations des lois Aubry"
+      champ: "France, 1998-2002, ensemble de l'économie ; réduction de deux heures de la durée effective et 10,5 Md€ de baisses de cotisations (Aubry II)"
+      pays: FR
+      annee_donnees: 2002
+      type_etude: simulation_institutionnelle
+      revue_par_les_pairs: false
+      note: "Laboratoire d'idées (OFCE). P. 5 : « Selon les modèles de l'OFCE, une réduction de charges de 10,5 milliards et une réduction du temps de travail de deux heures devaient créer 320 000 emplois » ; p. 4 : ordre de grandeur comparable aux 350 000 emplois de la DARES. Chiffre publié en nombre d'emplois. Conversion en % faite ici, avec le même dénominateur que pour Gubian et al. : 320 000 / 13 millions de salariés des entreprises de plus de 20 personnes = 2,5 %. Effet des 35 heures et des baisses de cotisations ensemble, pas du seul partage du travail."
+    - source: concorde-35-heures-2003
+      valeur: 0.4
+      intervalle_95: null
+      methode: "Chiffrage simplifié, « avec toutes les réserves nécessaires » : emplois créés par la réduction du temps de travail, moins ceux détruits par son financement et par la hausse du coût du SMIC horaire"
+      champ: "France, réduction du temps de travail des lois Aubry, coût public d'environ 75 milliards de francs (11 Md€)"
+      pays: FR
+      annee_donnees: 2002
+      type_etude: simulation_institutionnelle
+      revue_par_les_pairs: false
+      note: "Laboratoire d'idées (Fondation Concorde). Tableau 14, p. 19-20 : effet brut de 225 000 emplois (hypothèse jugée « favorable »), moins 100 000 emplois détruits par le financement et 75 000 par l'effet SMIC, soit « 50 000 emplois » nets. Chiffre publié en nombre d'emplois. Conversion en % faite ici, avec le même dénominateur que pour Gubian et al. : 50 000 / 13 millions = 0,4 % (1,7 % pour l'effet brut). À dépense égale, l'étude attribue 250 000 emplois nets à une baisse de cotisations sur les bas salaires."
+  note_synthese: "Les études ne s'accordent pas, et la question reste débattue. Les évaluations du ministère du Travail et de l'INSEE attribuent aux lois Aubry environ 350 000 emplois entre 1998 et 2002 (de l'ordre de 2 à 3 % des salariés des entreprises concernées), et les entreprises passées aux 35 heures avec des aides ont augmenté leurs effectifs d'environ 10 % de plus que les autres. Les laboratoires d'idées se partagent : l'OFCE estime avec ses modèles 320 000 emplois créés par les 35 heures et les baisses de cotisations qui les accompagnaient, la Fondation Concorde seulement 50 000 une fois retirés les emplois détruits par le financement et la hausse du coût du SMIC. Mais ces gains semblent surtout venir des baisses de cotisations et de la modération des salaires qui accompagnaient la réforme, plus que du partage du travail lui-même. Les études qui comparent des groupes touchés différemment par la loi (Alsace-Moselle, grandes et petites entreprises) ne trouvent pas d'effet significatif sur l'emploi total. Enfin, le passage de 40 à 39 heures en 1982, fait sans baisse de salaire, a fait perdre leur emploi à 2 à 4 % des salariés concernés, et l'expérience allemande ne montre pas non plus de gain clair."

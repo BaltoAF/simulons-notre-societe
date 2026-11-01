@@ -34,13 +34,13 @@ export default function Accueil() {
         <div className="container">
           <span className="badge primary" style={{ marginBottom: 14 }}><GitFork size={14} /> Les règles de la France, ouvertes à tous</span>
           {/* l'expérience recherchée d'abord : changer les règles, partir des propositions des autres, les comparer, les amender */}
-          {/* vendre le rêve (demande du responsable) : réimaginer la société, trouver ses équilibres, en faire son programme */}
-          <h1>Réimaginez les règles de la France. <em>Faites-en votre programme.</em></h1>
+          {/* vendre le rêve (demande du responsable) : réimaginer la société et trouver ses équilibres ; en faire un programme est possible, pas obligatoire (01/11/2026) */}
+          <h1>Réimaginez les règles de la France. <em>Voyez la France que ça donne.</em></h1>
           <p className="lead">Impôts, aides, retraites, école, santé, climat, budget de l'État : réécrivez les règles de la société française,
             une ou cent. Le site simule tout, pour vous et pour le pays, et vous aide à trouver vos équilibres entre argent public, climat et bien-être.
-            Comparez votre programme à ceux des autres, ou aidez-les à améliorer le leur. Chaque chiffre est prouvé et dit à quel point on peut s'y fier.</p>
+            Gardez vos idées pour vous, faites-en un programme complet, ou comparez-les à celles des autres. Chaque chiffre est prouvé et dit à quel point on peut s'y fier.</p>
           <div className="row" style={{ marginTop: 6, gap: 10 }}>
-            <Link to="/atelier" className="btn primary large"><GitFork size={18} /> Construire mon programme</Link>
+            <Link to="/atelier" className="btn primary large"><GitFork size={18} /> Changer les règles</Link>
             <Link to="/societes" className="btn large"><Users size={18} /> Voir les propositions des autres</Link>
           </div>
           <button className="btn ghost small" style={{ marginTop: 10 }} onClick={() => setVisite(true)}><PlayCircle size={16} /> Découvrir le site en 1 minute</button>
@@ -57,8 +57,8 @@ export default function Accueil() {
             </Link>
             <Link to="/societes" className="card link carte-teinte teinte-1">
               <Users size={26} className="icone-teinte" />
-              <h3 style={{ marginTop: 8 }}>3. Faites-en votre programme</h3>
-              <p className="small ink2" style={{ margin: 0 }}>Enregistrez-le, comparez-le à ceux des autres, partez du programme de quelqu'un, ou suggérez-lui des amendements.</p>
+              <h3 style={{ marginTop: 8 }}>3. Une idée ou un programme</h3>
+              <p className="small ink2" style={{ margin: 0 }}>Enregistrez votre France, d'une seule idée à un programme complet. Comparez-la à celles des autres, partez de celle de quelqu'un, ou suggérez-lui des amendements.</p>
             </Link>
           </div>
         </div>

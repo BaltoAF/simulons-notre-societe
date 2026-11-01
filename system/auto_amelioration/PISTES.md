@@ -243,6 +243,50 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
 - **Si la fréquentation augmente** (à soumettre au responsable) : la mémoire est déjà protégée, car un seul calcul de
   population tourne à la fois (`SOCIETE_WORKERS=1`) et les résultats identiques sont gardés en cache. Seule l'attente
   s'allonge : passer alors au VPS-2 avec `SOCIETE_WORKERS=3`, ou dire au visiteur combien de calculs passent avant le sien.
+- **Laboratoires d'idées, ce qui n'a pas été trouvé** (recherche du 01/11/2026) : aucun chiffre utilisable de Terra
+  Nova, de la Fondation Jean-Jaurès, de l'Institut Rousseau ni de Fondapol sur ces cinq fiches. Terra Nova et l'Institut
+  Montaigne ne font que reprendre les 350 000 emplois des 35 heures ; l'Institut Montaigne reprend le CGDD sur le
+  110 km/h (et cite 500 € par tonne de CO2 évitée, d'après Christian Gollier) ; Coe-Rexecode et l'iFRAP ne chiffrent pas
+  l'emploi créé par les 35 heures ; I4CE et l'Ifrap ne chiffrent pas le CO2 des limitations de vitesse. Sur l'exil
+  fiscal, les chiffrages viennent surtout de laboratoires libéraux ou proches des entreprises. Pistes restantes :
+  retrouver les Revues de l'OFCE n° 64 (1998) et n° 74 (2000) sur les 35 heures (introuvables en ligne) et une étude
+  de la Fondation Concorde de 2007 sur l'ISF (lien mort).
+- **Catalogue de mesures chiffrées du Shift Project** (« Plan de transformation de l'économie française », PTEF ; relu
+  le 01/11/2026, à ne pas intégrer au simulateur sans décision du responsable). Hors carburants, vitesse sur autoroute,
+  rénovation, pompes à chaleur, voiture électrique et engrais. Les chiffres sont ceux du Shift Project (laboratoire
+  d'idées) ; « objectif » signale une cible plutôt qu'un chiffrage de mesure.
+  1. Santé, alimentation en restauration collective (moins de gaspillage, repas végétariens, moins d'emballages) :
+     −48 % des émissions des achats alimentaires, −2,8 MtCO2e, horizon 2050. « Décarboner la santé pour soigner
+     durablement », v2 avril 2023, tableau p. 20 du PDF :
+     https://theshiftproject.org/app/uploads/2025/01/180423-TSP-PTEF-Rapport-final-Sante_v2.pdf
+  2. Santé, gaz médicaux (interdire les gaz anesthésiants à fort effet de serre, inhalateurs à poudre sèche) : −75 %,
+     −0,4 MtCO2e, 2050. Même rapport, p. 21.
+  3. Santé, déchets (dispositifs réutilisables, recyclage, tri des déchets de soins) : −14 %, −0,07 MtCO2e, 2050.
+     Même rapport, p. 21.
+  4. Santé, médicaments (autorisation de mise sur le marché tenant compte du carbone, achats, moins de gaspillage) :
+     objectif −63 %, −9,6 MtCO2e, 2050. Même rapport, p. 22.
+  5. Santé, dispositifs médicaux (marquage CE tenant compte du carbone, réutilisation) : objectif −67 %, −7,2 MtCO2e,
+     2050. Même rapport, p. 22.
+  6. Industrie, captage et stockage du CO2 : 1 MtCO2/an (ciment) + 2 (chimie) + 4 (sidérurgie), « capacité totale de
+     7 MtCO2/an », 2050. « Décarboner l'industrie sans la saborder », rapport final (2021-2022), p. 79 du PDF :
+     https://theshiftproject.org/app/uploads/2025/01/PTEF-Decarboner-lindustrie_-Rapport-final.pdf
+  7. Industrie, sidérurgie : 20,8 MtCO2e (2016) → 14,1 (2030) → 1,7 (2050), −92 %. Même rapport, tableau 7, p. 39 du PDF.
+  8. Industrie, béton moins carboné (ciments pauvres en clinker, normes, critère CO2 dans les marchés publics) : béton
+     armé moyen de 251 à 177 (2030) puis 117 kgCO2e/m³ (2050), −53 % ; pas de total en Mt. Même rapport, tableau 9, p. 42.
+  9. Aviation, programmes de fidélité : « les émissions d'Air France peuvent être réduites de 0,34 MtCO2 par an en
+     baissant de 85 % les Miles » ; pas d'horizon. « Pouvoir voyager en 2050 », avril 2022, p. 81 du PDF :
+     https://theshiftproject.org/app/uploads/2025/02/Voyager-Bas-Carbone-RAPPORT-FINAL.pdf
+  10. Aviation, emport de carburant pour le vol retour (« tankering ») : la pratique rejette 0,9 MtCO2/an pour toute
+      l'Europe (Shift Project et SupAéro Décarbo, 2021), donc un gain possible à l'échelle européenne et non française.
+      Même rapport, note 58.
+  Vérifié à part (thème « vitesse », donc hors liste) : poids lourds bridés à 80 km/h, « de l'ordre de 1 210 000
+  tonnes » de GES évitées par an (390 millions de litres × 3,1 kg), mesure « autofinancée » ; le rapport DGITM cité
+  par la même fiche n'en attendait que 580 000. « 80 km/h pour les poids lourds », novembre 2023, p. 5 :
+  https://theshiftproject.org/app/uploads/2025/01/TSP_Fiche-fret-V4_PDF.pdf (la piste de 1,21 Mt est donc confirmée).
+  Écartés : santé, déplacements (−6,5 MtCO2e, mais le chiffre compte l'électrification des véhicules) et bâtiments
+  (rénovation) ; culture, cinémas (unités visiblement fausses dans le rapport) ; administration publique (chiffres en
+  images, illisibles). En réserve, des totaux de secteur : fret 41 → 31 MtCO2/an en 2027 puis 1 en 2050 ; secteur
+  de l'autonomie −70 % d'ici 2050 (2,9 MtCO2e restantes, rapport d'avril 2024).
 
 ## En bêta
 
@@ -259,6 +303,27 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   30/10/2026, test débutants : Bernard, 72 ans). Bilan possible à partir du 13/11/2026.
 
 ## Fait
+
+- 01/11/2026 (demande du responsable) : mise en ligne automatique élargie. Toute branche `claude/…` ou `main-…` du
+  dépôt est testée puis fusionnée dans main si les tests passent (mêmes garde-fous : fichiers protégés, pas d'environnement
+  ni de dépendances, 200 fichiers au plus) ; le serveur la reprend ensuite.
+- 01/11/2026 (demande du responsable) : l'accueil ne pousse plus seulement à « faire son programme » : titre « Réimaginez
+  les règles de la France. Voyez la France que ça donne. », bouton « Changer les règles », 3e étape « Une idée ou un
+  programme » ; même esprit dans la visite « Découvrir le site en 1 minute ».
+- 01/11/2026 : chiffrages de laboratoires d'idées ajoutés à cinq fiches de preuves (documents lus en entier, sources
+  `think_tank` sauf mention contraire) :
+  - SMIC : OFCE (élasticité de −0,9 retenue dans son modèle, 2012), Institut Montaigne (environ −2 sur le
+    « zéro charges » de 2009, 2014), Fondation iFRAP (−0,5 en moyenne pour tous les salaires, valeur laissée vide, 2024).
+  - ISF et exil fiscal : départs de redevables selon Coe-Rexecode (2017), Fondation iFRAP (2019), Institut Montaigne
+    (2007), Fondation Concorde (2013) et Économistes atterrés (2019) ; ce sont des nombres de départs, sans réaction au
+    taux, donc valeurs laissées vides.
+  - Vitesse et CO2 : Shift Project, −15 % pour le 110 km/h (−7,5 % pour 10 km/h, en supposant que la vitesse moyenne
+    baisse autant que la limite) et −5 % pour des poids lourds bridés à 80 km/h.
+  - 35 heures : OFCE, 320 000 emplois (audition de 2014) et Fondation Concorde, 50 000 emplois nets (2003) ; les
+    pourcentages (2,5 % et 0,4 %) sont recalculés avec le dénominateur déjà utilisé par la fiche, et la note le dit.
+  - Retraite et emploi des seniors : aucun laboratoire d'idées ne publie d'estimation propre ; l'OFCE et l'iFRAP
+    reprennent l'Insee. Ajoutés à la place : Insee Analyses n° 30 (+16 à +17 points à 60 ans, statistique publique) et
+    rapport n° 61 de l'Institut des politiques publiques (+20 à +25 points entre 60 et 62 ans, document de travail).
 
 - 30/10/2026 (soir) : la revalorisation des pensions de base est chiffrée : appliquée à la part des retraites versée par
   des régimes qui la suivent (74 %, DREES fiche 10, 2024 ; les complémentaires de salariés, 26 %, ont leur propre
