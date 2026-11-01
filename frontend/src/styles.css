@@ -792,3 +792,11 @@ button.preset > strong:only-child { margin: auto 0; }
 .taille-texte:focus-visible { border-radius: 10px; }
 .card.link:focus-visible { border-radius: 16px; outline-offset: 3px; }
 button.preset:focus-visible, .mode-carte:focus-visible { border-radius: 14px; outline-offset: 3px; }
+
+/* Un même aspect, un même comportement (demande du responsable, 01/11/2026) : contour, liseré de couleur, titre bleu et
+   flèche signalent ce qui est cliquable ; une carte d'information est plate (fond teinté léger, sans contour, ombre ni
+   liseré), comme les « filled cards » de Material Design 3. */
+.card:not(.link):not(.flat):not(.soft) { box-shadow: none; border: 0; background: var(--conteneur); }
+.card.kpi-teinte:not(.link), .card.carte-teinte:not(.link) { border-top: 0; }
+/* dans une zone plate, ce qui est posé dessus reste blanc (sans cadre) pour se détacher */
+.card:not(.link) .card:not(.link), .card:not(.link) .mission, .card:not(.link) .change-chip, .card:not(.link) .soutien { background: var(--surface); }
