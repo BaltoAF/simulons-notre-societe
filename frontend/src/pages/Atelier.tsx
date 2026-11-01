@@ -207,7 +207,7 @@ export default function Atelier() {
           <button className="lien" onClick={() => { setDraft(annulable); setAnnulable(null) }}>Annuler</button></div></div>
       )}
       <p className="ink2" style={{ maxWidth: 760, marginBottom: 8 }}>Réécrivez les règles de la France, une ou cent : le site simule ce qu'elles changeraient, pour vous et pour le pays,
-        et vous aide à trouver vos équilibres (argent public, climat, bien-être). Pas à pas, vous construisez votre programme. C'est libre et anonyme ; un compte n'est utile que pour l'enregistrer et le partager.</p>
+        et vous aide à trouver vos équilibres (argent public, climat, bien-être). Pas à pas, vous imaginez votre France, et si vous le voulez, votre programme. C'est libre et anonyme ; un compte n'est utile que pour l'enregistrer et le partager.</p>
       <Etapes etape={etape} />
 
       <div className="split">
@@ -218,7 +218,7 @@ export default function Atelier() {
               {nbChangements > 0 && <span className="badge primary">{nbChangements} changement{nbChangements > 1 ? 's' : ''}</span>}</div>
             <div className="small muted" style={{ marginBottom: 12 }}>
               À partir de {base && !base.societe.reference ? <>« {base.societe.nom} » (<Link to={`/societes/${base.societe.id}`}>voir</Link>)</>
-                : <>la France d'aujourd'hui (la <Terme id="societe_1_0">loi actuelle</Terme>)</>}</div>
+                : <>la France d'aujourd'hui (la <span style={{ whiteSpace: 'nowrap' }}><Terme id="societe_1_0">loi actuelle</Terme>)</span></>}</div>
             {base && !base.societe.reference && !proprietaire && (
               <div className="notice small" style={{ margin: '0 0 10px' }}><GitPullRequest size={16} style={{ flexShrink: 0 }} /><div>
                 {draft.suggestion ? <>Vous préparez une <strong>suggestion</strong> pour « {base.societe.nom} » : changez ses règles, voyez les effets, puis envoyez-la.

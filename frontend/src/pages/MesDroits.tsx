@@ -491,7 +491,7 @@ export default function MesDroits() {
       {step === 0 && (
         <div className="card soft" style={{ marginBottom: 14, padding: 14 }}>
           <div style={{ fontWeight: 700, marginBottom: 8 }}>Le plus rapide : choisissez un foyer qui vous ressemble</div>
-          <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 8 }}>
+          <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 10 }}>
             {PROFILS.map((p) => (
               <button key={p.titre} className="preset" onClick={() => { setS(p.s); setExemple(p.titre); calculer(p.s) }}>
                 <strong>{p.titre}</strong><span className="small muted">{resumeSituation(p.s)}</span>

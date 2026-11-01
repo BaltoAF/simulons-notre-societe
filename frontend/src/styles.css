@@ -3,7 +3,7 @@
    Bleu et rouge restent distincts de ceux des sites de l'État : le site est indépendant et ne doit pas s'y confondre.
    Les thèmes gardent chacun une teinte (« mosaïque » de 8 teintes) pour les icônes et les liserés des cartes. */
 :root {
-  --bg: #ffffff;
+  --bg: #edf1f7;             /* page légèrement teintée : les cartes blanches s'en détachent (pas de blanc sur blanc) */
   --surface: #ffffff;
   --surface-2: #f4f6fb;
   --surface-3: #e9edf6;
@@ -796,10 +796,11 @@ button.preset:focus-visible, .mode-carte:focus-visible { border-radius: 14px; ou
 /* Un même aspect, un même comportement (demande du responsable, 01/11/2026) : contour, liseré de couleur, titre bleu et
    flèche signalent ce qui est cliquable ; une carte d'information est plate (fond teinté léger, sans contour, ombre ni
    liseré), comme les « filled cards » de Material Design 3. */
-.card:not(.link):not(.flat):not(.soft) { box-shadow: none; border: 0; background: var(--conteneur); }
+.card:not(.link):not(.flat):not(.soft) { box-shadow: none; border: 0; background: var(--surface); }
 .card.kpi-teinte:not(.link), .card.carte-teinte:not(.link) { border-top: 0; }
 /* dans une zone plate, ce qui est posé dessus reste blanc (sans cadre) pour se détacher */
-.card:not(.link) .card:not(.link), .card:not(.link) .mission, .card:not(.link) .change-chip, .card:not(.link) .soutien { background: var(--surface); }
+.card:not(.link) .card:not(.link), .card:not(.link) .change-chip, .card:not(.link) .soutien { background: var(--conteneur); }
+.card:not(.link) .mission { background: var(--surface); }
 
 /* ═══════════ Tableau de bord des propositions (« cockpit ») ═══════════
    Cinq tuiles plates (ni contour, ni ombre, ni liseré : elles ne sont pas cliquables), toujours dans le même ordre :
@@ -858,4 +859,15 @@ button.preset:focus-visible, .mode-carte:focus-visible { border-radius: 14px; ou
   .bord-detail .tuile-cellule:first-child { grid-column: 1 / -1; }
   .bord-detail .tuile-valeur { font-size: 1.35rem; }
   .bord-detail .tuile-libelle { min-height: 0; }
+}
+
+/* Fond de page teinté (01/11/2026, « blanc sur blanc ») : la page est gris-bleu très clair, les cartes sont blanches.
+   Cliquable = blanc + contour + titre bleu + flèche ; information = blanc, sans contour ni ombre. */
+.header { background: color-mix(in srgb, var(--surface) 94%, transparent); }
+.card.soft, .card.flat { background: var(--surface-3); }
+/* en-tête : à 1 280 px, « Se connecter » débordait à droite */
+@media (max-width: 1360px) and (min-width: 1261px) {
+  .header .container { gap: 8px; }
+  .nav { gap: 2px; }
+  .nav a { padding: 8px 7px; font-size: .88rem; }
 }
