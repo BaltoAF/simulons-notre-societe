@@ -5,6 +5,12 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
 
 ## À faire
 
+- **À vérifier en priorité (tableau de pilotage, 01/11/2026)** : en production, « Plus solidaire, financée aussi par la
+  TVA » et « Une France plus solidaire » ont exactement les mêmes ménages gagnants (9,0 %), la même baisse de la
+  pauvreté (−0,26 point) et le même emploi (−268 230) ; seul l'argent public diffère (+8,0 contre +0,5 Md€). Un point
+  de TVA en plus devrait réduire le pouvoir d'achat, donc la part de gagnants : la hausse de TVA n'entre sans doute pas
+  dans ces indicateurs. Vérifier aussi l'ordre de grandeur de −268 000 emplois pour un RSA à 800 €.
+
 - **Tableaux de bord partout : les chiffres d'abord, le texte sur demande** (demande du responsable, 01/11/2026 : « chaque
   visiteur est un futur président ; il a besoin de vraies informations de pilotage »). Fait sur « Les propositions » et la
   page d'une proposition (composant `TableauDeBord`, indicateurs gardés par `backend/app/indicateurs.py`). À généraliser,
