@@ -49,12 +49,15 @@ function Tuile({ d, v, statut }: { d: Def; v?: ValeurIndicateur; statut: Indicat
       <span className="tuile-libelle">{libelle}</span><span className="tuile-valeur nc">non chiffré</span><span className="tuile-unite">&nbsp;</span></div>
   }
   const sens: Sens = reference ? 'neutre' : v?.sens ?? 'neutre'
-  const Fleche = reference || Math.abs(val!) < 1e-9 || fmt[0] === '0' ? null : val! > 0 ? ArrowUp : ArrowDown
+  const Fleche = reference || v?.incertain || Math.abs(val!) < 1e-9 || fmt[0] === '0' ? null : val! > 0 ? ArrowUp : ArrowDown
   const parts = d.id === 'menages' && v?.gagnants != null && v?.perdants != null
     ? `gagnants ${nombre(v.gagnants, 0)} % · perdants ${nombre(v.perdants, 0)} %` : null
-  const unite = parts ? `${fmt[1]} ; ${parts}` : fmt[1]
+  // fourchette des études, dans la même unité que la valeur ; si elle contient zéro, le sens de l'effet n'est pas établi
+  const bornes = !reference && v?.fourchette ? v.fourchette.map((x) => d.effet(x)[0]) : null
+  const plage = bornes ? `${v?.incertain ? 'effet incertain : ' : ''}de ${bornes[0]} à ${bornes[1]}` : null
+  const unite = [parts ? `${fmt[1]} ; ${parts}` : fmt[1], plage].filter(Boolean).join(' · ')
   return (
-    <div className={`tuile ${sens}`} title={reference ? `Chiffre officiel${v?.annee ? ` (${v.annee})` : ''}` : SENS_TXT[sens]}>
+    <div className={`tuile ${sens}`} title={reference ? `Chiffre officiel${v?.annee ? ` (${v.annee})` : ''}` : v?.incertain ? "Les études ne s'accordent pas même sur le sens de l'effet" : SENS_TXT[sens]}>
       <span className="tuile-libelle">{libelle}</span>
       <span className="tuile-valeur">{Fleche && <Fleche size={16} strokeWidth={2.6} aria-hidden />}{fmt[0]}
         {!reference && <span className="sr-only"> ({SENS_TXT[sens]})</span>}</span>

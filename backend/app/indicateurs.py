@@ -34,7 +34,7 @@ from . import config, db, vcs
 log = logging.getLogger("societe.indicateurs")
 
 # à changer quand l'extraction ci-dessous change : les indicateurs déjà gardés sont alors recalculés
-VERSION_EXTRACTION = 2  # 2 : pouvoir d'achat moyen (TVA comprise) en tête de la tuile des ménages
+VERSION_EXTRACTION = 3  # 3 : fourchette des études et « effet incertain » quand elle contient zéro ; 2 : 2 : pouvoir d'achat moyen (TVA comprise) en tête de la tuile des ménages
 MAX_FILE = int(os.environ.get("SOCIETE_INDICATEURS_FILE", "20"))
 PAUSE_S = float(os.environ.get("SOCIETE_INDICATEURS_PAUSE", "5"))
 
@@ -130,6 +130,15 @@ def _sens(v: float | None, seuil: float, plus_est_favorable: bool = True) -> str
     return "favorable" if (v > 0) == plus_est_favorable else "defavorable"
 
 
+def _incertain(d: dict, lo: float, hi: float) -> None:
+    """Ajoute la fourchette des études ; si elle va d'un effet négatif à un effet positif, le sens n'est pas établi."""
+    lo, hi = sorted([float(lo), float(hi)])
+    d["fourchette"] = [round(lo, 2), round(hi, 2)]
+    if lo < 0 < hi:
+        d["incertain"] = True
+        d["sens"] = "neutre"
+
+
 def _non_chiffre() -> dict:
     return {"valeur": None, "sens": "neutre", "confiance": None}
 
@@ -179,6 +188,8 @@ def extraire(rapport: dict) -> dict:
         out["pauvrete"] = {"valeur": p[0]["valeur"], "avant": p[0].get("avant"), "apres": p[0].get("apres"), "unite": "points",
                            "sens": (bilan.get("pauvrete") or {}).get("sens") or _sens(p[0]["valeur"], NEGLIGEABLE["pauvrete"], False),
                            "confiance": p[0].get("confiance")}
+        if p[0].get("fourchette"):
+            _incertain(out["pauvrete"], *p[0]["fourchette"])
     else:
         out["pauvrete"] = _non_chiffre()
 
@@ -194,6 +205,12 @@ def extraire(rapport: dict) -> dict:
         c = moyenne_ponderee(avec, "Effet total sur l'emploi").to_dict() if any(abs(v) > 1e-9 for v, _ in avec) else _conf_min([i.get("confiance") for i in emplois])
         out["emploi"] = {"valeur": round(total), "unite": "emplois", "sens": _sens(total, NEGLIGEABLE["emploi_"]), "confiance": c,
                          "composantes": [{"libelle": i["libelle"], "valeur": i["valeur"]} for i in emplois]}
+        # fourchette des études (bornes additionnées, la valeur centrale pour un effet sans fourchette) : quand elle contient
+        # zéro, même le sens de l'effet n'est pas établi ; la tuile le dit au lieu de colorer un chiffre central fragile
+        if any(i.get("fourchette") for i in emplois):
+            lo = sum((i.get("fourchette") or [i["valeur"]] * 2)[0] for i in emplois)
+            hi = sum((i.get("fourchette") or [i["valeur"]] * 2)[1] for i in emplois)
+            _incertain(out["emploi"], lo, hi)
     else:
         out["emploi"] = _non_chiffre()
 

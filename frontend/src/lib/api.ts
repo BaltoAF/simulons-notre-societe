@@ -198,6 +198,7 @@ export type Sens = 'favorable' | 'defavorable' | 'neutre'
 export type ValeurIndicateur = {
   valeur: number | null; unite?: string; sens?: Sens; confiance?: Confiance | null
   gagnants?: number | null; perdants?: number | null; statut?: string; manque?: number
+  fourchette?: [number, number] | null; incertain?: boolean
   annee?: string; source?: string // loi actuelle : statistique publique
 }
 export type IndicateursCles = {

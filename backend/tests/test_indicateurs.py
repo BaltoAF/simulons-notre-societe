@@ -166,3 +166,16 @@ def test_api_liste_renvoie_indicateurs_sans_simuler(monkeypatch):
         assert all(s["indicateurs"]["statut"] in ("pret", "en_calcul", "erreur", "aucun_changement") for s in autres)
         sid = autres[0]["id"]
         assert c.get(f"/api/societes/{sid}").json()["indicateurs"]["statut"] in ("pret", "en_calcul", "erreur", "aucun_changement")
+
+
+def test_effet_incertain_quand_la_fourchette_contient_zero():
+    """RSA à 800 € : −268 000 emplois au centre, mais de −751 000 à +43 000 selon les études. La tuile ne doit pas présenter
+    ce chiffre comme un effet établi : fourchette affichée, sens neutre."""
+    r = rapport_factice(emplois=(-268000, 0))
+    r["sections"][1]["indicateurs"][0]["fourchette"] = [-751000, 43000]
+    e = indicateurs.extraire(r)["emploi"]
+    assert e["fourchette"] == [-751000, 43000] and e["incertain"] and e["sens"] == "neutre"
+    # une fourchette entièrement négative garde son sens
+    r["sections"][1]["indicateurs"][0]["fourchette"] = [-400000, -100000]
+    e = indicateurs.extraire(r)["emploi"]
+    assert not e.get("incertain") and e["sens"] == "defavorable"
