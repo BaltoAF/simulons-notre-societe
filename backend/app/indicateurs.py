@@ -34,7 +34,7 @@ from . import config, db, vcs
 log = logging.getLogger("societe.indicateurs")
 
 # à changer quand l'extraction ci-dessous change : les indicateurs déjà gardés sont alors recalculés
-VERSION_EXTRACTION = 1
+VERSION_EXTRACTION = 2  # 2 : pouvoir d'achat moyen (TVA comprise) en tête de la tuile des ménages
 MAX_FILE = int(os.environ.get("SOCIETE_INDICATEURS_FILE", "20"))
 PAUSE_S = float(os.environ.get("SOCIETE_INDICATEURS_PAUSE", "5"))
 
@@ -162,8 +162,14 @@ def extraire(rapport: dict) -> dict:
         if sens is None:
             diff = (g[0]["valeur"] or 0) - (perdants or 0)
             sens = "favorable" if diff >= 20 else "defavorable" if diff <= -20 else "neutre"
-        out["menages"] = {"valeur": g[0]["valeur"], "perdants": round(perdants, 2) if perdants is not None else None,
-                          "unite": "pourcent_part", "sens": sens, "confiance": g[0].get("confiance")}
+        # la part de gagnants seule cache les pertes (un point de TVA ne change pas les gagnants, il ajoute des perdants) :
+        # en tête, l'effet moyen par ménage, TVA comprise, puis gagnants et perdants
+        moy = (g[1].get("donnees") or {}).get("moyenne_menage_mois")
+        if moy is not None:
+            sens = _sens(moy, 1.0)
+        out["menages"] = {"valeur": round(moy, 2) if moy is not None else None, "gagnants": round(g[0]["valeur"], 2),
+                          "perdants": round(perdants, 2) if perdants is not None else None,
+                          "unite": "euros_mois", "sens": sens, "confiance": g[0].get("confiance")}
     else:
         out["menages"] = _non_chiffre()
 

@@ -17,8 +17,9 @@ const md = (v: number) => nombre(Math.abs(v), Math.abs(v) < 10 ? 1 : 0)
 export const TUILES: Def[] = [
   { id: 'finances', libelle: 'Argent public', libelleRef: 'Solde public',
     effet: (v) => [s(v, md(v)), 'Md€ par an'], ref: (v) => [s(v, md(v)), 'Md€ par an'] },
-  { id: 'menages', libelle: 'Ménages gagnants',
-    effet: (v) => [`${nombre(v, 0)} %`, ''] },
+  // effet moyen par ménage, TVA comprise ; gagnants et perdants dessous (la part de gagnants seule cache les pertes)
+  { id: 'menages', libelle: "Pouvoir d'achat", libelleRef: 'Ménages',
+    effet: (v) => [Math.abs(v) < 0.5 ? '0' : s(v, nombre(Math.abs(v), 0)) + ' €', 'par ménage et par mois'] },
   { id: 'pauvrete', libelle: 'Taux de pauvreté',
     effet: (v) => [Math.abs(v) < 0.005 ? '0' : s(v, nombre(Math.abs(v), 2)), 'point'], ref: (v) => [`${nombre(v, 1)} %`, 'des personnes'] },
   { id: 'emploi', libelle: 'Emploi', libelleRef: 'Chômage',
@@ -48,9 +49,10 @@ function Tuile({ d, v, statut }: { d: Def; v?: ValeurIndicateur; statut: Indicat
       <span className="tuile-libelle">{libelle}</span><span className="tuile-valeur nc">non chiffré</span><span className="tuile-unite">&nbsp;</span></div>
   }
   const sens: Sens = reference ? 'neutre' : v?.sens ?? 'neutre'
-  // la part des ménages gagnants est un niveau, pas une variation : pas de flèche
-  const Fleche = reference || d.id === 'menages' || Math.abs(val!) < 1e-9 || fmt[0] === '0' ? null : val! > 0 ? ArrowUp : ArrowDown
-  const unite = d.id === 'menages' && v?.perdants !== null && v?.perdants !== undefined ? `perdants : ${nombre(v.perdants, 0)} %` : fmt[1]
+  const Fleche = reference || Math.abs(val!) < 1e-9 || fmt[0] === '0' ? null : val! > 0 ? ArrowUp : ArrowDown
+  const parts = d.id === 'menages' && v?.gagnants != null && v?.perdants != null
+    ? `gagnants ${nombre(v.gagnants, 0)} % · perdants ${nombre(v.perdants, 0)} %` : null
+  const unite = parts ? `${fmt[1]} ; ${parts}` : fmt[1]
   return (
     <div className={`tuile ${sens}`} title={reference ? `Chiffre officiel${v?.annee ? ` (${v.annee})` : ''}` : SENS_TXT[sens]}>
       <span className="tuile-libelle">{libelle}</span>

@@ -306,7 +306,9 @@ def section_redistribution(ctx: Contexte) -> Section | None:
                    "Les personnes sont classées par niveau de vie (revenu disponible du ménage divisé par le nombre d'unités de "
                    "consommation, convention INSEE), puis on mesure la variation moyenne dans chaque dixième de la population.",
                    ["À comportements inchangés.", "Les droits aux prestations sont supposés intégralement perçus dans ce calcul de répartition."],
-                   {"deciles": deciles, "gagnants_pct": gagnants, "perdants_pct": perdants}, ordre=40)
+                   {"deciles": deciles, "gagnants_pct": gagnants, "perdants_pct": perdants,
+                    # effet moyen par ménage, en € par mois, TVA payée sur les achats comprise
+                    "moyenne_menage_mois": float(np.average(delta_men, weights=poids))}, ordre=40)
 
 
 # Vrai quand les calculs de référence sont prêts : avant, la première simulation est nettement plus longue

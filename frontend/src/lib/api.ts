@@ -197,7 +197,7 @@ export type Societe = {
 export type Sens = 'favorable' | 'defavorable' | 'neutre'
 export type ValeurIndicateur = {
   valeur: number | null; unite?: string; sens?: Sens; confiance?: Confiance | null
-  perdants?: number | null; statut?: string; manque?: number
+  gagnants?: number | null; perdants?: number | null; statut?: string; manque?: number
   annee?: string; source?: string // loi actuelle : statistique publique
 }
 export type IndicateursCles = {

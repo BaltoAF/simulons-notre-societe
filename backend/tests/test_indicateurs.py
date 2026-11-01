@@ -11,7 +11,7 @@ CONF = {"score": 70, "niveau": "eleve", "libelle": "Élevé", "description": "",
 CONF_FAIBLE = {"score": 30, "niveau": "faible", "libelle": "Faible", "description": "", "facteurs": [], "resume": "y"}
 
 
-def rapport_factice(effet_budget=-2.0, effet_carbone=0.3, gagnants=40.0, perdants=5.0, emplois=(12000, -2000)):
+def rapport_factice(effet_budget=-2.0, effet_carbone=0.3, gagnants=40.0, perdants=5.0, emplois=(12000, -2000), moyenne=12.5):
     return {
         "equilibres": [
             {"id": "budget", "effet": effet_budget, "statut": "a_compenser", "manque": max(0, -effet_budget), "confiance": CONF,
@@ -19,7 +19,7 @@ def rapport_factice(effet_budget=-2.0, effet_carbone=0.3, gagnants=40.0, perdant
             {"id": "carbone", "effet": effet_carbone, "statut": "information", "manque": 0, "confiance": CONF_FAIBLE, "composantes": [{}]},
         ],
         "sections": [
-            {"id": "redistribution", "donnees": {"perdants_pct": perdants}, "indicateurs": [
+            {"id": "redistribution", "donnees": {"perdants_pct": perdants, "moyenne_menage_mois": moyenne}, "indicateurs": [
                 {"id": "gagnants", "libelle": "Part des ménages gagnants", "valeur": gagnants, "unite": "pourcent_part", "confiance": CONF},
                 {"id": "pauvrete", "libelle": "Taux de pauvreté", "valeur": -0.4, "avant": 15.0, "apres": 14.6, "unite": "points",
                  "confiance": CONF_FAIBLE, "sens": "favorable"}]},
@@ -35,7 +35,8 @@ def test_extraction_ordre_valeurs_et_sens():
     out = indicateurs.extraire(rapport_factice())
     assert list(out) == ["finances", "menages", "pauvrete", "emploi", "climat"]  # même ordre pour toutes les propositions
     assert out["finances"]["valeur"] == -2.0 and out["finances"]["sens"] == "defavorable" and out["finances"]["confiance"]["score"] == 70
-    assert out["menages"]["valeur"] == 40.0 and out["menages"]["perdants"] == 5.0 and out["menages"]["sens"] == "favorable"
+    assert out["menages"]["valeur"] == 12.5 and out["menages"]["gagnants"] == 40.0 and out["menages"]["perdants"] == 5.0
+    assert out["menages"]["sens"] == "favorable" and out["menages"]["unite"] == "euros_mois"
     assert out["pauvrete"]["valeur"] == -0.4 and out["pauvrete"]["sens"] == "favorable"
     assert out["emploi"]["valeur"] == 10000 and out["emploi"]["sens"] == "favorable"
     assert 30 <= out["emploi"]["confiance"]["score"] <= 70  # moyenne pondérée par l'ampleur, comme les autres sommes du site
@@ -51,9 +52,18 @@ def test_extraction_non_chiffre_jamais_invente():
 
 
 def test_extraction_effet_negligeable_neutre():
-    out = indicateurs.extraire(rapport_factice(effet_carbone=0.001, gagnants=10, perdants=8, emplois=(100, 50)))
+    out = indicateurs.extraire(rapport_factice(effet_carbone=0.001, gagnants=10, perdants=8, emplois=(100, 50), moyenne=0.3))
     assert out["climat"]["sens"] == "neutre" and out["menages"]["sens"] == "neutre" and out["emploi"]["sens"] == "neutre"
 
+
+
+def test_une_hausse_de_tva_se_voit_dans_la_tuile_des_menages():
+    """Anomalie du 01/11/2026 : un point de TVA en plus ne change pas la part de gagnants (ceux qui gagnent beaucoup restent
+    gagnants) mais ajoute des perdants et baisse le pouvoir d'achat moyen ; la tuile doit le montrer."""
+    sans = indicateurs.extraire(rapport_factice(gagnants=9.0, perdants=59.0, moyenne=4.0))
+    avec = indicateurs.extraire(rapport_factice(gagnants=9.0, perdants=91.0, moyenne=-9.0))
+    assert sans["menages"]["gagnants"] == avec["menages"]["gagnants"]
+    assert avec["menages"]["valeur"] < sans["menages"]["valeur"] and avec["menages"]["sens"] == "defavorable"
 
 def _proposition(nom="Tableau de bord", valeur=700):
     db.init_db()
