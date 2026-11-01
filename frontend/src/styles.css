@@ -800,3 +800,62 @@ button.preset:focus-visible, .mode-carte:focus-visible { border-radius: 14px; ou
 .card.kpi-teinte:not(.link), .card.carte-teinte:not(.link) { border-top: 0; }
 /* dans une zone plate, ce qui est posé dessus reste blanc (sans cadre) pour se détacher */
 .card:not(.link) .card:not(.link), .card:not(.link) .mission, .card:not(.link) .change-chip, .card:not(.link) .soutien { background: var(--surface); }
+
+/* ═══════════ Tableau de bord des propositions (« cockpit ») ═══════════
+   Cinq tuiles plates (ni contour, ni ombre, ni liseré : elles ne sont pas cliquables), toujours dans le même ordre :
+   valeur en grand, unité dessous, flèche = sens de la variation, couleur = favorable / défavorable (champ `sens`),
+   points = fiabilité. Sur téléphone, une ligne par indicateur. */
+.tableau-bord { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; }
+.tuile { display: flex; flex-direction: column; gap: 1px; height: 100%; padding: 8px 10px 9px;
+  border-radius: 10px; background: color-mix(in srgb, var(--primary) 5%, var(--surface)); min-width: 0; }
+.card:not(.link) .tuile { background: var(--surface); }
+.tuile-libelle { font-size: .78rem; font-weight: 600; color: var(--ink-3); line-height: 1.2; min-height: 2.4em; }
+.tuile-valeur { display: inline-flex; align-items: center; gap: 2px; font-size: 1.3rem; font-weight: 800; letter-spacing: -.02em;
+  line-height: 1.15; font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--ink); }
+.tuile-unite { font-size: .76rem; color: var(--ink-3); line-height: 1.2; }
+.tuile.favorable .tuile-valeur { color: var(--gain); }
+.tuile.defavorable .tuile-valeur { color: var(--loss); }
+.tuile-valeur.nc { font-size: .9rem; font-weight: 600; color: var(--ink-3); letter-spacing: 0; padding: 4px 0 3px; }
+.tuile-conf { margin-top: 3px; }
+.tuile-conf .conf { padding: 2px 6px; min-height: 0; }
+.tuile.attente .tuile-valeur { animation: attente-tuile 1.6s ease-in-out infinite; }
+@keyframes attente-tuile { 50% { opacity: .35; } }
+@media (prefers-reduced-motion: reduce) { .tuile.attente .tuile-valeur { animation: none; } }
+.bord-detail { margin-top: 14px; }
+.bord-detail .tuile-valeur { font-size: 1.6rem; }
+.legende-tableau { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 14px; margin: 8px 0 10px; }
+.legende-item { display: inline-flex; align-items: center; gap: 5px; }
+.pastille { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+.pastille.favorable { background: var(--gain); }
+.pastille.defavorable { background: var(--loss); }
+.conf-mini { letter-spacing: -1px; font-size: .7rem; color: var(--c-eleve); }
+
+/* la carte d'une proposition reste cliquable en entier (lien du titre étendu à toute la carte), mais le détail
+   repliable et les points de fiabilité s'ouvrent sans suivre le lien */
+.carte-proposition { position: relative; display: flex; flex-direction: column; }
+.carte-proposition .lien-carte { color: inherit; text-decoration: none; }
+.carte-proposition .lien-carte::before { content: ''; position: absolute; inset: 0; border-radius: 16px; z-index: 0; }
+.carte-proposition .lien-carte:focus-visible { outline: none; }
+.carte-proposition:has(.lien-carte:focus-visible) { outline: 2px solid var(--primary); outline-offset: 3px; }
+.carte-proposition details, .carte-proposition .popover-wrap, .carte-proposition .badge { position: relative; z-index: 1; }
+.detail-carte { margin-top: 10px; font-size: .9rem; }
+.detail-carte > summary { cursor: pointer; color: var(--primary); font-weight: 600; padding: 6px 0; width: fit-content; }
+.detail-carte > summary:hover { text-decoration: underline; text-underline-offset: 3px; }
+.carte-proposition .tableau-bord { margin-top: auto; }
+
+/* une ligne par indicateur sur téléphone (et dans une carte étroite), libellé à gauche, chiffre à droite */
+@media (max-width: 1100px) {
+  .cartes-propositions .tableau-bord { grid-template-columns: 1fr; gap: 3px; }
+  .cartes-propositions .tuile { display: grid; grid-template-columns: 1fr auto auto; align-items: center; column-gap: 8px; padding: 6px 10px; }
+  .cartes-propositions .tuile-libelle { grid-row: 1 / span 2; font-size: .85rem; min-height: 0; }
+  .cartes-propositions .tuile-valeur { grid-column: 2; justify-self: end; font-size: 1.1rem; }
+  .cartes-propositions .tuile-unite { grid-column: 2; justify-self: end; text-align: right; }
+  .cartes-propositions .tuile-conf { grid-column: 3; grid-row: 1 / span 2; margin: 0; }
+  .cartes-propositions .tuile-valeur.nc { padding: 0; }
+}
+@media (max-width: 640px) {
+  .bord-detail .tableau-bord { grid-template-columns: 1fr 1fr; }
+  .bord-detail .tuile-cellule:first-child { grid-column: 1 / -1; }
+  .bord-detail .tuile-valeur { font-size: 1.35rem; }
+  .bord-detail .tuile-libelle { min-height: 0; }
+}

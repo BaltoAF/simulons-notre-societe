@@ -5,6 +5,35 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
 
 ## À faire
 
+- **Tableaux de bord partout : les chiffres d'abord, le texte sur demande** (demande du responsable, 01/11/2026 : « chaque
+  visiteur est un futur président ; il a besoin de vraies informations de pilotage »). Fait sur « Les propositions » et la
+  page d'une proposition (composant `TableauDeBord`, indicateurs gardés par `backend/app/indicateurs.py`). À généraliser,
+  page par page (même composant, mêmes cinq indicateurs et mêmes unités quand il s'agit d'une réforme) :
+  - *Accueil* (≈ 1 100 mots, 4 300 px) : en tête, « La France aujourd'hui » en cinq tuiles (solde public, pauvreté,
+    chômage, émissions, dette ; `indicateurs.situation_actuelle`, sans simulation), puis les deux boutons. Replier le long
+    paragraphe d'accroche en une phrase ; les trois cartes « 1. Réimaginez / 2. Équilibres / 3. Programme » en une ligne
+    ou un « Comment ça marche ? » ; les propositions récentes affichées avec leurs tuiles plutôt qu'en texte.
+  - *Atelier, résultats* : « Ses effets » commence par les cinq tuiles (mêmes que la liste, calculées par le même
+    `indicateurs.extraire` sur le rapport déjà reçu), puis l'équilibre à atteindre (manque en Md€ et en Mt) ; « En bref »,
+    les explications du foyer et les sections détaillées repliées sous « Voir le détail ». Le texte d'introduction
+    (4 lignes) tient en une ligne.
+  - *Comparer* : deux colonnes de tuiles alignées (A, B, écart B − A), avant la liste des règles différentes : c'est
+    l'usage « cockpit » le plus direct, et les chiffres sont déjà en cache pour la branche principale.
+  - *Mes droits, résultat* : une rangée « Ce qui vous reste par mois / aides / impôt / cotisations » en tuiles, puis le
+    détail ligne à ligne replié ; les cartes de foyers types (texte long dans chaque carte, 5 cartes de hauteur inégale)
+    réduites au titre, le descriptif au survol ou en petit.
+  - *Le budget* (≈ 960 mots) : au-dessus de « Sur 100 € », quatre tuiles (dépenses publiques totales, recettes, solde,
+    dette en % du PIB, avec leur année) ; « Et vous ? » et l'éditeur du budget de l'État restent dessous, les explications
+    de méthode repliées.
+  - *Comprendre* : chaque carte de question porte son chiffre clé en grand, tiré des métriques (dépenses publiques en
+    % du PIB, taux de pauvreté, émissions en Mt CO₂…) et une seule phrase ; le texte de deux à quatre lignes passe dans la page de la question.
+  - *Une règle* (`/regles/r/…`) : valeur actuelle, dernière évolution et fiabilité en tuiles, l'historique et les sources
+    repliés.
+  Vérifier à 390 px à chaque fois ; tuiles plates, sans bordure (règle « un même aspect, un même comportement »).
+- **Tableau de bord, suite** : sur la liste, trier ou filtrer par indicateur (« les moins coûteuses », « celles qui
+  réduisent la pauvreté ») ; afficher l'état d'équilibre (« financement à trouver : X Md€ ») quand `finances.statut`
+  vaut `a_compenser` ; les variantes (branches) n'ont leurs chiffres que sur la page de la proposition.
+
 - **Fiabilité du minimum vieillesse, suite** : avec le recours en montant (fait le 30/10), dépense simulée 3,6 Md€ contre
   4,6 Md€ versés (écart −22 %). Reste probablement la population synthétique : caler les retraités modestes sur les
   allocataires de la DREES (fin 2023 : 723 020, dont 77 % seuls, âge moyen 74 ans ; fiche 26 des « Retraités et les

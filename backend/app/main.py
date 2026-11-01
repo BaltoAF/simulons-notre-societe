@@ -13,7 +13,7 @@ from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
-from . import auth, db, frequentation, planificateur, retours, serveur, vcs
+from . import auth, db, frequentation, indicateurs, planificateur, retours, serveur, vcs
 from . import journal as journal_erreurs  # « journal » est déjà la route du journal des versions
 from . import config
 from .config import FRONTEND_DIST, REFERENCE_SOCIETY_ID
@@ -33,6 +33,7 @@ async def lifespan(_app: FastAPI):
     retours.init()
     frequentation.init()
     journal_erreurs.init()
+    indicateurs.init()
     store = get_store()
     # une nouvelle version déployée publie la loi actuelle mise à jour, puis met à jour les propositions sans conflit
     if vcs.ensure_reference(store).get("message"):
@@ -40,6 +41,7 @@ async def lifespan(_app: FastAPI):
     from .impacts.microsim import prechauffer
     threading.Thread(target=prechauffer, args=(store,), daemon=True).start()
     planificateur.demarrer()
+    indicateurs.demarrer()  # tableau de bord des propositions : une simulation à la fois, en arrière-plan
     yield
 
 
@@ -486,9 +488,7 @@ def simuler_reforme(body: ReformeIn, user: dict | None = Depends(auth.current_us
         soc = vcs.get_society(body.societe)
         if soc["visibilite"] == "privee" and (not user or user["id"] != soc["owner_id"]):
             raise HTTPException(403, "Société privée")
-        ref = store.snapshot()
-        st = vcs.state_of(vcs.branch_head(body.societe, body.branche))
-        base = {k: v for k, v in st.items() if k in ref and vcs.db.dumps(v) != vcs.db.dumps(ref[k])}
+        _, base = indicateurs.overrides_societe(store, body.societe, body.branche)
         base.update(overrides)
         overrides = base
     menage, approx = (None, [])
@@ -631,7 +631,10 @@ class ForkIn(BaseModel):
 @app.get("/api/societes")
 def list_societes(tri: str = "recent", q: str = "", auteur: str | None = None,
                   user: dict | None = Depends(auth.current_user)):
-    return {"societes": vcs.list_societies(get_store(), user, tri, q, auteur)}
+    store = get_store()
+    # les indicateurs clés gardés en base (jamais de simulation ici) ; ceux qui manquent sont mis en file de calcul
+    return {"societes": vcs.list_societies(store, user, tri, q, auteur,
+                                           enrichir=lambda s, st: s.__setitem__("indicateurs", indicateurs.pour_societe(store, s, etat=st)))}
 
 
 @app.post("/api/societes")
@@ -640,6 +643,7 @@ def creer_societe(body: ForkIn, user: dict = Depends(auth.require_user)):
     if body.changements:
         vcs.commit(user, get_store(), soc["id"], vcs.BRANCHE_PRINCIPALE, body.changements,
                    body.message or "Premières modifications")
+    indicateurs.demander(soc["id"], prioritaire=True)
     return vcs.get_society(soc["id"])
 
 
@@ -681,7 +685,8 @@ def get_societe(sid: str, branche: str = vcs.BRANCHE_PRINCIPALE, user: dict | No
             "conflits_loi": [c for c in vcs.conflits_en_attente(sid) if c["branche"] == branche],
             "mises_a_jour_auto": mises_a_jour,
             "etoile": vcs.has_star(user, sid), "proprietaire": bool(user and user["id"] == soc["owner_id"]),
-            "propositions": vcs.list_proposals(sid)}
+            "propositions": vcs.list_proposals(sid),
+            "indicateurs": indicateurs.pour_societe(store, soc, branche, etat=st)}
 
 
 class SocietePatch(BaseModel):
@@ -719,7 +724,9 @@ class CommitIn(BaseModel):
 
 @app.post("/api/societes/{sid}/commits")
 def creer_commit(sid: str, body: CommitIn, user: dict = Depends(auth.require_user)):
-    return vcs.commit(user, get_store(), sid, body.branche, body.changements, body.message)
+    out = vcs.commit(user, get_store(), sid, body.branche, body.changements, body.message)
+    indicateurs.demander(sid, body.branche, prioritaire=True)
+    return out
 
 
 @app.get("/api/commits/{cid}")
@@ -744,7 +751,9 @@ class SyncIn(BaseModel):
 
 @app.post("/api/societes/{sid}/synchroniser")
 def synchroniser(sid: str, body: SyncIn, user: dict = Depends(auth.require_user)):
-    return vcs.sync_with_reference(user, get_store(), sid, body.branche, body.resolutions)
+    out = vcs.sync_with_reference(user, get_store(), sid, body.branche, body.resolutions)
+    indicateurs.demander(sid, body.branche, prioritaire=True)
+    return out
 
 
 @app.post("/api/societes/{sid}/etoile")
@@ -794,7 +803,10 @@ class FusionIn(BaseModel):
 
 @app.post("/api/propositions/{pid}/fusionner")
 def fusionner(pid: int, body: FusionIn, user: dict = Depends(auth.require_user)):
-    return vcs.merge_proposal(user, get_store(), pid, body.resolutions)
+    out = vcs.merge_proposal(user, get_store(), pid, body.resolutions)
+    p = vcs.get_proposal(pid)
+    indicateurs.demander(p["target_society"], p["target_branch"], prioritaire=True)
+    return out
 
 
 @app.post("/api/propositions/{pid}/fermer")

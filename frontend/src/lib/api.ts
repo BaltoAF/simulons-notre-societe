@@ -190,6 +190,20 @@ export type Societe = {
   mesures?: Mesure[]
   financement?: Mesure[] // ce qui a été ajouté pour l'équilibrer
   nb_mesures?: number; nb_equilibrage?: number
+  indicateurs?: IndicateursCles // tableau de bord, calculé en arrière-plan
+}
+
+// Tableau de bord d'une proposition (indicateurs clés gardés par le serveur ; null = non chiffré)
+export type Sens = 'favorable' | 'defavorable' | 'neutre'
+export type ValeurIndicateur = {
+  valeur: number | null; unite?: string; sens?: Sens; confiance?: Confiance | null
+  perdants?: number | null; statut?: string; manque?: number
+  annee?: string; source?: string // loi actuelle : statistique publique
+}
+export type IndicateursCles = {
+  statut: 'reference' | 'pret' | 'en_calcul' | 'erreur' | 'aucun_changement'
+  valeurs: Record<string, ValeurIndicateur> | null
+  calcule_le?: string
 }
 
 export type Mesure = { regle: string; titre: string; unite: string; type: string; avant: Valeur; apres: Valeur; budget_resume?: boolean; ajuste?: boolean }

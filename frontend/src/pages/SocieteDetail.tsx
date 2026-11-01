@@ -8,6 +8,7 @@ import { useApp, useFetch } from '../lib/state'
 import { ReportView } from '../components/report'
 import { Empty, ErrorBox, Loading, Modal, Notice } from '../components/ui'
 import { DiffSociete, MisesAJourAuto, type Diff } from '../components/DiffSociete'
+import { LegendeTableau, TableauDeBord, useRelance } from '../components/TableauDeBord'
 
 export function ListeChangements({ items, vide = 'Aucune différence.' }: { items: Changement[]; vide?: string }) {
   if (!items.length) return <div className="small muted">{vide}</div>
@@ -81,7 +82,10 @@ export default function SocieteDetail() {
   const { user } = useApp()
   const nav = useNavigate()
   const [branche, setBranche] = useState('principale')
-  const { data: s, loading, error, reload } = useFetch<SD>(`/api/societes/${id}?branche=${branche}`)
+  const chemin = `/api/societes/${id}?branche=${encodeURIComponent(branche)}`
+  const { data: s, loading, error, reload, setData } = useFetch<SD>(chemin)
+  // tableau de bord calculé en arrière-plan : on redemande discrètement tant qu'il n'est pas prêt
+  useRelance(s?.indicateurs?.statut === 'en_calcul', chemin, setData)
   // de retour après « Envoyer ma suggestion » : l'onglet des suggestions, avec un mot qui le confirme
   const [params] = useSearchParams()
   const envoyee = params.get('suggestion') === 'envoyee'
@@ -98,6 +102,7 @@ export default function SocieteDetail() {
     setTab('impacts'); setCalc(true)
     try { setRapport(await api<Rapport>('/api/simulation/reforme', { body: { societe: s.id, branche } })) } finally { setCalc(false) }
   }
+  const calculerVoir = () => { calculer(); window.setTimeout(() => document.querySelector('.tabs')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50) }
   const etoile = async () => { if (!user) return nav('/connexion'); await api(`/api/societes/${s.id}/etoile`, { method: 'POST' }); reload() }
 
   return (
@@ -119,12 +124,26 @@ export default function SocieteDetail() {
             {s.proprietaire ? <><Calculator size={16} /> Modifier</> : s.reference ? <><Calculator size={16} /> Changer ces règles</> : <><GitPullRequest size={16} /> Proposer un changement</>}</Link>
         </div>
       </div>
-      {!s.reference && !s.proprietaire && (
-        <p className="small ink2" style={{ margin: '8px 0 0', maxWidth: 820 }}>Pas d'accord avec une règle ? <strong>Proposez un changement</strong> : vous la modifiez, vous voyez
-          les effets, et vous l'envoyez à {s.owner_pseudo}, qui l'accepte ou non, comme un amendement. Ou bien <strong>partez de cette proposition</strong> pour faire la vôtre.</p>
-      )}
       {envoyee && <Notice kind="ok">Votre suggestion est envoyée. Elle apparaît ci-dessous, dans « Suggestions reçues » : son auteur pourra en discuter avec vous, puis l'accepter ou non.</Notice>}
-      {s.description && <p className="ink2" style={{ marginTop: 12, maxWidth: 820, whiteSpace: 'pre-wrap' }}>{s.description}</p>}
+      {/* le tableau de bord d'abord : cinq chiffres, les mêmes pour toutes les propositions ; le détail sur demande */}
+      <section className="card bord-detail" aria-labelledby="titre-bord">
+        <div className="row between" style={{ marginBottom: 10 }}>
+          <h2 id="titre-bord" style={{ margin: 0, fontSize: '1.15rem' }}>{s.reference ? "La situation aujourd'hui" : 'Ses effets en bref'}</h2>
+          {!s.reference && s.differences_reference.length > 0 && <button className="btn small ghost" onClick={calculerVoir}>Voir le détail des effets</button>}
+        </div>
+        <TableauDeBord ind={s.indicateurs} />
+        {s.indicateurs?.statut === 'en_calcul' && <div className="small muted" style={{ marginTop: 8 }}>Chiffres en cours de calcul : ils s'affichent ici d'eux-mêmes, en général en quelques minutes.</div>}
+        {s.reference ? <div className="small muted" style={{ marginTop: 8 }}>Derniers chiffres officiels publiés (statistiques publiques, avec leur année).</div> : <LegendeTableau />}
+      </section>
+      {!s.reference && !s.proprietaire && (
+        <p className="small muted" style={{ margin: '8px 0 0', maxWidth: 820 }}>Pas d'accord avec une règle ? <strong>Proposez un changement</strong> à {s.owner_pseudo}, ou <strong>partez de cette proposition</strong> pour faire la vôtre.</p>
+      )}
+      {s.description && (
+        <details className="curieux" style={{ marginTop: 10, maxWidth: 820 }}>
+          <summary>{s.reference ? 'À propos de la loi actuelle' : `Présentation par ${s.owner_pseudo ?? 'son auteur'}`}</summary>
+          <p className="ink2" style={{ margin: '6px 0 0', whiteSpace: 'pre-wrap' }}>{s.description}</p>
+        </details>
+      )}
       {msg && <Notice kind="ok">{msg}</Notice>}
       {s.conflits_loi.length > 0 && (
         <div className="notice warn" style={{ margin: '12px 0' }}>

@@ -507,7 +507,8 @@ def close_proposal(user: dict, pid: int) -> dict:
 
 # ───────────────────────── listes, étoiles, commentaires ─────────────────────────
 def list_societies(store, user: dict | None = None, tri: str = "recent", q: str = "", owner: str | None = None,
-                   limit: int = 60) -> list[dict]:
+                   limit: int = 60, enrichir=None) -> list[dict]:
+    """`enrichir(societe, etat)` complète chaque société à partir de l'état de sa branche principale (déjà chargé)."""
     conn = db.connect()
     sql = ("SELECT s.*, u.pseudo AS owner_pseudo, (SELECT COUNT(*) FROM stars st WHERE st.society_id = s.id) AS etoiles,"
            " (SELECT COUNT(*) FROM proposals p WHERE p.target_society = s.id AND p.statut = 'ouverte') AS propositions_ouvertes"
@@ -531,6 +532,8 @@ def list_societies(store, user: dict | None = None, tri: str = "recent", q: str 
             diff = diff_states(ref, st, store)
             s["nb_differences"] = len(diff)
             s.update(resume_mesures(s["id"], diff))
+            if enrichir:
+                enrichir(s, st)
         except HTTPException:
             s["nb_differences"] = None
     return out
