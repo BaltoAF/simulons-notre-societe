@@ -5,13 +5,12 @@ Réglages de la routine cloud (https://claude.ai/code/routines) qui exécute cha
 | Réglage | Valeur |
 |---|---|
 | Nom | Auto-amélioration quotidienne — Simulons notre société |
-| Fréquence | chaque jour à 6 h UTC (`0 6 * * *`) : 7 h à Paris l'hiver, 8 h l'été, après la mise à jour de nuit du Système |
+| Fréquence | chaque jour à 6 h 06 UTC (`6 6 * * *`) : 7 h à Paris l'hiver, 8 h l'été, après la mise à jour de nuit du Système |
 | Dépôt | https://github.com/BaltoAF/simulons-notre-societe |
 | Modèle | Claude Sonnet 5.5 (Opus 5.5 possible pour un jugement plus fin, au prix d'un quota plus élevé) |
 | Outils | Bash, Read, Write, Edit, Glob, Grep, WebFetch, WebSearch |
 | Connecteurs | **aucun** : claude.ai en attache certains d'office (Gmail…) ; ils ont été retirés, car la routine lit des textes écrits par n'importe qui. À revérifier si la routine est recréée. |
-| Identifiant | `trig_01StTHEpybcFGHtpywieHNAk`, créée le 30/10/2026 depuis le compte du responsable : un agent ne peut pas la modifier (refus du 01/11/2026). **À supprimer par le responsable.** |
-| Nouvelle tâche (01/11/2026) | `trig_01Vv3UDAhXrsWYp1fCKMGRfM`, même nom, même consigne (point 5 à jour), chaque jour à 6 h 06 UTC (`6 6 * * *`), Claude Sonnet 5.5, environnement « Auto Continue », une session neuve à chaque passage, aucun connecteur. Créée par la conversation de suivi, qui peut la modifier. **En pause** jusqu'à la suppression de l'ancienne (les deux publieraient la même branche). Avant de la réactiver : y attacher le dépôt BaltoAF/simulons-notre-societe depuis https://claude.ai/code/routines/trig_01Vv3UDAhXrsWYp1fCKMGRfM, l'outil de création ne permettant pas de l'indiquer. |
+| Identifiant | `trig_01Vv3UDAhXrsWYp1fCKMGRfM`, créée le 01/11/2026 par la conversation de suivi (qui peut la modifier), active depuis le 01/11/2026 : chaque jour à 6 h 06 UTC (`6 6 * * *`), Claude Sonnet 5.5, environnement « Auto Continue », une session neuve à chaque passage, dépôt BaltoAF/simulons-notre-societe attaché par le responsable. L'ancienne (`trig_01StTHEpybcFGHtpywieHNAk`, créée le 30/10/2026) a été supprimée par le responsable le 01/11/2026. |
 | Accès GitHub | l'application GitHub « Claude » doit être limitée à **ce seul dépôt** (GitHub → Settings → Applications → Claude → Configure → « Only select repositories ») : c'est le verrou réel ; la consigne n° 0 n'est qu'une seconde barrière. |
 | Variables de l'environnement | facultative : `SOCIETE_SITE_URL` (sinon https://simulonsnotresociete.fr, écrit dans `TACHE.md`) |
 | Secret réseau de l'environnement | « Jeton des avis » : site `simulonsnotresociete.fr`, en-tête `Authorization`, préfixe `Bearer`, valeur = `SOCIETE_JETON_AVIS` du serveur (`sudo cat /opt/simulons/deploy/.env`). Ajouté par le proxy de l'environnement : la routine ne le voit jamais. |
