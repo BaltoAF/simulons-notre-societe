@@ -1,0 +1,140 @@
+# Sous-ensemble de la fiche tva_repercussion_prix (mêmes études, mêmes valeurs vérifiées), séparé par type de taux
+# le 02/11/2026 : le responsable a demandé de s'appuyer sur les études les plus justes pour chaque cas.
+question:
+  id: tva_repercussion_prix_taux_reduits
+  titre: Répercussion d'une variation des taux réduits de TVA, ou d'un changement de taux sur un secteur, sur les prix
+  definition: Part (en %) d'une variation d'un taux réduit ou intermédiaire de TVA, ou du passage d'un secteur d'un taux à
+    un autre, qui se retrouve dans les prix payés par les consommateurs.
+  unite: pourcent
+  regles_liees:
+  - fiscalite.tva.taux_intermediaire
+  - fiscalite.tva.taux_reduit
+  - fiscalite.tva.taux_particulier
+  sens_attendu: positif
+  estimations:
+  - source: benedek-et-al-2020
+    valeur: 30
+    intervalle_95: null
+    methode: Panel mensuel désagrégé de prix et de taux de TVA (environ 70 groupes de produits)
+    champ: 17 pays de la zone euro, 1999-2013, variations des TAUX RÉDUITS (hausses et baisses)
+    pays: ZE
+    annee_donnees: 2013
+    type_etude: quasi_experimental
+    revue_par_les_pairs: true
+    note: 'Résumé du document de travail CESifo 5531 : pour les taux réduits la répercussion est « significantly less, at
+      around 30 percent » ; pour les reclassements d''un produit d''un taux à un autre, elle est « essentially zero ». Le
+      résumé publié indique, pour les taux réduits, une répercussion généralement nettement plus faible que pour le taux normal.'
+  - source: benzarti-carloni-2018
+    valeur: 50
+    intervalle_95: null
+    methode: Évolution des prix des restaurants autour de la réforme, comparée à une trajectoire de répercussion intégrale
+      (séries de prix INSEE)
+    champ: France, restaurants avec service à table, HAUSSE du taux réduit de TVA de 5,5 % à 7 % (janvier 2012)
+    pays: FR
+    annee_donnees: 2012
+    type_etude: descriptif
+    revue_par_les_pairs: false
+    note: 'Note IPP n° 32 : « Les prix ont augmenté de 0,75 %, ce qui représente un transfert de 50 % » pour une hausse de
+      1,5 point. Les auteurs soulignent que les prix ont augmenté 4 à 5 fois plus après les hausses de 2012 et 2014 qu''ils
+      n''avaient baissé après la baisse de 2009. Ces hausses s''inscrivaient dans une hausse générale des taux réduits (pas
+      spécifique au secteur).'
+  - source: benzarti-carloni-2018
+    valeur: 38
+    intervalle_95: null
+    methode: Évolution des prix des restaurants autour de la réforme, comparée à une trajectoire de répercussion intégrale
+      (séries de prix INSEE)
+    champ: France, restaurants avec service à table, HAUSSE du taux intermédiaire de TVA de 7 % à 10 % (janvier 2014)
+    pays: FR
+    annee_donnees: 2014
+    type_etude: descriptif
+    revue_par_les_pairs: false
+    note: 'Note IPP n° 32 : hausse de 3 points du taux, « les prix augmentaient de 1,14 %, ce qui correspond à un transfert
+      de l''augmentation de TVA de l''ordre de 38 % ». Le document de travail NBER w23848 (note 25) mentionne de même 49 %
+      pour 2012 et 38 % pour 2014.'
+  - source: benzarti-carloni-2019
+    valeur: 9.7
+    intervalle_95: null
+    methode: 'Différence de différences : prix des restaurants avec service à table comparés aux services marchands hors restauration
+      (indices INSEE et Eurostat), données d''entreprises Amadeus'
+    champ: France, restaurants avec service à table, BAISSE sectorielle de la TVA de 19,6 % (taux normal) à 5,5 % (taux réduit)
+      en juillet 2009
+    pays: FR
+    annee_donnees: 2011
+    type_etude: quasi_experimental
+    revue_par_les_pairs: true
+    note: 'Document de travail NBER w23848 : les prix ont baissé d''environ 1,3 % le premier mois alors que la baisse de TVA
+      représentait 14,1 %, « implying a pass-through of 9.7 percent ». Par rapport au groupe témoin, la baisse est d''environ
+      2,1 % le mois suivant puis d''environ 1,9 % en décembre 2011 (30 mois après), soit environ 13,5 % de répercussion à
+      long terme (1,9 / 14,1). Valeur retenue : 9,7 % (effet immédiat). La version publiée (AEJ: EP 2019) conclut que les
+      propriétaires de restaurants ont capté plus de 55 % de la baisse et que les consommateurs en ont le moins profité.'
+  - source: benzarti-et-al-2020
+    valeur: 79
+    intervalle_95: null
+    methode: 'Différence de différences sur relevés de prix individuels : coiffeurs (traités) contre instituts de beauté (témoins),
+      réformes décidées dans un programme expérimental européen'
+    champ: Finlande, coiffeurs, HAUSSE sectorielle de 14 points de la TVA en janvier 2012 (retour au taux normal après la
+      baisse de 2007)
+    pays: FI
+    annee_donnees: 2012
+    type_etude: quasi_experimental
+    revue_par_les_pairs: true
+    note: 'Répercussion de 79 % rapportée par les auteurs dans la note IPP n° 32 (contre 40 % pour la baisse de 2007 sur le
+      même secteur). Dans le document de travail NBER w23849 (tableau D.6), la répercussion de la hausse va de 68 % à 93 %
+      selon la prestation (ex. coupe homme 75 %, e.t. 5 points) contre 17 % à 42 % pour la baisse (coupe homme 35 %). Résumé
+      publié (JPE) : les prix réagissent environ deux fois plus aux hausses qu''aux baisses, et l''écart persiste plusieurs
+      années.'
+  - source: kosonen-2015
+    valeur: 50
+    intervalle_95: null
+    methode: 'Évaluation de la baisse ciblée de TVA sur les coiffeurs : prix, quantités et profits des entreprises (méthode
+      détaillée non lue, résumé seulement)'
+    champ: Finlande, coiffeurs, BAISSE sectorielle de 14 points de la TVA en janvier 2007
+    pays: FI
+    annee_donnees: null
+    type_etude: quasi_experimental
+    revue_par_les_pairs: true
+    note: 'Résumé : « hairdressers cut their prices only by half of what a complete pass-through would have implied » ; quasiment
+      pas d''effet sur les quantités vendues, hausse significative des profits. Les mêmes données donnent une répercussion
+      de 40 % dans Benzarti et al. (note IPP n° 32).'
+  - source: carbonnier-2007
+    valeur: 57
+    intervalle_95: null
+    methode: 'Estimation de la part de la taxe supportée par les consommateurs à partir de l''évolution des prix autour de
+      la réforme (détails de méthode non lus : seul le résumé était accessible)'
+    champ: France, voitures neuves, BAISSE de la TVA du taux majoré de 33,33 % au taux normal de 18,6 % (1er septembre 1987)
+    pays: FR
+    annee_donnees: null
+    type_etude: descriptif
+    revue_par_les_pairs: true
+    note: 'Résumé : « The consumer share of the sales tax burden is 57% in the new car sales market ». La part supportée par
+      le consommateur correspond à la répercussion dans les prix. L''auteur relie l''écart entre marchés à leurs conditions
+      de concurrence.'
+  - source: carbonnier-2007
+    valeur: 77
+    intervalle_95: null
+    methode: 'Estimation de la part de la taxe supportée par les consommateurs à partir de l''évolution des prix autour de
+      la réforme (détails de méthode non lus : seul le résumé était accessible)'
+    champ: France, travaux de réparation et d'entretien du logement, BAISSE de la TVA du taux normal de 20,6 % au taux réduit
+      de 5,5 % (1er septembre 1999)
+    pays: FR
+    annee_donnees: 1999
+    type_etude: descriptif
+    revue_par_les_pairs: true
+    note: 'Résumé : part du consommateur de « 77% in the housing repair services market ».'
+  - source: gaarder-2019
+    valeur: 100
+    intervalle_95: null
+    methode: Exploitation d'un changement brutal de la politique de TVA sur l'alimentation
+    champ: Norvège, TVA sur les produits alimentaires (baisse du taux)
+    pays: 'NO'
+    annee_donnees: null
+    type_etude: quasi_experimental
+    revue_par_les_pairs: true
+    note: 'Résumé : « taxes levied on food are completely shifted to consumer prices », avec peu d''effets de débordement
+      sur les autres biens ; la baisse de la TVA sur l''alimentation réduit les inégalités de bien-être. Valeur retenue :
+      100 % (répercussion complète). Contre-exemple aux études qui trouvent une faible répercussion des baisses.'
+  note_synthese: 'Pour les taux réduits et les changements de taux d''un secteur, la répercussion est nettement plus faible
+    et plus variable : environ 30 % en moyenne pour les taux réduits dans la zone euro (Benedek et al., FMI) ; dans la restauration
+    française, 10 à 14 % de la baisse de 2009 mais 38 à 50 % des hausses de 2012 et 2014 ; chez les coiffeurs finlandais,
+    environ la moitié de la baisse et 79 % de la hausse ; une répercussion complète d''une baisse sur l''alimentation en Norvège.
+    Les hausses sont en général plus répercutées que les baisses (Benzarti et coauteurs).'

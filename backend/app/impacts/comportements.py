@@ -188,6 +188,33 @@ def _rendement_tva(ctx: Contexte, store, tva: float, parts: dict, touches: list[
     return drec, dprix_num, poids, calc, sources_tva
 
 
+def repercussion_tva(ctx: Contexte, touches: list[str]):
+    """Part d'une variation de TVA répercutée dans les prix, d'après les études qui portent sur le même cas : fiche
+    « taux normal » pour le taux normal, fiche « taux réduits » pour les autres (demande du responsable, 02/11/2026 : « les
+    études les plus justes ») ; plusieurs taux changés ensemble : moyenne pondérée par ce que chacun rapporte.
+    Renvoie (part en %, confiance, synthèse de la fiche la plus lourde, id de cette fiche)."""
+    store = ctx.store
+    poids: dict[str, float] = {}
+    for r in touches:
+        k = TVA_LEVIERS[r]
+        old, new = ecart(ctx, r)
+        if old is None or new is None:
+            continue
+        rendement, _, _ = metrique(store, f"fiscalite.tva.rendement_net_point_taux_{k}")
+        share = metrique(store, f"fiscalite.tva.part_recettes_taux_{k}")[0]
+        w = abs(rendement * (new - old)) if rendement is not None else abs((share or 0) * (new / old - 1)) if old else 0.0
+        fiche = "tva_repercussion_prix_taux_normal" if k == "normal" else "tva_repercussion_prix_taux_reduits"
+        poids[fiche] = poids.get(fiche, 0.0) + (w or 1e-9)
+    if not poids:
+        p, c, syn = valeur_ou_defaut(store, "tva_repercussion_prix", 50)
+        return p, c, syn, "tva_repercussion_prix"
+    total = sum(poids.values())
+    vals = {f: valeur_ou_defaut(store, f, valeur_ou_defaut(store, "tva_repercussion_prix", 50)[0]) for f in poids}
+    p = sum(vals[f][0] * w for f, w in poids.items()) / total
+    principale = max(poids, key=poids.get)
+    return p, chaine(*(vals[f][1] for f in poids)), vals[principale][2], principale
+
+
 def variation_tva(ctx: Contexte) -> tuple[float, float, Confiance] | None:
     """Si un taux de TVA change : variation relative de la TVA payée (consommation inchangée), part répercutée dans les
     prix (%) et confiance. Sert à ajouter la TVA au pouvoir d'achat des ménages, qu'OpenFisca ne calcule pas."""
@@ -200,7 +227,7 @@ def variation_tva(ctx: Contexte) -> tuple[float, float, Confiance] | None:
         return None
     parts = {k: metrique(store, f"fiscalite.tva.part_recettes_taux_{k}") for k in TVA_LEVIERS.values()}
     drec = _rendement_tva(ctx, store, tva, parts, touches)[0]
-    p, conf_p, _ = valeur_ou_defaut(store, "tva_repercussion_prix", 50)
+    p, conf_p, _, _ = repercussion_tva(ctx, touches)
     return drec / tva, p, chaine(conf_t, conf_p, hypothese(60, "TVA payée par le foyer estimée d'après les ménages de niveau de vie comparable (INSEE)"))
 
 
@@ -211,7 +238,7 @@ def mod_tva(ctx: Contexte) -> list[Indicateur]:
     store = ctx.store
     tva, src_t, conf_t = metrique(store, "fiscalite.tva.recettes_brutes_totales", "finances_publiques.recettes.tva")
     parts = {k: metrique(store, f"fiscalite.tva.part_recettes_taux_{k}") for k in TVA_LEVIERS.values()}
-    p, conf_p, syn = valeur_ou_defaut(store, "tva_repercussion_prix", 50)
+    p, conf_p, syn, fiche_p = repercussion_tva(ctx, touches)
     out = []
     # un taux dont la part dans les recettes n'est pas documentée n'empêche pas de chiffrer les autres : il est signalé
     chiffrables = [r for r in touches if parts[TVA_LEVIERS[r]][0] is not None
@@ -236,16 +263,16 @@ def mod_tva(ctx: Contexte) -> list[Indicateur]:
                                                   "pour les ménages modestes, qui consomment l'essentiel de leurs revenus.",
                                       calcul=[f"TVA payée : {part:.1f} % du revenu disponible", f"Variation de la TVA payée : {rel * 100:+.1f} %",
                                               f"Répercussion dans les prix : {p:.0f} %"],
-                                      sources=[src_d] if src_d else [], preuves=["tva_repercussion_prix"],
+                                      sources=[src_d] if src_d else [], preuves=[fiche_p],
                                       sens="favorable" if eff > 0 else "defavorable",
                                       fourchette=fourchette(syn, lambda x, part=part: -part * rel * x / 100)))
         if poids:
             dprix = dprix_num / poids * 100 * p / 100
             out.append(Indicateur("prix_tva", "Effet sur les prix des biens et services soumis à la TVA", dprix, "pourcent",
                                   confiance=chaine(conf_p, conf),
-                                  explication="Les commerçants ne répercutent qu'une partie des variations de TVA dans leurs prix ; "
-                                              "les hausses sont souvent plus répercutées que les baisses.",
-                                  calcul=[f"Répercussion retenue : {p:.0f} %"], preuves=["tva_repercussion_prix"],
+                                  explication="Une variation du taux normal se retrouve presque entièrement dans les prix ; celle d'un taux "
+                                              "réduit, ou d'un secteur, beaucoup moins (une partie reste aux entreprises).",
+                                  calcul=[f"Répercussion retenue : {p:.0f} %"], preuves=[fiche_p],
                                   sens="defavorable" if dprix > 0 else "favorable",
                                   fourchette=fourchette(syn, lambda x: dprix_num / poids * 100 * x / 100)))
     else:

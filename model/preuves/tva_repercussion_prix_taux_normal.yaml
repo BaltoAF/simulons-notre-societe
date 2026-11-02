@@ -1,0 +1,43 @@
+# Sous-ensemble de la fiche tva_repercussion_prix (mêmes études, mêmes valeurs vérifiées), séparé par type de taux
+# le 02/11/2026 : le responsable a demandé de s'appuyer sur les études les plus justes pour chaque cas.
+question:
+  id: tva_repercussion_prix_taux_normal
+  titre: Répercussion d'une variation du taux normal de TVA sur les prix
+  definition: Part (en %) d'une variation du taux NORMAL de TVA qui se retrouve dans les prix payés par les consommateurs
+    (100 % = répercussion intégrale).
+  unite: pourcent
+  regles_liees:
+  - fiscalite.tva.taux_normal
+  sens_attendu: positif
+  estimations:
+  - source: benedek-et-al-2020
+    valeur: 100
+    intervalle_95: null
+    methode: Panel mensuel désagrégé de prix et de taux de TVA (environ 70 groupes de produits), résultats robustes à l'endogénéité
+      et au biais d'atténuation
+    champ: 17 pays de la zone euro, 1999-2013, variations du TAUX NORMAL (hausses et baisses)
+    pays: ZE
+    annee_donnees: 2013
+    type_etude: quasi_experimental
+    revue_par_les_pairs: true
+    note: 'Résumé du document de travail CESifo 5531 : « For changes in the standard rate, for instance, final pass through
+      is about 100 percent » ; pas de différence significative entre hausses et baisses ; effets d''anticipation importants
+      et quelques effets retardés dans les deux ans autour de la réforme. Le résumé de l''article publié (2020) confirme une
+      répercussion intégrale « broadly confirmed » pour le taux normal.'
+  - source: carare-danninger-2008
+    valeur: 73
+    intervalle_95: null
+    methode: Analyse économétrique de l'inflation sous-jacente avant et après la hausse, en tenant compte des hausses de prix
+      anticipées
+    champ: Allemagne, HAUSSE de la TVA de janvier 2007 (inflation sous-jacente 2006-2007)
+    pays: DE
+    annee_donnees: 2007
+    type_etude: descriptif
+    revue_par_les_pairs: false
+    note: 'Résumé : l''inflation sous-jacente a augmenté de 0,36 point avant la hausse et de 0,40 point au moment de la hausse
+      ; cumulativement, la hausse de TVA explique deux tiers de la hausse de l''inflation sous-jacente en 2006-2007, « at
+      an estimated pass-through of 73 percent ». Une partie de la répercussion a donc eu lieu par anticipation.'
+  note_synthese: 'Pour le taux normal, les deux études qui le mesurent directement concluent à une répercussion presque complète
+    : environ 100 % dans 17 pays de la zone euro (Benedek et al., FMI, relue par des pairs, sans différence entre hausses
+    et baisses), 73 % lors de la hausse allemande de 2007. Les études sur un seul secteur ou sur les taux réduits, qui trouvent
+    des répercussions plus faibles, ne portent pas sur ce cas : elles sont dans la fiche « taux réduits ».'

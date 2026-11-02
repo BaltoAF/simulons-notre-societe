@@ -190,3 +190,16 @@ def test_la_simulation_renvoie_les_tuiles_de_pilotage():
     cles = rap["indicateurs_cles"]
     assert cles["statut"] == "pret"
     assert {"finances", "menages", "emploi"} <= set(cles["valeurs"])
+
+
+def test_tva_repercussion_selon_le_type_de_taux():
+    """Taux normal : fiche des études sur le taux normal (≈ 92 %) ; taux réduit : fiche des taux réduits (≈ 50 %)."""
+    from fastapi.testclient import TestClient
+    from app.main import app
+    with TestClient(app) as c:
+        n = c.post("/api/simulation/reforme", json={"overrides": {"fiscalite.tva.taux_normal": 21}}).json()
+        r = c.post("/api/simulation/reforme", json={"overrides": {"fiscalite.tva.taux_reduit": 6.5}}).json()
+    pn = next(i for s in n["sections"] for i in s["indicateurs"] if i["id"] == "prix_tva")
+    pr = next(i for s in r["sections"] for i in s["indicateurs"] if i["id"] == "prix_tva")
+    assert pn["preuves"] == ["tva_repercussion_prix_taux_normal"] and pr["preuves"] == ["tva_repercussion_prix_taux_reduits"]
+    assert "92 %" in pn["calcul"][0] and "50 %" in pr["calcul"][0]
