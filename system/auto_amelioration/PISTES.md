@@ -43,8 +43,8 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
     `indicateurs.extraire` sur le rapport déjà reçu), puis l'équilibre à atteindre (manque en Md€ et en Mt) ; « En bref »,
     les explications du foyer et les sections détaillées repliées sous « Voir le détail ». Le texte d'introduction
     (4 lignes) tient en une ligne.
-  - *Comparer* : deux colonnes de tuiles alignées (A, B, écart B − A), avant la liste des règles différentes : c'est
-    l'usage « cockpit » le plus direct, et les chiffres sont déjà en cache pour la branche principale.
+  - *Comparer* : fait le 02/11 (« En chiffres » en tête : les tuiles des deux propositions côte à côte, une ligne par
+    indicateur sur téléphone). Reste : une colonne « écart B − A »
   - *Mes droits, résultat* : une rangée « Ce qui vous reste par mois / aides / impôt / cotisations » en tuiles, puis le
     détail ligne à ligne replié ; les cartes de foyers types (texte long dans chaque carte, 5 cartes de hauteur inégale)
     réduites au titre, le descriptif au survol ou en petit.

@@ -860,15 +860,16 @@ button.preset:focus-visible, .mode-carte:focus-visible { border-radius: 14px; ou
 .detail-carte > summary:hover { text-decoration: underline; text-underline-offset: 3px; }
 .carte-proposition .tableau-bord { margin-top: auto; }
 
-/* une ligne par indicateur sur téléphone (et dans une carte étroite), libellé à gauche, chiffre à droite */
+/* une ligne par indicateur sur téléphone (et dans une carte étroite), libellé à gauche, chiffre à droite ;
+   même rendu pour les deux colonnes de la page Comparer */
 @media (max-width: 1100px) {
-  .cartes-propositions .tableau-bord { grid-template-columns: 1fr; gap: 3px; }
-  .cartes-propositions .tuile { display: grid; grid-template-columns: 1fr auto auto; align-items: center; column-gap: 8px; padding: 6px 10px; }
-  .cartes-propositions .tuile-libelle { grid-row: 1 / span 2; font-size: .85rem; min-height: 0; }
-  .cartes-propositions .tuile-valeur { grid-column: 2; justify-self: end; font-size: 1.1rem; }
-  .cartes-propositions .tuile-unite { grid-column: 2; justify-self: end; text-align: right; }
-  .cartes-propositions .tuile-conf { grid-column: 3; grid-row: 1 / span 2; margin: 0; }
-  .cartes-propositions .tuile-valeur.nc { padding: 0; }
+  :is(.cartes-propositions, .bord-comparaison) .tableau-bord { grid-template-columns: 1fr; gap: 3px; }
+  :is(.cartes-propositions, .bord-comparaison) .tuile { display: grid; grid-template-columns: 1fr auto auto; align-items: center; column-gap: 8px; padding: 6px 10px; }
+  :is(.cartes-propositions, .bord-comparaison) .tuile-libelle { grid-row: 1 / span 2; font-size: .85rem; min-height: 0; }
+  :is(.cartes-propositions, .bord-comparaison) .tuile-valeur { grid-column: 2; justify-self: end; font-size: 1.1rem; }
+  :is(.cartes-propositions, .bord-comparaison) .tuile-unite { grid-column: 2; justify-self: end; text-align: right; }
+  :is(.cartes-propositions, .bord-comparaison) .tuile-conf { grid-column: 3; grid-row: 1 / span 2; margin: 0; }
+  :is(.cartes-propositions, .bord-comparaison) .tuile-valeur.nc { padding: 0; }
 }
 @media (max-width: 640px) {
   .bord-detail .tableau-bord { grid-template-columns: 1fr 1fr; }

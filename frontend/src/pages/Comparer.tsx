@@ -8,6 +8,7 @@ import { milliards, parMenageMois, phrase, tonnes } from '../lib/humain'
 import { resumeSituation, situationVersMenage, useApp, useFetch } from '../lib/state'
 import { estTaxeConsommation, ligneMesure } from '../components/DiffSociete'
 import { ErrorBox } from '../components/ui'
+import { LegendeTableau, TableauDeBord, useRelance } from '../components/TableauDeBord'
 
 type Effets = { rapport: Rapport | null; erreur?: string }
 
@@ -69,7 +70,9 @@ export default function Comparer() {
   const [p, setP] = useSearchParams()
   const { situation } = useApp()
   const a = p.get('a') ?? 'france', b = p.get('b') ?? ''
-  const { data: liste } = useFetch<{ societes: Societe[] }>('/api/societes?tri=populaire')
+  const { data: liste, setData: setListe } = useFetch<{ societes: Societe[] }>('/api/societes?tri=populaire')
+  // les chiffres de pilotage des deux propositions sont calculés en arrière-plan : on redemande tant qu'ils ne sont pas prêts
+  useRelance(!!liste?.societes.some((x) => (x.id === a || x.id === b) && x.indicateurs?.statut === 'en_calcul'), '/api/societes?tri=populaire', setListe)
   const { data: diff } = useFetch<{ differences: Changement[] }>(a && b ? `/api/comparer?a=${a}&b=${b}` : null)
   const [effets, setEffets] = useState<Record<string, Effets>>({})
   const socs = liste?.societes ?? []
@@ -107,6 +110,19 @@ export default function Comparer() {
       </div>
       {!b ? <div className="card soft">Choisissez la deuxième proposition à comparer.</div> : a === b ? <ErrorBox message="Choisissez deux propositions différentes." /> : (
         <div className="stack">
+          {/* les chiffres d'abord (demande du responsable, 01/11/2026) : les cinq tuiles de chaque proposition, côte à côte */}
+          <div className="card">
+            <h2 style={{ fontSize: '1.25rem' }}>En chiffres</h2>
+            <LegendeTableau />
+            <div className="grid cols-2 bord-comparaison">
+              {[sa, sb].map((s, k) => (
+                <div key={k}>
+                  <div style={{ fontWeight: 700, marginBottom: 6 }}>{s?.nom ?? '…'}</div>
+                  <TableauDeBord ind={s?.indicateurs} compact />
+                </div>
+              ))}
+            </div>
+          </div>
           <div className="card">
             <h2 style={{ fontSize: '1.25rem' }}>Ce qu'elles changent</h2>
             <div className="grid cols-2">
