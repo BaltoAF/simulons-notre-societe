@@ -79,8 +79,8 @@ const POURQUOI: Record<string, { regles: string[]; texte: ReactNode }> = {
   // test Samira : avec une petite pension alimentaire, le foyer touchait moins qu'avec aucune ; c'est la règle (la pension
   // compte en entier dans les ressources de la prime d'activité, l'ASF seulement pour un forfait), il faut la dire
   asf: { regles: [], texte: <><>Quand l'autre parent ne verse pas la pension, la CAF verse l'allocation de soutien familial entière, jusqu'aux 20 ans de l'enfant, puis se fait rembourser par lui. S'il verse une pension plus petite, la CAF complète la différence. Attention : pour la prime d'activité, une pension compte en entier dans vos ressources, alors que l'allocation de soutien familial ne compte que pour un petit montant fixe. C'est pourquoi une petite pension peut faire baisser la prime d'activité plus qu'elle ne rapporte.</>
-    {' '}Ce montant fixe est prévu par l'<a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038929265" target="_blank" rel="noreferrer">article R844-4
-    du code de la sécurité sociale</a> (référence donnée par le moteur de calcul public OpenFisca-France).</> },
+    {' '}Ce montant fixe est prévu par le III de l'<a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038929265" target="_blank" rel="noreferrer">article R844-4
+    du code de la sécurité sociale</a> : 30 % de la base mensuelle des allocations familiales par enfant (22,5 % dans certains cas), en vigueur depuis le 1er septembre 2019.</> },
   ars: { regles: [], texte: "Versée une fois par an, fin août, pour chaque enfant de 6 à 18 ans scolarisé, sous condition de ressources. Son montant dépend de l'âge de l'enfant." },
   aspa: { regles: ['prestations.aspa.montant_personne_seule'], texte: 'Le minimum vieillesse garantit un revenu minimal aux personnes âgées.' },
   aah: { regles: ['prestations.aah.montant'], texte: 'Allocation pour les personnes en situation de handicap aux ressources modestes.' },
