@@ -11,6 +11,7 @@ import { nombre, relatif } from '../lib/format'
 import { DomainIcon } from '../components/ui'
 import { teinte, teinteDomaine, teinteQuestion } from '../lib/teintes'
 import { Terme } from '../components/Terme'
+import { TableauDeBord } from '../components/TableauDeBord'
 
 export default function Accueil() {
   const { meta, setDraft, parcours } = useApp()
@@ -64,6 +65,16 @@ export default function Accueil() {
       </section>
 
       {visite && <Bienvenue onClose={() => setVisite(false)} />}
+      {/* les chiffres d'abord (demande du responsable, 01/11/2026) : la France d'aujourd'hui, chiffres officiels avec leur année */}
+      {(() => {
+        const ref = soc?.societes.find((x) => x.reference)
+        return ref?.indicateurs?.statut === 'reference' && (
+          <section className="container" style={{ marginTop: 22 }}>
+            <div className="section-title"><h2>La France aujourd'hui</h2><Link to="/comprendre">Comprendre ces chiffres <ArrowRight size={14} /></Link></div>
+            <div className="card bord-accueil"><TableauDeBord ind={ref.indicateurs} sansVides /></div>
+          </section>
+        )
+      })()}
       <section className="container">
         <div className="section-title"><h2>Des idées à tester en un clic</h2><Link to="/atelier">Imaginer la vôtre <ArrowRight size={14} /></Link></div>
         <div className="grid cols-3">

@@ -904,3 +904,6 @@ section.card.depliant:not(.ouvert):not(.link):hover { border-color: var(--primar
   .table-etudes td, .table-etudes td.num { border: 0; padding: 3px 0; text-align: left; }
   .table-etudes td[data-libelle]::before { content: attr(data-libelle); display: block; font-size: .8rem; font-weight: 650; color: var(--ink-3); }
 }
+
+/* accueil, « La France aujourd'hui » : deux tuiles par ligne sur téléphone */
+@media (max-width: 640px) { .bord-accueil .tableau-bord { grid-template-columns: 1fr 1fr !important; } .bord-accueil .tuile-libelle { min-height: 0; } }

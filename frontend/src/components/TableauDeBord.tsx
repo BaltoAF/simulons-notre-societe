@@ -68,14 +68,17 @@ function Tuile({ d, v, statut }: { d: Def; v?: ValeurIndicateur; statut: Indicat
 }
 
 /** Les cinq tuiles. `compact` : dans une carte de la liste. */
-export function TableauDeBord({ ind, compact = false }: { ind?: IndicateursCles | null; compact?: boolean }) {
+export function TableauDeBord({ ind, compact = false, sansVides = false }: { ind?: IndicateursCles | null; compact?: boolean; sansVides?: boolean }) {
   if (!ind || ind.statut === 'aucun_changement') {
     return <div className="small muted">Aucune règle changée par rapport à la loi actuelle : mêmes chiffres qu'aujourd'hui.</div>
   }
   const statut = ind.statut === 'erreur' ? 'pret' : ind.statut
+  // `sansVides` : la situation d'aujourd'hui seule (accueil) n'a pas de « pouvoir d'achat » à comparer ; une tuile vide n'apporte rien
+  const tuiles = sansVides && ind.statut === 'reference' ? TUILES.filter((d) => ind.valeurs?.[d.id]?.valeur != null) : TUILES
   return (
-    <div className={`tableau-bord ${compact ? 'compact' : ''}`} role="list" aria-label={ind.statut === 'reference' ? "La situation aujourd'hui" : 'Indicateurs clés'}>
-      {TUILES.map((d) => <div key={d.id} role="listitem" className="tuile-cellule"><Tuile d={d} v={ind.valeurs?.[d.id]} statut={statut} /></div>)}
+    <div className={`tableau-bord ${compact ? 'compact' : ''}`} role="list" aria-label={ind.statut === 'reference' ? "La situation aujourd'hui" : 'Indicateurs clés'}
+      style={tuiles.length !== TUILES.length ? { gridTemplateColumns: `repeat(${tuiles.length}, minmax(0, 1fr))` } : undefined}>
+      {tuiles.map((d) => <div key={d.id} role="listitem" className="tuile-cellule"><Tuile d={d} v={ind.valeurs?.[d.id]} statut={statut} /></div>)}
     </div>
   )
 }

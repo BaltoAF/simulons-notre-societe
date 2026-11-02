@@ -35,7 +35,8 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   visiteur est un futur président ; il a besoin de vraies informations de pilotage »). Fait sur « Les propositions » et la
   page d'une proposition (composant `TableauDeBord`, indicateurs gardés par `backend/app/indicateurs.py`). À généraliser,
   page par page (même composant, mêmes cinq indicateurs et mêmes unités quand il s'agit d'une réforme) :
-  - *Accueil* (≈ 1 100 mots, 4 300 px) : en tête, « La France aujourd'hui » en cinq tuiles (solde public, pauvreté,
+  - *Accueil* : fait le 02/11 pour « La France aujourd'hui » (quatre tuiles officielles avec leur année, juste sous
+    l'accroche). Reste de la piste d'origine : en tête, « La France aujourd'hui » en cinq tuiles (solde public, pauvreté,
     chômage, émissions, dette ; `indicateurs.situation_actuelle`, sans simulation), puis les deux boutons. Replier le long
     paragraphe d'accroche en une phrase ; les trois cartes « 1. Réimaginez / 2. Équilibres / 3. Programme » en une ligne
     ou un « Comment ça marche ? » ; les propositions récentes affichées avec leurs tuiles plutôt qu'en texte.
