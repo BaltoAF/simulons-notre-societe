@@ -46,7 +46,8 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
     (4 lignes) tient en une ligne.
   - *Comparer* : fait le 02/11 (« En chiffres » en tête : les tuiles des deux propositions côte à côte, une ligne par
     indicateur sur téléphone). Reste : une colonne « écart B − A »
-  - *Mes droits, résultat* : une rangée « Ce qui vous reste par mois / aides / impôt / cotisations » en tuiles, puis le
+  - *Mes droits* : fait le 02/11 (cartes des foyers types réduites au titre et à deux repères, revenus par mois et
+    logement, le détail au survol ; montants « / mois » et à l'année ; attente animée). Piste d'origine, *résultat* : une rangée « Ce qui vous reste par mois / aides / impôt / cotisations » en tuiles, puis le
     détail ligne à ligne replié ; les cartes de foyers types (texte long dans chaque carte, 5 cartes de hauteur inégale)
     réduites au titre, le descriptif au survol ou en petit.
   - *Le budget* : fait le 02/11 pour l'essentiel (dépenses, déficit et dette, avec leur année, remontés en tête,

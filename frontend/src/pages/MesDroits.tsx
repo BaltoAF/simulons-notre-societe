@@ -6,7 +6,7 @@ import { euros, insecable, valeur } from '../lib/format'
 import { estRattache } from '../lib/aidesOubliees'
 import { departsDuFoyer, estAgeLegal, type Depart } from '../lib/retraite'
 import { PRESETS, resoudrePreset, type Preset } from '../lib/presets'
-import { resumeSituation, situationVersMenage, useApp, useFetch, type AdulteSaisie, type SituationSaisie } from '../lib/state'
+import { resumeSituation, situationVersMenage, useApp, useFetch, type AdulteSaisie, type SituationSaisie, resumeCourt } from '../lib/state'
 import { ConfidenceBadge, ErrorBox, Notice } from '../components/ui'
 import { AttenteCalcul } from '../components/AttenteCalcul'
 import { DroitsNonMonetaires } from '../components/DroitsNonMonetaires'
@@ -499,8 +499,9 @@ export default function MesDroits() {
           <div style={{ fontWeight: 700, marginBottom: 8 }}>Le plus rapide : choisissez un foyer qui vous ressemble</div>
           <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 10 }}>
             {PROFILS.map((p) => (
-              <button key={p.titre} className="preset" onClick={() => { setS(p.s); setExemple(p.titre); calculer(p.s) }}>
-                <strong>{p.titre}</strong><span className="small muted">{resumeSituation(p.s)}</span>
+              // le titre et deux repères (revenus du foyer, logement) ; le détail complet au survol (piste « tableaux de bord »)
+              <button key={p.titre} className="preset" title={resumeSituation(p.s)} onClick={() => { setS(p.s); setExemple(p.titre); calculer(p.s) }}>
+                <strong>{p.titre}</strong><span className="small muted">{resumeCourt(p.s)}</span>
               </button>
             ))}
           </div>

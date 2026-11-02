@@ -182,6 +182,16 @@ export function useFetch<T>(path: string | null, deps: unknown[] = []) {
 }
 
 /** « couple marié, 2 enfants (8 et 12 ans), salaires 2 100 € + 1 850 € nets/mois, propriétaire » */
+/** En quelques mots (carte d'un foyer type) : les revenus du foyer par mois et le logement ; le détail reste dans
+ *  resumeSituation (au survol et une fois le calcul fait). */
+export function resumeCourt(s: SituationSaisie): string {
+  const total = s.adultes.reduce((a, x) => a + (x.montant_net > 0 ? x.montant_net : 0), 0)
+  const retraite = s.adultes.every((a) => a.activite === 'retraite')
+  const logement: Record<string, string> = { locataire_prive: 'locataire', locataire_social: 'locataire HLM', proprietaire: 'propriétaire', heberge: 'hébergé' }
+  const revenus = total > 0 ? `${retraite ? 'retraite' : 'revenus'} ${euros(total)} nets par mois` : 'sans revenu'
+  return [revenus, logement[s.logement]].filter(Boolean).join(' · ')
+}
+
 export function resumeSituation(s: SituationSaisie): string {
   // l'âge compte (départ à la retraite, aides des jeunes) : test Nadia, « Retraite à 65 ans » sans savoir qui est concerné
   const ages = s.adultes.map((a) => a.age).filter((a): a is number => typeof a === 'number' && a > 0)
