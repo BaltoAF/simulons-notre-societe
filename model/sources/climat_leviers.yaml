@@ -82,3 +82,30 @@ sources:
     date_publication: "2009-09"
     consulte_le: "2026-11-01"
     note: "Tableau 1 (séries temporelles 1978-2008) : fioul, élasticité-prix -0,14 à court terme et -0,20 à long terme (à consommation d'énergie domestique donnée) ; énergie domestique dans son ensemble, -0,06 à court terme et -0,17 à long terme ; carburants -0,19 et -0,40."
+  - id: insee-bdf-2017-tf106
+    type: statistique_publique
+    editeur: "Insee (Insee Résultats)"
+    titre: "Les dépenses des ménages en France en 2017 – Enquête Budget de famille, tableau TF106 : dépense annuelle moyenne par ménage selon le décile de niveau de vie"
+    url: "https://www.insee.fr/fr/statistiques/4648335"
+    auteurs: []
+    date_publication: "2020-09-15"
+    consulte_le: "2026-11-02"
+    note: "Fichier https://www.insee.fr/fr/statistiques/fichier/4648335/bdf2017fe_csv.zip, tf106.csv (NOMENCLATURE ; DECUC ; CONSO en euros par an). Carburants et lubrifiants (0722) : 622 € (1er décile), 754, 868, 1 006, 1 174, 1 196, 1 333, 1 288, 1 462, 1 375 € (10e décile) ; ensemble 1 108 €. Gaz et combustibles liquéfiés (0452) : 159 à 386 €, ensemble 253 €. Combustibles liquides (0453) : 73 à 157 €, ensemble 121 €. Consommation totale (champ comptabilité nationale) : 16 123 € (1er décile) à 48 353 € (10e décile)."
+  - id: insee-bdm-prix-moyens-detail
+    type: statistique_publique
+    editeur: "Insee (Banque de données macroéconomiques)"
+    titre: "Prix moyens annuels de vente au détail en métropole : gazole (010533883), SP95 (010533882), fioul domestique 1 000 litres livrés (000442765)"
+    url: "https://www.insee.fr/fr/statistiques/serie/010533883"
+    auteurs: []
+    date_publication: "2026"
+    consulte_le: "2026-11-02"
+    note: "Valeurs 2017 lues dans les séries (accès SDMX https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/<idbank>) : gazole 1,23 € le litre (1,64 € en 2025) ; SP95 1,38 € (1,74 € en 2025) ; fioul domestique 755,53 € les 1 000 litres (1 154,39 € en 2025). Moyennes mensuelles 2017 du gazole (série 000442588) : de 1,17 € (juillet) à 1,28 € (décembre)."
+  - id: sdes-prix-gaz-naturel-2018
+    type: statistique_publique
+    editeur: "SDES (ministère de la Transition écologique), Datalab Essentiel n° 186"
+    titre: "Prix du gaz naturel en France et dans l'Union européenne en 2018"
+    url: "https://www.statistiques.developpement-durable.gouv.fr/sites/default/files/2019-09/datalab-essentiel-186-prix-du-gaz-naturel-en-2018-septembre2019_1.pdf"
+    auteurs: []
+    date_publication: "2019-09"
+    consulte_le: "2026-11-02"
+    note: "« Le prix moyen du gaz naturel sur le marché résidentiel en France s'élève à 76 €/MWh PCS, en progression de 7,7 % par rapport à 2017 », hausse liée à la suppression du tarif spécial de solidarité et à la hausse de la taxe intérieure (5,88 → 8,45 €/MWh PCS au 1er janvier 2018)."

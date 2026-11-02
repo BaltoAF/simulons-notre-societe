@@ -237,7 +237,7 @@ def _gini(x, w):
 
 def section_redistribution(ctx: Contexte) -> Section | None:
     from . import prix_tva
-    if not ctx.touche_moteur and prix_tva.variation_tva(ctx) is None:
+    if not ctx.touche_moteur and not prix_tva.touche_prix(ctx):
         return None
     r = _resultats(ctx)
     if r is None:

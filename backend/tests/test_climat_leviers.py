@@ -57,3 +57,17 @@ def test_taxe_carbone_sur_le_chauffage():
     # gaz : +10 €/MWh → +12 € TTC sur 141,4 €, soit +8,5 % ; × −0,17 × 19,6 Mt ≈ −0,28 Mt
     assert -0.35 < ind["emissions_chauffage_gaz"] < -0.2
     assert any(o["id"] == "accise_chauffage" for o in compensations.options_carbone(get_store(), {}, 1.0))
+
+
+def test_une_taxe_sur_le_gazole_compte_dans_le_pouvoir_d_achat():
+    """+10 c€/l d'accise sur le gazole : chaque ménage paie plus à la pompe (dépense de carburants de son décile, Insee
+    Budget de famille 2017) ; les gagnants et perdants le comptent, les ménages aisés paient plus en euros."""
+    st = get_store()
+    rid = "environnement_energie.accise.gazole"
+    with TestClient(app) as c:
+        rap = c.post("/api/simulation/reforme", json={"overrides": {rid: st.rule_value(rid) + 10}}).json()
+    red = next(s for s in rap["sections"] if s["id"] == "redistribution")
+    assert red["donnees"]["perdants_pct"] > 50
+    assert red["donnees"]["moyenne_menage_mois"] < 0
+    dec = red["donnees"]["deciles"]
+    assert dec[-1]["delta_euros"] < dec[0]["delta_euros"] < 0

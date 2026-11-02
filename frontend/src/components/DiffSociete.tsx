@@ -67,8 +67,9 @@ export function nomCourt(titre: string): string {
 }
 
 // règles dont l'effet sur les prix n'est pas compté foyer par foyer (« votre porte-monnaie », gagnants et perdants).
-// La TVA n'y est plus : son effet sur les prix est compté pour chaque ménage (backend/app/impacts/prix_tva.py).
-export const TAXES_CONSOMMATION = ['environnement_energie.accise.', 'sante.tabac.']
+// La TVA, les carburants, le fioul et le gaz n'y sont plus : leur effet sur les prix est compté pour chaque ménage
+// (backend/app/impacts/prix_tva.py et prix_energie.py). Restent l'électricité et le tabac.
+export const TAXES_CONSOMMATION = ['environnement_energie.accise.electricite', 'sante.tabac.']
 export const estTaxeConsommation = (id: string) => TAXES_CONSOMMATION.some((p) => id.startsWith(p))
 
 /** Une mesure d'une proposition en une ligne simple : « RSA : 800 € (aujourd'hui 651,69 €) », « Taxe sur le gazole :

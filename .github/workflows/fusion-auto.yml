@@ -35,7 +35,17 @@ jobs:
         run: |
           git config user.name "Auto-amélioration"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git fetch origin "$BRANCHE"
+          git fetch origin "$BRANCHE" || { echo "::notice::Branche $BRANCHE supprimée entre-temps : rien à fusionner."; exit 0; }
+          # la version testée a pu être remplacée (branche réécrite puis renvoyée, 02/11/2026) : elle n'existe plus, rien à fusionner
+          if ! git cat-file -e "$SHA^{commit}" 2>/dev/null; then
+            echo "::notice::La version testée ($SHA) n'existe plus sur $BRANCHE (branche réécrite) : la nouvelle version sera testée et fusionnée à son tour."
+            exit 0
+          fi
+          # déjà dans main (publiée directement après les tests locaux) : rien à faire
+          if git merge-base --is-ancestor "$SHA" origin/main; then
+            echo "::notice::Cette version est déjà dans main."
+            exit 0
+          fi
           # garde-fous de la charte (règle 5), appliqués ici quoi qu'ait fait la routine : ces fichiers ne changent que
           # par le responsable du projet ; une branche qui les touche n'est jamais mise en ligne automatiquement
           PROTEGES='^(system/auto_amelioration/(CHARTE|TACHE|ROUTINE)\.md|\.github/|deploy/|Dockerfile|\.dockerignore|\.gitattributes|\.gitignore|backend/requirements\.txt|frontend/package(-lock)?\.json|backend/app/(auth|db|retours|config|serveur)\.py)'

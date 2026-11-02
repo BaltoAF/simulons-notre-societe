@@ -32,14 +32,25 @@ def facteurs_tva(ctx: Contexte, niveau_vie_mensuel) -> tuple[np.ndarray, Confian
     return 1 - parts * rel * p / 100, conf
 
 
+def touche_prix(ctx: Contexte) -> bool:
+    """La réforme change-t-elle un prix payé par les ménages et compté ici (TVA, carburants, chauffage) ?"""
+    from . import prix_energie
+    return variation_tva(ctx) is not None or prix_energie.variations(ctx) is not None
+
+
 def appliquer(ctx: Contexte, base: dict, ref: dict) -> tuple[dict, Confiance | None]:
-    """Résultats « après réforme » corrigés de l'effet de la TVA sur les prix (copie ; `ref` n'est pas modifié)."""
+    """Résultats « après réforme » corrigés de l'effet de la TVA sur les prix, puis du surcoût de carburants et de
+    chauffage (prix_energie) ; copie, `ref` n'est pas modifié."""
+    from . import prix_energie
+    out, conf = ref, None
     f = facteurs_tva(ctx, base["niveau_de_vie"])
-    if f is None:
-        return ref, None
-    facteurs, conf = f
-    out = dict(ref)
-    out["revenu_disponible"] = np.asarray(ref["revenu_disponible"], dtype=float) * facteurs
-    out["niveau_de_vie"] = np.asarray(ref["niveau_de_vie"], dtype=float) * facteurs
-    out["tva_prix"] = np.asarray(ref["revenu_disponible"], dtype=float) * (facteurs - 1)
+    if f is not None:
+        facteurs, conf = f
+        out = dict(ref)
+        out["revenu_disponible"] = np.asarray(ref["revenu_disponible"], dtype=float) * facteurs
+        out["niveau_de_vie"] = np.asarray(ref["niveau_de_vie"], dtype=float) * facteurs
+        out["tva_prix"] = np.asarray(ref["revenu_disponible"], dtype=float) * (facteurs - 1)
+    out, conf_e = prix_energie.appliquer(ctx, base, out)
+    if conf_e is not None:
+        conf = conf_e if conf is None else Confiance.maillon_faible(conf, conf_e, resume="TVA, carburants et chauffage")
     return out, conf

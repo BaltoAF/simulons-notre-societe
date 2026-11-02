@@ -8,7 +8,7 @@ from ..engine.household import Adulte, Menage
 from ..engine.openfisca_engine import ENGINE, LIBELLES, PRESTATIONS
 from .base import Indicateur, Section, signe
 from .contexte import Contexte
-from . import prix_tva
+from . import prix_energie, prix_tva
 
 LIGNES_DETAIL = ["salaire_net", "revenu_micro", "chomage_net", "retraite_nette", "revenus_capital", "pension_alimentaire", "revenu_universel",
                  *PRESTATIONS, "impot_revenu", "pfu", "prelevements_sociaux_capital"]
@@ -55,11 +55,17 @@ def section_menage(ctx: Contexte) -> Section | None:
                            "delta": round(b - a, 2), "nature": "prelevement" if k in PRELEVEMENTS else
                            ("prestation" if k in PRESTATIONS or k == "revenu_universel" else "revenu")})
     conf = confiance_moteur(ctx.cache.get("approximations_menage"))
-    if conf_tva is not None:
+    if "tva_prix" in ref:
         cout = -float(ref["tva_prix"][0])  # positif quand la TVA augmente : c'est un coût
         lignes.append({"id": "tva_prix", "libelle": "TVA sur vos achats (estimation)", "avant": 0.0, "apres": round(cout, 2),
                        "delta": round(cout, 2), "nature": "prelevement"})
-        conf = Confiance.maillon_faible(conf, conf_tva, resume="Calcul de la législation et estimation de la TVA payée")
+    # carburants et chauffage : le surcoût (ou l'économie) d'un ménage de niveau de vie comparable
+    for poste, x in (ref.get("energie_postes") or {}).items():
+        cout = -float(x[0])
+        lignes.append({"id": f"energie_{poste}", "libelle": f"{prix_energie.LIBELLES.get(poste, poste)} : taxes payées en plus (estimation)",
+                       "avant": 0.0, "apres": round(cout, 2), "delta": round(cout, 2), "nature": "prelevement"})
+    if conf_tva is not None:
+        conf = Confiance.maillon_faible(conf, conf_tva, resume="Calcul de la législation et estimation des taxes sur les achats")
     ind = Indicateur("revenu_disponible", "Votre revenu disponible", delta, "euros_mois", rd0, rd1, conf,
                      "Ce qui reste chaque mois après impôts et prestations, avant et après la réforme.",
                      ["Revenus nets du foyer + prestations − impôt sur le revenu (÷ 12)"],
@@ -108,7 +114,7 @@ def cas_types() -> list[Menage]:
 
 
 def section_cas_types(ctx: Contexte) -> Section | None:
-    tva = prix_tva.variation_tva(ctx) is not None
+    tva = prix_tva.touche_prix(ctx)
     if not ctx.touche_moteur and not tva:
         return None
     ms = cas_types()

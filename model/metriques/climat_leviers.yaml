@@ -100,3 +100,343 @@ metriques:
         valeur: 141.4
         source: sdes-prix-gaz-naturel-2025
         statut: definitif
+
+  # ---------------------------------------------------------------------------
+  # Dépenses des ménages en carburants et en chauffage, par décile de niveau de vie (Insee, Budget de famille 2017)
+  # Servent à compter, ménage par ménage, une hausse ou une baisse des taxes sur ces produits (impacts/prix_energie.py).
+  # ---------------------------------------------------------------------------
+  - id: consommation.depense_carburants_decile_1
+    titre: "Dépense annuelle moyenne de carburants et lubrifiants (poste 0722) – 10 % des ménages les plus modestes (1er décile de niveau de vie)"
+    explication: "Ce qu'un ménage dépense en moyenne par an en carburants et lubrifiants pour les véhicules personnels (poste 0722 de la nomenclature de l'enquête), en euros de 2017. Insee, enquête Budget de famille 2017, tableau TF106 (dépense annuelle moyenne par ménage selon le décile de niveau de vie). Champ : France, ménages ordinaires."
+    unite: euros
+    serie:
+      - date: "2017-12-31"
+        valeur: 622
+        source: insee-bdf-2017-tf106
+        statut: definitif
+  - id: consommation.depense_carburants_decile_2
+    titre: "Dépense annuelle moyenne de carburants et lubrifiants (poste 0722) – 2e décile de niveau de vie"
+    explication: "Ce qu'un ménage dépense en moyenne par an en carburants et lubrifiants pour les véhicules personnels (poste 0722 de la nomenclature de l'enquête), en euros de 2017. Insee, enquête Budget de famille 2017, tableau TF106 (dépense annuelle moyenne par ménage selon le décile de niveau de vie). Champ : France, ménages ordinaires."
+    unite: euros
+    serie:
+      - date: "2017-12-31"
+        valeur: 754
+        source: insee-bdf-2017-tf106
+        statut: definitif
+  - id: consommation.depense_carburants_decile_3
+    titre: "Dépense annuelle moyenne de carburants et lubrifiants (poste 0722) – 3e décile de niveau de vie"
+    explication: "Ce qu'un ménage dépense en moyenne par an en carburants et lubrifiants pour les véhicules personnels (poste 0722 de la nomenclature de l'enquête), en euros de 2017. Insee, enquête Budget de famille 2017, tableau TF106 (dépense annuelle moyenne par ménage selon le décile de niveau de vie). Champ : France, ménages ordinaires."
+    unite: euros
+    serie:
+      - date: "2017-12-31"
+        valeur: 868
+        source: insee-bdf-2017-tf106
+        statut: definitif
+  - id: consommation.depense_carburants_decile_4
+    titre: "Dépense annuelle moyenne de carburants et lubrifiants (poste 0722) – 4e décile de niveau de vie"
+    explication: "Ce qu'un ménage dépense en moyenne par an en carburants et lubrifiants pour les véhicules personnels (poste 0722 de la nomenclature de l'enquête), en euros de 2017. Insee, enquête Budget de famille 2017, tableau TF106 (dépense annuelle moyenne par ménage selon le décile de niveau de vie). Champ : France, ménages ordinaires."
+    unite: euros
+    serie:
+      - date: "2017-12-31"
+        valeur: 1006
+        source: insee-bdf-2017-tf106
+        statut: definitif
+  - id: consommation.depense_carburants_decile_5
+    titre: "Dépense annuelle moyenne de carburants et lubrifiants (poste 0722) – 5e décile de niveau de vie"
+    explication: "Ce qu'un ménage dépense en moyenne par an en carburants et lubrifiants pour les véhicules personnels (poste 0722 de la nomenclature de l'enquête), en euros de 2017. Insee, enquête Budget de famille 2017, tableau TF106 (dépense annuelle moyenne par ménage selon le décile de niveau de vie). Champ : France, ménages ordinaires."
+    unite: euros
+    serie:
+      - date: "2017-12-31"
+        valeur: 1174
+        source: insee-bdf-2017-tf106
+        statut: definitif
+  - id: consommation.depense_carburants_decile_6
+    titre: "Dépense annuelle moyenne de carburants et lubrifiants (poste 0722) – 6e décile de niveau de vie"
+    explication: "Ce qu'un ménage dépense en moyenne par an en carburants et lubrifiants pour les véhicules personnels (poste 0722 de la nomenclature de l'enquête), en euros de 2017. Insee, enquête Budget de famille 2017, tableau TF106 (dépense annuelle moyenne par ménage selon le décile de niveau de vie). Champ : France, ménages ordinaires."
+    unite: euros
+    serie:
+      - date: "2017-12-31"
+        valeur: 1196
+        source: insee-bdf-2017-tf106
+        statut: definitif
+  - id: consommation.depense_carburants_decile_7
+    titre: "Dépense annuelle moyenne de carburants et lubrifiants (poste 0722) – 7e décile de niveau de vie"
+    explication: "Ce qu'un ménage dépense en moyenne par an en carburants et lubrifiants pour les véhicules personnels (poste 0722 de la nomenclature de l'enquête), en euros de 2017. Insee, enquête Budget de famille 2017, tableau TF106 (dépense annuelle moyenne par ménage selon le décile de niveau de vie). Champ : France, ménages ordinaires."
+    unite: euros
+    serie:
+      - date: "2017-12-31"
+        valeur: 1333
+        source: insee-bdf-2017-tf106
+        statut: definitif
+  - id: consommation.depense_carburants_decile_8
+    titre: "Dépense annuelle moyenne de carburants et lubrifiants (poste 0722) – 8e décile de niveau de vie"
+    explication: "Ce qu'un ménage dépense en moyenne par an en carburants et lubrifiants pour les véhicules personnels (poste 0722 de la nomenclature de l'enquête), en euros de 2017. Insee, enquête Budget de famille 2017, tableau TF106 (dépense annuelle moyenne par ménage selon le décile de niveau de vie). Champ : France, ménages ordinaires."
+    unite: euros
+    serie:
+      - date: "2017-12-31"
+        valeur: 1288
+        source: insee-bdf-2017-tf106
+        statut: definitif
+  - id: consommation.depense_carburants_decile_9
+    titre: "Dépense annuelle moyenne de carburants et lubrifiants (poste 0722) – 9e décile de niveau de vie"
+    explication: "Ce qu'un ménage dépense en moyenne par an en carburants et lubrifiants pour les véhicules personnels (poste 0722 de la nomenclature de l'enquête), en euros de 2017. Insee, enquête Budget de famille 2017, tableau TF106 (dépense annuelle moyenne par ménage selon le décile de niveau de vie). Champ : France, ménages ordinaires."
+    unite: euros
+    serie:
+      - date: "2017-12-31"
+        valeur: 1462
+        source: insee-bdf-2017-tf106
+        statut: definitif
+  - id: consommation.depense_carburants_decile_10
+    titre: "Dépense annuelle moyenne de carburants et lubrifiants (poste 0722) – 10 % des ménages les plus aisés (10e décile de niveau de vie)"
+    explication: "Ce qu'un ménage dépense en moyenne par an en carburants et lubrifiants pour les véhicules personnels (poste 0722 de la nomenclature de l'enquête), en euros de 2017. Insee, enquête Budget de famille 2017, tableau TF106 (dépense annuelle moyenne par ménage selon le décile de niveau de vie). Champ : France, ménages ordinaires."
+    unite: euros
+    serie:
+      - date: "2017-12-31"
+        valeur: 1375
+        source: insee-bdf-2017-tf106
+        statut: definitif
+  - id: consommation.depense_carburants_ensemble
+    titre: "Dépense annuelle moyenne de carburants et lubrifiants (poste 0722) – ensemble des ménages"
+    explication: "Ce qu'un ménage dépense en moyenne par an en carburants et lubrifiants pour les véhicules personnels (poste 0722 de la nomenclature de l'enquête), en euros de 2017. Insee, enquête Budget de famille 2017, tableau TF106 (dépense annuelle moyenne par ménage selon le décile de niveau de vie). Champ : France, ménages ordinaires."
+    unite: euros
+    serie:
+      - date: "2017-12-31"
+        valeur: 1108
+        source: insee-bdf-2017-tf106
+        statut: definitif
+  - id: consommation.depense_gaz_decile_1
+    titre: "Dépense annuelle moyenne de gaz (poste 0452) – 10 % des ménages les plus modestes (1er décile de niveau de vie)"
+    explication: "Ce qu'un ménage dépense en moyenne par an en gaz de ville et combustibles liquéfiés comme le butane ou le propane (poste 0452), en euros de 2017. Insee, enquête Budget de famille 2017, tableau TF106 (dépense annuelle moyenne par ménage selon le décile de niveau de vie). Champ : France, ménages ordinaires."
+    unite: euros
+    serie:
+      - date: "2017-12-31"
+        valeur: 159
+        source: insee-bdf-2017-tf106
+        statut: definitif
+  - id: consommation.depense_gaz_decile_2
+    titre: "Dépense annuelle moyenne de gaz (poste 0452) – 2e décile de niveau de vie"
+    explication: "Ce qu'un ménage dépense en moyenne par an en gaz de ville et combustibles liquéfiés comme le butane ou le propane (poste 0452), en euros de 2017. Insee, enquête Budget de famille 2017, tableau TF106 (dépense annuelle moyenne par ménage selon le décile de niveau de vie). Champ : France, ménages ordinaires."
+    unite: euros
+    serie:
+      - date: "2017-12-31"
+        valeur: 209
+        source: insee-bdf-2017-tf106
+        statut: definitif
+  - id: consommation.depense_gaz_decile_3
+    titre: "Dépense annuelle moyenne de gaz (poste 0452) – 3e décile de niveau de vie"
+    explication: "Ce qu'un ménage dépense en moyenne par an en gaz de ville et combustibles liquéfiés comme le butane ou le propane (poste 0452), en euros de 2017. Insee, enquête Budget de famille 2017, tableau TF106 (dépense annuelle moyenne par ménage selon le décile de niveau de vie). Champ : France, ménages ordinaires."
+    unite: euros
+    serie:
+      - date: "2017-12-31"
+        valeur: 251
+        source: insee-bdf-2017-tf106
+        statut: definitif
+  - id: consommation.depense_gaz_decile_4
+    titre: "Dépense annuelle moyenne de gaz (poste 0452) – 4e décile de niveau de vie"
+    explication: "Ce qu'un ménage dépense en moyenne par an en gaz de ville et combustibles liquéfiés comme le butane ou le propane (poste 0452), en euros de 2017. Insee, enquête Budget de famille 2017, tableau TF106 (dépense annuelle moyenne par ménage selon le décile de niveau de vie). Champ : France, ménages ordinaires."
+    unite: euros
+    serie:
+      - date: "2017-12-31"
+        valeur: 237
+        source: insee-bdf-2017-tf106
+        statut: definitif
+  - id: consommation.depense_gaz_decile_5
+    titre: "Dépense annuelle moyenne de gaz (poste 0452) – 5e décile de niveau de vie"
+    explication: "Ce qu'un ménage dépense en moyenne par an en gaz de ville et combustibles liquéfiés comme le butane ou le propane (poste 0452), en euros de 2017. Insee, enquête Budget de famille 2017, tableau TF106 (dépense annuelle moyenne par ménage selon le décile de niveau de vie). Champ : France, ménages ordinaires."
+    unite: euros
+    serie:
+      - date: "2017-12-31"
+        valeur: 245
+        source: insee-bdf-2017-tf106
+        statut: definitif
+  - id: consommation.depense_gaz_decile_6
+    titre: "Dépense annuelle moyenne de gaz (poste 0452) – 6e décile de niveau de vie"
+    explication: "Ce qu'un ménage dépense en moyenne par an en gaz de ville et combustibles liquéfiés comme le butane ou le propane (poste 0452), en euros de 2017. Insee, enquête Budget de famille 2017, tableau TF106 (dépense annuelle moyenne par ménage selon le décile de niveau de vie). Champ : France, ménages ordinaires."
+    unite: euros
+    serie:
+      - date: "2017-12-31"
+        valeur: 250
+        source: insee-bdf-2017-tf106
+        statut: definitif
+  - id: consommation.depense_gaz_decile_7
+    titre: "Dépense annuelle moyenne de gaz (poste 0452) – 7e décile de niveau de vie"
+    explication: "Ce qu'un ménage dépense en moyenne par an en gaz de ville et combustibles liquéfiés comme le butane ou le propane (poste 0452), en euros de 2017. Insee, enquête Budget de famille 2017, tableau TF106 (dépense annuelle moyenne par ménage selon le décile de niveau de vie). Champ : France, ménages ordinaires."
+    unite: euros
+    serie:
+      - date: "2017-12-31"
+        valeur: 270
+        source: insee-bdf-2017-tf106
+        statut: definitif
+  - id: consommation.depense_gaz_decile_8
+    titre: "Dépense annuelle moyenne de gaz (poste 0452) – 8e décile de niveau de vie"
+    explication: "Ce qu'un ménage dépense en moyenne par an en gaz de ville et combustibles liquéfiés comme le butane ou le propane (poste 0452), en euros de 2017. Insee, enquête Budget de famille 2017, tableau TF106 (dépense annuelle moyenne par ménage selon le décile de niveau de vie). Champ : France, ménages ordinaires."
+    unite: euros
+    serie:
+      - date: "2017-12-31"
+        valeur: 259
+        source: insee-bdf-2017-tf106
+        statut: definitif
+  - id: consommation.depense_gaz_decile_9
+    titre: "Dépense annuelle moyenne de gaz (poste 0452) – 9e décile de niveau de vie"
+    explication: "Ce qu'un ménage dépense en moyenne par an en gaz de ville et combustibles liquéfiés comme le butane ou le propane (poste 0452), en euros de 2017. Insee, enquête Budget de famille 2017, tableau TF106 (dépense annuelle moyenne par ménage selon le décile de niveau de vie). Champ : France, ménages ordinaires."
+    unite: euros
+    serie:
+      - date: "2017-12-31"
+        valeur: 266
+        source: insee-bdf-2017-tf106
+        statut: definitif
+  - id: consommation.depense_gaz_decile_10
+    titre: "Dépense annuelle moyenne de gaz (poste 0452) – 10 % des ménages les plus aisés (10e décile de niveau de vie)"
+    explication: "Ce qu'un ménage dépense en moyenne par an en gaz de ville et combustibles liquéfiés comme le butane ou le propane (poste 0452), en euros de 2017. Insee, enquête Budget de famille 2017, tableau TF106 (dépense annuelle moyenne par ménage selon le décile de niveau de vie). Champ : France, ménages ordinaires."
+    unite: euros
+    serie:
+      - date: "2017-12-31"
+        valeur: 386
+        source: insee-bdf-2017-tf106
+        statut: definitif
+  - id: consommation.depense_gaz_ensemble
+    titre: "Dépense annuelle moyenne de gaz (poste 0452) – ensemble des ménages"
+    explication: "Ce qu'un ménage dépense en moyenne par an en gaz de ville et combustibles liquéfiés comme le butane ou le propane (poste 0452), en euros de 2017. Insee, enquête Budget de famille 2017, tableau TF106 (dépense annuelle moyenne par ménage selon le décile de niveau de vie). Champ : France, ménages ordinaires."
+    unite: euros
+    serie:
+      - date: "2017-12-31"
+        valeur: 253
+        source: insee-bdf-2017-tf106
+        statut: definitif
+  - id: consommation.depense_fioul_decile_1
+    titre: "Dépense annuelle moyenne de combustibles liquides (fioul domestique, poste 0453) – 10 % des ménages les plus modestes (1er décile de niveau de vie)"
+    explication: "Ce qu'un ménage dépense en moyenne par an en combustibles liquides, c'est-à-dire surtout le fioul domestique (poste 0453), en euros de 2017. Insee, enquête Budget de famille 2017, tableau TF106 (dépense annuelle moyenne par ménage selon le décile de niveau de vie). Champ : France, ménages ordinaires."
+    unite: euros
+    serie:
+      - date: "2017-12-31"
+        valeur: 73
+        source: insee-bdf-2017-tf106
+        statut: definitif
+  - id: consommation.depense_fioul_decile_2
+    titre: "Dépense annuelle moyenne de combustibles liquides (fioul domestique, poste 0453) – 2e décile de niveau de vie"
+    explication: "Ce qu'un ménage dépense en moyenne par an en combustibles liquides, c'est-à-dire surtout le fioul domestique (poste 0453), en euros de 2017. Insee, enquête Budget de famille 2017, tableau TF106 (dépense annuelle moyenne par ménage selon le décile de niveau de vie). Champ : France, ménages ordinaires."
+    unite: euros
+    serie:
+      - date: "2017-12-31"
+        valeur: 110
+        source: insee-bdf-2017-tf106
+        statut: definitif
+  - id: consommation.depense_fioul_decile_3
+    titre: "Dépense annuelle moyenne de combustibles liquides (fioul domestique, poste 0453) – 3e décile de niveau de vie"
+    explication: "Ce qu'un ménage dépense en moyenne par an en combustibles liquides, c'est-à-dire surtout le fioul domestique (poste 0453), en euros de 2017. Insee, enquête Budget de famille 2017, tableau TF106 (dépense annuelle moyenne par ménage selon le décile de niveau de vie). Champ : France, ménages ordinaires."
+    unite: euros
+    serie:
+      - date: "2017-12-31"
+        valeur: 102
+        source: insee-bdf-2017-tf106
+        statut: definitif
+  - id: consommation.depense_fioul_decile_4
+    titre: "Dépense annuelle moyenne de combustibles liquides (fioul domestique, poste 0453) – 4e décile de niveau de vie"
+    explication: "Ce qu'un ménage dépense en moyenne par an en combustibles liquides, c'est-à-dire surtout le fioul domestique (poste 0453), en euros de 2017. Insee, enquête Budget de famille 2017, tableau TF106 (dépense annuelle moyenne par ménage selon le décile de niveau de vie). Champ : France, ménages ordinaires."
+    unite: euros
+    serie:
+      - date: "2017-12-31"
+        valeur: 157
+        source: insee-bdf-2017-tf106
+        statut: definitif
+  - id: consommation.depense_fioul_decile_5
+    titre: "Dépense annuelle moyenne de combustibles liquides (fioul domestique, poste 0453) – 5e décile de niveau de vie"
+    explication: "Ce qu'un ménage dépense en moyenne par an en combustibles liquides, c'est-à-dire surtout le fioul domestique (poste 0453), en euros de 2017. Insee, enquête Budget de famille 2017, tableau TF106 (dépense annuelle moyenne par ménage selon le décile de niveau de vie). Champ : France, ménages ordinaires."
+    unite: euros
+    serie:
+      - date: "2017-12-31"
+        valeur: 129
+        source: insee-bdf-2017-tf106
+        statut: definitif
+  - id: consommation.depense_fioul_decile_6
+    titre: "Dépense annuelle moyenne de combustibles liquides (fioul domestique, poste 0453) – 6e décile de niveau de vie"
+    explication: "Ce qu'un ménage dépense en moyenne par an en combustibles liquides, c'est-à-dire surtout le fioul domestique (poste 0453), en euros de 2017. Insee, enquête Budget de famille 2017, tableau TF106 (dépense annuelle moyenne par ménage selon le décile de niveau de vie). Champ : France, ménages ordinaires."
+    unite: euros
+    serie:
+      - date: "2017-12-31"
+        valeur: 132
+        source: insee-bdf-2017-tf106
+        statut: definitif
+  - id: consommation.depense_fioul_decile_7
+    titre: "Dépense annuelle moyenne de combustibles liquides (fioul domestique, poste 0453) – 7e décile de niveau de vie"
+    explication: "Ce qu'un ménage dépense en moyenne par an en combustibles liquides, c'est-à-dire surtout le fioul domestique (poste 0453), en euros de 2017. Insee, enquête Budget de famille 2017, tableau TF106 (dépense annuelle moyenne par ménage selon le décile de niveau de vie). Champ : France, ménages ordinaires."
+    unite: euros
+    serie:
+      - date: "2017-12-31"
+        valeur: 132
+        source: insee-bdf-2017-tf106
+        statut: definitif
+  - id: consommation.depense_fioul_decile_8
+    titre: "Dépense annuelle moyenne de combustibles liquides (fioul domestique, poste 0453) – 8e décile de niveau de vie"
+    explication: "Ce qu'un ménage dépense en moyenne par an en combustibles liquides, c'est-à-dire surtout le fioul domestique (poste 0453), en euros de 2017. Insee, enquête Budget de famille 2017, tableau TF106 (dépense annuelle moyenne par ménage selon le décile de niveau de vie). Champ : France, ménages ordinaires."
+    unite: euros
+    serie:
+      - date: "2017-12-31"
+        valeur: 133
+        source: insee-bdf-2017-tf106
+        statut: definitif
+  - id: consommation.depense_fioul_decile_9
+    titre: "Dépense annuelle moyenne de combustibles liquides (fioul domestique, poste 0453) – 9e décile de niveau de vie"
+    explication: "Ce qu'un ménage dépense en moyenne par an en combustibles liquides, c'est-à-dire surtout le fioul domestique (poste 0453), en euros de 2017. Insee, enquête Budget de famille 2017, tableau TF106 (dépense annuelle moyenne par ménage selon le décile de niveau de vie). Champ : France, ménages ordinaires."
+    unite: euros
+    serie:
+      - date: "2017-12-31"
+        valeur: 109
+        source: insee-bdf-2017-tf106
+        statut: definitif
+  - id: consommation.depense_fioul_decile_10
+    titre: "Dépense annuelle moyenne de combustibles liquides (fioul domestique, poste 0453) – 10 % des ménages les plus aisés (10e décile de niveau de vie)"
+    explication: "Ce qu'un ménage dépense en moyenne par an en combustibles liquides, c'est-à-dire surtout le fioul domestique (poste 0453), en euros de 2017. Insee, enquête Budget de famille 2017, tableau TF106 (dépense annuelle moyenne par ménage selon le décile de niveau de vie). Champ : France, ménages ordinaires."
+    unite: euros
+    serie:
+      - date: "2017-12-31"
+        valeur: 129
+        source: insee-bdf-2017-tf106
+        statut: definitif
+  - id: consommation.depense_fioul_ensemble
+    titre: "Dépense annuelle moyenne de combustibles liquides (fioul domestique, poste 0453) – ensemble des ménages"
+    explication: "Ce qu'un ménage dépense en moyenne par an en combustibles liquides, c'est-à-dire surtout le fioul domestique (poste 0453), en euros de 2017. Insee, enquête Budget de famille 2017, tableau TF106 (dépense annuelle moyenne par ménage selon le décile de niveau de vie). Champ : France, ménages ordinaires."
+    unite: euros
+    serie:
+      - date: "2017-12-31"
+        valeur: 121
+        source: insee-bdf-2017-tf106
+        statut: definitif
+
+  # prix moyens de 2017, l'année de l'enquête Budget de famille : ils ramènent les dépenses de 2017 à des quantités
+  - id: ecologie.prix_2017_gazole
+    titre: "Prix moyen du gazole à la pompe en 2017 (TTC, métropole)"
+    explication: "Moyenne annuelle 2017 du prix de vente au détail d'un litre de gazole (Insee, série 010533883). Sert à convertir en litres la dépense de carburants mesurée par l'enquête Budget de famille 2017."
+    unite: euros_par_litre
+    serie:
+      - date: "2017-12-31"
+        valeur: 1.23
+        source: insee-bdm-prix-moyens-detail
+        statut: definitif
+  - id: ecologie.prix_2017_sp95
+    titre: "Prix moyen du SP95 à la pompe en 2017 (TTC, métropole)"
+    explication: "Moyenne annuelle 2017 du prix de vente au détail d'un litre de supercarburant sans plomb 95 (Insee, série 010533882) ; le SP95-E10 n'est suivi par l'Insee que depuis 2019."
+    unite: euros_par_litre
+    serie:
+      - date: "2017-12-31"
+        valeur: 1.38
+        source: insee-bdm-prix-moyens-detail
+        statut: definitif
+  - id: ecologie.prix_2017_fioul_domestique
+    titre: "Prix moyen du fioul domestique en 2017 (TTC, livré à domicile, par litre)"
+    explication: "Moyenne annuelle 2017 du prix de 1 000 litres de fioul domestique livrés à domicile : 755,53 € (Insee, série 000442765), soit 0,7555 € par litre."
+    unite: euros_par_litre
+    serie:
+      - date: "2017-12-31"
+        valeur: 0.7555
+        source: insee-bdm-prix-moyens-detail
+        statut: definitif
+  - id: ecologie.prix_2017_gaz_menages
+    titre: "Prix moyen du gaz naturel payé par les ménages en 2017 (TTC)"
+    explication: "Environ 70,6 € par mégawattheure (PCS) : le SDES donne 76 €/MWh en 2018, « en progression de 7,7 % par rapport à 2017 » (76 / 1,077, calcul du site)."
+    unite: euros_par_mwh
+    serie:
+      - date: "2017-12-31"
+        valeur: 70.6
+        source: sdes-prix-gaz-naturel-2018
+        statut: estimation

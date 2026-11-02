@@ -34,7 +34,7 @@ from . import config, db, vcs
 log = logging.getLogger("societe.indicateurs")
 
 # à changer quand l'extraction ci-dessous change : les indicateurs déjà gardés sont alors recalculés
-VERSION_EXTRACTION = 3  # 3 : fourchette des études et « effet incertain » quand elle contient zéro ; 2 : 2 : pouvoir d'achat moyen (TVA comprise) en tête de la tuile des ménages
+VERSION_EXTRACTION = 4  # 4 : carburants et chauffage comptés dans le pouvoir d'achat ; 3 : fourchette des études et « effet incertain » quand elle contient zéro ; 2 : 2 : pouvoir d'achat moyen (TVA comprise) en tête de la tuile des ménages
 MAX_FILE = int(os.environ.get("SOCIETE_INDICATEURS_FILE", "20"))
 PAUSE_S = float(os.environ.get("SOCIETE_INDICATEURS_PAUSE", "5"))
 
