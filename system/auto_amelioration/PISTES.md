@@ -14,11 +14,9 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
      simulée), et pourquoi pauvreté et inégalités restent « inchangées » et l'activité n'a pas de long terme.
   2. Carburants, chauffage et tabac ne comptent pas dans les gagnants/perdants (la TVA, si) : les compter, ménage par ménage,
      avec la consommation par décile (Insee, Budget de famille).
-  3. Cartes qui se déplient (Planète, Bien-être, Effets économiques de l'atelier ; missions inactives de l'accueil) :
-     elles ont l'air de cartes d'information ; leur donner l'aspect cliquable.
-  4. Termes techniques visibles (« Fiche : model/preuves/….yaml », « Q 0,9 · P 1 · F 0,8 », identifiants de fichiers,
+  3. Termes techniques visibles (« Fiche : model/preuves/….yaml », « Q 0,9 · P 1 · F 0,8 », identifiants de fichiers,
      version du moteur) : les cacher derrière un dépliant « Détails techniques ».
-  5. /preuves/<id> sur téléphone : tableau à 4 colonnes → affichage empilé. Tuile « 7 cotisants pour 4 retraités » sans
+  4. /preuves/<id> sur téléphone : tableau à 4 colonnes → affichage empilé. Tuile « 7 cotisants pour 4 retraités » sans
      année ni source (/comprendre/retraites).
 
 - **Emploi et RSA (vérifié le 01/11/2026)** : −268 000 emplois pour un RSA à 800 € = 0,25 (élasticité de participation,

@@ -193,7 +193,7 @@ export function SectionView({ s, ouvert = false, overrides }: { s: Section; ouve
   const principaux = s.indicateurs
   const [open, setOpen] = useState(ouvert)
   return (
-    <section className="card" id={`section-${s.id}`}>
+    <section className={`card depliant${open ? ' ouvert' : ''}`} id={`section-${s.id}`}>
       <div className="card-head" style={{ marginBottom: open ? 12 : 0 }}>
         <button className="row" onClick={() => setOpen((o) => !o)} aria-expanded={open}
           style={{ background: 'none', border: 0, padding: 0, cursor: 'pointer', textAlign: 'left', color: 'inherit', font: 'inherit', alignItems: 'flex-start', flexWrap: 'nowrap' }}>

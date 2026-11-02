@@ -792,7 +792,7 @@ button.preset > strong:only-child { margin: auto 0; }
 
 /* puces de choix, missions, onglets */
 .mission { border: 1px solid var(--contour-carte); }
-.card .mission { border: 1px solid transparent; }
+.card .mission { border: 1px solid var(--contour-carte); }
 .mission:hover, .card .mission:hover { border-color: var(--primary); background: color-mix(in srgb, var(--primary) 6%, var(--surface)); }
 .mission strong { color: var(--titre-lien); }
 .missions li.faite .mission strong { color: var(--ink-2); }
@@ -885,3 +885,10 @@ button.preset:focus-visible, .mode-carte:focus-visible { border-radius: 14px; ou
   .nav { gap: 2px; }
   .nav a { padding: 8px 7px; font-size: .88rem; }
 }
+
+/* rubrique qui se déplie (« Pour aller plus loin : le détail ») : elle se clique, donc elle en a l'aspect
+   (contour, titre bleu, chevron bleu) ; une fois ouverte, c'est une carte d'information comme les autres */
+section.card.depliant:not(.link):not(.flat):not(.soft) { border: 1px solid var(--contour-carte); }
+section.card.depliant:not(.ouvert):not(.link):hover { border-color: var(--primary); background: color-mix(in srgb, var(--primary) 4%, var(--surface)); }
+.card.depliant > .card-head > button h3, .card.depliant > .card-head > button > svg { color: var(--titre-lien); }
+.card.depliant:not(.ouvert) > .card-head > button:hover h3 { text-decoration: underline; text-underline-offset: 3px; }
