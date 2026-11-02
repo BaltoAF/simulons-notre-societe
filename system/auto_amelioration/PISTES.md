@@ -5,6 +5,9 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
 
 ## À faire
 
+- **Liens « Explorer les règles → » de l'accueil** (visite du 02/11/2026) : 20 px de haut sur téléphone ; agrandir leur zone à
+  toucher comme pour le pied de page. Lexique : relier les mots foyer fiscal, tranche, quotient familial, RSA, APL, CAF aux
+  textes de « Mes droits » avec le composant `Terme`.
 - **Emploi et RSA (vérifié le 01/11/2026)** : −268 000 emplois pour un RSA à 800 € = 0,25 (élasticité de participation,
   synthèse de la fiche offre_travail_marge_extensive, surtout des études américaines) × −22,7 % de gain à travailler au SMIC ×
   4,73 M de foyers de la prime d'activité (hypothèse haute écrite dans le code). Fourchette des études : de −751 000 à
