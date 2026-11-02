@@ -87,7 +87,7 @@ const POURQUOI: Record<string, { regles: string[]; texte: ReactNode }> = {
   retraite_nette: { regles: ['fiscalite.csg.retraites_taux_plein'], texte: 'Pension brute moins la CSG, la CRDS et la Casa.' },
   pfu: { regles: ['fiscalite.capital.pfu_taux_ir'], texte: 'Impôt forfaitaire de 12,8 % sur les intérêts et dividendes.' },
   epargne: { regles: ['fiscalite.capital.pfu_taux_ir'], texte: 'Sur les intérêts et dividendes de votre épargne (hors livret A et autres livrets réglementés) : un impôt de 12,8 % et des prélèvements sociaux de 17,2 %.' },
-  impot_revenu_zero: { regles: ['fiscalite.impot_revenu.bareme', 'fiscalite.impot_revenu.decote.taux'], texte: <>Le revenu du foyer est divisé en <Terme id="part_fiscale">parts</Terme> (une part par adulte, une demi-part par enfant). Par part, il reste sous le seuil où l'impôt commence, ou bien l'impôt calculé est si faible qu'une réduction automatique, la <Terme id="decote">décote</Terme>, l'annule. C'est le cas d'environ la moitié des foyers.</> },
+  impot_revenu_zero: { regles: ['fiscalite.impot_revenu.bareme', 'fiscalite.impot_revenu.decote.taux'], texte: <>Le revenu du <Terme id="foyer_fiscal">foyer</Terme> est divisé en <Terme id="part_fiscale">parts</Terme> (une part par adulte, une demi-part par enfant). Par part, il reste sous le seuil où l'impôt commence, ou bien l'impôt calculé est si faible qu'une réduction automatique, la <Terme id="decote">décote</Terme>, l'annule. C'est le cas d'environ la moitié des foyers.</> },
 }
 
 function Stepper({ step }: { step: number }) {
@@ -289,7 +289,7 @@ export default function MesDroits() {
         if (s.adultes.some((a) => a.activite === 'apprenti')) return "Le salaire d'un apprenti n'est pas imposable, dans la limite du montant annuel du SMIC. Il se déclare quand même : seule la part au-delà est imposée."
         return (res?.decote_annuelle ?? 0) > 0
           ? <>Votre impôt aurait été d'environ {euros(res!.decote_annuelle!, 0)} par an, mais la <Terme id="decote">décote</Terme>, une réduction automatique pour les petits impôts, l'annule entièrement.</>
-          : <>Le revenu du foyer est divisé en <Terme id="part_fiscale">parts</Terme> (une part par adulte, une demi-part par enfant) : par part, il reste sous le seuil où l'impôt commence.</>
+          : <>Le revenu du <Terme id="foyer_fiscal">foyer</Terme> est divisé en <Terme id="part_fiscale">parts</Terme> (une part par adulte, une demi-part par enfant) : par part, il reste sous le seuil où l'impôt commence.</>
       }
       if (l.id === 'revenu_micro') {
         const ca = s.adultes.filter((a) => a.activite === 'independant').reduce((t, a) => t + a.montant_net, 0)
@@ -300,7 +300,7 @@ export default function MesDroits() {
       }
       if (l.id === 'impot_revenu' && (res?.decote_annuelle ?? 0) > 0) {
         const paye = Math.round(l.montant * 12)
-        return <>Le revenu du foyer est divisé en <Terme id="part_fiscale">parts</Terme> (une part par adulte, une demi-part par enfant),
+        return <>Le revenu du <Terme id="foyer_fiscal">foyer</Terme> est divisé en <Terme id="part_fiscale">parts</Terme> (une part par adulte, une demi-part par enfant),
           ce qui donne un impôt d'environ {euros(paye + res!.decote_annuelle!, 0)} par an. La <Terme id="decote">décote</Terme>, une réduction
           automatique pour les petits impôts, le ramène à environ <strong>{euros(paye, 0)} par an</strong>, soit {euros(l.montant)} par mois.</>
       }
@@ -365,7 +365,7 @@ export default function MesDroits() {
                         : <><strong className="delta neg">il manque {euros(-apresLoyer)}</strong> chaque mois.</>}</div>
                     )}
                     <div className="small" style={{ marginTop: 6 }}>Calcul pour : {resumeSituation(s)} · <button className="lien" onClick={() => setStep(0)}>modifier</button></div>
-                    {gardeConcernee(s) && <div className="small muted" style={{ marginTop: 4 }}>Non compté ici : les aides à la garde d'un jeune enfant (complément de la CAF, crédit d'impôt), à estimer plus bas.</div>}
+                    {gardeConcernee(s) && <div className="small muted" style={{ marginTop: 4 }}>Non compté ici : les aides à la garde d'un jeune enfant (complément de la <Terme id="caf">CAF</Terme>, crédit d'impôt), à estimer plus bas.</div>}
                   </div>
                   <ConfidenceBadge c={res.confiance} align="right" />
                 </div>
@@ -536,7 +536,7 @@ export default function MesDroits() {
             )}
             {s.enfants.length > 0 && <span className="hint">En années : 0 pour un bébé de moins d'un an.</span>}
             {/* « mon fils étudiant de 19 ans compte-t-il ? » (test Josiane) */}
-            {s.enfants.some((e) => e >= 18) && <span className="hint">Un enfant majeur compte s'il vit chez vous ou fait des études. Pour les aides de la CAF, il compte
+            {s.enfants.some((e) => e >= 18) && <span className="hint">Un enfant majeur compte s'il vit chez vous ou fait des études. Pour les aides de la <Terme id="caf">CAF</Terme>, il compte
               jusqu'à 20 ans, s'il gagne moins d'environ 1 000 € bruts par mois.</span>}
           </div>
         )}
@@ -630,7 +630,7 @@ export default function MesDroits() {
             {s.logement.startsWith('locataire') && (
               <label className="field"><span>Loyer mensuel hors charges, avant l'aide au logement</span>
                 <div className="input-suffix"><input type="number" min={0} step={10} placeholder="ex. 600" value={s.loyer_mensuel || ''} onChange={(e) => up({ loyer_mensuel: Number(e.target.value) })} /><span className="suffix">€ / mois</span></div>
-                <span className="hint">Si la CAF verse l'aide directement à votre bailleur (c'est souvent le cas en HLM), indiquez le loyer hors charges inscrit sur votre avis d'échéance (le document que le bailleur envoie chaque mois), avant que l'aide en soit retirée, et non ce qu'il vous reste à payer.</span></label>
+                <span className="hint">Si la <Terme id="caf">CAF</Terme> verse l'aide directement à votre bailleur (c'est souvent le cas en HLM), indiquez le loyer hors charges inscrit sur votre avis d'échéance (le document que le bailleur envoie chaque mois), avant que l'aide en soit retirée, et non ce qu'il vous reste à payer.</span></label>
             )}
             {/* la zone ne sert qu'à l'aide au logement : la demander à un propriétaire le faisait hésiter pour rien (test Monique) */}
             {s.logement.startsWith('locataire') && <>

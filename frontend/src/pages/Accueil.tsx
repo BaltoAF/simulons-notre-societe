@@ -102,17 +102,17 @@ export default function Accueil() {
           <div className="card teinte-1">
             <div className="row"><span className="step-num">1</span><h3 style={{ margin: 0 }}>La France d'aujourd'hui</h3></div>
             <p className="ink2" style={{ marginTop: 10 }}>Toutes les règles en vigueur : c'est la <Terme id="societe_1_0">« loi actuelle »</Terme>. Chaque valeur est <strong>prouvée</strong> par un texte officiel, et tenue à jour automatiquement quand la loi change.</p>
-            <Link to="/regles">Explorer les règles <ArrowRight size={14} /></Link>
+            <Link to="/regles" className="lien-action">Explorer les règles <ArrowRight size={14} /></Link>
           </div>
           <div className="card teinte-4">
             <div className="row"><span className="step-num">2</span><h3 style={{ margin: 0 }}>Votre version, et celles des autres</h3></div>
             <p className="ink2" style={{ marginTop: 10 }}>Changez une ou plusieurs règles et enregistrez votre proposition. Les autres peuvent s'en inspirer, créer leur version et vous suggérer des améliorations. Chaque changement est <strong>signé et daté</strong>.</p>
-            <Link to="/societes">Voir les propositions <ArrowRight size={14} /></Link>
+            <Link to="/societes" className="lien-action">Voir les propositions <ArrowRight size={14} /></Link>
           </div>
           <div className="card teinte-8">
             <div className="row"><span className="step-num">3</span><h3 style={{ margin: 0 }}>Les effets, sans tricher</h3></div>
             <p className="ink2" style={{ marginTop: 10 }}>Pour votre foyer et pour le pays : argent, inégalités, climat, bien-être. Toute dépense en plus doit être <strong>financée ailleurs</strong>, et toute hausse des émissions compensée. Quand les études se contredisent, le site fait la synthèse et dit avec quelle confiance.</p>
-            <Link to="/preuves">Voir les études <ArrowRight size={14} /></Link>
+            <Link to="/preuves" className="lien-action">Voir les études <ArrowRight size={14} /></Link>
           </div>
         </div>
       </section>
@@ -159,7 +159,7 @@ export default function Accueil() {
                 </li>
               ))}
             </ul>
-            <Link to="/societes" className="small">Toutes les propositions <ArrowRight size={13} /></Link>
+            <Link to="/societes" className="small lien-action">Toutes les propositions <ArrowRight size={13} /></Link>
           </div>
         </div>
       </section>

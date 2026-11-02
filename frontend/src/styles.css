@@ -633,6 +633,8 @@ html.texte-grand body { font-size: 19px; }
 /* petits liens du pied de page : une zone à toucher d'au moins 44 px de haut sur téléphone (initiative ergonomie du 02/11/2026) */
 @media (pointer: coarse), (max-width: 640px) {
   .footer a { display: inline-block; padding: 11px 0; }
+  /* liens d'action en bas des cartes de l'accueil (« Explorer les règles → ») : même zone à toucher (visite du 02/11/2026) */
+  .lien-action { display: inline-block; padding: 11px 0; }
 }
 .btn.large { min-height: 48px; padding: 12px 26px; }
 .btn:disabled, .btn:disabled:hover { box-shadow: none; background: color-mix(in srgb, var(--ink) 8%, transparent); color: color-mix(in srgb, var(--ink) 45%, transparent); opacity: 1; }

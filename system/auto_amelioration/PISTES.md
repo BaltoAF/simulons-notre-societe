@@ -5,9 +5,9 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
 
 ## À faire
 
-- **Liens « Explorer les règles → » de l'accueil** (visite du 02/11/2026) : 20 px de haut sur téléphone ; agrandir leur zone à
-  toucher comme pour le pied de page. Lexique : relier les mots foyer fiscal, tranche, quotient familial, RSA, APL, CAF aux
-  textes de « Mes droits » avec le composant `Terme`.
+- **Lexique dans « Mes droits »** (visite du 02/11/2026) : fait pour « foyer » (3 explications de l'impôt) et « CAF »
+  (3 encadrés) ; reste à relier tranche, quotient familial, RSA, APL là où ils apparaissent. Zone à toucher des liens
+  « Explorer les règles → » de l'accueil : faite.
 - **Revue qualité du 02/11/2026, points restants** :
   1. Fait le 02/11 : carburants, fioul et gaz comptés ménage par ménage (impacts/prix_energie.py : dépense par décile,
      Insee Budget de famille 2017, ÷ prix de 2017 = quantités ; × hausse de taxe TVA comprise). Restent l'électricité et le
