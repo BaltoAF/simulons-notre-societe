@@ -33,7 +33,7 @@ def facteurs_tva(ctx: Contexte, niveau_vie_mensuel) -> tuple[np.ndarray, Confian
 
 
 def touche_prix(ctx: Contexte) -> bool:
-    """La réforme change-t-elle un prix payé par les ménages et compté ici (TVA, carburants, chauffage) ?"""
+    """La réforme change-t-elle un prix payé par les ménages et compté ici (TVA, carburants, chauffage, électricité) ?"""
     from . import prix_energie
     return variation_tva(ctx) is not None or prix_energie.variations(ctx) is not None
 
@@ -52,5 +52,5 @@ def appliquer(ctx: Contexte, base: dict, ref: dict) -> tuple[dict, Confiance | N
         out["tva_prix"] = np.asarray(ref["revenu_disponible"], dtype=float) * (facteurs - 1)
     out, conf_e = prix_energie.appliquer(ctx, base, out)
     if conf_e is not None:
-        conf = conf_e if conf is None else Confiance.maillon_faible(conf, conf_e, resume="TVA, carburants et chauffage")
+        conf = conf_e if conf is None else Confiance.maillon_faible(conf, conf_e, resume="TVA, carburants, chauffage et électricité")
     return out, conf

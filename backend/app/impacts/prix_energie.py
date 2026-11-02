@@ -77,8 +77,9 @@ def variations(ctx: Contexte) -> tuple[dict[str, float], Confiance] | None:
     if not out:
         return None
     return out, chaine(*confs, hypothese(55, "Quantités de carburants, de chauffage et d'électricité du ménage estimées d'après les ménages de "
-                                             "niveau de vie comparable (Insee, Budget de famille 2017, dépenses divisées par les "
-                                             "prix de 2017), consommation inchangée, taxe entièrement répercutée dans le prix"))
+                                             "niveau de vie comparable (Insee, Budget de famille 2017, dépenses ramenées à des "
+                                             "quantités par les prix de 2017, ou aux prix de 2025 par l'indice des prix pour "
+                                             "l'électricité), consommation inchangée, taxe entièrement répercutée dans le prix"))
 
 
 def _decile(store, nv_annuel: float) -> int | None:
