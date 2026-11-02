@@ -863,13 +863,13 @@ button.preset:focus-visible, .mode-carte:focus-visible { border-radius: 14px; ou
 /* une ligne par indicateur sur téléphone (et dans une carte étroite), libellé à gauche, chiffre à droite ;
    même rendu pour les deux colonnes de la page Comparer */
 @media (max-width: 1100px) {
-  :is(.cartes-propositions, .bord-comparaison) .tableau-bord { grid-template-columns: 1fr; gap: 3px; }
-  :is(.cartes-propositions, .bord-comparaison) .tuile { display: grid; grid-template-columns: 1fr auto auto; align-items: center; column-gap: 8px; padding: 6px 10px; }
-  :is(.cartes-propositions, .bord-comparaison) .tuile-libelle { grid-row: 1 / span 2; font-size: .85rem; min-height: 0; }
-  :is(.cartes-propositions, .bord-comparaison) .tuile-valeur { grid-column: 2; justify-self: end; font-size: 1.1rem; }
-  :is(.cartes-propositions, .bord-comparaison) .tuile-unite { grid-column: 2; justify-self: end; text-align: right; }
-  :is(.cartes-propositions, .bord-comparaison) .tuile-conf { grid-column: 3; grid-row: 1 / span 2; margin: 0; }
-  :is(.cartes-propositions, .bord-comparaison) .tuile-valeur.nc { padding: 0; }
+  :is(.cartes-propositions, .bord-comparaison, .bord-atelier) .tableau-bord { grid-template-columns: 1fr; gap: 3px; }
+  :is(.cartes-propositions, .bord-comparaison, .bord-atelier) .tuile { display: grid; grid-template-columns: 1fr auto auto; align-items: center; column-gap: 8px; padding: 6px 10px; }
+  :is(.cartes-propositions, .bord-comparaison, .bord-atelier) .tuile-libelle { grid-row: 1 / span 2; font-size: .85rem; min-height: 0; }
+  :is(.cartes-propositions, .bord-comparaison, .bord-atelier) .tuile-valeur { grid-column: 2; justify-self: end; font-size: 1.1rem; }
+  :is(.cartes-propositions, .bord-comparaison, .bord-atelier) .tuile-unite { grid-column: 2; justify-self: end; text-align: right; }
+  :is(.cartes-propositions, .bord-comparaison, .bord-atelier) .tuile-conf { grid-column: 3; grid-row: 1 / span 2; margin: 0; }
+  :is(.cartes-propositions, .bord-comparaison, .bord-atelier) .tuile-valeur.nc { padding: 0; }
 }
 @media (max-width: 640px) {
   .bord-detail .tableau-bord { grid-template-columns: 1fr 1fr; }

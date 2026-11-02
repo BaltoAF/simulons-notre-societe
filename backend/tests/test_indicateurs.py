@@ -179,3 +179,14 @@ def test_effet_incertain_quand_la_fourchette_contient_zero():
     r["sections"][1]["indicateurs"][0]["fourchette"] = [-400000, -100000]
     e = indicateurs.extraire(r)["emploi"]
     assert not e.get("incertain") and e["sens"] == "defavorable"
+
+
+def test_la_simulation_renvoie_les_tuiles_de_pilotage():
+    """L'atelier affiche les mêmes tuiles que la liste : la réponse de simulation les contient, extraites du rapport."""
+    from fastapi.testclient import TestClient
+    from app.main import app
+    with TestClient(app) as c:
+        rap = c.post("/api/simulation/reforme", json={"overrides": {"prestations.rsa.montant_forfaitaire": 700}}).json()
+    cles = rap["indicateurs_cles"]
+    assert cles["statut"] == "pret"
+    assert {"finances", "menages", "emploi"} <= set(cles["valeurs"])

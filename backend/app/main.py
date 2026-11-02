@@ -497,7 +497,12 @@ def simuler_reforme(body: ReformeIn, user: dict | None = Depends(auth.current_us
     rapport = simulation.simuler(store, overrides, menage, approx, body.modules)
     # la même réforme a-t-elle été chiffrée par une institution ? (banc d'essai) : on l'affiche à côté de notre chiffre
     from . import etalonnage
-    return {**rapport, "reference_officielle": etalonnage.reference_pour(store, overrides)}
+    # les cinq tuiles de pilotage, extraites du même rapport que la liste des propositions (rien n'est recalculé)
+    try:
+        cles = {"statut": "pret" if overrides else "aucun_changement", "valeurs": indicateurs.extraire(rapport)}
+    except Exception:  # noqa: BLE001 — les tuiles sont un plus : leur absence ne doit pas casser la simulation
+        cles = None
+    return {**rapport, "reference_officielle": etalonnage.reference_pour(store, overrides), "indicateurs_cles": cles}
 
 
 @app.get("/api/aides-oubliees")

@@ -113,6 +113,7 @@ export type Rapport = {
   duree_secondes: number
   equilibres: Equilibre[]
   bilan: Pilier[]
+  indicateurs_cles?: IndicateursCles | null // les cinq tuiles de pilotage, extraites du rapport par le serveur
   reference_officielle?: { id: string; valeur_md: number; annee: number; perimetre: string; fourchette_md: [number, number] | null
     source: { editeur?: string; titre?: string; url?: string } } | null
   pour_vous: { delta_mois: number; avant: number; apres: number; confiance: Confiance | null

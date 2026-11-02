@@ -40,7 +40,8 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
     chômage, émissions, dette ; `indicateurs.situation_actuelle`, sans simulation), puis les deux boutons. Replier le long
     paragraphe d'accroche en une phrase ; les trois cartes « 1. Réimaginez / 2. Équilibres / 3. Programme » en une ligne
     ou un « Comment ça marche ? » ; les propositions récentes affichées avec leurs tuiles plutôt qu'en texte.
-  - *Atelier, résultats* : « Ses effets » commence par les cinq tuiles (mêmes que la liste, calculées par le même
+  - *Atelier, résultats* : fait le 02/11 pour les tuiles (« Ce que cela changerait » commence par les cinq tuiles,
+    renvoyées par /api/simulation/reforme dans `indicateurs_cles`). Reste de la piste d'origine : « Ses effets » commence par les cinq tuiles (mêmes que la liste, calculées par le même
     `indicateurs.extraire` sur le rapport déjà reçu), puis l'équilibre à atteindre (manque en Md€ et en Mt) ; « En bref »,
     les explications du foyer et les sections détaillées repliées sous « Voir le détail ». Le texte d'introduction
     (4 lignes) tient en une ligne.

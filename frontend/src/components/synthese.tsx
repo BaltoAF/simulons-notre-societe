@@ -9,6 +9,7 @@ import { useApp, useFetch } from '../lib/state'
 import { CONFIANCE_FEMININ, equivalentCarbone, milliards, parMenageMois, phrase, tonnes } from '../lib/humain'
 import { Pourquoi, Terme } from './Terme'
 import { ConfidenceBadge, ErrorBox, Loading } from './ui'
+import { LegendeTableau, TableauDeBord } from './TableauDeBord'
 
 const ICONES = { economie: Landmark, social: Users, ecologie: Leaf, bien_etre: Heart }
 // pilier sans indicateur : dire ce qui n'est pas mesuré, sans laisser croire qu'il n'y a « aucun effet »
@@ -86,6 +87,11 @@ export function EnBref({ r, contexte = 'reforme', overrides }: { r: Rapport; con
   return (
     <div className="card" style={{ borderColor: 'var(--primary)' }}>
       <h2 style={{ fontSize: '1.35rem', marginBottom: 12 }}>{contexte === 'societe' ? 'Ce que change cette proposition' : 'Ce que cela changerait'}</h2>
+      {/* les chiffres d'abord (demande du responsable, 01/11/2026) : les mêmes cinq tuiles que la liste des propositions ;
+          la page d'une proposition les montre déjà en tête */}
+      {contexte !== 'societe' && r.indicateurs_cles && (
+        <div className="bord-atelier" style={{ marginBottom: 16 }}><TableauDeBord ind={r.indicateurs_cles} /><LegendeTableau /></div>
+      )}
       {pv && (
         <div className="row" style={{ marginBottom: 14, flexWrap: 'nowrap', alignItems: 'flex-start' }}>
           <Wallet size={22} color="var(--primary)" style={{ flexShrink: 0, marginTop: 4 }} />
