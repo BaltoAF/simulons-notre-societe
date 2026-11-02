@@ -936,3 +936,6 @@ section.card.depliant:not(.ouvert):not(.link):hover { border-color: var(--primar
 .chiffre-cle { display: flex; flex-direction: column; margin: 4px 0 6px; }
 .chiffre-cle-valeur { font-size: 1.5rem; font-weight: 800; letter-spacing: -.02em; line-height: 1.15; color: var(--ink); font-variant-numeric: tabular-nums; }
 .chiffre-cle-libelle { font-size: .8rem; font-weight: 600; color: var(--ink-3); }
+
+/* Comparer : écart entre deux propositions, indicateur par indicateur */
+.ecart-comparaison { margin-top: 14px; padding: 12px 14px; border-radius: 12px; background: var(--conteneur); }

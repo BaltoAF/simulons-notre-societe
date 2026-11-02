@@ -45,7 +45,7 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
     les explications du foyer et les sections détaillées repliées sous « Voir le détail ». Le texte d'introduction
     (4 lignes) tient en une ligne.
   - *Comparer* : fait le 02/11 (« En chiffres » en tête : les tuiles des deux propositions côte à côte, une ligne par
-    indicateur sur téléphone). Reste : une colonne « écart B − A »
+    indicateur sur téléphone) ; écart B − A ajouté le 02/11 (quand les deux sont chiffrées)
   - *Mes droits* : fait le 02/11 (cartes des foyers types réduites au titre et à deux repères, revenus par mois et
     logement, le détail au survol ; montants « / mois » et à l'année ; attente animée). Piste d'origine, *résultat* : une rangée « Ce qui vous reste par mois / aides / impôt / cotisations » en tuiles, puis le
     détail ligne à ligne replié ; les cartes de foyers types (texte long dans chaque carte, 5 cartes de hauteur inégale)

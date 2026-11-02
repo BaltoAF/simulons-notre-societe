@@ -8,7 +8,7 @@ import { milliards, parMenageMois, phrase, tonnes } from '../lib/humain'
 import { resumeSituation, situationVersMenage, useApp, useFetch } from '../lib/state'
 import { estTaxeConsommation, ligneMesure } from '../components/DiffSociete'
 import { ErrorBox } from '../components/ui'
-import { LegendeTableau, TableauDeBord, useRelance } from '../components/TableauDeBord'
+import { LegendeTableau, TableauDeBord, TUILES, useRelance } from '../components/TableauDeBord'
 
 type Effets = { rapport: Rapport | null; erreur?: string }
 
@@ -127,6 +127,23 @@ export default function Comparer() {
                 </div>
               ))}
             </div>
+            {/* l'écart, indicateur par indicateur, quand les deux propositions sont chiffrées (piste « tableaux de bord ») */}
+            {sa?.indicateurs?.statut === 'pret' && sb?.indicateurs?.statut === 'pret' && (() => {
+              const lignes = TUILES.map((d) => {
+                const va = sa.indicateurs!.valeurs?.[d.id]?.valeur, vb = sb.indicateurs!.valeurs?.[d.id]?.valeur
+                return typeof va === 'number' && typeof vb === 'number' ? { d, e: vb - va } : null
+              }).filter((x): x is { d: (typeof TUILES)[number]; e: number } => !!x)
+              return lignes.length > 0 && (
+                <div className="ecart-comparaison">
+                  <div className="kpi-label" style={{ marginBottom: 6 }}>Écart : la deuxième moins la première</div>
+                  <ul className="list">{lignes.map(({ d, e }) => {
+                    const [v, u] = d.effet(e)
+                    return <li key={d.id} className="list-row"><span>{d.libelle}</span><span><strong>{v}</strong> <span className="small muted">{u}</span></span></li>
+                  })}</ul>
+                  <p className="small muted" style={{ margin: '4px 0 0' }}>Différence entre les deux estimations : chacune a sa propre fiabilité, indiquée sur ses tuiles.</p>
+                </div>
+              )
+            })()}
           </div>
           <div className="card">
             <h2 style={{ fontSize: '1.25rem' }}>Ce qu'elles changent</h2>
