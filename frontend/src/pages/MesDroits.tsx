@@ -69,10 +69,10 @@ const POURQUOI: Record<string, { regles: string[]; texte: ReactNode }> = {
   paje: { regles: [], texte: "Versée chaque mois jusqu'aux 3 ans de l'enfant, si les revenus du foyer sont sous un plafond qui dépend du nombre d'enfants. La CAF regarde les revenus d'il y a deux ans : le montant est plein ou partiel selon ces revenus." },
   paje_zero: { regles: [], texte: "L'allocation de base est réservée aux foyers dont les revenus sont sous un plafond, qui dépend du nombre d'enfants (la CAF regarde les revenus d'il y a deux ans). Ceux de votre foyer le dépassent. Les aides à la garde, elles, ont d'autres règles : estimez-les plus bas, dans « Faire garder votre enfant »." },
   aides_logement_zero: { regles: ['prestations.aides_logement.forfait_charges'], texte: 'L\'aide au logement baisse quand les ressources du foyer augmentent : pour votre loyer, votre zone et vos revenus, elle tombe à zéro.' },
-  rsa: { regles: ['prestations.rsa.montant_forfaitaire'], texte: 'Le RSA complète vos ressources jusqu\'à un montant garanti qui dépend de la composition du foyer.' },
+  rsa: { regles: ['prestations.rsa.montant_forfaitaire'], texte: <>Le <Terme id="rsa">RSA</Terme> complète vos ressources jusqu'à un montant garanti qui dépend de la composition du foyer.</> },
   prime_activite: { regles: ['prestations.prime_activite.montant_forfaitaire', 'prestations.prime_activite.part_revenus_activite', 'prestations.prime_activite.bonification_max'], 
     texte: "Elle complète les revenus des personnes qui travaillent et gagnent peu. Son calcul : une somme de base, plus une part de ce que vous gagnez en travaillant, plus un bonus quand vous gagnez au moins la moitié du SMIC environ, moins vos autres ressources (dont une partie de l'aide au logement). Plus vous gagnez, plus elle baisse, jusqu'à s'arrêter. Une pension alimentaire reçue compte en entier dans vos autres ressources. Elle se redemande tous les trois mois." },
-  aides_logement: { regles: ['prestations.aides_logement.forfait_charges'], texte: 'L\'aide au logement dépend du loyer, de la zone, de la composition du foyer et des ressources.' },
+  aides_logement: { regles: ['prestations.aides_logement.forfait_charges'], texte: <>L'aide au logement (par exemple l'<Terme id="apl">APL</Terme>) dépend du loyer, de la zone, de la composition du foyer et des ressources.</> },
   allocations_familiales: { regles: ['prestations.famille.bmaf', 'prestations.famille.af_taux_deux_enfants', 'prestations.famille.af_nombre_enfants_minimum'], texte: 'Versées à partir de 2 enfants, modulées selon les revenus.' },
   impot_revenu: { regles: ['fiscalite.impot_revenu.bareme', 'fiscalite.impot_revenu.decote.taux', 'fiscalite.impot_revenu.quotient_familial.plafond_demi_part'], texte: 'Impôt progressif calculé sur le revenu du foyer, divisé par le nombre de parts.' },
   // test Samira : avec une petite pension alimentaire, le foyer touchait moins qu'avec aucune ; c'est la règle (la pension
@@ -124,7 +124,7 @@ function AucuneAide({ s, totalRevenus, plafondAspa }: { s: SituationSaisie; tota
           {s.enfants.some((e) => e >= 0 && e < 3) && <li>Allocation de base de la PAJE (enfant de moins de 3 ans) : vos revenus dépassent son plafond.</li>}
           {s.logement.startsWith('locataire') && <li>Aides au logement : vos revenus dépassent le plafond pour votre loyer et votre zone.</li>}
           {s.adultes.some((a) => ['salarie', 'apprenti', 'independant'].includes(a.activite)) && <li>Prime d'activité : les revenus du foyer dépassent son plafond.</li>}
-          <li>RSA : les revenus du foyer dépassent le montant qu'il garantit.</li>
+          <li><Terme id="rsa">RSA</Terme> : les revenus du foyer dépassent le montant qu'il garantit.</li>
         </ul>
       )}
       <p className="small muted" style={{ margin: '6px 0 0' }}>{s.enfants.some((e) => e >= 0 && e < 6)
