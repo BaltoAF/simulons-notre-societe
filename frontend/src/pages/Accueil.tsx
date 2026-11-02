@@ -36,9 +36,8 @@ export default function Accueil() {
           {/* l'expérience recherchée d'abord : changer les règles, partir des propositions des autres, les comparer, les amender */}
           {/* vendre le rêve (demande du responsable) : réimaginer la société et trouver ses équilibres ; en faire un programme est possible, pas obligatoire (01/11/2026) */}
           <h1>Réimaginez les règles de la France. <em>Voyez la France que ça donne.</em></h1>
-          <p className="lead">Impôts, aides, retraites, école, santé, climat, budget de l'État : réécrivez les règles de la société française,
-            une ou cent. Le site simule tout, pour vous et pour le pays, et vous aide à trouver vos équilibres entre argent public, climat et bien-être.
-            Gardez vos idées pour vous, faites-en un programme complet, ou comparez-les à celles des autres. Chaque chiffre est prouvé et dit à quel point on peut s'y fier.</p>
+          <p className="lead">Impôts, aides, retraites, école, santé, climat : réécrivez les règles de la France, une ou cent, et voyez ce que
+            cela change pour vous et pour le pays. Chaque chiffre est sourcé et dit à quel point on peut s'y fier.</p>
           <div className="row" style={{ marginTop: 6, gap: 10 }}>
             <Link to="/atelier" className="btn primary large"><GitFork size={18} /> Changer les règles</Link>
             <Link to="/societes" className="btn large"><Users size={18} /> Voir les propositions des autres</Link>

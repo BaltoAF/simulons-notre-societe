@@ -629,6 +629,10 @@ html.texte-grand body { font-size: 19px; }
 .btn.small { min-height: 34px; padding: 5px 13px; }
 /* au doigt (tablette, téléphone), 44 px au moins : « Je l'ai déjà », « Tester sur mon foyer », la mission suivante (test Odette) */
 @media (pointer: coarse) { .btn.small { min-height: 44px; } }
+/* petits liens du pied de page : une zone à toucher d'au moins 44 px de haut sur téléphone (initiative ergonomie du 02/11/2026) */
+@media (pointer: coarse), (max-width: 640px) {
+  .footer a { display: inline-block; padding: 11px 0; }
+}
 .btn.large { min-height: 48px; padding: 12px 26px; }
 .btn:disabled, .btn:disabled:hover { box-shadow: none; background: color-mix(in srgb, var(--ink) 8%, transparent); color: color-mix(in srgb, var(--ink) 45%, transparent); opacity: 1; }
 
