@@ -48,7 +48,8 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   - *Mes droits, résultat* : une rangée « Ce qui vous reste par mois / aides / impôt / cotisations » en tuiles, puis le
     détail ligne à ligne replié ; les cartes de foyers types (texte long dans chaque carte, 5 cartes de hauteur inégale)
     réduites au titre, le descriptif au survol ou en petit.
-  - *Le budget* (≈ 960 mots) : au-dessus de « Sur 100 € », quatre tuiles (dépenses publiques totales, recettes, solde,
+  - *Le budget* : fait le 02/11 pour l'essentiel (dépenses, déficit et dette, avec leur année, remontés en tête,
+    au-dessus de « Sur 100 € »). Piste d'origine : au-dessus de « Sur 100 € », quatre tuiles (dépenses publiques totales, recettes, solde,
     dette en % du PIB, avec leur année) ; « Et vous ? » et l'éditeur du budget de l'État restent dessous, les explications
     de méthode repliées.
   - *Comprendre* : chaque carte de question porte son chiffre clé en grand, tiré des métriques (dépenses publiques en

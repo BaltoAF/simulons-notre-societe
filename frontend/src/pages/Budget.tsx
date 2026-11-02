@@ -193,7 +193,28 @@ export default function Budget() {
         <a className="btn small" href="#budget-etat"><Landmark size={14} /> Changer le budget de l'État ↓</a>
       </div>
 
-      {/* la question qu'on se pose en arrivant (« où va mon argent ? ») avant les grands totaux */}
+      {/* les chiffres d'abord (demande du responsable, 01/11/2026 : « de vraies informations de pilotage ») */}
+      <div className="grid cols-3" style={{ marginBottom: 20 }}>
+        <div className="card"><div className="kpi-label">L'argent public dépensé en {n.depenses?.date?.slice(0, 4)}</div><div className="kpi">{milliards(dep)}</div>
+          <div className="small muted">soit <strong>{euros(n.par_habitant.depense ?? 0)}</strong> par habitant et par an</div></div>
+        <div className="card"><div className="kpi-label"><Terme id="deficit">Le déficit</Terme> {n.solde?.date?.slice(0, 4)}</div><div className="kpi"><span className="delta neg">{milliards(Math.abs(n.solde?.valeur ?? 0))}</span></div>
+          <div className="small muted">dépenses ({milliards(dep)}) moins recettes ({milliards(n.recettes_totales?.valeur ?? 0)}), à l'arrondi près : il faut l'emprunter</div></div>
+        <div className="card"><div className="kpi-label"><Terme id="dette">La dette publique</Terme>{n.dette?.date ? ` fin ${n.dette.date.slice(0, 4)}` : ''}</div><div className="kpi">{milliards(n.dette?.valeur ?? 0)}</div>
+          <div className="small muted">soit {euros(n.par_habitant.dette ?? 0)} par habitant : la somme des déficits passés</div></div>
+      </div>
+
+      {/* trois totaux de périmètres différents se suivent sur la page : le dire une fois, en clair (test débutants) */}
+      <details className="curieux small" style={{ margin: '-6px 0 18px' }}>
+        <summary>Pourquoi plusieurs totaux sur cette page ?</summary>
+        <ul style={{ margin: '6px 0 0', paddingLeft: 20 }} className="ink2">
+          <li><strong>{milliards(dep)}</strong> : toutes les dépenses publiques en {n.depenses?.date?.slice(0, 4)} (État, Sécurité sociale, collectivités locales).</li>
+          <li><strong>{milliards(n.total_fonctions)}</strong> : le même périmètre, détaillé par domaine, pour {n.fonctions[0]?.annee}, la dernière année publiée en détail.</li>
+          <li><strong>{milliards(n.etat_missions.reduce((a, m) => a + m.md, 0))}</strong> : le budget de l'État seul, voté pour l'année en cours (plus bas).</li>
+        </ul>
+      </details>
+
+      {/* puis la question qu'on se pose en arrivant (« où va mon argent ? ») ; les trois totaux, courts, restent au-dessus
+          (demande du responsable du 01/11/2026, qui prime sur l'ordre testé avant) */}
       <SurCent fonctions={n.fonctions} />
 
       {/* « votre part » arrivait tout en bas, après dix écrans sur téléphone (test Josiane) : juste après « Sur 100 € » */}
@@ -245,24 +266,6 @@ export default function Budget() {
       {m && <p className="small muted" style={{ marginTop: 10 }}><Lock size={13} /> {m.note} Votre situation n'est jamais enregistrée.</p>}
       <div style={{ marginBottom: 20 }} />
 
-      <div className="grid cols-3" style={{ marginBottom: 20 }}>
-        <div className="card"><div className="kpi-label">L'argent public dépensé en {n.depenses?.date?.slice(0, 4)}</div><div className="kpi">{milliards(dep)}</div>
-          <div className="small muted">soit <strong>{euros(n.par_habitant.depense ?? 0)}</strong> par habitant et par an</div></div>
-        <div className="card"><div className="kpi-label"><Terme id="deficit">Le déficit</Terme> {n.solde?.date?.slice(0, 4)}</div><div className="kpi"><span className="delta neg">{milliards(Math.abs(n.solde?.valeur ?? 0))}</span></div>
-          <div className="small muted">dépenses ({milliards(dep)}) moins recettes ({milliards(n.recettes_totales?.valeur ?? 0)}), à l'arrondi près : il faut l'emprunter</div></div>
-        <div className="card"><div className="kpi-label"><Terme id="dette">La dette publique</Terme></div><div className="kpi">{milliards(n.dette?.valeur ?? 0)}</div>
-          <div className="small muted">soit {euros(n.par_habitant.dette ?? 0)} par habitant : la somme des déficits passés</div></div>
-      </div>
-
-      {/* trois totaux de périmètres différents se suivent sur la page : le dire une fois, en clair (test débutants) */}
-      <details className="curieux small" style={{ margin: '-6px 0 18px' }}>
-        <summary>Pourquoi plusieurs totaux sur cette page ?</summary>
-        <ul style={{ margin: '6px 0 0', paddingLeft: 20 }} className="ink2">
-          <li><strong>{milliards(dep)}</strong> : toutes les dépenses publiques en {n.depenses?.date?.slice(0, 4)} (État, Sécurité sociale, collectivités locales).</li>
-          <li><strong>{milliards(n.total_fonctions)}</strong> : le même périmètre, détaillé par domaine, pour {n.fonctions[0]?.annee}, la dernière année publiée en détail.</li>
-          <li><strong>{milliards(n.etat_missions.reduce((a, m) => a + m.md, 0))}</strong> : le budget de l'État seul, voté pour l'année en cours (plus bas).</li>
-        </ul>
-      </details>
 
       <div className="split even">
         <div className="card">
