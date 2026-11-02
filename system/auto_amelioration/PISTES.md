@@ -87,7 +87,8 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   - Pension alimentaire : avec 150 € de pension, le foyer touche 188 € de moins qu'avec 0 €. C'est la règle appliquée par
     le moteur (OpenFisca, ppa_base_ressources_prestations_familiales : la pension compte en entier, l'ASF seulement pour
     son forfait « rsa_forfait_asf ») : expliqué dans « Pourquoi ce montant ? » de l'ASF, et la consigne ne pousse plus à
-    déclarer 0 quand la pension est versée. Reste à citer l'article du code de la sécurité sociale qui fixe ce forfait.
+    déclarer 0 quand la pension est versée. Fait le 02/11 : article R844-4 du code de la sécurité sociale cité, avec lien (référence d'OpenFisca ; Légifrance
+    bloque la relecture automatique, à relire par une personne).
   - Garde d'enfants : deux fiches ajoutées dans « Avez-vous pensé à… ? » (complément de mode de garde, réforme de 2025
     et parent seul jusqu'aux 12 ans ; crédit d'impôt de 50 %). Fait (31/10/2026) : carte « Faire garder votre enfant »
     (heures et coût, CMG réformé et crédit d'impôt ; voir test Lucie).
