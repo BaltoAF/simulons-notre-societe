@@ -918,6 +918,7 @@ section.card.depliant:not(.ouvert):not(.link):hover { border-color: var(--primar
 .attente-barre { transition: width .25s linear; }
 .attente-etapes { list-style: none; padding: 0; margin: 14px 0 0; display: grid; gap: 7px; }
 .attente-etapes li { display: flex; gap: 9px; align-items: center; color: var(--ink-3); }
+.attente-etapes li > svg, .attente-etapes li > .spinner { flex-shrink: 0; }
 .attente-etapes li.faite { color: var(--ink-2); }
 .attente-etapes li.faite svg { color: var(--gain); }
 .attente-etapes li.en-cours { color: var(--ink); font-weight: 600; }
