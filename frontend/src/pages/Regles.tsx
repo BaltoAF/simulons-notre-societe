@@ -13,7 +13,7 @@ export function RegleLigne({ r }: { r: Regle }) {
     <li>
       <div className="list-row" style={{ alignItems: 'flex-start' }}>
         <div className="grow">
-          <Link to={`/regles/r/${r.id}`} style={{ fontWeight: 650, color: 'var(--ink)' }}>{r.titre}</Link>
+          <Link to={`/regles/r/${r.id}`} style={{ fontWeight: 650, color: 'var(--primary)' }}>{r.titre}</Link>
           <div className="small muted" style={{ marginTop: 2 }}>{r.explication.length > 160 ? r.explication.slice(0, 157) + '…' : r.explication}</div>
           <div className="pill-list" style={{ marginTop: 6 }}>
             <SourceType type={r.meilleure_source ?? undefined} />

@@ -70,7 +70,7 @@ export type RegleDetail = Regle & {
   moteur?: { openfisca: string } | null
   preuves: PreuveResume[]
   article?: string | null
-  controles?: { regle: string; valeur: Valeur; autre_valeur: Valeur; autre_source: string; concordant: boolean }[]
+  controles?: { regle: string; valeur: Valeur; autre_valeur: Valeur; autre_source: string; autre_regle?: string; concordant: boolean }[]
 }
 
 export type Indicateur = {

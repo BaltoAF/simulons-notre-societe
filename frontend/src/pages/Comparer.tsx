@@ -138,7 +138,7 @@ export default function Comparer() {
                       {[[a, sa], [b, sb]].map(([id, s]) => (
                         <td key={id as string} data-label={(s as Societe | undefined)?.nom ?? ''}>{effets[id as string]
                           ? (effets[id as string].erreur ? <span className="muted">indisponible</span>
-                            : <>{l.rendu(effets[id as string].rapport)}{l.foyer && horsTaxes(s as Societe | undefined) && ' *'}</>)
+                            : <>{l.rendu(effets[id as string].rapport)}{l.foyer && horsTaxes(s as Societe | undefined) && (l.titre !== 'Votre porte-monnaie' || effets[id as string].rapport?.pour_vous) && ' *'}</>)
                           : <span className="spinner" style={{ width: 14, height: 14, borderWidth: 2 }} />}</td>
                       ))}
                     </tr>
@@ -146,7 +146,7 @@ export default function Comparer() {
                 </tbody>
               </table>
             </div>
-            {(horsTaxes(sa) || horsTaxes(sb)) && <p className="small muted">* Sans compter la hausse ou la baisse des taxes sur la consommation (TVA, carburants, tabac) : elle n'est pas calculée foyer par foyer.</p>}
+            {(horsTaxes(sa) || horsTaxes(sb)) && <p className="small muted">* Sans compter la hausse ou la baisse des taxes sur les carburants, le chauffage ou le tabac : elle n'est pas calculée foyer par foyer (celle de la TVA l'est).</p>}
             {situation && <p className="small muted">« Votre porte-monnaie » : calculé pour {resumeSituation(situation)} (<Link to="/mes-droits">modifier</Link>).</p>}
             <p className="small muted" style={{ marginBottom: 0 }}>Le détail et la fiabilité de chaque chiffre sont sur la page de chaque proposition, onglet « Ses effets ».</p>
           </div>

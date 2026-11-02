@@ -330,7 +330,7 @@ details.explain[open] summary { margin-bottom: 8px; }
 
 /* ── explications grand public ── */
 .terme-wrap { position: relative; display: inline; }
-.terme { background: none; border: 0; padding: 0; font: inherit; color: inherit; cursor: help;
+.terme { background: none; border: 0; padding: 0; font: inherit; color: inherit; cursor: help; text-transform: inherit; letter-spacing: inherit;
   text-decoration: underline dotted var(--primary); text-underline-offset: 3px; text-decoration-thickness: 1.5px; }
 .terme-icone { background: none; border: 0; padding: 0 2px; color: var(--ink-3); cursor: help; vertical-align: -2px; display: inline-flex; }
 .terme-icone:hover { color: var(--primary); }
@@ -454,7 +454,8 @@ main:focus { outline: none; }
 @media (max-width: 640px) {
   .table.comparaison thead { display: none; }
   .table.comparaison, .table.comparaison tbody, .table.comparaison tr, .table.comparaison th, .table.comparaison td { display: block; width: 100%; }
-  .table.comparaison tr { border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; margin-bottom: 10px; }
+  /* zone plate teintée, sans contour : un contour ferait croire à une carte cliquable (et à un cadre dans un cadre) */
+  .table.comparaison tr { border: 0; background: var(--conteneur); border-radius: 10px; padding: 8px 10px; margin-bottom: 10px; }
   .table.comparaison th[scope="row"] { white-space: normal; border: 0; padding: 0 0 4px; }
   .table.comparaison td { min-width: 0; border: 0; padding: 4px 0; }
   .table.comparaison td::before { content: attr(data-label); display: block; font-size: .8rem; font-weight: 650; color: var(--ink-3); }
@@ -649,6 +650,14 @@ input:focus, select:focus, textarea:focus { border-color: var(--primary); box-sh
 /* étiquettes d'information : plates, rectangulaires, discrètes */
 .badge { border: 0; border-radius: 6px; padding: 2px 8px; font-weight: 650; }
 .badge.beta { border-radius: 99px; }   /* celle-ci est cliquable */
+/* une étiquette qui est un lien (règles liées d'une étude, thèmes d'une proposition) : contour bleu comme tout ce qui se
+   clique, et un long intitulé passe à la ligne au lieu de faire défiler la page de côté sur téléphone */
+a.badge[href] { border: 1px solid var(--primary); white-space: normal; text-align: left; }
+a.badge:hover { text-decoration: underline; text-underline-offset: 2px; }
+/* niveau de fiabilité affiché seul (légende de la méthode, accueil) : ce n'est pas un bouton */
+span.conf { cursor: default; }
+/* « Comment ça marche » (accueil) : le numéro reste à gauche du titre même quand le titre tient sur deux lignes */
+.row:has(> .step-num) { flex-wrap: nowrap; }
 
 
 /* Atelier : chaque changement tient sur une ligne « avant → après » ; on la déplie pour la régler */
@@ -765,8 +774,9 @@ body.avis-en-visee .avis-viseur, body.avis-en-visee .avis-viseur * { cursor: def
 .card.link:active, button.preset:active { box-shadow: var(--e1); background-color: color-mix(in srgb, var(--primary) 9%, var(--surface)); }
 .card.link h3, .card.link > strong, button.preset > strong { color: var(--titre-lien); }
 .card.link h3::after, .card.link > strong::after, button.preset > strong::after {
-  content: "\00a0→"; display: inline-block; font-weight: 700; transition: transform .15s ease; }
-.card.link:hover h3::after, .card.link:hover > strong::after, button.preset:hover > strong::after { transform: translateX(3px); }
+  content: "\00a0→"; display: inline; position: relative; left: 0; font-weight: 700; transition: left .15s ease; }
+/* (en ligne et non « inline-block » : la flèche ne part plus seule à la ligne sous le titre, cf. « Parent seul, 2 enfants ») */
+.card.link:hover h3::after, .card.link:hover > strong::after, button.preset:hover > strong::after { left: 3px; }
 .card.link:hover h3, .card.link:hover > strong, button.preset:hover > strong { text-decoration: underline; text-underline-offset: 3px; }
 /* le contenu d'une idée commence en haut (les cartes d'une rangée ont la même hauteur) ; un titre seul reste centré */
 button.preset { display: flex; flex-direction: column; justify-content: flex-start; align-items: stretch; }

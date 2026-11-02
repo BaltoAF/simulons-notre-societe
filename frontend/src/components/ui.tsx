@@ -91,7 +91,7 @@ export function SourceItem({ s }: { s: Source }) {
       <div className="row top" style={{ gap: 10 }}>
         <SourceType type={s.type} />
         <div className="grow">
-          <Link to={`/sources/${encodeURIComponent(s.id)}`} style={{ fontWeight: 650, color: 'var(--ink)' }}>{s.titre || s.id}</Link>
+          <Link to={`/sources/${encodeURIComponent(s.id)}`} style={{ fontWeight: 650, color: 'var(--primary)' }}>{s.titre || s.id}</Link>
           <div className="small muted">
             {s.editeur}{s.auteurs && s.auteurs.length ? ' · ' + s.auteurs.slice(0, 3).join(', ') + (s.auteurs.length > 3 ? ' et al.' : '') : ''}
             {s.date_publication ? ' · ' + date(s.date_publication) : ''}

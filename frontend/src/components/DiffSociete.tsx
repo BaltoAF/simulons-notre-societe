@@ -66,8 +66,9 @@ export function nomCourt(titre: string): string {
   return titre.split(' : ')[0].replace(/\s*\([^)]*\)\s*$/, '').trim()
 }
 
-// règles dont l'effet sur les prix n'est pas compté foyer par foyer (« votre porte-monnaie », gagnants et perdants)
-export const TAXES_CONSOMMATION = ['fiscalite.tva.', 'environnement_energie.accise.', 'sante.tabac.']
+// règles dont l'effet sur les prix n'est pas compté foyer par foyer (« votre porte-monnaie », gagnants et perdants).
+// La TVA n'y est plus : son effet sur les prix est compté pour chaque ménage (backend/app/impacts/prix_tva.py).
+export const TAXES_CONSOMMATION = ['environnement_energie.accise.', 'sante.tabac.']
 export const estTaxeConsommation = (id: string) => TAXES_CONSOMMATION.some((p) => id.startsWith(p))
 
 /** Une mesure d'une proposition en une ligne simple : « RSA : 800 € (aujourd'hui 651,69 €) », « Taxe sur le gazole :

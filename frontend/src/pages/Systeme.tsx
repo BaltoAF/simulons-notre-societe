@@ -112,13 +112,13 @@ export default function Systeme() {
             <h3><ShieldAlert size={18} /> Contrôles de qualité</h3>
             <p className="small muted">Le Système vérifie que chaque valeur cite une source existante, que les identifiants sont uniques, et signale les valeurs non confirmées.</p>
             {s && <div className="row small" style={{ marginBottom: 8 }}>
-              <span className={`badge ${s.erreurs ? 'loss' : 'gain'}`}>{s.erreurs} erreur(s)</span>
-              <span className="badge warn">{s.avertissements} avertissement(s)</span>
-              <span className="badge warn">{s.regles_a_verifier} valeur(s) à vérifier</span>
+              <span className={`badge ${s.erreurs ? 'loss' : 'gain'}`}>{s.erreurs} {s.erreurs > 1 ? 'erreurs' : 'erreur'}</span>
+              <span className="badge warn">{s.avertissements} {s.avertissements > 1 ? 'avertissements' : 'avertissement'}</span>
+              <span className="badge warn">{s.regles_a_verifier} {s.regles_a_verifier > 1 ? 'valeurs' : 'valeur'} à vérifier</span>
             </div>}
             {q && q.controles.length > 0 && (
               <div className="small" style={{ marginBottom: 8 }}>
-                <strong>Contrôles croisés</strong> (même règle établie par deux sources indépendantes) : {q.controles.filter((c) => c.concordant).length} concordant(s) sur {q.controles.length}.
+                <strong>Contrôles croisés</strong> (même règle établie par deux sources indépendantes) : {q.controles.filter((c) => c.concordant).length} sur {q.controles.length} concordent.
                 <ul className="list">{q.controles.map((c) => <li key={c.regle + c.autre_source}><span className={`badge ${c.concordant ? 'gain' : 'loss'}`}>{c.concordant ? 'concordant' : 'discordant'}</span> <Link to={`/regles/r/${c.regle}`}>{c.titre}</Link> <span className="muted">— {c.autre_source}</span></li>)}</ul>
               </div>
             )}

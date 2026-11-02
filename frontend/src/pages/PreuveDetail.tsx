@@ -60,7 +60,7 @@ export default function PreuveDetail() {
                   <div className="small muted">{e.titre_source}</div>
                   <div className="pill-list" style={{ marginTop: 4 }}><span className="badge">{e.type_etude_libelle}</span>{e.revue_par_les_pairs && <span className="badge gain">relue par des pairs</span>}{e.pays && <span className="badge">{e.pays}</span>}</div>
                 </td>
-                <td className="small">{e.methode}<div className="muted">{e.champ}</div>{e.note && <div className="muted" style={{ marginTop: 4 }}>{e.note}</div>}</td>
+                <td className="small" style={{ minWidth: 220 }}>{e.methode}<div className="muted">{e.champ}</div>{e.note && <div className="muted" style={{ marginTop: 4 }}>{e.note}</div>}</td>
                 <td className="num">{e.comparable === false
                   ? <><span className="muted">{e.valeur_affichee ?? '—'}</span><div className="small"><span className="badge warn">autre unité, non comptée</span></div></>
                   : <><strong>{fmtEffet(e.valeur, q.unite)}</strong>{e.intervalle_95 && <div className="small muted">[{nombre(e.intervalle_95[0], 2)} ; {nombre(e.intervalle_95[1], 2)}]</div>}</>}</td>

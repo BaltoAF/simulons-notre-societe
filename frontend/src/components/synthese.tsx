@@ -156,7 +156,9 @@ export function EnBref({ r, contexte = 'reforme', overrides }: { r: Rapport; con
               </div>
               {p.indicateurs.length === 0 ? <div className="small muted">{p.pilier === 'social' && ages.length > 0
                 // test Nadia : les gains publics sont comptés, ce que vivent les personnes concernées doit au moins être dit
-                ? "Pas encore chiffré pour l'ensemble des personnes concernées : années de travail ou de retraite en plus, et montant des pensions. Pour vous, la date de départ est indiquée plus haut."
+                // la phrase « pour vous » seulement quand un foyer est décrit (sinon rien n'est indiqué plus haut)
+                ? "Pas encore chiffré pour l'ensemble des personnes concernées : années de travail ou de retraite en plus, et montant des pensions."
+                  + (departs.length > 0 ? ' Pour vous, la date de départ est indiquée plus haut.' : ' Pour connaître votre propre date de départ, décrivez votre foyer.')
                 : AUCUN[p.pilier]}</div> : (
                 <div>
                   {/* « Plutôt négatif » puis « l'activité progresse nettement » (test Josiane) : l'effet durable d'abord, et le sens contraire dit */}
@@ -314,7 +316,7 @@ export function EquilibresPanel({ r, overrides, onAppliquer, contexte = 'reforme
             {budget && alerte && <div className="small muted">soit environ {parMenageMois(e.manque)} par mois et par ménage.</div>}
             {/* la même mesure chiffrée par une institution : à côté de notre chiffre, pour que chacun juge */}
             {budget && r.reference_officielle && (
-              <div className="small" style={{ marginTop: 4 }}>Pour comparer : {r.reference_officielle.source.editeur ?? 'une institution publique'} chiffre la même mesure à{' '}
+              <div className="small" style={{ marginTop: 4 }}>Pour comparer, la même mesure chiffrée par une institution ({r.reference_officielle.source.editeur ?? 'source publique'}) :{' '}
                 <strong>{r.reference_officielle.valeur_md >= 0 ? '+' : '−'}{milliards(Math.abs(r.reference_officielle.valeur_md))} par an</strong>
                 {' '}({r.reference_officielle.annee}{r.reference_officielle.perimetre === 'statique' ? ', à comportements inchangés' : ''}).{' '}
                 <Link to="/fiabilite">Tous les chiffrages comparés</Link></div>

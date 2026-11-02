@@ -86,7 +86,10 @@ export default function RegleDetail() {
             {(r.controles ?? []).map((c, i) => (
               <div key={i} className={`notice ${c.concordant ? 'ok' : 'warn'}`} style={{ marginTop: 12 }}>
                 {c.concordant ? <BadgeCheck size={18} /> : <AlertTriangle size={18} />}
-                <div>{c.concordant ? 'Valeur confirmée par une seconde source indépendante' : 'Désaccord entre deux sources'} : <span title={c.autre_source}>{sourceEnClair(c.autre_source)}</span> donne aussi {valeur(c.autre_valeur, r.unite, r.type)}.</div>
+                <div>{c.concordant ? 'Valeur confirmée par une seconde source indépendante' : 'Désaccord entre deux sources'} : {/* « règle de contrôle fiscalite.controle.… » : un identifiant technique ; on montre un lien en clair vers cette règle */}
+                  {c.autre_regle && /^règle de contrôle /.test(c.autre_source)
+                    ? <Link to={`/regles/r/${c.autre_regle}`}>une règle de contrôle, tirée d'une autre source,</Link>
+                    : <span title={c.autre_source}>{sourceEnClair(c.autre_source)}</span>} donne {c.concordant ? 'aussi ' : ''}{valeur(c.autre_valeur, r.unite, r.type)}.</div>
               </div>
             ))}
             {/* les notes de vérification (dates de publication, sources relues…) intéressent les curieux, pas tout le monde */}

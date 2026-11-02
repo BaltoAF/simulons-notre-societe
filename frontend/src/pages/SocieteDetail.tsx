@@ -147,7 +147,7 @@ export default function SocieteDetail() {
       {msg && <Notice kind="ok">{msg}</Notice>}
       {s.conflits_loi.length > 0 && (
         <div className="notice warn" style={{ margin: '12px 0' }}>
-          <RefreshCw size={18} /> <div className="grow">La loi a changé sur {s.conflits_loi[0].conflits.length} règle(s) que cette proposition modifie aussi
+          <RefreshCw size={18} /> <div className="grow">La loi a changé sur {s.conflits_loi[0].conflits.length} {s.conflits_loi[0].conflits.length > 1 ? 'règles' : 'règle'} que cette proposition modifie aussi
             ({s.conflits_loi[0].conflits.map((c) => c.titre ?? c.regle).slice(0, 3).join(', ')}). Rien n'est imposé : {s.proprietaire ? 'à vous de choisir, règle par règle.' : 'son auteur doit choisir.'}</div>
           {s.proprietaire && <button className="btn small" onClick={() => setModal('sync')}>Choisir</button>}
         </div>
