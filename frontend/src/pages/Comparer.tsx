@@ -108,7 +108,9 @@ export default function Comparer() {
           </label>
         ))}
       </div>
-      {!b ? <div className="card soft">Choisissez la deuxième proposition à comparer.</div> : a === b ? <ErrorBox message="Choisissez deux propositions différentes." /> : (
+      {!b ? <div className="card soft">Choisissez la deuxième proposition à comparer.</div> : a === b ? <ErrorBox message="Choisissez deux propositions différentes." />
+        // adresse ancienne ou proposition supprimée : le dire, plutôt qu'une comparaison vide (« aucune règle changée »)
+        : liste && (!sa || !sb) ? <ErrorBox message="Une des deux propositions est introuvable (supprimée, ou adresse erronée) : choisissez-en une autre dans les listes ci-dessus." /> : (
         <div className="stack">
           {/* les chiffres d'abord (demande du responsable, 01/11/2026) : les cinq tuiles de chaque proposition, côte à côte */}
           <div className="card">
@@ -117,9 +119,11 @@ export default function Comparer() {
             <div className="grid cols-2 bord-comparaison">
               {[sa, sb].map((s, k) => (
                 <div key={k}>
-                  <div style={{ fontWeight: 700, marginBottom: 6 }}>{s?.nom ?? '…'}</div>
+                  <div style={{ fontWeight: 700, marginBottom: 6 }}>{s?.nom ?? (liste ? 'Proposition introuvable' : '…')}</div>
                   {/* liste pas encore chargée : un indicateur d'attente, et non « aucune règle changée » */}
-                  {s ? <TableauDeBord ind={s.indicateurs} compact /> : <span className="spinner" style={{ width: 16, height: 16, borderWidth: 2 }} aria-label="Chargement" />}
+                  {s ? <TableauDeBord ind={s.indicateurs} compact />
+                    : liste ? <div className="small muted">Proposition introuvable : choisissez-en une dans la liste ci-dessus.</div>
+                      : <span className="spinner" style={{ width: 16, height: 16, borderWidth: 2 }} aria-label="Chargement" />}
                 </div>
               ))}
             </div>
