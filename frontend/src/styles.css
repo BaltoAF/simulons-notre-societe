@@ -869,6 +869,7 @@ button.preset:focus-visible, .mode-carte:focus-visible { border-radius: 14px; ou
   :is(.cartes-propositions, .bord-comparaison, .bord-atelier) .tuile-valeur { grid-column: 2; justify-self: end; font-size: 1.1rem; }
   :is(.cartes-propositions, .bord-comparaison, .bord-atelier) .tuile-unite { grid-column: 2; justify-self: end; text-align: right; }
   :is(.cartes-propositions, .bord-comparaison, .bord-atelier) .tuile-conf { grid-column: 3; grid-row: 1 / span 2; margin: 0; }
+  :is(.cartes-propositions, .bord-comparaison, .bord-atelier) .tuile-manque { grid-column: 2; justify-self: end; text-align: right; }
   :is(.cartes-propositions, .bord-comparaison, .bord-atelier) .tuile-valeur.nc { padding: 0; }
 }
 @media (max-width: 640px) {
@@ -927,3 +928,6 @@ section.card.depliant:not(.ouvert):not(.link):hover { border-color: var(--primar
 .attente-fait svg { color: var(--primary); flex-shrink: 0; margin-top: 2px; }
 @keyframes attente-apparait { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .attente-fait { animation: none; } .attente-barre { transition: none; } }
+
+/* tuile dont l'équilibre n'est pas atteint : ce qu'il reste à financer ou à compenser */
+.tuile-manque { font-size: .76rem; font-weight: 700; color: var(--loss); line-height: 1.2; margin-top: 2px; }

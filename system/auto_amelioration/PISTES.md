@@ -59,8 +59,8 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
     repliés.
   Vérifier à 390 px à chaque fois ; tuiles plates, sans bordure (règle « un même aspect, un même comportement »).
 - **Tableau de bord, suite** : fait le 02/11 : « Classer » sur la liste (moins coûteuses, pouvoir d'achat, pauvreté,
-  emploi, émissions ; la loi actuelle reste en tête, les propositions non chiffrées à la fin). Reste : afficher l'état d'équilibre (« financement à trouver : X Md€ ») quand `finances.statut`
-  vaut `a_compenser` ; les variantes (branches) n'ont leurs chiffres que sur la page de la proposition.
+  emploi, émissions ; la loi actuelle reste en tête, les propositions non chiffrées à la fin). Reste : les variantes (branches) n'ont leurs chiffres que sur la page de la proposition. Fait aussi le 02/11 :
+  « à financer » / « à compenser » sur la tuile quand l'équilibre n'est pas atteint.
 
 - **Fiabilité du minimum vieillesse, suite** : avec le recours en montant (fait le 30/10), dépense simulée 3,6 Md€ contre
   4,6 Md€ versés (écart −22 %). Reste probablement la population synthétique : caler les retraités modestes sur les

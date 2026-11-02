@@ -56,12 +56,19 @@ function Tuile({ d, v, statut }: { d: Def; v?: ValeurIndicateur; statut: Indicat
   const bornes = !reference && v?.fourchette ? v.fourchette.map((x) => d.effet(x)[0]) : null
   const plage = bornes ? `${v?.incertain ? 'effet incertain : ' : ''}de ${bornes[0]} à ${bornes[1]}` : null
   const unite = [parts ? `${fmt[1]} ; ${parts}` : fmt[1], plage].filter(Boolean).join(' · ')
+  // équilibre pas encore atteint (piste « tableau de bord, suite ») : ce qu'il reste à financer ou à compenser
+  const manque = !reference && v?.statut === 'a_compenser' && (v.manque ?? 0) > 0.05
+    // le manque égale le plus souvent l'effet affiché juste au-dessus : on ne répète pas le chiffre
+    ? (Math.abs(Math.abs(val!) - v.manque!) < 0.05 ? (d.id === 'finances' ? 'à financer' : d.id === 'climat' ? 'à compenser' : null)
+      : d.id === 'finances' ? `dont ${nombre(v.manque!, 1)} Md€ à financer` : d.id === 'climat' ? `dont ${nombre(v.manque!, 2)} Mt à compenser` : null)
+    : null
   return (
     <div className={`tuile ${sens}`} title={reference ? `Chiffre officiel${v?.annee ? ` (${v.annee})` : ''}` : v?.incertain ? "Les études ne s'accordent pas même sur le sens de l'effet" : SENS_TXT[sens]}>
       <span className="tuile-libelle">{libelle}</span>
       <span className="tuile-valeur">{Fleche && <Fleche size={16} strokeWidth={2.6} aria-hidden />}{fmt[0]}
         {!reference && <span className="sr-only"> ({SENS_TXT[sens]})</span>}</span>
       <span className="tuile-unite">{unite}{reference && v?.annee ? ` · ${v.annee}` : ''}</span>
+      {manque && <span className="tuile-manque">{manque}</span>}
       {!reference && v?.confiance && <span className="tuile-conf"><ConfidenceBadge c={v.confiance} compact /></span>}
     </div>
   )
