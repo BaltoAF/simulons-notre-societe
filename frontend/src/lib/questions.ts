@@ -14,6 +14,7 @@ export type Chiffre = {
   metrique?: string
   regle?: string
   calcul?: (v: Record<string, number>) => number | null
+  depuis?: string // pour un calcul : la clé du chiffre d'où il vient (son année et sa source s'affichent sur la tuile)
   absolu?: boolean // afficher sans signe (un déficit de −152 Md€ se dit « 152 milliards € »)
   cache?: boolean // sert dans le texte mais n'est pas affiché en grand
   premiere?: boolean // le premier point de la série (un repère dans le temps) plutôt que le dernier
@@ -215,7 +216,7 @@ export const QUESTIONS: Question[] = [
       { cle: 'nb', libelle: 'Retraités', format: 'personnes', metrique: 'retraites.nombre_retraites' },
       // « 1,77 cotisant » ne parle à personne ; « 7 pour 4 retraités » si (test Josiane)
       { cle: 'ratio', libelle: 'Cotisants pour un retraité', format: 'ratio', metrique: 'retraites.ratio_cotisants_retraites', cache: true },
-      { cle: 'cotisants_4', libelle: 'Cotisants pour 4 retraités', format: 'entier', calcul: (v) => (v.ratio ? v.ratio * 4 : null) },
+      { cle: 'cotisants_4', libelle: 'Cotisants pour 4 retraités', format: 'entier', calcul: (v) => (v.ratio ? v.ratio * 4 : null), depuis: 'ratio' },
       { cle: 'age', libelle: 'Âge moyen de départ', format: 'ans', metrique: 'retraites.age_moyen_depart' },
       { cle: 'depenses', libelle: 'Coût du système', format: 'md', metrique: 'retraites.depenses_totales_md', cache: true },
       { cle: 'depenses_pct', libelle: 'Part du PIB', format: 'pct_pib', metrique: 'retraites.depenses_pct_pib', cache: true },

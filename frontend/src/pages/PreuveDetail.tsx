@@ -50,7 +50,7 @@ export default function PreuveDetail() {
       <div className="card" style={{ marginTop: 16 }}>
         <h3>Détail des études et de leur poids</h3>
         <div className="table-wrap">
-          <table className="table">
+          <table className="table table-etudes">
             <thead><tr><th>Étude</th><th>Méthode et champ</th><th className="num">Estimation</th><th className="num">Poids</th></tr></thead>
             <tbody>{est.map((e, i) => (
               <tr key={i}>
@@ -60,11 +60,11 @@ export default function PreuveDetail() {
                   <div className="small muted">{e.titre_source}</div>
                   <div className="pill-list" style={{ marginTop: 4 }}><span className="badge">{e.type_etude_libelle}</span>{e.revue_par_les_pairs && <span className="badge gain">relue par des pairs</span>}{e.pays && <span className="badge">{e.pays}</span>}</div>
                 </td>
-                <td className="small" style={{ minWidth: 220 }}>{e.methode}<div className="muted">{e.champ}</div>{e.note && <div className="muted" style={{ marginTop: 4 }}>{e.note}</div>}</td>
-                <td className="num">{e.comparable === false
+                <td className="small" data-libelle="Méthode et champ" style={{ minWidth: 220 }}>{e.methode}<div className="muted">{e.champ}</div>{e.note && <div className="muted" style={{ marginTop: 4 }}>{e.note}</div>}</td>
+                <td className="num" data-libelle="Estimation">{e.comparable === false
                   ? <><span className="muted">{e.valeur_affichee ?? '—'}</span><div className="small"><span className="badge warn">autre unité, non comptée</span></div></>
                   : <><strong>{fmtEffet(e.valeur, q.unite)}</strong>{e.intervalle_95 && <div className="small muted">[{nombre(e.intervalle_95[0], 2)} ; {nombre(e.intervalle_95[1], 2)}]</div>}</>}</td>
-                <td className="num">{nombre(e.poids * 100, 1)} %<div className="small muted" title="qualité × pertinence × fraîcheur">Q {nombre(e.qualite, 2)} · P {nombre(e.pertinence, 2)} · F {nombre(e.fraicheur, 2)}</div></td>
+                <td className="num" data-libelle="Poids dans la synthèse">{nombre(e.poids * 100, 1)} %<div className="small muted" title="Le poids combine la qualité de l'étude, sa pertinence pour la France d'aujourd'hui et sa fraîcheur">qualité {nombre(e.qualite, 2)} · pertinence {nombre(e.pertinence, 2)} · fraîcheur {nombre(e.fraicheur, 2)}</div></td>
               </tr>
             ))}</tbody>
           </table>
@@ -74,7 +74,9 @@ export default function PreuveDetail() {
         <div className="card" style={{ marginTop: 16 }}><h3>Règles concernées</h3>
           <div className="pill-list">{q.regles_liees.map((r) => <Link key={r.id} to={`/regles/r/${r.id}`} className="badge primary">{r.titre}</Link>)}</div></div>
       )}
-      <p className="small muted" style={{ marginTop: 12 }}>Fiche : <code>{q.fichier}</code> · <Link to="/methode#preuves">Comment les études sont pondérées</Link></p>
+      <p className="small muted" style={{ marginTop: 12 }}><Link to="/methode#preuves">Comment les études sont pondérées</Link></p>
+      {/* le chemin du fichier intéresse ceux qui veulent relire les données, pas tout le monde */}
+      <details className="curieux small muted"><summary>Détails techniques</summary>Fichier de données : <code>{q.fichier}</code></details>
     </div>
   )
 }

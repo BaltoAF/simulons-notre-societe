@@ -8,16 +8,15 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
 - **Liens « Explorer les règles → » de l'accueil** (visite du 02/11/2026) : 20 px de haut sur téléphone ; agrandir leur zone à
   toucher comme pour le pied de page. Lexique : relier les mots foyer fiscal, tranche, quotient familial, RSA, APL, CAF aux
   textes de « Mes droits » avec le composant `Terme`.
-- **Revue qualité du 02/11/2026 (toutes les pages, ordinateur et téléphone), points restants** :
-  1. « TVA à 21 % » : −5 € par ménage et par mois pour +7,5 Md€ de recettes (≈ −20 € si tout était payé par les ménages).
-     La répercussion à 50 % en explique une partie ; vérifier le reste (part de TVA par décile, champ de la population
-     simulée), et pourquoi pauvreté et inégalités restent « inchangées » et l'activité n'a pas de long terme.
-  2. Carburants, chauffage et tabac ne comptent pas dans les gagnants/perdants (la TVA, si) : les compter, ménage par ménage,
+- **Revue qualité du 02/11/2026, points restants** :
+  1. Carburants, chauffage et tabac ne comptent pas dans les gagnants/perdants (la TVA, si) : les compter, ménage par ménage,
      avec la consommation par décile (Insee, Budget de famille).
-  3. Termes techniques visibles (« Fiche : model/preuves/….yaml », « Q 0,9 · P 1 · F 0,8 », identifiants de fichiers,
-     version du moteur) : les cacher derrière un dépliant « Détails techniques ».
-  4. /preuves/<id> sur téléphone : tableau à 4 colonnes → affichage empilé. Tuile « 7 cotisants pour 4 retraités » sans
-     année ni source (/comprendre/retraites).
+  2. Répercussion de la TVA dans les prix : la synthèse (≈ 50 %) mêle taux réduits, baisses sectorielles et taux normal.
+     Benedek et al. (2020) trouvent ≈ 100 % pour le taux normal, ≈ 30 % pour les taux réduits ; Benzarti et al. (2020),
+     environ deux fois plus pour les hausses que pour les baisses. Piste : une synthèse par type de taux (à soumettre).
+     Vérifié le 02/11 : « TVA à 21 % » = −5 € par ménage et par mois est cohérent avec la méthode (les ménages paient environ
+     la moitié de la TVA, le reste par les administrations, le logement neuf… ; × 50 % répercutés) ; pauvreté et inégalités
+     quasi inchangées car l'effet est presque proportionnel au revenu.
 
 - **Emploi et RSA (vérifié le 01/11/2026)** : −268 000 emplois pour un RSA à 800 € = 0,25 (élasticité de participation,
   synthèse de la fiche offre_travail_marge_extensive, surtout des études américaines) × −22,7 % de gain à travailler au SMIC ×

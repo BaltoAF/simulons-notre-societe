@@ -892,3 +892,12 @@ section.card.depliant:not(.link):not(.flat):not(.soft) { border: 1px solid var(-
 section.card.depliant:not(.ouvert):not(.link):hover { border-color: var(--primary); background: color-mix(in srgb, var(--primary) 4%, var(--surface)); }
 .card.depliant > .card-head > button h3, .card.depliant > .card-head > button > svg { color: var(--titre-lien); }
 .card.depliant:not(.ouvert) > .card-head > button:hover h3 { text-decoration: underline; text-underline-offset: 3px; }
+
+/* détail des études sur téléphone : une étude par bloc, colonnes empilées et nommées (plus de défilement de côté) */
+@media (max-width: 640px) {
+  .table-etudes thead { display: none; }
+  .table-etudes, .table-etudes tbody, .table-etudes tr, .table-etudes td { display: block; width: 100%; min-width: 0 !important; }
+  .table-etudes tr { padding: 10px 0; border-bottom: 1px solid var(--line); }
+  .table-etudes td, .table-etudes td.num { border: 0; padding: 3px 0; text-align: left; }
+  .table-etudes td[data-libelle]::before { content: attr(data-libelle); display: block; font-size: .8rem; font-weight: 650; color: var(--ink-3); }
+}

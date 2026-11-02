@@ -248,7 +248,8 @@ function Detail({ q }: { q: Question }) {
       {loading ? <Loading /> : (
         <div className="grid cols-3" style={{ margin: '18px 0' }}>
           {visibles.map((c) => {
-            const s = stats.find((x) => x.id === c.metrique)
+            // un chiffre calculé (« 7 cotisants pour 4 retraités ») reprend l'année et la source du chiffre d'où il vient
+            const s = stats.find((x) => x.id === (c.metrique ?? q.chiffres.find((k) => k.cle === c.depuis)?.metrique))
             return (
               <div key={c.cle} className="card kpi-teinte">
                 <div className="kpi-label">{c.libelle}</div>

@@ -119,7 +119,7 @@ export default function Systeme() {
             {q && q.controles.length > 0 && (
               <div className="small" style={{ marginBottom: 8 }}>
                 <strong>Contrôles croisés</strong> (même règle établie par deux sources indépendantes) : {q.controles.filter((c) => c.concordant).length} sur {q.controles.length} concordent.
-                <ul className="list">{q.controles.map((c) => <li key={c.regle + c.autre_source}><span className={`badge ${c.concordant ? 'gain' : 'loss'}`}>{c.concordant ? 'concordant' : 'discordant'}</span> <Link to={`/regles/r/${c.regle}`}>{c.titre}</Link> <span className="muted">— {c.autre_source}</span></li>)}</ul>
+                <ul className="list">{q.controles.map((c) => <li key={c.regle + c.autre_source}><span className={`badge ${c.concordant ? 'gain' : 'loss'}`}>{c.concordant ? 'concordant' : 'discordant'}</span> <Link to={`/regles/r/${c.regle}`}>{c.titre}</Link> <span className="muted">— {/^règle de contrôle /.test(c.autre_source) ? 'comparée à une règle de contrôle tirée d\'une autre source' : c.autre_source}</span></li>)}</ul>
               </div>
             )}
             <ul className="list small" style={{ maxHeight: 260, overflowY: 'auto' }}>

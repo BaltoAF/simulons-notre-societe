@@ -38,7 +38,7 @@ export default function SourceDetail() {
           ))}</ul>
         )}
       </div>
-      <p className="small muted" style={{ marginTop: 12 }}>Identifiant : <code>{s.id}</code> · fichier : <code>{s.fichier}</code></p>
+      <details className="curieux small muted" style={{ marginTop: 12 }}><summary>Détails techniques</summary>Identifiant : <code>{s.id}</code> · fichier de données : <code>{s.fichier}</code></details>
     </div>
   )
 }
