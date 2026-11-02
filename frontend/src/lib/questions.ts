@@ -123,6 +123,9 @@ export const QUESTIONS: Question[] = [
       { cle: 'foyers', libelle: 'Foyers fiscaux', format: 'personnes', metrique: 'impot.ir.nombre_foyers_fiscaux', cache: true },
       { cle: 'foyers_imposes', libelle: 'Foyers qui paient un impôt sur le revenu', format: 'personnes', metrique: 'impot.ir.nombre_foyers_imposes', cache: true },
       { cle: 'part_imposes', libelle: 'Part des foyers qui paient un impôt sur le revenu', format: 'entier', calcul: (v) => (v.foyers ? Math.round((v.foyers_imposes / v.foyers) * 100) : null), cache: true },
+      // « la TVA pèse plus lourd sur les modestes » (relecture de neutralité : à sourcer) : Conseil des prélèvements obligatoires
+      { cle: 'tva_d1', libelle: 'TVA payée, en % du revenu, par les 10 % les plus modestes', format: 'pct', metrique: 'consommation.tva_part_revenu_disponible_decile_1', cache: true },
+      { cle: 'tva_d10', libelle: 'TVA payée, en % du revenu, par les 10 % les plus aisés', format: 'pct', metrique: 'consommation.tva_part_revenu_disponible_decile_10', cache: true },
       { cle: 'part_d10', libelle: 'Part de l\'impôt sur le revenu payée par les 10 % les plus aisés', format: 'pct', metrique: 'impot.ir.part_impot_dixieme_plus_aise', cache: true },
       { cle: 'ipp_01', libelle: 'Taux global des 0,1 % les plus riches', format: 'pct', metrique: 'impot.taux_global_ipp.top_0_1_pct', cache: true },
       { cle: 'ipp_mds', libelle: 'Taux global des 75 foyers les plus fortunés', format: 'pct', metrique: 'impot.taux_global_ipp.milliardaires', cache: true },
@@ -142,7 +145,7 @@ export const QUESTIONS: Question[] = [
       "Selon le revenu, la charge n'est pas la même. L'impôt sur le revenu repose sur une partie des foyers : {part_imposes} % d'entre eux en paient, et les 10 % les plus aisés en paient près des trois quarts (DGFiP, revenus 2024). Tout en haut, le taux de tous les impôts réunis baisse : selon l'Institut des politiques publiques, il atteignait {ipp_01} du revenu des 0,1 % les plus riches en 2016, mais {ipp_mds} pour les 75 foyers les plus fortunés, dont une grande partie des revenus reste dans leurs sociétés.",
       "Par rapport à ses voisins, la France prélève parmi les plus hauts niveaux d'Europe. Selon la définition commune d'Eurostat, un peu plus large que celle de l'Insee : {eu_fr} en 2025, contre {eu_ue} en moyenne dans l'Union européenne, {eu_dk} au Danemark, {eu_be} en Belgique, {eu_it} en Italie, {eu_de} en Allemagne et {eu_es} en Espagne. Ces comparaisons ne disent pas tout : selon les pays, les retraites et la santé sont payées plus ou moins par l'argent public, ou par des assurances et une épargne privées.",
     ],
-    aSavoir: "La TVA pèse plus lourd, en proportion, pour les ménages modestes : ils dépensent presque tout ce qu'ils gagnent.",
+    aSavoir: "La TVA pèse plus lourd, en proportion, pour les ménages modestes : ils dépensent presque tout ce qu'ils gagnent. Elle représente {tva_d1} du revenu des 10 % les plus modestes, contre {tva_d10} pour les 10 % les plus aisés (Conseil des prélèvements obligatoires).",
     debat: {
       question: 'Faut-il faire payer davantage les plus aisés ?',
       positions: [
@@ -596,9 +599,11 @@ export const VRAI_FAUX: VraiFaux[] = [
     id: 'riches-ir',
     affirmation: "Les plus aisés paient peu d'impôt sur le revenu.",
     verdict: 'faux',
-    explication: "Les foyers qui déclarent plus de 100 000 € par an ne sont que {part_foyers} des foyers, mais ils paient {part_impot} de l'impôt sur le revenu ({impot_haut} sur {impot_total}), car il est progressif. La TVA, elle, pèse plus lourd, en proportion, sur les revenus modestes.",
+    explication: "Les foyers qui déclarent plus de 100 000 € par an ne sont que {part_foyers} des foyers, mais ils paient {part_impot} de l'impôt sur le revenu ({impot_haut} sur {impot_total}), car il est progressif. La TVA, elle, pèse plus lourd, en proportion, sur les revenus modestes : {tva_d1} de leur revenu pour les 10 % les plus modestes, {tva_d10} pour les 10 % les plus aisés.",
     chiffres: [
       { cle: 'foyers_haut', libelle: 'Foyers au-delà de 100 000 €', format: 'entier', metrique: 'impot.ir.tranche_rfr_plus_100000.nombre_foyers', cache: true },
+      { cle: 'tva_d1', libelle: 'TVA payée, en % du revenu, par les 10 % les plus modestes', format: 'pct', metrique: 'consommation.tva_part_revenu_disponible_decile_1', cache: true },
+      { cle: 'tva_d10', libelle: 'TVA payée, en % du revenu, par les 10 % les plus aisés', format: 'pct', metrique: 'consommation.tva_part_revenu_disponible_decile_10', cache: true },
       { cle: 'foyers', libelle: 'Foyers fiscaux', format: 'entier', metrique: 'impot.ir.nombre_foyers_fiscaux', cache: true },
       { cle: 'impot_haut_e', libelle: 'Impôt payé au-delà de 100 000 €', format: 'entier', metrique: 'impot.ir.tranche_rfr_plus_100000.impot_net', cache: true },
       { cle: 'impot_total_e', libelle: 'Impôt sur le revenu total', format: 'entier', metrique: 'impot.ir.impot_net_total', cache: true },

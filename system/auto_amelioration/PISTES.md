@@ -248,8 +248,8 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   chiffré (autre convention de l'OCDE), « ordre de grandeur » relativisant retiré, emploi des hommes immigrés (sans
   source) retiré, « l'impôt sur le revenu en rapporte environ 8 % » (calculé : recettes de l'impôt sur le revenu ÷ impôts et cotisations), positions de « Qui paie ? » au même mode et à la
   même longueur, une seule réserve sur les comparaisons de dépenses, Défense « votée pour 2026 », solde et projections
-  du COR sur la page retraites. Reste à sourcer : la TVA plus lourde, en proportion, pour les ménages modestes (Insee ou
-  CPO) ; le détail du tableau « Sur 100 € » ; les études France Stratégie et Cepii citées (liste « études citées ») ; le
+  du COR sur la page retraites. Sourcé le 02/11 : la TVA plus lourde pour les ménages modestes (CPO : 12,5 % du revenu
+  du 1er décile, 4,7 % du 10e, dans « Qui paie ? » et le « Vrai ou faux »). Reste à sourcer : le détail du tableau « Sur 100 € » ; les études France Stratégie et Cepii citées (liste « études citées ») ; le
   niveau de vie des retraités « proche » de l'ensemble (Drees, COR). Fait : « D'où viennent ces chiffres ? » sous chaque
   grande question, avec la source exacte du point cité (une année ancienne peut venir d'une autre publication).
 - **Comparaisons européennes** (31/10/2026) : chaque grande question chiffrée situe la France dans l'Union, avec la
