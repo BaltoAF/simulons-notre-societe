@@ -118,7 +118,8 @@ export default function Comparer() {
               {[sa, sb].map((s, k) => (
                 <div key={k}>
                   <div style={{ fontWeight: 700, marginBottom: 6 }}>{s?.nom ?? '…'}</div>
-                  <TableauDeBord ind={s?.indicateurs} compact />
+                  {/* liste pas encore chargée : un indicateur d'attente, et non « aucune règle changée » */}
+                  {s ? <TableauDeBord ind={s.indicateurs} compact /> : <span className="spinner" style={{ width: 16, height: 16, borderWidth: 2 }} aria-label="Chargement" />}
                 </div>
               ))}
             </div>
