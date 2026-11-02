@@ -23,12 +23,14 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
      la moitié de la TVA, le reste par les administrations, le logement neuf… ; × 50 % répercutés) ; pauvreté et inégalités
      quasi inchangées car l'effet est presque proportionnel au revenu.
 
-- **Emploi et RSA (vérifié le 01/11/2026)** : −268 000 emplois pour un RSA à 800 € = 0,25 (élasticité de participation,
-  synthèse de la fiche offre_travail_marge_extensive, surtout des études américaines) × −22,7 % de gain à travailler au SMIC ×
-  4,73 M de foyers de la prime d'activité (hypothèse haute écrite dans le code). Fourchette des études : de −751 000 à
-  +43 000. Fait : le tableau de pilotage affiche la fourchette et « effet incertain » quand elle contient zéro. Reste :
-  affiner la population (tous les foyers de la prime d'activité ne sont pas à la marge : chercher la répartition officielle
-  des bénéficiaires par revenu d'activité, Cnaf ou DREES) et pondérer le gain par cette répartition plutôt que 30 % / 70 %.
+- **Emploi et RSA (vérifié le 01/11/2026, revu le 02/11)** : pour un RSA à 800 €, 0,25 (élasticité de participation,
+  synthèse de la fiche offre_travail_marge_extensive, surtout des études américaines) × −26,6 % de gain à travailler ×
+  4,73 M de foyers de la prime d'activité (hypothèse haute écrite dans le code) ≈ −314 000 emplois ; fourchette des études
+  de −880 000 à +50 000, affichée « effet incertain ». Fait le 02/11 : la pondération mi-temps / temps plein n'est plus une
+  hypothèse (30 % / 70 %) mais la répartition officielle (47 % / 53 %, rapport d'évaluation de la prime d'activité, DREES,
+  enquête Emploi 2016). Reste : la population (tous les foyers de la prime d'activité ne sont pas à la marge) ; le même
+  rapport donne 31 % de bénéficiaires en sous-emploi, mais aucune source trouvée ne chiffre ceux qui hésitent vraiment
+  entre travailler ou non.
 - **Tableaux de bord partout : les chiffres d'abord, le texte sur demande** (demande du responsable, 01/11/2026 : « chaque
   visiteur est un futur président ; il a besoin de vraies informations de pilotage »). Fait sur « Les propositions » et la
   page d'une proposition (composant `TableauDeBord`, indicateurs gardés par `backend/app/indicateurs.py`). À généraliser,

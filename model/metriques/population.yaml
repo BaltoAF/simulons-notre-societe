@@ -1879,6 +1879,15 @@ metriques:
         valeur: 4726100
         source: drees-suivi-mensuel-prestations-solidarite-aout-2026
         statut: definitif
+  - id: prestations.prime_activite.part_temps_partiel_emploi
+    titre: "Part des bénéficiaires de la prime d'activité en emploi qui travaillent à temps partiel"
+    explication: "47 % des bénéficiaires de la prime d'activité qui ont un emploi travaillent à temps partiel (53 % à temps complet), contre 19 % de l'ensemble des personnes en emploi. Rapport d'évaluation de la prime d'activité remis au Parlement (DGCS, avec la DREES et la Cnaf), tableau 11 : Insee, enquête Emploi 2016, traitements DREES. Champ : personnes de référence et conjoints, ménages ordinaires, France hors Mayotte."
+    unite: pourcent
+    serie:
+      - date: "2016-12-31"
+        valeur: 47
+        source: dgcs-evaluation-prime-activite-2017
+        statut: definitif
 
   - id: prestations.prime_activite.montant_annuel
     titre: "Montant annuel de prime d'activité versé, tous régimes (France)"

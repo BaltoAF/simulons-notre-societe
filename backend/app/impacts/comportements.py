@@ -284,8 +284,11 @@ def mod_participation(ctx: Contexte) -> list[Indicateur]:
     r = ctx.calculer(cas, reforme=True)["revenu_disponible"]
     gains0 = [b[1] - b[0], b[2] - b[0]]
     gains1 = [r[1] - r[0], r[2] - r[0]]
-    # la plupart des bénéficiaires de la prime d'activité travaillent près du temps plein : pondération 30 % mi-temps, 70 % temps plein
-    dg = sum(w * (g1 / g0 - 1) for w, g0, g1 in zip((0.3, 0.7), gains0, gains1) if g0 > 0)
+    # pondération mi-temps / temps plein : 47 % des bénéficiaires de la prime d'activité en emploi sont à temps partiel
+    # (rapport d'évaluation de la prime d'activité, DREES, enquête Emploi 2016) ; à défaut, 30 % (ancienne hypothèse)
+    tp, src_tp, _ = metrique(ctx.store, "prestations.prime_activite.part_temps_partiel_emploi")
+    w_tp = (tp / 100) if tp else 0.3
+    dg = sum(w * (g1 / g0 - 1) for w, g0, g1 in zip((w_tp, 1 - w_tp), gains0, gains1) if g0 > 0)
     if abs(dg) < 0.002:
         return []
     eta, conf_e, syn = valeur_ou_defaut(ctx.store, "offre_travail_marge_extensive", 0.25)
@@ -301,9 +304,9 @@ def mod_participation(ctx: Contexte) -> list[Indicateur]:
                     "tous les foyers bénéficiaires de la prime d'activité sont supposés réagir comme l'indiquent les études.",
         calcul=[f"Gain à travailler à mi-temps au SMIC : {gains0[0]:.0f} € → {gains1[0]:.0f} € par mois",
                 f"Gain à travailler à temps plein au SMIC : {gains0[1]:.0f} € → {gains1[1]:.0f} € par mois",
-                f"Variation moyenne du gain (30 % mi-temps, 70 % temps plein) : {dg * 100:+.1f} %", f"Élasticité de participation retenue : {eta:.2f}",
+                f"Variation moyenne du gain ({round(w_tp * 100)} % à temps partiel, compté comme un mi-temps ; {round((1 - w_tp) * 100)} % à temps plein) : {dg * 100:+.1f} %", f"Élasticité de participation retenue : {eta:.2f}",
                 f"Population concernée : {pop / 1e6:.2f} M foyers (bénéficiaires de la prime d'activité)"],
-        sources=[src] if src else [], preuves=["offre_travail_marge_extensive"], sens="favorable" if de > 0 else "defavorable",
+        sources=[x for x in (src, src_tp) if x], preuves=["offre_travail_marge_extensive"], sens="favorable" if de > 0 else "defavorable",
         fourchette=fourchette(syn, lambda x: x * dg * pop))]
 
 
