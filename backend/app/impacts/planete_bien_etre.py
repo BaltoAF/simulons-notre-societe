@@ -324,19 +324,32 @@ def be_route(ctx: Contexte) -> list[Indicateur]:
 
 
 # ───────────────────────── tabac ─────────────────────────
+def variation_prix_tabac(ctx: Contexte):
+    """Prix moyen pondéré des cigarettes (pour 1 000) avant et après une hausse des accises, répercutée en entier dans le
+    prix (part du fabricant et du buraliste inchangée) : (p0, p1, taux0, taux1, tarif0, tarif1), ou None."""
+    r_taux, r_tarif = "sante.tabac.accise_cigarettes_taux", "sante.tabac.accise_cigarettes_tarif"
+    if not (ctx.modifie(r_taux) or ctx.modifie(r_tarif)):
+        return None
+    p = ctx.store.rule_value("sante.tabac.prix_moyen_pondere_cigarettes")
+    if not p:
+        return None
+    t0, t1 = (x / 100 for x in ecart(ctx, r_taux))
+    s0, s1 = ecart(ctx, r_tarif)
+    tva = 1 / 6  # TVA à 20 % incluse dans le prix
+    net = p * (1 - t0 - tva) - s0
+    p1 = (net + s1) / (1 - t1 - tva)
+    return p, p1, t0, t1, s0, s1
+
+
 def be_tabac(ctx: Contexte) -> list[Indicateur]:
     r_taux, r_tarif = "sante.tabac.accise_cigarettes_taux", "sante.tabac.accise_cigarettes_tarif"
     if not (ctx.modifie(r_taux) or ctx.modifie(r_tarif)):
         return []
-    p = ctx.store.rule_value("sante.tabac.prix_moyen_pondere_cigarettes")
     rec, src_r, conf_r = metrique(ctx.store, "tabac.recettes_fiscales")
-    if not p or not rec:
+    v = variation_prix_tabac(ctx)
+    if v is None or not rec:
         return []
-    t0, t1 = (x / 100 for x in ecart(ctx, r_taux))
-    s0, s1 = ecart(ctx, r_tarif)
-    tva = 1 / 6  # TVA à 20 % incluse dans le prix
-    net = p * (1 - t0 - tva) - s0                       # part du fabricant et du buraliste, supposée inchangée
-    p1 = (net + s1) / (1 - t1 - tva)                     # répercussion intégrale dans le prix
+    p, p1, t0, t1, s0, s1 = v
     dp = p1 / p - 1
     e, conf_e, syn = valeur_ou_defaut(ctx.store, "elasticite_prix_tabac", -0.4)
     dq = e * dp

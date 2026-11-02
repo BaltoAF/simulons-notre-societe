@@ -109,3 +109,12 @@ sources:
     date_publication: "2019-09"
     consulte_le: "2026-11-02"
     note: "« Le prix moyen du gaz naturel sur le marché résidentiel en France s'élève à 76 €/MWh PCS, en progression de 7,7 % par rapport à 2017 », hausse liée à la suppression du tarif spécial de solidarité et à la hausse de la taxe intérieure (5,88 → 8,45 €/MWh PCS au 1er janvier 2018)."
+  - id: insee-bdm-ipc-2015
+    type: statistique_publique
+    editeur: "Insee (Banque de données macroéconomiques)"
+    titre: "Indices annuels des prix à la consommation, base 2015, ensemble des ménages, France : électricité (001764660)"
+    url: "https://www.insee.fr/fr/statistiques/serie/001764660"
+    auteurs: []
+    date_publication: "2026"
+    consulte_le: "2026-11-02"
+    note: "Valeurs lues par l'accès SDMX (https://bdm.insee.fr/series/sdmx/data/IPC-2015/A..SO...INDICE....BRUT..TRUE) : électricité 103,55 (2017) et 146,92 (2025). Séries de la base 2015, arrêtées avec le passage à la base 2025."

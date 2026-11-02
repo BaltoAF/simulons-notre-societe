@@ -62,7 +62,7 @@ function mesures(s: Societe | undefined) {
   return (s.mesures ?? []).map(ligneMesure)
 }
 
-/** Une hausse de taxe sur l'électricité ou le tabac n'est pas comptée foyer par foyer : on le signale à côté du chiffre. */
+/** Une hausse de taxe sur le tabac n'est pas comptée foyer par foyer : on le signale à côté du chiffre. */
 const horsTaxes = (s: Societe | undefined) => [...(s?.mesures ?? []), ...(s?.financement ?? [])].some((m) => estTaxeConsommation(m.regle))
 
 export default function Comparer() {
@@ -146,7 +146,7 @@ export default function Comparer() {
                 </tbody>
               </table>
             </div>
-            {(horsTaxes(sa) || horsTaxes(sb)) && <p className="small muted">* Sans compter la hausse ou la baisse des taxes sur l'électricité ou le tabac : elle n'est pas calculée foyer par foyer (celles de la TVA, des carburants, du fioul et du gaz le sont).</p>}
+            {(horsTaxes(sa) || horsTaxes(sb)) && <p className="small muted">* Sans compter la hausse ou la baisse des taxes sur le tabac : seule une minorité de ménages fume, elle n'est donc pas répartie foyer par foyer (celles de la TVA, des carburants, du chauffage et de l'électricité le sont).</p>}
             {situation && <p className="small muted">« Votre porte-monnaie » : calculé pour {resumeSituation(situation)} (<Link to="/mes-droits">modifier</Link>).</p>}
             <p className="small muted" style={{ marginBottom: 0 }}>Le détail et la fiabilité de chaque chiffre sont sur la page de chaque proposition, onglet « Ses effets ».</p>
           </div>

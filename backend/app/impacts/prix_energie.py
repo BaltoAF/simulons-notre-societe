@@ -24,7 +24,7 @@ ACCISES = {
     "environnement_energie.accise.fioul_domestique": ("fioul", "ecologie.prix_2017_fioul_domestique", 100.0),
     "environnement_energie.accise.gaz_naturel_combustible": ("gaz", "ecologie.prix_2017_gaz_menages", 1.0),
 }
-LIBELLES = {"carburants": "Carburants", "fioul": "Fioul domestique", "gaz": "Gaz"}
+LIBELLES = {"carburants": "Carburants", "fioul": "Fioul domestique", "gaz": "Gaz", "electricite": "Électricité"}
 TVA = 1.2
 
 
@@ -58,9 +58,25 @@ def variations(ctx: Contexte) -> tuple[dict[str, float], Confiance] | None:
             dp *= _part_carburant(store, rid)
         out[poste] = out.get(poste, 0.0) + dp
         confs.append(conf_p)
+    # électricité : pas de prix moyen de 2017 publié ; la dépense de 2017 est ramenée aux prix de 2025 par l'indice
+    # des prix de l'Insee, puis multipliée par la hausse relative du prix d'aujourd'hui
+    def maj_2017(mid: str) -> float | None:
+        m = store.metriques.get(mid)
+        pts = {str(x.get("date", ""))[:4]: x.get("valeur") for x in (m or {}).get("serie", [])}
+        return pts["2025"] / pts["2017"] if pts.get("2017") and pts.get("2025") else None
+    rid = "environnement_energie.accise.electricite_menages"
+    if ctx.modifie(rid):
+        old, new = ecart(ctx, rid)
+        prix, _, conf_p = metrique(store, "environnement_energie.prix_moyen_electricite_menages")
+        k = maj_2017("prix.ipc_electricite")
+        if old is not None and new is not None and prix and k:
+            out["electricite"] = (new - old) * TVA / prix * k
+            confs.append(conf_p)
+    # le tabac n'est pas compté ménage par ménage : seule une minorité fume ; répartir la hausse sur tous les ménages
+    # ferait de chacun un « perdant », ce qui serait faux (la hausse est comptée dans les recettes et la consommation)
     if not out:
         return None
-    return out, chaine(*confs, hypothese(55, "Quantités de carburants et de chauffage du ménage estimées d'après les ménages de "
+    return out, chaine(*confs, hypothese(55, "Quantités de carburants, de chauffage et d'électricité du ménage estimées d'après les ménages de "
                                              "niveau de vie comparable (Insee, Budget de famille 2017, dépenses divisées par les "
                                              "prix de 2017), consommation inchangée, taxe entièrement répercutée dans le prix"))
 

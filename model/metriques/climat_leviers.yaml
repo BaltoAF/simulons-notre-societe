@@ -440,3 +440,118 @@ metriques:
         valeur: 70.6
         source: sdes-prix-gaz-naturel-2018
         statut: estimation
+
+  # électricité (même enquête et même tableau)
+  - id: consommation.depense_electricite_decile_1
+    titre: "Dépense annuelle moyenne d'électricité (poste 0451) – 10 % des ménages les plus modestes (1er décile de niveau de vie)"
+    explication: "Ce qu'un ménage dépense en moyenne par an en électricité (poste 0451 de la nomenclature de l'enquête), en euros de 2017. Insee, enquête Budget de famille 2017, tableau TF106. Champ : France, ménages ordinaires."
+    unite: euros
+    serie:
+      - date: "2017-12-31"
+        valeur: 592
+        source: insee-bdf-2017-tf106
+        statut: definitif
+  - id: consommation.depense_electricite_decile_2
+    titre: "Dépense annuelle moyenne d'électricité (poste 0451) – 2e décile de niveau de vie"
+    explication: "Ce qu'un ménage dépense en moyenne par an en électricité (poste 0451 de la nomenclature de l'enquête), en euros de 2017. Insee, enquête Budget de famille 2017, tableau TF106. Champ : France, ménages ordinaires."
+    unite: euros
+    serie:
+      - date: "2017-12-31"
+        valeur: 635
+        source: insee-bdf-2017-tf106
+        statut: definitif
+  - id: consommation.depense_electricite_decile_3
+    titre: "Dépense annuelle moyenne d'électricité (poste 0451) – 3e décile de niveau de vie"
+    explication: "Ce qu'un ménage dépense en moyenne par an en électricité (poste 0451 de la nomenclature de l'enquête), en euros de 2017. Insee, enquête Budget de famille 2017, tableau TF106. Champ : France, ménages ordinaires."
+    unite: euros
+    serie:
+      - date: "2017-12-31"
+        valeur: 640
+        source: insee-bdf-2017-tf106
+        statut: definitif
+  - id: consommation.depense_electricite_decile_4
+    titre: "Dépense annuelle moyenne d'électricité (poste 0451) – 4e décile de niveau de vie"
+    explication: "Ce qu'un ménage dépense en moyenne par an en électricité (poste 0451 de la nomenclature de l'enquête), en euros de 2017. Insee, enquête Budget de famille 2017, tableau TF106. Champ : France, ménages ordinaires."
+    unite: euros
+    serie:
+      - date: "2017-12-31"
+        valeur: 683
+        source: insee-bdf-2017-tf106
+        statut: definitif
+  - id: consommation.depense_electricite_decile_5
+    titre: "Dépense annuelle moyenne d'électricité (poste 0451) – 5e décile de niveau de vie"
+    explication: "Ce qu'un ménage dépense en moyenne par an en électricité (poste 0451 de la nomenclature de l'enquête), en euros de 2017. Insee, enquête Budget de famille 2017, tableau TF106. Champ : France, ménages ordinaires."
+    unite: euros
+    serie:
+      - date: "2017-12-31"
+        valeur: 714
+        source: insee-bdf-2017-tf106
+        statut: definitif
+  - id: consommation.depense_electricite_decile_6
+    titre: "Dépense annuelle moyenne d'électricité (poste 0451) – 6e décile de niveau de vie"
+    explication: "Ce qu'un ménage dépense en moyenne par an en électricité (poste 0451 de la nomenclature de l'enquête), en euros de 2017. Insee, enquête Budget de famille 2017, tableau TF106. Champ : France, ménages ordinaires."
+    unite: euros
+    serie:
+      - date: "2017-12-31"
+        valeur: 759
+        source: insee-bdf-2017-tf106
+        statut: definitif
+  - id: consommation.depense_electricite_decile_7
+    titre: "Dépense annuelle moyenne d'électricité (poste 0451) – 7e décile de niveau de vie"
+    explication: "Ce qu'un ménage dépense en moyenne par an en électricité (poste 0451 de la nomenclature de l'enquête), en euros de 2017. Insee, enquête Budget de famille 2017, tableau TF106. Champ : France, ménages ordinaires."
+    unite: euros
+    serie:
+      - date: "2017-12-31"
+        valeur: 814
+        source: insee-bdf-2017-tf106
+        statut: definitif
+  - id: consommation.depense_electricite_decile_8
+    titre: "Dépense annuelle moyenne d'électricité (poste 0451) – 8e décile de niveau de vie"
+    explication: "Ce qu'un ménage dépense en moyenne par an en électricité (poste 0451 de la nomenclature de l'enquête), en euros de 2017. Insee, enquête Budget de famille 2017, tableau TF106. Champ : France, ménages ordinaires."
+    unite: euros
+    serie:
+      - date: "2017-12-31"
+        valeur: 808
+        source: insee-bdf-2017-tf106
+        statut: definitif
+  - id: consommation.depense_electricite_decile_9
+    titre: "Dépense annuelle moyenne d'électricité (poste 0451) – 9e décile de niveau de vie"
+    explication: "Ce qu'un ménage dépense en moyenne par an en électricité (poste 0451 de la nomenclature de l'enquête), en euros de 2017. Insee, enquête Budget de famille 2017, tableau TF106. Champ : France, ménages ordinaires."
+    unite: euros
+    serie:
+      - date: "2017-12-31"
+        valeur: 855
+        source: insee-bdf-2017-tf106
+        statut: definitif
+  - id: consommation.depense_electricite_decile_10
+    titre: "Dépense annuelle moyenne d'électricité (poste 0451) – 10 % des ménages les plus aisés (10e décile de niveau de vie)"
+    explication: "Ce qu'un ménage dépense en moyenne par an en électricité (poste 0451 de la nomenclature de l'enquête), en euros de 2017. Insee, enquête Budget de famille 2017, tableau TF106. Champ : France, ménages ordinaires."
+    unite: euros
+    serie:
+      - date: "2017-12-31"
+        valeur: 957
+        source: insee-bdf-2017-tf106
+        statut: definitif
+  - id: consommation.depense_electricite_ensemble
+    titre: "Dépense annuelle moyenne d'électricité (poste 0451) – ensemble des ménages"
+    explication: "Ce qu'un ménage dépense en moyenne par an en électricité (poste 0451 de la nomenclature de l'enquête), en euros de 2017. Insee, enquête Budget de famille 2017, tableau TF106. Champ : France, ménages ordinaires."
+    unite: euros
+    serie:
+      - date: "2017-12-31"
+        valeur: 746
+        source: insee-bdf-2017-tf106
+        statut: definitif
+  # indices des prix à la consommation : ramènent une dépense de 2017 aux prix de 2025
+  - id: prix.ipc_electricite
+    titre: "Indice des prix à la consommation de l'électricité (base 100 en 2015, moyenne annuelle)"
+    explication: "Insee, série 001764660 (Coicop 04.5.1, ensemble des ménages, France) : 103,55 en 2017, 146,92 en 2025."
+    unite: indice
+    serie:
+      - date: "2017-12-31"
+        valeur: 103.55
+        source: insee-bdm-ipc-2015
+        statut: definitif
+      - date: "2025-12-31"
+        valeur: 146.92
+        source: insee-bdm-ipc-2015
+        statut: definitif

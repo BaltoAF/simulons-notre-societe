@@ -71,3 +71,14 @@ def test_une_taxe_sur_le_gazole_compte_dans_le_pouvoir_d_achat():
     assert red["donnees"]["moyenne_menage_mois"] < 0
     dec = red["donnees"]["deciles"]
     assert dec[-1]["delta_euros"] < dec[0]["delta_euros"] < 0
+
+
+def test_une_taxe_sur_l_electricite_compte_pour_chaque_menage():
+    """+10 €/MWh d'accise sur l'électricité : dépense d'électricité du décile (Insee 2017) ramenée aux prix de 2025."""
+    st = get_store()
+    rid = "environnement_energie.accise.electricite_menages"
+    with TestClient(app) as c:
+        rap = c.post("/api/simulation/reforme", json={"overrides": {rid: st.rule_value(rid) + 10}}).json()
+    red = next(s for s in rap["sections"] if s["id"] == "redistribution")["donnees"]
+    # ≈ 746 € × 1,42 × 12 / 254,6 ≈ 5 % de hausse → environ −4 € par ménage et par mois
+    assert -6 < red["moyenne_menage_mois"] < -2

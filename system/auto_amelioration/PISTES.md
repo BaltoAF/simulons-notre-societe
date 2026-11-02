@@ -11,8 +11,10 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   « Explorer les règles → » de l'accueil : faite.
 - **Revue qualité du 02/11/2026, points restants** :
   1. Fait le 02/11 : carburants, fioul et gaz comptés ménage par ménage (impacts/prix_energie.py : dépense par décile,
-     Insee Budget de famille 2017, ÷ prix de 2017 = quantités ; × hausse de taxe TVA comprise). Restent l'électricité et le
-     tabac. Limites : consommation inchangée (effet immédiat), même répartition gazole/essence pour tous, dépense
+     Insee Budget de famille 2017, ÷ prix de 2017 = quantités ; × hausse de taxe TVA comprise), puis l'électricité
+     (dépense de 2017 ramenée aux prix de 2025 par l'indice des prix de l'Insee). Le tabac n'est volontairement pas compté
+     ménage par ménage (seule une minorité fume : une moyenne ferait de chacun un perdant) ; piste : répartir la hausse
+     sur une part de fumeurs par décile, si une source publique la donne (Santé publique France, Baromètre). Limites : consommation inchangée (effet immédiat), même répartition gazole/essence pour tous, dépense
      moyenne du décile (un ménage rural roule plus qu'un Parisien : Insee, 650 à 1 550 € par an selon le lieu).
   2. Répercussion de la TVA dans les prix : la synthèse (≈ 50 %) mêle taux réduits, baisses sectorielles et taux normal.
      Benedek et al. (2020) trouvent ≈ 100 % pour le taux normal, ≈ 30 % pour les taux réduits ; Benzarti et al. (2020),
