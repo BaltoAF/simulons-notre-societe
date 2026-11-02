@@ -278,7 +278,7 @@ def section_redistribution(ctx: Contexte) -> Section | None:
                             Facteur("Concept de revenu", 0.6, "Le niveau de vie simulé n'inclut pas tous les revenus (patrimoine, transferts privés…).")],
                        "Variation par décile")
     if conf_tva is not None:
-        conf_d = Confiance.maillon_faible(conf_d, conf_tva, resume="Variation par décile, TVA comprise")
+        conf_d = Confiance.maillon_faible(conf_d, conf_tva, resume="Variation par décile, taxes sur les achats comprises (TVA, carburants, chauffage)")
     srcs = [store.metriques[m]["derniere"].get("source") for m in ("revenus.niveau_vie.indice_gini", "revenus.pauvrete.taux_seuil_60") if m in store.metriques]
     ind = [
         Indicateur("gini", "Inégalités (indice de Gini)", (g1 - g0) * 100, "points", g0 * 100, g1 * 100, conf_g,

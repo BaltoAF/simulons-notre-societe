@@ -172,7 +172,7 @@ def extraire(rapport: dict) -> dict:
             diff = (g[0]["valeur"] or 0) - (perdants or 0)
             sens = "favorable" if diff >= 20 else "defavorable" if diff <= -20 else "neutre"
         # la part de gagnants seule cache les pertes (un point de TVA ne change pas les gagnants, il ajoute des perdants) :
-        # en tête, l'effet moyen par ménage, TVA comprise, puis gagnants et perdants
+        # en tête, l'effet moyen par ménage, taxes sur les achats comprises, puis gagnants et perdants
         moy = (g[1].get("donnees") or {}).get("moyenne_menage_mois")
         if moy is not None:
             sens = _sens(moy, 1.0)

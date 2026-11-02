@@ -17,7 +17,7 @@ const md = (v: number) => nombre(Math.abs(v), Math.abs(v) < 10 ? 1 : 0)
 export const TUILES: Def[] = [
   { id: 'finances', libelle: 'Argent public', libelleRef: 'Solde public',
     effet: (v) => [s(v, md(v)), 'Md€ par an'], ref: (v) => [s(v, md(v)), 'Md€ par an'] },
-  // effet moyen par ménage, TVA comprise ; gagnants et perdants dessous (la part de gagnants seule cache les pertes)
+  // effet moyen par ménage, taxes sur les achats comprises ; gagnants et perdants dessous (la part de gagnants seule cache les pertes)
   { id: 'menages', libelle: "Pouvoir d'achat", libelleRef: 'Ménages',
     effet: (v) => [Math.abs(v) < 0.5 ? '0' : s(v, nombre(Math.abs(v), 0)) + ' €', 'par ménage et par mois'] },
   { id: 'pauvrete', libelle: 'Taux de pauvreté',
