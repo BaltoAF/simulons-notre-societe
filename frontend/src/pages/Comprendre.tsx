@@ -124,6 +124,7 @@ function Liste() {
               <span className="question-icone"><Icone nom={q.icone} /></span>
               <span>
                 <h2 style={{ fontSize: '1.15rem', margin: '0 0 4px' }}>{q.titre}</h2>
+                <ChiffreCle q={q} />
                 <span className="small ink2">{accroche(q)}</span>
                 <span className="small" style={{ display: 'block', marginTop: 6, fontWeight: 650, color: 'var(--primary)' }}>Lire la réponse <ArrowRight size={13} /></span>
               </span>
@@ -133,6 +134,22 @@ function Liste() {
       </div>
       <VraiOuFaux />
     </div>
+  )
+}
+
+/** Le chiffre clé d'une question, en grand sur sa carte (« les chiffres d'abord », demande du responsable du 01/11/2026) :
+ *  le premier chiffre affiché de la question, avec son année. */
+function ChiffreCle({ q }: { q: Question }) {
+  const c = q.chiffres.find((x) => !x.cache && (x.metrique || x.calcul))
+  const { v, annees } = useValeurs(q.chiffres)
+  if (!c || v[c.cle] == null) return null
+  const base = c.metrique ?? q.chiffres.find((k) => k.cle === c.depuis)?.metrique
+  const annee = base ? annees[base] : undefined
+  return (
+    <span className="chiffre-cle">
+      <span className="chiffre-cle-valeur">{formater(v[c.cle], c.format, c.absolu)}</span>
+      <span className="chiffre-cle-libelle">{c.libelle}{annee ? ` · ${annee}` : ''}</span>
+    </span>
   )
 }
 
@@ -147,7 +164,8 @@ function useValeurs(chiffres: Chiffre[]) {
       if (m?.derniere) v[c.cle] = Number(m.derniere.valeur)
     }
     for (const c of chiffres) if (c.calcul) { const x = c.calcul(v); if (x != null) v[c.cle] = x }
-    return { v, sources: [...new Set((data?.metriques ?? []).map((m) => m.source?.editeur).filter(Boolean))] as string[] }
+    const annees: Record<string, string> = Object.fromEntries((data?.metriques ?? []).filter((m) => m.derniere?.date).map((m) => [m.id, m.derniere!.date.slice(0, 4)]))
+    return { v, annees, sources: [...new Set((data?.metriques ?? []).map((m) => m.source?.editeur).filter(Boolean))] as string[] }
   }, [chiffres, data])
 }
 

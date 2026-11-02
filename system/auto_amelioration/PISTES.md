@@ -53,7 +53,8 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
     au-dessus de « Sur 100 € »). Piste d'origine : au-dessus de « Sur 100 € », quatre tuiles (dépenses publiques totales, recettes, solde,
     dette en % du PIB, avec leur année) ; « Et vous ? » et l'éditeur du budget de l'État restent dessous, les explications
     de méthode repliées.
-  - *Comprendre* : chaque carte de question porte son chiffre clé en grand, tiré des métriques (dépenses publiques en
+  - *Comprendre* : fait le 02/11 (chiffre clé en grand sur chaque carte, avec son année ; le texte reste dessous).
+    Piste d'origine : chaque carte de question porte son chiffre clé en grand, tiré des métriques (dépenses publiques en
     % du PIB, taux de pauvreté, émissions en Mt CO₂…) et une seule phrase ; le texte de deux à quatre lignes passe dans la page de la question.
   - *Une règle* (`/regles/r/…`) : valeur actuelle, dernière évolution et fiabilité en tuiles, l'historique et les sources
     repliés.
