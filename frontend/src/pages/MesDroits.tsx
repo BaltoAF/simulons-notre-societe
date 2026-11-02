@@ -7,7 +7,8 @@ import { estRattache } from '../lib/aidesOubliees'
 import { departsDuFoyer, estAgeLegal, type Depart } from '../lib/retraite'
 import { PRESETS, resoudrePreset, type Preset } from '../lib/presets'
 import { resumeSituation, situationVersMenage, useApp, useFetch, type AdulteSaisie, type SituationSaisie } from '../lib/state'
-import { ConfidenceBadge, ErrorBox, Loading, Notice } from '../components/ui'
+import { ConfidenceBadge, ErrorBox, Notice } from '../components/ui'
+import { AttenteCalcul } from '../components/AttenteCalcul'
 import { DroitsNonMonetaires } from '../components/DroitsNonMonetaires'
 import { ProchaineEtape } from '../components/Parcours'
 import { OuJeMeSitue } from '../components/OuJeMeSitue'
@@ -334,7 +335,7 @@ export default function MesDroits() {
         {res && s.adultes.some((a) => a.activite === 'apprenti') && <Notice>Apprenti(e) : le site applique le seuil de la prime d'activité des apprentis, l'exonération d'impôt sur le revenu (jusqu'au SMIC annuel) et la règle de l'aide au logement (seule la part du salaire au-delà d'environ 20 800 € par an compte). Il n'applique pas encore l'exonération de cotisations, de CSG et de CRDS sur la part du salaire jusqu'à la moitié du SMIC : les cotisations indiquées sont donc trop élevées ; votre salaire net, lui, est bien celui que vous avez indiqué.</Notice>}
         {/* le calcul dure de 5 à 10 secondes : un écran presque vide faisait croire à une panne (test Inès) */}
         {/* « une dizaine de secondes » restait affiché plus de deux minutes après une mise à jour du site (test Josiane) */}
-        {loading && <Loading label={lent ? "Le calcul prend plus longtemps que d'habitude : le site vient sans doute d'être mis à jour et prépare son moteur de calcul (jusqu'à trois minutes). Merci de patienter, vos réponses sont gardées." : 'Calcul de vos droits en cours (une dizaine de secondes)…'} />}
+        {loading && <AttenteCalcul lent={lent} />}
         {err && <ErrorBox message={err} />}
         {res && (
           <div className="split aside-380">
@@ -353,11 +354,12 @@ export default function MesDroits() {
                   <div>
                     <div className="kpi-label">Ce que le foyer touche chaque mois</div>
                     <div className="kpi big">{euros(total)} <span className="muted" style={{ fontSize: '1rem', fontWeight: 600 }}>/ mois</span></div>
+                    <div className="small muted" style={{ marginBottom: 4 }}>soit <strong>{euros(total * 12, 0)}</strong> par an</div>
                     <div className="small muted">Revenus nets (<Terme id="cotisations">cotisations</Terme> et <Terme id="csg">CSG</Terme> déjà retirées) + aides − impôt sur le revenu. C'est avant les dépenses :
                       loyer ou crédit, taxe foncière, courses (dont la <Terme id="tva">TVA</Terme>, la taxe comprise dans les prix)…{s.adultes.length + s.enfants.length > 1 && <> Votre foyer vit aussi bien qu'une personne seule qui aurait {euros(res.niveau_de_vie)} par mois (c'est votre <Terme id="niveau_vie">niveau de vie</Terme> : à plusieurs, on partage le logement et les dépenses).</>}</div>
                     {totalAides > 0.5 && (
-                      <div className="small" style={{ marginTop: 6 }}>Dont <strong>{euros(totalAides)}</strong> d'aides. La plupart ne sont versées que si on les demande :
-                        si vous ne les touchez pas encore, il vous reste aujourd'hui {euros(total - totalAides)}. Comment les obtenir est indiqué sous chaque aide.</div>
+                      <div className="small" style={{ marginTop: 6 }}>Dont <strong>{euros(totalAides)}</strong> d'aides par mois. La plupart ne sont versées que si on les demande :
+                        si vous ne les touchez pas encore, il vous reste aujourd'hui {euros(total - totalAides)} par mois. Comment les obtenir est indiqué sous chaque aide.</div>
                     )}
                     {loyer > 0 && (
                       <div className="small" style={{ marginTop: 4 }}>Après avoir payé le loyer ({euros(loyer)}) : {apresLoyer >= 0
@@ -375,14 +377,18 @@ export default function MesDroits() {
                 {[['Vos revenus nets', revenus, 1], ['Aides et prestations', prest, 1], ['Impôts payés', prel, -1]].map(([titre, lignes, sg]) => (
                   (lignes as any[]).length > 0 && (
                     <div key={titre as string} id={titre === 'Aides et prestations' ? 'vos-aides' : undefined} style={{ marginBottom: 14, scrollMarginTop: 80 }}>
-                      <div className="kpi-label" style={{ marginBottom: 6 }}>{titre as string}</div>
+                      <div className="kpi-label" style={{ marginBottom: 6 }}>{titre as string}, par mois</div>
                       <ul className="list">
                         {(lignes as Resultat['lignes']).map((l) => (
                           <li key={l.id}>
                             <div className="list-row">
                               <span>{l.libelle}{l.id === 'salaire_net' && salaires.length > 1 && <span className="small muted" style={{ display: 'block' }}>
                                 {salaires.map((m, k) => `${k === 0 ? 'Vous' : 'Votre conjoint(e)'} : ${euros(m, 0)}`).join(' · ')}</span>}</span>
-                              <strong className={`delta ${(sg as number) > 0 ? (l.nature === 'prestation' && l.montant > 0 ? 'pos' : '') : l.montant > 0 ? 'neg' : ''}`}>{(sg as number) > 0 || l.montant === 0 ? '' : '−'}{euros(l.montant)}</strong>
+                              <span className="montant-mois">
+                                <strong className={`delta ${(sg as number) > 0 ? (l.nature === 'prestation' && l.montant > 0 ? 'pos' : '') : l.montant > 0 ? 'neg' : ''}`}>{(sg as number) > 0 || l.montant === 0 ? '' : '−'}{euros(l.montant)}<span className="par-mois"> / mois</span></strong>
+                                {/* par mois, et ce que ça donne à l'année (demande du responsable, 02/11/2026) */}
+                                {l.montant !== 0 && <span className="par-an">soit {euros(Math.abs(l.montant) * 12, 0)} par an</span>}
+                              </span>
                             </div>
                             {/* où la demander, et pourquoi pas d'aide au logement : visible tout de suite, sans ouvrir le détail */}
                             {DEMANDER[l.id] && l.montant > 0 && <div className="small muted" style={{ marginTop: 2 }}>À demander {DEMANDER[l.id]}.</div>}
