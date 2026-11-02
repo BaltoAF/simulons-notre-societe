@@ -1,12 +1,12 @@
 {
- "genere_le": "2026-11-01T09:33:27",
+ "genere_le": "2026-11-02T09:49:32",
  "moteur": "176.1.10",
  "resultats": [
   {
    "id": "retraite_age_63_solde_retraites",
    "simule_md": -7.021,
    "direct_md": -7.021,
-   "total_md": -9.366,
+   "total_md": -9.756,
    "officiel_md": -5.8,
    "ecart_md": -1.221,
    "ecart_pct": -21.1,
@@ -21,12 +21,12 @@
   },
   {
    "id": "retraite_age_63_finances_publiques",
-   "simule_md": -9.366,
+   "simule_md": -9.756,
    "direct_md": -7.021,
-   "total_md": -9.366,
+   "total_md": -9.756,
    "officiel_md": -13.0,
-   "ecart_md": 3.634,
-   "ecart_pct": 28.0,
+   "ecart_md": 3.244,
+   "ecart_pct": 25.0,
    "verdict": "proche",
    "regles": [
     "retraites.age_legal.generation_1966",
@@ -40,7 +40,7 @@
    "id": "retraite_age_65_solde_retraites",
    "simule_md": 7.021,
    "direct_md": 7.021,
-   "total_md": 9.366,
+   "total_md": 9.756,
    "officiel_md": 8.4,
    "ecart_md": -1.379,
    "ecart_pct": -16.4,
@@ -52,12 +52,12 @@
   },
   {
    "id": "retraite_age_65_finances_publiques",
-   "simule_md": 9.366,
+   "simule_md": 9.756,
    "direct_md": 7.021,
-   "total_md": 9.366,
+   "total_md": 9.756,
    "officiel_md": 17.7,
-   "ecart_md": -8.334,
-   "ecart_pct": -47.1,
+   "ecart_md": -7.944,
+   "ecart_pct": -44.9,
    "verdict": "ecart",
    "regles": [
     "retraites.age_legal.generation_1969_et_apres"
@@ -68,7 +68,7 @@
    "id": "retraite_retour_62_ans_age_seul",
    "simule_md": -14.042,
    "direct_md": -14.042,
-   "total_md": -18.722,
+   "total_md": -19.502,
    "officiel_md": -12.6,
    "ecart_md": -1.442,
    "ecart_pct": -11.4,
@@ -99,7 +99,7 @@
    "regles": [
     "travail.smic.horaire_brut"
    ],
-   "duree": 38.1
+   "duree": 29.1
   },
   {
    "id": "tva_tous_taux_plus_1_point",
@@ -116,7 +116,7 @@
     "fiscalite.tva.taux_particulier",
     "fiscalite.tva.taux_reduit"
    ],
-   "duree": 18.5
+   "duree": 13.6
   },
   {
    "id": "csg_activite_plus_1_point",
@@ -130,7 +130,7 @@
    "regles": [
     "fiscalite.csg.salaires_taux"
    ],
-   "duree": 18.1
+   "duree": 13.9
   },
   {
    "id": "csg_toutes_assiettes_plus_1_point",
@@ -146,7 +146,7 @@
     "fiscalite.csg.revenus_capital_taux",
     "fiscalite.csg.salaires_taux"
    ],
-   "duree": 18.4
+   "duree": 14.8
   },
   {
    "id": "ir_tous_taux_plus_1_point",
@@ -160,7 +160,7 @@
    "regles": [
     "fiscalite.impot_revenu.bareme"
    ],
-   "duree": 18.0
+   "duree": 14.2
   },
   {
    "id": "ir_taux_30_41_45_plus_1_point",
@@ -174,7 +174,7 @@
    "regles": [
     "fiscalite.impot_revenu.bareme"
    ],
-   "duree": 17.9
+   "duree": 14.3
   },
   {
    "id": "ir_tranche_45_a_46",
@@ -188,7 +188,7 @@
    "regles": [
     "fiscalite.impot_revenu.bareme"
    ],
-   "duree": 19.5
+   "duree": 15.2
   },
   {
    "id": "quotient_familial_plafond_moins_25_pourcent",
@@ -202,7 +202,7 @@
    "regles": [
     "fiscalite.impot_revenu.quotient_familial.plafond_demi_part"
    ],
-   "duree": 19.1
+   "duree": 15.2
   },
   {
    "id": "accise_gazole_plus_2_centimes",
@@ -219,5 +219,5 @@
    "duree": 0.0
   }
  ],
- "empreinte": "b32b42feb9cc06ef176.1.10"
+ "empreinte": "4bb4376889ffb9e1176.1.10"
 }
