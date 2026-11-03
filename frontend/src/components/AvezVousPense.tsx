@@ -41,7 +41,7 @@ export function AvezVousPense({ s, lignes }: { s: SituationSaisie; lignes: Ligne
               {a.montant != null
                 ? <span className="badge gain">Déjà comptée ci-dessus{a.versement === 'annuel' ? ` (${euros(a.montant)} par an)` : ` : ${euros(a.montant)} / mois`}</span>
                 : <span className="row" style={{ gap: 8 }}><span className="badge">Piste à vérifier</span>
-                    <button className="btn ghost small" onClick={() => marquer(a.id)}>Je l'ai déjà</button></span>}
+                    <button className="btn ghost small" title="Vous touchez déjà cette aide : on ne vous la propose plus" onClick={() => marquer(a.id)}>Je l'ai déjà</button></span>}
             </div>
             <p className="small" style={{ margin: '4px 0 0' }}>{a.en_bref}</p>
             <p className="small muted" style={{ margin: '4px 0 0' }}>{a.pourquoi_vous}</p>

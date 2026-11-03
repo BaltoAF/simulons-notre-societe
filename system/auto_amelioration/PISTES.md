@@ -11,8 +11,7 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   dans system/cache/legi/, non versionné). À utiliser pour vérifier les articles cités par les règles (champ `article`).
 
 - **Lexique dans « Mes droits »** (visite du 02/11/2026) : fait pour « foyer » (3 explications de l'impôt) et « CAF »
-  (3 encadrés), « RSA » et « APL » (explications des aides). « Tranche » et « quotient familial » n'apparaissent pas
-  encore dans les textes de Mes droits. Zone à toucher des liens
+  (3 encadrés), « RSA » et « APL » (explications des aides). « Tranche » et « quotient familial » : faits le 03/11 (explication « Impôt sur le revenu »). Zone à toucher des liens
   « Explorer les règles → » de l'accueil : faite.
 - **Revue qualité du 02/11/2026, points restants** :
   1. Fait le 02/11 : carburants, fioul et gaz comptés ménage par ménage (impacts/prix_energie.py : dépense par décile,
