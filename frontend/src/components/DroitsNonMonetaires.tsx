@@ -39,7 +39,7 @@ export function DroitsNonMonetaires({ age, mois: mois0 = 1, onMois, retraite = f
   return (
     <div className="card" id="au-dela-de-l-argent" style={{ scrollMarginTop: 80 }}>
       <h3>Vos droits au-delà de l'argent</h3>
-      <p className="small muted">Retraite, chômage, travail, vote, route, santé : ce que prévoient les règles pour vous. Cliquez sur un thème pour l'ouvrir.</p>
+      <p className="small muted">Retraite, chômage, travail, vote, route, santé : ce que prévoient les règles pour vous. Cliquez sur un thème pour l'ouvrir. Votre date de naissance sert à dire à quel âge s'ouvrent certains droits (la retraite, par exemple) ; elle reste dans votre navigateur.</p>
       <div className="row" style={{ marginBottom: 12 }}>
         <label className="small">Né(e) en <select value={mois} onChange={(e) => setMois(Number(e.target.value))} style={{ width: 'auto', marginLeft: 4 }}>
           {['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'].map((m, i) => <option key={m} value={i + 1}>{m}</option>)}
