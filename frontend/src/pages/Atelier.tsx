@@ -206,8 +206,8 @@ export default function Atelier() {
         <div className="notice small" style={{ margin: '6px 0' }}><div>Votre réforme a été effacée.{' '}
           <button className="lien" onClick={() => { setDraft(annulable); setAnnulable(null) }}>Annuler</button></div></div>
       )}
-      <p className="ink2" style={{ maxWidth: 760, marginBottom: 8 }}>Réécrivez les règles de la France, une ou cent : le site simule ce qu'elles changeraient, pour vous et pour le pays,
-        et vous aide à trouver vos équilibres (argent public, climat, bien-être). Pas à pas, vous imaginez votre France, et si vous le voulez, votre programme. C'est libre et anonyme ; un compte n'est utile que pour l'enregistrer et le partager.</p>
+      <p className="ink2" style={{ maxWidth: 760, marginBottom: 8 }}>Réécrivez les règles de la France : le site simule ce qu'elles changeraient, pour vous et pour le pays, et vous aide à trouver vos équilibres (argent public, climat, bien-être).
+        C'est libre et anonyme ; un compte n'est utile que pour enregistrer et partager.</p>
       <Etapes etape={etape} />
 
       <div className="split">
@@ -230,7 +230,7 @@ export default function Atelier() {
               <div className="notice small" style={{ margin: '0 0 8px' }}><div>Changement supprimé.{' '}
                 <button className="lien" onClick={retablir}>Rétablir</button></div></div>
             )}
-            {changes.length === 0 && ids.length === 0 && <p className="small muted">Rien n'est encore changé. Choisissez un thème, partez d'une idée, ou changez une règle précise.</p>}
+            {changes.length === 0 && ids.length === 0 && <p className="small muted">Rien n'est encore changé : choisissez par où commencer.</p>}
             {missionsModifiees.length > 0 && (
               <div className="change-chip">
                 <div className="row between top" style={{ flexWrap: 'nowrap' }}>
