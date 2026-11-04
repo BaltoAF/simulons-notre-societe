@@ -4,7 +4,7 @@ import { ArrowRight, BookOpen, ChevronDown, ChevronRight, Scale } from 'lucide-r
 import type { Indicateur, Rapport, Section, Valeur } from '../lib/api'
 import { delta, euros, nombre, valeur } from '../lib/format'
 import { milliards } from '../lib/humain'
-import { Pourquoi } from './Terme'
+import { Pourquoi, Terme } from './Terme'
 import { ColumnChart, DivergingBars } from './charts'
 import { ConfidenceBadge } from './ui'
 import { EnBref, EquilibresPanel, type Contexte } from './synthese'
@@ -145,9 +145,9 @@ function SectionRedistribution({ s }: { s: Section }) {
   if (!dec.length) return null
   return (
     <div>
-      <div className="small muted" style={{ marginBottom: 6 }}>Variation moyenne du niveau de vie par décile (D1 = les 10 % les plus modestes), en % :</div>
+      <div className="small muted" style={{ marginBottom: 6 }}>Variation moyenne du niveau de vie par <Terme id="decile">décile</Terme> (D1 = les 10 % les plus modestes), en % :</div>
       <ColumnChart data={dec.map((d) => ({ label: `D${d.decile}`, value: d.delta_pct }))} format={(v) => nombre(v, 2) + ' %'} />
-      <div className="small muted" style={{ marginTop: 6 }}>En euros par mois et par unité de consommation : {dec.map((d) => `D${d.decile} ${d.delta_euros >= 0 ? '+' : '−'}${nombre(Math.abs(d.delta_euros), 0)} €`).join(' · ')}</div>
+      <div className="small muted" style={{ marginTop: 6 }}>En euros par mois et par <Terme id="unite_consommation">unité de consommation</Terme> : {dec.map((d) => `D${d.decile} ${d.delta_euros >= 0 ? '+' : '−'}${nombre(Math.abs(d.delta_euros), 0)} €`).join(' · ')}</div>
     </div>
   )
 }
