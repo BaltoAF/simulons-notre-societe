@@ -5,6 +5,9 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
 
 ## À faire
 
+- **« Mes droits », signe des impôts** (visite du 17/11/2026) : « Impôts payés » affiche « −13 € / mois » pour l'épargne mais
+  « 0 € » pour l'impôt sur le revenu ; dire en une ligne que le « − » signifie « payé ».
+
 - **Lire un texte de loi sans Légifrance** (outil du 02/11/2026, accord du responsable) : Légifrance bloque les lectures
   automatiques ; `python system/legi.py LEGIARTI…` lit la même base dans les données ouvertes de la DILA (archive
   complète + mises à jour quotidiennes, en flux, ~1 h la première fois ; reprise automatique après une coupure ; cache
@@ -358,16 +361,18 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
 - **Garde d'enfants dans « Avez-vous pensé à… ? »** (complément de mode de garde, crédit d'impôt ; depuis le 30/10/2026,
   test Samira). Bilan possible à partir du 13/11/2026.
 
-- **Page « Tester le site en 10 minutes »** (/tester, depuis le 30/10/2026), à envoyer à de vrais testeurs. Bilan possible
-  à partir du 13/11/2026 : combien de visites, combien d'avis.
+- **Page « Tester le site en 10 minutes »** (/tester, depuis le 30/10/2026), à envoyer à de vrais testeurs. Bilan du
+  17/11/2026 : aucun avis reçu, aucun chiffre de visites exploitable ; badge gardé, nouveau bilan à partir du 01/12/2026.
 
-- **« Avez-vous pensé à… ? »**, les aides souvent oubliées dans « Mes droits » (depuis le 30/10/2026). Bilan possible à
-  partir du 13/11/2026.
 
 - **Taxe foncière (exonération, réduction de 100 €) et MaPrimeAdapt'** dans « Avez-vous pensé à… ? » (depuis le
   30/10/2026, test débutants : Bernard, 72 ans). Bilan possible à partir du 13/11/2026.
 
 ## Fait
+
+- 17/11/2026 : bilan de « Avez-vous pensé à… ? » (aucun avis reçu, retours neutres) : gardée, badge Bêta retiré (les
+  deux fiches ajoutées le 30/10 et la garde d'enfants suivent la même fonction). Unités dites en toutes lettres
+  (« milliards € », « millions de tonnes de CO₂ ») dans les tuiles du tableau de bord et l'en-tête du tableau des postes.
 
 - 01/11/2026 (anomalie signalée par le responsable) : « RSA à 800 € » avec ou sans un point de TVA affichaient les
   mêmes « ménages gagnants » (9 %). Pas une erreur de calcul (la TVA était comptée : les perdants passent de 59 % à 91 %),

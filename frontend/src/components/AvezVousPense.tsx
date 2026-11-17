@@ -6,7 +6,6 @@ import { AlertCircle, CheckCircle2, ExternalLink, Lightbulb, Users } from 'lucid
 import { aidesPourVous, type AideOubliee } from '../lib/aidesOubliees'
 import { date, euros } from '../lib/format'
 import { useFetch, type SituationSaisie } from '../lib/state'
-import { Beta } from './Beta'
 
 type Ligne = { id: string; montant: number; nature: string; libelle?: string }
 
@@ -31,7 +30,7 @@ export function AvezVousPense({ s, lignes }: { s: SituationSaisie; lignes: Ligne
   const pistes = aides.filter((a) => a.montant == null).length
   return (
     <section className="card" id="avez-vous-pense" aria-labelledby="avez-vous-pense-titre">
-      <h3 id="avez-vous-pense-titre"><Lightbulb size={19} /> Avez-vous pensé à… ? <Beta /></h3>
+      <h3 id="avez-vous-pense-titre"><Lightbulb size={19} /> Avez-vous pensé à… ?</h3>
       <p className="small muted" style={{ marginTop: 0 }}>Des aides que beaucoup de gens ne demandent pas, alors qu'ils y ont droit. La plupart n'arrivent pas toutes seules : chaque fiche dit s'il faut en faire la demande.</p>
       <ul className="list">
         {aides.map((a) => (
