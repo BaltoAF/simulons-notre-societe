@@ -13,10 +13,10 @@ type Def = { id: string; libelle: string; libelleRef?: string; effet: (v: number
 const s = (v: number, txt: string) => (v > 0 ? '+' : v < 0 ? '−' : '') + txt
 const md = (v: number) => nombre(Math.abs(v), Math.abs(v) < 10 ? 1 : 0)
 
-// valeur affichée, puis unité (courte, sous la valeur)
+// valeur affichée, puis unité sous la valeur, dite en toutes lettres (« Md€ » et « Mt » disent peu à beaucoup de visiteurs)
 export const TUILES: Def[] = [
   { id: 'finances', libelle: 'Argent public', libelleRef: 'Solde public',
-    effet: (v) => [s(v, md(v)), 'Md€ par an'], ref: (v) => [s(v, md(v)), 'Md€ par an'] },
+    effet: (v) => [s(v, md(v)), 'milliards € par an'], ref: (v) => [s(v, md(v)), 'milliards € par an'] },
   // effet moyen par ménage, taxes sur les achats comprises ; gagnants et perdants dessous (la part de gagnants seule cache les pertes)
   { id: 'menages', libelle: "Pouvoir d'achat", libelleRef: 'Ménages',
     effet: (v) => [Math.abs(v) < 0.5 ? '0' : s(v, nombre(Math.abs(v), 0)) + ' €', 'par ménage et par mois'] },
@@ -26,7 +26,7 @@ export const TUILES: Def[] = [
     // toujours en milliers : la même unité d'une carte à l'autre, et un chiffre qui tient dans la tuile
     effet: (v) => [Math.abs(v) < 50 ? '0' : s(v, nombre(Math.abs(v) / 1000, Math.abs(v) < 10000 ? 1 : 0)), "milliers d'emplois"], ref: (v) => [`${nombre(v, 1)} %`, 'des actifs'] },
   { id: 'climat', libelle: 'Émissions', libelleRef: 'Émissions',
-    effet: (v) => [s(v, nombre(Math.abs(v), Math.abs(v) < 1 ? 2 : 1)), 'Mt CO₂ par an'], ref: (v) => [nombre(v, 0), 'Mt CO₂ par an'] },
+    effet: (v) => [s(v, nombre(Math.abs(v), Math.abs(v) < 1 ? 2 : 1)), 'millions de tonnes de CO₂ par an'], ref: (v) => [nombre(v, 0), 'millions de tonnes de CO₂ par an'] },
 ]
 
 const SENS_TXT: Record<Sens, string> = { favorable: 'effet favorable', defavorable: 'effet défavorable', neutre: 'effet faible ou nul' }
@@ -60,7 +60,7 @@ function Tuile({ d, v, statut }: { d: Def; v?: ValeurIndicateur; statut: Indicat
   const manque = !reference && v?.statut === 'a_compenser' && (v.manque ?? 0) > 0.05
     // le manque égale le plus souvent l'effet affiché juste au-dessus : on ne répète pas le chiffre
     ? (Math.abs(Math.abs(val!) - v.manque!) < 0.05 ? (d.id === 'finances' ? 'à financer' : d.id === 'climat' ? 'à compenser' : null)
-      : d.id === 'finances' ? `dont ${nombre(v.manque!, 1)} Md€ à financer` : d.id === 'climat' ? `dont ${nombre(v.manque!, 2)} Mt à compenser` : null)
+      : d.id === 'finances' ? `dont ${nombre(v.manque!, 1)} milliards € à financer` : d.id === 'climat' ? `dont ${nombre(v.manque!, 2)} millions de tonnes à compenser` : null)
     : null
   return (
     <div className={`tuile ${sens}`} title={reference ? `Chiffre officiel${v?.annee ? ` (${v.annee})` : ''}` : v?.incertain ? "Les études ne s'accordent pas même sur le sens de l'effet" : SENS_TXT[sens]}>

@@ -119,7 +119,7 @@ function TablePostes({ postes }: { postes: Poste[] }) {
   return (
     <div className="table-wrap">
       <table className="table">
-        <thead><tr><th>Poste (par an)</th><th className="num">Simulé aujourd'hui</th><th className="num">Avec la réforme</th><th className="num">Effet sur le solde</th><th className="num">Chiffre officiel</th></tr></thead>
+        <thead><tr><th>Poste (en milliards d'euros par an, « Md€ »)</th><th className="num">Simulé aujourd'hui</th><th className="num">Avec la réforme</th><th className="num">Effet sur le solde</th><th className="num">Chiffre officiel</th></tr></thead>
         <tbody>
           {postes.map((p, i) => {
             const effet = p.nature === 'recette' ? p.delta : -p.delta
