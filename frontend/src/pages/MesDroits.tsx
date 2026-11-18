@@ -380,6 +380,7 @@ export default function MesDroits() {
                   (lignes as any[]).length > 0 && (
                     <div key={titre as string} id={titre === 'Aides et prestations' ? 'vos-aides' : undefined} style={{ marginBottom: 14, scrollMarginTop: 80 }}>
                       <div className="kpi-label" style={{ marginBottom: 6 }}>{titre as string}, par mois</div>
+                      {titre === 'Impôts payés' && <div className="small muted" style={{ marginBottom: 6 }}>Le signe « − » veut dire « payé » : un montant à « 0 € » veut dire que vous ne payez rien.</div>}
                       <ul className="list">
                         {(lignes as Resultat['lignes']).map((l) => (
                           <li key={l.id}>
