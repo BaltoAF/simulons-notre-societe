@@ -361,6 +361,8 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
 
 ## Fait
 
+- 19/11/2026 : grandes questions : OCDE, PISA, AME, SMIC, RSA, Insee, Eurostat et Cepii expliqués au toucher ; bouton « Ne plus afficher » de la découverte aligné sur téléphone. Reste : relire à 390 px les questions autres que « Le travail » et les blocs « Ce qui fait débat ».
+
 - 18/11/2026 : bilan de la garde d'enfants et de la taxe foncière / MaPrimeAdapt' (fiches de « Avez-vous pensé à… ? », aucun avis reçu) :
   gardées, déjà sans badge depuis le 17/11. « Mes droits » dit que le « − » des impôts veut dire « payé » ; « Md€ » du tableau
   des postes renvoie au lexique.

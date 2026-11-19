@@ -56,6 +56,8 @@ function useChiffres(q: Question | undefined) {
 const TERMES: [RegExp, string][] = [
   [/PIB/, 'pib'], [/au sens du BIT/, 'chomage_bit'], [/\bactifs\b/, 'actifs'], [/équivalent CO₂/, 'equivalent_co2'],
   [/minima sociaux/, 'minima_sociaux'], [/budget carbone/, 'budget_carbone'], [/TVA/, 'tva'], [/CSG/, 'csg'], [/DREES/, 'drees'], [/Conseil d'orientation des retraites|\bCOR\b/, 'cor'],
+  [/\bOCDE\b/, 'ocde'], [/\bPISA\b/, 'pisa'], [/\bAME\b/, 'ame'], [/\bSMIC\b/, 'smic'], [/\bRSA\b/, 'rsa'],
+  [/\bInsee\b/, 'insee'], [/\bEurostat\b/, 'eurostat'], [/\bCepii\b/, 'cepii'],
 ]
 
 function avecTermes(txt: string, deja: Set<string>): ReactNode[] {

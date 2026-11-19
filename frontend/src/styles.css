@@ -493,7 +493,7 @@ main:focus { outline: none; }
   background: var(--t-soft, var(--primary-soft)); color: var(--t, var(--primary)); flex-shrink: 0; }
 .question-icone.grande { width: 54px; height: 54px; border-radius: 14px; }
 .prochaine-etape { align-items: center; }
-@media (max-width: 640px) { .prochaine-etape { flex-wrap: wrap; } }
+@media (max-width: 640px) { .prochaine-etape { flex-wrap: wrap; } .prochaine-etape > .btn.ghost { margin-left: 0 !important; } }
 .kpi.kpi-long { font-size: 1.35rem; line-height: 1.25; }
 @media (max-width: 640px) {
   .question-icone.grande { display: none; } /* sur téléphone, la place va au titre */
