@@ -441,3 +441,7 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   dépenses » pour que le détail d'un domaine fasse son total, rubrique « Pourquoi plusieurs totaux sur cette page ? ».
 - **Atelier, étapes 3 et 4** (visite du 04/11/2026) : parcourir « Voir les effets » et « Équilibrer » à 390 px, chercher les
   sigles non expliqués (Md€, Mt CO₂, « équivalent temps plein »…) ; « décile » et « unité de consommation » sont faits.
+
+- **Budget et « Vrai ou faux »** (visite du 20/11/2026) : Sécurité sociale, collectivités, administrations, Eurostat et Insee sont
+  expliqués sur « Le budget » ; reste : sigles (TVA, CSG…) dans les réponses de « Vrai ou faux » (`lib/questions.ts`, texte brut :
+  il faudrait que `avecChiffres` accepte des composants `Terme`).

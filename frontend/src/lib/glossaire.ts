@@ -67,4 +67,7 @@ export const GLOSSAIRE: Record<string, Entree> = {
   insee: { terme: 'Insee', definition: "L'Institut national de la statistique et des études économiques : l'organisme public qui produit les chiffres officiels sur la population, les prix, l'emploi, les salaires et la pauvreté." },
   eurostat: { terme: 'Eurostat', definition: "Le service de statistiques de l'Union européenne. Il calcule avec la même méthode les chiffres de tous les pays (chômage, dette, déficit), ce qui permet de les comparer." },
   cepii: { terme: 'Cepii', definition: "Le Centre d'études prospectives et d'informations internationales : un centre public de recherche en économie internationale, rattaché aux services du Premier ministre." },
+  securite_sociale: { terme: 'Sécurité sociale', definition: "L'ensemble des organismes qui versent les retraites, remboursent les soins, paient les allocations familiales et l'indemnisation du chômage. Son budget est séparé de celui de l'État et vient surtout des cotisations et de la CSG." },
+  administrations: { terme: 'Administrations publiques', definition: "Tout ce qui dépense l'argent public : l'État, la Sécurité sociale et les collectivités locales. C'est le périmètre que les statistiques officielles (Insee, Eurostat) utilisent pour compter les dépenses, les recettes et la dette du pays." },
+  collectivites: { terme: 'Collectivités locales', definition: "Les communes, les départements et les régions. Elles gèrent par exemple les écoles primaires, les collèges, les lycées, les routes locales et l'aide sociale, avec leur propre budget." },
 }
