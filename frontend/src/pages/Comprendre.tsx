@@ -185,6 +185,7 @@ function CarteVraiFaux({ c }: { c: VraiFaux }) {
           <span className={`badge ${VERDICTS[c.verdict].cls}`} style={{ fontSize: '.9rem' }}>{VERDICTS[c.verdict].txt}</span>
           <p style={{ margin: '8px 0 6px' }}>{avecChiffres(c.explication, q, v)}</p>
           <div className="small muted">{sources.length > 0 && <>Sources : {sources.join(', ')}. </>}{c.lien && <Link to={c.lien.lien!}>{c.lien.libelle} →</Link>}</div>
+          <button type="button" className="btn ghost" style={{ marginTop: 8 }} onClick={() => setVu(false)}>Masquer la réponse</button>
         </div>
       )}
     </div>

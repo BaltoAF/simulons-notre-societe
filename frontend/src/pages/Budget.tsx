@@ -70,7 +70,7 @@ function SurCent({ fonctions }: { fonctions: Fonction[] }) {
   return (
     <div className="card" style={{ marginBottom: 20 }}>
       <h2 style={{ fontSize: '1.25rem', marginBottom: 4 }}>Sur 100 € d'argent public dépensés</h2>
-      <p className="small muted" style={{ marginTop: 0 }}>Toutes les administrations : État, Sécurité sociale, collectivités ({fonctions[0]?.annee}).</p>
+      <p className="small muted" style={{ marginTop: 0 }}>Toutes les <Terme id="administrations">administrations</Terme> : État, <Terme id="securite_sociale">Sécurité sociale</Terme>, <Terme id="collectivites">collectivités</Terme> ({fonctions[0]?.annee}).</p>
       {postes.map((p) => (
         <div key={p.nom} style={{ marginBottom: 8 }}>
           <div className="row between small" style={{ flexWrap: 'nowrap', gap: 10 }}><span>{p.nom}</span><strong style={{ whiteSpace: 'nowrap' }}>{Math.round((p.md / total) * 100)} €</strong></div>
@@ -100,7 +100,7 @@ function BudgetEtat({ missions, depenseTotale }: { missions: { id: string; titre
     <div className="card" id="budget-etat" style={{ marginTop: 20, scrollMarginTop: 80 }}>
       <h2 style={{ fontSize: '1.3rem', marginBottom: 4 }}><Landmark size={20} /> Le budget de l'État, et comment le changer</h2>
       <p className="small ink2" style={{ marginTop: 0 }}>Sur les {milliards(depenseTotale)} d'argent public, l'État en gère environ <strong>{milliards(totalEtat)}</strong>.
-        Le reste, c'est surtout la Sécurité sociale (retraites, santé, familles) et les communes, départements et régions.
+        Le reste, c'est surtout la <Terme id="securite_sociale">Sécurité sociale</Terme> (retraites, santé, familles) et les <Terme id="collectivites">communes, départements et régions</Terme>.
         Les montants ci-dessous sont ceux du budget voté pour l'année (voir « Pourquoi plusieurs totaux sur cette page ? »).</p>
       <details className="curieux small" style={{ marginBottom: 10 }}><summary><Lock size={14} style={{ verticalAlign: -2 }} /> Pourquoi des cadenas ?</summary>
         <p className="ink2" style={{ margin: '6px 0 0' }}>Ces dépenses ne se décident pas d'un coup de crayon : elles découlent d'engagements déjà pris (les intérêts
@@ -187,7 +187,7 @@ export default function Budget() {
   return (
     <div className="container page">
       <h1>Le budget de la France… et le vôtre</h1>
-      <p className="lead ink2" style={{ maxWidth: 820 }}>D'où vient l'argent public, où il va, et quelle est votre part. Toutes les dépenses publiques sont comptées : État, Sécurité sociale et collectivités locales.</p>
+      <p className="lead ink2" style={{ maxWidth: 820 }}>D'où vient l'argent public, où il va, et quelle est votre part. Toutes les dépenses publiques sont comptées : État, <Terme id="securite_sociale">Sécurité sociale</Terme> et <Terme id="collectivites">collectivités locales</Terme>.</p>
       <div className="row" style={{ marginBottom: 16 }}>
         <a className="btn small primary" href="#et-vous"><Wallet size={14} /> Et vous ? Votre part ↓</a>
         <a className="btn small" href="#budget-etat"><Landmark size={14} /> Changer le budget de l'État ↓</a>
@@ -292,7 +292,7 @@ export default function Budget() {
             </div>
           ))}
           {!toutesFonctions && n.fonctions.length > 5 && <button className="btn ghost small" onClick={() => setToutesFonctions(true)}>Voir {n.fonctions.length - 5 > 1 ? `les ${n.fonctions.length - 5} autres domaines` : "l'autre domaine"}</button>}
-          <div className="small muted">Source : Eurostat / INSEE, comptes des administrations publiques, classés par grande fonction selon une règle commune à tous les pays.</div>
+          <div className="small muted">Source : <Terme id="eurostat">Eurostat</Terme> / <Terme id="insee">Insee</Terme>, comptes des <Terme id="administrations">administrations publiques</Terme>, classés par grande fonction selon une règle commune à tous les pays.</div>
         </div>
         <div className="card">
           <h3><PiggyBank size={18} /> D'où vient l'argent</h3>
