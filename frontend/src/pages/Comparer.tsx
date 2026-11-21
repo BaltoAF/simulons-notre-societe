@@ -8,6 +8,7 @@ import { milliards, parMenageMois, phrase, tonnes } from '../lib/humain'
 import { resumeSituation, situationVersMenage, useApp, useFetch } from '../lib/state'
 import { estTaxeConsommation, ligneMesure } from '../components/DiffSociete'
 import { ErrorBox } from '../components/ui'
+import { Terme } from '../components/Terme'
 import { LegendeTableau, TableauDeBord, TUILES, useRelance } from '../components/TableauDeBord'
 
 type Effets = { rapport: Rapport | null; erreur?: string }
@@ -17,7 +18,7 @@ function indicateur(r: Rapport | null, id: string) {
 }
 
 /** Une ligne du tableau des effets : le même indicateur, dit en clair, pour chacune des deux propositions. */
-const LIGNES: { titre: string; rendu: (r: Rapport | null) => string; foyer?: boolean }[] = [
+const LIGNES: { titre: string; terme?: string; rendu: (r: Rapport | null) => string; foyer?: boolean }[] = [
   {
     titre: "L'argent public", rendu: (r) => {
       const e = r?.equilibres.find((x) => x.id === 'budget')
@@ -40,8 +41,8 @@ const LIGNES: { titre: string; rendu: (r: Rapport | null) => string; foyer?: boo
       return Math.abs(pv.delta_mois) < 0.5 ? 'Rien ne change' : `${pv.delta_mois > 0 ? '+' : '−'}${Math.abs(Math.round(pv.delta_mois))} € par mois`
     },
   },
-  { titre: 'La pauvreté', rendu: (r) => { const i = indicateur(r, 'pauvrete'); return i ? phrase(i.id, i.valeur, i.unite) : '—' } },
-  { titre: 'Les inégalités', rendu: (r) => { const i = indicateur(r, 'gini'); return i ? phrase(i.id, i.valeur, i.unite) : '—' } },
+  { titre: 'La pauvreté', terme: 'pauvrete', rendu: (r) => { const i = indicateur(r, 'pauvrete'); return i ? phrase(i.id, i.valeur, i.unite) : '—' } },
+  { titre: 'Les inégalités', terme: 'gini', rendu: (r) => { const i = indicateur(r, 'gini'); return i ? phrase(i.id, i.valeur, i.unite) : '—' } },
   {
     titre: 'Gagnants et perdants', foyer: true, rendu: (r) => {
       const i = indicateur(r, 'gagnants')
@@ -50,7 +51,7 @@ const LIGNES: { titre: string; rendu: (r: Rapport | null) => string; foyer?: boo
   },
   {
     // court et long terme : deux moments différents, dits séparément
-    titre: "L'activité économique", rendu: (r) => {
+    titre: "L'activité économique", terme: 'richesse', rendu: (r) => {
       const items = r?.bilan.flatMap((p) => p.indicateurs).filter((i) => i.id === 'pib' || i.id === 'pib_long_terme') ?? []
       return items.length ? items.map((i) => phrase(i.id, i.valeur, i.unite)).join(' ') : '—'
     },
@@ -172,7 +173,7 @@ export default function Comparer() {
                 <tbody>
                   {LIGNES.map((l) => (
                     <tr key={l.titre}>
-                      <th scope="row">{l.titre}</th>
+                      <th scope="row">{l.terme ? <Terme id={l.terme}>{l.titre}</Terme> : l.titre}</th>
                       {[[a, sa], [b, sb]].map(([id, s]) => (
                         <td key={id as string} data-label={(s as Societe | undefined)?.nom ?? ''}>{effets[id as string]
                           ? (effets[id as string].erreur ? <span className="muted">indisponible</span>

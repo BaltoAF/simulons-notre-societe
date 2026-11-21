@@ -442,6 +442,7 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
 - **Atelier, étapes 3 et 4** (visite du 04/11/2026) : parcourir « Voir les effets » et « Équilibrer » à 390 px, chercher les
   sigles non expliqués (Md€, Mt CO₂, « équivalent temps plein »…) ; « décile » et « unité de consommation » sont faits.
 
-- **Budget et « Vrai ou faux »** (visite du 20/11/2026) : Sécurité sociale, collectivités, administrations, Eurostat et Insee sont
-  expliqués sur « Le budget » ; reste : sigles (TVA, CSG…) dans les réponses de « Vrai ou faux » (`lib/questions.ts`, texte brut :
-  il faudrait que `avecChiffres` accepte des composants `Terme`).
+- **Budget et « Vrai ou faux »** (visite du 20/11/2026) : sigles des réponses expliqués au toucher (fait le 21/11 : prime
+  d'activité, AAH, APL, CAF, CRDS en plus de TVA, CSG, SMIC, RSA…). Reste : les affirmations en titre des cartes.
+- **Comparer** (visite du 21/11/2026) : titres du tableau des effets expliqués (fait). Reste : « Gagnants et perdants » à dire
+  en clair dans le tableau (qui est « gagnant » : pouvoir d'achat en hausse, TVA comprise).

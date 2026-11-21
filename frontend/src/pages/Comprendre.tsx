@@ -57,6 +57,7 @@ const TERMES: [RegExp, string][] = [
   [/PIB/, 'pib'], [/au sens du BIT/, 'chomage_bit'], [/\bactifs\b/, 'actifs'], [/équivalent CO₂/, 'equivalent_co2'],
   [/minima sociaux/, 'minima_sociaux'], [/budget carbone/, 'budget_carbone'], [/TVA/, 'tva'], [/CSG/, 'csg'], [/DREES/, 'drees'], [/Conseil d'orientation des retraites|\bCOR\b/, 'cor'],
   [/\bOCDE\b/, 'ocde'], [/\bPISA\b/, 'pisa'], [/\bAME\b/, 'ame'], [/\bSMIC\b/, 'smic'], [/\bRSA\b/, 'rsa'],
+  [/prime d['’]activité/i, 'prime_activite'], [/allocation aux adultes handicapés|\bAAH\b/, 'aah'], [/\bAPL\b/, 'apl'], [/\bCAF\b/, 'caf'], [/\bCRDS\b/, 'crds'],
   [/\bInsee\b/, 'insee'], [/\bEurostat\b/, 'eurostat'], [/\bCepii\b/, 'cepii'],
 ]
 
