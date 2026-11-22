@@ -445,4 +445,6 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
 - **Budget et « Vrai ou faux »** (visite du 20/11/2026) : sigles des réponses expliqués au toucher (fait le 21/11 : prime
   d'activité, AAH, APL, CAF, CRDS en plus de TVA, CSG, SMIC, RSA…). Reste : les affirmations en titre des cartes.
 - **Comparer** (visite du 21/11/2026) : titres du tableau des effets expliqués (fait). Reste : « Gagnants et perdants » à dire
-  en clair dans le tableau (qui est « gagnant » : pouvoir d'achat en hausse, TVA comprise).
+  en clair dans le tableau (qui est « gagnant » : pouvoir d'achat en hausse, TVA comprise). Fait le 22/11/2026 (entrée « Gagnants et perdants » du lexique).
+- **Lexique, dimanche 22/11/2026** : « France Travail » ajouté ; « SMIC » relié dans « Notre méthode ». Reste : France Travail dans les
+  aides de « Mes droits » (chaînes de texte simples, à passer en JSX avec `Terme`).
