@@ -44,7 +44,7 @@ const LIGNES: { titre: string; terme?: string; rendu: (r: Rapport | null) => str
   { titre: 'La pauvreté', terme: 'pauvrete', rendu: (r) => { const i = indicateur(r, 'pauvrete'); return i ? phrase(i.id, i.valeur, i.unite) : '—' } },
   { titre: 'Les inégalités', terme: 'gini', rendu: (r) => { const i = indicateur(r, 'gini'); return i ? phrase(i.id, i.valeur, i.unite) : '—' } },
   {
-    titre: 'Gagnants et perdants', foyer: true, rendu: (r) => {
+    titre: 'Gagnants et perdants', terme: 'gagnants', foyer: true, rendu: (r) => {
       const i = indicateur(r, 'gagnants')
       return i ? `${Math.round(i.valeur)} % des ménages y gagnent${i.perdants != null ? `, ${Math.round(i.perdants)} % y perdent` : ''}` : '—'
     },

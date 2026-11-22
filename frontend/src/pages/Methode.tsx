@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { Terme } from '../components/Terme'
 import { Bot, Calculator, GitFork, Scale, ShieldCheck } from 'lucide-react'
 
 const NIVEAUX = [
@@ -49,7 +50,7 @@ export default function Methode() {
 
       <div className="card stack" id="preuves" style={{ marginTop: 16 }}>
         <h2><Scale size={22} /> 4. Trancher entre des études qui se contredisent</h2>
-        <p>Pour chaque question (par exemple « une hausse du SMIC réduit-elle l'emploi ? »), le Système recense toutes les estimations crédibles. Chacune reçoit un <strong>poids</strong> :</p>
+        <p>Pour chaque question (par exemple « une hausse du <Terme id="smic">SMIC</Terme> réduit-elle l'emploi ? »), le Système recense toutes les estimations crédibles. Chacune reçoit un <strong>poids</strong> :</p>
         <p style={{ fontFamily: 'var(--mono)', fontSize: '.9rem', background: 'var(--surface-2)', padding: 12, borderRadius: 8 }}>poids = qualité × pertinence pour la France × fraîcheur × précision</p>
         <ul>
           <li><strong>Qualité</strong> : méta-analyse (1), expérience contrôlée (0,95), quasi-expérience (0,85), modèle structurel (0,65), simulation institutionnelle (0,6), étude descriptive (0,5) ; × 0,8 si l'étude n'est pas relue par des pairs ; modulée par la fiabilité de l'éditeur.</li>
