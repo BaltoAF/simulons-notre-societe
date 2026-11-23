@@ -356,7 +356,7 @@ export default function Atelier() {
               {desequilibres.map((e) => e.id === 'budget' ? `il manque ${milliards(e.manque)} par an pour financer votre réforme` : `votre réforme ajouterait ${tonnes(e.manque)} d'émissions par an, à compenser pour tenir l'objectif climat de la France`).join(', et ')}.
               {/* une baisse d'impôt qui « pollue » surprend : dire d'où viennent ces émissions */}
               {desequilibres.some((e) => e.id === 'carbone') && rapport?.bilan?.some((p) => p.indicateurs.some((i) => i.id === 'equilibre_carbone_revenus'))
-                && " Elles viennent du pouvoir d'achat : plus de revenus, plus de consommation."}
+                && <> Elles viennent du <Terme id="pouvoir_achat">pouvoir d'achat</Terme> : plus de revenus, plus de consommation.</>}
               {' '}<a href="#equilibres">Choisir une solution ↓</a></div></div>
           )}
           {/* pendant un nouveau calcul, l'ancien résultat reste visible, grisé (sinon un écran presque vide pendant 10 s à 1 min) */}
