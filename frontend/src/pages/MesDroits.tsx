@@ -42,11 +42,11 @@ function phraseCsgPension(t: number): ReactNode {
 }
 
 /** Ce qu'il faut saisir pour chaque situation, dit avec les mots du document que la personne a sous les yeux. */
-const AIDE_MONTANT: Record<string, string> = {
+const AIDE_MONTANT: Record<string, ReactNode> = {
   salarie: "La ligne « Net à payer avant impôt sur le revenu » de votre fiche de paie (pas le montant versé, d'où l'impôt est déjà retiré).",
   apprenti: "La ligne « Net à payer avant impôt sur le revenu » de votre fiche de paie. La prime d'activité ne s'ouvre aux apprentis qu'au-delà d'environ 1 144 € nets par mois.",
-  independant: "Ce que vous facturez en moyenne par mois, celui que vous déclarez à l'Urssaf, avant de payer vos cotisations. Le site calcule vos cotisations, votre impôt et vos aides.",
-  chomeur: 'Le montant versé chaque mois par France Travail, avant prélèvement à la source.',
+  independant: <>Ce que vous facturez en moyenne par mois, celui que vous déclarez à l'<Terme id="urssaf">Urssaf</Terme>, avant de payer vos cotisations. Le site calcule vos cotisations, votre impôt et vos aides.</>,
+  chomeur: <>Le montant versé chaque mois par <Terme id="france_travail">France Travail</Terme>, avant prélèvement à la source.</>,
   retraite: "Toutes vos retraites additionnées (base, complémentaire, et pension de réversion si vous en touchez une), avant prélèvement à la source : le montant net de votre relevé de pension ou de votre espace info-retraite.fr.",
   etudiant: "En alternance ? Choisissez plutôt « Apprenti(e) ». Une personne étudiante n'a droit à la prime d'activité que si elle gagne plus d'environ 1 144 € nets par mois. Les bourses ne sont pas calculées par le site, mais le résultat vous dira comment les demander.",
 }
@@ -57,12 +57,12 @@ const DEFAUT: SituationSaisie = { couple: 'seul', adultes: [ADULTE], enfants: []
 
 // Règles qui « expliquent » chaque ligne du résultat.
 // À qui demander chaque aide (le site calcule des droits théoriques ; la demande se fait auprès de l'organisme)
-const DEMANDER: Record<string, string> = {
-  ass: 'auprès de France Travail, qui vous envoie le formulaire à la fin de vos droits au chômage',
-  rsa: 'auprès de la CAF (caf.fr), ou de la MSA si vous êtes agriculteur', prime_activite: 'auprès de la CAF (caf.fr), ou de la MSA si vous êtes agriculteur',
-  aides_logement: 'auprès de la CAF (caf.fr), ou de la MSA si vous êtes agriculteur', allocations_familiales: 'à la CAF seulement si vous ne les touchez pas encore : en général, elles arrivent sans démarche',
-  aspa: 'auprès de votre caisse de retraite', aah: 'auprès de la MDPH de votre département, puis de la CAF',
-  complement_familial: 'auprès de la CAF', asf: 'auprès de la CAF', paje: 'auprès de la CAF', ars: 'à la CAF seulement si vous ne la touchez pas encore : en général, elle arrive sans démarche',
+const DEMANDER: Record<string, ReactNode> = {
+  ass: <>auprès de <Terme id="france_travail">France Travail</Terme>, qui vous envoie le formulaire à la fin de vos droits au chômage</>,
+  rsa: <>auprès de la <Terme id="caf">CAF</Terme> (caf.fr), ou de la MSA si vous êtes agriculteur</>, prime_activite: <>auprès de la <Terme id="caf">CAF</Terme> (caf.fr), ou de la MSA si vous êtes agriculteur</>,
+  aides_logement: <>auprès de la <Terme id="caf">CAF</Terme> (caf.fr), ou de la MSA si vous êtes agriculteur</>, allocations_familiales: <>à la <Terme id="caf">CAF</Terme> seulement si vous ne les touchez pas encore : en général, elles arrivent sans démarche</>,
+  aspa: 'auprès de votre caisse de retraite', aah: <>auprès de la <Terme id="mdph">MDPH</Terme> de votre département, puis de la <Terme id="caf">CAF</Terme></>,
+  complement_familial: <>auprès de la <Terme id="caf">CAF</Terme></>, asf: <>auprès de la <Terme id="caf">CAF</Terme></>, paje: <>auprès de la <Terme id="caf">CAF</Terme></>, ars: <>à la <Terme id="caf">CAF</Terme> seulement si vous ne la touchez pas encore : en général, elle arrive sans démarche</>,
 }
 
 const POURQUOI: Record<string, { regles: string[]; texte: ReactNode }> = {
@@ -592,9 +592,9 @@ export default function MesDroits() {
                   </label>
                 )}
                 <div className="row" style={{ gap: 18 }}>
-                  {a.activite === 'salarie' && <label className="row small" style={{ cursor: 'pointer' }}><input type="checkbox" checked={a.cadre} onChange={(e) => upA(i, { cadre: e.target.checked })} /> Cadre</label>}
+                  {a.activite === 'salarie' && <label className="row small" style={{ cursor: 'pointer' }}><input type="checkbox" checked={a.cadre} onChange={(e) => upA(i, { cadre: e.target.checked })} /> Cadre<span className="muted"> (si votre fiche de paie porte la mention « cadre »)</span></label>}
                   {a.activite === 'etudiant' && !enCouple && <label className="row small" style={{ cursor: 'pointer' }}><input type="checkbox" checked={estRattache(a)} onChange={(e) => upA(i, { rattache: e.target.checked })} /> Mes parents me comptent encore dans leur déclaration d'impôt<span className="muted"> (à vérifier : cela change vos droits ; en cas de doute, regardez leur dernier avis d'impôt ou demandez-leur)</span></label>}
-                  <label className="row small" style={{ cursor: 'pointer' }}><input type="checkbox" checked={a.handicap} onChange={(e) => upA(i, { handicap: e.target.checked })} /> Handicap reconnu (taux ≥ 80 %)</label>
+                  <label className="row small" style={{ cursor: 'pointer' }}><input type="checkbox" checked={a.handicap} onChange={(e) => upA(i, { handicap: e.target.checked })} /> Handicap reconnu (taux ≥ 80 %)<span className="muted">, par la <Terme id="mdph">MDPH</Terme></span></label>
                 </div>
               </div>
             ))}
