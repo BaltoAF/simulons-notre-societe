@@ -124,7 +124,7 @@ function AucuneAide({ s, totalRevenus, plafondAspa }: { s: SituationSaisie; tota
         <ul className="list small ink2" style={{ margin: 0 }}>
           {s.enfants.length === 1 && <li>Allocations familiales : elles ne sont versées qu'à partir du deuxième enfant, quels que soient les revenus.</li>}
           {s.enfants.length >= 2 && <li>Allocations familiales : elles n'ont pas pu être calculées pour votre foyer.</li>}
-          {s.enfants.some((e) => e >= 0 && e < 3) && <li>Allocation de base de la PAJE (enfant de moins de 3 ans) : vos revenus dépassent son plafond.</li>}
+          {s.enfants.some((e) => e >= 0 && e < 3) && <li>Allocation de base de la <Terme id="paje">PAJE</Terme> (enfant de moins de 3 ans) : vos revenus dépassent son plafond.</li>}
           {s.logement.startsWith('locataire') && <li>Aides au logement : vos revenus dépassent le plafond pour votre loyer et votre zone.</li>}
           {s.adultes.some((a) => ['salarie', 'apprenti', 'independant'].includes(a.activite)) && <li>Prime d'activité : les revenus du foyer dépassent son plafond.</li>}
           <li><Terme id="rsa">RSA</Terme> : les revenus du foyer dépassent le montant qu'il garantit.</li>

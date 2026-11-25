@@ -10,7 +10,7 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
   complète + mises à jour quotidiennes, en flux, ~1 h la première fois ; reprise automatique après une coupure ; cache
   dans system/cache/legi/, non versionné). À utiliser pour vérifier les articles cités par les règles (champ `article`).
 
-- **Libellés d'aide de « Mes droits »** : fait le 24/11/2026 (France Travail, Urssaf, CAF, MDPH expliqués au toucher). Reste : l'ARE et l'ASS dans les lignes du résultat.
+- **Libellés d'aide de « Mes droits »** : fait le 24/11/2026 (France Travail, Urssaf, CAF, MDPH expliqués au toucher). Fait le 25/11/2026 : l'ASS (« Et après le chômage ? »), la PAJE et le CMG expliqués au toucher.
 
 - **Lexique dans « Mes droits »** (visite du 02/11/2026) : fait pour « foyer » (3 explications de l'impôt) et « CAF »
   (3 encadrés), « RSA » et « APL » (explications des aides). « Tranche » et « quotient familial » : faits le 03/11 (explication « Impôt sur le revenu »). Zone à toucher des liens

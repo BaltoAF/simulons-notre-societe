@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Baby } from 'lucide-react'
 import { euros } from '../lib/format'
+import { Terme } from './Terme'
 import { coutCreche, estimerGarde, paramsGarde, REGLES_GARDE } from '../lib/garde'
 import type { SituationSaisie } from '../lib/state'
 
@@ -69,7 +70,7 @@ export function CoutGarde({ s, lignes, valeurs }: { s: SituationSaisie; lignes: 
               qui comptait déjà le crédit d'impôt trompait sur la trésorerie (test Mehdi) */}
           <ul className="list">
             <li><div className="list-row"><span>Ce que coûte la garde</span><strong>{euros(a.cout)}</strong></div></li>
-            <li><div className="list-row"><span>Complément de la CAF (CMG)</span><strong className={`delta ${a.cmg > 0 ? 'pos' : ''}`}>{a.cmg > 0 ? '−' : ''}{euros(a.cmg)}</strong></div>
+            <li><div className="list-row"><span>Complément de la CAF (<Terme id="cmg">CMG</Terme>)</span><strong className={`delta ${a.cmg > 0 ? 'pos' : ''}`}>{a.cmg > 0 ? '−' : ''}{euros(a.cmg)}</strong></div>
               {a.cmg === 0 && <div className="small muted" style={{ marginTop: 2 }}>À ce niveau de revenus, le complément est nul.</div>}</li>
             <li><div className="list-row"><span><strong>Chaque mois, vous payez</strong></span><strong>{euros(a.paye)}</strong></div></li>
             {moinsDe6 && <li><div className="list-row"><span>Crédit d'impôt, versé l'année suivante</span><strong className="delta pos">−{euros(a.creditAn)} pour l'année</strong></div>
