@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import { Briefcase, Hourglass } from 'lucide-react'
 import { api } from '../lib/api'
 import { euros } from '../lib/format'
+import { Terme } from './Terme'
 import { situationVersMenage, type SituationSaisie } from '../lib/state'
 
 type Ligne = { id: string; libelle: string; montant: number; nature: string }
@@ -66,11 +67,11 @@ export function ApresLeChomage({ s, actuel }: { s: SituationSaisie; actuel: Res 
         <div>
           <strong><Hourglass size={16} /> Quand l'allocation chômage {s.adultes.length > 1 && i > 0 ? 'de votre conjoint(e) ' : ''}s'arrête</strong>
           <label className="row small" style={{ marginTop: 6, cursor: 'pointer', flexWrap: 'nowrap', alignItems: 'flex-start' }}><input type="checkbox" checked={cinqAns}
-            onChange={(e) => { setCinqAns(e.target.checked); setFin({}) }} style={{ marginTop: 3 }} /> J'ai travaillé au moins 5 ans au cours des 10 dernières années (condition de l'ASS)</label>
+            onChange={(e) => { setCinqAns(e.target.checked); setFin({}) }} style={{ marginTop: 3 }} /> J'ai travaillé au moins 5 ans au cours des 10 dernières années (condition de l'<Terme id="are_ass">ASS</Terme>)</label>
           {!fin.res && !fin.loading && <div style={{ marginTop: 6 }}><button className="btn small" onClick={() => calculer({ montant_net: 0, ass_precondition: cinqAns }, setFin)}>Calculer</button></div>}
           <Bilan sc={fin} actuel={actuel} />
           {fin.res && <div className="small muted" style={{ marginTop: 4 }}>L'<Link to="/regles/r/travail.chomage.ass_montant_journalier">allocation de solidarité
-            spécifique (ASS)</Link> est {cinqAns ? 'comptée ici si les ressources du foyer le permettent' : "réservée à ceux qui ont travaillé au moins 5 ans au cours des 10 dernières années : cochez la case si c'est votre cas"}. France Travail confirme le droit.</div>}
+            spécifique</Link> (<Terme id="are_ass">ASS</Terme>) est {cinqAns ? 'comptée ici si les ressources du foyer le permettent' : "réservée à ceux qui ont travaillé au moins 5 ans au cours des 10 dernières années : cochez la case si c'est votre cas"}. France Travail confirme le droit.</div>}
         </div>
         <div>
           <strong><Briefcase size={16} /> Si {i > 0 && s.adultes.length > 1 ? 'votre conjoint(e) reprend' : 'vous reprenez'} un emploi</strong>
