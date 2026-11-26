@@ -58,7 +58,7 @@ const TERMES: [RegExp, string][] = [
   [/minima sociaux/, 'minima_sociaux'], [/budget carbone/, 'budget_carbone'], [/TVA/, 'tva'], [/CSG/, 'csg'], [/DREES/, 'drees'], [/Conseil d'orientation des retraites|\bCOR\b/, 'cor'],
   [/\bOCDE\b/, 'ocde'], [/\bPISA\b/, 'pisa'], [/\bAME\b/, 'ame'], [/\bSMIC\b/, 'smic'], [/\bRSA\b/, 'rsa'],
   [/prime d['’]activité/i, 'prime_activite'], [/allocation aux adultes handicapés|\bAAH\b/, 'aah'], [/\bAPL\b/, 'apl'], [/\bCAF\b/, 'caf'], [/\bCRDS\b/, 'crds'],
-  [/\bInsee\b/, 'insee'], [/\bEurostat\b/, 'eurostat'], [/\bCepii\b/, 'cepii'],
+  [/\bInsee\b/, 'insee'], [/\bEurostat\b/, 'eurostat'], [/\bCepii\b/, 'cepii'], [/\bDGFiP\b/, 'dgfip'], [/France Travail/, 'france_travail'],
 ]
 
 function avecTermes(txt: string, deja: Set<string>): ReactNode[] {
@@ -320,12 +320,12 @@ function Detail({ q }: { q: Question }) {
         // deux positions à égalité (même couleur, même place) : le site ne choisit pas
         <div className="card" style={{ marginTop: 16 }}>
           <h2 style={{ fontSize: '1.2rem', marginTop: 0 }}><Scale size={20} /> Ce qui fait débat</h2>
-          <p style={{ fontWeight: 650, fontSize: '1.05rem' }}>{q.debat.question}</p>
+          <p style={{ fontWeight: 650, fontSize: '1.05rem' }}>{avecTermes(q.debat.question, new Set())}</p>
           <div className={`grid cols-${q.debat.positions.length}`}>
             {q.debat.positions.map((p) => (
               <div key={p.titre}>
                 <div className="kpi-label">{p.titre}</div>
-                <p style={{ margin: '4px 0 0' }}>{p.texte}</p>
+                <p style={{ margin: '4px 0 0' }}>{avecTermes(p.texte, new Set())}</p>
               </div>
             ))}
           </div>
