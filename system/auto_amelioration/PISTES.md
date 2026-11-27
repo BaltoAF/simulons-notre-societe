@@ -363,6 +363,8 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
 
 ## Fait
 
+- 27/11/2026 (visite du budget et de « Vrai ou faux », vendredi) : les affirmations en titre des cartes expliquent RSA et dette au toucher ; « Durée légale du travail » ajoutée au lexique (Code du travail L3121-27) et expliquée dans la carte des 35 heures ; titres du registre des sources plus faciles à toucher sur téléphone. Aucun débordement à 390 px sur budget, sources, lexique. Reste : « heures supplémentaires » et « forfait » à dire en clair (source Code du travail à joindre).
+
 - 26/11/2026 (visite des grandes questions, jeudi) : les blocs « Ce qui fait débat » expliquent désormais OCDE, PIB, TVA, SMIC… au toucher ; DGFiP ajouté au lexique ; France Travail expliqué dans les grandes questions. 10 questions relues à 390 px : aucun débordement. Reste : les affirmations en titre des cartes de « Vrai ou faux ».
 
 - 19/11/2026 : grandes questions : OCDE, PISA, AME, SMIC, RSA, Insee, Eurostat et Cepii expliqués au toucher ; bouton « Ne plus afficher » de la découverte aligné sur téléphone. Reste : relire à 390 px les questions autres que « Le travail » et les blocs « Ce qui fait débat ».

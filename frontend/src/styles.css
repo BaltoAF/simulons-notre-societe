@@ -387,6 +387,8 @@ details.pourquoi > div { margin-top: 6px; padding: 10px 12px; background: var(--
 details.curieux > summary { cursor: pointer; font-weight: 650; color: var(--ink-2); }
 details.curieux[open] > summary { margin-bottom: 4px; }
 @media (max-width: 640px) {
+  /* titre d'une source : zone de toucher d'au moins 24 px de haut, sans changer l'aspect */
+  .src-titre { display: inline-block; padding: 3px 0; }
   /* étapes compactes : seule l'étape en cours garde son libellé */
   .etapes li:not(.actif) .lib { display: none; }
   .etapes li:not(.actif) { padding: 6px; }

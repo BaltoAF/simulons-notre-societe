@@ -59,6 +59,7 @@ const TERMES: [RegExp, string][] = [
   [/\bOCDE\b/, 'ocde'], [/\bPISA\b/, 'pisa'], [/\bAME\b/, 'ame'], [/\bSMIC\b/, 'smic'], [/\bRSA\b/, 'rsa'],
   [/prime d['’]activité/i, 'prime_activite'], [/allocation aux adultes handicapés|\bAAH\b/, 'aah'], [/\bAPL\b/, 'apl'], [/\bCAF\b/, 'caf'], [/\bCRDS\b/, 'crds'],
   [/\bInsee\b/, 'insee'], [/\bEurostat\b/, 'eurostat'], [/\bCepii\b/, 'cepii'], [/\bDGFiP\b/, 'dgfip'], [/France Travail/, 'france_travail'],
+  [/durée légale/i, 'duree_legale'], [/\bdette\b/, 'dette'], [/\bdéficit\b/, 'deficit'],
 ]
 
 function avecTermes(txt: string, deja: Set<string>): ReactNode[] {
@@ -180,7 +181,7 @@ function CarteVraiFaux({ c }: { c: VraiFaux }) {
   const q = { chiffres: c.chiffres } as Question
   return (
     <div className="card vrai-faux">
-      <p style={{ fontWeight: 700, fontSize: '1.05rem', margin: '0 0 10px' }}>« {c.affirmation} »</p>
+      <p style={{ fontWeight: 700, fontSize: '1.05rem', margin: '0 0 10px' }}>« {avecTermes(c.affirmation, new Set())} »</p>
       {!vu ? <button className="btn" onClick={() => setVu(true)} aria-expanded={false}>Vrai ou faux ? Voir la réponse</button> : (
         <div role="status">
           <span className={`badge ${VERDICTS[c.verdict].cls}`} style={{ fontSize: '.9rem' }}>{VERDICTS[c.verdict].txt}</span>
