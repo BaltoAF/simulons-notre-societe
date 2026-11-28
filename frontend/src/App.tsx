@@ -156,6 +156,23 @@ function Footer() {
   )
 }
 
+/** Adresse inconnue : au lieu d'une impasse, les parcours principaux du site, avec des zones à toucher confortables. */
+function PageIntrouvable() {
+  return (
+    <div className="container page">
+      <h1>Page introuvable</h1>
+      <p>Cette adresse n'existe pas (ou plus). Voici par où continuer :</p>
+      <ul className="liste-simple">
+        <li><Link className="lien-action" to="/">Retour à l'accueil</Link></li>
+        <li><Link className="lien-action" to="/mes-droits">Mes droits : ce que je peux toucher et ce que je paie</Link></li>
+        <li><Link className="lien-action" to="/atelier">Changer les règles et voir les effets</Link></li>
+        <li><Link className="lien-action" to="/comprendre">Comprendre les grandes questions</Link></li>
+        <li><Link className="lien-action" to="/budget">Où va l'argent public</Link></li>
+      </ul>
+    </div>
+  )
+}
+
 /** Mesure d'audience maison : à chaque page, un signal anonyme au serveur du site (aucun outil tiers, aucun cookie). */
 function CompterVisite() {
   const { pathname } = useLocation()
@@ -225,7 +242,7 @@ export default function App() {
             <Route path="/tester" element={<Tester />} />
             <Route path="/qui-fait-ce-site" element={<QuiFait />} />
             <Route path="/frequentation" element={<Frequentation />} />
-            <Route path="*" element={<div className="container page"><h1>Page introuvable</h1><Link to="/">Retour à l'accueil</Link></div>} />
+            <Route path="*" element={<PageIntrouvable />} />
           </Routes>
         </Suspense>
       </main>

@@ -363,6 +363,8 @@ Chaque piste dit d'où elle vient. Les pistes « à soumettre » relèvent du re
 
 ## Fait
 
+- 28/11/2026 (visite des propositions et de « Comparer », samedi) : aucun débordement à 390 px ; « heures supplémentaires » (25 % / 50 %, L3121-36) et « forfait en jours » (218 jours, L3121-64) ajoutés au lexique et expliqués au toucher dans les grandes questions ; page « introuvable » avec cinq parcours au lieu d'une impasse ; bouton « Un avis sur cette page » du pied de page à 44 px de haut sur téléphone. Reste : « Retour à l'accueil » des anciennes impasses, relire la page d'une proposition chiffrée à 390 px (aucune proposition publique dans la copie locale).
+
 - 27/11/2026 (visite du budget et de « Vrai ou faux », vendredi) : les affirmations en titre des cartes expliquent RSA et dette au toucher ; « Durée légale du travail » ajoutée au lexique (Code du travail L3121-27) et expliquée dans la carte des 35 heures ; titres du registre des sources plus faciles à toucher sur téléphone. Aucun débordement à 390 px sur budget, sources, lexique. Reste : « heures supplémentaires » et « forfait » à dire en clair (source Code du travail à joindre).
 
 - 26/11/2026 (visite des grandes questions, jeudi) : les blocs « Ce qui fait débat » expliquent désormais OCDE, PIB, TVA, SMIC… au toucher ; DGFiP ajouté au lexique ; France Travail expliqué dans les grandes questions. 10 questions relues à 390 px : aucun débordement. Reste : les affirmations en titre des cartes de « Vrai ou faux ».

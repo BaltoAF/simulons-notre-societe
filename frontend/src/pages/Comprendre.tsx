@@ -59,7 +59,7 @@ const TERMES: [RegExp, string][] = [
   [/\bOCDE\b/, 'ocde'], [/\bPISA\b/, 'pisa'], [/\bAME\b/, 'ame'], [/\bSMIC\b/, 'smic'], [/\bRSA\b/, 'rsa'],
   [/prime d['’]activité/i, 'prime_activite'], [/allocation aux adultes handicapés|\bAAH\b/, 'aah'], [/\bAPL\b/, 'apl'], [/\bCAF\b/, 'caf'], [/\bCRDS\b/, 'crds'],
   [/\bInsee\b/, 'insee'], [/\bEurostat\b/, 'eurostat'], [/\bCepii\b/, 'cepii'], [/\bDGFiP\b/, 'dgfip'], [/France Travail/, 'france_travail'],
-  [/durée légale/i, 'duree_legale'], [/\bdette\b/, 'dette'], [/\bdéficit\b/, 'deficit'],
+  [/durée légale/i, 'duree_legale'], [/heures supplémentaires/i, 'heures_sup'], [/forfait(?:s)? (?:en )?jours?/i, 'forfait_jours'], [/\bdette\b/, 'dette'], [/\bdéficit\b/, 'deficit'],
 ]
 
 function avecTermes(txt: string, deja: Set<string>): ReactNode[] {
